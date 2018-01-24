@@ -35,14 +35,13 @@ function ExecuteWithRetry($Command) {
 }
 
 ExecuteWithRetry docker pull $ImageBuilderImageName
-$repoRoot = Split-Path -Path "$PSScriptRoot" -Parent
 
 & docker run --rm `
     -v /var/run/docker.sock:/var/run/docker.sock `
-    -v "${repoRoot}:/repo" `
-    -w /repo/src `
+    -v "${PSScriptRoot}:/repo" `
+    -w /repo `
     $ImageBuilderImageName `
-    build --manifest "/repo/src/manifest.json" --path "$DockerfilePath" "$ImageBuilderCustomArgs"
+    build --manifest "manifest.json" --path "$DockerfilePath" "$ImageBuilderCustomArgs"
 
 if ($LastExitCode -ne 0) {
     throw "Failed executing ImageBuilder."

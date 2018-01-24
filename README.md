@@ -27,7 +27,7 @@ There will be a need for modifying existing Dockerfiles or creating new ones.  F
     - Add/Update the Dockerfile(s)
     - If new Dockerfile(s) were added, then update the [manifest](#manifest)
 
-2. Validate the changes locally by running [build.ps1](./src/build.ps1).  It is strongly suggested to specify the `-DockerfilePath` option to avoid the overhead of building all the images.
+2. Validate the changes locally by running [build.ps1](./build.ps1).  It is strongly suggested to specify the `-DockerfilePath` option to avoid the overhead of building all the images.
 
     For example, if editing the [Fedora 24 Dockerfile](./src/fedora/24/Dockerfile), then run the following command to build just that Dockerfile.
 
@@ -57,7 +57,7 @@ The folder structure used in [src](./src) aligns with the tagging convention - `
 
 ### Manifest
 
-The [manifest.json](./src/manifest.json) contains metadata used by the build infrastructure to produce the Docker images.  The metadata describes which Dockerfiles to build, what tags to produce, and where to publish the images.  It is critical that the manifest gets updated appropriately when Dockerfiles are added/removed.  Each Dockerfile will have an entry that looks like the following.
+The [manifest.json](./manifest.json) contains metadata used by the build infrastructure to produce the Docker images.  The metadata describes which Dockerfiles to build, what tags to produce, and where to publish the images.  It is critical that the manifest gets updated appropriately when Dockerfiles are added/removed.  Each Dockerfile will have an entry that looks like the following.
 
 ```json
 "platforms": [
