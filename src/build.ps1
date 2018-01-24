@@ -40,9 +40,9 @@ $repoRoot = Split-Path -Path "$PSScriptRoot" -Parent
 & docker run --rm `
     -v /var/run/docker.sock:/var/run/docker.sock `
     -v "${repoRoot}:/repo" `
-    -w /repo/dockerfiles `
+    -w /repo/src `
     $ImageBuilderImageName `
-    build --manifest "/repo/dockerfiles/manifest.json" --path "$DockerfilePath" "$ImageBuilderCustomArgs"
+    build --manifest "/repo/src/manifest.json" --path "$DockerfilePath" "$ImageBuilderCustomArgs"
 
 if ($LastExitCode -ne 0) {
     throw "Failed executing ImageBuilder."
