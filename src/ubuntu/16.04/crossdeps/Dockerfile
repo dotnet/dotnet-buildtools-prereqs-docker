@@ -1,0 +1,32 @@
+FROM microsoft/dotnet-buildtools-prereqs:ubuntu-16.04-coredeps
+
+# Install the base toolchain we need to build anything (clang, cmake, make and the like).
+RUN apt-get update \
+    && apt-get install -y wget \
+    && echo "deb http://llvm.org/apt/trusty/ llvm-toolchain-trusty-3.6 main" | tee /etc/apt/sources.list.d/llvm.list \
+    && wget -O - http://llvm.org/apt/llvm-snapshot.gpg.key | apt-key add - \
+    && apt-get update \
+    && apt-get install -y \
+        binfmt-support \
+        binutils-arm-linux-gnueabihf \
+        clang-3.6 \
+        cmake \
+        debootstrap \
+        llvm-3.6 \
+        make \
+        qemu \
+        qemu-user-static \
+    && rm -rf /var/lib/apt/lists/*
+
+RUN apt-get update \
+    && echo "deb http://apt.llvm.org/xenial/ llvm-toolchain-xenial-3.9 main" >> /etc/apt/sources.list.d/llvm.list \
+    && echo "deb-src http://apt.llvm.org/xenial/ llvm-toolchain-xenial-3.9 main" >> /etc/apt/sources.list.d/llvm.list \
+    && wget -O - http://apt.llvm.org/llvm-snapshot.gpg.key | apt-key add - \
+    && apt-get update \
+    && apt-get install -y \
+        llvm-3.9 \
+        clang-3.9 \
+        liblldb-3.9-dev \
+        lldb-3.9 \
+        python-lldb-3.9 \
+    && rm -rf /var/lib/apt/lists/*
