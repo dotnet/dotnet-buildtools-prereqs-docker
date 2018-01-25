@@ -1,5 +1,5 @@
 # Dockerfile used to create a testrunner image that can perform Docker operations.
-#     docker run --rm -v /var/run/docker.sock:/var/run/docker.sock testrunner pwsh -File xyz.ps1
+# Usage:  docker run --rm -v /var/run/docker.sock:/var/run/docker.sock testrunner pwsh -File xyz.ps1
 
 FROM debian:stretch
 
