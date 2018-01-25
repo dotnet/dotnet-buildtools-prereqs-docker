@@ -1,0 +1,328 @@
+{
+  "repos": [
+    {
+      "name": "microsoft/dotnet-buildtools-prereqs",
+      "images": [
+        {
+          "platforms": [
+            {
+              "dockerfile": "src/alpine/3.6",
+              "os": "linux",
+              "tags": {
+                "alpine-3.6-$(System:DockerfileGitCommitSha)-$(System:TimeStamp)": {}
+              }
+            }
+          ]
+        },
+        {
+          "platforms": [
+            {
+              "dockerfile": "src/centos/7",
+              "os": "linux",
+              "tags": {
+                "centos-7-$(System:DockerfileGitCommitSha)-$(System:TimeStamp)": {}
+              }
+            }
+          ]
+        },
+        {
+          "platforms": [
+            {
+              "dockerfile": "src/centos/6",
+              "os": "linux",
+              "tags": {
+                "centos-6-$(System:DockerfileGitCommitSha)-$(System:TimeStamp)": {}
+              }
+            }
+          ]
+        },
+        {
+          "platforms": [
+            {
+              "dockerfile": "src/debian/8.2/coredeps",
+              "os": "linux",
+              "tags": {
+                "debian-8.2-coredeps-$(System:DockerfileGitCommitSha)-$(System:TimeStamp)": {},
+                "debian-8.2-coredeps": {
+                  "isLocal": true
+                }
+              }
+            }
+          ]
+        },
+        {
+          "platforms": [
+            {
+              "dockerfile": "src/debian/8.2",
+              "os": "linux",
+              "tags": {
+                "debian-8.2-$(System:DockerfileGitCommitSha)-$(System:TimeStamp)": {},
+                "debian-8.2": {
+                  "isLocal": true
+                }
+              }
+            }
+          ]
+        },
+        {
+          "platforms": [
+            {
+              "dockerfile": "src/debian/8.2/debpkg",
+              "os": "linux",
+              "tags": {
+                "debian-8.2-debpkg-$(System:DockerfileGitCommitSha)-$(System:TimeStamp)": {}
+              }
+            }
+          ]
+        },
+        {
+          "platforms": [
+            {
+              "dockerfile": "src/debian/8.2/corert",
+              "os": "linux",
+              "tags": {
+                "debian-8.2-corert-$(System:DockerfileGitCommitSha)-$(System:TimeStamp)": {}
+              }
+            }
+          ]
+        },
+        {
+          "platforms": [
+            {
+              "dockerfile": "src/fedora/24",
+              "os": "linux",
+              "tags": {
+                "fedora-24-$(System:DockerfileGitCommitSha)-$(System:TimeStamp)": {}
+              }
+            }
+          ]
+        },
+        {
+          "platforms": [
+            {
+              "dockerfile": "src/fedora/23",
+              "os": "linux",
+              "tags": {
+                "fedora-23-$(System:DockerfileGitCommitSha)-$(System:TimeStamp)": {}
+              }
+            }
+          ]
+        },
+        {
+          "platforms": [
+            {
+              "dockerfile": "src/opensuse/42.1",
+              "os": "linux",
+              "tags": {
+                "opensuse-42.1-$(System:DockerfileGitCommitSha)-$(System:TimeStamp)": {}
+              }
+            }
+          ]
+        },
+        {
+          "platforms": [
+            {
+              "dockerfile": "src/ubuntu/14.04",
+              "os": "linux",
+              "tags": {
+                "ubuntu-14.04-$(System:DockerfileGitCommitSha)-$(System:TimeStamp)": {},
+                "ubuntu-14.04": {
+                  "isLocal": true
+                }
+              }
+            }
+          ]
+        },
+        {
+          "platforms": [
+            {
+              "dockerfile": "src/ubuntu/14.04/debpkg",
+              "os": "linux",
+              "tags": {
+                "ubuntu-14.04-debpkg-$(System:DockerfileGitCommitSha)-$(System:TimeStamp)": {}
+              }
+            }
+          ]
+        },
+        {
+          "platforms": [
+            {
+              "dockerfile": "src/ubuntu/14.04/coredeps",
+              "os": "linux",
+              "tags": {
+                "ubuntu-14.04-coredeps-$(System:DockerfileGitCommitSha)-$(System:TimeStamp)": {},
+                "ubuntu-14.04-coredeps": {
+                  "isLocal": true
+                }
+              }
+            }
+          ]
+        },
+        {
+          "platforms": [
+            {
+              "dockerfile": "src/ubuntu/14.04/crossdeps",
+              "os": "linux",
+              "tags": {
+                "ubuntu-14.04-crossdeps-$(System:DockerfileGitCommitSha)-$(System:TimeStamp)": {},
+                "ubuntu-14.04-crossdeps": {
+                  "isLocal": true
+                }
+              }
+            }
+          ]
+        },
+        {
+          "platforms": [
+            {
+              "dockerfile": "src/ubuntu/14.04/cross",
+              "os": "linux",
+              "tags": {
+                "ubuntu-14.04-cross-$(System:DockerfileGitCommitSha)-$(System:TimeStamp)": {}
+              }
+            }
+          ]
+        },
+        {
+          "platforms": [
+            {
+              "dockerfile": "src/ubuntu/16.04",
+              "os": "linux",
+              "tags": {
+                "ubuntu-16.04-$(System:DockerfileGitCommitSha)-$(System:TimeStamp)": {},
+                "ubuntu-16.04": {
+                  "isLocal": true
+                }
+              }
+            }
+          ]
+        },
+        {
+          "platforms": [
+            {
+              "dockerfile": "src/ubuntu/16.04/debpkg",
+              "os": "linux",
+              "tags": {
+                "ubuntu-16.04-debpkg-$(System:DockerfileGitCommitSha)-$(System:TimeStamp)": {}
+              }
+            }
+          ]
+        },
+        {
+          "platforms": [
+            {
+              "dockerfile": "src/ubuntu/16.04/coredeps",
+              "os": "linux",
+              "tags": {
+                "ubuntu-16.04-coredeps-$(System:DockerfileGitCommitSha)-$(System:TimeStamp)": {},
+                "ubuntu-16.04-coredeps": {
+                  "isLocal": true
+                }
+              }
+            }
+          ]
+        },
+        {
+          "platforms": [
+            {
+              "dockerfile": "src/ubuntu/16.04/crossdeps",
+              "os": "linux",
+              "tags": {
+                "ubuntu-16.04-crossdeps-$(System:DockerfileGitCommitSha)-$(System:TimeStamp)": {},
+                "ubuntu-16.04-crossdeps": {
+                  "isLocal": true
+                }
+              }
+            }
+          ]
+        },
+        {
+          "platforms": [
+            {
+              "dockerfile": "src/ubuntu/16.04/cross",
+              "os": "linux",
+              "tags": {
+                "ubuntu-16.04-cross-$(System:DockerfileGitCommitSha)-$(System:TimeStamp)": {}
+              }
+            }
+          ]
+        },
+        {
+          "platforms": [
+            {
+              "dockerfile": "src/ubuntu/16.10",
+              "os": "linux",
+              "tags": {
+                "ubuntu-16.10-$(System:DockerfileGitCommitSha)-$(System:TimeStamp)": {},
+                "ubuntu-16.10": {
+                  "isLocal": true
+                }
+              }
+            }
+          ]
+        },
+        {
+          "platforms": [
+            {
+              "dockerfile": "src/ubuntu/16.10/debpkg",
+              "os": "linux",
+              "tags": {
+                "ubuntu-16.10-debpkg-$(System:DockerfileGitCommitSha)-$(System:TimeStamp)": {}
+              }
+            }
+          ]
+        },
+        {
+          "platforms": [
+            {
+              "dockerfile": "src/ubuntu/17.04",
+              "os": "linux",
+              "tags": {
+                "ubuntu-17.04-$(System:DockerfileGitCommitSha)-$(System:TimeStamp)": {},
+                "ubuntu-17.04": {
+                  "isLocal": true
+                }
+              }
+            }
+          ]
+        },
+        {
+          "platforms": [
+            {
+              "dockerfile": "src/ubuntu/17.04/debpkg",
+              "os": "linux",
+              "tags": {
+                "ubuntu-17.04-debpkg-$(System:DockerfileGitCommitSha)-$(System:TimeStamp)": {}
+              }
+            }
+          ]
+        },
+        {
+          "platforms": [
+            {
+              "dockerfile": "src/ubuntu/17.10",
+              "os": "linux",
+              "tags": {
+                "ubuntu-17.10-$(System:DockerfileGitCommitSha)-$(System:TimeStamp)": {},
+                "ubuntu-17.10": {
+                  "isLocal": true
+                }
+              }
+            }
+          ]
+        },
+        {
+          "platforms": [
+            {
+              "dockerfile": "src/ubuntu/17.10/debpkg",
+              "os": "linux",
+              "tags": {
+                "ubuntu-17.10-debpkg-$(System:DockerfileGitCommitSha)-$(System:TimeStamp)": {}
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
