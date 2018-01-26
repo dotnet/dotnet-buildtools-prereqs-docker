@@ -2,14 +2,13 @@
 param(
     [string]$DockerfilePath = "*",
     [string]$ImageBuilderCustomArgs,
-    [string]$ImageBuilderImageName = 'microsoft/dotnet-buildtools-prereqs:image-builder-jessie-20180117125404'
+    [switch]$CleanupDocker
 )
 
 Set-StrictMode -Version Latest
 $ErrorActionPreference = 'Stop'
 
 function ExecuteWithRetry($Command) {
-
     $attempt = 0
     $maxRetries = 5
     $waitFactor = 6
@@ -34,15 +33,32 @@ function ExecuteWithRetry($Command) {
     }
 }
 
-ExecuteWithRetry docker pull $ImageBuilderImageName
+function Invoke-CleanupDocker()
+{
+    if ($CleanupDocker) {
+        docker system prune -a -f
+    }
+}
 
-& docker run --rm `
-    -v /var/run/docker.sock:/var/run/docker.sock `
-    -v "${PSScriptRoot}:/repo" `
-    -w /repo `
-    $ImageBuilderImageName `
-    build --manifest "manifest.json" --path "$DockerfilePath" "$ImageBuilderCustomArgs"
+Invoke-CleanupDocker
 
-if ($LastExitCode -ne 0) {
-    throw "Failed executing ImageBuilder."
+try {
+    ExecuteWithRetry docker pull 'microsoft/dotnet-buildtools-prereqs:image-builder-jessie-20180117125404'
+
+    & docker build -t imagebuilder -f ./Dockerfile.linux.imagebuilder .
+    if ($LastExitCode -ne 0) {
+        throw "Failed building ImageBuilder."
+    }
+
+    & docker run --rm `
+        -v /var/run/docker.sock:/var/run/docker.sock `
+        imagebuilder `
+        build --manifest "manifest.json" --path "$DockerfilePath" "$ImageBuilderCustomArgs"
+
+    if ($LastExitCode -ne 0) {
+        throw "Failed executing ImageBuilder."
+    }
+}
+finally {
+    Invoke-CleanupDocker
 }

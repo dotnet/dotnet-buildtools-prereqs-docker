@@ -1,0 +1,4 @@
+FROM microsoft/dotnet-buildtools-prereqs:image-builder-jessie-20180117125404
+
+WORKDIR /
+COPY . .
