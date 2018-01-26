@@ -18,7 +18,7 @@ function Invoke-CleanupDocker()
 Invoke-CleanupDocker
 
 try {
-    & docker build -t imagebuilder -f ./Dockerfile.linux.imagebuilder .
+    & docker build -t imagebuilder --pull -f ./Dockerfile.linux.imagebuilder .
     if ($LastExitCode -ne 0) {
         throw "Failed building ImageBuilder."
     }
