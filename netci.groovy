@@ -13,11 +13,11 @@ distroList.each { distro ->
     def newJob = job(newJobName) {
         steps {
             shell("docker build --rm -t testrunner -f ./Dockerfile.linux.testrunner . ")
-            shell("docker run -v /var/run/docker.sock:/var/run/docker.sock testrunner pwsh -NoProfile -File ./build.ps1 -DockerfilePath \"*${distro}*\" -CleanupDocker")
+            shell("docker run -v /var/run/docker.sock:/var/run/docker.sock testrunner pwsh -NoProfile -File ./build.ps1 -DockerfilePath \"/src/${distro}/*\" -CleanupDocker")
         }
     }
 
     Utilities.setMachineAffinity(newJob, hostOS, machineLabel)
     Utilities.standardJobSetup(newJob, project, isPR, "*/${branch}")
-    Utilities.addGithubPRTriggerForBranch(newJob, branch, "${distro} Dockerfiles")
+    Utilities.addGithubPRTriggerForBranch(newJob, branch, "${distro}")
 }
