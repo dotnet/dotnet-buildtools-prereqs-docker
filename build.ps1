@@ -8,31 +8,6 @@ param(
 Set-StrictMode -Version Latest
 $ErrorActionPreference = 'Stop'
 
-function ExecuteWithRetry($Command) {
-    $attempt = 0
-    $maxRetries = 5
-    $waitFactor = 6
-    while ($attempt -lt $maxRetries) {
-        try {
-            & $Command @args
-            break
-        }
-        catch {
-            Write-Warning "$_"
-        }
-
-        $attempt++
-        if ($attempt -ne $maxRetries) {
-            $waitTime = $attempt * $waitFactor
-            Write-Host "Retry ${attempt}/${maxRetries} failed, retrying in $waitTime seconds..."
-            Start-Sleep -Seconds ($waitTime)
-        }
-        else {
-            throw "Retry ${attempt}/${maxRetries} failed, no more retries left."
-        }
-    }
-}
-
 function Invoke-CleanupDocker()
 {
     if ($CleanupDocker) {
@@ -43,8 +18,6 @@ function Invoke-CleanupDocker()
 Invoke-CleanupDocker
 
 try {
-    ExecuteWithRetry docker pull 'microsoft/dotnet-buildtools-prereqs:image-builder-jessie-20180117125404'
-
     & docker build -t imagebuilder -f ./Dockerfile.linux.imagebuilder .
     if ($LastExitCode -ne 0) {
         throw "Failed building ImageBuilder."
