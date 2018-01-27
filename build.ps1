@@ -26,7 +26,7 @@ try {
     & docker run --rm `
         -v /var/run/docker.sock:/var/run/docker.sock `
         imagebuilder `
-        build --manifest "manifest.json" --path "$DockerfilePath" "$ImageBuilderCustomArgs"
+        build --manifest manifest.json --path "$DockerfilePath" ${ImageBuilderCustomArgs}.Split()
 
     if ($LastExitCode -ne 0) {
         throw "Failed executing ImageBuilder."
