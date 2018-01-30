@@ -23,10 +23,12 @@ try {
         throw "Failed building ImageBuilder."
     }
 
-    & docker run --rm `
-        -v /var/run/docker.sock:/var/run/docker.sock `
-        imagebuilder `
-        build --manifest "manifest.json" --path "$DockerfilePath" "$ImageBuilderCustomArgs"
+    $expression = "docker run --rm " +
+        "-v /var/run/docker.sock:/var/run/docker.sock " +
+        "imagebuilder " +
+        "build --manifest manifest.json --path $DockerfilePath $ImageBuilderCustomArgs"
+
+    Invoke-Expression $expression
 
     if ($LastExitCode -ne 0) {
         throw "Failed executing ImageBuilder."
