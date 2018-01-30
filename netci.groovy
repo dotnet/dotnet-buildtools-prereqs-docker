@@ -3,8 +3,6 @@ import jobs.generation.Utilities
 def project = GithubProject
 def branch = GithubBranchName
 def isPR = true
-def hostOS = "Ubuntu16.04"
-def machineLabel = 'latest-or-auto-docker'
 def distroList = ['alpine', 'centos', 'debian', 'fedora', 'opensuse', 'ubuntu']
 
 distroList.each { distro ->
@@ -17,7 +15,7 @@ distroList.each { distro ->
         }
     }
 
-    Utilities.setMachineAffinity(newJob, hostOS, machineLabel)
+    Utilities.setMachineAffinity(newJob, 'Ubuntu16.04', 'latest-or-auto-docker')
     Utilities.standardJobSetup(newJob, project, isPR, "*/${branch}")
     Utilities.addGithubPRTriggerForBranch(newJob, branch, "${distro}")
 }
