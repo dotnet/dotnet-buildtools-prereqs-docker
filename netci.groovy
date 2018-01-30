@@ -13,7 +13,7 @@ distroList.each { distro ->
     def newJob = job(newJobName) {
         steps {
             shell("docker build -t runner --pull -f ./Dockerfile.linux.runner . ")
-            shell("docker run -v /var/run/docker.sock:/var/run/docker.sock runner pwsh -NoProfile -File ./build.ps1 -DockerfilePath \"/src/${distro}/*\" -CleanupDocker")
+            shell("docker run -v /var/run/docker.sock:/var/run/docker.sock runner pwsh -NoProfile -File ./build.ps1 -DockerfilePath \"src/${distro}/*\" -CleanupDocker")
         }
     }
 
