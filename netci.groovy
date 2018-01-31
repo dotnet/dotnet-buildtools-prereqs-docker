@@ -6,7 +6,12 @@ def isPR = true
 def distroList = ['alpine', 'centos/6', 'centos/7', 'debian', 'fedora', 'opensuse', 'ubuntu/14', 'ubuntu/16', 'ubuntu/17']
 
 distroList.each { distro ->
-    def newJobName = Utilities.getFullJobName(project, "${distro}", isPR)
+    def(distroName, distroVersion) = distro.tokenize('/')
+    if (distroVersion != null) {
+        distroName = distroName.concat("_" + distroVersion)
+    }
+
+    def newJobName = Utilities.getFullJobName(project, "${distroName}", isPR)
 
     def newJob = job(newJobName) {
         steps {
@@ -17,5 +22,5 @@ distroList.each { distro ->
 
     Utilities.setMachineAffinity(newJob, 'Ubuntu16.04', 'latest-or-auto-docker')
     Utilities.standardJobSetup(newJob, project, isPR, "*/${branch}")
-    Utilities.addGithubPRTriggerForBranch(newJob, branch, "${distro}")
+    Utilities.addGithubPRTriggerForBranch(newJob, branch, "${distroName}")
 }
