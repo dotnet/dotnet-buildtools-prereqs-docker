@@ -261,56 +261,6 @@
         {
           "platforms": [
             {
-              "dockerfile": "src/ubuntu/16.10",
-              "os": "linux",
-              "tags": {
-                "ubuntu-16.10-$(System:DockerfileGitCommitSha)-$(System:TimeStamp)": {},
-                "ubuntu-16.10": {
-                  "isLocal": true
-                }
-              }
-            }
-          ]
-        },
-        {
-          "platforms": [
-            {
-              "dockerfile": "src/ubuntu/16.10/debpkg",
-              "os": "linux",
-              "tags": {
-                "ubuntu-16.10-debpkg-$(System:DockerfileGitCommitSha)-$(System:TimeStamp)": {}
-              }
-            }
-          ]
-        },
-        {
-          "platforms": [
-            {
-              "dockerfile": "src/ubuntu/17.04",
-              "os": "linux",
-              "tags": {
-                "ubuntu-17.04-$(System:DockerfileGitCommitSha)-$(System:TimeStamp)": {},
-                "ubuntu-17.04": {
-                  "isLocal": true
-                }
-              }
-            }
-          ]
-        },
-        {
-          "platforms": [
-            {
-              "dockerfile": "src/ubuntu/17.04/debpkg",
-              "os": "linux",
-              "tags": {
-                "ubuntu-17.04-debpkg-$(System:DockerfileGitCommitSha)-$(System:TimeStamp)": {}
-              }
-            }
-          ]
-        },
-        {
-          "platforms": [
-            {
               "dockerfile": "src/ubuntu/17.10",
               "os": "linux",
               "tags": {
