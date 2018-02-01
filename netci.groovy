@@ -6,11 +6,7 @@ def isPR = true
 def distroList = ['alpine', 'centos/6', 'centos/7', 'debian', 'fedora', 'opensuse', 'ubuntu/14', 'ubuntu/16', 'ubuntu/17']
 
 distroList.each { distro ->
-    def(distroName, distroVersion) = distro.tokenize('/')
-    if (distroVersion != null) {
-        distroName = distroName.concat("_" + distroVersion)
-    }
-
+    def distroName = distro.replace('/', '_')
     def newJobName = Utilities.getFullJobName(project, "${distroName}", isPR)
 
     def newJob = job(newJobName) {
