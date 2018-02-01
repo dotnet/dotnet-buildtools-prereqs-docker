@@ -1,5 +1,6 @@
 # Dockerfiles for .NET Core Builds
 
+
 The Dockerfiles in this repository are used for building the .NET Core product.  As such there are Dockerfiles for the various supported Linux distributions which setup the necessary prerequisites to build the .NET Core product.
 
 ## Where are the published images
