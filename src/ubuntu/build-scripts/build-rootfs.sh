@@ -19,7 +19,7 @@ mkdir rootfs
 
 # To support additional architectures for which cross toolset needs to be setup,
 # simply add it to crossArchArray below.
-crossArchArray=("arm")
+crossArchArray=("arm" "x86")
 for arch in $crossArchArray
 do
     echo "Using $dockerCrossDepsTag to set up cross-toolset for $arch for $crossToolset"
