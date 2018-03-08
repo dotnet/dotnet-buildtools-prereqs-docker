@@ -250,6 +250,17 @@
         {
           "platforms": [
             {
+              "dockerfile": "src/ubuntu/16.04/cross/arm64",
+              "os": "linux",
+              "tags": {
+                "ubuntu-16.04-cross-arm64-$(System:DockerfileGitCommitSha)-$(System:TimeStamp)": {}
+              }
+            }
+          ]
+        },
+        {
+          "platforms": [
+            {
               "dockerfile": "src/ubuntu/16.04/cross",
               "os": "linux",
               "tags": {
