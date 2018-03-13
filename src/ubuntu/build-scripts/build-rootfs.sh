@@ -27,5 +27,6 @@ do
     buildRootFSContainer="rootfs-$arch-$crossToolset"
     docker run --privileged --rm --name $buildRootFSContainer -e ROOTFS_DIR=/rootfs/$arch \
         -v $PWD/rootfs:/rootfs -v $scriptsVolume:/scripts \
-        $dockerCrossDepsTag /scripts/cross/build-rootfs.sh $arch $crossToolset $lldb --skipunmount
+        $dockerCrossDepsTag /scripts/cross/build-rootfs.sh $arch $crossToolset $lldb --skipunmount || \
+        exit 1
 done
