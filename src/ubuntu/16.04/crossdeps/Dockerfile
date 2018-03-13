@@ -2,20 +2,15 @@ FROM microsoft/dotnet-buildtools-prereqs:ubuntu-16.04-coredeps
 
 # Install the base toolchain we need to build anything (clang, cmake, make and the like).
 RUN apt-get update \
-    && apt-get install -y wget \
-    && echo "deb http://llvm.org/apt/trusty/ llvm-toolchain-trusty-3.6 main" | tee /etc/apt/sources.list.d/llvm.list \
-    && wget -O - http://llvm.org/apt/llvm-snapshot.gpg.key | apt-key add - \
-    && apt-get update \
     && apt-get install -y \
         binfmt-support \
         binutils-arm-linux-gnueabihf \
-        clang-3.6 \
         cmake \
         debootstrap \
-        llvm-3.6 \
         make \
         qemu \
         qemu-user-static \
+        wget \
     && rm -rf /var/lib/apt/lists/*
 
 RUN apt-get update \
