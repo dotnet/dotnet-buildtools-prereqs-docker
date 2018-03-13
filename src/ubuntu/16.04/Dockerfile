@@ -11,13 +11,11 @@ RUN apt-get update && \
     apt-get update && \
     apt-get install -y \
             cmake \
-            clang-3.5 \
             clang-3.9 \
-            liblldb-3.9-dev && \
+            liblldb-3.9-dev \
             lldb-3.9 \
-            llvm-3.5 \
             llvm-3.9 \
-            make \
+            make && \
     apt-get clean
 
 # Install tools used by the VSO build automation.  nodejs-legacy is a Debian specific
