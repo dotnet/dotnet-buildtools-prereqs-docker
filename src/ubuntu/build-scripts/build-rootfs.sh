@@ -25,8 +25,16 @@ for arch in $crossArchArray
 do
     echo "Using $dockerCrossDepsTag to set up cross-toolset for $arch for $crossToolset"
     buildRootFSContainer="rootfs-$arch-$crossToolset"
-    docker run --privileged --rm --name $buildRootFSContainer -e ROOTFS_DIR=/rootfs/$arch \
-        -v $PWD/rootfs:/rootfs -v $scriptsVolume:/scripts \
+    docker run --privileged --name $buildRootFSContainer -e ROOTFS_DIR=/rootfs/$arch \
+        -v $scriptsVolume:/scripts \
         $dockerCrossDepsTag /scripts/cross/build-rootfs.sh $arch $crossToolset $lldb --skipunmount || \
         exit 1
+    docker cp $buildRootFSContainer:/rootfs/. $PWD/rootfs/
+    chmod -R 777 $PWD/rootfs
+    docker rm -f $buildRootFSContainer
+
+    if [[ ! -d $PWD/rootfs/$arch/bin ]]; then
+        echo "Rootfs build failed: missing directory rootfs/$arch/bin"
+        exit 1
+    fi
 done
