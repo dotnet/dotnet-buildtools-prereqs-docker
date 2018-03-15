@@ -28,4 +28,12 @@ do
     docker run --privileged --rm --name $buildRootFSContainer -e ROOTFS_DIR=/rootfs/$arch \
         -v $PWD/rootfs:/rootfs -v $scriptsVolume:/scripts \
         $dockerCrossDepsTag /scripts/cross/build-rootfs.sh $arch $crossToolset $lldb --skipunmount
+
+    # Check if the rootfs/<arch> exists and is not empty
+    if [ ! -d "$PWD/rootfs/$arch" ]; then
+        echo Rootfs is empty failed to build. && exit 1 && exit 1
+    else
+        # Make sure it is not empty
+        test "$(ls -A "$PWD/rootfs/$arch" 2>/dev/null)" || echo Rootfs is empty failed to build. && exit 1
+    fi
 done
