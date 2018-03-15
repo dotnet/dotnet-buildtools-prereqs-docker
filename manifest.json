@@ -17,6 +17,17 @@
         {
           "platforms": [
             {
+              "dockerfile": "src/alpine/3.6-ForHelix",
+              "os": "linux",
+              "tags": {
+                "alpine-3.6-ForHelix-$(System:DockerfileGitCommitSha)-$(System:TimeStamp)": {}
+              }
+            }
+          ]
+        },
+        {
+          "platforms": [
+            {
               "dockerfile": "src/centos/7",
               "os": "linux",
               "tags": {
