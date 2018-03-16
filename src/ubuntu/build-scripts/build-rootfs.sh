@@ -60,6 +60,10 @@ do
         exit 1
     fi
 
+    echo "Cleaning apt files"
+    docker exec $buildRootFSContainer \
+        rm -rf /rootfs/$arch/var/cache/apt/archives/* /rootfs/$arch/var/lib/apt/lists/*
+
     echo "Tarring rootfs"
     docker exec $buildRootFSContainer \
         tar Ccf /rootfs - . >> $PWD/rootfs.tar
