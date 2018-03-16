@@ -63,7 +63,7 @@ done
 
 echo "Tarring rootfs"
 docker exec $buildRootFSContainer \
-    tar Ccf /rootfs - . >> $PWD/rootfs.tar
+    tar Ccf /rootfs - . > $PWD/rootfs.tar
 
 if [ $? -ne 0 ]; then
     echo "Rootfs build failed: 'tar Ccf /rootfs - .' returned error"
