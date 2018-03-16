@@ -59,17 +59,17 @@ do
         docker rm -f $buildRootFSContainer
         exit 1
     fi
-
-    echo "Tarring rootfs"
-    docker exec $buildRootFSContainer \
-        tar Ccf /rootfs - . >> $PWD/rootfs.tar
-
-    if [ $? -ne 0 ]; then
-        echo "Rootfs build failed: 'tar Ccf /rootfs - .' returned error"
-        docker rm -f $buildRootFSContainer
-        exit 1
-    fi
-
-    echo "Shutting down container"
-    docker rm -f $buildRootFSContainer
 done
+
+echo "Tarring rootfs"
+docker exec $buildRootFSContainer \
+    tar Ccf /rootfs - . >> $PWD/rootfs.tar
+
+if [ $? -ne 0 ]; then
+    echo "Rootfs build failed: 'tar Ccf /rootfs - .' returned error"
+    docker rm -f $buildRootFSContainer
+    exit 1
+fi
+
+echo "Shutting down container"
+docker rm -f $buildRootFSContainer
