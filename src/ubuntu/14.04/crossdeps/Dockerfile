@@ -8,7 +8,6 @@ RUN apt-get update \
     && apt-get update \
     && apt-get install -y \
         binfmt-support \
-        binutils-arm-linux-gnueabihf \
         clang-3.6 \
         cmake \
         debootstrap \

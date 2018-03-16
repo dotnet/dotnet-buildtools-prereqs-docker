@@ -197,10 +197,21 @@
         {
           "platforms": [
             {
-              "dockerfile": "src/ubuntu/14.04/cross",
+              "dockerfile": "src/ubuntu/14.04/cross/arm",
               "os": "linux",
               "tags": {
-                "ubuntu-14.04-cross-$(System:DockerfileGitCommitSha)-$(System:TimeStamp)": {}
+                "ubuntu-14.04-cross-arm-$(System:DockerfileGitCommitSha)-$(System:TimeStamp)": {}
+              }
+            }
+          ]
+        },
+        {
+          "platforms": [
+            {
+              "dockerfile": "src/ubuntu/14.04/cross/x86",
+              "os": "linux",
+              "tags": {
+                "ubuntu-14.04-cross-x86-$(System:DockerfileGitCommitSha)-$(System:TimeStamp)": {}
               }
             }
           ]
@@ -261,6 +272,17 @@
         {
           "platforms": [
             {
+              "dockerfile": "src/ubuntu/16.04/cross/arm",
+              "os": "linux",
+              "tags": {
+                "ubuntu-16.04-cross-arm-$(System:DockerfileGitCommitSha)-$(System:TimeStamp)": {}
+              }
+            }
+          ]
+        },
+        {
+          "platforms": [
+            {
               "dockerfile": "src/ubuntu/16.04/cross/arm64",
               "os": "linux",
               "tags": {
@@ -272,10 +294,10 @@
         {
           "platforms": [
             {
-              "dockerfile": "src/ubuntu/16.04/cross",
+              "dockerfile": "src/ubuntu/16.04/cross/x86",
               "os": "linux",
               "tags": {
-                "ubuntu-16.04-cross-$(System:DockerfileGitCommitSha)-$(System:TimeStamp)": {}
+                "ubuntu-16.04-cross-x86-$(System:DockerfileGitCommitSha)-$(System:TimeStamp)": {}
               }
             }
           ]

@@ -4,7 +4,6 @@ FROM microsoft/dotnet-buildtools-prereqs:ubuntu-16.04-coredeps
 RUN apt-get update \
     && apt-get install -y \
         binfmt-support \
-        binutils-arm-linux-gnueabihf \
         cmake \
         debootstrap \
         make \
