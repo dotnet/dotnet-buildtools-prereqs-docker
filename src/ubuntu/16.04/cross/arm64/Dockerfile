@@ -6,4 +6,4 @@ RUN apt-get update \
         binutils-aarch64-linux-gnu \
     && rm -rf /var/lib/apt/lists/*
 
-ADD rootfs.tar crossrootfs
+ADD rootfs.arm64.tar crossrootfs

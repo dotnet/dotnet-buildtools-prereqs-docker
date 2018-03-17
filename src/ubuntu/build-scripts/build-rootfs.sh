@@ -60,9 +60,13 @@ do
         exit 1
     fi
 
+    echo "Cleaning apt files"
+    docker exec $buildRootFSContainer \
+        rm -rf /rootfs/*/var/cache/apt/archives/* /rootfs/*/var/lib/apt/lists/*
+
     echo "Tarring rootfs"
     docker exec $buildRootFSContainer \
-        tar Ccf /rootfs - . >> $PWD/rootfs.tar
+        tar Ccf /rootfs - . > $PWD/rootfs.$arch.tar
 
     if [ $? -ne 0 ]; then
         echo "Rootfs build failed: 'tar Ccf /rootfs - .' returned error"

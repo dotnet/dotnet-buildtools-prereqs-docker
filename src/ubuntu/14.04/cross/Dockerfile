@@ -1,3 +1,4 @@
 FROM microsoft/dotnet-buildtools-prereqs:ubuntu-14.04-crossdeps
 
-ADD rootfs.tar crossrootfs
+ADD rootfs.arm.tar crossrootfs
+ADD rootfs.x86.tar crossrootfs
