@@ -44,4 +44,4 @@ RUN dnf install -y \
 RUN dnf install -y compat-openssl10-devel --allowerasing
 
 # Until Fedora.27-x64 official packages are available, we have to restore the ubuntu ones instead.
-RUN export __PUBLISH_RID=ubuntu.14.04-x64
+ENV __PUBLISH_RID=ubuntu.14.04-x64
