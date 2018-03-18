@@ -1,10 +1,10 @@
-FROM microsoft/dotnet-buildtools-prereqs:ubuntu-18.04
+FROM microsoft/dotnet-buildtools-prereqs:ubuntu-18.04TO
 
 # Install the deb packaging toolchain we need to build debs
 RUN apt-get update \
     && apt-get -y install \
-        debhelper \
         build-essential \
+        debhelper \
         devscripts \
     && rm -rf /var/lib/apt/lists/*
 
