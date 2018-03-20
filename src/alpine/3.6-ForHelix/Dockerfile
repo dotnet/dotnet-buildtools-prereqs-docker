@@ -32,6 +32,7 @@ RUN apk add --no-cache \
         python \
         python-dev \
         sudo \
+        tzdata \
         util-linux-dev \
         wget \
         zlib-dev
