@@ -3,7 +3,7 @@ import jobs.generation.Utilities
 def project = GithubProject
 def branch = GithubBranchName
 def isPR = true
-def distroList = ['alpine', 'centos/6', 'centos/7', 'debian', 'fedora', 'opensuse', 'ubuntu/14', 'ubuntu/16', 'ubuntu/17']
+def distroList = ['alpine', 'centos/6', 'centos/7', 'debian', 'fedora', 'opensuse', 'ubuntu/14', 'ubuntu/16', 'ubuntu/17', 'ubuntu/18']
 
 distroList.each { distro ->
     def distroName = distro.replace('/', '_')
