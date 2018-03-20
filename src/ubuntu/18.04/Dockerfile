@@ -4,18 +4,17 @@ FROM ubuntu:18.04
 # this does not include libraries that we need to compile different projects, we'd like
 # them in a different layer.
 RUN apt-get update \
-    && apt-get install -y wget \
-    && echo "deb http://llvm.org/apt/bionic/ llvm-toolchain-bionic main" | tee /etc/apt/sources.list.d/llvm.list \
-    && wget -O - http://llvm.org/apt/llvm-snapshot.gpg.key | apt-key add - \
-    && apt-get update \
     && apt-get install -y \
         clang-3.9 \
-        cmake \
         liblldb-3.9-dev \
         lldb-3.9 \
         llvm-3.9 \
         make \
-    && rm -rf /var/lib/apt/lists/*
+        wget \
+    && rm -rf /var/lib/apt/lists/* \
+    && wget https://cmake.org/files/v3.10/cmake-3.10.2-Linux-x86_64.tar.gz \
+    && tar -xf cmake-3.10.2-Linux-x86_64.tar.gz --strip 1 -C /usr/local \
+    && rm cmake-3.10.2-Linux-x86_64.tar.gz
 
 # Install tools used by the VSO build automation.  nodejs-legacy is a Debian specific
 # package that provides `node' on the path (which azure cli needs).
@@ -34,13 +33,14 @@ RUN apt-get update \
 RUN apt-get update \
     && apt-get install -y \
         gettext \
-        libcurl4-openssl-dev \
+        libcurl-openssl1.0-dev \
         libgdiplus \
         libicu-dev \
         libkrb5-dev \
         liblttng-ust-dev \
-        libssl-dev \
+        libssl1.0-dev \
         libunwind8 \
         libunwind8-dev \
         uuid-dev \
     && rm -rf /var/lib/apt/lists/*
+
