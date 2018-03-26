@@ -30,6 +30,7 @@ RUN npm install -g azure-cli --unsafe-perm
 
 # Dependencies of CoreCLR and CoreFX.
 RUN dnf install -y \
+        compat-openssl10-devel \
         glibc-locale-source \
         libcurl-devel \
         libgdiplus \
@@ -38,7 +39,6 @@ RUN dnf install -y \
         libuuid-devel \
         lttng-ust-devel \
         uuid-devel \
-        compat-openssl10-devel \
     && dnf clean all
 
 # Until Fedora.27-x64 official packages are available, we have to restore the ubuntu ones instead.
