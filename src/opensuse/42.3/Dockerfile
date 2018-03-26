@@ -5,11 +5,11 @@ FROM opensuse:42.3
 # them in a different layer.
 RUN zypper -n install \
         cmake \
+        gcc-c++ \
         hostname \
         lldb-devel \
         llvm-clang \
         llvm-devel \
-        gcc-c++ \
         python-xml \
         which \
         wget \
