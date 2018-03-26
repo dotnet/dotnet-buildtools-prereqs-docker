@@ -150,7 +150,8 @@
               }
             }
           ]
-        },        {
+        },        
+        {
           "platforms": [
             {
               "dockerfile": "src/opensuse/42.1",
