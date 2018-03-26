@@ -37,11 +37,9 @@ RUN dnf install -y \
         libunwind-devel \
         libuuid-devel \
         lttng-ust-devel \
-        openssl-devel \
         uuid-devel \
+        compat-openssl10-devel \
     && dnf clean all
-
-RUN dnf install -y compat-openssl10-devel --allowerasing
 
 # Until Fedora.27-x64 official packages are available, we have to restore the ubuntu ones instead.
 ENV __PUBLISH_RID=ubuntu.14.04-x64
