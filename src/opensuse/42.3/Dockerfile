@@ -25,6 +25,58 @@ RUN zypper -n install \
         zip \
     && zypper clean -a
 
+# Build and install liblldb development files
+RUN zypper -n install \
+    doxygen \
+    libedit-devel \
+    libxml2-devel \
+    python-argparse \
+    python-devel \
+    readline-devel \
+    swig && \
+    \
+    wget http://releases.llvm.org/3.8.1/cfe-3.8.1.src.tar.xz && \
+    wget http://releases.llvm.org/3.8.1/llvm-3.8.1.src.tar.xz && \
+    wget http://releases.llvm.org/3.8.1/lldb-3.8.1.src.tar.xz && \
+    \
+    tar -xf llvm-3.8.1.src.tar.xz && \
+    mkdir llvm-3.8.1.src/tools/clang && \
+    mkdir llvm-3.8.1.src/tools/lldb && \
+    tar -xf cfe-3.8.1.src.tar.xz --strip 1 -C llvm-3.8.1.src/tools/clang && \
+    tar -xf lldb-3.8.1.src.tar.xz --strip 1 -C llvm-3.8.1.src/tools/lldb && \
+    rm cfe-3.8.1.src.tar.xz && \
+    rm lldb-3.8.1.src.tar.xz && \
+    rm llvm-3.8.1.src.tar.xz && \
+    \
+    mkdir /llvm && \
+    mkdir llvmbuild && \
+    cd llvmbuild && \
+    cmake \
+        -DCMAKE_BUILD_TYPE=Release \
+        -DLLVM_LIBDIR_SUFFIX=64\
+        -DLLDB_DISABLE_CURSES=1 \
+        -DLLVM_BUILD_DOCS=0 \
+        -DCMAKE_INSTALL_PREFIX=/llvm \
+        ../llvm-3.8.1.src \
+    && \
+    make -j $(($(getconf _NPROCESSORS_ONLN)+1)) && \
+    make install && \
+    cd .. && \
+    rm -r llvmbuild && \
+    rm -r llvm-3.8.1.src && \
+    \
+    zypper -n rm \
+    doxygen \
+    libedit-devel \
+    libxml2-devel \
+    ncurses-devel \
+    python-argparse \
+    python-devel \
+    readline-devel \
+    swig && \
+    \
+    zypper clean -a
+
 RUN npm install -g azure-cli
 
 # Dependencies of CoreCLR and CoreFX.
@@ -43,3 +95,6 @@ RUN zypper -n install --force-resolution \
 
 # Until OpenSuse.42.3 official packages are available, we have to restore the ubuntu ones instead.
 ENV __PUBLISH_RID=ubuntu.14.04-x64
+# Define variables that the build uses to locate the liblldb.so and the related header.
+ENV LLDB_INCLUDE_DIR=/llvm/include \
+    LLDB_LIB_DIR=/llvm/lib64
