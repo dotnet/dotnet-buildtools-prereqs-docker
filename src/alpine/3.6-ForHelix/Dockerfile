@@ -18,6 +18,7 @@ RUN apk add --no-cache \
         gettext-dev \
         git \
         icu-dev \
+        iputils \
         krb5-dev \
         libtool \
         libunwind-dev \
