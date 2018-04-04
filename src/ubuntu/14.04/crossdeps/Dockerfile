@@ -19,15 +19,15 @@ RUN apt-get update \
     && rm -rf /var/lib/apt/lists/*
 
 RUN apt-get update \
-    && echo "deb http://apt.llvm.org/trusty/ llvm-toolchain-trusty-3.9 main" >> /etc/apt/sources.list.d/llvm.list \
-    && echo "deb-src http://apt.llvm.org/trusty/ llvm-toolchain-trusty-3.9 main" >> /etc/apt/sources.list.d/llvm.list \
+    && echo "deb http://apt.llvm.org/trusty/ llvm-toolchain-trusty-5.0 main" >> /etc/apt/sources.list.d/llvm.list \
+    && echo "deb-src http://apt.llvm.org/trusty/ llvm-toolchain-trusty-5.0 main" >> /etc/apt/sources.list.d/llvm.list \
     && wget -O - http://apt.llvm.org/llvm-snapshot.gpg.key | apt-key add - \
     && apt-get update \
     && apt-get install -y \
-        llvm-3.9 \
-        clang-3.9 \
-        liblldb-3.9-dev \
-        lldb-3.9 \
+        llvm-5.0 \
+        clang-5.0 \
+        liblldb-5.0-dev \
+        lldb-5.0 \
     && rm -rf /var/lib/apt/lists/*
 
 # Install x86_arm crossgen dependencies
