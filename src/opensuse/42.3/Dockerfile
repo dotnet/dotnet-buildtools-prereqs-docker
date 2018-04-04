@@ -91,12 +91,11 @@ RUN zypper -n install --force-resolution \
         lttng-ust-devel \
         libopenssl-devel \
         uuid-devel \
-    && zypper clean -a
+    && zypper clean -a \
+    && /sbin/ldconfig
 
 # Until OpenSuse.42.3 official packages are available, we have to restore the ubuntu ones instead.
 ENV __PUBLISH_RID=ubuntu.14.04-x64
 # Define variables that the build uses to locate the liblldb.so and the related header.
 ENV LLDB_INCLUDE_DIR=/llvm/include \
     LLDB_LIB_DIR=/llvm/lib64
-
-RUN /sbin/ldconfig
