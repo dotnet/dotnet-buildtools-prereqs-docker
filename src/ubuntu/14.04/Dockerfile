@@ -20,17 +20,18 @@ RUN apt-get update && \
             make && \
     apt-get clean
 
-# Install tools used by the VSO build automation.  nodejs-legacy is a Debian specific
-# package that provides `node' on the path (which azure cli needs).
-RUN apt-get install -y git \
+# Install tools used by the VSO build automation. Set up a new apt-get source to
+# get a new version of node and npm: the built-in old cert is no longer valid.
+RUN wget -O - https://deb.nodesource.com/setup_8.x | bash && \
+    apt-get install -y \
+            git \
             zip \
             tar \
-            nodejs \
-            nodejs-legacy \
-            npm && \
+            nodejs && \
     apt-get clean && \
-    npm install -g azure-cli@0.9.15 && \
-    npm cache clean
+    # Set unsafe-perm to true to avoid EACCES.
+    npm install -g azure-cli@0.9.15 --unsafe-perm=true && \
+    npm cache clean -f
 
 # Dependencies for CoreCLR and CoreFX
 RUN apt-get install -y gettext \
