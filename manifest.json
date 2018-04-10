@@ -111,6 +111,28 @@
         {
           "platforms": [
             {
+              "dockerfile": "src/debian/stretch/",
+              "os": "linux",
+              "tags": {
+                "debian-stretch-$(System:DockerfileGitCommitSha)-$(System:TimeStamp)": {}
+              }
+            }
+          ]
+        },
+        {
+          "platforms": [
+            {
+              "dockerfile": "src/fedora/28",
+              "os": "linux",
+              "tags": {
+                "fedora-28-$(System:DockerfileGitCommitSha)-$(System:TimeStamp)": {}
+              }
+            }
+          ]
+        },
+        {
+          "platforms": [
+            {
               "dockerfile": "src/fedora/27",
               "os": "linux",
               "tags": {
@@ -118,7 +140,8 @@
               }
             }
           ]
-        },        {
+        },
+        {
           "platforms": [
             {
               "dockerfile": "src/fedora/24",
