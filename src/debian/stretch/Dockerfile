@@ -23,7 +23,6 @@ RUN apt-get update \
             lldb-3.9 \
             llvm \
             make \
-            make \
             tar \
             uuid-dev \
             zip \
