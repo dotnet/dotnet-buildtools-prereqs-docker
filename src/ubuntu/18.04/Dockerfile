@@ -33,7 +33,6 @@ RUN apt-get update \
 RUN apt-get update \
     && apt-get install -y \
         gettext \
-        libcurl-openssl1.0-dev \
         libgdiplus \
         libicu-dev \
         libkrb5-dev \
@@ -44,3 +43,35 @@ RUN apt-get update \
         uuid-dev \
     && rm -rf /var/lib/apt/lists/*
 
+# Build and install curl 7.45.0
+RUN wget https://curl.haxx.se/download/curl-7.45.0.tar.lzma && \
+    tar -xf curl-7.45.0.tar.lzma && \
+    rm curl-7.45.0.tar.lzma && \
+    cd curl-7.45.0 && \
+    ./configure \
+        --disable-dict \
+        --disable-ftp \
+        --disable-gopher \
+        --disable-imap \
+        --disable-ldap \
+        --disable-ldaps \
+        --disable-libcurl-option \
+        --disable-manual \
+        --disable-pop3 \
+        --disable-rtsp \
+        --disable-smb \
+        --disable-smtp \
+        --disable-telnet \
+        --disable-tftp \
+        --enable-ipv6 \
+        --enable-optimize \
+        --enable-symbol-hiding \
+        --with-ca-path=/etc/ssl/certs/ \
+        --with-nghttp2 \
+        --with-gssapi \
+        --with-ssl \
+        --without-librtmp \
+        && \
+    make install && \
+    cd .. && \
+    rm -r curl-7.45.0
