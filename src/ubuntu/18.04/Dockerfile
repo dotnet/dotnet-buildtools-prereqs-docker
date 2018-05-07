@@ -44,11 +44,11 @@ RUN apt-get update \
     && rm -rf /var/lib/apt/lists/*
 
 # Build and install curl 7.45.0
-RUN wget https://curl.haxx.se/download/curl-7.45.0.tar.lzma && \
-    tar -xf curl-7.45.0.tar.lzma && \
-    rm curl-7.45.0.tar.lzma && \
-    cd curl-7.45.0 && \
-    ./configure \
+RUN wget https://curl.haxx.se/download/curl-7.45.0.tar.lzma \
+    && tar -xf curl-7.45.0.tar.lzma \
+    && rm curl-7.45.0.tar.lzma \
+    && cd curl-7.45.0 \
+    && ./configure \
         --disable-dict \
         --disable-ftp \
         --disable-gopher \
@@ -71,7 +71,6 @@ RUN wget https://curl.haxx.se/download/curl-7.45.0.tar.lzma && \
         --with-gssapi \
         --with-ssl \
         --without-librtmp \
-        && \
-    make install && \
-    cd .. && \
-    rm -r curl-7.45.0
+    && make install \
+    && cd .. \
+    && rm -r curl-7.45.0
