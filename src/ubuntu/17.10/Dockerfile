@@ -14,7 +14,9 @@ RUN apt-get update \
         cmake \
         liblldb-3.9-dev \
         lldb-3.9 \
+	python-lldb-3.9 \
         llvm-3.9 \
+	gdb \
         make \
     && rm -rf /var/lib/apt/lists/*
 

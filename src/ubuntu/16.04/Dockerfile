@@ -14,6 +14,8 @@ RUN apt-get update && \
             clang-3.9 \
             liblldb-3.9-dev \
             lldb-3.9 \
+	    python-lldb-3.9 \
+            gdb \
             llvm-3.9 \
             make && \
     apt-get clean

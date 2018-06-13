@@ -8,7 +8,9 @@ RUN apt-get update \
         clang-3.9 \
         liblldb-3.9-dev \
         lldb-3.9 \
+	python-lldb-3.9 \
         llvm-3.9 \
+	gdb \
         make \
         wget \
     && rm -rf /var/lib/apt/lists/* \

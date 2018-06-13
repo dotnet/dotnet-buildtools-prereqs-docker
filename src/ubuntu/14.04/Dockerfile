@@ -10,12 +10,12 @@ RUN apt-get update && \
     wget -O - http://llvm.org/apt/llvm-snapshot.gpg.key | apt-key add - && \
     apt-get update && \
     apt-get install -y \
-            clang-3.5 \
             clang-3.9 \
             cmake \
             liblldb-3.9-dev \
             lldb-3.9 \
-            llvm-3.5 \
+	    python-lldb-3.9 \
+            gdb \
             llvm-3.9 \
             make && \
     apt-get clean

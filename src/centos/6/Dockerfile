@@ -20,6 +20,7 @@ RUN yum install -y \
         gcc \
         gcc-c++ \
         gettext-devel \
+        gdb \
         krb5-devel \
         libedit-devel \
         libidn-devel \
@@ -75,6 +76,8 @@ RUN wget ftp://sourceware.org/pub/binutils/snapshots/binutils-2.29.1.tar.xz && \
             -DCMAKE_LINKER=/opt/rh/devtoolset-2/root/usr/bin/ld \
             -DCMAKE_BUILD_TYPE=Release \
             -DLLVM_LIBDIR_SUFFIX=64 \
+            -DLLVM_ENABLE_EH=1 \
+            -DLLVM_ENABLE_RTTI=1 \
             -DLLVM_BINUTILS_INCDIR=../binutils-2.29.1/include \
             ../llvm-3.9.1.src \
         && \
