@@ -155,17 +155,6 @@
         {
           "platforms": [
             {
-              "dockerfile": "src/fedora/23",
-              "os": "linux",
-              "tags": {
-                "fedora-23-$(System:DockerfileGitCommitSha)-$(System:TimeStamp)": {}
-              }
-            }
-          ]
-        },
-        {
-          "platforms": [
-            {
               "dockerfile": "src/opensuse/42.3",
               "os": "linux",
               "tags": {
