@@ -6,13 +6,15 @@ FROM opensuse:42.3
 RUN zypper -n install \
         cmake \
         gcc-c++ \
+        gdb \
         hostname \
         lldb-devel \
         llvm-clang \
         llvm-devel \
+        python \
         python-xml \
-        which \
         wget \
+        which \
     && ln -s /usr/bin/clang++ /usr/bin/clang++-3.5 \
     && zypper clean -a
 
@@ -23,7 +25,9 @@ RUN zypper -n install \
         nodejs \
         tar \
         zip \
-    && zypper clean -a
+    && zypper clean -a \
+    && npm install -g azure-cli \
+    && npm cache clean
 
 # Build and install liblldb development files
 RUN zypper -n install \
@@ -35,35 +39,35 @@ RUN zypper -n install \
     readline-devel \
     swig && \
     \
-    wget http://releases.llvm.org/3.8.1/cfe-3.8.1.src.tar.xz && \
-    wget http://releases.llvm.org/3.8.1/llvm-3.8.1.src.tar.xz && \
-    wget http://releases.llvm.org/3.8.1/lldb-3.8.1.src.tar.xz && \
+    wget http://releases.llvm.org/3.9.1/cfe-3.9.1.src.tar.xz && \
+    wget http://releases.llvm.org/3.9.1/llvm-3.9.1.src.tar.xz && \
+    wget http://releases.llvm.org/3.9.1/lldb-3.9.1.src.tar.xz && \
     \
-    tar -xf llvm-3.8.1.src.tar.xz && \
-    mkdir llvm-3.8.1.src/tools/clang && \
-    mkdir llvm-3.8.1.src/tools/lldb && \
-    tar -xf cfe-3.8.1.src.tar.xz --strip 1 -C llvm-3.8.1.src/tools/clang && \
-    tar -xf lldb-3.8.1.src.tar.xz --strip 1 -C llvm-3.8.1.src/tools/lldb && \
-    rm cfe-3.8.1.src.tar.xz && \
-    rm lldb-3.8.1.src.tar.xz && \
-    rm llvm-3.8.1.src.tar.xz && \
+    tar -xf llvm-3.9.1.src.tar.xz && \
+    mkdir llvm-3.9.1.src/tools/clang && \
+    mkdir llvm-3.9.1.src/tools/lldb && \
+    tar -xf cfe-3.9.1.src.tar.xz --strip 1 -C llvm-3.9.1.src/tools/clang && \
+    tar -xf lldb-3.9.1.src.tar.xz --strip 1 -C llvm-3.9.1.src/tools/lldb && \
+    rm cfe-3.9.1.src.tar.xz && \
+    rm lldb-3.9.1.src.tar.xz && \
+    rm llvm-3.9.1.src.tar.xz && \
     \
-    mkdir /llvm && \
     mkdir llvmbuild && \
     cd llvmbuild && \
     cmake \
         -DCMAKE_BUILD_TYPE=Release \
-        -DLLVM_LIBDIR_SUFFIX=64\
         -DLLDB_DISABLE_CURSES=1 \
+        -DLLVM_LIBDIR_SUFFIX=64 \
+        -DLLVM_ENABLE_EH=1 \
+        -DLLVM_ENABLE_RTTI=1 \
         -DLLVM_BUILD_DOCS=0 \
-        -DCMAKE_INSTALL_PREFIX=/llvm \
-        ../llvm-3.8.1.src \
+        ../llvm-3.9.1.src \
     && \
     make -j $(($(getconf _NPROCESSORS_ONLN)+1)) && \
     make install && \
     cd .. && \
     rm -r llvmbuild && \
-    rm -r llvm-3.8.1.src && \
+    rm -r llvm-3.9.1.src && \
     \
     zypper -n rm \
     doxygen \
@@ -76,8 +80,6 @@ RUN zypper -n install \
     swig && \
     \
     zypper clean -a
-
-RUN npm install -g azure-cli
 
 # Dependencies of CoreCLR and CoreFX.
 RUN zypper -n install --force-resolution \
@@ -96,6 +98,3 @@ RUN zypper -n install --force-resolution \
 
 # Until OpenSuse.42.3 official packages are available, we have to restore the ubuntu ones instead.
 ENV __PUBLISH_RID=ubuntu.14.04-x64
-# Define variables that the build uses to locate the liblldb.so and the related header.
-ENV LLDB_INCLUDE_DIR=/llvm/include \
-    LLDB_LIB_DIR=/llvm/lib64

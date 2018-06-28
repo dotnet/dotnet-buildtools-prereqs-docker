@@ -2,32 +2,28 @@ FROM microsoft/dotnet-buildtools-prereqs:ubuntu-14.04-coredeps
 
 # Install the base toolchain we need to build anything (clang, cmake, make and the like).
 RUN apt-get update \
-    && apt-get install -y wget \
-    && echo "deb http://llvm.org/apt/trusty/ llvm-toolchain-trusty-3.6 main" | tee /etc/apt/sources.list.d/llvm.list \
-    && wget -O - http://llvm.org/apt/llvm-snapshot.gpg.key | apt-key add - \
-    && apt-get update \
     && apt-get install -y \
         binfmt-support \
         binutils-arm-linux-gnueabihf \
-        clang-3.6 \
         cmake \
         debootstrap \
-        llvm-3.6 \
+        gdb \
         make \
         qemu \
         qemu-user-static \
     && rm -rf /var/lib/apt/lists/*
 
 RUN apt-get update \
-    && echo "deb http://apt.llvm.org/trusty/ llvm-toolchain-trusty-5.0 main" >> /etc/apt/sources.list.d/llvm.list \
-    && echo "deb-src http://apt.llvm.org/trusty/ llvm-toolchain-trusty-5.0 main" >> /etc/apt/sources.list.d/llvm.list \
+    && echo "deb http://apt.llvm.org/trusty/ llvm-toolchain-trusty-5.0 main" | tee -a /etc/apt/sources.list.d/llvm.list \
+    && echo "deb-src http://apt.llvm.org/trusty/ llvm-toolchain-trusty-5.0 main" | tee -a /etc/apt/sources.list.d/llvm.list \
     && wget -O - http://apt.llvm.org/llvm-snapshot.gpg.key | apt-key add - \
     && apt-get update \
     && apt-get install -y \
-        llvm-5.0 \
         clang-5.0 \
         liblldb-5.0-dev \
         lldb-5.0 \
+        llvm-5.0 \
+        python-lldb-5.0 \
     && rm -rf /var/lib/apt/lists/*
 
 # Install x86_arm crossgen dependencies

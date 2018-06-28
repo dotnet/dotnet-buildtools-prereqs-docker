@@ -7,6 +7,7 @@ RUN apt-get update \
         binutils-arm-linux-gnueabihf \
         cmake \
         debootstrap \
+        gdb \
         make \
         qemu \
         qemu-user-static \
@@ -14,8 +15,8 @@ RUN apt-get update \
     && rm -rf /var/lib/apt/lists/*
 
 RUN apt-get update \
-    && echo "deb http://apt.llvm.org/xenial/ llvm-toolchain-xenial-5.0 main" >> /etc/apt/sources.list.d/llvm.list \
-    && echo "deb-src http://apt.llvm.org/xenial/ llvm-toolchain-xenial-5.0 main" >> /etc/apt/sources.list.d/llvm.list \
+    && echo "deb http://apt.llvm.org/xenial/ llvm-toolchain-xenial-5.0 main" | tee -a /etc/apt/sources.list.d/llvm.list \
+    && echo "deb-src http://apt.llvm.org/xenial/ llvm-toolchain-xenial-5.0 main" | tee -a /etc/apt/sources.list.d/llvm.list \
     && wget -O - http://apt.llvm.org/llvm-snapshot.gpg.key | apt-key add - \
     && apt-get update \
     && apt-get install -y \

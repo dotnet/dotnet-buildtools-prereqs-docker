@@ -13,6 +13,7 @@ RUN yum install -y \
         doxygen \
         gcc \
         gcc-c++ \
+        gdb \
         git \
         krb5-devel \
         libcurl-devel \
@@ -69,6 +70,8 @@ RUN wget ftp://sourceware.org/pub/binutils/snapshots/binutils-2.29.1.tar.xz && \
     cmake3 \
         -DCMAKE_BUILD_TYPE=Release \
         -DLLVM_LIBDIR_SUFFIX=64\
+        -DLLVM_ENABLE_EH=1 \
+        -DLLVM_ENABLE_RTTI=1 \
         -DLLVM_BINUTILS_INCDIR=../binutils-2.29.1/include \
         ../llvm-3.9.1.src \
     && \

@@ -3,9 +3,9 @@ FROM centos:6
 # Install dependencies
 
 RUN yum install -y \
-        wget \
-        epel-release \
         centos-release-SCL \
+        epel-release \
+        wget \
     && \
     rpm --import http://linuxsoft.cern.ch/cern/slc6X/x86_64/RPM-GPG-KEY-cern && \
     wget -O /etc/yum.repos.d/slc6-devtoolset.repo http://linuxsoft.cern.ch/cern/devtoolset/slc6-devtoolset.repo && \
@@ -19,6 +19,7 @@ RUN yum install -y \
         expat-devel \
         gcc \
         gcc-c++ \
+        gdb \
         gettext-devel \
         krb5-devel \
         libedit-devel \
@@ -37,7 +38,6 @@ RUN yum install -y \
         python27 \
         readline-devel \
         swig \
-        wget \
         xz \
         zlib-devel \
     && \
@@ -75,6 +75,8 @@ RUN wget ftp://sourceware.org/pub/binutils/snapshots/binutils-2.29.1.tar.xz && \
             -DCMAKE_LINKER=/opt/rh/devtoolset-2/root/usr/bin/ld \
             -DCMAKE_BUILD_TYPE=Release \
             -DLLVM_LIBDIR_SUFFIX=64 \
+            -DLLVM_ENABLE_EH=1 \
+            -DLLVM_ENABLE_RTTI=1 \
             -DLLVM_BINUTILS_INCDIR=../binutils-2.29.1/include \
             ../llvm-3.9.1.src \
         && \

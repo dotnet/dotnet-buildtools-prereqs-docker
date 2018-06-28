@@ -10,10 +10,13 @@ RUN dnf upgrade -y nss \
 RUN dnf install -y \
         clang \
         cmake \
+        findutils \
+        gdb \
         lldb-devel \
         llvm-devel \
         make \
         python \
+        python2-lldb \
         which \
     && dnf clean all
 

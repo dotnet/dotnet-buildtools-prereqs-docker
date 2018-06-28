@@ -6,10 +6,12 @@ FROM ubuntu:18.04
 RUN apt-get update \
     && apt-get install -y \
         clang-3.9 \
+        gdb \
         liblldb-3.9-dev \
         lldb-3.9 \
         llvm-3.9 \
         make \
+        python-lldb-3.9 \
         wget \
     && rm -rf /var/lib/apt/lists/* \
     && wget https://cmake.org/files/v3.10/cmake-3.10.2-Linux-x86_64.tar.gz \
