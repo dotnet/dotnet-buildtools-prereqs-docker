@@ -11,10 +11,10 @@ RUN zypper -n install \
         lldb-devel \
         llvm-clang \
         llvm-devel \
-        python-xml \
         python \
-        which \
+        python-xml \
         wget \
+        which \
     && ln -s /usr/bin/clang++ /usr/bin/clang++-3.5 \
     && zypper clean -a
 

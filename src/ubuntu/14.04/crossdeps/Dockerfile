@@ -19,10 +19,10 @@ RUN apt-get update \
     && wget -O - http://apt.llvm.org/llvm-snapshot.gpg.key | apt-key add - \
     && apt-get update \
     && apt-get install -y \
-        llvm-5.0 \
         clang-5.0 \
         liblldb-5.0-dev \
         lldb-5.0 \
+        llvm-5.0 \
         python-lldb-5.0 \
     && rm -rf /var/lib/apt/lists/*
 

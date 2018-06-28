@@ -10,14 +10,14 @@ RUN dnf upgrade -y nss \
 RUN dnf install -y \
         clang \
         cmake \
+        findutils \
         gdb \
         lldb-devel \
         llvm-devel \
-        python2-lldb \
         make \
         python \
+        python2-lldb \
         which \
-        findutils \
     && dnf clean all
 
 # Install tools used by the VSO build automation.

@@ -3,9 +3,9 @@ FROM centos:6
 # Install dependencies
 
 RUN yum install -y \
-        wget \
-        epel-release \
         centos-release-SCL \
+        epel-release \
+        wget \
     && \
     rpm --import http://linuxsoft.cern.ch/cern/slc6X/x86_64/RPM-GPG-KEY-cern && \
     wget -O /etc/yum.repos.d/slc6-devtoolset.repo http://linuxsoft.cern.ch/cern/devtoolset/slc6-devtoolset.repo && \
@@ -19,8 +19,8 @@ RUN yum install -y \
         expat-devel \
         gcc \
         gcc-c++ \
-        gettext-devel \
         gdb \
+        gettext-devel \
         krb5-devel \
         libedit-devel \
         libidn-devel \
@@ -38,7 +38,6 @@ RUN yum install -y \
         python27 \
         readline-devel \
         swig \
-        wget \
         xz \
         zlib-devel \
     && \

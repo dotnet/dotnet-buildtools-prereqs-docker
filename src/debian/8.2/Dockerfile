@@ -13,10 +13,10 @@ RUN apt-get update \
     && apt-get install -y \
                clang-3.9 \
                cmake \
-               llvm-3.9 \
+               gdb \
                liblldb-5.0-dev \
                lldb-5.0 \
-               python-lldb-5.0 \
-               gdb \
+               llvm-3.9 \
                make \
+               python-lldb-5.0 \
     && rm -rf /var/lib/apt/lists/*

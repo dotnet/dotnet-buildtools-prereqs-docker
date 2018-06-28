@@ -9,6 +9,7 @@ RUN apt-get update \
             curl \
             g++ \
             gettext \
+            gdb \
             git \
             gnupg \
             libcurl4-openssl-dev \
@@ -21,10 +22,9 @@ RUN apt-get update \
             libssl1.0.2 \
             libunwind8-dev \
             lldb-3.9 \
-            python-lldb-3.9 \
-            gdb \
             llvm \
             make \
+            python-lldb-3.9 \
             tar \
             uuid-dev \
             zip \

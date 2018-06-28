@@ -12,12 +12,12 @@ RUN apt-get update && \
     apt-get install -y \
             clang-3.9 \
             cmake \
+            gdb \
             liblldb-3.9-dev \
             lldb-3.9 \
-	    python-lldb-3.9 \
-            gdb \
             llvm-3.9 \
-            make && \
+            make \
+            python-lldb-3.9 && \
     apt-get clean
 
 # Install tools used by the VSO build automation. Set up a new apt-get source to

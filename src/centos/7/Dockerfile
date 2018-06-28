@@ -13,8 +13,8 @@ RUN yum install -y \
         doxygen \
         gcc \
         gcc-c++ \
-        git \
         gdb \
+        git \
         krb5-devel \
         libcurl-devel \
         libedit-devel \

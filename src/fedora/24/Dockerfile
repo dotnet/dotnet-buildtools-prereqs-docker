@@ -10,12 +10,12 @@ RUN dnf upgrade -y nss \
 RUN dnf install -y \
         clang \
         cmake \
+        findutils \
         gdb \
         llvm-devel \
         make \
         python \
         which \
-        findutils \
     && dnf clean all
 
 # Install tools used by the VSO build automation.
@@ -31,15 +31,15 @@ RUN dnf install -y \
 
 # Build and install liblldb development files
 RUN dnf -y install \
-    xz \
-    wget \
     doxygen \
     libedit-devel \
     libxml2-devel \
     python-argparse \
     python-devel \
     readline-devel \
-    swig && \
+    swig \
+    wget \
+    xz && \
     \
     wget http://releases.llvm.org/3.9.1/cfe-3.9.1.src.tar.xz && \
     wget http://releases.llvm.org/3.9.1/llvm-3.9.1.src.tar.xz && \
