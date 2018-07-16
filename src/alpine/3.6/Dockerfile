@@ -32,5 +32,7 @@ RUN apk -X https://dl-cdn.alpinelinux.org/alpine/edge/main add --no-cache \
         userspace-rcu-dev \
         lttng-ust-dev
 
-RUN apk -X https://dl-cdn.alpinelinux.org/alpine/edge/testing add --no-cache \
-        lldb-dev
+# Currently apk cannot find lldb for 3.8, and this is not required for execution so leaving it commented out.
+# Details: https://github.com/dotnet/dotnet-buildtools-prereqs-docker/issues/55 
+#RUN apk -X https://dl-cdn.alpinelinux.org/alpine/edge/testing add --no-cache \
+#        lldb-dev
