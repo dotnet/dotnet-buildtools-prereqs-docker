@@ -18,6 +18,7 @@ RUN yum install -y \
         krb5-devel \
         libcurl-devel \
         libedit-devel \
+        libgdiplus \
         libicu-devel \
         libidn-devel \
         libmetalink-devel \
