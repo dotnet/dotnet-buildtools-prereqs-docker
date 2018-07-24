@@ -4,15 +4,19 @@ The Dockerfiles in this repository are used for building the .NET Core product. 
 
 ## Where are the published images
 
-The images produced from the Dockerfiles are published to the [microsoft/dotnet-buildtools-prereqs](https://hub.docker.com/r/microsoft/dotnet-buildtools-prereqs/) Docker Hub repository.
+Each image produced from the Dockerfiles is published based on its repository in the [manifest](#manifest):
 
-- [Most recent tags](https://hub.docker.com/r/microsoft/dotnet-buildtools-prereqs/tags/)
-- [Full list of tags](https://registry.hub.docker.com/v1/repositories/microsoft/dotnet-buildtools-prereqs/tags)
+- [microsoft/dotnet-buildtools-prereqs](https://hub.docker.com/r/microsoft/dotnet-buildtools-prereqs/) is a Docker Hub repository.
+  - [Most recent tags](https://hub.docker.com/r/microsoft/dotnet-buildtools-prereqs/tags/)
+  - [Full list of tags](https://registry.hub.docker.com/v1/repositories/microsoft/dotnet-buildtools-prereqs/tags)
+- **dotnet-buildtools-prereqs** is a repository in the *DotnetDocker* private Azure Container Registry.
+  - This repository is used to host images that can't be published to Docker Hub.
 
 ## How to identify an image
 
-The tag format used by an image is `microsoft/dotnet-buildtools-prereqs:<linux-distribution-name>-<version>-<variant>-<dockerfile-commit-sha>-<date-time>`
+The tag format used by an image is `<repository>:<linux-distribution-name>-<version>-<variant>-<dockerfile-commit-sha>-<date-time>`
 
+- `<repository>` - name of the repository this image is part of, almost always `microsoft/dotnet-buildtools-prereqs`
 - `<linux-distribution-name>` - name of the Linux distribution the image is based on
 - `<version>` - version of the Linux distribution
 - `<variant>` - name describing the specialization purpose of the image.  Often special dependencies are needed for certain parts of the product.  It can be beneficial to separate these dependencies into a separate Dockerfile/image.
@@ -76,7 +80,9 @@ The [manifest.json](./manifest.json) contains metadata used by the build infrast
 - `tags` - the collection of tags to create for the image
 - `$(System:DockerfileGitCommitSha)` and `$(System:TimeStamp)` - built in variable references that are evaluated at build time and substituted
 
-**Note:** The position in manifest determines the sequence in which the image will be built.
+> **Note:** The position in manifest determines the sequence in which the image will be built.
+
+> **Note:** The entry is placed inside a repository in the `repos` list: the repository's `name` determines [where the image will be published](#where-are-the-published-images). Use `microsoft/dotnet-buildtools-prereqs` unless it is impossible to push the image to Docker Hub.
 
 ### Image Dependency
 
