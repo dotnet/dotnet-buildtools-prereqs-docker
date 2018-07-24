@@ -2,6 +2,7 @@
 param(
     [string]$DockerfilePath = "*",
     [string]$ImageBuilderCustomArgs,
+    [string]$RunCustomArgs,
     [switch]$CleanupDocker
 )
 
@@ -25,7 +26,7 @@ try {
 
     $expression = "docker run --rm " +
         "-v /var/run/docker.sock:/var/run/docker.sock " +
-        "imagebuilder " +
+        "$RunCustomArgs imagebuilder " +
         "build --manifest manifest.json --path '$DockerfilePath' $ImageBuilderCustomArgs"
 
     Invoke-Expression $expression

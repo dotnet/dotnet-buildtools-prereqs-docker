@@ -375,6 +375,22 @@
           ]
         }
       ]
+    },
+    {
+      "name": "dotnet-buildtools-prereqs",
+      "images": [
+        {
+          "platforms": [
+            {
+              "dockerfile": "src/rhel/7.5",
+              "os": "linux",
+              "tags": {
+                "rhel-7.5-$(System:DockerfileGitCommitSha)-$(System:TimeStamp)": {}
+              }
+            }
+          ]
+        }
+      ]
     }
   ]
 }
