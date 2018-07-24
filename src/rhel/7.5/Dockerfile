@@ -24,8 +24,8 @@ RUN yum updateinfo \
     && yum clean all
 
 # Needed by coreclr build to discover llvm-toolset-7 clang, and includes.
-ENV PATH "/opt/rh/llvm-toolset-7/root/usr/bin:${PATH}"
-ENV CMAKE_INCLUDE_PATH "/opt/rh/llvm-toolset-7/root/usr/include"
+ENV PATH="/opt/rh/llvm-toolset-7/root/usr/bin:${PATH}" \
+    CMAKE_INCLUDE_PATH="/opt/rh/llvm-toolset-7/root/usr/include"
 
 # Install tools used by the VSO build automation.  We use NodeJS from nodesource.com.
 RUN yum install -y https://rpm.nodesource.com/pub_0.10/el/7/x86_64/nodesource-release-el7-1.noarch.rpm \
