@@ -23,8 +23,10 @@ RUN apt-get update \
             libcurl4-openssl-dev \
             libgdiplus \
             libicu-dev \
+            libkrb5-dev \
             liblttng-ust-dev \
             libssl-dev \
+            libunwind8 \
             libunwind8-dev \
             uuid-dev \
     && rm -rf /var/lib/apt/lists/*
