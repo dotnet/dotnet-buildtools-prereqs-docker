@@ -7,9 +7,9 @@ RUN apt-get update \
     && wget -O - https://deb.nodesource.com/setup_8.x | bash \
     && apt-get install -y \
         git \
-        zip \
-        tar \
         nodejs \
+        tar \
+        zip \
     && rm -rf /var/lib/apt/lists/* \
     # Set unsafe-perm to true to avoid EACCES.
     && npm install -g azure-cli@0.9.15 --unsafe-perm=true \
