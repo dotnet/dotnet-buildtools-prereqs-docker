@@ -133,6 +133,17 @@
         {
           "platforms": [
             {
+              "dockerfile": "src/fedora/29",
+              "os": "linux",
+              "tags": {
+                "fedora-29-$(System:DockerfileGitCommitSha)-$(System:TimeStamp)": {}
+              }
+            }
+          ]
+        },
+        {
+          "platforms": [
+            {
               "dockerfile": "src/fedora/28",
               "os": "linux",
               "tags": {
