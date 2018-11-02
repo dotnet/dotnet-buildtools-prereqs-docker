@@ -155,28 +155,6 @@
         {
           "platforms": [
             {
-              "dockerfile": "src/fedora/27",
-              "os": "linux",
-              "tags": {
-                "fedora-27-$(System:DockerfileGitCommitSha)-$(System:TimeStamp)": {}
-              }
-            }
-          ]
-        },
-        {
-          "platforms": [
-            {
-              "dockerfile": "src/fedora/24",
-              "os": "linux",
-              "tags": {
-                "fedora-24-$(System:DockerfileGitCommitSha)-$(System:TimeStamp)": {}
-              }
-            }
-          ]
-        },
-        {
-          "platforms": [
-            {
               "dockerfile": "src/opensuse/42.3",
               "os": "linux",
               "tags": {
