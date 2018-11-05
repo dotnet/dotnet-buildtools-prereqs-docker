@@ -6,6 +6,12 @@ jobs:
     demands: agent.os -equals linux
   workspace:
     clean: all
+  variables:
+    imageBuilderCustomArgs: >
+      --push
+      --username $(dockerRegistry.userName)
+      --password $(BotAccount-dotnet-dockerhub-bot-password)
+      $(imageBuilder.queueBuildArgs)
   steps:
   - script: docker build -t runner --pull -f ./Dockerfile.linux.runner .
     displayName: Build Runner Image
@@ -13,5 +19,5 @@ jobs:
       docker run
       --rm -v /var/run/docker.sock:/var/run/docker.sock
       runner
-      pwsh -File ./build.ps1 -DockerfilePath $(imageBuilder.path) -ImageBuilderCustomArgs $(imageBuilder.buildArgs) -CleanupDocker
+      pwsh -File ./build.ps1 -DockerfilePath $(imageBuilder.path) -ImageBuilderCustomArgs "$(imageBuilderCustomArgs)" -CleanupDocker
     displayName: Build Images
