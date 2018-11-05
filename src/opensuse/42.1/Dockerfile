@@ -26,8 +26,8 @@ RUN zypper -n install \
         tar \
         zip \
     && zypper clean -a \
-    && npm install -g azure-cli \
-    && npm cache clean
+    && npm install -g azure-cli --unsafe-perm=true \
+    && npm cache clean -f
 
 # Build and install liblldb development files
 RUN zypper -n install \

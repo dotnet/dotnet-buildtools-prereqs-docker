@@ -133,32 +133,21 @@
         {
           "platforms": [
             {
+              "dockerfile": "src/fedora/29",
+              "os": "linux",
+              "tags": {
+                "fedora-29-$(System:DockerfileGitCommitSha)-$(System:TimeStamp)": {}
+              }
+            }
+          ]
+        },
+        {
+          "platforms": [
+            {
               "dockerfile": "src/fedora/28",
               "os": "linux",
               "tags": {
                 "fedora-28-$(System:DockerfileGitCommitSha)-$(System:TimeStamp)": {}
-              }
-            }
-          ]
-        },
-        {
-          "platforms": [
-            {
-              "dockerfile": "src/fedora/27",
-              "os": "linux",
-              "tags": {
-                "fedora-27-$(System:DockerfileGitCommitSha)-$(System:TimeStamp)": {}
-              }
-            }
-          ]
-        },
-        {
-          "platforms": [
-            {
-              "dockerfile": "src/fedora/24",
-              "os": "linux",
-              "tags": {
-                "fedora-24-$(System:DockerfileGitCommitSha)-$(System:TimeStamp)": {}
               }
             }
           ]
