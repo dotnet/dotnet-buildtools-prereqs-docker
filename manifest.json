@@ -9,7 +9,10 @@
               "dockerfile": "src/alpine/3.6",
               "os": "linux",
               "tags": {
-                "alpine-3.6-$(System:DockerfileGitCommitSha)-$(System:TimeStamp)": {}
+                "alpine-3.6-$(System:DockerfileGitCommitSha)-$(System:TimeStamp)": {},
+                "alpine-3.6": {
+                  "isLocal": true
+                }
               }
             }
           ]
@@ -21,6 +24,17 @@
               "os": "linux",
               "tags": {
                 "alpine-3.6-ForHelix-$(System:DockerfileGitCommitSha)-$(System:TimeStamp)": {}
+              }
+            }
+          ]
+        },
+        {
+          "platforms": [
+            {
+              "dockerfile": "src/alpine/3.6-WithNode",
+              "os": "linux",
+              "tags": {
+                "alpine-3.6-WithNode-$(System:DockerfileGitCommitSha)-$(System:TimeStamp)": {}
               }
             }
           ]
