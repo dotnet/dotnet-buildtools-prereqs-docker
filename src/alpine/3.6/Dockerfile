@@ -25,11 +25,11 @@ RUN apk add --no-cache \
         openssl-dev \
         paxctl \
         python \
-        util-linux-dev \
-        zlib-dev \
+        shadow \
         sudo \
+        util-linux-dev \
         which \
-        shadow
+        zlib-dev
 
 RUN apk -X https://dl-cdn.alpinelinux.org/alpine/edge/main add --no-cache \
         userspace-rcu-dev \
