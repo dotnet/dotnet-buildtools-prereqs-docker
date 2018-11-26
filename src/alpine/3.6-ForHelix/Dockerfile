@@ -23,6 +23,7 @@ RUN apk add --no-cache \
         libtool \
         libunwind-dev \
         libffi \
+        libffi-dev \
         linux-headers \
         llvm \
         make \
