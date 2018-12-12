@@ -9,7 +9,6 @@ RUN apk add --no-cache \
         libstdc++ \
     && apk add --no-cache --virtual .build-deps \
         binutils-gold \
-        curl \
         g++ \
         gnupg \
         libgcc \
@@ -47,7 +46,6 @@ RUN apk add --no-cache \
 ENV YARN_VERSION 1.10.1
 
 RUN apk add --no-cache --virtual .build-deps-yarn \
-        curl \
         gnupg \
         tar \
         && for key in \

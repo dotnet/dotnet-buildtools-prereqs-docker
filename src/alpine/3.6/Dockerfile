@@ -10,6 +10,7 @@ RUN apk add --no-cache \
         clang-dev \
         cmake \
         coreutils \
+        curl \
         curl-dev \
         gcc \
         gettext-dev \
