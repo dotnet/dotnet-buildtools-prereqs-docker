@@ -31,13 +31,11 @@ RUN apk add --no-cache \
         which \
         zlib-dev
 
-RUN apk -X https://dl-cdn.alpinelinux.org/alpine/edge/main add --no-cache \
-        userspace-rcu-dev \
-        lttng-ust-dev
-
 # On 3.6, a recent version of llvm from edge/main must be used to install lldb.
 # Details: https://github.com/dotnet/dotnet-buildtools-prereqs-docker/issues/55 
 RUN apk -X https://dl-cdn.alpinelinux.org/alpine/edge/main add --no-cache \
+        userspace-rcu-dev \
+        lttng-ust-dev \
         llvm
 
 RUN apk -X https://dl-cdn.alpinelinux.org/alpine/edge/testing add --no-cache \
