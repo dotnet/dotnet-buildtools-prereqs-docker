@@ -1,0 +1,43 @@
+parameters:
+  name: null
+  pool: {}
+  architecture: null
+  useRemoteDockerServer: false
+jobs:
+- job: ${{ parameters.name }}
+  pool: ${{ parameters.pool }}
+  variables:
+    ${{ if eq(parameters.useRemoteDockerServer, 'true') }}:
+      dockerArmRunArgs: 
+        -v $(DOCKER_CERT_PATH):/docker-certs
+        -e DOCKER_CERT_PATH=/docker-certs
+        -e DOCKER_TLS_VERIFY=1
+        -e DOCKER_HOST=tcp://$(DOCKER_HOST_IP):2376
+    ${{ if eq(parameters.useRemoteDockerServer, 'false') }}:
+      dockerArmRunArgs:
+    imageBuilderTag: image-builder
+    imageBuilderArgs:
+      build
+      --path $(imageBuilder.path)
+      --manifest manifest.json
+      --architecture ${{ parameters.architecture }}
+      --username $(dockerRegistry.userName)
+      --password $(BotAccount-dotnet-dockerhub-bot-password)
+      $(imageBuilder.queueBuildArgs)
+  steps:
+  - template: ../steps/cleanup-docker-linux.yml
+    parameters:
+      runOnlyBasicCleanup: ${{ parameters.useRemoteDockerServer }}
+  - script: docker build -t $(imageBuilderTag) --pull -f ./Dockerfile.linux.imagebuilder .
+    displayName: Build Runner Image
+  - script: >
+      docker run
+      --rm
+      -v /var/run/docker.sock:/var/run/docker.sock
+      $(dockerArmRunArgs)
+      $(imageBuilderTag)
+      $(imageBuilderArgs)
+    displayName: Build Images
+  - template: ../steps/cleanup-docker-linux.yml
+    parameters:
+      cleanupRemoteDockerServer: ${{ parameters.useRemoteDockerServer }}

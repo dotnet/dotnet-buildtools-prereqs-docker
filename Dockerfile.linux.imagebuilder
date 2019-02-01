@@ -1,7 +1,7 @@
 # Use this Dockerfile to create an image containing this repo and ImageBuilder
 # Usage: docker run --rm -v /var/run/docker.sock:/var/run/docker.sock imagebuilder <imagebuilder_args> .
 
-FROM microsoft/dotnet-buildtools-prereqs:image-builder-debian-20180723194508
+FROM microsoft/dotnet-buildtools-prereqs:image-builder-debian-20190128213805
 
 WORKDIR /repo
 COPY . .
