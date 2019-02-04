@@ -1,23 +1,32 @@
 trigger: none
 jobs:
-- job:
-  pool:
-    name: DotNet-Build
-    demands: agent.os -equals linux
-  workspace:
-    clean: all
-  variables:
-    imageBuilderCustomArgs: >
-      --push
-      --username $(dockerRegistry.userName)
-      --password $(BotAccount-dotnet-dockerhub-bot-password)
-      $(imageBuilder.queueBuildArgs)
-  steps:
-  - script: docker build -t runner --pull -f ./Dockerfile.linux.runner .
-    displayName: Build Runner Image
-  - script: >
-      docker run
-      --rm -v /var/run/docker.sock:/var/run/docker.sock
-      runner
-      pwsh -File ./build.ps1 -DockerfilePath $(imageBuilder.path) -ImageBuilderCustomArgs "$(imageBuilderCustomArgs)" -CleanupDocker
-    displayName: Build Images
+- template: jobs/build-images.yml
+  parameters:
+    name: Build_Linux_amd64
+    pool: # linuxAmd64Pool
+      name: DotNet-Build
+      demands:
+      - agent.os -equals linux
+    architecture: amd64
+- template: jobs/build-images.yml
+  parameters:
+    name: Build_Linux_arm64v8
+    pool: # linuxArm64v8Pool
+      name: DotNetCore-Infra
+      demands:
+      - agent.os -equals linux
+      - RemoteDockerServerOS -equals linux
+      - RemoteDockerServerArch -equals arm64v8
+    architecture: arm64
+    useRemoteDockerServer: true
+- template: jobs/build-images.yml
+  parameters:
+    name: Build_Linux_arm32v7
+    pool: # linuxArm32v7Pool
+      name: DotNetCore-Infra
+      demands:
+      - agent.os -equals linux
+      - RemoteDockerServerOS -equals linux
+      - RemoteDockerServerArch -equals arm32v7
+    architecture: arm
+    useRemoteDockerServer: true
