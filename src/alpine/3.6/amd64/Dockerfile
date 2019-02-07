@@ -36,4 +36,5 @@ RUN apk add --no-cache \
 RUN apk -X https://dl-cdn.alpinelinux.org/alpine/edge/main add --no-cache \
         userspace-rcu-dev \
         lttng-ust-dev \
-        llvm
+        llvm \
+        numactl-dev

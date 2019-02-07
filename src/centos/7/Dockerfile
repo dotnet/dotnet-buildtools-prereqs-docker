@@ -31,6 +31,7 @@ RUN yum install -y \
         lzma \
         make \
         ncurses-devel \
+        numactl-devel \
         openssl-devel \
         python-argparse \
         python27 \

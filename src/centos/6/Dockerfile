@@ -32,6 +32,7 @@ RUN yum install -y \
         lttng-ust-devel \
         lzma \
         ncurses-devel \
+        numactl-devel \
         openssl-devel \
         perl-devel \
         python-argparse \
