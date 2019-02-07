@@ -12,6 +12,7 @@ RUN apt-get update \
         qemu \
         qemu-user-static \
         wget \
+        build-essential \
     && rm -rf /var/lib/apt/lists/*
 
 RUN apt-get update \

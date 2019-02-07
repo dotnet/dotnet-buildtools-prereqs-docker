@@ -319,6 +319,17 @@
         {
           "platforms": [
             {
+              "dockerfile": "src/ubuntu/16.04/cross/arm64-alpine",
+              "os": "linux",
+              "tags": {
+                "ubuntu-16.04-cross-arm64-alpine$(System:DockerfileGitCommitSha)-$(System:TimeStamp)": {}
+              }
+            }
+          ]
+        },
+        {
+          "platforms": [
+            {
               "dockerfile": "src/ubuntu/16.04/cross",
               "os": "linux",
               "tags": {
