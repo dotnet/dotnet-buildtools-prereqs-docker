@@ -10,13 +10,14 @@ RUN apt-get update \
     && rm -rf /var/lib/apt/lists/*
 
 # Workaround to build a functioning ld.gold which can link for linux-musl arm64
-RUN cd /tmp && git clone https://github.com/richfelker/musl-cross-make.git
-
-RUN echo "TARGET = aarch64-alpine-linux-musl" >> /tmp/musl-cross-make/config.mak
-RUN echo "OUTPUT = /usr" >> /tmp/musl-cross-make/config.mak
-RUN echo "BINUTILS_CONFIG=--enable-gold=yes --program-prefix=aarch64-alpine-linux-musl-" >> /tmp/musl-cross-make/config.mak
-
-RUN cd /tmp/musl-cross-make && make
-RUN cd /tmp/musl-cross-make && make install
+RUN cd /tmp \
+    && wget https://ftp.gnu.org/gnu/binutils/binutils-2.27.tar.gz \
+    && tar -xf binutils-2.27.tar.gz \
+    && cd binutils-2.27 \
+    && ./configure --disable-werror --target=aarch64-alpine-linux-musl --prefix=/usr --libdir=/lib --disable-multilib --with-sysroot=aarch64-alpine-linux-musl --enable-gold=yes --program-prefix=aarch64-alpine-linux-musl- \
+    && make \
+    && make install \
+    && cd .. \
+    && rm -r *
 
 ADD rootfs.arm64.tar crossrootfs
