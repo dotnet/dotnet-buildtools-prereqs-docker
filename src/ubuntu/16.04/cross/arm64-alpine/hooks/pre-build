@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+$(dirname ${BASH_SOURCE[0]})/../../../../build-scripts/build-rootfs.sh ubuntu-16.04 alpine arm64 lldb3.9
