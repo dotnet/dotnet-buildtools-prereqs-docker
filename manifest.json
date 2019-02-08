@@ -381,10 +381,10 @@
           "platforms": [
             {
               "architecture": "arm",
-              "dockerfile": "src//arm32v7//debian-ForIoT",
+              "dockerfile": "src/debian/iot/arm32v7",
               "os": "linux",
               "tags": {
-                "debian-arm32v7-ForIoT-$(System:DockerfileGitCommitSha)-$(System:TimeStamp)": {}
+                "debian-iot-arm32v7-$(System:DockerfileGitCommitSha)-$(System:TimeStamp)": {}
               },
               "variant": "v7"
             }
