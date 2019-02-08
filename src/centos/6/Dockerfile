@@ -37,6 +37,7 @@ RUN yum install -y \
         python-argparse \
         python27 \
         readline-devel \
+        sudo \
         swig \
         xz \
         zlib-devel \
