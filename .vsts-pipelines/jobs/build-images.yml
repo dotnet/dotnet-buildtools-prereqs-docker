@@ -18,6 +18,7 @@ jobs:
     imageBuilderTag: image-builder
     imageBuilderArgs:
       build
+      --push
       --path $(imageBuilder.path)
       --manifest manifest.json
       --architecture ${{ parameters.architecture }}
