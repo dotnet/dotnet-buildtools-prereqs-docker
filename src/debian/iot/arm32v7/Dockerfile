@@ -3,9 +3,8 @@ FROM arm32v7/debian:latest
 # Dependencies for downloading and running the installation script of libgpiod
 RUN apt-get update \
     && apt-get install -y \
-            wget \
-            nano \
             sudo \
+            wget \
     && rm -rf /var/lib/apt/lists/*
 
 # Download libgpiod installation script and run it.
