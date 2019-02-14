@@ -20,7 +20,7 @@
         {
           "platforms": [
             {
-              "dockerfile": "src/alpine/3.6/amd64/ForHelix",
+              "dockerfile": "src/alpine/3.6/ForHelix/amd64",
               "os": "linux",
               "tags": {
                 "alpine-3.6-ForHelix-$(System:DockerfileGitCommitSha)-$(System:TimeStamp)": {}
@@ -31,7 +31,7 @@
         {
           "platforms": [
             {
-              "dockerfile": "src/alpine/3.6/amd64/WithNode",
+              "dockerfile": "src/alpine/3.6/WithNode/amd64",
               "os": "linux",
               "tags": {
                 "alpine-3.6-WithNode-$(System:DockerfileGitCommitSha)-$(System:TimeStamp)": {}
@@ -42,7 +42,7 @@
         {
           "platforms": [
             {
-              "dockerfile": "src/alpine/3.8/amd64/ForHelix",
+              "dockerfile": "src/alpine/3.8/ForHelix/amd64",
               "os": "linux",
               "tags": {
                 "alpine-3.8-ForHelix-$(System:DockerfileGitCommitSha)-$(System:TimeStamp)": {}
