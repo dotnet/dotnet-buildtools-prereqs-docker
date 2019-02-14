@@ -322,7 +322,7 @@
               "dockerfile": "src/ubuntu/16.04/cross/arm64-alpine",
               "os": "linux",
               "tags": {
-                "ubuntu-16.04-cross-arm64-alpine$(System:DockerfileGitCommitSha)-$(System:TimeStamp)": {}
+                "ubuntu-16.04-cross-arm64-alpine-$(System:DockerfileGitCommitSha)-$(System:TimeStamp)": {}
               }
             }
           ]
@@ -417,7 +417,7 @@
         {
           "platforms": [
             {
-              "architecture": "arm",
+              "architecture": "arm64",
               "dockerfile": "src/debian/9/arm64v8",
               "os": "linux",
               "tags": {
@@ -443,7 +443,7 @@
         {
           "platforms": [
             {
-              "architecture": "arm",
+              "architecture": "arm64",
               "dockerfile": "src/ubuntu/16.04/arm64v8",
               "os": "linux",
               "tags": {
@@ -469,7 +469,7 @@
         {
           "platforms": [
             {
-              "architecture": "arm",
+              "architecture": "arm64",
               "dockerfile": "src/ubuntu/18.04/arm64v8",
               "os": "linux",
               "tags": {
@@ -482,7 +482,7 @@
         {
           "platforms": [
             {
-              "architecture": "arm",
+              "architecture": "arm64",
               "dockerfile": "src/alpine/3.6/arm64v8",
               "os": "linux",
               "tags": {
