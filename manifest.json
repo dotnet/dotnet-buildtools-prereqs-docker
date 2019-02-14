@@ -6,7 +6,7 @@
         {
           "platforms": [
             {
-              "dockerfile": "src/alpine/3.6/amd64/base",
+              "dockerfile": "src/alpine/3.6/amd64",
               "os": "linux",
               "tags": {
                 "alpine-3.6-$(System:DockerfileGitCommitSha)-$(System:TimeStamp)": {},
@@ -405,7 +405,7 @@
           "platforms": [
             {
               "architecture": "arm",
-              "dockerfile": "src/debian/9.0/arm32v7",
+              "dockerfile": "src/debian/9/arm32v7",
               "os": "linux",
               "tags": {
                 "debian-9-arm32v7-$(System:DockerfileGitCommitSha)-$(System:TimeStamp)": {}
@@ -418,7 +418,7 @@
           "platforms": [
             {
               "architecture": "arm",
-              "dockerfile": "src/debian/9.0/arm64v8",
+              "dockerfile": "src/debian/9/arm64v8",
               "os": "linux",
               "tags": {
                 "debian-9-arm64v8-$(System:DockerfileGitCommitSha)-$(System:TimeStamp)": {}
