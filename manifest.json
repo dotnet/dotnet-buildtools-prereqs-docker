@@ -6,7 +6,7 @@
         {
           "platforms": [
             {
-              "dockerfile": "src/alpine/3.6",
+              "dockerfile": "src/alpine/3.6/amd64",
               "os": "linux",
               "tags": {
                 "alpine-3.6-$(System:DockerfileGitCommitSha)-$(System:TimeStamp)": {},
@@ -20,7 +20,7 @@
         {
           "platforms": [
             {
-              "dockerfile": "src/alpine/3.6-ForHelix",
+              "dockerfile": "src/alpine/3.6/ForHelix/amd64",
               "os": "linux",
               "tags": {
                 "alpine-3.6-ForHelix-$(System:DockerfileGitCommitSha)-$(System:TimeStamp)": {}
@@ -31,7 +31,7 @@
         {
           "platforms": [
             {
-              "dockerfile": "src/alpine/3.6-WithNode",
+              "dockerfile": "src/alpine/3.6/WithNode/amd64",
               "os": "linux",
               "tags": {
                 "alpine-3.6-WithNode-$(System:DockerfileGitCommitSha)-$(System:TimeStamp)": {}
@@ -42,7 +42,7 @@
         {
           "platforms": [
             {
-              "dockerfile": "src/alpine/3.8-ForHelix",
+              "dockerfile": "src/alpine/3.8/ForHelix/amd64",
               "os": "linux",
               "tags": {
                 "alpine-3.8-ForHelix-$(System:DockerfileGitCommitSha)-$(System:TimeStamp)": {}
@@ -366,7 +366,7 @@
         {
           "platforms": [
             {
-              "dockerfile": "src/ubuntu/18.04",
+              "dockerfile": "src/ubuntu/18.04/amd64",
               "os": "linux",
               "tags": {
                 "ubuntu-18.04-$(System:DockerfileGitCommitSha)-$(System:TimeStamp)": {},
@@ -398,6 +398,97 @@
                 "debian-iot-arm32v7-$(System:DockerfileGitCommitSha)-$(System:TimeStamp)": {}
               },
               "variant": "v7"
+            }
+          ]
+        },
+        {
+          "platforms": [
+            {
+              "architecture": "arm",
+              "dockerfile": "src/debian/9/arm32v7",
+              "os": "linux",
+              "tags": {
+                "debian-9-arm32v7-$(System:DockerfileGitCommitSha)-$(System:TimeStamp)": {}
+              },
+              "variant": "v7"
+            }
+          ]
+        },
+        {
+          "platforms": [
+            {
+              "architecture": "arm",
+              "dockerfile": "src/debian/9/arm64v8",
+              "os": "linux",
+              "tags": {
+                "debian-9-arm64v8-$(System:DockerfileGitCommitSha)-$(System:TimeStamp)": {}
+              },
+              "variant": "v8"
+            }
+          ]
+        },
+        {
+          "platforms": [
+            {
+              "architecture": "arm",
+              "dockerfile": "src/ubuntu/16.04/arm32v7",
+              "os": "linux",
+              "tags": {
+                "ubuntu-16.04-arm32v7-$(System:DockerfileGitCommitSha)-$(System:TimeStamp)": {}
+              },
+              "variant": "v7"
+            }
+          ]
+        },
+        {
+          "platforms": [
+            {
+              "architecture": "arm",
+              "dockerfile": "src/ubuntu/16.04/arm64v8",
+              "os": "linux",
+              "tags": {
+                "ubuntu-16.04-arm64v8-$(System:DockerfileGitCommitSha)-$(System:TimeStamp)": {}
+              },
+              "variant": "v8"
+            }
+          ]
+        },
+        {
+          "platforms": [
+            {
+              "architecture": "arm",
+              "dockerfile": "src/ubuntu/16.04/arm32v7",
+              "os": "linux",
+              "tags": {
+                "ubuntu-18.04-arm32v7-$(System:DockerfileGitCommitSha)-$(System:TimeStamp)": {}
+              },
+              "variant": "v7"
+            }
+          ]
+        },
+        {
+          "platforms": [
+            {
+              "architecture": "arm",
+              "dockerfile": "src/ubuntu/18.04/arm64v8",
+              "os": "linux",
+              "tags": {
+                "ubuntu-18.04-arm64v8-$(System:DockerfileGitCommitSha)-$(System:TimeStamp)": {}
+              },
+              "variant": "v8"
+            }
+          ]
+        },
+        {
+          "platforms": [
+            {
+              "architecture": "arm",
+              "dockerfile": "src/alpine/3.6/arm64v8",
+              "os": "linux",
+              "tags": {
+                "alpine-3.6-arm64v8-$(System:DockerfileGitCommitSha)-$(System:TimeStamp)": {}
+              },
+              "variant": "v8"
             }
           ]
         }
