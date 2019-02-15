@@ -2,7 +2,8 @@ FROM python:2.7.15-alpine3.9
 
 # Install .NET Core Dependencies for Alpine
 
-RUN apk update && apk add --no-cache \
+RUN apk update && \
+    apk add --no-cache \
         autoconf \
         bash \
         build-base \
