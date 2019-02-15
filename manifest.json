@@ -49,7 +49,29 @@
               }
             }
           ]
-        },       
+        },
+        {
+          "platforms": [
+            {
+              "dockerfile": "src/alpine/3.8/helix/amd64",
+              "os": "linux",
+              "tags": {
+                "alpine-3.8-helix-$(System:DockerfileGitCommitSha)-$(System:TimeStamp)": {}
+              }
+            }
+          ]
+        },         
+        {
+          "platforms": [
+            {
+              "dockerfile": "src/alpine/3.9/helix/amd64",
+              "os": "linux",
+              "tags": {
+                "alpine-3.9-helix-$(System:DockerfileGitCommitSha)-$(System:TimeStamp)": {}
+              }
+            }
+          ]
+        },          
         {
           "platforms": [
             {
