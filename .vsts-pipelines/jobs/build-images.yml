@@ -22,8 +22,10 @@ jobs:
       --path $(imageBuilder.path)
       --manifest manifest.json
       --architecture ${{ parameters.architecture }}
-      --username $(dockerRegistry.userName)
-      --password $(BotAccount-dotnet-dockerhub-bot-password)
+      --username $(acr.userName)
+      --password $(BotAccount-dotnet-docker-acr-bot-password)
+      --registry-override $(acr.server)
+      --repo-prefix public/
       $(imageBuilder.queueBuildArgs)
   steps:
   - template: ../steps/cleanup-docker-linux.yml

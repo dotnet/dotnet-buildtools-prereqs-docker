@@ -1,12 +1,15 @@
 trigger: none
+variables:
+- group: DotNet-Docker-Common
+- group: DotNet-Docker-Secrets
+
 jobs:
 - template: jobs/build-images.yml
   parameters:
     name: Build_Linux_amd64
     pool: # linuxAmd64Pool
       name: DotNet-Build
-      demands:
-      - agent.os -equals linux
+      demands: agent.os -equals linux
     architecture: amd64
 - template: jobs/build-images.yml
   parameters:
