@@ -10,7 +10,7 @@ crossToolset=$2
 archArg=${3:-}
 lldb=${4:-}
 
-dockerCrossDepsTag="microsoft/dotnet-buildtools-prereqs:${os}-crossdeps"
+dockerCrossDepsTag="${DOCKER_REPO:-mcr.microsoft.com/dotnet-buildtools/prereqs}:${os}-crossdeps"
 
 rm -rf $PWD/rootfs.tar
 

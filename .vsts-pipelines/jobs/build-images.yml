@@ -25,8 +25,9 @@ jobs:
       --username $(acr.userName)
       --password $(BotAccount-dotnet-docker-acr-bot-password)
       --registry-override $(acr.server)
-      --repo-prefix public/
+      --repo-prefix $(repoPrefix)
       $(imageBuilder.queueBuildArgs)
+    repoPrefix: public/
   steps:
   - template: ../steps/cleanup-docker-linux.yml
     parameters:
@@ -37,6 +38,7 @@ jobs:
       docker run
       --rm
       -v /var/run/docker.sock:/var/run/docker.sock
+      -e DOCKER_REPO=$(acr.server)/($repoPrefix)dotnet-buildtools/prereqs
       $(dockerArmRunArgs)
       $(imageBuilderTag)
       $(imageBuilderArgs)

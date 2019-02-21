@@ -1,4 +1,4 @@
-FROM microsoft/dotnet-buildtools-prereqs:debian-8.2-coredeps
+FROM mcr.microsoft.com/dotnet-buildtools/prereqs:debian-8.2-coredeps
 
 # Install tools needs to build CoreRT.
 RUN apt-get update \

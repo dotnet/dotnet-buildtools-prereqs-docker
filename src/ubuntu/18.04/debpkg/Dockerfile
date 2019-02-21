@@ -1,4 +1,4 @@
-FROM microsoft/dotnet-buildtools-prereqs:ubuntu-18.04
+FROM mcr.microsoft.com/dotnet-buildtools/prereqs:ubuntu-18.04
 
 # Install the deb packaging toolchain we need to build debs
 RUN apt-get update \

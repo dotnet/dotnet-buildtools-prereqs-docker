@@ -1,4 +1,4 @@
-FROM microsoft/dotnet-buildtools-prereqs:ubuntu-16.04-crossdeps
+FROM mcr.microsoft.com/dotnet-buildtools/prereqs:ubuntu-16.04-crossdeps
 
 # Install binutils-aarch64-linux-gnu
 #
