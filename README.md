@@ -4,18 +4,18 @@ The Dockerfiles in this repository are used for building the .NET Core product. 
 
 ## Where are the published images
 
-The images produced from the Dockerfiles are published to the [microsoft/dotnet-buildtools-prereqs](https://hub.docker.com/r/microsoft/dotnet-buildtools-prereqs/) Docker Hub repository.
+The images produced from the Dockerfiles are published to the mcr.microsoft.com/dotnet-buildtools/prereqs Docker repository.
 
-  - [Most recent tags](https://hub.docker.com/r/microsoft/dotnet-buildtools-prereqs/tags/)
-  - [Full list of tags](https://registry.hub.docker.com/v1/repositories/microsoft/dotnet-buildtools-prereqs/tags)
+  - [Full list of tags](https://mcr.microsoft.com/v2/dotnet-buildtools/prereqs/tags/list)
 
 ## How to identify an image
 
-The tag format used by an image is `microsoft/dotnet-buildtools-prereqs:<linux-distribution-name>-<version>-<variant>-<dockerfile-commit-sha>-<date-time>`
+The tag format used by an image is `mcr.microsoft.com/dotnet-buildtools/prereqs:<linux-distribution-name>-<version>-<variant>-<architecture>-<dockerfile-commit-sha>-<date-time>`
 
 - `<linux-distribution-name>` - name of the Linux distribution the image is based on
 - `<version>` - version of the Linux distribution
 - `<variant>` - name describing the specialization purpose of the image.  Often special dependencies are needed for certain parts of the product.  It can be beneficial to separate these dependencies into a separate Dockerfile/image.
+- `<architecture>` - the docker image architecture (amd64 shall be implied if not specified).
 - `<dockerfile-commit-sha>` - Git commit SHA of the folder containing the Dockerfile the image was produced from
 - `<date-time>` - UTC timestamp (`yyyyMMddhhmmss`) of when the image was built
 
@@ -53,34 +53,51 @@ There will be a need for modifying existing Dockerfiles or creating new ones.  F
 
 ### Source Folder Structure
 
-The folder structure used in [src](./src) aligns with the tagging convention - `<linux-distribution-name>-<version>-<variant>`.  For example, the Dockerfile used to produce the `microsoft/dotnet-buildtools-prereqs:ubuntu-17.04-debpkg-c4fd48a-20171610061631` image is stored in the [src/ubuntu/17.04/debpkg](./src/ubuntu/17.04/debpkg) folder.
+The folder structure used in [src](./src) aligns with the tagging convention - `<linux-distribution-name>-<version>-<variant>-<architecture>`.  For example, the Dockerfile used to produce the `mcr.microsoft.com/dotnet-buildtools/prereqs:alpine-3.6-1fc8e66-20181220200247` image is stored in the [src/alpine/3.6/amd64](./src/alpine/3.6/amd64) folder.
 
 ### Manifest
 
 The [manifest.json](./manifest.json) contains metadata used by the build infrastructure to produce the Docker images.  The metadata describes which Dockerfiles to build, what tags to produce, and where to publish the images.  It is critical that the manifest gets updated appropriately when Dockerfiles are added/removed.  Each Dockerfile will have an entry that looks like the following.
 
 ```json
-"platforms": [
+{
+  "platforms": [
     {
-        "dockerfile": "alpine/3.6",
-        "os": "linux",
-        "tags": {
-            "alpine-3.6-$(System:DockerfileGitCommitSha)-$(System:TimeStamp)": {}
-        }
+      "dockerfile": "alpine/3.6/amd64",
+      "os": "linux",
+      "tags": {
+        "alpine-3.6-$(System:DockerfileGitCommitSha)-$(System:TimeStamp)": {}
+      }
     }
-]
+  ]
+},
+{
+  "platforms": [
+    {
+      "architecture": "arm",
+      "dockerfile": "src/debian/9/arm32v7",
+      "os": "linux",
+      "tags": {
+        "debian-9-arm32v7-$(System:DockerfileGitCommitSha)-$(System:TimeStamp)": {}
+      },
+      "variant": "v7"
+    }
+  ]
+},
 ```
 
+- `architecture` - architecture of the image (default is amd64) [amd64/arm/arm64]
 - `dockerfile` - relative path to the Dockerfile to build
 - `os` - (linux/windows) the OS type the Docker image is based on
 - `tags` - the collection of tags to create for the image
+- `variant` - architecture variant of the image
 - `$(System:DockerfileGitCommitSha)` and `$(System:TimeStamp)` - built in variable references that are evaluated at build time and substituted
 
 > **Note:** The position in manifest determines the sequence in which the image will be built.
 
 ### Image Dependency
 
-A precondition for building an image is to ensure that the base image specified in the [FROM]((https://docs.docker.com/engine/reference/builder/#from)) statement of the Dockerfile is available either locally or can be pulled from a Docker registry.  Some of the microsoft/dotnet-buildtools-prereqs Dockerfiles depend on other microsoft/dotnet-buildtools-prereqs Dockerfiles (e.g. [src/ubuntu/16.04/debpkg](./src/ubuntu/16.04/debpkg)).  In these cases, the `FROM` reference should not include the `<dockerfile-commit-sha>-<date-time>` portion of the tags.  This is referred to as a stable tag as it does not change from build to build.  This pattern is used so that the Dockerfiles do not need constant updating as new versions of the base images are built.  To support this scenario, the manifest entry for the base image must be defined to produce the stable tag.
+A precondition for building an image is to ensure that the base image specified in the [FROM]((https://docs.docker.com/engine/reference/builder/#from)) statement of the Dockerfile is available either locally or can be pulled from a Docker registry.  Some of the Dockerfiles depend on images produced from other Dockerfiles (e.g. [src/ubuntu/16.04/debpkg](./src/ubuntu/16.04/debpkg)).  In these cases, the `FROM` reference should not include the `<dockerfile-commit-sha>-<date-time>` portion of the tags.  This is referred to as a stable tag as it does not change from build to build.  This pattern is used so that the Dockerfiles do not need constant updating as new versions of the base images are built.  To support this scenario, the manifest entry for the base image must be defined to produce the stable tag.
 
 ```json
 "platforms": [

@@ -1,4 +1,4 @@
-FROM microsoft/dotnet-buildtools-prereqs:ubuntu-16.04-coredeps
+FROM mcr.microsoft.com/dotnet-buildtools/prereqs:ubuntu-16.04-coredeps
 
 # Install the base toolchain we need to build anything (clang, cmake, make and the like).
 RUN apt-get update \
