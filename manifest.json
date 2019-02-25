@@ -181,6 +181,17 @@
         {
           "platforms": [
             {
+              "dockerfile": "src/fedora/29/helix/amd64",
+              "os": "linux",
+              "tags": {
+                "fedora-29-helix-amd64-$(System:DockerfileGitCommitSha)-$(System:TimeStamp)": {}
+              }
+            }
+          ]
+        },
+        {
+          "platforms": [
+            {
               "dockerfile": "src/fedora/28",
               "os": "linux",
               "tags": {
