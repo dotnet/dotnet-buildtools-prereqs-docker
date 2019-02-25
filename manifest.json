@@ -184,7 +184,8 @@
               "dockerfile": "src/fedora/29/helix/amd64",
               "os": "linux",
               "tags": {
-                "fedora-29-helix-$(System:DockerfileGitCommitSha)-$(System:TimeStamp)": {}
+                "fedora-29-helix-$(System:DockerfileGitCommitSha)-$(System:TimeStamp)": {},
+                "isLocal": true
               }
             }
           ]

@@ -1,49 +1,11 @@
-FROM fedora:29
-
-# Install the base toolchain we need to build anything (clang, cmake, make and the like)
-# this does not include libraries that we need to compile different projects, we'd like
-# them in a different layer.
-RUN dnf install -y \
-        clang \
-        cmake \
-        findutils \
-        gdb \
-        lldb-devel \
-        llvm-devel \
-        make \
-        python \
-        python2-devel \
-        python2-lldb \
-        which \
-    && dnf clean all
-
-# Install tools used by build automation.
-RUN dnf install -y \
-        git \
-        tar \
-        procps \
-        zip \
-    && dnf clean all
-
-# Dependencies of CoreCLR and CoreFX.
-RUN dnf install -y \
-        compat-openssl10-devel \
-        glibc-locale-source \
-        krb5-devel \
-        libcurl-devel \
-        libgdiplus \
-        libicu-devel \
-        libunwind-devel \
-        libuuid-devel \
-        lttng-ust-devel \
-        uuid-devel \
-        redhat-rpm-config \
-    && dnf clean all
-
-# Until official packages are available, we have to restore the ubuntu ones instead.
-ENV __PUBLISH_RID=ubuntu.14.04-x64
+FROM mcr.microsoft.com/dotnet-buildtools/prereqs:fedora-29
 
 # Install Helix Dependencies
+
+RUN dnf install -y \
+        python2-devel \
+        redhat-rpm-config \        
+    && dnf clean all
 
 RUN python -m pip install --upgrade pip==19.0.2 && \
     python -m pip install \ 
