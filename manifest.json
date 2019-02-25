@@ -173,7 +173,10 @@
               "dockerfile": "src/fedora/29",
               "os": "linux",
               "tags": {
-                "fedora-29-$(System:DockerfileGitCommitSha)-$(System:TimeStamp)": {}
+                "fedora-29-$(System:DockerfileGitCommitSha)-$(System:TimeStamp)": {},
+                "fedora-29": {
+                    "isLocal": true
+                },
               }
             }
           ]
@@ -184,8 +187,7 @@
               "dockerfile": "src/fedora/29/helix/amd64",
               "os": "linux",
               "tags": {
-                "fedora-29-helix-$(System:DockerfileGitCommitSha)-$(System:TimeStamp)": {},
-                "isLocal": true
+                "fedora-29-helix-$(System:DockerfileGitCommitSha)-$(System:TimeStamp)": {}
               }
             }
           ]
