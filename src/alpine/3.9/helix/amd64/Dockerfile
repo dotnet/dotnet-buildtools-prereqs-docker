@@ -58,6 +58,7 @@ RUN python -m pip install --upgrade pip==19.0.2 && \
 # Fixup helixbot user
 RUN /usr/sbin/adduser -D -G adm -s /bin/sh helixbot; \
     chmod 755 /root ; \
+    echo LANG=en-US.UTF-8 > /home/helixbot/.bashrc ; \
     echo "helixbot ALL=(ALL)       NOPASSWD: ALL" > /etc/sudoers.d/helixbot
 
 USER helixbot
