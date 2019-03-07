@@ -10,6 +10,7 @@ RUN apt-get update \
         liblldb-3.9-dev \
         lldb-3.9 \
         llvm-3.9 \
+        libomp-dev \
         make \
         python-lldb-3.9 \
         wget \

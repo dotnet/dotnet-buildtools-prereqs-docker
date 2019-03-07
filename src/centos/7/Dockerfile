@@ -8,6 +8,7 @@ RUN yum install -y \
     && \
     yum install -y \
         "perl(Time::HiRes)" \
+        perl-Data-Dumper \
         cmake \
         cmake3 \
         doxygen \
@@ -51,20 +52,24 @@ RUN wget ftp://sourceware.org/pub/binutils/snapshots/binutils-2.29.1.tar.xz && \
     wget http://releases.llvm.org/3.9.1/llvm-3.9.1.src.tar.xz && \
     wget http://releases.llvm.org/3.9.1/lldb-3.9.1.src.tar.xz && \
     wget http://releases.llvm.org/3.9.1/compiler-rt-3.9.1.src.tar.xz && \
+    wget http://releases.llvm.org/3.9.1/openmp-3.9.1.src.tar.xz && \
     \
     tar -xf binutils-2.29.1.tar.xz && \
     tar -xf llvm-3.9.1.src.tar.xz && \
     mkdir llvm-3.9.1.src/tools/clang && \
     mkdir llvm-3.9.1.src/tools/lldb && \
     mkdir llvm-3.9.1.src/projects/compiler-rt && \
+    mkdir llvm-3.9.1.src/projects/openmp && \
     tar -xf cfe-3.9.1.src.tar.xz --strip 1 -C llvm-3.9.1.src/tools/clang && \
     tar -xf lldb-3.9.1.src.tar.xz --strip 1 -C llvm-3.9.1.src/tools/lldb && \
     tar -xf compiler-rt-3.9.1.src.tar.xz --strip 1 -C llvm-3.9.1.src/projects/compiler-rt && \
+    tar -xf openmp-3.9.1.src.tar.xz --strip 1 -C llvm-3.9.1.src/projects/openmp && \
     rm binutils-2.29.1.tar.xz && \
     rm cfe-3.9.1.src.tar.xz && \
     rm lldb-3.9.1.src.tar.xz && \
     rm llvm-3.9.1.src.tar.xz && \
     rm compiler-rt-3.9.1.src.tar.xz && \
+    rm openmp-3.9.1.src.tar.xz && \
     \
     mkdir llvmbuild && \
     cd llvmbuild && \
@@ -82,3 +87,5 @@ RUN wget ftp://sourceware.org/pub/binutils/snapshots/binutils-2.29.1.tar.xz && \
     rm -r llvmbuild && \
     rm -r llvm-3.9.1.src && \
     rm -r binutils-2.29.1
+
+ENV LD_LIBRARY_PATH=/usr/local/lib64
