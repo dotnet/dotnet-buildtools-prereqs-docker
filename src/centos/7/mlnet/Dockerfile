@@ -15,7 +15,7 @@ RUN wget http://releases.llvm.org/3.9.1/openmp-3.9.1.src.tar.xz && \
         -DLLVM_LIBDIR_SUFFIX=64\
         -DLLVM_ENABLE_EH=1 \
         -DLLVM_ENABLE_RTTI=1 \
-        ../llvm-3.9.1.src\openmp \
+        ../llvm-3.9.1.src/openmp \
     && \
     make -j $(($(getconf _NPROCESSORS_ONLN)+1)) && \
     make install && \

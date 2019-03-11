@@ -79,7 +79,21 @@
               "dockerfile": "src/centos/7",
               "os": "linux",
               "tags": {
-                "centos-7-$(System:DockerfileGitCommitSha)-$(System:TimeStamp)": {}
+                "centos-7-$(System:DockerfileGitCommitSha)-$(System:TimeStamp)": {},
+                "centos-7": {
+                  "isLocal": true
+                }
+              }
+            }
+          ]
+        },
+        {
+          "platforms": [
+            {
+              "dockerfile": "src/centos/7/mlnet",
+              "os": "linux",
+              "tags": {
+                "centos-7-mlnet-$(System:DockerfileGitCommitSha)-$(System:TimeStamp)": {}
               }
             }
           ]
@@ -371,6 +385,17 @@
               "os": "linux",
               "tags": {
                 "ubuntu-16.04-cross-$(System:DockerfileGitCommitSha)-$(System:TimeStamp)": {}
+              }
+            }
+          ]
+        },
+        {
+          "platforms": [
+            {
+              "dockerfile": "src/ubuntu/16.04/mlnet",
+              "os": "linux",
+              "tags": {
+                "ubuntu-16.04-mlnet-$(System:DockerfileGitCommitSha)-$(System:TimeStamp)": {}
               }
             }
           ]
