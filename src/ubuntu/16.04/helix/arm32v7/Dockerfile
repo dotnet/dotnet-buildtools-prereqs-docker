@@ -3,23 +3,24 @@ FROM arm32v7/ubuntu:16.04
 # Install Helix Dependencies 
 
 RUN apt-get update && \
-    apt-get install -y \
-        libunwind-dev \
-        libcurl3 \
+    apt-get install -y \        
         gss-ntlmssp \
-        libgdiplus \
-        python-dev \
-        libunwind8 \
-        libssl-dev \
-        unzip \
-        libicu-dev \
+        iputils-ping \
+        libcurl3 \
         libffi-dev \
-        python-pip \
+        libgdiplus \        
+        libicu-dev \        
+        libssl-dev \
+        libunwind8 \        
+        libunwind-dev \        
         locales \
         locales-all \
+        python-dev \
+        python-pip \        
         tzdata \
-        iputils-ping \
+        unzip \              
     && rm -rf /var/lib/apt/lists/* \
+    \
     && localedef -i en_US -c -f UTF-8 -A /usr/share/locale/locale.alias en_US.UTF-8
 
 ENV LANG en_US.utf8

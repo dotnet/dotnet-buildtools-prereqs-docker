@@ -4,25 +4,26 @@ FROM arm32v7/debian:9
 
 RUN apt-get update && \
     apt-get install -y \
-        locales \
-        locales-all \
-        tzdata \
-        iputils-ping \
-        libgdiplus \
-        python-dev \
-        libunwind8 \
-        libssl-dev \
-        unzip \
-        libicu-dev \
-        libcurl3 \
-        curl \
-        libffi-dev \
         at \
+        curl \
+        gcc \
         gdb \
         git \
-        gcc \
+        iputils-ping \
+        libcurl3 \
+        libffi-dev \
+        libgdiplus \
+        libicu-dev \
+        libssl-dev \
+        libunwind8 \
+        locales \
+        locales-all \
+        python-dev \
         python-pip \    
+        tzdata \        
+        unzip \
     && rm -rf /var/lib/apt/lists/* \
+    \
     && localedef -i en_US -c -f UTF-8 -A /usr/share/locale/locale.alias en_US.UTF-8
 
 ENV LANG en_US.utf8

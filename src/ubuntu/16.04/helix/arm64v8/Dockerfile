@@ -2,25 +2,25 @@ FROM arm64v8/ubuntu:16.04
 
 # Install Helix Dependencies
 
-RUN apt-get update \
-    && apt-get install -qq -y \
-        libunwind-dev \
-        libcurl3 \
+RUN apt-get update && \
+    apt-get install -y \        
         gss-ntlmssp \
-        libgdiplus \
-        python-dev \
-        libunwind8 \
-        libssl-dev \
-        unzip \
-        libicu-dev \
+        iputils-ping \
+        libcurl3 \
         libffi-dev \
-        python-pip \
+        libgdiplus \        
+        libicu-dev \        
+        libssl-dev \
+        libunwind8 \        
+        libunwind-dev \        
         locales \
         locales-all \
+        python-dev \
+        python-pip \        
         tzdata \
-        iputils-ping \
-        sudo \
+        unzip \              
     && rm -rf /var/lib/apt/lists/* \
+    \
     && localedef -i en_US -c -f UTF-8 -A /usr/share/locale/locale.alias en_US.UTF-8
 
 ENV LANG en_US.utf8
@@ -39,7 +39,7 @@ RUN python -m pip install --upgrade pip==19.0.2 && \
                   six==1.12.0 \
                   virtualenv==16.2.0
 
-RUN adduser --disabled-password --gecos '' --uid 1001 --ingroup sudo helixbot && \
+RUN adduser --disabled-password --gecos '' --ingroup sudo helixbot && \
     chmod -R +x /root && \
     echo 'helixbot ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
 

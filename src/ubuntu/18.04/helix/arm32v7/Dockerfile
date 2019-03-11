@@ -5,30 +5,31 @@ FROM arm32v7/ubuntu:18.04
 ENV DEBIAN_FRONTEND noninteractive
 
 RUN apt-get update && \
-    apt-get install -qq -y \
+    apt-get install -qq -y \                        
+        build-essential \
+        clang \
+        cmake \        
+        gcc \
+        gdb \
+        git \        
+        gss-ntlmssp \
+        iputils-ping \
+        libcurl4 \
+        libffi-dev \
+        libgdiplus \
+        libicu-dev \        
+        libssl-dev \
+        libunwind8 \        
+        libunwind-dev \        
+        lldb-3.9 \
         locales \
         locales-all \
-        tzdata \
-        iputils-ping \
-        libunwind-dev \
-        libcurl4 \
-        gss-ntlmssp \
-        libgdiplus \
         python-dev \
-        libunwind8 \
-        libssl-dev \
-        unzip \
-        libicu-dev \
-        libffi-dev \
-        build-essential \
-        cmake \
-        clang \
-        gdb \
-        lldb-3.9 \
-        git \
-        gcc \
         python-pip \
+        tzdata \
+        unzip \
     && rm -rf /var/lib/apt/lists/* \
+    \
     && localedef -i en_US -c -f UTF-8 -A /usr/share/locale/locale.alias en_US.UTF-8
 
 ENV LANG en_US.utf8
