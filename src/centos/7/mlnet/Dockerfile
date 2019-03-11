@@ -3,6 +3,7 @@ FROM mcr.microsoft.com/dotnet-buildtools/prereqs:centos-7
 RUN yum install -y \
         perl-Data-Dumper
 
+# Install openmp from llvm 3.9.1.
 RUN wget http://releases.llvm.org/3.9.1/openmp-3.9.1.src.tar.xz && \
     mkdir -p llvm-3.9.1.src/openmp && \
     tar -xf openmp-3.9.1.src.tar.xz --strip 1 -C llvm-3.9.1.src/openmp && \
@@ -23,4 +24,5 @@ RUN wget http://releases.llvm.org/3.9.1/openmp-3.9.1.src.tar.xz && \
     rm -r llvmbuild && \
     rm -r llvm-3.9.1.src
 
+# Sets the library path to pickup openmp
 ENV LD_LIBRARY_PATH=/usr/local/lib64
