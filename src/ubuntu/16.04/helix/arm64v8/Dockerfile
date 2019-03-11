@@ -1,4 +1,4 @@
-FROM mcr.microsoft.com/dotnet-buildtools/prereqs:ubuntu-16.04-arm64v8
+FROM arm64v8/ubuntu:16.04
 
 # Install Helix Dependencies
 
@@ -19,6 +19,7 @@ RUN apt-get update \
         locales-all \
         tzdata \
         iputils-ping \
+        sudo \
     && rm -rf /var/lib/apt/lists/* \
     && localedef -i en_US -c -f UTF-8 -A /usr/share/locale/locale.alias en_US.UTF-8
 
@@ -37,3 +38,9 @@ RUN python -m pip install --upgrade pip==19.0.2 && \
                   requests==2.21.0 \
                   six==1.12.0 \
                   virtualenv==16.2.0
+
+RUN adduser --disabled-password --gecos '' --ingroup sudo helixbot && \
+    chmod -R +x /root && \
+    echo 'helixbot ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
+
+USER helixbot

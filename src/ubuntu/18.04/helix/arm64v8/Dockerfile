@@ -1,4 +1,4 @@
-FROM mcr.microsoft.com/dotnet-buildtools/prereqs:ubuntu-18.04-arm64v8
+FROM arm64v8/ubuntu:18.04
 
 # Install Helix Dependencies
 
@@ -46,3 +46,9 @@ RUN python -m pip install --upgrade pip==19.0.2 && \
                   requests==2.21.0 \
                   six==1.12.0 \
                   virtualenv==16.2.0
+
+RUN adduser --disabled-password --gecos '' --uid 1001 --ingroup sudo helixbot && \
+    chmod -R +x /root && \
+    echo 'helixbot ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
+
+USER helixbot

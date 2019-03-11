@@ -1,4 +1,4 @@
-FROM mcr.microsoft.com/dotnet-buildtools/prereqs:debian-9-arm64v8
+FROM arm64v8/debian:9
 
 # Install Helix Dependencies
 
@@ -41,3 +41,8 @@ RUN python -m pip install --upgrade pip==19.0.2 && \
                   six==1.12.0 \
                   virtualenv==16.2.0
 
+RUN adduser --disabled-password --gecos '' --uid 1001 --ingroup sudo helixbot && \
+    chmod -R +x /root && \
+    echo 'helixbot ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
+
+USER helixbot
