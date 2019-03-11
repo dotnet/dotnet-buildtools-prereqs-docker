@@ -497,10 +497,7 @@
               "dockerfile": "src/debian/9/arm32v7",
               "os": "linux",
               "tags": {
-                "debian-9-arm32v7-$(System:DockerfileGitCommitSha)-$(System:TimeStamp)": {},
-                "debian-9-arm32v7": {
-                    "isLocal": true
-                }                
+                "debian-9-arm32v7-$(System:DockerfileGitCommitSha)-$(System:TimeStamp)": {}               
               },
               "variant": "v7"
             }
@@ -526,10 +523,7 @@
               "dockerfile": "src/debian/9/arm64v8",
               "os": "linux",
               "tags": {
-                "debian-9-arm64v8-$(System:DockerfileGitCommitSha)-$(System:TimeStamp)": {},
-                "debian-9-arm64v8": {
-                  "isLocal": true
-                }
+                "debian-9-arm64v8-$(System:DockerfileGitCommitSha)-$(System:TimeStamp)": {}
               },
               "variant": "v8"
             }
@@ -555,10 +549,7 @@
               "dockerfile": "src/ubuntu/16.04/arm32v7",
               "os": "linux",
               "tags": {
-                "ubuntu-16.04-arm32v7-$(System:DockerfileGitCommitSha)-$(System:TimeStamp)": {},
-                "ubuntu-16.04-arm32v7": {
-                    "isLocal": true
-                }
+                "ubuntu-16.04-arm32v7-$(System:DockerfileGitCommitSha)-$(System:TimeStamp)": {}
               },
               "variant": "v7"
             }
@@ -571,10 +562,7 @@
               "dockerfile": "src/ubuntu/16.04/arm64v8",
               "os": "linux",
               "tags": {
-                "ubuntu-16.04-arm64v8-$(System:DockerfileGitCommitSha)-$(System:TimeStamp)": {},
-                "ubuntu-16.04-arm64v8": {
-                    "isLocal": true
-                }
+                "ubuntu-16.04-arm64v8-$(System:DockerfileGitCommitSha)-$(System:TimeStamp)": {}
               },
               "variant": "v8"
             }
@@ -587,10 +575,7 @@
               "dockerfile": "src/ubuntu/16.04/arm32v7",
               "os": "linux",
               "tags": {
-                "ubuntu-18.04-arm32v7-$(System:DockerfileGitCommitSha)-$(System:TimeStamp)": {},
-                "ubuntu-18.04-arm32v7": {
-                    "isLocal": true
-                }
+                "ubuntu-18.04-arm32v7-$(System:DockerfileGitCommitSha)-$(System:TimeStamp)": {}
               },
               "variant": "v7"
             }
@@ -603,10 +588,7 @@
               "dockerfile": "src/ubuntu/18.04/arm64v8",
               "os": "linux",
               "tags": {
-                "ubuntu-18.04-arm64v8-$(System:DockerfileGitCommitSha)-$(System:TimeStamp)": {},
-                "ubuntu-18.04-arm64v8": {
-                    "isLocal": true
-                }
+                "ubuntu-18.04-arm64v8-$(System:DockerfileGitCommitSha)-$(System:TimeStamp)": {}
               },
               "variant": "v8"
             }
