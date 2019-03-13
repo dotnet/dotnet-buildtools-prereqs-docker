@@ -31,12 +31,12 @@ RUN apk update && \
         py-cffi \
         python \
         python-dev \
+        py-pip \
         sudo \
         tzdata \
         util-linux-dev \
         wget \
-        which \
-        py-pip \
+        which \        
         zlib-dev && \
     apk -X http://dl-cdn.alpinelinux.org/alpine/edge/main add --no-cache \
         userspace-rcu-dev \
