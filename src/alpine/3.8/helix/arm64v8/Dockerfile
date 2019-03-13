@@ -18,20 +18,20 @@ RUN apk update && \
         icu-dev \
         iputils \
         krb5-dev \
-        libtool \
-        libunwind-dev \
         libffi \
         libffi-dev \
+        libtool \
+        libunwind-dev \        
         linux-headers \
         llvm \
         make \
         openssl \
         openssl-dev \
-        paxctl \
-        py-cffi \
+        paxctl \        
         python \
         python-dev \
-        py-pip \
+        py-cffi \
+        py-pip \        
         sudo \
         tzdata \
         util-linux-dev \
