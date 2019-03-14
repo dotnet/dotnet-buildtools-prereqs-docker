@@ -24,5 +24,8 @@ RUN wget http://releases.llvm.org/3.9.1/openmp-3.9.1.src.tar.xz && \
     rm -r llvmbuild && \
     rm -r llvm-3.9.1.src
 
+# Create share directory
+RUN mkdir -p ~/.local/share
+
 # Sets the library path to pickup openmp
-ENV LD_LIBRARY_PATH=/usr/local/lib64
+ENV LD_LIBRARY_PATH=/usr/local/lib:/usr/local/lib64
