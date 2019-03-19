@@ -5,9 +5,10 @@ FROM mcr.microsoft.com/dotnet-buildtools/prereqs:fedora-29
 RUN dnf install -y \
         python2-devel \
         redhat-rpm-config \        
+        sudo \
     && dnf clean all
 
-RUN python -m pip install --upgrade pip==19.0.2 && \
+RUN python -m pip install --upgrade pip==19.0.3 && \
     python -m pip install \ 
                   applicationinsights==0.11.7 \
                   certifi==2018.11.29 \
@@ -25,8 +26,8 @@ RUN python -m pip install --upgrade pip==19.0.2 && \
 ENV LANG=en-US.UTF-8
 
 # create helixbot user and give rights to sudo without password
-RUN /usr/sbin/adduser -D -G adm -s /bin/sh helixbot; \
+RUN /usr/sbin/useradd -G adm -s /bin/sh helixbot; \
     chmod 755 /root ; \
-    echo "helixbot ALL=(ALL)       NOPASSWD: ALL" > /etc/sudoers.d/helixbot
+    echo "helixbot ALL=(ALL)       NOPASSWD: ALL" > /etc/sudoers
 
 USER helixbot
