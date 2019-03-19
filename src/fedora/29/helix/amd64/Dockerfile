@@ -20,3 +20,13 @@ RUN python -m pip install --upgrade pip==19.0.2 && \
                   requests==2.21.0 \
                   six==1.12.0 \
                   virtualenv==16.2.0
+
+# Needed for .NET corefx tests to pass
+ENV LANG=en-US.UTF-8
+
+# create helixbot user and give rights to sudo without password
+RUN /usr/sbin/adduser -D -G adm -s /bin/sh helixbot; \
+    chmod 755 /root ; \
+    echo "helixbot ALL=(ALL)       NOPASSWD: ALL" > /etc/sudoers.d/helixbot
+
+USER helixbot
