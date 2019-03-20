@@ -1,4 +1,6 @@
 trigger: none
+pr: none
+
 variables:
 - group: DotNet-Docker-Common
 - group: DotNet-Docker-Secrets
