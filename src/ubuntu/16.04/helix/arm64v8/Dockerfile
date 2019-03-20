@@ -12,11 +12,14 @@ RUN apt-get update && \
         libicu-dev \        
         libssl-dev \
         libunwind8 \        
-        libunwind-dev \        
+        libunwind-dev \
+        lldb-3.9 \        
         locales \
         locales-all \
+        python3-dev \ 
         python-dev \
-        python-pip \        
+        python-pip \
+        sudo \
         tzdata \
         unzip \              
     && rm -rf /var/lib/apt/lists/* \
