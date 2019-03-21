@@ -18,8 +18,10 @@ RUN apt-get update && \
         libunwind8 \
         locales \
         locales-all \
+        python3-dev \
         python-dev \
-        python-pip \    
+        python-pip \ 
+        sudo \   
         tzdata \        
         unzip \
     && rm -rf /var/lib/apt/lists/* \
