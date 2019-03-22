@@ -24,8 +24,10 @@ RUN apt-get update && \
         lldb-3.9 \
         locales \
         locales-all \
+        python3-dev \
         python-dev \
         python-pip \
+        sudo \        
         tzdata \
         unzip \
     && rm -rf /var/lib/apt/lists/* \

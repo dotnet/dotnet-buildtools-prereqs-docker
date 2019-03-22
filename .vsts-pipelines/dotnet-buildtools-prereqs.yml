@@ -1,4 +1,6 @@
 trigger: none
+pr: none
+
 variables:
 - group: DotNet-Docker-Common
 - group: DotNet-Docker-Secrets
@@ -8,28 +10,27 @@ jobs:
   parameters:
     name: Build_Linux_amd64
     pool: # linuxAmd64Pool
-      name: DotNet-Build
-      demands: agent.os -equals linux
+      name: Hosted Ubuntu 1604
     architecture: amd64
 - template: jobs/build-images.yml
   parameters:
     name: Build_Linux_arm64v8
     pool: # linuxArm64v8Pool
-      name: DotNetCore-Infra
+      name: DotNetCore-Docker
       demands:
       - agent.os -equals linux
       - RemoteDockerServerOS -equals linux
-      - RemoteDockerServerArch -equals arm64v8
+      - RemoteDockerServerArch -equals aarch64
     architecture: arm64
     useRemoteDockerServer: true
 - template: jobs/build-images.yml
   parameters:
     name: Build_Linux_arm32v7
     pool: # linuxArm32v7Pool
-      name: DotNetCore-Infra
+      name: DotNetCore-Docker
       demands:
       - agent.os -equals linux
       - RemoteDockerServerOS -equals linux
-      - RemoteDockerServerArch -equals arm32v7
+      - RemoteDockerServerArch -equals aarch64
     architecture: arm
     useRemoteDockerServer: true
