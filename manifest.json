@@ -61,7 +61,7 @@
               }
             }
           ]
-        },         
+        },
         {
           "platforms": [
             {
@@ -72,7 +72,7 @@
               }
             }
           ]
-        },          
+        },
         {
           "platforms": [
             {
@@ -189,7 +189,7 @@
               "tags": {
                 "fedora-29-$(System:DockerfileGitCommitSha)-$(System:TimeStamp)": {},
                 "fedora-29": {
-                    "isLocal": true
+                  "isLocal": true
                 }
               }
             }
@@ -224,17 +224,6 @@
               "os": "linux",
               "tags": {
                 "opensuse-42.3-$(System:DockerfileGitCommitSha)-$(System:TimeStamp)": {}
-              }
-            }
-          ]
-        },        
-        {
-          "platforms": [
-            {
-              "dockerfile": "src/opensuse/42.1",
-              "os": "linux",
-              "tags": {
-                "opensuse-42.1-$(System:DockerfileGitCommitSha)-$(System:TimeStamp)": {}
               }
             }
           ]
@@ -386,7 +375,7 @@
               "os": "linux",
               "tags": {
                 "alpine-3.8-helix-arm64v8-$(System:DockerfileGitCommitSha)-$(System:TimeStamp)": {}
-              }, 
+              },
               "variant": "v8"
             }
           ]
@@ -535,7 +524,7 @@
               "dockerfile": "src/debian/9/arm32v7",
               "os": "linux",
               "tags": {
-                "debian-9-arm32v7-$(System:DockerfileGitCommitSha)-$(System:TimeStamp)": {}               
+                "debian-9-arm32v7-$(System:DockerfileGitCommitSha)-$(System:TimeStamp)": {}
               },
               "variant": "v7"
             }
