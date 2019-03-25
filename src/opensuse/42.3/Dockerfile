@@ -1,4 +1,4 @@
-FROM opensuse:42.3
+FROM opensuse/leap:42.3
 
 # Install the base toolchain we need to build anything (clang, cmake, make and the like)
 # this does not include libraries that we need to compile different projects, we'd like
