@@ -21,17 +21,6 @@
         {
           "platforms": [
             {
-              "dockerfile": "src/alpine/3.6/ForHelix/amd64",
-              "os": "linux",
-              "tags": {
-                "alpine-3.6-ForHelix-$(System:DockerfileGitCommitSha)-$(System:TimeStamp)": {}
-              }
-            }
-          ]
-        },
-        {
-          "platforms": [
-            {
               "dockerfile": "src/alpine/3.6/WithNode/amd64",
               "os": "linux",
               "tags": {
@@ -43,14 +32,14 @@
         {
           "platforms": [
             {
-              "dockerfile": "src/alpine/3.8/ForHelix/amd64",
+              "dockerfile": "src/alpine/3.6/helix/amd64",
               "os": "linux",
               "tags": {
-                "alpine-3.8-ForHelix-$(System:DockerfileGitCommitSha)-$(System:TimeStamp)": {}
+                "alpine-3.6-helix-$(System:DockerfileGitCommitSha)-$(System:TimeStamp)": {}
               }
             }
           ]
-        },
+        }, 
         {
           "platforms": [
             {
@@ -212,11 +201,25 @@
               "dockerfile": "src/fedora/28",
               "os": "linux",
               "tags": {
-                "fedora-28-$(System:DockerfileGitCommitSha)-$(System:TimeStamp)": {}
+                "fedora-28-$(System:DockerfileGitCommitSha)-$(System:TimeStamp)": {},
+                "fedora-28": {
+                    "isLocal": true
+                }
               }
             }
           ]
         },
+        {
+          "platforms": [
+            {
+              "dockerfile": "src/fedora/28/helix/amd64",
+              "os": "linux",
+              "tags": {
+                "fedora-28-helix-$(System:DockerfileGitCommitSha)-$(System:TimeStamp)": {}
+              }
+            }
+          ]
+        },        
         {
           "platforms": [
             {

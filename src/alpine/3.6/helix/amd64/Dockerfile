@@ -1,4 +1,4 @@
-FROM python:2.7.15-alpine3.8
+FROM alpine:3.6
 
 # Install .NET Core Dependencies for Alpine
 
@@ -28,8 +28,9 @@ RUN apk update && \
         openssl-dev \
         paxctl \
         py-cffi \
-        python \
-        python-dev \
+        python2 \
+        python2-dev \
+        py-pip \
         sudo \
         tzdata \
         util-linux-dev \
