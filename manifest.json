@@ -112,11 +112,11 @@
         {
           "platforms": [
             {
-              "dockerfile": "src/debian/8.2/coredeps",
+              "dockerfile": "src/debian/jessie/coredeps",
               "os": "linux",
               "tags": {
-                "debian-8.2-coredeps-$(System:DockerfileGitCommitSha)-$(System:TimeStamp)": {},
-                "debian-8.2-coredeps": {
+                "debian-jessie-coredeps-$(System:DockerfileGitCommitSha)-$(System:TimeStamp)": {},
+                "debian-jessie-coredeps": {
                   "isLocal": true
                 }
               }
@@ -126,11 +126,11 @@
         {
           "platforms": [
             {
-              "dockerfile": "src/debian/8.2",
+              "dockerfile": "src/debian/jessie",
               "os": "linux",
               "tags": {
-                "debian-8.2-$(System:DockerfileGitCommitSha)-$(System:TimeStamp)": {},
-                "debian-8.2": {
+                "debian-jessie-$(System:DockerfileGitCommitSha)-$(System:TimeStamp)": {},
+                "debian-jessie": {
                   "isLocal": true
                 }
               }
@@ -140,10 +140,10 @@
         {
           "platforms": [
             {
-              "dockerfile": "src/debian/8.2/debpkg",
+              "dockerfile": "src/debian/jessie/debpkg",
               "os": "linux",
               "tags": {
-                "debian-8.2-debpkg-$(System:DockerfileGitCommitSha)-$(System:TimeStamp)": {}
+                "debian-jessie-debpkg-$(System:DockerfileGitCommitSha)-$(System:TimeStamp)": {}
               }
             }
           ]
@@ -151,10 +151,10 @@
         {
           "platforms": [
             {
-              "dockerfile": "src/debian/8.2/corert",
+              "dockerfile": "src/debian/jessie/corert",
               "os": "linux",
               "tags": {
-                "debian-8.2-corert-$(System:DockerfileGitCommitSha)-$(System:TimeStamp)": {}
+                "debian-jessie-corert-$(System:DockerfileGitCommitSha)-$(System:TimeStamp)": {}
               }
             }
           ]
