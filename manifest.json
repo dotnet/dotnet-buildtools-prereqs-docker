@@ -201,7 +201,7 @@
               "dockerfile": "src/fedora/28",
               "os": "linux",
               "tags": {
-                "fedora-28-$(System:DockerfileGitCommitSha)-$(System:TimeStamp)": {}
+                "fedora-28-$(System:DockerfileGitCommitSha)-$(System:TimeStamp)": {},
                 "fedora-28": {
                     "isLocal": true
                 }
