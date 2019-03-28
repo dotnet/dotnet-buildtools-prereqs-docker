@@ -17,6 +17,7 @@ RUN dnf install -y \
         make \
         python \
         python2-lldb \
+        sudo \
         which \
     && dnf clean all
 

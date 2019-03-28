@@ -19,4 +19,5 @@ RUN apt-get update \
                llvm-3.9 \
                make \
                python-lldb-5.0 \
+               sudo \
     && rm -rf /var/lib/apt/lists/*

@@ -13,6 +13,7 @@ RUN zypper -n install \
         llvm-devel \
         python \
         python-xml \
+        sudo \
         wget \
         which \
     && ln -s /usr/bin/clang++ /usr/bin/clang++-3.5 \

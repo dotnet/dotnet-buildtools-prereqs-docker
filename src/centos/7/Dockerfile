@@ -36,6 +36,7 @@ RUN yum install -y \
         python27 \
         python-devel \
         readline-devel \
+        sudo \
         swig \
         wget \
         which \

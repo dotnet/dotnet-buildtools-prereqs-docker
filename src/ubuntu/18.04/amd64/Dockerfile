@@ -12,6 +12,7 @@ RUN apt-get update \
         llvm-3.9 \
         make \
         python-lldb-3.9 \
+        sudo \
         wget \
     && rm -rf /var/lib/apt/lists/* \
     && wget https://cmake.org/files/v3.10/cmake-3.10.2-Linux-x86_64.tar.gz \
