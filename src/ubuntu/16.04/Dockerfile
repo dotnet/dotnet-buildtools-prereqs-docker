@@ -17,7 +17,8 @@ RUN apt-get update && \
             lldb-3.9 \
             llvm-3.9 \
             make \
-            python-lldb-3.9 && \
+            python-lldb-3.9 \
+            sudo && \
     apt-get clean
 
 # Install tools used by the VSO build automation.  nodejs-legacy is a Debian specific

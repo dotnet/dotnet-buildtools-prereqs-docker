@@ -1,4 +1,4 @@
-FROM mcr.microsoft.com/dotnet-buildtools/prereqs:debian-8.2-coredeps
+FROM mcr.microsoft.com/dotnet-buildtools/prereqs:debian-jessie-coredeps
 
 # Install the base toolchain we need to build anything (clang, cmake, make and the like)
 # this does not include libraries that we need to compile different projects, we'd like
@@ -19,4 +19,5 @@ RUN apt-get update \
                llvm-3.9 \
                make \
                python-lldb-5.0 \
+               sudo \
     && rm -rf /var/lib/apt/lists/*

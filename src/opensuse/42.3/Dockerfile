@@ -1,4 +1,4 @@
-FROM opensuse:42.3
+FROM opensuse/leap:42.3
 
 # Install the base toolchain we need to build anything (clang, cmake, make and the like)
 # this does not include libraries that we need to compile different projects, we'd like
@@ -13,6 +13,7 @@ RUN zypper -n install \
         llvm-devel \
         python \
         python-xml \
+        sudo \
         wget \
         which \
     && ln -s /usr/bin/clang++ /usr/bin/clang++-3.5 \

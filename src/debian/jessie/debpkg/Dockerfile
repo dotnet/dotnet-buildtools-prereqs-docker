@@ -1,4 +1,4 @@
-FROM mcr.microsoft.com/dotnet-buildtools/prereqs:debian-8.2
+FROM mcr.microsoft.com/dotnet-buildtools/prereqs:debian-jessie
 
 # Install the deb packaging toolchain we need to build debs
 RUN apt-get update \

@@ -1,4 +1,4 @@
-FROM debian:8.2
+FROM debian:jessie
 
 # Install tools used by the VSO build automation. Set up a new apt-get source to
 # get a new version of node and npm: the built-in old cert is no longer valid.

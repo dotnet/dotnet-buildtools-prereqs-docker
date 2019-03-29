@@ -25,6 +25,7 @@ RUN apt-get update \
             llvm \
             make \
             python-lldb-3.9 \
+            sudo \
             tar \
             uuid-dev \
             zip \

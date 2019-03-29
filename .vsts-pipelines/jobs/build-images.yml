@@ -6,6 +6,7 @@ parameters:
 jobs:
 - job: ${{ parameters.name }}
   pool: ${{ parameters.pool }}
+  timeoutInMinutes: 180
   variables:
     ${{ if eq(parameters.useRemoteDockerServer, 'true') }}:
       dockerArmRunArgs: 
