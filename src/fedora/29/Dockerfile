@@ -29,6 +29,7 @@ RUN dnf install -y \
 RUN dnf install -y \
         compat-openssl10-devel \
         glibc-locale-source \
+        iputils \
         krb5-devel \
         libcurl-devel \
         libgdiplus \
