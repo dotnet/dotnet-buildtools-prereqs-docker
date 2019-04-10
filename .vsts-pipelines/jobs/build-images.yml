@@ -11,7 +11,7 @@ jobs:
   timeoutInMinutes: 180
   variables:
     ${{ if eq(parameters.useRemoteDockerServer, 'true') }}:
-      dockerArmRunOptions: 
+      dockerArmRunOptions: >
         -v $(DOCKER_CERT_PATH):/docker-certs
         -e DOCKER_CERT_PATH=/docker-certs
         -e DOCKER_TLS_VERIFY=1
@@ -19,7 +19,7 @@ jobs:
     ${{ if eq(parameters.useRemoteDockerServer, 'false') }}:
       dockerArmRunOptions: ""
     ${{ if eq(parameters.isPullRequestBuild, 'false') }}:
-      imageBuilderBuildArgs:
+      imageBuilderBuildArgs: >
         --registry-override $(acr.server)
         --repo-prefix $(publishRepoPrefix)
         --push
