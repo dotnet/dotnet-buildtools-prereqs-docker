@@ -1,4 +1,10 @@
-trigger: none
+trigger:
+  branches:
+    include:
+    - master
+  paths:
+    include:
+    - src/ubuntu17/*
 pr: none
 
 variables:
@@ -7,4 +13,4 @@ variables:
 jobs:
   - template: jobs/build-image-legs.yml
     parameters:
-      imageBuilderPath: $(imageBuilder.path)
+      imageBuilderPath: src/ubuntu17/*

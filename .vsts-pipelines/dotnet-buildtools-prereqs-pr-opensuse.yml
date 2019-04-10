@@ -1,0 +1,14 @@
+trigger: none
+pr:
+  branches:
+    include:
+    - master
+  paths:
+    include:
+    - src/opensuse/*
+
+jobs:
+  - template: jobs/build-image-legs.yml
+    parameters:
+      isPullRequestBuild: true
+      imageBuilderPath: src/opensuse/*
