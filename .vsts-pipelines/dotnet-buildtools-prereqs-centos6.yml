@@ -5,10 +5,16 @@ trigger:
   paths:
     include:
     - src/centos6/*
-pr: none
+pr:
+  branches:
+    include:
+    - master
+  paths:
+    include:
+    - src/centos6/*
 
 variables:
-- template: ../variables/common-official.yml
+- template: ../variables/common.yml
 
 jobs:
   - template: jobs/build-image-legs.yml

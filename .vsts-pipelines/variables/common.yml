@@ -1,0 +1,3 @@
+variables:
+- ${{ if ne(variables['System.TeamProject'], 'public') }}:
+  - template: common-official.yml

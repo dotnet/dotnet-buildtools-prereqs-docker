@@ -1,6 +1,5 @@
 parameters:
   imageBuilderPath: null
-  isPullRequestBuild: false
 
 jobs:
 - template: build-images.yml
@@ -10,8 +9,7 @@ jobs:
       name: Hosted Ubuntu 1604
     architecture: amd64
     imageBuilderPath: ${{ parameters.imageBuilderPath }}
-    isPullRequestBuild: ${{ parameters.isPullRequestBuild }}
-- ${{ if eq(parameters.isPullRequestBuild, 'false') }}:
+- ${{ if ne(variables['System.TeamProject'], 'public') }}:
   - template: build-images.yml
     parameters:
       name: Build_Linux_arm64v8
@@ -24,7 +22,6 @@ jobs:
       architecture: arm64
       imageBuilderPath: ${{ parameters.imageBuilderPath }}
       useRemoteDockerServer: true
-      isPullRequestBuild: ${{ parameters.isPullRequestBuild }}
   - template: build-images.yml
     parameters:
       name: Build_Linux_arm32v7
@@ -37,4 +34,3 @@ jobs:
       architecture: arm
       imageBuilderPath: ${{ parameters.imageBuilderPath }}
       useRemoteDockerServer: true
-      isPullRequestBuild: ${{ parameters.isPullRequestBuild }}
