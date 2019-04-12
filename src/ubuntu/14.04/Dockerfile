@@ -19,7 +19,7 @@ RUN apt-get update && \
             make \
             python-lldb-3.9 \
             sudo && \
-    apt-get clean
+    apt-get clean 
 
 # Install tools used by the VSO build automation. Set up a new apt-get source to
 # get a new version of node and npm: the built-in old cert is no longer valid.
