@@ -4,14 +4,14 @@ trigger:
     - master
   paths:
     include:
-    - src/ubuntu14/*
+    - src/ubuntu/14*
 pr:
   branches:
     include:
     - master
   paths:
     include:
-    - src/ubuntu14/*
+    - src/ubuntu/14*
 
 variables:
 - template: variables/common.yml
@@ -19,4 +19,4 @@ variables:
 jobs:
   - template: jobs/build-image-legs.yml
     parameters:
-      imageBuilderPath: src/ubuntu14/*
+      imageBuilderPath: src/ubuntu/14*
