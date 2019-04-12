@@ -3,11 +3,13 @@ parameters:
   pool: {}
   architecture: null
   useRemoteDockerServer: false
-  imageBuilderPath: null
+  matrix: {}
 
 jobs:
 - job: ${{ parameters.name }}
   pool: ${{ parameters.pool }}
+  strategy: 
+    matrix: ${{ parameters.matrix }}
   timeoutInMinutes: 180
   variables:
     ${{ if eq(parameters.useRemoteDockerServer, 'true') }}:
@@ -32,7 +34,7 @@ jobs:
     imageBuilderTag: image-builder
     imageBuilderArgs:
       build
-      --path "${{ parameters.imageBuilderPath }}"
+      --path "$(imageBuilderPath)"
       --manifest manifest.json
       --architecture ${{ parameters.architecture }}
       $(imageBuilderBuildArgs)

@@ -1,5 +1,5 @@
 parameters:
-  imageBuilderPath: null
+  matrix: {}
 
 jobs:
 - template: build-images.yml
@@ -8,7 +8,7 @@ jobs:
     pool: # linuxAmd64Pool
       name: Hosted Ubuntu 1604
     architecture: amd64
-    imageBuilderPath: ${{ parameters.imageBuilderPath }}
+    matrix: ${{ parameters.matrix }}
 - ${{ if ne(variables['System.TeamProject'], 'public') }}:
   - template: build-images.yml
     parameters:
@@ -20,7 +20,7 @@ jobs:
         - RemoteDockerServerOS -equals linux
         - RemoteDockerServerArch -equals aarch64
       architecture: arm64
-      imageBuilderPath: ${{ parameters.imageBuilderPath }}
+      matrix: ${{ parameters.matrix }}
       useRemoteDockerServer: true
   - template: build-images.yml
     parameters:
@@ -32,5 +32,5 @@ jobs:
         - RemoteDockerServerOS -equals linux
         - RemoteDockerServerArch -equals aarch64
       architecture: arm
-      imageBuilderPath: ${{ parameters.imageBuilderPath }}
+      matrix: ${{ parameters.matrix }}
       useRemoteDockerServer: true
