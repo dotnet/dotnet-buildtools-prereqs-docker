@@ -20,4 +20,3 @@ jobs:
   - template: jobs/build-image-legs.yml
     parameters:
       imageBuilderPath: src/alpine/*
-      isPullRequestBuild: $(isPullRequestBuild)
