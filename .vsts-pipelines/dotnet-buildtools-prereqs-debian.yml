@@ -14,7 +14,7 @@ pr:
     - src/debian/*
 
 variables:
-- template: ../variables/common.yml
+- template: variables/common.yml
 
 jobs:
   - template: jobs/build-image-legs.yml
