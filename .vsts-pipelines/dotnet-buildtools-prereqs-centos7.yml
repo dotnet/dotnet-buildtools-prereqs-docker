@@ -1,0 +1,22 @@
+trigger:
+  branches:
+    include:
+    - master
+  paths:
+    include:
+    - src/centos7/*
+pr:
+  branches:
+    include:
+    - master
+  paths:
+    include:
+    - src/centos7/*
+
+variables:
+- template: variables/common.yml
+
+jobs:
+  - template: jobs/build-image-legs.yml
+    parameters:
+      imageBuilderPath: src/centos7/*

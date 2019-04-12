@@ -1,0 +1,23 @@
+trigger:
+  branches:
+    include:
+    - master
+  paths:
+    include:
+    - src/alpine/*
+pr:
+  branches:
+    include:
+    - master
+  paths:
+    include:
+    - src/alpine/*
+
+variables:
+- template: variables/common.yml
+
+jobs:
+  - template: jobs/build-image-legs.yml
+    parameters:
+      imageBuilderPath: src/alpine/*
+      isPullRequestBuild: $(isPullRequestBuild)

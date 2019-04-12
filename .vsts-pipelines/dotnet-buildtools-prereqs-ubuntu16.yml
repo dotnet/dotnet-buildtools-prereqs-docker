@@ -1,0 +1,22 @@
+trigger:
+  branches:
+    include:
+    - master
+  paths:
+    include:
+    - src/ubuntu16/*
+pr:
+  branches:
+    include:
+    - master
+  paths:
+    include:
+    - src/ubuntu16/*
+
+variables:
+- template: variables/common.yml
+
+jobs:
+  - template: jobs/build-image-legs.yml
+    parameters:
+      imageBuilderPath: src/ubuntu16/*
