@@ -1,3 +1,0 @@
-variables:
-- group: DotNet-Docker-Common
-- group: DotNet-Docker-Secrets
