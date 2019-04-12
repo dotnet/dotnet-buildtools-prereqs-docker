@@ -19,4 +19,8 @@ variables:
 jobs:
   - template: jobs/build-image-legs.yml
     parameters:
-      imageBuilderPath: src/fedora/*
+      matrix: {
+        "fedora": {
+          "imageBuilderPath": "src/fedora/*"
+        }
+      }

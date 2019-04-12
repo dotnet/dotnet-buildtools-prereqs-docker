@@ -19,4 +19,8 @@ variables:
 jobs:
   - template: jobs/build-image-legs.yml
     parameters:
-      imageBuilderPath: src/ubuntu/14*
+      matrix: {
+        "ubuntu14": {
+          "imageBuilderPath": "src/ubuntu/14*"
+        }
+      }

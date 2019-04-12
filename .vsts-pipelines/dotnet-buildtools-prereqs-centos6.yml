@@ -19,4 +19,8 @@ variables:
 jobs:
   - template: jobs/build-image-legs.yml
     parameters:
-      imageBuilderPath: src/centos/6/*
+      matrix: {
+        "centos6": {
+          "imageBuilderPath": "src/centos/6*"
+        }
+      }
