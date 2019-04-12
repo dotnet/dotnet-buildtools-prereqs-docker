@@ -4,14 +4,14 @@ trigger:
     - master
   paths:
     include:
-    - src/centos6/*
+    - src/centos/6/*
 pr:
   branches:
     include:
     - master
   paths:
     include:
-    - src/centos6/*
+    - src/centos/6/*
 
 variables:
 - template: variables/common.yml
@@ -19,4 +19,4 @@ variables:
 jobs:
   - template: jobs/build-image-legs.yml
     parameters:
-      imageBuilderPath: src/centos6/*
+      imageBuilderPath: src/centos/6/*
