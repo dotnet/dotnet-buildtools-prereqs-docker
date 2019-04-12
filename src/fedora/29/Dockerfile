@@ -28,7 +28,7 @@ RUN dnf install -y \
 # Dependencies of CoreCLR and CoreFX.
 RUN dnf install -y \
         compat-openssl10-devel \
-        glibc-locale-source \
+        glibc-locale-source \ 
         iputils \
         krb5-devel \
         libcurl-devel \
