@@ -170,6 +170,27 @@
             }
           ]
         },
+		{
+		"platforms": [{
+		  "dockerfile": "src/fedora/30/amd64",
+		  "os": "linux",
+		  "tags": {
+			"fedora-30-$(System:DockerfileGitCommitSha)-$(System:TimeStamp)": {},
+			"fedora-30": {
+			  "isLocal": true
+			}
+		  }
+		}]
+		},
+		{
+		"platforms": [{
+		  "dockerfile": "src/fedora/30/helix/amd64",
+		  "os": "linux",
+		  "tags": {
+			"fedora-30-helix-$(System:DockerfileGitCommitSha)-$(System:TimeStamp)": {}
+		  }
+		}]
+		},
         {
           "platforms": [
             {
