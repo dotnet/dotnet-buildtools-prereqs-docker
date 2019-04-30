@@ -40,5 +40,8 @@ jobs:
         },
         "ubuntu18": {
           "imageBuilderPath": "src/ubuntu/18*"
+        },
+        "ubuntu19": {
+          "imageBuilderPath": "src/ubuntu/19*"
         }
       }
