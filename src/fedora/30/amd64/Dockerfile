@@ -39,6 +39,3 @@ RUN dnf install -y \
         lttng-ust-devel \
         uuid-devel \
     && dnf clean all
-
-# Until official packages are available, we have to restore the ubuntu ones instead.
-ENV __PUBLISH_RID=ubuntu.14.04-x64
