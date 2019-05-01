@@ -50,7 +50,7 @@ RUN python -m pip install --upgrade pip==19.0.2 && \
                   virtualenv==16.2.0
 
 # create helixbot user and give rights to sudo without password
-RUN /usr/sbin/useradd -G adm -s /bin/sh helixbot; \
+RUN /usr/sbin/adduser --disabled-password --gecos '' --uid 1001 --shell /bin/bash --ingroup adm helixbot && \
     chmod 755 /root ; \
     echo "helixbot ALL=(ALL)       NOPASSWD: ALL" > /etc/sudoers
 
