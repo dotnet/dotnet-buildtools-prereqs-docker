@@ -44,6 +44,7 @@ RUN dnf install -y \
         libunwind-devel \
         libuuid-devel \
         lttng-ust-devel \
+        numactl-devel \
         uuid-devel \
     && dnf clean all
 

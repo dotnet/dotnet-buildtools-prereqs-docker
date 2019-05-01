@@ -9,7 +9,8 @@ RUN apt-get update && \
         libcurl3 \
         libffi-dev \
         libgdiplus \        
-        libicu-dev \        
+        libicu-dev \
+        libnuma-dev \
         libssl-dev \
         libunwind8 \        
         libunwind-dev \

@@ -6,6 +6,7 @@ RUN apt-get update && \
         libunwind8 \
         libunwind8-dev \
         libicu-dev \
+        libnuma-dev \
         liblttng-ust-dev \
         libcurl4-openssl-dev \
         libicu-dev \

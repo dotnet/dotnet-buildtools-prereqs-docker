@@ -40,6 +40,7 @@ RUN apt-get update \
         libicu-dev \
         libkrb5-dev \
         liblttng-ust-dev \
+        libnuma-dev \
         libssl1.0-dev \
         libunwind8 \
         libunwind8-dev \

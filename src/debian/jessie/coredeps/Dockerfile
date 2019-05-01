@@ -25,6 +25,7 @@ RUN apt-get update \
             libicu-dev \
             libkrb5-dev \
             liblttng-ust-dev \
+            libnuma-dev \
             libssl-dev \
             libunwind8 \
             libunwind8-dev \

@@ -89,6 +89,7 @@ RUN zypper -n install --force-resolution \
         libcurl-devel \
         libgdiplus0 \
         libicu-devel \
+        libnuma-devel \
         libunwind-devel \
         libuuid-devel \
         lttng-ust-devel \

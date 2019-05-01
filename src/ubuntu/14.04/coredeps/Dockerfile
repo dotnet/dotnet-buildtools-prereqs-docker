@@ -22,6 +22,7 @@ RUN apt-get update \
         libcurl4-openssl-dev \
         libgdiplus \
         libicu-dev \
+        libnuma-dev \
         liblttng-ust-dev \
         libssl-dev \
         libunwind8 \

@@ -40,7 +40,8 @@ RUN apk update && \
         zlib-dev && \
     apk -X http://dl-cdn.alpinelinux.org/alpine/edge/main add --no-cache \
         lttng-ust-dev \
-        userspace-rcu-dev        
+        userspace-rcu-dev \
+        numactl-dev
 
 # Install Helix Dependencies
 
