@@ -1,0 +1,26 @@
+trigger:
+  branches:
+    include:
+    - master
+  paths:
+    include:
+    - src/centos/6/*
+pr:
+  branches:
+    include:
+    - master
+  paths:
+    include:
+    - src/centos/6/*
+
+variables:
+- template: variables/common.yml
+
+jobs:
+  - template: jobs/build-image-legs.yml
+    parameters:
+      matrix: {
+        "centos6": {
+          "imageBuilderPath": "src/centos/6*"
+        }
+      }

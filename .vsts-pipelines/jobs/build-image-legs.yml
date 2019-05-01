@@ -1,0 +1,36 @@
+parameters:
+  matrix: {}
+
+jobs:
+- template: build-images.yml
+  parameters:
+    name: Build_Linux_amd64
+    pool: # linuxAmd64Pool
+      name: Hosted Ubuntu 1604
+    architecture: amd64
+    matrix: ${{ parameters.matrix }}
+- ${{ if ne(variables['System.TeamProject'], 'public') }}:
+  - template: build-images.yml
+    parameters:
+      name: Build_Linux_arm64v8
+      pool: # linuxArm64v8Pool
+        name: DotNetCore-Docker
+        demands:
+        - agent.os -equals linux
+        - RemoteDockerServerOS -equals linux
+        - RemoteDockerServerArch -equals aarch64
+      architecture: arm64
+      matrix: ${{ parameters.matrix }}
+      useRemoteDockerServer: true
+  - template: build-images.yml
+    parameters:
+      name: Build_Linux_arm32v7
+      pool: # linuxArm32v7Pool
+        name: DotNetCore-Docker
+        demands:
+        - agent.os -equals linux
+        - RemoteDockerServerOS -equals linux
+        - RemoteDockerServerArch -equals aarch64
+      architecture: arm
+      matrix: ${{ parameters.matrix }}
+      useRemoteDockerServer: true

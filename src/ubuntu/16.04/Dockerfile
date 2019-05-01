@@ -40,6 +40,7 @@ RUN apt-get install -y gettext \
             libicu-dev \
             libkrb5-dev \
             liblttng-ust-dev \
+            libnuma-dev \
             libssl-dev \
             libunwind8-dev \
             libunwind8 \

@@ -1,0 +1,26 @@
+trigger:
+  branches:
+    include:
+    - master
+  paths:
+    include:
+    - src/debian/*
+pr:
+  branches:
+    include:
+    - master
+  paths:
+    include:
+    - src/debian/*
+
+variables:
+- template: variables/common.yml
+
+jobs:
+  - template: jobs/build-image-legs.yml
+    parameters:
+      matrix: {
+        "debian": {
+          "imageBuilderPath": "src/debian/*"
+        }
+      }

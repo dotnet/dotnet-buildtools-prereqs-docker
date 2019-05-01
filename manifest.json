@@ -170,6 +170,27 @@
             }
           ]
         },
+		{
+		"platforms": [{
+		  "dockerfile": "src/fedora/30/amd64",
+		  "os": "linux",
+		  "tags": {
+			"fedora-30-$(System:DockerfileGitCommitSha)-$(System:TimeStamp)": {},
+			"fedora-30": {
+			  "isLocal": true
+			}
+		  }
+		}]
+		},
+		{
+		"platforms": [{
+		  "dockerfile": "src/fedora/30/helix/amd64",
+		  "os": "linux",
+		  "tags": {
+			"fedora-30-helix-$(System:DockerfileGitCommitSha)-$(System:TimeStamp)": {}
+		  }
+		}]
+		},
         {
           "platforms": [
             {
@@ -466,6 +487,18 @@
                 "ubuntu-18.04": {
                   "isLocal": true
                 }
+              }
+            }
+          ]
+        },
+		{
+          "platforms": [
+            {
+              "architecture": "amd64",
+              "dockerfile": "src/ubuntu/19.04/helix/amd64",
+              "os": "linux",
+              "tags": {
+                "ubuntu-19.04-helix-amd64-$(System:DockerfileGitCommitSha)-$(System:TimeStamp)": {}
               }
             }
           ]

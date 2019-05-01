@@ -1,0 +1,26 @@
+trigger:
+  branches:
+    include:
+    - master
+  paths:
+    include:
+    - src/ubuntu/17.10/*
+pr:
+  branches:
+    include:
+    - master
+  paths:
+    include:
+    - src/ubuntu/17.10/*
+
+variables:
+- template: variables/common.yml
+
+jobs:
+  - template: jobs/build-image-legs.yml
+    parameters:
+      matrix: {
+        "ubuntu17": {
+          "imageBuilderPath": "src/ubuntu/17.10/*"
+        }
+      }

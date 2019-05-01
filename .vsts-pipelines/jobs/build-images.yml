@@ -3,30 +3,41 @@ parameters:
   pool: {}
   architecture: null
   useRemoteDockerServer: false
+  matrix: {}
+
 jobs:
 - job: ${{ parameters.name }}
   pool: ${{ parameters.pool }}
+  strategy: 
+    matrix: ${{ parameters.matrix }}
   timeoutInMinutes: 180
   variables:
     ${{ if eq(parameters.useRemoteDockerServer, 'true') }}:
-      dockerArmRunArgs: 
+      dockerArmRunOptions:
         -v $(DOCKER_CERT_PATH):/docker-certs
         -e DOCKER_CERT_PATH=/docker-certs
         -e DOCKER_TLS_VERIFY=1
         -e DOCKER_HOST=tcp://$(DOCKER_HOST_IP):2376
     ${{ if eq(parameters.useRemoteDockerServer, 'false') }}:
-      dockerArmRunArgs:
+      dockerArmRunOptions: ""
+    ${{ if ne(variables['System.TeamProject'], 'public') }}:
+      imageBuilderBuildArgs:
+        --registry-override $(acr.server)
+        --repo-prefix $(publishRepoPrefix)
+        --push
+        --username $(acr.userName)
+        --password $(BotAccount-dotnet-docker-acr-bot-password)
+      dockerRunOptions: -e DOCKER_REPO=$(acr.server)/$(publishRepoPrefix)dotnet-buildtools/prereqs
+    ${{ if eq(variables['System.TeamProject'], 'public') }}:
+      imageBuilderBuildArgs: ""
+      dockerRunOptions: ""
     imageBuilderTag: image-builder
     imageBuilderArgs:
       build
-      --push
-      --path $(imageBuilder.path)
+      --path "$(imageBuilderPath)"
       --manifest manifest.json
       --architecture ${{ parameters.architecture }}
-      --username $(acr.userName)
-      --password $(BotAccount-dotnet-docker-acr-bot-password)
-      --registry-override $(acr.server)
-      --repo-prefix $(publishRepoPrefix)
+      $(imageBuilderBuildArgs)
   steps:
   - template: ../steps/cleanup-docker-linux.yml
     parameters:
@@ -37,8 +48,8 @@ jobs:
       docker run
       --rm
       -v /var/run/docker.sock:/var/run/docker.sock
-      -e DOCKER_REPO=$(acr.server)/$(publishRepoPrefix)dotnet-buildtools/prereqs
-      $(dockerArmRunArgs)
+      $(dockerArmRunOptions)
+      $(dockerRunOptions)
       $(imageBuilderTag)
       $(imageBuilderArgs)
     displayName: Build Images

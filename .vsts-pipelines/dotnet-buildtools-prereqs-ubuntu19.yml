@@ -1,0 +1,26 @@
+trigger:
+  branches:
+    include:
+    - master
+  paths:
+    include:
+    - src/ubuntu/19*
+pr:
+  branches:
+    include:
+    - master
+  paths:
+    include:
+    - src/ubuntu/19*
+
+variables:
+- template: variables/common.yml
+
+jobs:
+  - template: jobs/build-image-legs.yml
+    parameters:
+      matrix: {
+        "ubuntu19": {
+          "imageBuilderPath": "src/ubuntu/19*"
+        }
+      }

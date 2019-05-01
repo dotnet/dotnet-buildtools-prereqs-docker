@@ -18,6 +18,7 @@ RUN apt-get update \
             libkrb5-dev \
             liblldb-3.9-dev \
             liblttng-ust-dev \
+            libnuma-dev \
             libssl1.0-dev \
             libssl1.0.2 \
             libunwind8-dev \

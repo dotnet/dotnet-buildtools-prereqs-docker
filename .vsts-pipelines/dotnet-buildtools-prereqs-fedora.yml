@@ -1,0 +1,26 @@
+trigger:
+  branches:
+    include:
+    - master
+  paths:
+    include:
+    - src/fedora/*
+pr:
+  branches:
+    include:
+    - master
+  paths:
+    include:
+    - src/fedora/*
+
+variables:
+- template: variables/common.yml
+
+jobs:
+  - template: jobs/build-image-legs.yml
+    parameters:
+      matrix: {
+        "fedora": {
+          "imageBuilderPath": "src/fedora/*"
+        }
+      }
