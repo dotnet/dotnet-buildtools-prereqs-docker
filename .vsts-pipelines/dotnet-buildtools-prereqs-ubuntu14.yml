@@ -4,14 +4,14 @@ trigger:
     - master
   paths:
     include:
-    - src/ubuntu/14*
+    - src/ubuntu/14.04/*
 pr:
   branches:
     include:
     - master
   paths:
     include:
-    - src/ubuntu/14*
+    - src/ubuntu/14.04/*
 
 variables:
 - template: variables/common.yml
@@ -21,6 +21,6 @@ jobs:
     parameters:
       matrix: {
         "ubuntu14": {
-          "imageBuilderPath": "src/ubuntu/14*"
+          "imageBuilderPath": "src/ubuntu/14.04/*"
         }
       }
