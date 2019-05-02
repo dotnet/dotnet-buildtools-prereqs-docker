@@ -61,8 +61,8 @@ RUN python -m pip install --upgrade pip==19.0.2 && \
 
 # create helixbot user and give rights to sudo without password
 # Alpine does not support long options
-RUN /usr/sbin/adduser -D -g '' -G adm -s /bin/bash -u 1001 helixbot; \
-    chmod 755 /root ; \
+RUN /usr/sbin/adduser -D -g '' -G adm -s /bin/bash -u 1001 helixbot && \
+    chmod 755 /root && \
     echo "helixbot ALL=(ALL)       NOPASSWD: ALL" > /etc/sudoers.d/helixbot
 
 USER helixbot
