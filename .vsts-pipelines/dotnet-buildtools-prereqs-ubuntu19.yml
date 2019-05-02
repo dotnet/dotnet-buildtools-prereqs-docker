@@ -4,7 +4,7 @@ trigger:
     - master
   paths:
     include:
-    - src/ubuntu/19*
+    - src/ubuntu/19.04/*
 pr:
   branches:
     include:
@@ -21,6 +21,6 @@ jobs:
     parameters:
       matrix: {
         "ubuntu19": {
-          "imageBuilderPath": "src/ubuntu/19*"
+          "imageBuilderPath": "src/ubuntu/19.04*"
         }
       }

@@ -9,7 +9,6 @@ RUN apt-get update && \
         liblttng-ust-dev \
         libcurl4-openssl-dev \
         libicu-dev \
-        libnuma-dev \
         libssl-dev \
         libkrb5-dev \
     && rm -rf /var/lib/apt/lists/*
