@@ -21,6 +21,6 @@ jobs:
     parameters:
       matrix: {
         "ubuntu14": {
-          "imageBuilderPath": "src/ubuntu/14.04/*"
+          "imageBuilderPath": "src/ubuntu/14.04*"
         }
       }
