@@ -10,7 +10,6 @@ RUN apt-get update && \
         libffi-dev \
         libgdiplus \        
         libicu-dev \
-        libnuma-dev \
         libssl-dev \
         libunwind8 \        
         libunwind-dev \
