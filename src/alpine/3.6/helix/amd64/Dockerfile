@@ -27,10 +27,10 @@ RUN apk update && \
         openssl \
         openssl-dev \
         paxctl \
-        py-cffi \
-        python2 \
-        python2-dev \
-        py-pip \
+        py3-cffi \
+        python3 \
+        python3-dev \
+        py3-pip \
         sudo \
         tzdata \
         util-linux-dev \
@@ -43,7 +43,8 @@ RUN apk update && \
 
 # Install Helix Dependencies
 
-RUN python -m pip install --upgrade pip==19.0.2 && \
+RUN sudo ln -sf /usr/bin/python3 /usr/bin/python && \
+    python -m pip install --upgrade pip==19.1 && \
     python -m pip install \ 
                   applicationinsights==0.11.7 \
                   certifi==2018.11.29 \

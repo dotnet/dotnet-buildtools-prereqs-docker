@@ -3,12 +3,14 @@ FROM mcr.microsoft.com/dotnet-buildtools/prereqs:fedora-30
 # Install Helix Dependencies
 
 RUN dnf install -y \
-        python2-devel \
+        python3 \
+        python3-devel \
         redhat-rpm-config \        
         sudo \
     && dnf clean all
 
-RUN python -m pip install --upgrade pip==19.0.3 && \
+RUN sudo ln -sf /usr/bin/python3 /usr/bin/python && \
+    python -m pip install --upgrade pip==19.1 && \
     python -m pip install \ 
                   applicationinsights==0.11.7 \
                   certifi==2018.11.29 \
