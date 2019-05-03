@@ -26,7 +26,8 @@ RUN python -m pip install --upgrade pip==19.0.3 && \
 ENV LANG=en-US.UTF-8
 
 # create helixbot user and give rights to sudo without password
-RUN /usr/sbin/adduser --disabled-password --gecos '' --uid 1001 --shell /bin/bash --ingroup adm helixbot && \
+# Fedora does not have all options as other Linux systems
+RUN /usr/sbin/adduser --uid 1001 --shell /bin/bash --group adm helixbot && \
     chmod 755 /root && \
     echo "helixbot ALL=(ALL)       NOPASSWD: ALL" > /etc/sudoers
 
