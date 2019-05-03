@@ -9,7 +9,7 @@ RUN dnf install -y \
         sudo \
     && dnf clean all
 
-RUN sudo ln -sf /usr/bin/python3 /usr/bin/python && \
+RUN ln -sf /usr/bin/python3 /usr/bin/python && \
     python -m pip install --upgrade pip==19.1 && \
     python -m pip install \ 
                   applicationinsights==0.11.7 \
