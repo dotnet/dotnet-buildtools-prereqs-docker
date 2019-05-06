@@ -24,8 +24,7 @@ RUN apt-get update && \
         locales \
         locales-all \
         python3-dev \
-        python-dev \
-        python-pip \
+        python3-pip \
         sudo \        
         tzdata \
         unzip \
@@ -35,7 +34,8 @@ RUN apt-get update && \
 
 ENV LANG en_US.utf8
 
-RUN python -m pip install --upgrade pip==19.0.2 && \
+RUN ln -sf /usr/bin/python3 /usr/bin/python && \
+    python -m pip install --upgrade pip==19.0.2 && \
     python -m pip install \ 
                   applicationinsights==0.11.7 \
                   certifi==2018.11.29 \

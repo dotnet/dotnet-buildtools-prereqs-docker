@@ -1,4 +1,4 @@
-FROM python:2.7.15-alpine3.9
+FROM python:3.7.3-alpine3.9
 
 # Install .NET Core Dependencies for Alpine
 
@@ -28,8 +28,6 @@ RUN apk update && \
         openssl-dev \
         paxctl \
         py-cffi \
-        python \
-        python-dev \
         sudo \
         tzdata \
         util-linux-dev \
@@ -42,7 +40,8 @@ RUN apk update && \
 
 # Install Helix Dependencies
 
-RUN python -m pip install --upgrade pip==19.0.2 && \
+RUN ln -sf /usr/bin/python3 /usr/bin/python && \
+    python -m pip install --upgrade pip==19.1 && \
     python -m pip install \ 
                   applicationinsights==0.11.7 \
                   certifi==2018.11.29 \
