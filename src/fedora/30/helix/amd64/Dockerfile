@@ -29,7 +29,7 @@ ENV LANG=en-US.UTF-8
 
 # create helixbot user and give rights to sudo without password
 # Fedora does not have all options as other Linux systems
-RUN /usr/sbin/adduser --uid 1001 --shell /bin/bash --group adm helixbot && \
+RUN /usr/sbin/adduser --uid 1000 --shell /bin/bash --group adm helixbot && \
     chmod 755 /root && \
     echo "helixbot ALL=(ALL)       NOPASSWD: ALL" > /etc/sudoers
 
