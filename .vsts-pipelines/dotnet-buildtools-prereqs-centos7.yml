@@ -5,22 +5,12 @@ trigger:
   paths:
     include:
     - src/centos/7/*
-pr:
-  branches:
-    include:
-    - master
-  paths:
-    include:
-    - src/centos/7/*
+pr: none
 
 variables:
 - template: variables/common.yml
+- name: imageBuilder.pathArgs
+  value: src/centos/7*
 
-jobs:
-  - template: jobs/build-image-legs.yml
-    parameters:
-      matrix: {
-        "centos7": {
-          "imageBuilderPath": "src/centos/7*"
-        }
-      }
+stages:
+  - template: stages/build-repo.yml

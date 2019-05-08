@@ -15,12 +15,8 @@ pr:
 
 variables:
 - template: variables/common.yml
+- name: imageBuilder.pathArgs
+  value: src/fedora/*
 
-jobs:
-  - template: jobs/build-image-legs.yml
-    parameters:
-      matrix: {
-        "fedora": {
-          "imageBuilderPath": "src/fedora/*"
-        }
-      }
+stages:
+  - template: stages/build-repo.yml

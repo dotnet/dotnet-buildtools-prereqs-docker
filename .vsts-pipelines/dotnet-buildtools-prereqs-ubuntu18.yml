@@ -5,22 +5,12 @@ trigger:
   paths:
     include:
     - src/ubuntu/18.04/*
-pr:
-  branches:
-    include:
-    - master
-  paths:
-    include:
-    - src/ubuntu/18.04/*
+pr: none
 
 variables:
 - template: variables/common.yml
+- name: imageBuilder.pathArgs
+  value: src/ubuntu/18.04*
 
-jobs:
-  - template: jobs/build-image-legs.yml
-    parameters:
-      matrix: {
-        "ubuntu18": {
-          "imageBuilderPath": "src/ubuntu/18.04*"
-        }
-      }
+stages:
+  - template: stages/build-repo.yml
