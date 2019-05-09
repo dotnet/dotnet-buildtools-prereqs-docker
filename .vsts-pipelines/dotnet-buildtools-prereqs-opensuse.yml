@@ -5,22 +5,12 @@ trigger:
   paths:
     include:
     - src/opensuse/*
-pr:
-  branches:
-    include:
-    - master
-  paths:
-    include:
-    - src/opensuse/*
+pr: none
 
 variables:
 - template: variables/common.yml
+- name: imageBuilder.pathArgs
+  value: src/opensuse/*
 
-jobs:
-  - template: jobs/build-image-legs.yml
-    parameters:
-      matrix: {
-        "opensuse": {
-          "imageBuilderPath": "src/opensuse/*"
-        }
-      }
+stages:
+  - template: stages/build-repo.yml

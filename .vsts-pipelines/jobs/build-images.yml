@@ -1,58 +1,43 @@
 parameters:
   name: null
   pool: {}
-  architecture: null
-  useRemoteDockerServer: false
   matrix: {}
+  dockerClientOS: null
+  useRemoteDockerServer: false
 
 jobs:
 - job: ${{ parameters.name }}
+  condition: and(succeeded(), ${{ parameters.matrix }})
+  dependsOn: GenerateBuildMatrix
   pool: ${{ parameters.pool }}
-  strategy: 
-    matrix: ${{ parameters.matrix }}
+  strategy:
+    matrix: $[ ${{ parameters.matrix }} ]
   timeoutInMinutes: 180
   variables:
-    ${{ if eq(parameters.useRemoteDockerServer, 'true') }}:
-      dockerArmRunOptions:
-        -v $(DOCKER_CERT_PATH):/docker-certs
-        -e DOCKER_CERT_PATH=/docker-certs
-        -e DOCKER_TLS_VERIFY=1
-        -e DOCKER_HOST=tcp://$(DOCKER_HOST_IP):2376
-    ${{ if eq(parameters.useRemoteDockerServer, 'false') }}:
-      dockerArmRunOptions: ""
-    ${{ if ne(variables['System.TeamProject'], 'public') }}:
-      imageBuilderBuildArgs:
+    ${{ if eq(variables['System.TeamProject'], 'internal') }}:
+      imageBuilderBuildArgs: >
         --registry-override $(acr.server)
         --repo-prefix $(publishRepoPrefix)
         --push
         --username $(acr.userName)
         --password $(BotAccount-dotnet-docker-acr-bot-password)
-      dockerRunOptions: -e DOCKER_REPO=$(acr.server)/$(publishRepoPrefix)dotnet-buildtools/prereqs
+        $(imageBuilder.queueArgs)
     ${{ if eq(variables['System.TeamProject'], 'public') }}:
-      imageBuilderBuildArgs: ""
-      dockerRunOptions: ""
-    imageBuilderTag: image-builder
-    imageBuilderArgs:
-      build
-      --path "$(imageBuilderPath)"
-      --manifest manifest.json
-      --architecture ${{ parameters.architecture }}
-      $(imageBuilderBuildArgs)
+      imageBuilderBuildArgs: $(imageBuilder.queueArgs)
   steps:
-  - template: ../steps/cleanup-docker-linux.yml
+  - template: ${{ format('../steps/init-docker-{0}.yml', parameters.dockerClientOS) }}
     parameters:
-      runOnlyBasicCleanup: ${{ parameters.useRemoteDockerServer }}
-  - script: docker build -t $(imageBuilderTag) --pull -f ./Dockerfile.linux.imagebuilder .
-    displayName: Build Runner Image
+      setupRemoteDockerServer: ${{ parameters.useRemoteDockerServer }}
   - script: >
-      docker run
-      --rm
-      -v /var/run/docker.sock:/var/run/docker.sock
-      $(dockerArmRunOptions)
-      $(dockerRunOptions)
-      $(imageBuilderTag)
-      $(imageBuilderArgs)
+      $(runImageBuilderCmd) build
+      --manifest manifest.json
+      $(imageBuilderPaths)
+      --os-type $(osType)
+      --os-version "$(osVersion)"
+      --architecture $(architecture)
+      --retry
+      $(imageBuilderBuildArgs)
     displayName: Build Images
-  - template: ../steps/cleanup-docker-linux.yml
+  - template: ${{ format('../steps/cleanup-docker-{0}.yml', parameters.dockerClientOS) }}
     parameters:
       cleanupRemoteDockerServer: ${{ parameters.useRemoteDockerServer }}

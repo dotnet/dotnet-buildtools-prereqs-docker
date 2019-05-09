@@ -5,22 +5,12 @@ trigger:
   paths:
     include:
     - src/debian/*
-pr:
-  branches:
-    include:
-    - master
-  paths:
-    include:
-    - src/debian/*
+pr: none
 
 variables:
 - template: variables/common.yml
+- name: imageBuilder.pathArgs
+  value: src/debian/*
 
-jobs:
-  - template: jobs/build-image-legs.yml
-    parameters:
-      matrix: {
-        "debian": {
-          "imageBuilderPath": "src/debian/*"
-        }
-      }
+stages:
+  - template: stages/build-repo.yml

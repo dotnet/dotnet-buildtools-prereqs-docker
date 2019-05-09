@@ -6,39 +6,8 @@ pr:
 
 variables:
 - template: variables/common.yml
+- name: imageBuilder.pathArgs
+  value: '*'
 
-jobs:
-  - template: jobs/build-image-legs.yml
-    parameters:
-      matrix: {
-        "alpine": {
-          "imageBuilderPath": "src/alpine/*"
-        },
-        "centos6": {
-          "imageBuilderPath": "src/centos/6*"
-        },
-        "centos7": {
-          "imageBuilderPath": "src/centos/7*"
-        },
-        "debian": {
-          "imageBuilderPath": "src/debian/*"
-        },
-        "fedora": {
-          "imageBuilderPath": "src/fedora/*"
-        },
-        "opensuse": {
-          "imageBuilderPath": "src/opensuse/*"
-        },
-        "ubuntu14": {
-          "imageBuilderPath": "src/ubuntu/14*"
-        },
-        "ubuntu16": {
-          "imageBuilderPath": "src/ubuntu/16*"
-        },
-        "ubuntu18": {
-          "imageBuilderPath": "src/ubuntu/18*"
-        },
-        "ubuntu19": {
-          "imageBuilderPath": "src/ubuntu/19*"
-        }
-      }
+stages:
+  - template: stages/build-repo.yml
