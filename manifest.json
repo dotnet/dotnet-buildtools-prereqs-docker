@@ -644,6 +644,18 @@
               "variant": "v8"
             }
           ]
+        },
+        {
+          "platforms": [
+            {
+              "dockerfile": "src/nanoserver/1803/helix/amd64",
+              "os": "windows",
+              "osVersion": "nanoserver-1803",
+              "tags": {
+                "nanoserver-1803-helix-amd64-$(System:DockerfileGitCommitSha)-$(System:TimeStamp)": {}
+              }
+            }
+          ]
         }
       ]
     }
