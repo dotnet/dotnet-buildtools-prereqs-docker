@@ -1,5 +1,6 @@
 FROM mcr.microsoft.com/powershell:6.2.0-nanoserver-1803
 
+SHELL ["cmd", "/S", "/C"]
 USER ContainerAdministrator
 ENTRYPOINT C:\Windows\System32\cmd.exe
 
@@ -10,7 +11,7 @@ RUN curl -SL --output %TEMP%\python.zip https://www.nuget.org/api/v2/package/pyt
     && rd /s /q c:\PythonTemp \
     && del /q %TEMP%\python.zip
 
-RUN setx /M PATH "%PATH%;C:\Python;C:\python\scripts" \
+RUN setx /M PATH "%PATH%;C:\Program Files\PowerShell\;C:\Python;C:\python\scripts" \
     && setx /M PYTHONPATH "C:\Python\Lib;C:\Python\DLLs;"
 
 RUN python -m pip install --upgrade pip \
