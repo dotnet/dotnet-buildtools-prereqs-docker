@@ -455,31 +455,6 @@
         {
           "platforms": [
             {
-              "dockerfile": "src/ubuntu/17.10",
-              "os": "linux",
-              "tags": {
-                "ubuntu-17.10-$(System:DockerfileGitCommitSha)-$(System:TimeStamp)": {},
-                "ubuntu-17.10": {
-                  "isLocal": true
-                }
-              }
-            }
-          ]
-        },
-        {
-          "platforms": [
-            {
-              "dockerfile": "src/ubuntu/17.10/debpkg",
-              "os": "linux",
-              "tags": {
-                "ubuntu-17.10-debpkg-$(System:DockerfileGitCommitSha)-$(System:TimeStamp)": {}
-              }
-            }
-          ]
-        },
-        {
-          "platforms": [
-            {
               "dockerfile": "src/ubuntu/18.04/amd64",
               "os": "linux",
               "tags": {
