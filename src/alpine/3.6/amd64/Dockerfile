@@ -20,6 +20,7 @@ RUN apk add --no-cache \
         libtool \
         libunwind-dev \
         linux-headers \
+        llvm \
         make \
         openssl \
         openssl-dev \
@@ -31,10 +32,17 @@ RUN apk add --no-cache \
         which \
         zlib-dev
 
-# On 3.6, a recent version of llvm from edge/main must be used to install lldb.
-# Details: https://github.com/dotnet/dotnet-buildtools-prereqs-docker/issues/55 
-RUN apk -X https://dl-cdn.alpinelinux.org/alpine/edge/main add --no-cache \
+RUN apk -X http://dl-cdn.alpinelinux.org/alpine/edge/main add --no-cache \
         userspace-rcu-dev \
         lttng-ust-dev \
-        llvm \
         numactl-dev
+
+# On 3.6, a recent version of llvm from edge/community must be used to install lldb-dev.
+# Details: https://github.com/dotnet/dotnet-buildtools-prereqs-docker/issues/55 
+# The llvm package that was installed above installs llvm4, which is also needed for tools 
+# like llvm-ar during build.
+RUN apk -X http://dl-cdn.alpinelinux.org/alpine/edge/community add --no-cache \
+        llvm5
+
+RUN apk -X http://dl-cdn.alpinelinux.org/alpine/edge/testing add --no-cache \
+        lldb-dev
