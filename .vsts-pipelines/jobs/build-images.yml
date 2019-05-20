@@ -22,12 +22,15 @@ jobs:
         --username $(acr.userName)
         --password $(BotAccount-dotnet-docker-acr-bot-password)
         $(imageBuilder.queueArgs)
+      dockerRunOptions: -e DOCKER_REPO=$(acr.server)/$(publishRepoPrefix)dotnet-buildtools/prereqs
     ${{ if eq(variables['System.TeamProject'], 'public') }}:
       imageBuilderBuildArgs: $(imageBuilder.queueArgs)
+      dockerRunOptions: ""
   steps:
   - template: ${{ format('../steps/init-docker-{0}.yml', parameters.dockerClientOS) }}
     parameters:
       setupRemoteDockerServer: ${{ parameters.useRemoteDockerServer }}
+  - template: ../steps/install-build-prereqs.yml
   - script: >
       $(runImageBuilderCmd) build
       --manifest manifest.json

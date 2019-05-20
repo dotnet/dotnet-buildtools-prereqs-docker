@@ -43,6 +43,7 @@ steps:
       -v /var/run/docker.sock:/var/run/docker.sock
       -w /repo
       $(dockerArmRunArgs)
+      $(dockerRunOptions)
       $(imageNames.imageBuilder.withrepo)"
     displayName: Define runImageBuilderCmd Variable
   - ${{ if eq(parameters.setupRemoteDockerServer, 'true') }}:
