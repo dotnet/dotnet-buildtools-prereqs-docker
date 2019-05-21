@@ -583,6 +583,44 @@
         {
           "platforms": [
             {
+              "architecture": "amd64",
+              "dockerfile": "src/debian/10/helix/amd64",
+              "os": "linux",
+              "tags": {
+                "debian-10-helix-amd64-$(System:DockerfileGitCommitSha)-$(System:TimeStamp)": {}
+              }
+            }
+          ]
+        },
+        {
+          "platforms": [
+            {
+              "architecture": "arm",
+              "dockerfile": "src/debian/10/helix/arm32v7",
+              "os": "linux",
+              "tags": {
+                "debian-10-helix-arm32v7-$(System:DockerfileGitCommitSha)-$(System:TimeStamp)": {}
+              },
+              "variant": "v7"
+            }
+          ]
+        },
+        {
+          "platforms": [
+            {
+              "architecture": "arm64",
+              "dockerfile": "src/debian/10/helix/arm64v8",
+              "os": "linux",
+              "tags": {
+                "debian-10-helix-arm64v8-$(System:DockerfileGitCommitSha)-$(System:TimeStamp)": {}
+              },
+              "variant": "v8"
+            }
+          ]
+        },
+        {
+          "platforms": [
+            {
               "architecture": "arm",
               "dockerfile": "src/ubuntu/16.04/arm32v7",
               "os": "linux",
