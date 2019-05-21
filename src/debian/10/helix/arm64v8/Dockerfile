@@ -10,7 +10,7 @@ RUN apt-get update && \
         gdb \
         git \
         iputils-ping \
-        libcurl3 \
+        libcurl4 \
         libffi-dev \
         libgdiplus \
         libicu-dev \
