@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
 
-$(dirname ${BASH_SOURCE[0]})/../../../../build-scripts/build-rootfs.sh ubuntu-14.04 trusty "" lldb3.9
+$(dirname ${BASH_SOURCE[0]})/../../../../build-scripts/build-rootfs.sh ubuntu-16.04 trusty "" lldb3.9
