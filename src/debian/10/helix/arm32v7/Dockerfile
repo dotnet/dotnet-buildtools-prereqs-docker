@@ -19,9 +19,8 @@ RUN apt-get update && \
         locales \
         locales-all \
         python3-dev \
-        python-dev \
-        python-pip \
-        sudo \    
+        python3-pip \ 
+        sudo \   
         tzdata \        
         unzip \
     && rm -rf /var/lib/apt/lists/* \
@@ -30,13 +29,14 @@ RUN apt-get update && \
 
 ENV LANG en_US.utf8
 
-RUN python -m pip install --upgrade pip==19.0.2 && \
+RUN ln -sf /usr/bin/python3 /usr/bin/python && \
+    python -m pip install --upgrade pip==19.1.1 && \
     python -m pip install \ 
                   applicationinsights==0.11.7 \
                   certifi==2018.11.29 \
-                  cryptography==2.5 \                  
+                  cryptography==2.5 \
                   docker==3.6.0 \
-                  ndg-httpsclient==0.5.1  \
+                  ndg-httpsclient==0.5.1 \
                   psutil==5.4.8 \
                   pyasn1==0.4.5 \
                   pyopenssl==18.0.0 \
@@ -44,9 +44,12 @@ RUN python -m pip install --upgrade pip==19.0.2 && \
                   six==1.12.0 \
                   virtualenv==16.2.0
 
-# create helixbot user and give rights to sudo without password
-RUN /usr/sbin/useradd -G adm -s /bin/sh helixbot; \
-    chmod 755 /root ; \
-    echo "helixbot ALL=(ALL)       NOPASSWD: ALL" > /etc/sudoers
+# Create helixbot user and give rights to sudo without password
+# additionally, preinstall the virtualenv packages used for VSTS reporting to save time
+RUN /usr/sbin/adduser --disabled-password --gecos '' --uid 1000 --shell /bin/bash --ingroup adm helixbot && \
+    chmod 755 /root && \
+    echo "helixbot ALL=(ALL)       NOPASSWD: ALL" > /etc/sudoers && \
+    python -m virtualenv --no-site-packages /home/helixbot/.vsts-env && \
+    /home/helixbot/.vsts-env/bin/python -m pip install vsts==0.1.20 future==0.17.1
 
 USER helixbot
