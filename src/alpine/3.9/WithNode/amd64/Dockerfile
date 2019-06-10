@@ -1,4 +1,4 @@
-FROM mcr.microsoft.com/dotnet-buildtools/prereqs:alpine-3.6
+FROM mcr.microsoft.com/dotnet-buildtools/prereqs:alpine-3.9
 
 RUN apk update
 
