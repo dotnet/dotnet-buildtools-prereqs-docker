@@ -674,10 +674,10 @@
           "platforms": [
             {
               "architecture": "arm64",
-              "dockerfile": "src/alpine/3.6/arm64v8",
+              "dockerfile": "src/alpine/3.9/arm64v8",
               "os": "linux",
               "tags": {
-                "alpine-3.6-arm64v8-$(System:DockerfileGitCommitSha)-$(System:TimeStamp)": {}
+                "alpine-3.9-arm64v8-$(System:DockerfileGitCommitSha)-$(System:TimeStamp)": {}
               },
               "variant": "v8"
             }
