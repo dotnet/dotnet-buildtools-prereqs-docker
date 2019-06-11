@@ -19,8 +19,7 @@ RUN apt-get update && \
         locales \
         locales-all \
         python3-dev \
-        python-dev \
-        python-pip \
+        python3-pip \
         sudo \    
         tzdata \        
         unzip \
