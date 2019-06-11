@@ -7,11 +7,11 @@
         {
           "platforms": [
             {
-              "dockerfile": "src/alpine/3.6/amd64",
+              "dockerfile": "src/alpine/3.9/amd64",
               "os": "linux",
               "tags": {
-                "alpine-3.6-$(System:DockerfileGitCommitSha)-$(System:TimeStamp)": {},
-                "alpine-3.6": {
+                "alpine-3.9-$(System:DockerfileGitCommitSha)-$(System:TimeStamp)": {},
+                "alpine-3.9": {
                   "isLocal": true
                 }
               }
@@ -21,32 +21,10 @@
         {
           "platforms": [
             {
-              "dockerfile": "src/alpine/3.6/WithNode/amd64",
+              "dockerfile": "src/alpine/3.9/WithNode/amd64",
               "os": "linux",
               "tags": {
-                "alpine-3.6-WithNode-$(System:DockerfileGitCommitSha)-$(System:TimeStamp)": {}
-              }
-            }
-          ]
-        },
-        {
-          "platforms": [
-            {
-              "dockerfile": "src/alpine/3.6/helix/amd64",
-              "os": "linux",
-              "tags": {
-                "alpine-3.6-helix-$(System:DockerfileGitCommitSha)-$(System:TimeStamp)": {}
-              }
-            }
-          ]
-        }, 
-        {
-          "platforms": [
-            {
-              "dockerfile": "src/alpine/3.8/helix/amd64",
-              "os": "linux",
-              "tags": {
-                "alpine-3.8-helix-$(System:DockerfileGitCommitSha)-$(System:TimeStamp)": {}
+                "alpine-3.9-WithNode-$(System:DockerfileGitCommitSha)-$(System:TimeStamp)": {}
               }
             }
           ]
@@ -58,6 +36,17 @@
               "os": "linux",
               "tags": {
                 "alpine-3.9-helix-$(System:DockerfileGitCommitSha)-$(System:TimeStamp)": {}
+              }
+            }
+          ]
+        },
+        {
+          "platforms": [
+            {
+              "dockerfile": "src/alpine/3.8/helix/amd64",
+              "os": "linux",
+              "tags": {
+                "alpine-3.8-helix-$(System:DockerfileGitCommitSha)-$(System:TimeStamp)": {}
               }
             }
           ]
@@ -685,10 +674,10 @@
           "platforms": [
             {
               "architecture": "arm64",
-              "dockerfile": "src/alpine/3.6/arm64v8",
+              "dockerfile": "src/alpine/3.9/arm64v8",
               "os": "linux",
               "tags": {
-                "alpine-3.6-arm64v8-$(System:DockerfileGitCommitSha)-$(System:TimeStamp)": {}
+                "alpine-3.9-arm64v8-$(System:DockerfileGitCommitSha)-$(System:TimeStamp)": {}
               },
               "variant": "v8"
             }
