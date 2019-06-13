@@ -651,7 +651,7 @@
               "dockerfile": "src/ubuntu/16.04/arm32v7",
               "os": "linux",
               "tags": {
-                "ubuntu-18.04-arm32v7-$(System:DockerfileGitCommitSha)-$(System:TimeStamp)": {}
+                "ubuntu-16.04-arm32v7-$(System:DockerfileGitCommitSha)-$(System:TimeStamp)": {}
               },
               "variant": "v7"
             }
