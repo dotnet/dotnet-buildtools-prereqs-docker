@@ -673,19 +673,6 @@
         {
           "platforms": [
             {
-              "architecture": "arm64",
-              "dockerfile": "src/alpine/3.9/arm64v8",
-              "os": "linux",
-              "tags": {
-                "alpine-3.9-arm64v8-$(System:DockerfileGitCommitSha)-$(System:TimeStamp)": {}
-              },
-              "variant": "v8"
-            }
-          ]
-        },
-        {
-          "platforms": [
-            {
               "architecture": "arm",
               "dockerfile": "src/alpine/3.9/arm32v7",
               "os": "linux",
@@ -693,6 +680,19 @@
                 "alpine-3.9-arm32v7-$(System:DockerfileGitCommitSha)-$(System:TimeStamp)": {}
               },
               "variant": "v7"
+            }
+          ]
+        },
+        {
+          "platforms": [
+            {
+              "architecture": "arm64",
+              "dockerfile": "src/alpine/3.9/arm64v8",
+              "os": "linux",
+              "tags": {
+                "alpine-3.9-arm64v8-$(System:DockerfileGitCommitSha)-$(System:TimeStamp)": {}
+              },
+              "variant": "v8"
             }
           ]
         },
