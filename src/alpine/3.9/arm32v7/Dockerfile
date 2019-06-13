@@ -37,10 +37,5 @@ RUN apk -X http://dl-cdn.alpinelinux.org/alpine/edge/main add --no-cache \
         userspace-rcu-dev \
         lttng-ust-dev
 
-# numactl-dev is missing on arm32, we need to build it from sources
-RUN apk add --no-cache git automake
-RUN git clone https://github.com/numactl/numactl.git
-RUN (cd numactl; ./autogen.sh && ./configure && make && make install)
-
 RUN apk -X http://dl-cdn.alpinelinux.org/alpine/edge/testing add --no-cache \
         lldb-dev
