@@ -648,7 +648,7 @@
           "platforms": [
             {
               "architecture": "arm",
-              "dockerfile": "src/ubuntu/16.04/arm32v7",
+              "dockerfile": "src/ubuntu/18.04/arm32v7",
               "os": "linux",
               "tags": {
                 "ubuntu-18.04-arm32v7-$(System:DockerfileGitCommitSha)-$(System:TimeStamp)": {}
