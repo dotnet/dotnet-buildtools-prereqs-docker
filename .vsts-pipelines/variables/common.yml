@@ -1,5 +1,0 @@
-variables:
-- template: docker-images.yml
-- ${{ if ne(variables['System.TeamProject'], 'public') }}:
-  - group: DotNet-Docker-Common
-  - group: DotNet-Docker-Secrets

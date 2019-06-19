@@ -1,0 +1,22 @@
+trigger:
+  branches:
+    include:
+    - master
+  paths:
+    include:
+    - src/fedora/*
+pr:
+  branches:
+    include:
+    - master
+  paths:
+    include:
+    - src/fedora/*
+
+variables:
+- template: variables/common.yml
+- name: imageBuilder.pathArgs
+  value: --path 'src/fedora/*'
+
+stages:
+  - template: ../common/templates/stages/build-test-publish-repo.yml
