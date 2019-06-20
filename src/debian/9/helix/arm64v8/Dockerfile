@@ -45,8 +45,10 @@ RUN ln -sf /usr/bin/python3 /usr/bin/python && \
                   six==1.12.0 \
                   virtualenv==16.2.0
 
-RUN adduser --disabled-password --gecos '' --uid 1000 --shell /bin/bash --ingroup adm helixbot && \
+RUN adduser --disabled-password --gecos '' --uid 1001 --shell /bin/bash --ingroup adm helixbot && \
     chmod -R +x /root && \
-    echo 'helixbot ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
+    echo 'helixbot ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers && \
+    python -m virtualenv --no-site-packages /home/helixbot/.vsts-env && \
+    /home/helixbot/.vsts-env/bin/python -m pip install vsts==0.1.20 future==0.17.1
 
 USER helixbot
