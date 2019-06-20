@@ -21,7 +21,6 @@ RUN apk add --no-cache \
         libunwind-dev \
         linux-headers \
         llvm \
-        llvm5 \
         make \
         openssl \
         openssl-dev \
@@ -37,6 +36,3 @@ RUN apk -X http://dl-cdn.alpinelinux.org/alpine/edge/main add --no-cache \
         userspace-rcu-dev \
         lttng-ust-dev \
         numactl-dev
-
-RUN apk -X http://dl-cdn.alpinelinux.org/alpine/edge/testing add --no-cache \
-        lldb-dev
