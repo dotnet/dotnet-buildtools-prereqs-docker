@@ -1,0 +1,18 @@
+trigger:
+  branches:
+    include:
+    - master
+  paths:
+    include:
+    - src/centos/6/*
+pr: none
+
+variables:
+- template: variables/common.yml
+- name: imageBuilder.pathArgs
+  value: --path 'src/centos/6*'
+
+stages:
+  - template: ../common/templates/stages/build-test-publish-repo.yml
+    parameters:
+      linuxAmdBuildJobTimeout: 120

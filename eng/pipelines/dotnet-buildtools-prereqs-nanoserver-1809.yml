@@ -1,0 +1,16 @@
+trigger:
+  branches:
+    include:
+    - master
+  paths:
+    include:
+    - src/nanoserver/1809/*
+pr: none
+
+variables:
+- template: variables/common.yml
+- name: imageBuilder.pathArgs
+  value: --path 'src/nanoserver/1809/*'
+
+stages:
+  - template: ../common/templates/stages/build-test-publish-repo.yml
