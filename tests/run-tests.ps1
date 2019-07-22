@@ -12,7 +12,8 @@ param(
     [string]$Registry,
     [string]$RepoPrefix,
     [switch]$DisableHttpVerification,
-    [switch]$IsLocalRun
+    [switch]$IsLocalRun,
+    [string]$ImageInfoPath
 )
 
 Set-StrictMode -Version Latest
