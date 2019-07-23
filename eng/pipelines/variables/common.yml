@@ -6,3 +6,7 @@ variables:
   value: build
 - name: stagingRepoPrefix
   value: $(publishRepoPrefix)
+- name: dotnetVersion
+  value: '*'
+- name: osVariant
+  value: ''
