@@ -1,4 +1,5 @@
 FROM mcr.microsoft.com/powershell:6.2.0-nanoserver-1809
+# escape=` (backtick)
 
 SHELL ["cmd", "/S", "/C"]
 USER ContainerAdministrator
@@ -12,7 +13,7 @@ RUN curl -SL --output %TEMP%\python.zip https://www.nuget.org/api/v2/package/pyt
     && del /q %TEMP%\python.zip \
     && setx /M PYTHONPATH "C:\Python\Lib;C:\Python\DLLs;"
 
-ENV PATH="$WindowsPATH;C:\Program Files\PowerShell\;C:\Python;C:\python\scripts"
+ENV PATH="$PATH;C:\Program Files\PowerShell\;C:\Python;C:\python\scripts"
 
 RUN python -m pip install --upgrade pip \
     && python -m pip install applicationinsights==0.11.8 \
