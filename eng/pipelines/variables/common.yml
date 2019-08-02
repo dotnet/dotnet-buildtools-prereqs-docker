@@ -2,11 +2,9 @@ variables:
 - template: ../../common/templates/variables/common.yml
 - name: manifest
   value: manifest.json
-- name: singlePhase
-  value: build
-- name: stagingRepoPrefix
-  value: $(publishRepoPrefix)
 - name: dotnetVersion
   value: '*'
 - name: osVariant
   value: ''
+- name: publishReadme
+  value: false
