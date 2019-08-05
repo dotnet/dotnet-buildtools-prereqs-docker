@@ -24,7 +24,6 @@ RUN apt-get update && \
         tzdata \
         unzip \
     && rm -rf /var/lib/apt/lists/* \
-    \
     && localedef -i en_US -c -f UTF-8 -A /usr/share/locale/locale.alias en_US.UTF-8
 
 ENV LANG en_US.utf8
@@ -50,9 +49,7 @@ RUN ln -sf /usr/bin/python3 /usr/bin/python && \
 # additionally, preinstall the virtualenv packages used for VSTS reporting to save time
 RUN /usr/sbin/adduser --disabled-password --gecos '' --uid 1000 --shell /bin/bash --ingroup adm helixbot && \
     chmod 755 /root && \
-    echo "helixbot ALL=(ALL)       NOPASSWD: ALL" > /etc/sudoers && \
-    python -m virtualenv --no-site-packages /home/helixbot/.vsts-env && \
-    /home/helixbot/.vsts-env/bin/python -m pip install vsts==0.1.20 future==0.17.1
+    echo "helixbot ALL=(ALL)       NOPASSWD: ALL" > /etc/sudoers
 
 USER helixbot
 
