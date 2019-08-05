@@ -225,45 +225,6 @@
         {
           "platforms": [
             {
-              "dockerfile": "src/fedora/28",
-              "os": "linux",
-              "osVersion": "fedora28",
-              "tags": {
-                "fedora-28-$(System:DockerfileGitCommitSha)-$(System:TimeStamp)": {},
-                "fedora-28": {
-                    "isLocal": true
-                }
-              }
-            }
-          ]
-        },
-        {
-          "platforms": [
-            {
-              "dockerfile": "src/fedora/28/helix/amd64",
-              "os": "linux",
-              "osVersion": "fedora28",
-              "tags": {
-                "fedora-28-helix-$(System:DockerfileGitCommitSha)-$(System:TimeStamp)": {}
-              }
-            }
-          ]
-        },
-        {
-          "platforms": [
-            {
-              "dockerfile": "src/opensuse/42.3",
-              "os": "linux",
-              "osVersion": "opensuse42.3",
-              "tags": {
-                "opensuse-42.3-$(System:DockerfileGitCommitSha)-$(System:TimeStamp)": {}
-              }
-            }
-          ]
-        },
-        {
-          "platforms": [
-            {
               "dockerfile": "src/ubuntu/14.04",
               "os": "linux",
               "osVersion": "ubuntu14.04",
