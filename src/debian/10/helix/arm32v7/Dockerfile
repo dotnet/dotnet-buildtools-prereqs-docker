@@ -19,9 +19,9 @@ RUN apt-get update && \
         locales \
         locales-all \
         python3-dev \
-        python3-pip \ 
-        sudo \   
-        tzdata \        
+        python3-pip \
+        sudo \
+        tzdata \
         unzip \
     && rm -rf /var/lib/apt/lists/* \
     \
@@ -42,14 +42,16 @@ RUN ln -sf /usr/bin/python3 /usr/bin/python && \
                   pyopenssl==18.0.0 \
                   requests==2.21.0 \
                   six==1.12.0 \
-                  virtualenv==16.2.0
+                  virtualenv==16.2.0 \
+                  azure-devops==5.0.0b9 \
+                  future==0.17.1
 
 # Create helixbot user and give rights to sudo without password
 # additionally, preinstall the virtualenv packages used for VSTS reporting to save time
 RUN /usr/sbin/adduser --disabled-password --gecos '' --uid 1001 --shell /bin/bash --ingroup adm helixbot && \
     chmod 755 /root && \
-    echo "helixbot ALL=(ALL)       NOPASSWD: ALL" > /etc/sudoers && \
-    python -m virtualenv --no-site-packages /home/helixbot/.vsts-env && \
-    /home/helixbot/.vsts-env/bin/python -m pip install vsts==0.1.20 future==0.17.1
+    echo "helixbot ALL=(ALL)       NOPASSWD: ALL" > /etc/sudoers
 
 USER helixbot
+
+RUN python -m virtualenv --no-site-packages /home/helixbot/.vsts-env
