@@ -55,6 +55,7 @@ steps:
       -v $(Build.ArtifactStagingDirectory):$(artifactsPath)
       -w /repo
       $(dockerArmRunArgs)
+      $(imageBuilderDockerRunOptions)
       $(imageNames.imageBuilder.withrepo)"
     displayName: Define runImageBuilderCmd Variable
   - ${{ if eq(parameters.setupRemoteDockerServer, 'true') }}:
