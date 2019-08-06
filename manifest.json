@@ -151,11 +151,11 @@
         {
           "platforms": [
             {
-              "dockerfile": "src/debian/stretch/docker-testrunner",
+              "dockerfile": "src/debian/stretch-slim/docker-testrunner",
               "os": "linux",
               "osVersion": "stretch",
               "tags": {
-                "debian-stretch-docker-testrunner-$(System:DockerfileGitCommitSha)-$(System:TimeStamp)": {}
+                "debian-stretch-slim-docker-testrunner-$(System:DockerfileGitCommitSha)-$(System:TimeStamp)": {}
               }
             }
           ]
