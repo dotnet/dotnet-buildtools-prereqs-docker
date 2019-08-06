@@ -54,5 +54,3 @@ RUN adduser --disabled-password --gecos '' --uid 1001 --shell /bin/bash --ingrou
 USER helixbot
 
 RUN python -m virtualenv --no-site-packages /home/helixbot/.vsts-env
-
-

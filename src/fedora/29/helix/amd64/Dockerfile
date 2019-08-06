@@ -24,7 +24,7 @@ RUN ln -sf /usr/bin/python3 /usr/bin/python && \
                   six==1.12.0 \
                   virtualenv==16.2.0 \
                   azure-devops==5.0.0b9 \
-                  future==0.17.1 \
+                  future==0.17.1
 
 # Needed for .NET corefx tests to pass
 ENV LANG=en-US.UTF-8
