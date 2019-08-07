@@ -7,9 +7,9 @@ variables:
   value: true
 - name: skipComponentGovernanceDetection
   value: true
-- name: build.imageBuilderDockerRunOptions
+- name: build.imageBuilderDockerRunExtraOptions
   value: ""
-- name: imageBuilderDockerRunOptions
+- name: imageBuilderDockerRunExtraOptions
   value: ""
 - ${{ if eq(variables['System.TeamProject'], 'internal') }}:
   - group: DotNet-Docker-Common
