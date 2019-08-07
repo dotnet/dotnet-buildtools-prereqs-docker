@@ -8,3 +8,6 @@ variables:
   value: ''
 - name: publishReadme
   value: false
+- ${{ if eq(variables['System.TeamProject'], 'internal') }}:
+    - name: build.imageBuilderDockerRunExtraOptions
+      value: -e DOCKER_REPO=$(acr.server)/$(stagingRepoPrefix)dotnet-buildtools/prereqs
