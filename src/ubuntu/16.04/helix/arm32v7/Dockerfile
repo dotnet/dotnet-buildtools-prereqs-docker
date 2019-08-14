@@ -2,7 +2,13 @@ FROM arm32v7/ubuntu:16.04
 
 # Install Helix Dependencies 
 
+# Can remove the mono preview repo when we no longer depend on pre-release libgdiplus
+
 RUN apt-get update && \
+    apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 3FA7E0328081BFF6A14DA29AA6A19B38D3D831EF && \
+    apt-get install -y apt-transport-https ca-certificates && \
+    echo "deb https://download.mono-project.com/repo/ubuntu preview-xenial main" | tee /etc/apt/sources.list.d/mono-official-preview.list  && \
+    apt-get update && \
     apt-get install -y \
         gss-ntlmssp \
         iputils-ping \
@@ -27,7 +33,7 @@ RUN apt-get update && \
 ENV LANG en_US.utf8
 
 RUN ln -sf /usr/bin/python3 /usr/bin/python && \
-    python -m pip install --upgrade pip==19.0.2 && \
+    python -m pip install --upgrade pip==19.2.2 && \
     python -m pip install \
                   applicationinsights==0.11.7 \
                   certifi==2018.11.29 \

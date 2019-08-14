@@ -4,7 +4,13 @@ FROM arm32v7/ubuntu:18.04
 
 ENV DEBIAN_FRONTEND noninteractive
 
+# Can remove the mono preview repo when we no longer depend on pre-release libgdiplus
+
 RUN apt-get update && \
+    apt-get install -qq -y gnupg ca-certificates && \
+    apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 3FA7E0328081BFF6A14DA29AA6A19B38D3D831EF && \
+    echo "deb https://download.mono-project.com/repo/ubuntu preview-bionic main" | tee /etc/apt/sources.list.d/mono-official-preview.list && \
+    apt-get update && \
     apt-get install -qq -y \
         build-essential \
         clang \
@@ -37,7 +43,7 @@ RUN apt-get update && \
 ENV LANG en_US.utf8
 
 RUN ln -sf /usr/bin/python3 /usr/bin/python && \
-    python -m pip install --upgrade pip==19.0.2 && \
+    python -m pip install --upgrade pip==19.2.2 && \
     python -m pip install \ 
                   applicationinsights==0.11.7 \
                   certifi==2018.11.29 \
