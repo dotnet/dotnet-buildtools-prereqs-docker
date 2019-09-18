@@ -46,6 +46,18 @@
         {
           "platforms": [
             {
+              "dockerfile": "src/alpine/3.10/helix/amd64",
+              "os": "linux",
+              "osVersion": "alpine3.10",
+              "tags": {
+                "alpine-3.10-helix-$(System:DockerfileGitCommitSha)-$(System:TimeStamp)": {}
+              }
+            }
+          ]
+        },
+        {
+          "platforms": [
+            {
               "dockerfile": "src/alpine/3.8/helix/amd64",
               "os": "linux",
               "osVersion": "alpine3.8",
