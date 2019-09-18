@@ -44,7 +44,7 @@ RUN yum install -y \
     && \
     yum clean all
 
-# Build and install CMake 3.14
+# Build and install CMake 3.15.3
 
 RUN wget -O cmake-install.sh https://github.com/Kitware/CMake/releases/download/v3.15.3/cmake-3.15.3-Linux-x86_64.sh && \
     bash ./cmake-install.sh --skip-license --exclude-subdir --prefix=/usr/local && \
