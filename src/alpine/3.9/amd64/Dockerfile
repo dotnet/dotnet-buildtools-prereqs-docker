@@ -8,7 +8,6 @@ RUN apk add --no-cache \
         build-base \
         clang \
         clang-dev \
-        cmake \
         coreutils \
         curl \
         curl-dev \
@@ -33,6 +32,7 @@ RUN apk add --no-cache \
         zlib-dev
 
 RUN apk -X http://dl-cdn.alpinelinux.org/alpine/edge/main add --no-cache \
+        cmake \
         userspace-rcu-dev \
         lttng-ust-dev \
         numactl-dev

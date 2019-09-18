@@ -4,10 +4,12 @@ FROM ubuntu:16.04
 # this does not include libraries that we need to compile different projects, we'd like
 # them in a different layer.
 RUN apt-get update && \
-    apt-get install -y wget && \
+    apt-get install -y apt-transport-https ca-certificates gnupg software-properties-common wget && \
     echo "deb http://llvm.org/apt/xenial/ llvm-toolchain-xenial main" | tee /etc/apt/sources.list.d/llvm.list && \
     echo "deb http://llvm.org/apt/xenial/ llvm-toolchain-xenial-3.9 main" | tee -a /etc/apt/sources.list.d/llvm.list && \
     wget -O - http://llvm.org/apt/llvm-snapshot.gpg.key | apt-key add - && \
+    wget -O - https://apt.kitware.com/keys/kitware-archive-latest.asc | apt-key add - && \
+    apt-add-repository 'deb https://apt.kitware.com/ubuntu/ xenial main' && \
     apt-get update && \
     apt-get install -y \
             cmake \

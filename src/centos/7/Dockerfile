@@ -8,8 +8,6 @@ RUN yum install -y \
     && \
     yum install -y \
         "perl(Time::HiRes)" \
-        cmake \
-        cmake3 \
         doxygen \
         gcc \
         gcc-c++ \
@@ -46,6 +44,12 @@ RUN yum install -y \
     && \
     yum clean all
 
+# Build and install CMake 3.15.3
+
+RUN wget -O cmake-install.sh https://github.com/Kitware/CMake/releases/download/v3.15.3/cmake-3.15.3-Linux-x86_64.sh && \
+    bash ./cmake-install.sh --skip-license --exclude-subdir --prefix=/usr/local && \
+    rm ./cmake-install.sh
+
 # Build and install clang and lldb 3.9.1
 
 RUN wget ftp://sourceware.org/pub/binutils/snapshots/binutils-2.29.1.tar.xz && \
@@ -70,7 +74,7 @@ RUN wget ftp://sourceware.org/pub/binutils/snapshots/binutils-2.29.1.tar.xz && \
     \
     mkdir llvmbuild && \
     cd llvmbuild && \
-    cmake3 \
+    cmake \
         -DCMAKE_BUILD_TYPE=Release \
         -DLLVM_LIBDIR_SUFFIX=64\
         -DLLVM_ENABLE_EH=1 \

@@ -12,8 +12,6 @@ RUN yum install -y \
     yum install -y \
         "perl(Time::HiRes)" \
         autoconf \
-        cmake \
-        cmake3 \
         devtoolset-2-toolchain \
         doxygen \
         expat-devel \
@@ -45,6 +43,12 @@ RUN yum install -y \
     && \
     yum clean all
 
+# Build and install CMake 3.15.3
+
+RUN wget -O cmake-install.sh https://github.com/Kitware/CMake/releases/download/v3.15.3/cmake-3.15.3-Linux-x86_64.sh && \
+    bash ./cmake-install.sh --skip-license --exclude-subdir --prefix=/usr/local && \
+    rm ./cmake-install.sh
+
 # Build and install clang and lldb 3.9.1
 
 RUN wget ftp://sourceware.org/pub/binutils/snapshots/binutils-2.29.1.tar.xz && \
@@ -71,7 +75,7 @@ RUN wget ftp://sourceware.org/pub/binutils/snapshots/binutils-2.29.1.tar.xz && \
     cd llvmbuild && \
     scl enable python27 devtoolset-2 \
     ' \
-        cmake3 \
+        cmake \
             -DCMAKE_CXX_COMPILER=/opt/rh/devtoolset-2/root/usr/bin/g++ \
             -DCMAKE_C_COMPILER=/opt/rh/devtoolset-2/root/usr/bin/gcc \
             -DCMAKE_LINKER=/opt/rh/devtoolset-2/root/usr/bin/ld \
