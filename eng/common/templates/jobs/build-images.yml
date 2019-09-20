@@ -45,6 +45,9 @@ jobs:
   - template: ${{ format('../steps/init-docker-{0}.yml', parameters.dockerClientOS) }}
     parameters:
       setupRemoteDockerServer: ${{ parameters.useRemoteDockerServer }}
+  - script: ./src/ubuntu/build-scripts/install-cross-build-prereqs.sh
+    displayName: Install Build Pre-Reqs
+    condition: and(succeeded(), contains(variables.imageBuilderPaths, 'ubuntu'))
   - script: >
       $(runImageBuilderCmd) build
       --manifest $(manifest)
