@@ -14,3 +14,6 @@ variables:
 
 stages:
   - template: ../common/templates/stages/build-test-publish-repo.yml
+    parameters:
+      customBuildInitSteps:
+      - template: /eng/pipelines/steps/install-cross-build-prereqs.yml
