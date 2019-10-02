@@ -1,0 +1,4 @@
+steps:
+- script: ./src/ubuntu/build-scripts/install-cross-build-prereqs.sh
+  displayName: Install Cross Build Pre-Reqs
+  condition: and(succeeded(), contains(variables.imageBuilderPaths, 'ubuntu'))
