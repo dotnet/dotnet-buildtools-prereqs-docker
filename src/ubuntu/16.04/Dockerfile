@@ -5,21 +5,20 @@ FROM ubuntu:16.04
 # them in a different layer.
 RUN apt-get update && \
     apt-get install -y apt-transport-https ca-certificates gnupg software-properties-common wget && \
-    echo "deb http://llvm.org/apt/xenial/ llvm-toolchain-xenial main" | tee /etc/apt/sources.list.d/llvm.list && \
-    echo "deb http://llvm.org/apt/xenial/ llvm-toolchain-xenial-3.9 main" | tee -a /etc/apt/sources.list.d/llvm.list && \
+    echo "deb http://llvm.org/apt/xenial/ llvm-toolchain-xenial-9 main" | tee -a /etc/apt/sources.list.d/llvm.list && \
     wget -O - http://llvm.org/apt/llvm-snapshot.gpg.key | apt-key add - && \
     wget -O - https://apt.kitware.com/keys/kitware-archive-latest.asc | apt-key add - && \
     apt-add-repository 'deb https://apt.kitware.com/ubuntu/ xenial main' && \
     apt-get update && \
     apt-get install -y \
             cmake \
-            clang-3.9 \
+            clang-9 \
             gdb \
-            liblldb-3.9-dev \
-            lldb-3.9 \
-            llvm-3.9 \
+            liblldb-6.0-dev \
+            lldb-6.0 \
+            llvm-9 \
             make \
-            python-lldb-3.9 \
+            python-lldb-6.0 \
             sudo && \
     apt-get clean
 

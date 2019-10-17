@@ -3,14 +3,14 @@ FROM centos:7
 # Install dependencies
 
 RUN yum install -y \
-        centos-release-SCL \
+        centos-release-scl \
+        scl-utils-build \
         epel-release \
     && \
     yum install -y \
         "perl(Time::HiRes)" \
+        devtoolset-7-gcc* \
         doxygen \
-        gcc \
-        gcc-c++ \
         gdb \
         git \
         krb5-devel \
@@ -50,41 +50,41 @@ RUN wget -O cmake-install.sh https://github.com/Kitware/CMake/releases/download/
     bash ./cmake-install.sh --skip-license --exclude-subdir --prefix=/usr/local && \
     rm ./cmake-install.sh
 
-# Build and install clang and lldb 3.9.1
+# Build and install clang and lldb 9.0.0
 
 RUN wget ftp://sourceware.org/pub/binutils/snapshots/binutils-2.29.1.tar.xz && \
-    wget http://releases.llvm.org/3.9.1/cfe-3.9.1.src.tar.xz && \
-    wget http://releases.llvm.org/3.9.1/llvm-3.9.1.src.tar.xz && \
-    wget http://releases.llvm.org/3.9.1/lldb-3.9.1.src.tar.xz && \
-    wget http://releases.llvm.org/3.9.1/compiler-rt-3.9.1.src.tar.xz && \
+    wget http://releases.llvm.org/9.0.0/cfe-9.0.0.src.tar.xz && \
+    wget http://releases.llvm.org/9.0.0/llvm-9.0.0.src.tar.xz && \
+    wget http://releases.llvm.org/9.0.0/lldb-9.0.0.src.tar.xz && \
+    wget http://releases.llvm.org/9.0.0/compiler-rt-9.0.0.src.tar.xz && \
     \
     tar -xf binutils-2.29.1.tar.xz && \
-    tar -xf llvm-3.9.1.src.tar.xz && \
-    mkdir llvm-3.9.1.src/tools/clang && \
-    mkdir llvm-3.9.1.src/tools/lldb && \
-    mkdir llvm-3.9.1.src/projects/compiler-rt && \
-    tar -xf cfe-3.9.1.src.tar.xz --strip 1 -C llvm-3.9.1.src/tools/clang && \
-    tar -xf lldb-3.9.1.src.tar.xz --strip 1 -C llvm-3.9.1.src/tools/lldb && \
-    tar -xf compiler-rt-3.9.1.src.tar.xz --strip 1 -C llvm-3.9.1.src/projects/compiler-rt && \
+    tar -xf llvm-9.0.0.src.tar.xz && \
+    mkdir llvm-9.0.0.src/tools/clang && \
+    mkdir llvm-9.0.0.src/tools/lldb && \
+    mkdir llvm-9.0.0.src/projects/compiler-rt && \
+    tar -xf cfe-9.0.0.src.tar.xz --strip 1 -C llvm-9.0.0.src/tools/clang && \
+    tar -xf lldb-9.0.0.src.tar.xz --strip 1 -C llvm-9.0.0.src/tools/lldb && \
+    tar -xf compiler-rt-9.0.0.src.tar.xz --strip 1 -C llvm-9.0.0.src/projects/compiler-rt && \
     rm binutils-2.29.1.tar.xz && \
-    rm cfe-3.9.1.src.tar.xz && \
-    rm lldb-3.9.1.src.tar.xz && \
-    rm llvm-3.9.1.src.tar.xz && \
-    rm compiler-rt-3.9.1.src.tar.xz && \
+    rm cfe-9.0.0.src.tar.xz && \
+    rm lldb-9.0.0.src.tar.xz && \
+    rm llvm-9.0.0.src.tar.xz && \
+    rm compiler-rt-9.0.0.src.tar.xz && \
     \
     mkdir llvmbuild && \
     cd llvmbuild && \
-    cmake \
+    scl enable devtoolset-7 'cmake \
         -DCMAKE_BUILD_TYPE=Release \
         -DLLVM_LIBDIR_SUFFIX=64\
         -DLLVM_ENABLE_EH=1 \
         -DLLVM_ENABLE_RTTI=1 \
         -DLLVM_BINUTILS_INCDIR=../binutils-2.29.1/include \
-        ../llvm-3.9.1.src \
+        ../llvm-9.0.0.src' \
     && \
-    make -j $(($(getconf _NPROCESSORS_ONLN)+1)) && \
+    scl enable devtoolset-7 'make -j $(($(getconf _NPROCESSORS_ONLN)+1))' && \
     make install && \
     cd .. && \
     rm -r llvmbuild && \
-    rm -r llvm-3.9.1.src && \
+    rm -r llvm-9.0.0.src && \
     rm -r binutils-2.29.1
