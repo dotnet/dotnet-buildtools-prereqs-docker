@@ -11,8 +11,8 @@ RUN apt-get update && \
     apt-add-repository 'deb https://apt.kitware.com/ubuntu/ xenial main' && \
     apt-get update && \
     apt-get install -y \
-            cmake \
             clang-9 \
+            cmake \
             gdb \
             liblldb-6.0-dev \
             lldb-6.0 \
@@ -25,11 +25,11 @@ RUN apt-get update && \
 # Install tools used by the VSO build automation.  nodejs-legacy is a Debian specific
 # package that provides `node' on the path (which azure cli needs).
 RUN apt-get install -y git \
-            zip \
-            tar \
             nodejs \
             nodejs-legacy \
-            npm && \
+            npm \
+            tar \
+            zip && \
     apt-get clean && \
     npm install -g azure-cli@0.9.20 && \
     npm cache clean

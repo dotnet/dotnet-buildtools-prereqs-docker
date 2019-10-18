@@ -4,8 +4,8 @@ FROM centos:7
 
 RUN yum install -y \
         centos-release-scl \
-        scl-utils-build \
         epel-release \
+        scl-utils-build \
     && \
     yum install -y \
         "perl(Time::HiRes)" \

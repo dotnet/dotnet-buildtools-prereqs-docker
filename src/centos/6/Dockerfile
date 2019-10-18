@@ -4,23 +4,23 @@ FROM centos:6
 
 RUN yum install -y \
         centos-release-SCL \
-        scl-utils-build \
         epel-release \
+        scl-utils-build \
         wget \
     && \
     rpm --import http://linuxsoft.cern.ch/cern/slc6X/x86_64/RPM-GPG-KEY-cern && \
     wget -O /etc/yum.repos.d/slc6-devtoolset.repo http://linuxsoft.cern.ch/cern/devtoolset/slc6-devtoolset.repo && \
     yum install -y \
         "perl(Time::HiRes)" \
-        devtoolset-7-gcc* \
         autoconf \
         automake \
         byacc \
+        devtoolset-7-gcc* \
         doxygen \
         expat-devel \
         gdb \
-        git \
         gettext-devel \
+        git \
         krb5-devel \
         libedit-devel \
         libidn-devel \

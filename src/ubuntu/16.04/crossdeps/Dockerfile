@@ -14,13 +14,13 @@ RUN apt-get update \
     && apt-get install -y \
         binfmt-support \
         binutils-arm-linux-gnueabihf \
+        build-essential \
         cmake \
         debootstrap \
         gdb \
         make \
         qemu \
         qemu-user-static \
-        build-essential \
     && rm -rf /var/lib/apt/lists/*
 
 RUN apt-get update \
@@ -28,10 +28,10 @@ RUN apt-get update \
     && wget -O - http://apt.llvm.org/llvm-snapshot.gpg.key | apt-key add - \
     && apt-get update \
     && apt-get install -y \
-        llvm-9 \
         clang-9 \
         liblldb-6.0-dev \
         lldb-6.0 \
+        llvm-9 \
         python-lldb-6.0 \
     && rm -rf /var/lib/apt/lists/*
 
