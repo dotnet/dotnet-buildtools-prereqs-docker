@@ -14,26 +14,25 @@ RUN apt-get update \
     && apt-get install -y \
         binfmt-support \
         binutils-arm-linux-gnueabihf \
+        build-essential \
         cmake \
         debootstrap \
         gdb \
         make \
         qemu \
         qemu-user-static \
-        build-essential \
     && rm -rf /var/lib/apt/lists/*
 
 RUN apt-get update \
-    && echo "deb http://apt.llvm.org/xenial/ llvm-toolchain-xenial-5.0 main" | tee -a /etc/apt/sources.list.d/llvm.list \
-    && echo "deb-src http://apt.llvm.org/xenial/ llvm-toolchain-xenial-5.0 main" | tee -a /etc/apt/sources.list.d/llvm.list \
+    && apt-add-repository 'deb http://apt.llvm.org/xenial/ llvm-toolchain-xenial-9 main' \
     && wget -O - http://apt.llvm.org/llvm-snapshot.gpg.key | apt-key add - \
     && apt-get update \
     && apt-get install -y \
-        llvm-5.0 \
-        clang-5.0 \
-        liblldb-5.0-dev \
-        lldb-5.0 \
-        python-lldb-5.0 \
+        clang-9 \
+        liblldb-6.0-dev \
+        lldb-6.0 \
+        llvm-9 \
+        python-lldb-6.0 \
     && rm -rf /var/lib/apt/lists/*
 
 # Install x86_arm crossgen dependencies
