@@ -4,7 +4,7 @@ trigger:
     - master
   paths:
     include:
-    - src/ubuntu/*
+    - src/ubuntu/19*
 pr: none
 
 variables:
