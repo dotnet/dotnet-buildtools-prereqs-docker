@@ -4,13 +4,13 @@ trigger:
     - master
   paths:
     include:
-    - src/ubuntu/19.04/*
+    - src/ubuntu/19*
 pr: none
 
 variables:
 - template: variables/common.yml
 - name: imageBuilder.pathArgs
-  value: --path 'src/ubuntu/19.04*'
+  value: --path 'src/ubuntu/19*'
 
 stages:
   - template: ../common/templates/stages/build-test-publish-repo.yml
