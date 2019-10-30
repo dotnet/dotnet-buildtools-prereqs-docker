@@ -10,7 +10,7 @@ pr: none
 variables:
 - template: variables/common.yml
 - name: imageBuilder.pathArgs
-  value: --path 'src/ubuntu/*'
+  value: --path 'src/ubuntu/19*'
 
 stages:
   - template: ../common/templates/stages/build-test-publish-repo.yml
