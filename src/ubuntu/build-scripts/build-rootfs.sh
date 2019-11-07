@@ -30,19 +30,19 @@ do
         exit 1
     fi
 
-    echo "Using $dockerCrossDepsTag to clone core-setup to fetch scripts used to build cross-toolset"
+    echo "Using $dockerCrossDepsTag to clone arcade to fetch scripts used to build cross-toolset"
     docker exec $buildRootFSContainer \
-        git clone https://github.com/dotnet/core-setup /scripts
+        git clone https://github.com/dotnet/arcade /scripts
 
     if [ $? -ne 0 ]; then
-        echo "Rootfs build failed: `git clone https://github.com/dotnet/core-setup /scripts` returned error"
+        echo "Rootfs build failed: `git clone https://github.com/dotnet/arcade /scripts` returned error"
         docker rm -f $buildRootFSContainer
         exit 1
     fi
 
     echo "Running build-rootfs.sh"
     docker exec -e ROOTFS_DIR=/rootfs/$arch $buildRootFSContainer \
-         /scripts/cross/build-rootfs.sh $arch $crossToolset $lldb --skipunmount
+         /scripts/eng/common/cross/build-rootfs.sh $arch $crossToolset $lldb --skipunmount
 
     if [ $? -ne 0 ]; then
         echo "Rootfs build failed: build-rootfs.sh returned error"
