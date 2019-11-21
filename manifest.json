@@ -401,6 +401,20 @@
         {
           "platforms": [
             {
+              "architecture": "arm64",
+              "dockerfile": "src/alpine/3.10/helix/arm64v8",
+              "os": "linux",
+              "osVersion": "alpine3.10",
+              "tags": {
+                "alpine-3.10-helix-arm64v8-$(System:DockerfileGitCommitSha)-$(System:TimeStamp)": {}
+              },
+              "variant": "v8"
+            }
+          ]
+        },
+        {
+          "platforms": [
+            {
               "dockerfile": "src/ubuntu/16.04/cross",
               "os": "linux",
               "osVersion": "ubuntu16.04",
