@@ -71,5 +71,3 @@ RUN /usr/sbin/adduser -D -g '' -G adm -s /bin/bash -u 1001 helixbot && \
 USER helixbot
 
 RUN python -m virtualenv --no-site-packages /home/helixbot/.vsts-env
-
-
