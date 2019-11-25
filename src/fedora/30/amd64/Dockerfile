@@ -42,5 +42,5 @@ RUN dnf install -y \
 
 # Dependencies of source-build.
 RUN dnf install -y \
-        glibc-langpack-en
+        glibc-langpack-en \
     && dnf clean all
