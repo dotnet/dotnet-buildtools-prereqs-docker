@@ -39,3 +39,8 @@ RUN dnf install -y \
         lttng-ust-devel \
         uuid-devel \
     && dnf clean all
+
+# Dependencies of source-build.
+RUN dnf install -y \
+        glibc-langpack-en
+    && dnf clean all
