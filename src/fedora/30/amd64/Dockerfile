@@ -40,4 +40,3 @@ RUN dnf install -y \
         lttng-ust-devel \
         uuid-devel \
     && dnf clean all
-    
