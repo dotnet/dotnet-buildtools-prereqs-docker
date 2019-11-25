@@ -8,6 +8,7 @@ RUN dnf install -y \
         cmake \
         findutils \
         gdb \
+        glibc-langpack-en \
         lldb-devel \
         llvm-devel \
         make \
@@ -15,7 +16,6 @@ RUN dnf install -y \
         python2-lldb \
         sudo \
         which \
-        glibc-langpack-en \
     && dnf clean all
 
 # Install tools used by build automation.
