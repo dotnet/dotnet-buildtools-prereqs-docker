@@ -8,6 +8,7 @@ RUN dnf install -y \
         cmake \
         findutils \
         gdb \
+        glibc-langpack-en \
         lldb-devel \
         llvm-devel \
         make \
