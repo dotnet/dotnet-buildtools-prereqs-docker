@@ -30,22 +30,22 @@ There will be a need for modifying existing Dockerfiles or creating new ones.  F
 
 2. Validate the changes locally by running [build.ps1](./build.ps1).  It is strongly suggested to specify the `-DockerfilePath` option to avoid the overhead of building all the images.
 
-    For example, if editing the [Fedora 24 Dockerfile](./src/fedora/24/Dockerfile), then run the following command to build just that Dockerfile.
+    For example, if editing the [Fedora 30 Dockerfile](./src/fedora/30/amd64/Dockerfile), then run the following command to build just that Dockerfile.
 
     ```powershell
-    .\build.ps1 -DockerfilePath "fedora/24"
+    .\build.ps1 -DockerfilePath "*fedora/30/amd64*"
     ```
 
     It is a good practice to use `--dry-run` option on the first attempt to verify what commands will get run.
 
     ```powershell
-    .\build.ps1 -DockerfilePath "fedora/24" -ImageBuilderCustomArgs "--dry-run"
+    .\build.ps1 -DockerfilePath "*fedora/30/amd64*" -ImageBuilderCustomArgs "--dry-run"
     ```
 
     Partial paths and wildcards in the `-DockerfilePath` option are also supported.  The following example will build all the Fedora Dockerfiles.
 
     ```powershell
-    .\build.ps1 -DockerfilePath "fedora/*"
+    .\build.ps1 -DockerfilePath "*fedora/*"
     ```
 
 3. Prepare a PR
@@ -54,7 +54,7 @@ There will be a need for modifying existing Dockerfiles or creating new ones.  F
 
 ### Source Folder Structure
 
-The folder structure used in [src](./src) aligns with the tagging convention - `<linux-distribution-name>-<version>-<variant>-<architecture>`.  For example, the Dockerfile used to produce the `mcr.microsoft.com/dotnet-buildtools/prereqs:alpine-3.6-1fc8e66-20181220200247` image is stored in the [src/alpine/3.6/amd64](./src/alpine/3.6/amd64) folder.
+The folder structure used in [src](./src) aligns with the tagging convention - `<linux-distribution-name>-<version>-<variant>-<architecture>`.  For example, the Dockerfile used to produce the `mcr.microsoft.com/dotnet-buildtools/prereqs:alpine-3.9-50f0d02-20191210224540` image is stored in the [src/alpine/3.9/amd64](./src/alpine/3.9/amd64) folder.
 
 ### Manifest
 
@@ -64,10 +64,10 @@ The [manifest.json](./manifest.json) contains metadata used by the build infrast
 {
   "platforms": [
     {
-      "dockerfile": "alpine/3.6/amd64",
+      "dockerfile": "alpine/3.9/amd64",
       "os": "linux",
       "tags": {
-        "alpine-3.6-$(System:DockerfileGitCommitSha)-$(System:TimeStamp)": {}
+        "alpine-3.9-$(System:DockerfileGitCommitSha)-$(System:TimeStamp)": {}
       }
     }
   ]
