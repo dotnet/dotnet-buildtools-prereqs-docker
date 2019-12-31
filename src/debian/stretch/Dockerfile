@@ -35,8 +35,21 @@ RUN apt-get update \
 
 # Install tools used by the VSO build automation.
 RUN curl -sL https://deb.nodesource.com/setup_9.x | bash - \
-    && apt-get install -y nodejs \
-    && npm install -g azure-cli --unsafe-perm
+    && apt-get install -y nodejs
+
+# Install Azure CLI
+RUN apt-get update \
+    && apt-get install ca-certificates curl apt-transport-https lsb-release gnupg -y \
+    && curl -sL https://packages.microsoft.com/keys/microsoft.asc | \
+        gpg --dearmor | \
+        tee /etc/apt/trusted.gpg.d/microsoft.asc.gpg > /dev/null \
+    && echo "deb [arch=amd64] https://packages.microsoft.com/repos/azure-cli/ $(lsb_release -cs) main" | \
+        tee /etc/apt/sources.list.d/azure-cli.list \
+    && apt-get update \
+    && apt-get install azure-cli \
+    && rm -rf /etc/apt/trusted.gpg.d/microsoft.asc.gpg \
+    && rm -rf /etc/apt/sources.list.d/azure-cli.list \
+    && rm -rf /var/lib/apt/lists/*
 
 # Until official packages are available, we have to restore the ubuntu ones instead.
 ENV __PUBLISH_RID=ubuntu.14.04-x64
