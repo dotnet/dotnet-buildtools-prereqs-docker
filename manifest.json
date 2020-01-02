@@ -109,60 +109,6 @@
         {
           "platforms": [
             {
-              "dockerfile": "src/debian/jessie/coredeps",
-              "os": "linux",
-              "osVersion": "jessie",
-              "tags": {
-                "debian-jessie-coredeps-$(System:DockerfileGitCommitSha)-$(System:TimeStamp)": {},
-                "debian-jessie-coredeps": {
-                  "isLocal": true
-                }
-              }
-            }
-          ]
-        },
-        {
-          "platforms": [
-            {
-              "dockerfile": "src/debian/jessie",
-              "os": "linux",
-              "osVersion": "jessie",
-              "tags": {
-                "debian-jessie-$(System:DockerfileGitCommitSha)-$(System:TimeStamp)": {},
-                "debian-jessie": {
-                  "isLocal": true
-                }
-              }
-            }
-          ]
-        },
-        {
-          "platforms": [
-            {
-              "dockerfile": "src/debian/jessie/debpkg",
-              "os": "linux",
-              "osVersion": "jessie",
-              "tags": {
-                "debian-jessie-debpkg-$(System:DockerfileGitCommitSha)-$(System:TimeStamp)": {}
-              }
-            }
-          ]
-        },
-        {
-          "platforms": [
-            {
-              "dockerfile": "src/debian/jessie/corert",
-              "os": "linux",
-              "osVersion": "jessie",
-              "tags": {
-                "debian-jessie-corert-$(System:DockerfileGitCommitSha)-$(System:TimeStamp)": {}
-              }
-            }
-          ]
-        },
-        {
-          "platforms": [
-            {
               "dockerfile": "src/debian/stretch-slim/docker-testrunner",
               "os": "linux",
               "osVersion": "stretch",
