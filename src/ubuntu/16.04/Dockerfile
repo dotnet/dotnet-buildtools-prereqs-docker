@@ -30,7 +30,9 @@ RUN apt-get install -y git \
             npm \
             tar \
             zip && \
-    apt-get clean
+    apt-get clean && \
+    npm install -g azure-cli@0.9.20 && \
+    npm cache clean
 
 # Dependencies for CoreCLR and CoreFX
 RUN apt-get install -y gettext \
@@ -45,17 +47,3 @@ RUN apt-get install -y gettext \
             libunwind8 \
             uuid-dev \
     && apt-get clean
-
-# Install Azure CLI
-RUN apt-get update \
-    && apt-get install ca-certificates curl apt-transport-https lsb-release gnupg -y \
-    && curl -sL https://packages.microsoft.com/keys/microsoft.asc | \
-        gpg --dearmor | \
-        tee /etc/apt/trusted.gpg.d/microsoft.asc.gpg > /dev/null \
-    && echo "deb [arch=amd64] https://packages.microsoft.com/repos/azure-cli/ $(lsb_release -cs) main" | \
-        tee /etc/apt/sources.list.d/azure-cli.list \
-    && apt-get update \
-    && apt-get install azure-cli \
-    && rm -rf /etc/apt/trusted.gpg.d/microsoft.asc.gpg \
-    && rm -rf /etc/apt/sources.list.d/azure-cli.list \
-    && rm -rf /var/lib/apt/lists/*
