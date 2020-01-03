@@ -28,9 +28,25 @@ RUN apt-get update \
         npm \
         tar \
         zip \
-    && rm -rf /var/lib/apt/lists/* \
-    && npm install -g azure-cli@0.10.15 \
-    && npm cache clean
+    && rm -rf /var/lib/apt/lists/*
+
+# Install Azure CLI
+RUN apt-get update \
+    && apt-get install -y \
+        apt-transport-https \
+        ca-certificates \
+        curl \
+        gnupg \
+        lsb-release \
+    && curl -sL https://packages.microsoft.com/keys/microsoft.asc | \
+        gpg --dearmor | \
+        tee /etc/apt/trusted.gpg.d/microsoft.asc.gpg > /dev/null \
+    && echo "deb [arch=amd64] https://packages.microsoft.com/repos/azure-cli/ $(lsb_release -cs) main" | \
+        tee /etc/apt/sources.list.d/azure-cli.list \
+    && apt-get update \
+    && apt-get install -y \
+        azure-cli \
+    && rm -rf /var/lib/apt/lists/*
 
 # Dependencies for CoreCLR and CoreFX
 RUN apt-get update \
