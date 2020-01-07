@@ -1,4 +1,4 @@
-FROM python:3.7-alpine3.8
+FROM python:3.7-alpine3.11
 
 # Install .NET Core Dependencies for Alpine
 

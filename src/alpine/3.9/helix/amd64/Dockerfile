@@ -1,4 +1,4 @@
-FROM python:3.7.3-alpine3.9
+FROM python:3.7-alpine3.9
 
 # Install .NET Core Dependencies for Alpine
 
@@ -41,21 +41,9 @@ RUN apk update && \
 # Install Helix Dependencies
 
 RUN ln -sf /usr/bin/python3 /usr/bin/python && \
-    python -m pip install --upgrade pip==19.1 && \
-    python -m pip install \ 
-                  applicationinsights==0.11.7 \
-                  certifi==2018.11.29 \
-                  cryptography==2.5 \
-                  docker==3.6.0 \
-                  ndg-httpsclient==0.5.1  \
-                  psutil==5.4.8 \
-                  pyasn1==0.4.5 \
-                  pyopenssl==18.0.0 \
-                  requests==2.21.0 \
-                  six==1.12.0 \
-                  virtualenv==16.2.0 \
-                  azure-devops==5.0.0b9 \
-                  future==0.17.1
+    python -m pip install --upgrade pip==19.3.1 && \
+    python -m pip install virtualenv==16.6.0 && \
+    python -m pip install helix-scripts --extra-index-url https://dnceng.pkgs.visualstudio.com/public/_packaging/helix-client-prod/pypi/simple
 
 # Needed for corefx tests to pass
 ENV LANG=en-US.UTF-8
