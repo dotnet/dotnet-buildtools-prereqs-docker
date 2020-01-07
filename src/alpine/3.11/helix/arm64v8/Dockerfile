@@ -1,4 +1,4 @@
-FROM arm64v8/alpine:3.8
+FROM arm64v8/alpine:3.11
 
 # Install .NET Core Dependencies for Alpine
 
@@ -59,5 +59,3 @@ RUN /usr/sbin/adduser -D -g '' -G adm -s /bin/bash -u 1001 helixbot && \
 USER helixbot
 
 RUN python -m virtualenv --no-site-packages /home/helixbot/.vsts-env
-
-

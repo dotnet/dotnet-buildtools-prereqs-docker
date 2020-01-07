@@ -35,9 +35,9 @@ RUN apt-get update && \
 ENV LANG en_US.utf8
 
 RUN ln -sf /usr/bin/python3 /usr/bin/python && \
-    python -m pip install --upgrade pip==19.0.2 && \
-    python -m pip install virtualenv==16.2.0 && \
-    python -m pip install helix-scripts --extra-index-url https://dnceng.pkgs.visualstudio.com/public/_packaging/helix-client-staging/pypi/simple
+    python -m pip install --upgrade pip==19.3.1 && \
+    python -m pip install virtualenv==16.6.0 && \
+    python -m pip install helix-scripts --extra-index-url https://dnceng.pkgs.visualstudio.com/public/_packaging/helix-client-prod/pypi/simple
 
 # create helixbot user and give rights to sudo without password
 RUN /usr/sbin/adduser --disabled-password --gecos '' --uid 1000 --shell /bin/bash --ingroup adm helixbot && \
