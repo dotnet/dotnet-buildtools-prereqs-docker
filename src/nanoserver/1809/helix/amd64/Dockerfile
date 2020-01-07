@@ -16,8 +16,8 @@ RUN curl -SL --output %TEMP%\python.zip https://www.nuget.org/api/v2/package/pyt
 ENV PATH="$PATH;C:\Program Files\PowerShell\;C:\Python;C:\python\scripts"
 
 RUN python -m pip install --upgrade pip `
-    && python -m pip install virtualenv==16.5.0 &&
-       python -m pip install helix-scripts --extra-index-url https://dnceng.pkgs.visualstudio.com/public/_packaging/helix-client-prod/pypi/simple
+    && python -m pip install virtualenv==16.5.0 && `
+       python -m pip install helix-scripts --extra-index-url https://dnceng.pkgs.visualstudio.com/public/_packaging/helix-client-prod/pypi/simple `
     && pwsh -Command `
                     New-Item -Path 'HKLM:\SOFTWARE\Microsoft\Windows\Windows Error Reporting\LocalDumps\' -Name 'dotnet.exe' -Force -ErrorAction SilentlyContinue ; `
                     Set-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\Windows\Windows Error Reporting\LocalDumps\dotnet.exe' -Value 2 -Name DumpType -Force ; `
