@@ -4,7 +4,10 @@ FROM arm64v8/debian:9
 
 RUN apt-get update && \
     apt-get install -y \
+        autoconf \
+        automake \
         at \
+        build-essential \
         curl \
         gcc \
         gdb \
@@ -16,6 +19,7 @@ RUN apt-get update && \
         libicu-dev \
         libnuma-dev \
         libssl-dev \
+        libtool \
         libunwind8 \
         locales \
         locales-all \

@@ -5,6 +5,7 @@ FROM arm64v8/alpine:3.8
 RUN apk update && \
     apk add --no-cache \
         autoconf \
+        automake \
         bash \
         build-base \
         clang \

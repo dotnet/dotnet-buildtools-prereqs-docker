@@ -27,6 +27,7 @@ RUN yum install -y \
         libmetalink-devel \
         libnghttp2-devel \
         libssh2-devel \
+        libtool \
         libunwind-devel \
         libuuid-devel \
         lttng-ust-devel \

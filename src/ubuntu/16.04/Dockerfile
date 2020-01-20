@@ -34,8 +34,12 @@ RUN apt-get install -y git \
     npm install -g azure-cli@0.9.20 && \
     npm cache clean
 
-# Dependencies for CoreCLR and CoreFX
-RUN apt-get install -y gettext \
+# Dependencies for CoreCLR, Mono and CoreFX
+RUN apt-get install -y \
+            autoconf \
+            automake \
+            build-essential \
+            gettext \
             libcurl4-openssl-dev \
             libgdiplus \
             libicu-dev \
@@ -43,6 +47,7 @@ RUN apt-get install -y gettext \
             liblttng-ust-dev \
             libnuma-dev \
             libssl-dev \
+            libtool \
             libunwind8-dev \
             libunwind8 \
             uuid-dev \

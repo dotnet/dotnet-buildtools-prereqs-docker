@@ -48,9 +48,12 @@ RUN apt-get update \
         azure-cli \
     && rm -rf /var/lib/apt/lists/*
 
-# Dependencies for CoreCLR and CoreFX
+# Dependencies for CoreCLR, Mono and CoreFX
 RUN apt-get update \
     && apt-get install -y \
+        autoconf \
+        automake \
+        build-essential \
         gettext \
         libgdiplus \
         libicu-dev \
@@ -58,6 +61,7 @@ RUN apt-get update \
         liblttng-ust-dev \
         libnuma-dev \
         libssl1.0-dev \
+        libtool \
         libunwind8 \
         libunwind8-dev \
         uuid-dev \
