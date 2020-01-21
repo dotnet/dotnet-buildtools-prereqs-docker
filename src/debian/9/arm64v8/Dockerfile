@@ -3,6 +3,9 @@ FROM arm64v8/debian:9
 # Dependencies for generic .NET Core builds
 RUN apt-get update \
     && apt-get install -y \
+            autoconf \
+            automake \
+            build-essential \
             curl \
             gettext \
             libcurl4-openssl-dev \
@@ -12,6 +15,7 @@ RUN apt-get update \
             liblttng-ust-dev \
             libnuma-dev \
             libssl-dev \
+            libtool \
             libunwind8 \
             libunwind8-dev \
             uuid-dev \

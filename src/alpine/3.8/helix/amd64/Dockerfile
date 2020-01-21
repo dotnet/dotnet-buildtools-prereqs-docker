@@ -5,6 +5,7 @@ FROM python:3.7-alpine3.8
 RUN apk update && \
     apk add --no-cache \
         autoconf \
+        automake \
         bash \
         build-base \
         clang \

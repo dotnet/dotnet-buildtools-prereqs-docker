@@ -4,6 +4,9 @@ FROM arm64v8/ubuntu:16.04
 
 RUN apt-get update && \
     apt-get install -y \
+        autoconf \
+        automake \
+        build-essential \
         gss-ntlmssp \
         iputils-ping \
         libcurl3 \
@@ -12,6 +15,7 @@ RUN apt-get update && \
         libicu-dev \
         libnuma-dev \
         libssl-dev \
+        libtool \
         libunwind8 \
         libunwind-dev \
         lldb-3.9 \

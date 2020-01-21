@@ -4,7 +4,10 @@ FROM debian:buster
 
 RUN apt-get update && \
     apt-get install -y \
+        autoconf \
+        automake \
         at \
+        build-essential \
         curl \
         gcc \
         gdb \
@@ -15,6 +18,7 @@ RUN apt-get update && \
         libgdiplus \
         libicu-dev \
         libssl-dev \
+        libtool \
         libunwind8 \
         locales \
         locales-all \

@@ -4,6 +4,7 @@ RUN apk update
 
 RUN apk add --no-cache \
         autoconf \
+        automake \
         bash \
         build-base \
         clang \

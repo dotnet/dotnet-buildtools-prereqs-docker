@@ -12,6 +12,8 @@ RUN apt-get update && \
     echo "deb https://download.mono-project.com/repo/ubuntu preview-bionic main" | tee /etc/apt/sources.list.d/mono-official-preview.list && \
     apt-get update && \
     apt-get install -qq -y \
+        autoconf \
+        automake \
         build-essential \
         clang \
         cmake \
@@ -26,6 +28,7 @@ RUN apt-get update && \
         libicu-dev \
         libnuma-dev \
         libssl-dev \
+        libtool \
         libunwind8 \
         libunwind-dev \
         lldb-3.9 \

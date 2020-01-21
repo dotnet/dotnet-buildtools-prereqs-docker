@@ -6,6 +6,8 @@ ENV DEBIAN_FRONTEND noninteractive
 
 RUN apt-get update && \
     apt-get install -qq -y \
+        autoconf \
+        automake \
         build-essential \
         cmake \
         clang \
@@ -20,6 +22,7 @@ RUN apt-get update && \
         libicu-dev \
         libnuma-dev \
         libssl-dev \
+        libtool \
         libunwind8 \
         libunwind-dev \
         lldb-3.9 \

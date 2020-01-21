@@ -10,6 +10,9 @@ RUN apt-get update && \
     echo "deb https://download.mono-project.com/repo/ubuntu preview-xenial main" | tee /etc/apt/sources.list.d/mono-official-preview.list  && \
     apt-get update && \
     apt-get install -y \
+        autoconf \
+        automake \
+        build-essential \
         gss-ntlmssp \
         iputils-ping \
         libcurl3 \
@@ -17,6 +20,7 @@ RUN apt-get update && \
         libgdiplus \
         libicu-dev \
         libssl-dev \
+        libtool \
         libunwind8 \
         libunwind-dev \
         lldb-3.9 \

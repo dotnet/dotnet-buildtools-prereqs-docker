@@ -2,6 +2,9 @@ FROM arm32v7/ubuntu:16.04
 
 RUN apt-get update && \
     apt-get install -y \
+        autoconf \
+        automake \
+        build-essential \
         libstdc++6 \
         libunwind8 \
         libunwind8-dev \
@@ -10,5 +13,6 @@ RUN apt-get update && \
         libcurl4-openssl-dev \
         libicu-dev \
         libssl-dev \
+        libtool \
         libkrb5-dev \
     && rm -rf /var/lib/apt/lists/*

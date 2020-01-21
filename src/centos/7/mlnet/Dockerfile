@@ -12,6 +12,8 @@ RUN wget http://releases.llvm.org/3.9.1/openmp-3.9.1.src.tar.xz && \
     mkdir llvmbuild && \
     cd llvmbuild && \
     cmake \
+        -DCMAKE_CXX_COMPILER=/usr/local/bin/clang++ \
+        -DCMAKE_C_COMPILER=/usr/local/bin/clang \
         -DCMAKE_BUILD_TYPE=Release \
         -DLLVM_LIBDIR_SUFFIX=64\
         -DLLVM_ENABLE_EH=1 \

@@ -26,8 +26,10 @@ RUN dnf install -y \
         zip \
     && dnf clean all
 
-# Dependencies of CoreCLR and CoreFX.
+# Dependencies of CoreCLR, Mono and CoreFX.
 RUN dnf install -y \
+        autoconf \
+        automake \
         compat-openssl10-devel \
         glibc-locale-source \
         iputils \
@@ -35,6 +37,7 @@ RUN dnf install -y \
         libcurl-devel \
         libgdiplus \
         libicu-devel \
+        libtool \
         libunwind-devel \
         libuuid-devel \
         lttng-ust-devel \

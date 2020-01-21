@@ -9,6 +9,8 @@ RUN yum install -y \
     && \
     yum install -y \
         "perl(Time::HiRes)" \
+        autoconf \
+        automake \
         devtoolset-7-gcc* \
         doxygen \
         gdb \
@@ -22,6 +24,7 @@ RUN yum install -y \
         libmetalink-devel \
         libnghttp2-devel \
         libssh2-devel \
+        libtool \
         libunwind-devel \
         libuuid-devel \
         libxml2-devel \

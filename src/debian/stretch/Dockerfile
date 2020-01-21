@@ -4,6 +4,9 @@ FROM debian:stretch
 # build anything (clang, cmake, make and the like)
 RUN apt-get update \
     && apt-get install -y \
+            autoconf \
+            automake \
+            build-essential \
             clang \
             cmake \
             curl \
@@ -21,6 +24,7 @@ RUN apt-get update \
             libnuma-dev \
             libssl1.0-dev \
             libssl1.0.2 \
+            libtool \
             libunwind8-dev \
             lldb-3.9 \
             llvm \
