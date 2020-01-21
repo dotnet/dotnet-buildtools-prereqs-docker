@@ -2,8 +2,8 @@ FROM arm32v7/ubuntu:16.04
 
 RUN apt-get update && \
     apt-get install -y \
-        automake \
         autoconf \
+        automake \
         build-essential \
         libstdc++6 \
         libunwind8 \

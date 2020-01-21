@@ -2,8 +2,8 @@ FROM arm64v8/ubuntu:18.04
 
 RUN apt-get update && \
     apt-get install -y \
-        automake \
         autoconf \
+        automake \
         libstdc++6 \
         libunwind8 \
         libunwind8-dev \

@@ -17,8 +17,8 @@ RUN apt-get update \
 # Dependencies for CoreCLR, Mono and CoreFX
 RUN apt-get update \
     && apt-get install -y \
-        automake \
         autoconf \
+        automake \
         build-essential \
         gettext \
         libcurl4-openssl-dev \

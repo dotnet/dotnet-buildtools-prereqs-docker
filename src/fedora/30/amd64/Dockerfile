@@ -28,8 +28,8 @@ RUN dnf install -y \
 
 # Dependencies of CoreCLR, Mono and CoreFX.
 RUN dnf install -y \
-        automake \
         autoconf \
+        automake \
         compat-openssl10-devel \
         glibc-locale-source \
         iputils \

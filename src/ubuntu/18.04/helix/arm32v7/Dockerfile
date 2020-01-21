@@ -12,8 +12,8 @@ RUN apt-get update && \
     echo "deb https://download.mono-project.com/repo/ubuntu preview-bionic main" | tee /etc/apt/sources.list.d/mono-official-preview.list && \
     apt-get update && \
     apt-get install -qq -y \
-        automake \
         autoconf \
+        automake \
         build-essential \
         clang \
         cmake \
