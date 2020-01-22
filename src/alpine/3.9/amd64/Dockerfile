@@ -32,7 +32,7 @@ RUN apk add --no-cache \
         which \
         zlib-dev
 
-RUN apk -X http://dl-cdn.alpinelinux.org/alpine/v3.11/main add --no-cache \
+RUN apk -X http://dl-cdn.alpinelinux.org/alpine/v3.10/main add --no-cache \
         cmake && \
     apk -X http://dl-cdn.alpinelinux.org/alpine/edge/main add --no-cache \
         userspace-rcu-dev \
