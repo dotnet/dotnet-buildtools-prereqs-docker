@@ -2,11 +2,11 @@ trigger: none
 pr:
   branches:
     include:
-    - master
+    - issue235
   paths:
     exclude:
     - src/*
-    - '*.md'
+    - README.md
 
 variables:
 - template: variables/common.yml
