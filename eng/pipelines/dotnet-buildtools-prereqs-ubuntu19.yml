@@ -5,7 +5,13 @@ trigger:
   paths:
     include:
     - src/ubuntu/19*
-pr: none
+pr:
+  branches:
+    include:
+    - master
+  paths:
+    include:
+    - src/ubuntu/19*
 
 variables:
 - template: variables/common.yml

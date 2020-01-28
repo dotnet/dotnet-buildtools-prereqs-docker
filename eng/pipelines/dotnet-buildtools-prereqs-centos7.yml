@@ -5,7 +5,13 @@ trigger:
   paths:
     include:
     - src/centos/7/*
-pr: none
+pr:
+  branches:
+    include:
+    - master
+  paths:
+    include:
+    - src/centos/7/*
 
 variables:
 - template: variables/common.yml

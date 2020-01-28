@@ -3,6 +3,10 @@ pr:
   branches:
     include:
     - master
+  paths:
+    exclude:
+    - src/*
+    - README.md
 
 variables:
 - template: variables/common.yml
