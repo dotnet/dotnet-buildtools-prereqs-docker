@@ -5,7 +5,13 @@ trigger:
   paths:
     include:
     - src/alpine/*
-pr: none
+pr:
+  branches:
+    include:
+    - master
+  paths:
+    include:
+    - src/alpine/*
 
 variables:
 - template: variables/common.yml
