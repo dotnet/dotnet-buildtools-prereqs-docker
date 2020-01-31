@@ -40,6 +40,7 @@ RUN yum install -y \
         python-argparse \
         python27 \
         readline-devel \
+        rh-python35 \
         sudo \
         xz \
         zlib-devel \

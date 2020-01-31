@@ -27,6 +27,8 @@ RUN apk add --no-cache \
         openssl-dev \
         paxctl \
         python \
+        python3 \
+        python3-dev \
         shadow \
         sudo \
         util-linux-dev \
