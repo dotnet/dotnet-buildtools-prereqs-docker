@@ -51,4 +51,5 @@ RUN apt-get install -y \
             libunwind8-dev \
             libunwind8 \
             uuid-dev \
+            python3 \
     && apt-get clean
