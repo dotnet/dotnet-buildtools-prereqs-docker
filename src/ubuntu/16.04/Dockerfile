@@ -50,5 +50,6 @@ RUN apt-get install -y \
             libtool \
             libunwind8-dev \
             libunwind8 \
+            python3 \
             uuid-dev \
     && apt-get clean
