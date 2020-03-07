@@ -1,12 +1,10 @@
 FROM mcr.microsoft.com/powershell:6.2.1-ubuntu-18.04
 
-# Install tools used by the VSO build automation.  nodejs-legacy is a Debian specific
-# package that provides `node' on the path (which azure cli needs).
+# Install tools used by the VSO build automation.
 RUN apt-get update \
     && apt-get install -y \
         git \
         nodejs \
-        nodejs-legacy \
         npm \
         tar \
         zip \
