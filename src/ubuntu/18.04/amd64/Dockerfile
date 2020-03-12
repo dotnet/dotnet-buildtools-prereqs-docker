@@ -19,8 +19,7 @@ RUN apt-get update \
     && tar -xf cmake-3.10.2-Linux-x86_64.tar.gz --strip 1 -C /usr/local \
     && rm cmake-3.10.2-Linux-x86_64.tar.gz
 
-# Install tools used by the VSO build automation.  nodejs-legacy is a Debian specific
-# package that provides `node' on the path (which azure cli needs).
+# Install tools used by the VSO build automation.
 RUN apt-get update \
     && apt-get install -y \
         git \

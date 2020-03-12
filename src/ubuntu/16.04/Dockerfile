@@ -22,11 +22,9 @@ RUN apt-get update && \
             sudo && \
     apt-get clean
 
-# Install tools used by the VSO build automation.  nodejs-legacy is a Debian specific
-# package that provides `node' on the path (which azure cli needs).
+# Install tools used by the VSO build automation.
 RUN apt-get install -y git \
             nodejs \
-            nodejs-legacy \
             npm \
             tar \
             zip && \
