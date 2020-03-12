@@ -8,9 +8,6 @@ RUN apt-get update \
         gnupg \
         software-properties-common \
         wget \
-    && wget -O - https://apt.kitware.com/keys/kitware-archive-latest.asc | apt-key add - \
-    && apt-add-repository 'deb https://apt.kitware.com/ubuntu/ xenial main' \
-    && apt-get update \
     && apt-get install -y \
         binfmt-support \
         binutils-arm-linux-gnueabihf \
@@ -24,9 +21,6 @@ RUN apt-get update \
     && rm -rf /var/lib/apt/lists/*
 
 RUN apt-get update \
-    && apt-add-repository 'deb http://apt.llvm.org/xenial/ llvm-toolchain-xenial-9 main' \
-    && wget -O - http://apt.llvm.org/llvm-snapshot.gpg.key | apt-key add - \
-    && apt-get update \
     && apt-get install -y \
         clang-9 \
         liblldb-6.0-dev \
@@ -34,3 +28,4 @@ RUN apt-get update \
         llvm-9 \
         python-lldb-6.0 \
     && rm -rf /var/lib/apt/lists/*
+    
