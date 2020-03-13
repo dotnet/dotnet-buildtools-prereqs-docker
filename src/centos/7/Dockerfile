@@ -94,4 +94,5 @@ RUN wget ftp://sourceware.org/pub/binutils/snapshots/binutils-2.29.1.tar.xz && \
     rm -r binutils-2.29.1
 
 # Create gcc-7 symlink available in PATH
-RUN ln -s /opt/rh/devtoolset-7/root/usr/bin/gcc /usr/local/bin/gcc-7
+RUN ln -s /opt/rh/devtoolset-7/root/usr/bin/gcc /usr/local/bin/gcc-7 && \
+    ln -s /opt/rh/devtoolset-7/root/usr/bin/g++ /usr/local/bin/g++-7
