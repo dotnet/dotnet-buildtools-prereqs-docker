@@ -339,6 +339,18 @@
         {
           "platforms": [
             {
+              "dockerfile": "src/ubuntu/18.04/cross/arm/16.04",
+              "os": "linux",
+              "osVersion": "ubuntu18.04",
+              "tags": {
+                "ubuntu-18.04-cross-arm-16.04-$(System:DockerfileGitCommitSha)-$(System:TimeStamp)": {}
+              }
+            }
+          ]
+        },
+        {
+          "platforms": [
+            {
               "architecture": "arm64",
               "dockerfile": "src/alpine/3.8/helix/arm64v8",
               "os": "linux",
