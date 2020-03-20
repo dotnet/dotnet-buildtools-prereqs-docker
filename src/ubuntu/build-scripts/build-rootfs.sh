@@ -14,8 +14,8 @@ dockerCrossDepsTag="${DOCKER_REPO:-mcr.microsoft.com/dotnet-buildtools/prereqs}:
 
 rm -rf $PWD/rootfs.tar
 
-# If argument three was set, use that as the only arch, otherwise use default list of arches : 'arm x86'
-crossArchArray=(${archArg:-'arm x86'})
+# If argument three was set, use that as the only arch, otherwise use default list of arches : 'arm'
+crossArchArray=(${archArg:-'arm'})
 for arch in $crossArchArray
 do
     echo "Using $dockerCrossDepsTag to set up cross-toolset for $arch for $crossToolset"
