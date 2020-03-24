@@ -82,6 +82,33 @@
         {
           "platforms": [
             {
+              "dockerfile": "src/centos/8",
+              "os": "linux",
+              "osVersion": "centos8",
+              "tags": {
+                "centos-8-$(System:DockerfileGitCommitSha)-$(System:TimeStamp)": {},
+                "centos-8": {
+                  "isLocal": true
+                }
+              }
+            }
+          ]
+        },
+        {
+          "platforms": [
+            {
+              "dockerfile": "src/centos/8/rpmpkg",
+              "os": "linux",
+              "osVersion": "centos8",
+              "tags": {
+                "centos-8-rpmpkg-$(System:DockerfileGitCommitSha)-$(System:TimeStamp)": {}
+              }
+            }
+          ]
+        },
+        {
+          "platforms": [
+            {
               "dockerfile": "src/centos/7",
               "os": "linux",
               "osVersion": "centos7",
