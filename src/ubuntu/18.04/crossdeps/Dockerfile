@@ -8,6 +8,9 @@ RUN apt-get update \
         gnupg \
         software-properties-common \
         wget \
+    && wget -O - https://apt.kitware.com/keys/kitware-archive-latest.asc | apt-key add - \
+    && apt-add-repository 'deb https://apt.kitware.com/ubuntu/ bionic main' \
+    && apt-get update \
     && apt-get install -y \
         binfmt-support \
         binutils-arm-linux-gnueabihf \
