@@ -178,6 +178,19 @@
           }]
         },
         {
+          "platforms": [{
+            "dockerfile": "src/fedora/31/amd64",
+            "os": "linux",
+            "osVersion": "fedora31",
+            "tags": {
+              "fedora-31-$(System:DockerfileGitCommitSha)-$(System:TimeStamp)": {},
+              "fedora-31": {
+                "isLocal": true
+              }
+            }
+          }]
+        },
+        {
           "platforms": [
             {
               "dockerfile": "src/ubuntu/16.04",
