@@ -316,6 +316,21 @@
         {
           "platforms": [
             {
+              "dockerfile": "src/ubuntu/18.04/android",
+              "os": "linux",
+              "osVersion": "ubuntu18.04",
+              "tags": {
+                "ubuntu-18.04-android-$(System:DockerfileGitCommitSha)-$(System:TimeStamp)": {},
+                "ubuntu-18.04-android": {
+                  "isLocal": true
+                }
+              }
+            }
+          ]
+        },
+        {
+          "platforms": [
+            {
               "dockerfile": "src/ubuntu/18.04/crossdeps",
               "os": "linux",
               "osVersion": "ubuntu18.04",
