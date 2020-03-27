@@ -12,12 +12,12 @@ lldb=${4:-}
 
 dockerCrossDepsTag="${DOCKER_REPO:-mcr.microsoft.com/dotnet-buildtools/prereqs}:${os}-crossdeps"
 
-rm -rf $PWD/rootfs.tar
-
 # If argument three was set, use that as the only arch, otherwise use default list of arches : 'arm'
 crossArchArray=(${archArg:-'arm'})
 for arch in $crossArchArray
 do
+    rm -rf $PWD/rootfs.$arch.tar
+
     echo "Using $dockerCrossDepsTag to set up cross-toolset for $arch for $crossToolset"
     buildRootFSContainer="rootfs-$arch-$crossToolset-$(date +%s)"
 
