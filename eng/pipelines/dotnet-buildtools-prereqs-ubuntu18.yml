@@ -21,6 +21,6 @@ variables:
 stages:
   - template: ../common/templates/stages/build-test-publish-repo.yml
     parameters:
-      linuxAmdBuildJobTimeout: 90
+      linuxAmdBuildJobTimeout: 150
       customBuildInitSteps:
       - template: /eng/pipelines/steps/install-cross-build-prereqs.yml
