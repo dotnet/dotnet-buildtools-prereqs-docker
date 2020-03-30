@@ -6,6 +6,7 @@ RUN apt-get update \
         locales \
         wget \
         unzip \
+        cmake \
     && rm -rf /var/lib/apt/lists/*
 
 # Android build needs working UTF-8 locale
