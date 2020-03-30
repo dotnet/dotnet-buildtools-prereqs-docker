@@ -1,4 +1,4 @@
-FROM mcr.microsoft.com/dotnet-buildtools/ubuntu-18.04
+FROM mcr.microsoft.com/dotnet-buildtools/prereqs:ubuntu-18.04
 
 # Install the base toolchain we need to build anything (clang, cmake, make and the like)
 # this does not include libraries that we need to compile different projects, we'd like
