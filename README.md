@@ -11,14 +11,14 @@ The images produced from the Dockerfiles are published to the mcr.microsoft.com/
 
 ## How to identify an image
 
-The tag format used by an image is `mcr.microsoft.com/dotnet-buildtools/prereqs:<linux-distribution-name>-<version>-<variant>-<architecture>-<dockerfile-commit-sha>-<date-time>`
+The tag format used by an image is `mcr.microsoft.com/dotnet-buildtools/prereqs:<linux-distribution-name>-<version>-<variant>-<architecture>-<date-time>-<dockerfile-commit-sha>`
 
 - `<linux-distribution-name>` - name of the Linux distribution the image is based on
 - `<version>` - version of the Linux distribution
 - `<variant>` - name describing the specialization purpose of the image.  Often special dependencies are needed for certain parts of the product.  It can be beneficial to separate these dependencies into a separate Dockerfile/image.
 - `<architecture>` - the docker image architecture (amd64 shall be implied if not specified).
-- `<dockerfile-commit-sha>` - Git commit SHA of the folder containing the Dockerfile the image was produced from
 - `<date-time>` - UTC timestamp (`yyyyMMddhhmmss`) of when the image was built
+- `<dockerfile-commit-sha>` - Git commit SHA of the folder containing the Dockerfile the image was produced from
 
 ## How to modify or create a new image
 
@@ -67,7 +67,7 @@ The [manifest.json](./manifest.json) contains metadata used by the build infrast
       "dockerfile": "alpine/3.9/amd64",
       "os": "linux",
       "tags": {
-        "alpine-3.9-$(System:DockerfileGitCommitSha)-$(System:TimeStamp)": {}
+        "alpine-3.9-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
       }
     }
   ]
@@ -79,7 +79,7 @@ The [manifest.json](./manifest.json) contains metadata used by the build infrast
       "dockerfile": "src/debian/9/arm32v7",
       "os": "linux",
       "tags": {
-        "debian-9-arm32v7-$(System:DockerfileGitCommitSha)-$(System:TimeStamp)": {}
+        "debian-9-arm32v7-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
       },
       "variant": "v7"
     }
@@ -92,13 +92,13 @@ The [manifest.json](./manifest.json) contains metadata used by the build infrast
 - `os` - (linux/windows) the OS type the Docker image is based on
 - `tags` - the collection of tags to create for the image
 - `variant` - architecture variant of the image
-- `$(System:DockerfileGitCommitSha)` and `$(System:TimeStamp)` - built in variable references that are evaluated at build time and substituted
+- `$(System:TimeStamp)` and `$(System:DockerfileGitCommitSha)` - built in variable references that are evaluated at build time and substituted
 
 > **Note:** The position in manifest determines the sequence in which the image will be built.
 
 ### Image Dependency
 
-A precondition for building an image is to ensure that the base image specified in the [FROM]((https://docs.docker.com/engine/reference/builder/#from)) statement of the Dockerfile is available either locally or can be pulled from a Docker registry.  Some of the Dockerfiles depend on images produced from other Dockerfiles (e.g. [src/ubuntu/16.04/debpkg](./src/ubuntu/16.04/debpkg)).  In these cases, the `FROM` reference should not include the `<dockerfile-commit-sha>-<date-time>` portion of the tags.  This is referred to as a stable tag as it does not change from build to build.  This pattern is used so that the Dockerfiles do not need constant updating as new versions of the base images are built.  To support this scenario, the manifest entry for the base image must be defined to produce the stable tag.
+A precondition for building an image is to ensure that the base image specified in the [FROM]((https://docs.docker.com/engine/reference/builder/#from)) statement of the Dockerfile is available either locally or can be pulled from a Docker registry.  Some of the Dockerfiles depend on images produced from other Dockerfiles (e.g. [src/ubuntu/16.04/debpkg](./src/ubuntu/16.04/debpkg)).  In these cases, the `FROM` reference should not include the `<date-time>-<dockerfile-commit-sha>` portion of the tags.  This is referred to as a stable tag as it does not change from build to build.  This pattern is used so that the Dockerfiles do not need constant updating as new versions of the base images are built.  To support this scenario, the manifest entry for the base image must be defined to produce the stable tag.
 
 ```json
 "platforms": [
@@ -106,7 +106,7 @@ A precondition for building an image is to ensure that the base image specified 
         "dockerfile": "ubuntu/16.04",
         "os": "linux",
         "tags": {
-            "ubuntu-16.04-$(System:DockerfileGitCommitSha)-$(System:TimeStamp)": {},
+            "ubuntu-16.04-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
             "ubuntu-16.04": {
                 "isLocal": true
             }
