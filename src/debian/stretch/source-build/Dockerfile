@@ -1,4 +1,4 @@
-FROM debian-stretch
+FROM mcr.microsoft.com/dotnet-buildtools/debian-stretch
 
 # Dependencies for generic .NET Core builds and the base toolchain we need to 
 # build anything (clang, cmake, make and the like)
