@@ -177,6 +177,9 @@
               "osVersion": "stretch",
               "tags": {
                 "debian-stretch-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
+                "debian-stretch": {
+                  "isLocal": true
+                }
               }
             }
           ]
