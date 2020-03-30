@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
 
-rm -rf $PWD/rootfs
+rm -rf $PWD/rootfs*.tar
