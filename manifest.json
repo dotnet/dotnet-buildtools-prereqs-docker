@@ -11,7 +11,7 @@
               "os": "linux",
               "osVersion": "alpine3.9",
               "tags": {
-                "alpine-3.9-$(System:DockerfileGitCommitSha)-$(System:TimeStamp)": {},
+                "alpine-3.9-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
                 "alpine-3.9": {
                   "isLocal": true
                 }
@@ -26,7 +26,7 @@
               "os": "linux",
               "osVersion": "alpine3.9",
               "tags": {
-                "alpine-3.9-WithNode-$(System:DockerfileGitCommitSha)-$(System:TimeStamp)": {}
+                "alpine-3.9-WithNode-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
               }
             }
           ]
@@ -38,7 +38,7 @@
               "os": "linux",
               "osVersion": "alpine3.9",
               "tags": {
-                "alpine-3.9-helix-$(System:DockerfileGitCommitSha)-$(System:TimeStamp)": {}
+                "alpine-3.9-helix-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
               }
             }
           ]
@@ -50,7 +50,7 @@
               "os": "linux",
               "osVersion": "alpine3.10",
               "tags": {
-                "alpine-3.10-helix-$(System:DockerfileGitCommitSha)-$(System:TimeStamp)": {}
+                "alpine-3.10-helix-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
               }
             }
           ]
@@ -62,7 +62,7 @@
               "os": "linux",
               "osVersion": "alpine3.11",
               "tags": {
-                "alpine-3.11-helix-$(System:DockerfileGitCommitSha)-$(System:TimeStamp)": {}
+                "alpine-3.11-helix-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
               }
             }
           ]
@@ -74,7 +74,7 @@
               "os": "linux",
               "osVersion": "alpine3.8",
               "tags": {
-                "alpine-3.8-helix-$(System:DockerfileGitCommitSha)-$(System:TimeStamp)": {}
+                "alpine-3.8-helix-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
               }
             }
           ]
@@ -86,7 +86,7 @@
               "os": "linux",
               "osVersion": "centos8",
               "tags": {
-                "centos-8-$(System:DockerfileGitCommitSha)-$(System:TimeStamp)": {},
+                "centos-8-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
                 "centos-8": {
                   "isLocal": true
                 }
@@ -101,7 +101,7 @@
               "os": "linux",
               "osVersion": "centos8",
               "tags": {
-                "centos-8-rpmpkg-$(System:DockerfileGitCommitSha)-$(System:TimeStamp)": {}
+                "centos-8-rpmpkg-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
               }
             }
           ]
@@ -113,7 +113,7 @@
               "os": "linux",
               "osVersion": "centos7",
               "tags": {
-                "centos-7-$(System:DockerfileGitCommitSha)-$(System:TimeStamp)": {},
+                "centos-7-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
                 "centos-7": {
                   "isLocal": true
                 }
@@ -128,7 +128,7 @@
               "os": "linux",
               "osVersion": "centos7",
               "tags": {
-                "centos-7-mlnet-$(System:DockerfileGitCommitSha)-$(System:TimeStamp)": {}
+                "centos-7-mlnet-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
               }
             }
           ]
@@ -140,7 +140,7 @@
               "os": "linux",
               "osVersion": "centos7",
               "tags": {
-                "centos-7-rpmpkg-$(System:DockerfileGitCommitSha)-$(System:TimeStamp)": {}
+                "centos-7-rpmpkg-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
               }
             }
           ]
@@ -152,7 +152,7 @@
               "os": "linux",
               "osVersion": "centos6",
               "tags": {
-                "centos-6-$(System:DockerfileGitCommitSha)-$(System:TimeStamp)": {}
+                "centos-6-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
               }
             }
           ]
@@ -164,7 +164,7 @@
               "os": "linux",
               "osVersion": "stretch",
               "tags": {
-                "debian-stretch-slim-docker-testrunner-$(System:DockerfileGitCommitSha)-$(System:TimeStamp)": {}
+                "debian-stretch-slim-docker-testrunner-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
               }
             }
           ]
@@ -176,7 +176,7 @@
               "os": "linux",
               "osVersion": "stretch",
               "tags": {
-                "debian-stretch-$(System:DockerfileGitCommitSha)-$(System:TimeStamp)": {}
+                "debian-stretch-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
               }
             }
           ]
@@ -187,7 +187,7 @@
             "os": "linux",
             "osVersion": "fedora30",
             "tags": {
-              "fedora-30-$(System:DockerfileGitCommitSha)-$(System:TimeStamp)": {},
+              "fedora-30-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
               "fedora-30": {
                 "isLocal": true
               }
@@ -200,7 +200,7 @@
             "os": "linux",
             "osVersion": "fedora30",
             "tags": {
-              "fedora-30-helix-$(System:DockerfileGitCommitSha)-$(System:TimeStamp)": {}
+              "fedora-30-helix-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
             }
           }]
         },
@@ -210,7 +210,7 @@
             "os": "linux",
             "osVersion": "fedora31",
             "tags": {
-              "fedora-31-$(System:DockerfileGitCommitSha)-$(System:TimeStamp)": {},
+              "fedora-31-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
               "fedora-31": {
                 "isLocal": true
               }
@@ -224,7 +224,7 @@
               "os": "linux",
               "osVersion": "ubuntu16.04",
               "tags": {
-                "ubuntu-16.04-$(System:DockerfileGitCommitSha)-$(System:TimeStamp)": {},
+                "ubuntu-16.04-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
                 "ubuntu-16.04": {
                   "isLocal": true
                 }
@@ -239,7 +239,7 @@
               "os": "linux",
               "osVersion": "ubuntu16.04",
               "tags": {
-                "ubuntu-16.04-debpkg-$(System:DockerfileGitCommitSha)-$(System:TimeStamp)": {}
+                "ubuntu-16.04-debpkg-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
               }
             }
           ]
@@ -251,7 +251,7 @@
               "os": "linux",
               "osVersion": "ubuntu16.04",
               "tags": {
-                "ubuntu-16.04-coredeps-$(System:DockerfileGitCommitSha)-$(System:TimeStamp)": {},
+                "ubuntu-16.04-coredeps-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
                 "ubuntu-16.04-coredeps": {
                   "isLocal": true
                 }
@@ -266,7 +266,7 @@
               "os": "linux",
               "osVersion": "ubuntu16.04",
               "tags": {
-                "ubuntu-16.04-crossdeps-$(System:DockerfileGitCommitSha)-$(System:TimeStamp)": {},
+                "ubuntu-16.04-crossdeps-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
                 "ubuntu-16.04-crossdeps": {
                   "isLocal": true
                 }
@@ -281,7 +281,7 @@
               "os": "linux",
               "osVersion": "ubuntu16.04",
               "tags": {
-                "ubuntu-16.04-cross-arm64-$(System:DockerfileGitCommitSha)-$(System:TimeStamp)": {}
+                "ubuntu-16.04-cross-arm64-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
               }
             }
           ]
@@ -293,7 +293,7 @@
               "os": "linux",
               "osVersion": "ubuntu16.04",
               "tags": {
-                "ubuntu-16.04-cross-arm64-alpine-$(System:DockerfileGitCommitSha)-$(System:TimeStamp)": {}
+                "ubuntu-16.04-cross-arm64-alpine-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
               }
             }
           ]
@@ -305,7 +305,7 @@
               "os": "linux",
               "osVersion": "ubuntu18.04",
               "tags": {
-                "ubuntu-18.04-coredeps-$(System:DockerfileGitCommitSha)-$(System:TimeStamp)": {},
+                "ubuntu-18.04-coredeps-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
                 "ubuntu-18.04-coredeps": {
                   "isLocal": true
                 }
@@ -320,7 +320,7 @@
               "os": "linux",
               "osVersion": "ubuntu18.04",
               "tags": {
-                "ubuntu-18.04-android-$(System:DockerfileGitCommitSha)-$(System:TimeStamp)": {},
+                "ubuntu-18.04-android-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
               }
             }
           ]
@@ -332,7 +332,7 @@
               "os": "linux",
               "osVersion": "ubuntu18.04",
               "tags": {
-                "ubuntu-18.04-crossdeps-$(System:DockerfileGitCommitSha)-$(System:TimeStamp)": {},
+                "ubuntu-18.04-crossdeps-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
                 "ubuntu-18.04-crossdeps": {
                   "isLocal": true
                 }
@@ -347,7 +347,7 @@
               "os": "linux",
               "osVersion": "ubuntu18.04",
               "tags": {
-                "ubuntu-18.04-cross-arm64-16.04-$(System:DockerfileGitCommitSha)-$(System:TimeStamp)": {}
+                "ubuntu-18.04-cross-arm64-16.04-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
               }
             }
           ]
@@ -359,7 +359,7 @@
               "os": "linux",
               "osVersion": "ubuntu18.04",
               "tags": {
-                "ubuntu-18.04-cross-arm64-$(System:DockerfileGitCommitSha)-$(System:TimeStamp)": {}
+                "ubuntu-18.04-cross-arm64-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
               }
             }
           ]
@@ -371,7 +371,7 @@
               "os": "linux",
               "osVersion": "ubuntu18.04",
               "tags": {
-                "ubuntu-18.04-cross-arm64-alpine-$(System:DockerfileGitCommitSha)-$(System:TimeStamp)": {}
+                "ubuntu-18.04-cross-arm64-alpine-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
               }
             }
           ]
@@ -383,7 +383,7 @@
               "os": "linux",
               "osVersion": "ubuntu18.04",
               "tags": {
-                "ubuntu-18.04-cross-$(System:DockerfileGitCommitSha)-$(System:TimeStamp)": {}
+                "ubuntu-18.04-cross-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
               }
             }
           ]
@@ -395,7 +395,7 @@
               "os": "linux",
               "osVersion": "ubuntu18.04",
               "tags": {
-                "ubuntu-18.04-cross-arm-16.04-$(System:DockerfileGitCommitSha)-$(System:TimeStamp)": {}
+                "ubuntu-18.04-cross-arm-16.04-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
               }
             }
           ]
@@ -408,7 +408,7 @@
               "os": "linux",
               "osVersion": "alpine3.8",
               "tags": {
-                "alpine-3.8-helix-arm64v8-$(System:DockerfileGitCommitSha)-$(System:TimeStamp)": {}
+                "alpine-3.8-helix-arm64v8-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
               },
               "variant": "v8"
             }
@@ -422,7 +422,7 @@
               "os": "linux",
               "osVersion": "alpine3.10",
               "tags": {
-                "alpine-3.10-helix-arm64v8-$(System:DockerfileGitCommitSha)-$(System:TimeStamp)": {}
+                "alpine-3.10-helix-arm64v8-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
               },
               "variant": "v8"
             }
@@ -436,7 +436,7 @@
               "os": "linux",
               "osVersion": "alpine3.11",
               "tags": {
-                "alpine-3.11-helix-arm64v8-$(System:DockerfileGitCommitSha)-$(System:TimeStamp)": {}
+                "alpine-3.11-helix-arm64v8-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
               },
               "variant": "v8"
             }
@@ -449,7 +449,7 @@
               "os": "linux",
               "osVersion": "ubuntu16.04",
               "tags": {
-                "ubuntu-16.04-cross-$(System:DockerfileGitCommitSha)-$(System:TimeStamp)": {}
+                "ubuntu-16.04-cross-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
               }
             }
           ]
@@ -462,7 +462,7 @@
               "os": "linux",
               "osVersion": "ubuntu16.04",
               "tags": {
-                "ubuntu-16.04-helix-arm32v7-$(System:DockerfileGitCommitSha)-$(System:TimeStamp)": {}
+                "ubuntu-16.04-helix-arm32v7-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
               },
               "variant": "v7"
             }
@@ -476,7 +476,7 @@
               "os": "linux",
               "osVersion": "ubuntu16.04",
               "tags": {
-                "ubuntu-16.04-helix-arm64v8-$(System:DockerfileGitCommitSha)-$(System:TimeStamp)": {}
+                "ubuntu-16.04-helix-arm64v8-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
               },
               "variant": "v8"
             }
@@ -489,7 +489,7 @@
               "os": "linux",
               "osVersion": "ubuntu16.04",
               "tags": {
-                "ubuntu-16.04-mlnet-$(System:DockerfileGitCommitSha)-$(System:TimeStamp)": {}
+                "ubuntu-16.04-mlnet-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
               }
             }
           ]
@@ -501,7 +501,7 @@
               "os": "linux",
               "osVersion": "bionic",
               "tags": {
-                "ubuntu-18.04-$(System:DockerfileGitCommitSha)-$(System:TimeStamp)": {},
+                "ubuntu-18.04-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
                 "ubuntu-18.04": {
                   "isLocal": true
                 }
@@ -517,7 +517,7 @@
               "os": "linux",
               "osVersion": "disco",
               "tags": {
-                "ubuntu-19.04-helix-amd64-$(System:DockerfileGitCommitSha)-$(System:TimeStamp)": {}
+                "ubuntu-19.04-helix-amd64-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
               }
             }
           ]
@@ -530,7 +530,7 @@
               "os": "linux",
               "osVersion": "disco",
               "tags": {
-                "ubuntu-19.10-helix-amd64-$(System:DockerfileGitCommitSha)-$(System:TimeStamp)": {}
+                "ubuntu-19.10-helix-amd64-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
               }
             }
           ]
@@ -542,7 +542,7 @@
               "os": "linux",
               "osVersion": "bionic",
               "tags": {
-                "ubuntu-18.04-debpkg-$(System:DockerfileGitCommitSha)-$(System:TimeStamp)": {}
+                "ubuntu-18.04-debpkg-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
               }
             }
           ]
@@ -555,7 +555,7 @@
               "os": "linux",
               "osVersion": "bionic",
               "tags": {
-                "ubuntu-18.04-helix-arm32v7-$(System:DockerfileGitCommitSha)-$(System:TimeStamp)": {}
+                "ubuntu-18.04-helix-arm32v7-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
               },
               "variant": "v7"
             }
@@ -569,7 +569,7 @@
               "os": "linux",
               "osVersion": "bionic",
               "tags": {
-                "ubuntu-18.04-helix-arm64v8-$(System:DockerfileGitCommitSha)-$(System:TimeStamp)": {}
+                "ubuntu-18.04-helix-arm64v8-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
               },
               "variant": "v8"
             }
@@ -583,7 +583,7 @@
               "os": "linux",
               "osVersion": "debian",
               "tags": {
-                "debian-iot-arm32v7-$(System:DockerfileGitCommitSha)-$(System:TimeStamp)": {}
+                "debian-iot-arm32v7-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
               },
               "variant": "v7"
             }
@@ -597,7 +597,7 @@
               "os": "linux",
               "osVersion": "stretch",
               "tags": {
-                "debian-9-arm32v7-$(System:DockerfileGitCommitSha)-$(System:TimeStamp)": {}
+                "debian-9-arm32v7-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
               },
               "variant": "v7"
             }
@@ -611,7 +611,7 @@
               "os": "linux",
               "osVersion": "stretch",
               "tags": {
-                "debian-9-helix-arm32v7-$(System:DockerfileGitCommitSha)-$(System:TimeStamp)": {}
+                "debian-9-helix-arm32v7-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
               },
               "variant": "v7"
             }
@@ -625,7 +625,7 @@
               "os": "linux",
               "osVersion": "stretch",
               "tags": {
-                "debian-9-arm64v8-$(System:DockerfileGitCommitSha)-$(System:TimeStamp)": {}
+                "debian-9-arm64v8-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
               },
               "variant": "v8"
             }
@@ -639,7 +639,7 @@
               "os": "linux",
               "osVersion": "stretch",
               "tags": {
-                "debian-9-helix-arm64v8-$(System:DockerfileGitCommitSha)-$(System:TimeStamp)": {}
+                "debian-9-helix-arm64v8-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
               },
               "variant": "v8"
             }
@@ -653,7 +653,7 @@
               "os": "linux",
               "osVersion": "buster",
               "tags": {
-                "debian-10-helix-amd64-$(System:DockerfileGitCommitSha)-$(System:TimeStamp)": {}
+                "debian-10-helix-amd64-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
               }
             }
           ]
@@ -666,7 +666,7 @@
               "os": "linux",
               "osVersion": "buster",
               "tags": {
-                "debian-10-helix-arm32v7-$(System:DockerfileGitCommitSha)-$(System:TimeStamp)": {}
+                "debian-10-helix-arm32v7-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
               },
               "variant": "v7"
             }
@@ -680,7 +680,7 @@
               "os": "linux",
               "osVersion": "buster",
               "tags": {
-                "debian-10-helix-arm64v8-$(System:DockerfileGitCommitSha)-$(System:TimeStamp)": {}
+                "debian-10-helix-arm64v8-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
               },
               "variant": "v8"
             }
@@ -694,7 +694,7 @@
               "os": "linux",
               "osVersion": "ubuntu16.04",
               "tags": {
-                "ubuntu-16.04-arm32v7-$(System:DockerfileGitCommitSha)-$(System:TimeStamp)": {}
+                "ubuntu-16.04-arm32v7-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
               },
               "variant": "v7"
             }
@@ -708,7 +708,7 @@
               "os": "linux",
               "osVersion": "ubuntu16.04",
               "tags": {
-                "ubuntu-16.04-arm64v8-$(System:DockerfileGitCommitSha)-$(System:TimeStamp)": {}
+                "ubuntu-16.04-arm64v8-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
               },
               "variant": "v8"
             }
@@ -722,7 +722,7 @@
               "os": "linux",
               "osVersion": "bionic",
               "tags": {
-                "ubuntu-18.04-arm32v7-$(System:DockerfileGitCommitSha)-$(System:TimeStamp)": {}
+                "ubuntu-18.04-arm32v7-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
               },
               "variant": "v7"
             }
@@ -736,7 +736,7 @@
               "os": "linux",
               "osVersion": "bionic",
               "tags": {
-                "ubuntu-18.04-arm64v8-$(System:DockerfileGitCommitSha)-$(System:TimeStamp)": {}
+                "ubuntu-18.04-arm64v8-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
               },
               "variant": "v8"
             }
@@ -750,7 +750,7 @@
               "os": "linux",
               "osVersion": "alpine3.9",
               "tags": {
-                "alpine-3.9-arm32v7-$(System:DockerfileGitCommitSha)-$(System:TimeStamp)": {}
+                "alpine-3.9-arm32v7-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
               },
               "variant": "v7"
             }
@@ -764,7 +764,7 @@
               "os": "linux",
               "osVersion": "alpine3.9",
               "tags": {
-                "alpine-3.9-arm64v8-$(System:DockerfileGitCommitSha)-$(System:TimeStamp)": {}
+                "alpine-3.9-arm64v8-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
               },
               "variant": "v8"
             }
@@ -777,7 +777,7 @@
               "os": "windows",
               "osVersion": "nanoserver-1809",
               "tags": {
-                "nanoserver-1809-helix-amd64-$(System:DockerfileGitCommitSha)-$(System:TimeStamp)": {}
+                "nanoserver-1809-helix-amd64-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
               }
             }
           ]
