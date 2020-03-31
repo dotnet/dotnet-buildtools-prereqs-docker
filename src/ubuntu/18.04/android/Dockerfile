@@ -6,8 +6,11 @@ RUN apt-get update \
         locales \
         wget \
         unzip \
-        cmake \
     && rm -rf /var/lib/apt/lists/*
+
+RUN wget https://cmake.org/files/v3.17/cmake-3.17.0-Linux-x86_64.tar.gz \
+    && tar -xf cmake-3.17.0-Linux-x86_64.tar.gz --strip 1 -C /usr/local \
+    && rm cmake-3.17.0-Linux-x86_64.tar.gz
 
 # Android build needs working UTF-8 locale
 RUN locale-gen en_US.UTF-8
