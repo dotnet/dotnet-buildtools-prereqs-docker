@@ -176,7 +176,22 @@
               "os": "linux",
               "osVersion": "stretch",
               "tags": {
-                "debian-stretch-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
+                "debian-stretch-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
+                "debian-stretch": {
+                  "isLocal": true
+                }
+              }
+            }
+          ]
+        },
+        {
+          "platforms": [
+            {
+              "dockerfile": "src/debian/stretch/source-build",
+              "os": "linux",
+              "osVersion": "stretch",
+              "tags": {
+                "debian-stretch-source-build-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
               }
             }
           ]
@@ -739,6 +754,18 @@
                 "ubuntu-18.04-arm64v8-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
               },
               "variant": "v8"
+            }
+          ]
+        },
+        {
+          "platforms": [
+            {
+              "dockerfile": "src/ubuntu/18.04/source-build",
+              "os": "linux",
+              "osVersion": "ubuntu18.04",
+              "tags": {
+                "ubuntu-18.04-source-build-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
+              }
             }
           ]
         },
