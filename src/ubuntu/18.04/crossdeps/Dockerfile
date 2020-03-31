@@ -21,6 +21,11 @@ RUN apt-get update \
         make \
         qemu \
         qemu-user-static \
+        libbz2-dev \
+        libz-dev \
+        liblzma-dev \
+        libarchive-dev \
+        libbsd-dev \
     && rm -rf /var/lib/apt/lists/*
 
 RUN apt-get update \
@@ -31,4 +36,4 @@ RUN apt-get update \
         llvm-9 \
         python-lldb-6.0 \
     && rm -rf /var/lib/apt/lists/*
-    
+
