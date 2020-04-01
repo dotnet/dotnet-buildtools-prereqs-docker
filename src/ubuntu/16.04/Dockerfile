@@ -19,6 +19,8 @@ RUN apt-get update && \
             llvm-9 \
             make \
             python-lldb-6.0 \
+            locales \
+            locales-all \
             sudo && \
     apt-get clean
 
