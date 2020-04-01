@@ -17,6 +17,7 @@ RUN apt-get update && \
             liblldb-6.0-dev \
             lldb-6.0 \
             llvm-9 \
+            locales \
             make \
             python-lldb-6.0 \
             sudo && \
@@ -31,6 +32,9 @@ RUN apt-get install -y git \
     apt-get clean && \
     npm install -g azure-cli@0.9.20 && \
     npm cache clean
+
+# .NET SDK MSBuild requires US.UTF-8 locale to execute tasks
+RUN locale-gen en_US.UTF-8 
 
 # Dependencies for CoreCLR, Mono and CoreFX
 RUN apt-get install -y \
