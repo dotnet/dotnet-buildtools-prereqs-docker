@@ -354,6 +354,18 @@
         {
           "platforms": [
             {
+              "dockerfile": "src/ubuntu/18.04/webassembly",
+              "os": "linux",
+              "osVersion": "ubuntu18.04",
+              "tags": {
+                "ubuntu-18.04-webassembly-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
+              }
+            }
+          ]
+        },
+        {
+          "platforms": [
+            {
               "dockerfile": "src/ubuntu/18.04/crossdeps",
               "os": "linux",
               "osVersion": "ubuntu18.04",
