@@ -32,7 +32,7 @@ do
 
     echo "Using $dockerCrossDepsTag to clone arcade to fetch scripts used to build cross-toolset"
     docker exec $buildRootFSContainer \
-        git clone https://github.com/dotnet/arcade /scripts
+        git clone --depth 1 https://github.com/dotnet/arcade /scripts
 
     if [ $? -ne 0 ]; then
         echo "Rootfs build failed: `git clone https://github.com/dotnet/arcade /scripts` returned error"

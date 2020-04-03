@@ -429,6 +429,30 @@
         {
           "platforms": [
             {
+              "dockerfile": "src/ubuntu/18.04/cross/freebsd/11",
+              "os": "linux",
+              "osVersion": "freebsd.11",
+              "tags": {
+                "ubuntu-18.04-cross-freebsd-11-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
+              }
+            }
+          ]
+        },
+        {
+          "platforms": [
+            {
+              "dockerfile": "src/ubuntu/18.04/cross/freebsd/12",
+              "os": "linux",
+              "osVersion": "freebsd.12",
+              "tags": {
+                "ubuntu-18.04-cross-freebsd-12-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
+              }
+            }
+          ]
+        },
+        {
+          "platforms": [
+            {
               "architecture": "arm64",
               "dockerfile": "src/alpine/3.8/helix/arm64v8",
               "os": "linux",
