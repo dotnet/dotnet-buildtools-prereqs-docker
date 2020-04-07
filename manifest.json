@@ -244,6 +244,16 @@
           }]
         },
         {
+          "platforms": [{
+            "dockerfile": "src/fedora/rawhide/amd64",
+            "os": "linux",
+            "osVersion": "fedora-rawhide",
+            "tags": {
+              "fedora-rawhide-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
+            }
+          }]
+        },
+        {
           "platforms": [
             {
               "dockerfile": "src/ubuntu/16.04",
