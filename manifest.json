@@ -248,7 +248,7 @@
             {
               "dockerfile": "src/ubuntu/16.04",
               "os": "linux",
-              "osVersion": "ubuntu16.04",
+              "osVersion": "xenial",
               "tags": {
                 "ubuntu-16.04-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
                 "ubuntu-16.04": {
@@ -263,7 +263,7 @@
             {
               "dockerfile": "src/ubuntu/16.04/debpkg",
               "os": "linux",
-              "osVersion": "ubuntu16.04",
+              "osVersion": "xenial",
               "tags": {
                 "ubuntu-16.04-debpkg-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
               }
@@ -275,7 +275,7 @@
             {
               "dockerfile": "src/ubuntu/16.04/coredeps",
               "os": "linux",
-              "osVersion": "ubuntu16.04",
+              "osVersion": "xenial",
               "tags": {
                 "ubuntu-16.04-coredeps-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
                 "ubuntu-16.04-coredeps": {
@@ -290,7 +290,7 @@
             {
               "dockerfile": "src/ubuntu/16.04/crossdeps",
               "os": "linux",
-              "osVersion": "ubuntu16.04",
+              "osVersion": "xenial",
               "tags": {
                 "ubuntu-16.04-crossdeps-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
                 "ubuntu-16.04-crossdeps": {
@@ -305,7 +305,7 @@
             {
               "dockerfile": "src/ubuntu/16.04/cross/arm64",
               "os": "linux",
-              "osVersion": "ubuntu16.04",
+              "osVersion": "xenial",
               "tags": {
                 "ubuntu-16.04-cross-arm64-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
               }
@@ -317,7 +317,7 @@
             {
               "dockerfile": "src/ubuntu/16.04/cross/arm64-alpine",
               "os": "linux",
-              "osVersion": "ubuntu16.04",
+              "osVersion": "xenial",
               "tags": {
                 "ubuntu-16.04-cross-arm64-alpine-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
               }
@@ -329,7 +329,7 @@
             {
               "dockerfile": "src/ubuntu/18.04/coredeps",
               "os": "linux",
-              "osVersion": "ubuntu18.04",
+              "osVersion": "bionic",
               "tags": {
                 "ubuntu-18.04-coredeps-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
                 "ubuntu-18.04-coredeps": {
@@ -344,7 +344,7 @@
             {
               "dockerfile": "src/ubuntu/18.04/android",
               "os": "linux",
-              "osVersion": "ubuntu18.04",
+              "osVersion": "bionic",
               "tags": {
                 "ubuntu-18.04-android-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
               }
@@ -356,7 +356,7 @@
             {
               "dockerfile": "src/ubuntu/18.04/webassembly",
               "os": "linux",
-              "osVersion": "ubuntu18.04",
+              "osVersion": "bionic",
               "tags": {
                 "ubuntu-18.04-webassembly-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
               }
@@ -368,7 +368,7 @@
             {
               "dockerfile": "src/ubuntu/18.04/crossdeps",
               "os": "linux",
-              "osVersion": "ubuntu18.04",
+              "osVersion": "bionic",
               "tags": {
                 "ubuntu-18.04-crossdeps-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
                 "ubuntu-18.04-crossdeps": {
@@ -383,7 +383,7 @@
             {
               "dockerfile": "src/ubuntu/18.04/cross/arm64/16.04",
               "os": "linux",
-              "osVersion": "ubuntu18.04",
+              "osVersion": "bionic",
               "tags": {
                 "ubuntu-18.04-cross-arm64-16.04-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
               }
@@ -395,7 +395,7 @@
             {
               "dockerfile": "src/ubuntu/18.04/cross/arm64",
               "os": "linux",
-              "osVersion": "ubuntu18.04",
+              "osVersion": "bionic",
               "tags": {
                 "ubuntu-18.04-cross-arm64-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
               }
@@ -407,7 +407,7 @@
             {
               "dockerfile": "src/ubuntu/18.04/cross/arm64-alpine",
               "os": "linux",
-              "osVersion": "ubuntu18.04",
+              "osVersion": "bionic",
               "tags": {
                 "ubuntu-18.04-cross-arm64-alpine-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
               }
@@ -419,7 +419,7 @@
             {
               "dockerfile": "src/ubuntu/18.04/cross",
               "os": "linux",
-              "osVersion": "ubuntu18.04",
+              "osVersion": "bionic",
               "tags": {
                 "ubuntu-18.04-cross-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
               }
@@ -431,7 +431,7 @@
             {
               "dockerfile": "src/ubuntu/18.04/cross/arm/16.04",
               "os": "linux",
-              "osVersion": "ubuntu18.04",
+              "osVersion": "bionic",
               "tags": {
                 "ubuntu-18.04-cross-arm-16.04-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
               }
@@ -443,7 +443,7 @@
             {
               "dockerfile": "src/ubuntu/18.04/cross/freebsd/11",
               "os": "linux",
-              "osVersion": "freebsd.11",
+              "osVersion": "bionic",
               "tags": {
                 "ubuntu-18.04-cross-freebsd-11-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
               }
@@ -455,7 +455,7 @@
             {
               "dockerfile": "src/ubuntu/18.04/cross/freebsd/12",
               "os": "linux",
-              "osVersion": "freebsd.12",
+              "osVersion": "bionic",
               "tags": {
                 "ubuntu-18.04-cross-freebsd-12-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
               }
@@ -509,7 +509,7 @@
             {
               "dockerfile": "src/ubuntu/16.04/cross",
               "os": "linux",
-              "osVersion": "ubuntu16.04",
+              "osVersion": "xenial",
               "tags": {
                 "ubuntu-16.04-cross-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
               }
@@ -522,7 +522,7 @@
               "architecture": "arm",
               "dockerfile": "src/ubuntu/16.04/helix/arm32v7",
               "os": "linux",
-              "osVersion": "ubuntu16.04",
+              "osVersion": "xenial",
               "tags": {
                 "ubuntu-16.04-helix-arm32v7-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
               },
@@ -536,7 +536,7 @@
               "architecture": "arm64",
               "dockerfile": "src/ubuntu/16.04/helix/arm64v8",
               "os": "linux",
-              "osVersion": "ubuntu16.04",
+              "osVersion": "xenial",
               "tags": {
                 "ubuntu-16.04-helix-arm64v8-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
               },
@@ -549,7 +549,7 @@
             {
               "dockerfile": "src/ubuntu/16.04/mlnet",
               "os": "linux",
-              "osVersion": "ubuntu16.04",
+              "osVersion": "xenial",
               "tags": {
                 "ubuntu-16.04-mlnet-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
               }
@@ -754,7 +754,7 @@
               "architecture": "arm",
               "dockerfile": "src/ubuntu/16.04/arm32v7",
               "os": "linux",
-              "osVersion": "ubuntu16.04",
+              "osVersion": "xenial",
               "tags": {
                 "ubuntu-16.04-arm32v7-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
               },
@@ -768,7 +768,7 @@
               "architecture": "arm64",
               "dockerfile": "src/ubuntu/16.04/arm64v8",
               "os": "linux",
-              "osVersion": "ubuntu16.04",
+              "osVersion": "xenial",
               "tags": {
                 "ubuntu-16.04-arm64v8-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
               },
@@ -809,7 +809,7 @@
             {
               "dockerfile": "src/ubuntu/18.04/source-build",
               "os": "linux",
-              "osVersion": "ubuntu18.04",
+              "osVersion": "bionic",
               "tags": {
                 "ubuntu-18.04-source-build-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
               }
