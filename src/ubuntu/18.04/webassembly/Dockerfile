@@ -20,4 +20,5 @@ ENV EMSCRIPTEN_VERSION=1.39.9
 RUN git clone https://github.com/emscripten-core/emsdk.git /usr/local/emscripten \
     && cd /usr/local/emscripten \
     && ./emsdk install ${EMSCRIPTEN_VERSION}-upstream \
-    && ./emsdk activate --embedded ${EMSCRIPTEN_VERSION}-upstream
+    && ./emsdk activate --embedded ${EMSCRIPTEN_VERSION}-upstream \
+    && chmod -R 777 /usr/local/emscripten
