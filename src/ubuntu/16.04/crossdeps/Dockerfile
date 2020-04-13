@@ -34,3 +34,18 @@ RUN apt-get update \
         llvm-9 \
         python-lldb-6.0 \
     && rm -rf /var/lib/apt/lists/*
+
+# rebuild curl with OpenSSL backend to avoid build issues with GnuTLS.
+RUN echo "deb-src http://archive.ubuntu.com/ubuntu/ xenial main restricted" >> /etc/apt/sources.list \
+    && echo "deb-src http://archive.ubuntu.com/ubuntu/ xenial-updates multiverse" >>  /etc/apt/sources.list \
+    && echo "deb-src http://security.ubuntu.com/ubuntu/ xenial-security universe" >> /etc/apt/sources.list \
+    && echo "deb-src http://us.archive.ubuntu.com/ubuntu/ xenial-updates main restricted" >>  /etc/apt/sources.list \
+    && apt-get update \
+    && mkdir /tmp/curl && cd  /tmp/curl \
+    && apt-get source -y curl && apt-get build-dep -y curl &&  apt install -y devscripts \
+    && sed -i.ORI -e 's/dh_install\ -pcurl /dh_install /' -e 's/dh_install -plibcurl3/dh_install -pcurl -plibcurl3/'  curl*/debian/rules \
+    && (cd curl* && DEB_BUILD_OPTIONS=nocheck debuild -b -uc -us) \
+    && dpkg --force-all -i curl_*.deb \
+    && curl --version | grep OpenSSL \
+    && rm -rf /var/lib/apt/lists/* /tmp/curl
+
