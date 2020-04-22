@@ -1,4 +1,4 @@
-FROM mcr.microsoft.com/dotnet-buildtools/prereqs:ubuntu-18.04-coredeps
+FROM mcr.microsoft.com/dotnet-buildtools/prereqs:ubuntu-18.04-android-20200401093035-1517ea2
 
 # Dependencies for Android build
 RUN apt-get update \
@@ -6,6 +6,7 @@ RUN apt-get update \
         locales \
         wget \
         unzip \
+        openjdk-8-jdk \
     && rm -rf /var/lib/apt/lists/*
 
 RUN wget https://cmake.org/files/v3.17/cmake-3.17.0-Linux-x86_64.tar.gz \
@@ -20,3 +21,24 @@ RUN wget https://dl.google.com/android/repository/android-ndk-r21-linux-x86_64.z
     && unzip android-ndk-r21-linux-x86_64.zip -d /usr/local \
     && mv /usr/local/android-ndk-r21 /usr/local/ndk \
     && rm -f android-ndk-r21-linux-x86_64.zip
+
+# Install Android SDK
+RUN apt-get update \
+    && apt-get install -y \
+        openjdk-8-jdk \
+    && rm -rf /var/lib/apt/lists/*
+
+RUN wget https://dl.google.com/android/repository/commandlinetools-linux-6200805_latest.zip \
+    && mkdir -p /usr/local/android-sdk/cmdline-tools \
+    && unzip commandlinetools-linux-6200805_latest.zip -d /usr/local/android-sdk/cmdline-tools \
+    && rm -f commandlinetools-linux-6200805_latest.zip
+
+# Grab the necessary Android SDK packages / tools
+ENV SDK_HOME /usr/local/android-sdk
+ENV TOOLS_BIN $SDK_HOME/cmdline-tools/tools/bin
+
+RUN yes | $TOOLS_BIN/sdkmanager --licenses
+RUN $TOOLS_BIN/sdkmanager --install "build-tools;29.0.3" "platforms;android-29"
+
+ENV BUILD_BIN $SDK_HOME/build-tools/29.0.3
+ENV DROID_LIB $SDK_HOME/platforms/android-29
