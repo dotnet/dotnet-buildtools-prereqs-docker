@@ -22,12 +22,12 @@ RUN wget https://dl.google.com/android/repository/android-ndk-r21-linux-x86_64.z
     && mv /usr/local/android-ndk-r21 /usr/local/ndk \
     && rm -f android-ndk-r21-linux-x86_64.zip
 
+# Grab the necessary Android SDK packages / tools
 RUN wget https://dl.google.com/android/repository/commandlinetools-linux-6200805_latest.zip \
     && mkdir -p /usr/local/android-sdk/cmdline-tools \
     && unzip commandlinetools-linux-6200805_latest.zip -d /usr/local/android-sdk/cmdline-tools \
     && rm -f commandlinetools-linux-6200805_latest.zip
 
-# Grab the necessary Android SDK packages / tools
 ENV ANDROID_SDK_ROOT /usr/local/android-sdk
 
 RUN yes | $ANDROID_SDK_ROOT/cmdline-tools/tools/bin/sdkmanager --licenses
