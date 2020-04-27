@@ -62,7 +62,7 @@ do
 
     echo "Cleaning apt files"
     docker exec $buildRootFSContainer \
-        rm -rf /rootfs/*/var/cache/apt/archives/* /rootfs/*/var/lib/apt/lists/*
+        bash -c 'rm -rf /rootfs/*/{var/cache/apt/archives/*,var/lib/apt/lists/*,usr/share/doc,usr/share/man}'
 
     echo "Tarring rootfs"
     docker exec $buildRootFSContainer \
