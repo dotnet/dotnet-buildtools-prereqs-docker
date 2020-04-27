@@ -581,20 +581,7 @@
             }
           ]
         },
-		{
-          "platforms": [
-            {
-              "architecture": "amd64",
-              "dockerfile": "src/ubuntu/19.04/helix/amd64",
-              "os": "linux",
-              "osVersion": "disco",
-              "tags": {
-                "ubuntu-19.04-helix-amd64-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
-              }
-            }
-          ]
-        },
-		{
+        {
           "platforms": [
             {
               "architecture": "amd64",
