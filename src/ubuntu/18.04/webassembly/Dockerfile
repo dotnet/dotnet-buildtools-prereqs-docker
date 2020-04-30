@@ -17,8 +17,10 @@ RUN locale-gen en_US.UTF-8
 
 # Install Emscripten toolchain
 ENV EMSCRIPTEN_VERSION=1.39.9
-RUN git clone https://github.com/emscripten-core/emsdk.git /usr/local/emscripten \
-    && cd /usr/local/emscripten \
+ENV EMSDK_PATH=/usr/local/emscripten
+
+RUN git clone https://github.com/emscripten-core/emsdk.git ${EMSDK_PATH} \
+    && cd ${EMSDK_PATH} \
     && ./emsdk install ${EMSCRIPTEN_VERSION}-upstream \
     && ./emsdk activate --embedded ${EMSCRIPTEN_VERSION}-upstream \
-    && chmod -R 777 /usr/local/emscripten
+    && chmod -R 777 ${EMSDK_PATH}
