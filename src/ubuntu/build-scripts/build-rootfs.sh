@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/env sh
 
 # Stop script on NZEC
 set -e
@@ -12,68 +12,66 @@ lldb=${4:-}
 
 dockerCrossDepsTag="${DOCKER_REPO:-mcr.microsoft.com/dotnet-buildtools/prereqs}:${os}-crossdeps"
 
-# If argument three was set, use that as the only arch, otherwise use default list of arches : 'arm'
-crossArchArray=(${archArg:-'arm'})
-for arch in $crossArchArray
-do
-    rm -rf $PWD/rootfs.$arch.tar
+# If argument three was set, use that as the arch, otherwise use default arch : 'arm'
+arch=${archArg:-'arm'}
 
-    echo "Using $dockerCrossDepsTag to set up cross-toolset for $arch for $crossToolset"
-    buildRootFSContainer="rootfs-$arch-$crossToolset-$(date +%s)"
+rm -rf $PWD/rootfs.$arch.tar
 
-    # Start a detached container running bash
-    docker run --privileged -itd --name $buildRootFSContainer $dockerCrossDepsTag \
-        bash
+echo "Using $dockerCrossDepsTag to set up cross-toolset for $arch for $crossToolset"
+buildRootFSContainer="rootfs-$arch-$crossToolset-$(date +%s)"
 
-    if [ $? -ne 0 ]; then
-        echo "Rootfs build failed: detached container failed to start"
-        exit 1
-    fi
+# Start a detached container running bash
+docker run --privileged -itd --name $buildRootFSContainer $dockerCrossDepsTag \
+    bash
 
-    echo "Using $dockerCrossDepsTag to clone arcade to fetch scripts used to build cross-toolset"
-    docker exec $buildRootFSContainer \
-        git clone --depth 1 https://github.com/dotnet/arcade /scripts
+if [ $? -ne 0 ]; then
+    echo "Rootfs build failed: detached container failed to start"
+    exit 1
+fi
 
-    if [ $? -ne 0 ]; then
-        echo "Rootfs build failed: `git clone https://github.com/dotnet/arcade /scripts` returned error"
-        docker rm -f $buildRootFSContainer
-        exit 1
-    fi
+echo "Using $dockerCrossDepsTag to clone arcade to fetch scripts used to build cross-toolset"
+docker exec $buildRootFSContainer \
+    git clone --depth 1 https://github.com/dotnet/arcade /scripts
 
-    echo "Running build-rootfs.sh"
-    docker exec -e ROOTFS_DIR=/rootfs/$arch $buildRootFSContainer \
-         /scripts/eng/common/cross/build-rootfs.sh $arch $crossToolset $lldb --skipunmount
-
-    if [ $? -ne 0 ]; then
-        echo "Rootfs build failed: build-rootfs.sh returned error"
-        docker rm -f $buildRootFSContainer
-        exit 1
-    fi
-
-    echo "Checking existence of /rootfs/$arch/bin"
-    docker exec $buildRootFSContainer \
-        [ -d /rootfs/$arch/bin ]
-
-    if [ $? -ne 0 ]; then
-        echo "Rootfs build failed: rootfs/$arch/bin empty"
-        docker rm -f $buildRootFSContainer
-        exit 1
-    fi
-
-    echo "Cleaning apt files"
-    docker exec $buildRootFSContainer \
-        bash -c 'rm -rf /rootfs/*/{var/cache/apt/archives/*,var/lib/apt/lists/*,usr/share/doc,usr/share/man}'
-
-    echo "Tarring rootfs"
-    docker exec $buildRootFSContainer \
-        tar Ccf /rootfs - . > $PWD/rootfs.$arch.tar
-
-    if [ $? -ne 0 ]; then
-        echo "Rootfs build failed: 'tar Ccf /rootfs - .' returned error"
-        docker rm -f $buildRootFSContainer
-        exit 1
-    fi
-
-    echo "Shutting down container"
+if [ $? -ne 0 ]; then
+    echo "Rootfs build failed: `git clone https://github.com/dotnet/arcade /scripts` returned error"
     docker rm -f $buildRootFSContainer
-done
+    exit 1
+fi
+
+echo "Running build-rootfs.sh"
+docker exec -e ROOTFS_DIR=/rootfs/$arch $buildRootFSContainer \
+        /scripts/eng/common/cross/build-rootfs.sh $arch $crossToolset $lldb --skipunmount
+
+if [ $? -ne 0 ]; then
+    echo "Rootfs build failed: build-rootfs.sh returned error"
+    docker rm -f $buildRootFSContainer
+    exit 1
+fi
+
+echo "Checking existence of /rootfs/$arch/bin"
+docker exec $buildRootFSContainer \
+    [ -d /rootfs/$arch/bin ]
+
+if [ $? -ne 0 ]; then
+    echo "Rootfs build failed: rootfs/$arch/bin empty"
+    docker rm -f $buildRootFSContainer
+    exit 1
+fi
+
+echo "Cleaning apt files"
+docker exec $buildRootFSContainer \
+    bash -c 'rm -rf /rootfs/*/{var/cache/apt/archives/*,var/lib/apt/lists/*,usr/share/doc,usr/share/man}'
+
+echo "Tarring rootfs"
+docker exec $buildRootFSContainer \
+    tar Ccf /rootfs - . > $PWD/rootfs.$arch.tar
+
+if [ $? -ne 0 ]; then
+    echo "Rootfs build failed: 'tar Ccf /rootfs - .' returned error"
+    docker rm -f $buildRootFSContainer
+    exit 1
+fi
+
+echo "Shutting down container"
+docker rm -f $buildRootFSContainer

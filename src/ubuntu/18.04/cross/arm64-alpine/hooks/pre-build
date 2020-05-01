@@ -1,3 +1,5 @@
-#!/usr/bin/env bash
+#!/usr/bin/env sh
 
-$(dirname ${BASH_SOURCE[0]})/../../../../build-scripts/build-rootfs.sh ubuntu-18.04 alpine arm64 lldb3.9
+SCRIPT=$(readlink -f "$0")
+SCRIPTPATH=$(dirname "$SCRIPT")
+$SCRIPTPATH/../../../../build-scripts/build-rootfs.sh ubuntu-18.04 alpine arm64 lldb3.9
