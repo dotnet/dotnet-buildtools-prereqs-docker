@@ -245,6 +245,29 @@
         },
         {
           "platforms": [{
+            "dockerfile": "src/fedora/32/amd64",
+            "os": "linux",
+            "osVersion": "fedora32",
+            "tags": {
+              "fedora-32-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
+              "fedora-32": {
+                "isLocal": true
+              }
+            }
+          }]
+        },
+        {
+          "platforms": [{
+            "dockerfile": "src/fedora/32/helix/amd64",
+            "os": "linux",
+            "osVersion": "fedora32",
+            "tags": {
+              "fedora-32-helix-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
+            }
+          }]
+        },        
+        {
+          "platforms": [{
             "dockerfile": "src/fedora/rawhide/amd64",
             "os": "linux",
             "osVersion": "fedora-rawhide",
