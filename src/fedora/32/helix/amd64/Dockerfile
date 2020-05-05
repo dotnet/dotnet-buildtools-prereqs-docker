@@ -5,6 +5,7 @@ FROM mcr.microsoft.com/dotnet-buildtools/prereqs:fedora-32
 RUN dnf install -y \
         python3 \
         python3-devel \
+        libffi-devel \
         redhat-rpm-config \
         sudo \
     && dnf clean all
@@ -27,4 +28,4 @@ RUN /usr/sbin/adduser --uid 1000 --shell /bin/bash --group adm helixbot && \
 
 USER helixbot
 
-RUN python -m virtualenv --no-site-packages /home/helixbot/.vsts-env
+RUN python -m virtualenv /home/helixbot/.vsts-env
