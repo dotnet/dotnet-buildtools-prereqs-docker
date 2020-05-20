@@ -879,11 +879,11 @@
         {
           "platforms": [
             {
-              "dockerfile": "src/servercore/ltsc2019/helix/amd64",
+              "dockerfile": "src/windowsservercore/ltsc2019/helix/amd64",
               "os": "windows",
               "osVersion": "windowsservercore-ltsc2019",
               "tags": {
-                "servercore-ltsc2019-helix-amd64-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
+                "windowsservercore-ltsc2019-helix-amd64-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
               }
             }
           ]
@@ -891,11 +891,11 @@
         {
           "platforms": [
             {
-              "dockerfile": "src/servercore/1909/helix/amd64",
+              "dockerfile": "src/windowsservercore/1909/helix/amd64",
               "os": "windows",
               "osVersion": "windowsservercore-1909",
               "tags": {
-                "servercore-1909-helix-amd64-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
+                "windowsservercore-1909-helix-amd64-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
               }
             }
           ]
