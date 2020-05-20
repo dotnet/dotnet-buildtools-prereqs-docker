@@ -1,0 +1,22 @@
+trigger:
+  branches:
+    include:
+    - master
+  paths:
+    include:
+    - src/windowsservercore/1909/*
+pr:
+  branches:
+    include:
+    - master
+  paths:
+    include:
+    - src/windowsservercore/1909/*
+
+variables:
+- template: variables/common.yml
+- name: imageBuilder.pathArgs
+  value: --path 'src/windowsservercore/1909/*'
+
+stages:
+  - template: ../common/templates/stages/build-test-publish-repo.yml
