@@ -3,7 +3,6 @@ FROM mcr.microsoft.com/windows/servercore:1909
 
 SHELL ["cmd", "/S", "/C"]
 USER ContainerAdministrator
-ENTRYPOINT C:\Windows\System32\cmd.exe
 
 RUN curl -SL --output %TEMP%\python.zip https://www.nuget.org/api/v2/package/python/3.7.3 `
     && md C:\Python C:\PythonTemp `
