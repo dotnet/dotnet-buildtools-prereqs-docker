@@ -895,7 +895,7 @@
               "os": "windows",
               "osVersion": "servercore-1909",
               "tags": {
-                "servercore-ltsc2019-helix-amd64-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
+                "servercore-1909-helix-amd64-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
               }
             }
           ]
