@@ -881,7 +881,7 @@
             {
               "dockerfile": "src/servercore/ltsc2019/helix/amd64",
               "os": "windows",
-              "osVersion": "servercore-ltsc2019",
+              "osVersion": "windowsservercore-ltsc2019",
               "tags": {
                 "servercore-ltsc2019-helix-amd64-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
               }
