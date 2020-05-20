@@ -893,7 +893,7 @@
             {
               "dockerfile": "src/servercore/1909/helix/amd64",
               "os": "windows",
-              "osVersion": "servercore-1909",
+              "osVersion": "windowsservercore-1909",
               "tags": {
                 "servercore-1909-helix-amd64-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
               }
