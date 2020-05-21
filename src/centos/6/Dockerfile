@@ -151,7 +151,7 @@ RUN wget https://curl.haxx.se/download/curl-7.45.0.tar.lzma && \
 
 # Install ICU 57.1
 
-RUN wget http://download.icu-project.org/files/icu4c/57.1/icu4c-57_1-RHEL6-x64.tgz && \
+RUN wget https://github.com/unicode-org/icu/releases/download/release-57-1/icu4c-57_1-RHEL6-x64.tgz && \
     tar -xf icu4c-57_1-RHEL6-x64.tgz -C / && \
     rm icu4c-57_1-RHEL6-x64.tgz
 
