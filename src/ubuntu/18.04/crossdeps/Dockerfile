@@ -26,6 +26,7 @@ RUN apt-get update \
         liblzma-dev \
         libarchive-dev \
         libbsd-dev \
+        libmpc-dev \
     && rm -rf /var/lib/apt/lists/*
 
 RUN apt-get update \
