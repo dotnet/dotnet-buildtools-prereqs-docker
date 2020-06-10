@@ -1,3 +1,1 @@
-#!/usr/bin/env sh
-
-rm -rf $PWD/rootfs*.tar
+../../../../../build-scripts/build-rootfs-cleanup.sh
