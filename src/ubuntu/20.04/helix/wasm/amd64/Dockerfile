@@ -22,19 +22,20 @@ RUN apt-get clean && \
         libffi-dev \
         libgdiplus \
         libicu-dev \
+        libnode-dev \
         libtool \
         libunwind8 \
         libunwind-dev \
         lldb-3.9 \
         locales \
         locales-all \
+        node-gyp \
+        npm \
         python3-dev \
         python3-pip \
         sudo \
         tzdata \
         unzip \
-        libnode-dev \
-        node-gyp npm \
      && rm -rf /var/lib/apt/lists/* \
      \
      && localedef -i en_US -c -f UTF-8 -A /usr/share/locale/locale.alias en_US.UTF-8
