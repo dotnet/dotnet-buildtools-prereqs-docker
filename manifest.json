@@ -182,7 +182,7 @@
         },
         {
           "sharedTags": {
-            "debian-stretch-slim-docker-testrunner-$(System:DockerfileGitCommitSha)": {}
+            "debian-stretch-slim-docker-testrunner": {}
           },
           "platforms": [
             {
