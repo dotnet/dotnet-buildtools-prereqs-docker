@@ -181,14 +181,27 @@
           ]
         },
         {
+          "sharedTags": {
+            "debian-stretch-slim-docker-testrunner-$(System:DockerfileGitCommitSha)": {}
+          },
           "platforms": [
             {
-              "dockerfile": "src/debian/stretch-slim/docker-testrunner",
+              "dockerfile": "src/debian/stretch-slim/docker-testrunner/amd64",
               "os": "linux",
               "osVersion": "stretch",
               "tags": {
-                "debian-stretch-slim-docker-testrunner-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
+                "debian-stretch-slim-docker-testrunner-amd64-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
               }
+            },
+            {
+              "architecture": "arm64",
+              "dockerfile": "src/debian/stretch-slim/docker-testrunner/arm64v8",
+              "os": "linux",
+              "osVersion": "stretch",
+              "tags": {
+                "debian-stretch-slim-docker-testrunner-arm64v8-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
+              },
+              "variant": "v8"
             }
           ]
         },
