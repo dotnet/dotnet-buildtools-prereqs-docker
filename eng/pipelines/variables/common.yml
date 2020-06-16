@@ -10,6 +10,8 @@ variables:
   value: false
 - name: publicGitRepoUri
   value: https://github.com/dotnet/dotnet-buildtools-prereqs-docker
+- name: manifestVariables
+  value: --var UniqueId=$(sourceBuildId)
 - ${{ if eq(variables['System.TeamProject'], 'internal') }}:
     - name: build.imageBuilderDockerRunExtraOptions
       value: -e DOCKER_REPO=$(acr.server)/$(stagingRepoPrefix)dotnet-buildtools/prereqs

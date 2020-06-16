@@ -182,7 +182,7 @@
         },
         {
           "sharedTags": {
-            "debian-stretch-slim-docker-testrunner": {}
+            "debian-stretch-slim-docker-testrunner-$(UniqueId)": {}
           },
           "platforms": [
             {
@@ -190,7 +190,7 @@
               "os": "linux",
               "osVersion": "stretch",
               "tags": {
-                "debian-stretch-slim-docker-testrunner-amd64-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
+                "debian-stretch-slim-docker-testrunner-amd64-$(UniqueId)": {}
               }
             },
             {
@@ -199,7 +199,7 @@
               "os": "linux",
               "osVersion": "stretch",
               "tags": {
-                "debian-stretch-slim-docker-testrunner-arm64v8-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
+                "debian-stretch-slim-docker-testrunner-arm64v8-$(UniqueId)": {}
               },
               "variant": "v8"
             }
