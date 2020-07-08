@@ -3,17 +3,18 @@ FROM arm64v8/ubuntu:16.04
 # Install Helix Dependencies
 
 RUN apt-get update && \
-    apt-get install -y \        
+    apt-get install -y \
+        gdb \
         gss-ntlmssp \
         iputils-ping \
         libcurl3 \
         libffi-dev \
-        libgdiplus \        
-        libicu-dev \        
+        libgdiplus \
+        libicu-dev \
         libssl-dev \
-        libunwind8 \        
+        libunwind8 \
         libunwind-dev \
-        lldb-3.9 \        
+        lldb-3.9 \
         locales \
         locales-all \
         python3-dev \ 
@@ -32,7 +33,7 @@ RUN python -m pip install --upgrade pip==19.0.2 && \
     python -m pip install \ 
                   applicationinsights==0.11.7 \
                   certifi==2018.11.29 \
-                  cryptography==2.5 \                  
+                  cryptography==2.5 \
                   docker==3.6.0 \
                   ndg-httpsclient==0.5.1  \
                   psutil==5.4.8 \
