@@ -13,6 +13,7 @@ RUN apt-get update && \
         autoconf \
         automake \
         build-essential \
+        gdb \
         gss-ntlmssp \
         iputils-ping \
         libcurl3 \
@@ -26,7 +27,7 @@ RUN apt-get update && \
         lldb-3.9 \
         locales \
         locales-all \
-        python3-dev \ 
+        python3-dev \
         python3-pip \
         sudo \
         tzdata \

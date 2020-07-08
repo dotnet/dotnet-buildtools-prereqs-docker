@@ -7,6 +7,7 @@ RUN apt-get update && \
         autoconf \
         automake \
         build-essential \
+        gdb \
         gss-ntlmssp \
         iputils-ping \
         libcurl3 \
