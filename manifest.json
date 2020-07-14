@@ -167,6 +167,17 @@
               }
             }
           ]
+        },{
+          "platforms": [
+            {
+              "dockerfile": "src/centos/7/source-build",
+              "os": "linux",
+              "osVersion": "centos7",
+              "tags": {
+                "centos-7-source-build-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
+              }
+            }
+          ]
         },
         {
           "platforms": [
