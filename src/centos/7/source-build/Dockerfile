@@ -11,6 +11,7 @@ RUN yum install -y \
         "perl(Time::HiRes)" \
         autoconf \
         automake \
+        clang \
         devtoolset-7-gcc* \
         doxygen \
         gdb \
@@ -24,10 +25,12 @@ RUN yum install -y \
         libmetalink-devel \
         libnghttp2-devel \
         libssh2-devel \
+        libstdc++-static \
         libtool \
         libunwind-devel \
         libuuid-devel \
         libxml2-devel \
+        llvm \
         lttng-ust-devel \
         lzma \
         make \
@@ -44,9 +47,6 @@ RUN yum install -y \
         which \
         xz \
         zlib-devel \
-        clang \
-        llvm \
-        libstdc++-static \
     && \
     yum clean all
 
