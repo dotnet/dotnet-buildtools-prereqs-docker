@@ -160,6 +160,21 @@
         {
           "platforms": [
             {
+              "dockerfile": "src/centos/7/source-build",
+              "os": "linux",
+              "osVersion": "centos7",
+              "tags": {
+                "centos-7-source-build-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
+                "centos-7": {
+                  "isLocal": true
+                }
+              }
+            }
+          ]
+        },
+        {
+          "platforms": [
+            {
               "dockerfile": "src/centos/6",
               "os": "linux",
               "osVersion": "centos6",
