@@ -46,6 +46,7 @@ RUN yum install -y \
         zlib-devel \
         clang \
         llvm \
+        libstdc++-static \
     && \
     yum clean all
 
