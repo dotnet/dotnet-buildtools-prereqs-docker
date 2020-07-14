@@ -165,9 +165,6 @@
               "osVersion": "centos7",
               "tags": {
                 "centos-7-source-build-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
-                "centos-7": {
-                  "isLocal": true
-                }
               }
             }
           ]
