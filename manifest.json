@@ -109,17 +109,6 @@
         {
           "platforms": [
             {
-              "dockerfile": "src/centos/8/source-build",
-              "os": "linux",
-              "osVersion": "centos8",
-              "tags": {
-                "centos-8-source-build-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
-              }
-            }
-          ]
-        },        {
-          "platforms": [
-            {
               "dockerfile": "src/centos/8/rpmpkg",
               "os": "linux",
               "osVersion": "centos8",
@@ -164,6 +153,18 @@
               "osVersion": "centos7",
               "tags": {
                 "centos-7-rpmpkg-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
+              }
+            }
+          ]
+        },
+        {
+          "platforms": [
+            {
+              "dockerfile": "src/centos/7/source-build",
+              "os": "linux",
+              "osVersion": "centos7",
+              "tags": {
+                "centos-7-source-build-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
               }
             }
           ]
@@ -216,18 +217,6 @@
                 "debian-stretch": {
                   "isLocal": true
                 }
-              }
-            }
-          ]
-        },
-        {
-          "platforms": [
-            {
-              "dockerfile": "src/debian/stretch/source-build",
-              "os": "linux",
-              "osVersion": "stretch",
-              "tags": {
-                "debian-stretch-source-build-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
               }
             }
           ]
@@ -898,18 +887,6 @@
                 "ubuntu-18.04-arm64v8-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
               },
               "variant": "v8"
-            }
-          ]
-        },
-        {
-          "platforms": [
-            {
-              "dockerfile": "src/ubuntu/18.04/source-build",
-              "os": "linux",
-              "osVersion": "bionic",
-              "tags": {
-                "ubuntu-18.04-source-build-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
-              }
             }
           ]
         },
