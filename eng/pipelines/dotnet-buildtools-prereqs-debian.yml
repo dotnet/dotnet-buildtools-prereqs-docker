@@ -6,6 +6,8 @@ trigger:
     include:
     - src/debian/*
 
+pr: none
+
 variables:
 - template: variables/common.yml
 - name: imageBuilder.pathArgs
