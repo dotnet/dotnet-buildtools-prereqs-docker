@@ -5,13 +5,6 @@ trigger:
   paths:
     include:
     - src/windowsservercore/ltsc2019/*
-pr:
-  branches:
-    include:
-    - master
-  paths:
-    include:
-    - src/windowsservercore/ltsc2019/*
 
 variables:
 - template: variables/common.yml

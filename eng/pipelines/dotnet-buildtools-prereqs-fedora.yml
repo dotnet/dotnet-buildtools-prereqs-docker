@@ -5,13 +5,6 @@ trigger:
   paths:
     include:
     - src/fedora/*
-pr:
-  branches:
-    include:
-    - master
-  paths:
-    include:
-    - src/fedora/*
 
 variables:
 - template: variables/common.yml

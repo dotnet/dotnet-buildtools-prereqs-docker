@@ -5,13 +5,6 @@ trigger:
   paths:
     include:
     - src/debian/*
-pr:
-  branches:
-    include:
-    - master
-  paths:
-    include:
-    - src/debian/*
 
 variables:
 - template: variables/common.yml

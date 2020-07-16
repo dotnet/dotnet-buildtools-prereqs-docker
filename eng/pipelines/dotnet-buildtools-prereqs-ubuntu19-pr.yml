@@ -1,15 +1,18 @@
-trigger:
+pr:
   branches:
     include:
     - master
   paths:
     include:
-    - src/windowsservercore/1909/*
+    - src/ubuntu/19*
 
 variables:
 - template: variables/common.yml
 - name: imageBuilder.pathArgs
-  value: --path 'src/windowsservercore/1909/*'
+  value: --path 'src/ubuntu/19*'
 
 stages:
   - template: ../common/templates/stages/build-test-publish-repo.yml
+    parameters:
+      customBuildInitSteps:
+      - template: /eng/pipelines/steps/install-cross-build-prereqs.yml

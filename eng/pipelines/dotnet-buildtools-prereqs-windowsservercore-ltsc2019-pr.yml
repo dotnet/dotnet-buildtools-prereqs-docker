@@ -1,15 +1,15 @@
-trigger:
+pr:
   branches:
     include:
     - master
   paths:
     include:
-    - src/windowsservercore/1909/*
+    - src/windowsservercore/ltsc2019/*
 
 variables:
 - template: variables/common.yml
 - name: imageBuilder.pathArgs
-  value: --path 'src/windowsservercore/1909/*'
+  value: --path 'src/windowsservercore/ltsc2019/*'
 
 stages:
   - template: ../common/templates/stages/build-test-publish-repo.yml
