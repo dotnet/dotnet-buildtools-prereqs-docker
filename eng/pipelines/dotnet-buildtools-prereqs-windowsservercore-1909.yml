@@ -5,13 +5,7 @@ trigger:
   paths:
     include:
     - src/windowsservercore/1909/*
-pr:
-  branches:
-    include:
-    - master
-  paths:
-    include:
-    - src/windowsservercore/1909/*
+pr: none
 
 variables:
 - template: variables/common.yml

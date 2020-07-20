@@ -1,19 +1,22 @@
-trigger:
+trigger: none
+pr:
   branches:
     include:
     - master
   paths:
     include:
-    - src/ubuntu/19*
-pr: none
+    - src/ubuntu/18.04/*
 
 variables:
 - template: variables/common.yml
 - name: imageBuilder.pathArgs
-  value: --path 'src/ubuntu/19*'
+  value: --path 'src/ubuntu/18.04*'
 
 stages:
   - template: ../common/templates/stages/build-test-publish-repo.yml
     parameters:
+      linuxAmdBuildJobTimeout: 150
+      linuxAmdBuildPool: "NetCorePublic-Pool"
+      linuxAmdBuildQueue: "BuildPool.Ubuntu.1604.Amd64.Open"
       customBuildInitSteps:
       - template: /eng/pipelines/steps/install-cross-build-prereqs.yml

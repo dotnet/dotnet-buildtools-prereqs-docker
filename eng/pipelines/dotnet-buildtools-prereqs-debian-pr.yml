@@ -1,12 +1,11 @@
-trigger:
+trigger: none
+pr:
   branches:
     include:
     - master
   paths:
     include:
     - src/debian/*
-
-pr: none
 
 variables:
 - template: variables/common.yml

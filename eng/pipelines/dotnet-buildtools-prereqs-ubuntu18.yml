@@ -5,13 +5,7 @@ trigger:
   paths:
     include:
     - src/ubuntu/18.04/*
-pr:
-  branches:
-    include:
-    - master
-  paths:
-    include:
-    - src/ubuntu/18.04/*
+pr: none
 
 variables:
 - template: variables/common.yml
@@ -22,11 +16,7 @@ stages:
   - template: ../common/templates/stages/build-test-publish-repo.yml
     parameters:
       linuxAmdBuildJobTimeout: 150
-      ${{ if eq(variables['System.TeamProject'], 'public') }}:
-        linuxAmdBuildPool: "NetCorePublic-Pool"
-        linuxAmdBuildQueue: "BuildPool.Ubuntu.1604.Amd64.Open"
-      ${{ if eq(variables['System.TeamProject'], 'internal') }}:
-        linuxAmdBuildPool: "NetCoreInternal-Pool"
-        linuxAmdBuildQueue: "BuildPool.Ubuntu.1604.Amd64"
+      linuxAmdBuildPool: "NetCoreInternal-Pool"
+      linuxAmdBuildQueue: "BuildPool.Ubuntu.1604.Amd64"
       customBuildInitSteps:
       - template: /eng/pipelines/steps/install-cross-build-prereqs.yml

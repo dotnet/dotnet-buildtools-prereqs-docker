@@ -1,17 +1,19 @@
-trigger:
+trigger: none
+pr:
   branches:
     include:
     - master
   paths:
     include:
-    - src/debian/*
-
-pr: none
+    - src/ubuntu/19*
 
 variables:
 - template: variables/common.yml
 - name: imageBuilder.pathArgs
-  value: --path 'src/debian/*'
+  value: --path 'src/ubuntu/19*'
 
 stages:
   - template: ../common/templates/stages/build-test-publish-repo.yml
+    parameters:
+      customBuildInitSteps:
+      - template: /eng/pipelines/steps/install-cross-build-prereqs.yml

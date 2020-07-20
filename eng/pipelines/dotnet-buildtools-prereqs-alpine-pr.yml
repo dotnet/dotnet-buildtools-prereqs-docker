@@ -1,17 +1,16 @@
-trigger:
+trigger: none
+pr:
   branches:
     include:
     - master
   paths:
     include:
-    - src/debian/*
-
-pr: none
+    - src/alpine/*
 
 variables:
 - template: variables/common.yml
 - name: imageBuilder.pathArgs
-  value: --path 'src/debian/*'
+  value: --path 'src/alpine/*'
 
 stages:
   - template: ../common/templates/stages/build-test-publish-repo.yml

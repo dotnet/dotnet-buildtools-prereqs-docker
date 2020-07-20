@@ -5,13 +5,7 @@ trigger:
   paths:
     include:
     - src/nanoserver/1809/*
-pr:
-  branches:
-    include:
-    - master
-  paths:
-    include:
-    - src/nanoserver/1809/*
+pr: none
 
 variables:
 - template: variables/common.yml

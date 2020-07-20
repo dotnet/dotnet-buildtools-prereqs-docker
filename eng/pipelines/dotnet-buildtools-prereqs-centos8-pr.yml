@@ -1,17 +1,18 @@
-trigger:
+trigger: none
+pr:
   branches:
     include:
     - master
   paths:
     include:
-    - src/debian/*
-
-pr: none
+    - src/centos/8/*
 
 variables:
 - template: variables/common.yml
 - name: imageBuilder.pathArgs
-  value: --path 'src/debian/*'
+  value: --path 'src/centos/8*'
 
 stages:
   - template: ../common/templates/stages/build-test-publish-repo.yml
+    parameters:
+      linuxAmdBuildJobTimeout: 210
