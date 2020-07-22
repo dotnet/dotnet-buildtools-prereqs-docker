@@ -13,7 +13,9 @@ param(
     [string]$RepoPrefix,
     [switch]$DisableHttpVerification,
     [switch]$PullImages,
-    [string]$ImageInfoPath
+    [string]$ImageInfoPath,
+    [ValidateSet("functional", "pre-build")]
+    [string[]]$TestCategories = @("functional")
 )
 
 Set-StrictMode -Version Latest
