@@ -38,3 +38,7 @@ RUN apt-get update \
         python-lldb-6.0 \
     && rm -rf /var/lib/apt/lists/*
 
+RUN wget -O /tmp/keyring.deb http://http.us.debian.org/debian/pool/main/d/debian-ports-archive-keyring/debian-ports-archive-keyring_2019.11.05_all.deb \
+    && dpkg -i /tmp/keyring.deb \
+    && rm /tmp/keyring.deb
+
