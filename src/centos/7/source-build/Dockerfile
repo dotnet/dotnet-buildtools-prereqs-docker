@@ -29,6 +29,7 @@ RUN yum install -y \
         libunwind-devel \
         libuuid-devel \
         libxml2-devel \
+        llvm-toolset-7.0 \
         llvm-toolset-7.0-cmake \
         lttng-ust-devel \
         lzma \
