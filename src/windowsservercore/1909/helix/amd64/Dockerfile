@@ -12,9 +12,12 @@ RUN curl -SL --output %TEMP%\python.zip https://www.nuget.org/api/v2/package/pyt
     && del /q %TEMP%\python.zip `
     && setx /M PYTHONPATH "C:\Python\Lib;C:\Python\DLLs;"
 
-RUN C:\Python\python.exe -m pip install --upgrade pip && `
-    C:\Python\python.exe -m pip install virtualenv==16.5.0 --no-warn-script-location && `
-    C:\Python\python.exe -m pip install helix-scripts --no-warn-script-location --extra-index-url https://dnceng.pkgs.visualstudio.com/public/_packaging/helix-client-prod/pypi/simple && `
+RUN md c:\\helixtmp && pushd c:\\helixtmp &&`
+    C:\Python\python.exe -m pip install --upgrade pip==20.2 --no-warn-script-location && `
+    C:\Python\python.exe -m pip install virtualenv==16.6.0 --no-warn-script-location && `
+    C:\Python\python.exe -m pip download --no-deps helix-scripts --index-url https://dnceng.pkgs.visualstudio.com/public/_packaging/helix-client-prod/pypi/simple && `
+    for %f in (.\helix_scripts-*-py3-none-any.whl) do (C:\Python\python.exe -m pip install %f  --no-warn-script-location) && `
+    popd && rd /s /q c:\\helixtmp && `
     powershell -Command `
         New-Item -Path 'HKLM:\SOFTWARE\Microsoft\Windows\Windows Error Reporting\LocalDumps\' -Name 'dotnet.exe' -Force -ErrorAction SilentlyContinue ; `
         Set-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\Windows\Windows Error Reporting\LocalDumps\dotnet.exe' -Value 2 -Name DumpType -Force ; `
