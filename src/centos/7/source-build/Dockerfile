@@ -50,7 +50,7 @@ RUN yum install -y \
     && \
     yum clean all
 
-RUN scl enable llvm-toolset-7.0 bash
-
 # Add to path
 ENV PATH "${PATH}:/cmake/bin"
+
+ENTRYPOINT [ "scl", "enable", "llvm-toolset-7.0", "bash" ]
