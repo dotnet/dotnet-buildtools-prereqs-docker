@@ -11,7 +11,16 @@ RUN cd /tmp \
     && wget https://ftp.gnu.org/gnu/binutils/binutils-2.31.1.tar.gz \
     && tar -xf binutils-2.31.1.tar.gz \
     && cd binutils-2.31.1 \
-    && ./configure --disable-werror --target=armv7-alpine-linux-musleabihf --prefix=/usr --libdir=/lib --disable-multilib --with-sysroot=armv7-alpine-linux-musleabihf --enable-gold=yes --enable-plugins=yes --program-prefix=armv7-alpine-linux-musleabihf- \
+    && ./configure \
+        --disable-werror \
+        --target=armv7-alpine-linux-musleabihf \
+        --prefix=/usr \
+        --libdir=/lib \
+        --disable-multilib \
+        --with-sysroot=armv7-alpine-linux-musleabihf \
+        --enable-gold=yes \
+        --enable-plugins=yes \
+        --program-prefix=armv7-alpine-linux-musleabihf- \
     && make \
     && make install \
     && cd .. \
