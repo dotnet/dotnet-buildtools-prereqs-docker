@@ -2,6 +2,9 @@ FROM arm32v7/ubuntu:16.04
 
 # Install Helix Dependencies 
 
+# Workaround: https://github.com/pypa/wheel/issues/367
+ENV _PYTHON_HOST_PLATFORM linux_armv7l
+
 # Can remove the mono preview repo when we no longer depend on pre-release libgdiplus
 
 RUN apt-get update && \
