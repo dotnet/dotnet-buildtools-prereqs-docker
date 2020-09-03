@@ -578,6 +578,20 @@
         {
           "platforms": [
             {
+              "architecture": "arm",
+              "dockerfile": "src/ubuntu/16.04/helix/arm32v7",
+              "os": "linux",
+              "osVersion": "xenial",
+              "tags": {
+                "ubuntu-16.04-helix-arm32v7-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
+              },
+              "variant": "v7"
+            }
+          ]
+        },
+        {
+          "platforms": [
+            {
               "architecture": "arm64",
               "dockerfile": "src/ubuntu/16.04/helix/arm64v8",
               "os": "linux",
@@ -666,6 +680,20 @@
               }
             }
           ]
+        },        
+        {
+          "platforms": [
+            {
+              "architecture": "arm",
+              "dockerfile": "src/ubuntu/18.04/helix/arm32v7",
+              "os": "linux",
+              "osVersion": "bionic",
+              "tags": {
+                "ubuntu-18.04-helix-arm32v7-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
+              },
+              "variant": "v7"
+            }
+          ]
         },
         {
           "platforms": [
@@ -712,6 +740,20 @@
         {
           "platforms": [
             {
+              "architecture": "arm",
+              "dockerfile": "src/debian/9/helix/arm32v7",
+              "os": "linux",
+              "osVersion": "stretch",
+              "tags": {
+                "debian-9-helix-arm32v7-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
+              },
+              "variant": "v7"
+            }
+          ]
+        },
+        {
+          "platforms": [
+            {
               "architecture": "arm64",
               "dockerfile": "src/debian/9/arm64v8",
               "os": "linux",
@@ -747,6 +789,20 @@
               "tags": {
                 "debian-10-helix-amd64-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
               }
+            }
+          ]
+        },
+        {
+          "platforms": [
+            {
+              "architecture": "arm",
+              "dockerfile": "src/debian/10/helix/arm32v7",
+              "os": "linux",
+              "osVersion": "buster",
+              "tags": {
+                "debian-10-helix-arm32v7-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
+              },
+              "variant": "v7"
             }
           ]
         },

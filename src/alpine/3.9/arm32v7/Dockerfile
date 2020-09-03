@@ -1,5 +1,8 @@
 FROM arm32v7/alpine:3.9
 
+# Workaround: https://github.com/pypa/wheel/issues/367
+ENV _PYTHON_HOST_PLATFORM linux_armv7l
+
 RUN apk update
 
 RUN apk add --no-cache \

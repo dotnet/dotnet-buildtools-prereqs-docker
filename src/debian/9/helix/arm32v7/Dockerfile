@@ -2,6 +2,9 @@ FROM arm32v7/debian:9
 
 # Install Helix Dependencies
 
+# Workaround: https://github.com/pypa/wheel/issues/367
+ENV _PYTHON_HOST_PLATFORM linux_armv7l
+
 RUN apt-get update && \
     apt-get install -y \
         autoconf \

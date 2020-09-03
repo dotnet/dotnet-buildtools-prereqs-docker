@@ -4,6 +4,9 @@ FROM arm32v7/ubuntu:18.04
 
 ENV DEBIAN_FRONTEND noninteractive
 
+# Workaround: https://github.com/pypa/wheel/issues/367
+ENV _PYTHON_HOST_PLATFORM linux_armv7l
+
 # Can remove the mono preview repo when we no longer depend on pre-release libgdiplus
 
 RUN apt-get update && \
