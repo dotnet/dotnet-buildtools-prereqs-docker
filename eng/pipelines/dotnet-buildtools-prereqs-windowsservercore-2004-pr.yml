@@ -1,0 +1,23 @@
+trigger: none
+pr:
+  branches:
+    include:
+    - master
+  paths:
+    include:
+    - src/windowsservercore/2004/*
+
+resources:
+  repositories:
+  - repository: VersionsRepo
+    type: github
+    endpoint: dotnet
+    name: dotnet/versions
+
+variables:
+- template: variables/common.yml
+- name: imageBuilder.pathArgs
+  value: --path 'src/windowsservercore/2004/*'
+
+stages:
+  - template: ../common/templates/stages/build-test-publish-repo.yml

@@ -939,6 +939,18 @@
               }
             }
           ]
+        },
+        {
+          "platforms": [
+            {
+              "dockerfile": "src/windowsservercore/2004/helix/amd64",
+              "os": "windows",
+              "osVersion": "windowsservercore-2004",
+              "tags": {
+                "windowsservercore-2004-helix-amd64-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
+              }
+            }
+          ]
         }
       ]
     }
