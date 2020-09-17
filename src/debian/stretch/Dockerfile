@@ -28,6 +28,7 @@ RUN apt-get update \
             libunwind8-dev \
             lldb-3.9 \
             llvm \
+            locales \
             make \
             python-lldb-3.9 \
             sudo \
@@ -41,6 +42,13 @@ RUN apt-get update \
 RUN curl -sL https://deb.nodesource.com/setup_9.x | bash - \
     && apt-get install -y nodejs \
     && npm install -g azure-cli --unsafe-perm
+
+# .NET SDK MSBuild requires US.UTF-8 locale to execute tasks
+# These commands are from https://askubuntu.com/a/1027038
+RUN echo "locales locales/default_environment_locale select en_US.UTF-8" | debconf-set-selections \
+    && echo "locales locales/locales_to_be_generated multiselect en_US.UTF-8 UTF-8" | debconf-set-selections \
+    && rm "/etc/locale.gen" \
+    && dpkg-reconfigure --frontend noninteractive locales
 
 # Until official packages are available, we have to restore the ubuntu ones instead.
 ENV __PUBLISH_RID=ubuntu.14.04-x64
