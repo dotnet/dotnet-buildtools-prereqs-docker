@@ -10,6 +10,7 @@ RUN apt-get update \
         liblldb-3.9-dev \
         lldb-3.9 \
         llvm-3.9 \
+        locales \
         make \
         python-lldb-3.9 \
         sudo \
@@ -28,6 +29,9 @@ RUN apt-get update \
         tar \
         zip \
     && rm -rf /var/lib/apt/lists/*
+
+# .NET SDK MSBuild requires US.UTF-8 locale to execute tasks
+RUN locale-gen en_US.UTF-8
 
 # Install Azure CLI
 RUN apt-get update \
