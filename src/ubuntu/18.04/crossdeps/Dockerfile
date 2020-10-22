@@ -32,6 +32,7 @@ RUN apt-get update \
 RUN apt-get update \
     && apt-get install -y \
         clang-9 \
+        clang-tools-9 \
         liblldb-6.0-dev \
         lldb-6.0 \
         llvm-9 \
