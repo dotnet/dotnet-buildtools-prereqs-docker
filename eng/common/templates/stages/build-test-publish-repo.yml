@@ -1,7 +1,8 @@
 parameters:
   buildMatrixType: platformDependencyGraph
   testMatrixType: platformVersionedOs
-  customBuildLegGrouping: ""
+  buildMatrixCustomBuildLegGroupArgs: ""
+  testMatrixCustomBuildLegGroupArgs: ""
   customBuildInitSteps: []
   
   linuxAmdBuildJobTimeout: 60
@@ -15,6 +16,7 @@ parameters:
   linuxAmd64BuildPool:
     vmImage: $(defaultLinuxAmd64PoolImage)
 
+  noCache: false
 stages:
 
 ################################################################################
@@ -35,7 +37,7 @@ stages:
     parameters:
       matrixType: ${{ parameters.buildMatrixType }}
       name: GenerateBuildMatrix
-      customBuildLegGrouping: ${{ parameters.customBuildLegGrouping }}
+      customBuildLegGroupArgs: ${{ parameters.buildMatrixCustomBuildLegGroupArgs }}
 
   - template: ../jobs/build-images.yml
     parameters:
@@ -45,6 +47,7 @@ stages:
       dockerClientOS: linux
       buildJobTimeout: ${{ parameters.linuxAmdBuildJobTimeout }}
       customInitSteps: ${{ parameters.customBuildInitSteps }}
+      noCache: ${{ parameters.noCache }}
   - template: ../jobs/build-images.yml
     parameters:
       name: Linux_arm64v8
@@ -60,6 +63,7 @@ stages:
       dockerClientOS: linux
       buildJobTimeout: ${{ parameters.linuxArmBuildJobTimeout }}
       customInitSteps: ${{ parameters.customBuildInitSteps }}
+      noCache: ${{ parameters.noCache }}
   - template: ../jobs/build-images.yml
     parameters:
       name: Linux_arm32v7
@@ -75,6 +79,7 @@ stages:
       dockerClientOS: linux
       buildJobTimeout: ${{ parameters.linuxArmBuildJobTimeout }}
       customInitSteps: ${{ parameters.customBuildInitSteps }}
+      noCache: ${{ parameters.noCache }}
   - template: ../jobs/build-images.yml
     parameters:
       name: Windows1809_amd64
@@ -88,6 +93,7 @@ stages:
       dockerClientOS: windows
       buildJobTimeout: ${{ parameters.windowsAmdBuildJobTimeout }}
       customInitSteps: ${{ parameters.customBuildInitSteps }}
+      noCache: ${{ parameters.noCache }}
   - template: ../jobs/build-images.yml
     parameters:
       name: Windows1903_amd64
@@ -101,6 +107,7 @@ stages:
       dockerClientOS: windows
       buildJobTimeout: ${{ parameters.windowsAmdBuildJobTimeout }}
       customInitSteps: ${{ parameters.customBuildInitSteps }}
+      noCache: ${{ parameters.noCache }}
   - template: ../jobs/build-images.yml
     parameters:
       name: Windows1909_amd64
@@ -114,6 +121,7 @@ stages:
       dockerClientOS: windows
       buildJobTimeout: ${{ parameters.windowsAmdBuildJobTimeout }}
       customInitSteps: ${{ parameters.customBuildInitSteps }}
+      noCache: ${{ parameters.noCache }}
   - template: ../jobs/build-images.yml
     parameters:
       name: Windows2004_amd64
@@ -127,6 +135,21 @@ stages:
       dockerClientOS: windows
       buildJobTimeout: ${{ parameters.windowsAmdBuildJobTimeout }}
       customInitSteps: ${{ parameters.customBuildInitSteps }}
+      noCache: ${{ parameters.noCache }}
+  - template: ../jobs/build-images.yml
+    parameters:
+      name: Windows2009_amd64
+      pool:
+        ${{ if eq(variables['System.TeamProject'], 'public') }}:
+          name: DotNetCore-Docker-Public
+        ${{ if eq(variables['System.TeamProject'], 'internal') }}:
+          name: DotNetCore-Docker
+        demands: VSTS_OS -equals Windows-ServerDatacenter-2009
+      matrix: dependencies.GenerateBuildMatrix.outputs['matrix.Windows2009Amd64']
+      dockerClientOS: windows
+      buildJobTimeout: ${{ parameters.windowsAmdBuildJobTimeout }}
+      customInitSteps: ${{ parameters.customBuildInitSteps }}
+      noCache: ${{ parameters.noCache }}
   - template: ../jobs/build-images.yml
     parameters:
       name: WindowsLtsc2016_amd64
@@ -140,6 +163,7 @@ stages:
       dockerClientOS: windows
       buildJobTimeout: ${{ parameters.windowsAmdBuildJobTimeout }}
       customInitSteps: ${{ parameters.customBuildInitSteps }}
+      noCache: ${{ parameters.noCache }}
 
 ################################################################################
 # Post-Build
@@ -169,6 +193,8 @@ stages:
       parameters:
         matrixType: ${{ parameters.testMatrixType }}
         name: GenerateTestMatrix
+        customBuildLegGroupArgs: ${{ parameters.testMatrixCustomBuildLegGroupArgs }}
+        isTestStage: true
 
     - template: ../jobs/test-images-linux-client.yml
       parameters:
@@ -228,6 +254,14 @@ stages:
           name: DotNetCore-Docker
           demands: VSTS_OS -equals Windows-ServerDatacenter-2004
         matrix: dependencies.GenerateTestMatrix.outputs['matrix.Windows2004Amd64']
+        testJobTimeout: ${{ parameters.windowsAmdTestJobTimeout }}
+    - template: ../jobs/test-images-windows-client.yml
+      parameters:
+        name: Windows2009_amd64
+        pool:
+          name: DotNetCore-Docker
+          demands: VSTS_OS -equals Windows-ServerDatacenter-2009
+        matrix: dependencies.GenerateTestMatrix.outputs['matrix.Windows2009Amd64']
         testJobTimeout: ${{ parameters.windowsAmdTestJobTimeout }}
     - template: ../jobs/test-images-windows-client.yml
       parameters:

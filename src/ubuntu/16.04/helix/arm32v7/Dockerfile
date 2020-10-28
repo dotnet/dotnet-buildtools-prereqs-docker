@@ -2,6 +2,9 @@ FROM arm32v7/ubuntu:16.04
 
 # Install Helix Dependencies 
 
+# Workaround: https://github.com/pypa/wheel/issues/367
+ENV _PYTHON_HOST_PLATFORM linux_armv7l
+
 # Can remove the mono preview repo when we no longer depend on pre-release libgdiplus
 
 RUN apt-get update && \
@@ -38,9 +41,10 @@ RUN apt-get update && \
 ENV LANG en_US.utf8
 
 RUN ln -sf /usr/bin/python3 /usr/bin/python && \
-    python -m pip install --upgrade pip==19.3.1 && \
+    python -m pip install --upgrade pip==20.2 && \
     python -m pip install virtualenv==16.6.0 && \
-    python -m pip install helix-scripts --extra-index-url https://dnceng.pkgs.visualstudio.com/public/_packaging/helix-client-prod/pypi/simple
+    pip download --no-deps helix-scripts --index-url https://dnceng.pkgs.visualstudio.com/public/_packaging/helix-client-prod/pypi/simple && \
+    pip install ./helix_scripts-*-py3-none-any.whl
 
 RUN adduser --disabled-password --gecos '' --uid 1001 --shell /bin/bash --ingroup adm helixbot && \
     chmod -R +x /root && \

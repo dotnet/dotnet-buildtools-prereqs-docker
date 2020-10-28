@@ -1,23 +1,16 @@
-trigger: none
-pr:
+trigger:
   branches:
     include:
     - master
   paths:
     include:
-    - src/alpine/*
-
-resources:
-  repositories:
-  - repository: VersionsRepo
-    type: github
-    endpoint: dotnet
-    name: dotnet/versions
+    - src/windowsservercore/2004/*
+pr: none
 
 variables:
 - template: variables/common.yml
 - name: imageBuilder.pathArgs
-  value: --path 'src/alpine/*'
+  value: --path 'src/windowsservercore/2004/*'
 
 stages:
   - template: ../common/templates/stages/build-test-publish-repo.yml

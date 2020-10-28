@@ -11,7 +11,6 @@ RUN yum install -y \
         "perl(Time::HiRes)" \
         autoconf \
         automake \
-        clang \
         devtoolset-7-gcc* \
         doxygen \
         gdb \
@@ -30,7 +29,8 @@ RUN yum install -y \
         libunwind-devel \
         libuuid-devel \
         libxml2-devel \
-        llvm \
+        llvm-toolset-7.0 \
+        llvm-toolset-7.0-cmake \
         lttng-ust-devel \
         lzma \
         make \
@@ -50,12 +50,4 @@ RUN yum install -y \
     && \
     yum clean all
 
-# Add cmake 3.6.2. This is not including in the package manager, yum install 
-# cmake will include 2.8
-
-RUN wget https://github.com/Kitware/CMake/releases/download/v3.6.2/cmake-3.6.2-Linux-x86_64.tar.gz && \
-    tar -xvf cmake-3.6.2-Linux-x86_64.tar.gz && \
-    mv cmake-3.6.2-Linux-x86_64 /cmake
-
-# Add to path
-ENV PATH "${PATH}:/cmake/bin"
+ENTRYPOINT [ "scl", "enable", "llvm-toolset-7.0", "bash" ]

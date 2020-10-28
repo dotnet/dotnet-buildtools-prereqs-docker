@@ -8,6 +8,13 @@ pr:
     - src/*
     - README.md
 
+resources:
+  repositories:
+  - repository: VersionsRepo
+    type: github
+    endpoint: dotnet
+    name: dotnet/versions
+
 variables:
 - template: variables/common.yml
 - name: imageBuilder.pathArgs
@@ -17,11 +24,7 @@ stages:
   - template: ../common/templates/stages/build-test-publish-repo.yml
     parameters:
       linuxAmdBuildJobTimeout: 210
-      ${{ if eq(variables['System.TeamProject'], 'public') }}:
-        linuxAmdBuildPool: "NetCorePublic-Pool"
-        linuxAmdBuildQueue: "BuildPool.Ubuntu.1604.Amd64.Open"
-      ${{ if eq(variables['System.TeamProject'], 'internal') }}:
-        linuxAmdBuildPool: "NetCoreInternal-Pool"
-        linuxAmdBuildQueue: "BuildPool.Ubuntu.1604.Amd64"
+      linuxAmdBuildPool: "NetCorePublic-Pool"
+      linuxAmdBuildQueue: "BuildPool.Ubuntu.1604.Amd64.Open"
       customBuildInitSteps:
       - template: /eng/pipelines/steps/install-cross-build-prereqs.yml
