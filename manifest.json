@@ -738,6 +738,35 @@
         {
           "platforms": [
             {
+              "architecture": "amd64",
+              "dockerfile": "src/ubuntu/18.04/helix/amd64",
+              "os": "linux",
+              "osVersion": "bionic",
+              "tags": {
+                "ubuntu-18.04-helix-amd64-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
+                "ubuntu-18.04-helix-amd64": {
+                    "isLocal": true
+                }
+              }
+            }
+          ]
+        },
+        {
+          "platforms": [
+            {
+              "architecture": "amd64",
+              "dockerfile": "src/ubuntu/18.04/helix/sqlserver/amd64",
+              "os": "linux",
+              "osVersion": "bionic",
+              "tags": {
+                "ubuntu-18.04-helix-sqlserver-amd64-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
+              }
+            }
+          ]
+        },
+        {
+          "platforms": [
+            {
               "architecture": "arm",
               "dockerfile": "src/debian/iot/arm32v7",
               "os": "linux",
