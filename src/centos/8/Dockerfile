@@ -6,7 +6,7 @@ RUN dnf install --setopt tsflags=nodocs --refresh -y \
         dnf-plugins-core \
         epel-release \
     && \
-    dnf config-manager --set-enabled PowerTools \
+    dnf config-manager --set-enabled powertools \
     && \
     dnf install --setopt tsflags=nodocs -y \
         "perl(Time::HiRes)" \
