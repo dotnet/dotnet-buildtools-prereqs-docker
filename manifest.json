@@ -158,18 +158,6 @@
           ]
         },
         {
-          "platforms": [
-            {
-              "dockerfile": "src/centos/6",
-              "os": "linux",
-              "osVersion": "centos6",
-              "tags": {
-                "centos-6-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
-              }
-            }
-          ]
-        },
-        {
           "sharedTags": {
             "debian-stretch-slim-docker-testrunner-$(UniqueId)": {}
           },
