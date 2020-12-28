@@ -10,6 +10,7 @@ RUN dnf install --setopt tsflags=nodocs --refresh -y \
     dnf install --setopt tsflags=nodocs -y \
         gcc \
         libicu \
+        openssl \
         python3 \
         python3-devel \
         sudo \
