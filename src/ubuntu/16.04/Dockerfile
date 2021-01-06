@@ -5,8 +5,8 @@ FROM ubuntu:16.04
 # them in a different layer.
 RUN apt-get update && \
     apt-get install -y apt-transport-https ca-certificates gnupg software-properties-common wget && \
-    echo "deb http://llvm.org/apt/xenial/ llvm-toolchain-xenial-9 main" | tee -a /etc/apt/sources.list.d/llvm.list && \
-    wget -O - http://llvm.org/apt/llvm-snapshot.gpg.key | apt-key add - && \
+    echo "deb https://apt.llvm.org/xenial/ llvm-toolchain-xenial-9 main" | tee -a /etc/apt/sources.list.d/llvm.list && \
+    wget -O - https://apt.llvm.org/llvm-snapshot.gpg.key | apt-key add - && \
     wget -O - https://apt.kitware.com/keys/kitware-archive-latest.asc | apt-key add - && \
     apt-add-repository 'deb https://apt.kitware.com/ubuntu/ xenial main' && \
     apt-get update && \

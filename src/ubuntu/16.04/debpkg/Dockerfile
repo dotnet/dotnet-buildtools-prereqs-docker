@@ -9,7 +9,7 @@ RUN apt-get update \
     && rm -rf /var/lib/apt/lists/*
 
 # liblldb is needed so deb package build does not throw missing library info errors
-RUN echo "deb http://llvm.org/apt/xenial/ llvm-toolchain-xenial-3.9 main" > /etc/apt/sources.list.d/llvm-toolchain.list \
+RUN echo "deb https://apt.llvm.org/xenial/ llvm-toolchain-xenial-3.9 main" > /etc/apt/sources.list.d/llvm-toolchain.list \
     && apt-get update \
     && apt-get -y install liblldb-3.9 \
     && rm -rf /var/lib/apt/lists/*
