@@ -274,7 +274,10 @@
             "os": "linux",
             "osVersion": "fedora33",
             "tags": {
-              "fedora-33-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
+              "fedora-33-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
+              "fedora-33": {
+                "isLocal": true
+              }
             }
           }]
         },        
