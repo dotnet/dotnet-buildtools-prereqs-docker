@@ -1,7 +1,7 @@
 # Dockerfile used to create a testrunner image that can perform Docker operations.
 # Usage:  docker run --rm -v /var/run/docker.sock:/var/run/docker.sock testrunner pwsh -File xyz.ps1
 
-FROM amd64/ubuntu:focal
+FROM debian:buster-slim
 
 # Install Docker
 RUN apt-get update \
@@ -11,18 +11,17 @@ RUN apt-get update \
         curl \
         gnupg2 \
         software-properties-common \
-    && curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add - \
-    && add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" \
+    && curl -fsSL https://download.docker.com/linux/debian/gpg | apt-key add - \
+    && add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/debian $(lsb_release -cs) stable" \
     && apt-get update \
     && apt-get install -y --no-install-recommends \
         docker-ce \
     && rm -rf /var/lib/apt/lists/*
 
 # Install PowerShell
-RUN curl -fSLO https://packages.microsoft.com/config/ubuntu/20.04/packages-microsoft-prod.deb \
-    && dpkg -i packages-microsoft-prod.deb \
-    && rm packages-microsoft-prod.deb \
+RUN curl https://packages.microsoft.com/keys/microsoft.asc | apt-key add - \
+    && sh -c 'echo "deb [arch=amd64] https://packages.microsoft.com/repos/microsoft-debian-buster-prod buster main" > /etc/apt/sources.list.d/microsoft.list' \
     && apt-get update \
     && apt-get install -y --no-install-recommends \
-        powershell \
+        powershell=7.0.4-1.debian.10 \
     && rm -rf /var/lib/apt/lists/*

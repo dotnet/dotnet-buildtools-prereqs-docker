@@ -170,31 +170,6 @@
           ]
         },
         {
-          "sharedTags": {
-            "debian-stretch-slim-docker-testrunner-$(UniqueId)": {}
-          },
-          "platforms": [
-            {
-              "dockerfile": "src/debian/stretch-slim/docker-testrunner/amd64",
-              "os": "linux",
-              "osVersion": "stretch",
-              "tags": {
-                "debian-stretch-slim-docker-testrunner-amd64-$(UniqueId)": {}
-              }
-            },
-            {
-              "architecture": "arm64",
-              "dockerfile": "src/debian/stretch-slim/docker-testrunner/arm64v8",
-              "os": "linux",
-              "osVersion": "stretch",
-              "tags": {
-                "debian-stretch-slim-docker-testrunner-arm64v8-$(UniqueId)": {}
-              },
-              "variant": "v8"
-            }
-          ]
-        },
-        {
           "platforms": [
             {
               "dockerfile": "src/debian/stretch/",
@@ -716,32 +691,7 @@
               }
             }
           ]
-        },
-        {
-          "sharedTags": {
-            "ubuntu-20.04-docker-testrunner-$(UniqueId)": {}
-          },
-          "platforms": [
-            {
-              "dockerfile": "src/ubuntu/20.04/docker-testrunner/amd64",
-              "os": "linux",
-              "osVersion": "focal",
-              "tags": {
-                "ubuntu-20.04-docker-testrunner-amd64-$(UniqueId)": {}
-              }
-            },
-            {
-              "architecture": "arm64",
-              "dockerfile": "src/ubuntu/20.04/docker-testrunner/arm64v8",
-              "os": "linux",
-              "osVersion": "focal",
-              "tags": {
-                "ubuntu-20.04-docker-testrunner-arm64v8-$(UniqueId)": {}
-              },
-              "variant": "v8"
-            }
-          ]
-        },
+        },        
         {
           "platforms": [
             {
@@ -864,6 +814,31 @@
               "osVersion": "stretch",
               "tags": {
                 "debian-9-helix-arm64v8-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
+              },
+              "variant": "v8"
+            }
+          ]
+        },
+        {
+          "sharedTags": {
+            "debian-buster-slim-docker-testrunner-$(UniqueId)": {}
+          },
+          "platforms": [
+            {
+              "dockerfile": "src/debian/10/docker-testrunner/amd64",
+              "os": "linux",
+              "osVersion": "buster",
+              "tags": {
+                "debian-buster-slim-docker-testrunner-amd64-$(UniqueId)": {}
+              }
+            },
+            {
+              "architecture": "arm64",
+              "dockerfile": "src/debian/10/docker-testrunner/arm64v8",
+              "os": "linux",
+              "osVersion": "buster",
+              "tags": {
+                "debian-buster-slim-docker-testrunner-arm64v8-$(UniqueId)": {}
               },
               "variant": "v8"
             }

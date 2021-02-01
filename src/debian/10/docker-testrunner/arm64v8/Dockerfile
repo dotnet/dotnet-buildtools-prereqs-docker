@@ -1,7 +1,7 @@
 # Dockerfile used to create a testrunner image that can perform Docker operations.
 # Usage:  docker run --rm -v /var/run/docker.sock:/var/run/docker.sock testrunner pwsh -File xyz.ps1
 
-FROM arm64v8/ubuntu:focal
+FROM arm64v8/debian:buster-slim
 
 # Install Docker
 RUN apt-get update \
@@ -10,9 +10,10 @@ RUN apt-get update \
         ca-certificates \
         curl \
         gnupg2 \
+        libicu63 \
         software-properties-common \
-    && curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add - \
-    && add-apt-repository "deb [arch=arm64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" \
+    && curl -fsSL https://download.docker.com/linux/debian/gpg | apt-key add - \
+    && add-apt-repository "deb [arch=arm64] https://download.docker.com/linux/debian $(lsb_release -cs) stable" \
     && apt-get update \
     && apt-get install -y --no-install-recommends \
         docker-ce \
