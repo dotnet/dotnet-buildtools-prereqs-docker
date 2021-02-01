@@ -1,7 +1,7 @@
 # Dockerfile used to create a testrunner image that can perform Docker operations.
 # Usage:  docker run --rm -v /var/run/docker.sock:/var/run/docker.sock testrunner pwsh -File xyz.ps1
 
-FROM debian:stretch-slim
+FROM debian:buster-slim
 
 # Install Docker
 RUN apt-get update \
@@ -15,13 +15,13 @@ RUN apt-get update \
     && add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/debian $(lsb_release -cs) stable" \
     && apt-get update \
     && apt-get install -y --no-install-recommends \
-        docker-ce=17.12.0~ce-0~debian \
+        docker-ce \
     && rm -rf /var/lib/apt/lists/*
 
 # Install PowerShell
 RUN curl https://packages.microsoft.com/keys/microsoft.asc | apt-key add - \
-    && sh -c 'echo "deb [arch=amd64] https://packages.microsoft.com/repos/microsoft-debian-stretch-prod stretch main" > /etc/apt/sources.list.d/microsoft.list' \
+    && sh -c 'echo "deb [arch=amd64] https://packages.microsoft.com/repos/microsoft-debian-buster-prod buster main" > /etc/apt/sources.list.d/microsoft.list' \
     && apt-get update \
     && apt-get install -y --no-install-recommends \
-        powershell=7.0.2-1.debian.9 \
+        powershell=7.0.4-1.debian.10 \
     && rm -rf /var/lib/apt/lists/*
