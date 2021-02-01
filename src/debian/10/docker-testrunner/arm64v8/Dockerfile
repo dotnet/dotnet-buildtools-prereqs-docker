@@ -10,7 +10,7 @@ RUN apt-get update \
         ca-certificates \
         curl \
         gnupg2 \
-        libicu57 \
+        libicu63 \
         software-properties-common \
     && curl -fsSL https://download.docker.com/linux/debian/gpg | apt-key add - \
     && add-apt-repository "deb [arch=arm64] https://download.docker.com/linux/debian $(lsb_release -cs) stable" \
