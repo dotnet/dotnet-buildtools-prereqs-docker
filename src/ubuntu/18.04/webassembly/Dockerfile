@@ -24,3 +24,13 @@ RUN git clone https://github.com/emscripten-core/emsdk.git ${EMSDK_PATH} \
     && ./emsdk install ${EMSCRIPTEN_VERSION}-upstream \
     && ./emsdk activate ${EMSCRIPTEN_VERSION}-upstream \
     && chmod -R 777 ${EMSDK_PATH}
+
+# Install V8 Engine to be able to execute Trimming Tests
+RUN curl -sL https://deb.nodesource.com/setup_12.x | bash - \
+    && apt install -y nodejs \
+    && npm install jsvu -g \
+    && export PATH="${HOME}/.jsvu:${PATH}" \
+    && jsvu --os=linux64 --engines=javascriptcore,spidermonkey,v8 \
+    && rm -rf /var/lib/apt/lists/*
+
+ENV PATH="/root/.jsvu:${PATH}"
