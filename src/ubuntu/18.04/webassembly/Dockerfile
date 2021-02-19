@@ -25,12 +25,11 @@ RUN git clone https://github.com/emscripten-core/emsdk.git ${EMSDK_PATH} \
     && ./emsdk activate ${EMSCRIPTEN_VERSION}-upstream \
     && chmod -R 777 ${EMSDK_PATH}
 
-# Install V8 Engine to be able to execute Trimming Tests
-RUN curl -sL https://deb.nodesource.com/setup_12.x | bash - \
-    && apt install -y nodejs \
-    && npm install jsvu -g \
-    && export PATH="${HOME}/.jsvu:${PATH}" \
-    && jsvu --os=linux64 --engines=javascriptcore,spidermonkey,v8 \
-    && rm -rf /var/lib/apt/lists/*
+# Install V8 Engine
+SHELL ["/bin/bash", "-c"]
 
-ENV PATH="/root/.jsvu:${PATH}"
+RUN curl -sSL "https://netcorenativeassets.blob.core.windows.net/resource-packages/external/linux/chromium-v8/v8-linux64-rel-8.5.183.zip" -o ./v8.zip \
+    && unzip ./v8.zip -d /usr/local/v8 \
+    && echo $'#!/usr/bin/env bash\n\
+"/usr/local/v8/d8" --snapshot_blob="/usr/local/v8/snapshot_blob.bin" "$@"\n' > /usr/local/bin/v8 \
+    && chmod +x /usr/local/bin/v8
