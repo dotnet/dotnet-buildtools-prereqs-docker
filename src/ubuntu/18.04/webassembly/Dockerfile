@@ -26,7 +26,10 @@ RUN git clone https://github.com/emscripten-core/emsdk.git ${EMSDK_PATH} \
     && chmod -R 777 ${EMSDK_PATH}
 
 # Install V8 Engine
-COPY linux-v8-engine.sh /home/linux-v8-engine.sh
+SHELL ["/bin/bash", "-c"]
 
-RUN chmod +x /home/linux-v8-engine.sh \
-    && /home/linux-v8-engine.sh --os linux64 --version 8.5.183
+RUN curl -sSL "https://netcorenativeassets.blob.core.windows.net/resource-packages/external/linux/chromium-v8/v8-linux64-rel-8.5.183.zip" -o ./v8.zip \
+    && unzip ./v8.zip -d /usr/local/v8 \
+    && echo $'#!/usr/bin/env bash\n\
+"/usr/local/v8/d8" --snapshot_blob="/usr/local/v8/snapshot_blob.bin" "$@"\n' > /usr/local/bin/v8 \
+    && chmod +x /usr/local/bin/v8
