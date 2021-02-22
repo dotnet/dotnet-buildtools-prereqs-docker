@@ -1,6 +1,4 @@
-FROM fedora:rawhide
-
-RUN rpm --import https://src.fedoraproject.org/rpms/fedora-repos/raw/master/f/RPM-GPG-KEY-fedora-34-primary
+FROM registry.fedoraproject.org/fedora:rawhide
 
 # Install the base toolchain we need to build anything (clang, cmake, make and the like)
 # this does not include libraries that we need to compile different projects, we'd like

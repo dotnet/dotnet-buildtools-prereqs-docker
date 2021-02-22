@@ -186,42 +186,6 @@
         },
         {
           "platforms": [{
-            "dockerfile": "src/fedora/30/amd64",
-            "os": "linux",
-            "osVersion": "fedora30",
-            "tags": {
-              "fedora-30-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
-              "fedora-30": {
-                "isLocal": true
-              }
-            }
-          }]
-        },
-        {
-          "platforms": [{
-            "dockerfile": "src/fedora/30/helix/amd64",
-            "os": "linux",
-            "osVersion": "fedora30",
-            "tags": {
-              "fedora-30-helix-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
-            }
-          }]
-        },
-        {
-          "platforms": [{
-            "dockerfile": "src/fedora/31/amd64",
-            "os": "linux",
-            "osVersion": "fedora31",
-            "tags": {
-              "fedora-31-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
-              "fedora-31": {
-                "isLocal": true
-              }
-            }
-          }]
-        },
-        {
-          "platforms": [{
             "dockerfile": "src/fedora/32/amd64",
             "os": "linux",
             "osVersion": "fedora32",
