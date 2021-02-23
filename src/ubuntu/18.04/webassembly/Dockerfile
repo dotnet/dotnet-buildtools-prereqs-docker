@@ -16,7 +16,7 @@ RUN wget https://cmake.org/files/v3.17/cmake-3.17.0-Linux-x86_64.tar.gz \
 RUN locale-gen en_US.UTF-8
 
 # Install Emscripten toolchain
-ENV EMSCRIPTEN_VERSION=2.0.14
+ENV EMSCRIPTEN_VERSION=2.0.12
 ENV EMSDK_PATH=/usr/local/emscripten
 
 RUN git clone https://github.com/emscripten-core/emsdk.git ${EMSDK_PATH} \
