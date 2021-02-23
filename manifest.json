@@ -664,7 +664,10 @@
               "os": "linux",
               "osVersion": "bionic",
               "tags": {
-                "ubuntu-18.04-helix-arm32v7-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
+                "ubuntu-18.04-helix-arm32v7-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
+                "ubuntu-18.04-helix-arm32v7": {
+                    "isLocal": true
+                }
               },
               "variant": "v7"
             }
@@ -678,7 +681,10 @@
               "os": "linux",
               "osVersion": "bionic",
               "tags": {
-                "ubuntu-18.04-helix-arm64v8-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
+                "ubuntu-18.04-helix-arm64v8-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
+                "ubuntu-18.04-helix-arm64v8": {
+                    "isLocal": true
+                }
               },
               "variant": "v8"
             }
