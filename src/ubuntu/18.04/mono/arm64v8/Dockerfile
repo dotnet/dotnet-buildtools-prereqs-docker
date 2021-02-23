@@ -29,9 +29,9 @@ RUN apt-get update && \
 
 ENV LANG en_US.utf8
 
-# create helixbot user and give rights to sudo without password
-RUN /usr/sbin/adduser --disabled-password --gecos '' --uid 1000 --shell /bin/bash --ingroup adm helixbot && \
+# create monobot user and give rights to sudo without password
+RUN /usr/sbin/adduser --disabled-password --gecos '' --uid 1000 --shell /bin/bash --ingroup adm monobot && \
     chmod 755 /root && \
-    echo "helixbot ALL=(ALL)       NOPASSWD: ALL" > /etc/sudoers
+    echo "monobot ALL=(ALL)       NOPASSWD: ALL" > /etc/sudoers
 
-USER helixbot
+USER monobot
