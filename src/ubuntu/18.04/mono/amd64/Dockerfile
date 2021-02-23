@@ -1,17 +1,37 @@
-FROM mcr.microsoft.com/dotnet-buildtools/prereqs:ubuntu-18.04-helix-amd64
+FROM ubuntu:18.04
 
-USER root
+# Install Mono build dependencies
+ENV DEBIAN_FRONTEND noninteractive
 
-# Install additional Mono build dependencies
-RUN apt-get update \
-    && apt-get install -qq -y \
+RUN apt-get update && \
+    apt-get install -qq -y \
         autoconf \
-        libtool \
         automake \
-        build-essential \
-        gettext \
-        wget \
         bc \
-    && rm -rf /var/lib/apt/lists/*
+        build-essential \
+        cmake \
+        gcc \
+        gdb \
+        gettext \
+        git \
+        libgdiplus \
+        libtool \
+        locales \
+        locales-all \
+        python3 \
+        sudo \
+        tzdata \
+        unzip \
+        wget \
+    && rm -rf /var/lib/apt/lists/* \
+    \
+    && localedef -i en_US -c -f UTF-8 -A /usr/share/locale/locale.alias en_US.UTF-8
+
+ENV LANG en_US.utf8
+
+# create helixbot user and give rights to sudo without password
+RUN /usr/sbin/adduser --disabled-password --gecos '' --uid 1000 --shell /bin/bash --ingroup adm helixbot && \
+    chmod 755 /root && \
+    echo "helixbot ALL=(ALL)       NOPASSWD: ALL" > /etc/sudoers
 
 USER helixbot
