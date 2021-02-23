@@ -703,6 +703,47 @@
         {
           "platforms": [
             {
+              "architecture": "arm",
+              "dockerfile": "src/ubuntu/18.04/mono/arm32v7",
+              "os": "linux",
+              "osVersion": "bionic",
+              "tags": {
+                "ubuntu-18.04-mono-arm32v7-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
+              },
+              "variant": "v7"
+            }
+          ]
+        },
+        {
+          "platforms": [
+            {
+              "architecture": "arm64",
+              "dockerfile": "src/ubuntu/18.04/mono/arm64v8",
+              "os": "linux",
+              "osVersion": "bionic",
+              "tags": {
+                "ubuntu-18.04-mono-arm64v8-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
+              },
+              "variant": "v8"
+            }
+          ]
+        },
+        {
+          "platforms": [
+            {
+              "architecture": "amd64",
+              "dockerfile": "src/ubuntu/18.04/mono/amd64",
+              "os": "linux",
+              "osVersion": "bionic",
+              "tags": {
+                "ubuntu-18.04-mono-amd64-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
+              }
+            }
+          ]
+        },
+        {
+          "platforms": [
+            {
               "architecture": "amd64",
               "dockerfile": "src/ubuntu/18.04/helix/sqlserver/amd64",
               "os": "linux",
