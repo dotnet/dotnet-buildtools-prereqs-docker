@@ -9,12 +9,6 @@ RUN curl -SL --output %TEMP%\cmake-x64.msi https://cmake.org/files/v3.9/cmake-3.
         Start-Process %TEMP%\cmake-x64.msi -Wait -ArgumentList '/qn /norestart' ; `
         Remove-Item -Recurse -Force %TEMP%\*
 
-# Download and install git
-RUN curl -SL --output %TEMP%\git-64bit.exe https://github.com/git-for-windows/git/releases/download/v2.30.1.windows.1/Git-2.30.1-64-bit.exe `
-    && powershell -Command `
-        Start-Process %TEMP%\git-64bit.exe -Wait -ArgumentList '/VERYSILENT /SUPPRESSMSGBOXES /NORESTART /NOCANCEL /SP- /LOG' ; `
-        Remove-Item -Recurse -Force %TEMP%\*
-
 # Download and install VC++ build tools
 # This doesn't install in Server Core
 RUN curl -SL --output %TEMP%\vcbuildtools.exe https://go.microsoft.com/fwlink/?LinkId=691126 `
