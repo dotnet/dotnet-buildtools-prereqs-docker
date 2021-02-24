@@ -1021,6 +1021,18 @@
               }
             }
           ]
+        },
+        {
+          "platforms": [
+            {
+              "dockerfile": "src/windows/2004/mono/amd64",
+              "os": "windows",
+              "osVersion": "windows-2004",
+              "tags": {
+                "windows-2004-mono-amd64-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
+              }
+            }
+          ]
         }
       ]
     }
