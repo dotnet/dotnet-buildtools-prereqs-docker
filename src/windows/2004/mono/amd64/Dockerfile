@@ -15,12 +15,6 @@ RUN curl -SL --output %TEMP%\python2-x64.msi https://www.python.org/ftp/python/2
         Start-Process %TEMP%\python2-x64.msi -Wait -ArgumentList '/qn /norestart TARGETDIR=C:\python' ; `
         Remove-Item -Recurse -Force %TEMP%\*
 
-# Download and install Mono
-RUN curl -SL --output %TEMP%\mono32.msi https://download.mono-project.com/archive/6.12.0/windows-installer/mono-6.12.0.107-gtksharp-2.12.45-win32-0.msi `
-    && powershell -Command `
-        Start-Process %TEMP%\mono32.msi -Wait -ArgumentList '/qn /norestart' ; `
-        Remove-Item -Recurse -Force %TEMP%\*
-
 # Download and install git
 RUN curl -SL --output %TEMP%\git-64bit.exe https://github.com/git-for-windows/git/releases/download/v2.30.1.windows.1/Git-2.30.1-64-bit.exe `
     && powershell -Command `
