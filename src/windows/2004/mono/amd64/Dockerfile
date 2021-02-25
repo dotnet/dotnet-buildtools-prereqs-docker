@@ -22,23 +22,6 @@ RUN curl -SL --output %TEMP%\clangc2.exe "http://go.microsoft.com/fwlink/?LinkID
         Start-Process %TEMP%\clangc2.exe -Wait -ArgumentList '/quiet /norestart' ; `
         Remove-Item -Recurse -Force %TEMP%\*
 
-# Download VC++ 12.0 merge modules
-# TODO: remove once MSI pkg-config.exe doesn't rely on those
-RUN curl -SL --output "C:\Program Files (x86)\Common Files\Merge Modules\Microsoft_VC120_CRT_x86.msm" https://xamjenkinsartifact.blob.core.windows.net/misc/Microsoft_VC120_CRT_x86.msm `
-    && curl -SL --output "C:\Program Files (x86)\Common Files\Merge Modules\Microsoft_VC120_CRT_x64.msm" https://xamjenkinsartifact.blob.core.windows.net/misc/Microsoft_VC120_CRT_x64.msm
-
-# Install .NET 3.5, Wix dependency
-# TODO: Remove when we move to Wix 4
-RUN powershell -Command `
-    Set-Service -Name wuauserv -StartupType "Manual" ; `
-    DISM /Online /Enable-Feature /FeatureName:NetFx3 /All
-
-# Download and install Wix
-RUN curl -SL --output %TEMP%\wix.exe https://github.com/wixtoolset/wix3/releases/download/wix3112rtm/wix311.exe `
-    && powershell -Command `
-        Start-Process %TEMP%\wix.exe -Wait -ArgumentList '/q' ; `
-        Remove-Item -Recurse -Force %TEMP%\*
-
 # Setup CYGWIN
 RUN setx /M CYGWIN "winsymlinks:lnk"
 
