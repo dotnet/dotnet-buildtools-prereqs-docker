@@ -1,0 +1,17 @@
+trigger:
+  branches:
+    include:
+    - main
+    - master
+  paths:
+    include:
+    - src/windows/2004/*
+pr: none
+
+variables:
+- template: variables/common.yml
+- name: imageBuilder.pathArgs
+  value: --path 'src/windows/2004/*'
+
+stages:
+  - template: ../common/templates/stages/build-test-publish-repo.yml
