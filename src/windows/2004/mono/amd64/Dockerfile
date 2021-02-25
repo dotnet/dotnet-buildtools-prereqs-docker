@@ -53,6 +53,6 @@ RUN curl -SL --output %TEMP%\cygsetup.exe https://cygwin.com/setup-x86_64.exe `
         Remove-Item -Recurse -Force %TEMP%\*
 
 # Setup PATH
-RUN setx /M PATH "%PATH%;C:\Program Files\CMake\bin;C:\python;C:\cygwin\bin"
+RUN setx /M PATH "%PATH%;C:\Program Files\CMake\bin;C:\cygwin\bin"
 
 WORKDIR C:\\Work
