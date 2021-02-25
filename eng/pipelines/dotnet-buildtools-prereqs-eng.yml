@@ -27,5 +27,6 @@ stages:
       linuxAmdBuildJobTimeout: 210
       linuxAmdBuildPool: "NetCorePublic-Pool"
       linuxAmdBuildQueue: "BuildPool.Ubuntu.1604.Amd64.Open"
+      windowsAmdBuildJobTimeout: 210
       customBuildInitSteps:
       - template: /eng/pipelines/steps/install-cross-build-prereqs.yml
