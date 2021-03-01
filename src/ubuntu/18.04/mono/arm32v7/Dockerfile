@@ -10,15 +10,17 @@ RUN apt-get update && \
         bc \
         build-essential \
         cmake \
+        curl \
         gcc \
         gdb \
         gettext \
         git \
-        nodejs \
+        iputils-ping \
         libgdiplus \
         libtool \
         locales \
         locales-all \
+        nodejs \
         python3 \
         sudo \
         tzdata \

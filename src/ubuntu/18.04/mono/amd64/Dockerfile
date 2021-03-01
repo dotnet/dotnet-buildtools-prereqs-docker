@@ -10,10 +10,12 @@ RUN apt-get update && \
         bc \
         build-essential \
         cmake \
+        curl \
         gcc \
         gdb \
         gettext \
         git \
+        iputils-ping \
         libgdiplus \
         libtool \
         locales \
