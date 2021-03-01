@@ -6,7 +6,7 @@ The Dockerfiles in this repository are used for building the .NET Core product. 
 
 The images produced from the Dockerfiles are published to the mcr.microsoft.com/dotnet-buildtools/prereqs Docker repository.
 
-  - [Latest tags](https://github.com/dotnet/versions/blob/master/build-info/docker/image-info.dotnet-dotnet-buildtools-prereqs-docker-master.json)
+  - [Latest tags](https://github.com/dotnet/versions/blob/master/build-info/docker/image-info.dotnet-dotnet-buildtools-prereqs-docker-main.json)
   - [Full list of tags](https://mcr.microsoft.com/v2/dotnet-buildtools/prereqs/tags/list)
 
 ## How to identify an image
