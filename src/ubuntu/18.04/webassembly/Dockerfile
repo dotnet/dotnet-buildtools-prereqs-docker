@@ -17,13 +17,16 @@ RUN locale-gen en_US.UTF-8
 
 # Install Emscripten toolchain
 ENV EMSCRIPTEN_VERSION=2.0.12
-ENV EMSDK_PATH=/usr/local/emscripten
+ENV EMSCRIPTEN_PATH=/usr/local/emscripten
+ENV EMSDK_PATH=/usr/local/emscripten/emsdk
 
-RUN git clone https://github.com/emscripten-core/emsdk.git ${EMSDK_PATH} \
+RUN mkdir ${EMSCRIPTEN_PATH} \
+    && cd ${EMSCRIPTEN_PATH} \
+    && git clone https://github.com/emscripten-core/emsdk.git ${EMSDK_PATH} \
     && cd ${EMSDK_PATH} \
     && ./emsdk install ${EMSCRIPTEN_VERSION}-upstream \
     && ./emsdk activate ${EMSCRIPTEN_VERSION}-upstream \
-    && chmod -R 777 ${EMSDK_PATH}
+    && chmod -R 777 ${EMSCRIPTEN_PATH}
 
 # Install V8 Engine
 SHELL ["/bin/bash", "-c"]
