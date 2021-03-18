@@ -2,7 +2,7 @@ FROM mcr.microsoft.com/dotnet-buildtools/prereqs:alpine-3.9
 
 RUN apk update
 
-ENV NODE_VERSION 10.13.0
+ENV NODE_VERSION=10.13.0
 
 ### BUILD NODE
 RUN apk add --no-cache \
@@ -43,7 +43,7 @@ RUN apk add --no-cache \
             && rm -Rf "node-v$NODE_VERSION" \
             && rm "node-v$NODE_VERSION.tar.xz" SHASUMS256.txt.asc SHASUMS256.txt
 
-ENV YARN_VERSION 1.10.1
+ENV YARN_VERSION=1.10.1
 
 RUN apk add --no-cache --virtual .build-deps-yarn \
         gnupg \

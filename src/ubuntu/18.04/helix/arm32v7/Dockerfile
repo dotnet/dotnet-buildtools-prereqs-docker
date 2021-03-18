@@ -2,10 +2,10 @@ FROM arm32v7/ubuntu:18.04
 
 # Install Helix Dependencies
 
-ENV DEBIAN_FRONTEND noninteractive
+ENV DEBIAN_FRONTEND=noninteractive
 
 # Workaround: https://github.com/pypa/wheel/issues/367
-ENV _PYTHON_HOST_PLATFORM linux_armv7l
+ENV _PYTHON_HOST_PLATFORM=linux_armv7l
 
 # Can remove the mono preview repo when we no longer depend on pre-release libgdiplus
 
@@ -46,7 +46,7 @@ RUN apt-get update && \
     \
     && localedef -i en_US -c -f UTF-8 -A /usr/share/locale/locale.alias en_US.UTF-8
 
-ENV LANG en_US.utf8
+ENV LANG=en_US.utf8
 
 RUN ln -sf /usr/bin/python3 /usr/bin/python && \
     python -m pip install --upgrade pip==20.2 && \
