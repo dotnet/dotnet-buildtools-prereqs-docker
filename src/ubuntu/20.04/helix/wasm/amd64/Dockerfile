@@ -1,6 +1,6 @@
 FROM ubuntu:20.04
 
-ENV DEBIAN_FRONTEND noninteractive
+ENV DEBIAN_FRONTEND=noninteractive
 
 # sources tweak is to work around very slow update
 
@@ -40,7 +40,7 @@ RUN apt-get clean && \
      \
      && localedef -i en_US -c -f UTF-8 -A /usr/share/locale/locale.alias en_US.UTF-8
 
-ENV LANG en_US.utf8
+ENV LANG=en_US.utf8
 
 RUN ln -sf /usr/bin/python3 /usr/bin/python && \
     python -m pip install --upgrade pip==20.2 && \

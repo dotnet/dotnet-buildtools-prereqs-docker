@@ -22,7 +22,7 @@ RUN wget https://dl.google.com/android/repository/android-ndk-r21b-linux-x86_64.
     && mv /usr/local/android-ndk-r21b /usr/local/android-ndk \
     && rm -f android-ndk-r21b-linux-x86_64.zip
 
-ENV ANDROID_NDK_ROOT /usr/local/android-ndk
+ENV ANDROID_NDK_ROOT=/usr/local/android-ndk
 
 # Grab the necessary Android SDK packages / tools
 RUN wget https://dl.google.com/android/repository/commandlinetools-linux-6200805_latest.zip \
@@ -30,7 +30,7 @@ RUN wget https://dl.google.com/android/repository/commandlinetools-linux-6200805
     && unzip commandlinetools-linux-6200805_latest.zip -d /usr/local/android-sdk/cmdline-tools \
     && rm -f commandlinetools-linux-6200805_latest.zip
 
-ENV ANDROID_SDK_ROOT /usr/local/android-sdk
+ENV ANDROID_SDK_ROOT=/usr/local/android-sdk
 
 RUN yes | $ANDROID_SDK_ROOT/cmdline-tools/tools/bin/sdkmanager --licenses
 RUN $ANDROID_SDK_ROOT/cmdline-tools/tools/bin/sdkmanager --install "build-tools;29.0.3" "platforms;android-29"

@@ -26,7 +26,7 @@ RUN ln -sf /usr/bin/python3 /usr/bin/python && \
     pip download --no-deps helix-scripts --index-url https://dnceng.pkgs.visualstudio.com/public/_packaging/helix-client-prod/pypi/simple && \
     pip install ./helix_scripts-*-py3-none-any.whl
 
-ENV LANG en_US.utf8
+ENV LANG=en_US.utf8
 
 # create helixbot user and give rights to sudo without password
 RUN /usr/sbin/adduser --uid 1000 --shell /bin/bash --gid adm helixbot && \

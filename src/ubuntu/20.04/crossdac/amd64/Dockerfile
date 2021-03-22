@@ -1,6 +1,6 @@
 FROM mcr.microsoft.com/dotnet/core/sdk:3.1-focal
 
-ENV DEBIAN_FRONTEND noninteractive
+ENV DEBIAN_FRONTEND=noninteractive
 
 RUN apt-get update && \
     apt-get install -qq -y \

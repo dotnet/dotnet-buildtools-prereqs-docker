@@ -3,7 +3,7 @@ FROM arm32v7/debian:9
 # Install Helix Dependencies
 
 # Workaround: https://github.com/pypa/wheel/issues/367
-ENV _PYTHON_HOST_PLATFORM linux_armv7l
+ENV _PYTHON_HOST_PLATFORM=linux_armv7l
 
 RUN apt-get update && \
     apt-get install -y \
@@ -33,7 +33,7 @@ RUN apt-get update && \
     && rm -rf /var/lib/apt/lists/* \
     && localedef -i en_US -c -f UTF-8 -A /usr/share/locale/locale.alias en_US.UTF-8
 
-ENV LANG en_US.utf8
+ENV LANG=en_US.utf8
 
 RUN ln -sf /usr/bin/python3 /usr/bin/python && \
     curl https://bootstrap.pypa.io/3.5/get-pip.py -o ./get-pip.py --fail --silent --show-error && \
