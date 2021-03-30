@@ -35,11 +35,12 @@ RUN apt-get update && \
 ENV LANG=en_US.utf8
 
 RUN ln -sf /usr/bin/python3 /usr/bin/python && \
-    curl https://bootstrap.pypa.io/3.5/get-pip.py -o ./get-pip.py --fail --silent --show-error && \
+    curl https://bootstrap.pypa.io/pip/3.5/get-pip.py -o ./get-pip.py --fail --silent --show-error && \
     python ./get-pip.py && rm ./get-pip.py && \
     python -m pip install --upgrade pip==20.2 && \
     python -m pip install virtualenv==16.6.0 && \
     pip download --no-deps helix-scripts --index-url https://dnceng.pkgs.visualstudio.com/public/_packaging/helix-client-prod/pypi/simple && \
+    export CRYPTOGRAPHY_DONT_BUILD_RUST=1 && \
     pip install ./helix_scripts-*-py3-none-any.whl
 
 RUN adduser --disabled-password --gecos '' --uid 1001 --shell /bin/bash --ingroup adm helixbot && \
