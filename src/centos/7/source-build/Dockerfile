@@ -51,3 +51,5 @@ RUN yum install -y \
     yum clean all
 
 ENTRYPOINT [ "scl", "enable", "llvm-toolset-7.0", "--" ]
+
+CMD [ "/bin/bash" ]
