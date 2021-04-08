@@ -2,7 +2,7 @@ FROM mcr.microsoft.com/dotnet-buildtools/prereqs:alpine-3.9
 
 RUN apk update
 
-ENV NODE_VERSION=14.6.1
+ENV NODE_VERSION=10.13.0
 
 ### BUILD NODE
 RUN apk add --no-cache \
