@@ -2,4 +2,4 @@
 
 SCRIPT=$(readlink -f "$0")
 SCRIPTPATH=$(dirname "$SCRIPT")
-$SCRIPTPATH/../../../../build-scripts/build-rootfs.sh ubuntu-18.04 alpine arm lldb3.9
+$SCRIPTPATH/../../../../build-scripts/build-rootfs.sh ubuntu-18.04 alpine3.13 arm lldb3.9
