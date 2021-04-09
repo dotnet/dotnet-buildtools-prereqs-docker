@@ -312,6 +312,18 @@
         {
           "platforms": [
             {
+              "dockerfile": "src/ubuntu/16.04/cross/arm-alpine",
+              "os": "linux",
+              "osVersion": "xenial",
+              "tags": {
+                "ubuntu-16.04-cross-arm-alpine-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
+              }
+            }
+          ]
+        },
+        {
+          "platforms": [
+            {
               "dockerfile": "src/ubuntu/16.04/cross/arm64-alpine",
               "os": "linux",
               "osVersion": "xenial",
