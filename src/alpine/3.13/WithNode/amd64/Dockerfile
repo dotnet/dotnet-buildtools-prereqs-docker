@@ -1,5 +1,4 @@
-FROM mcr.microsoft.com/dotnet-buildtools/prereqs:alpine-3.12-helix
-
+FROM mcr.microsoft.com/dotnet-buildtools/prereqs:alpine-3.13
 RUN apk update
 
 ENV NODE_VERSION=14.6.1

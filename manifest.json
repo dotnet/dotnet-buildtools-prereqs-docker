@@ -74,8 +74,20 @@
               "os": "linux",
               "osVersion": "alpine3.12",
               "tags": {
-                "alpine-3.12-helix-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
-                "alpine-3.12-helix": {
+                "alpine-3.12-helix-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
+              }
+            }
+          ]
+        },
+        {
+          "platforms": [
+            {
+              "dockerfile": "src/alpine/3.13/amd64",
+              "os": "linux",
+              "osVersion": "alpine3.13",
+              "tags": {
+                "alpine-3.13-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
+                "alpine-3.13": {
                   "isLocal": true
                 }
               }
@@ -85,11 +97,11 @@
         {
           "platforms": [
             {
-              "dockerfile": "src/alpine/3.12/WithNode/amd64",
+              "dockerfile": "src/alpine/3.13/WithNode/amd64",
               "os": "linux",
-              "osVersion": "alpine3.12",
+              "osVersion": "alpine3.13",
               "tags": {
-                "alpine-3.12-WithNode-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
+                "alpine-3.13-WithNode-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
               }
             }
           ]
