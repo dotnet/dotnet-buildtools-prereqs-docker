@@ -25,7 +25,7 @@ RUN apk add --no-cache \
         openssl \
         openssl-dev \
         paxctl \
-        python \
+        python2 \
         python3 \
         python3-dev \
         shadow \
