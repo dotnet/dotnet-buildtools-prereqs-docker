@@ -566,6 +566,20 @@
         {
           "platforms": [
             {
+              "architecture": "arm",
+              "dockerfile": "src/alpine/3.13/helix/arm32v7",
+              "os": "linux",
+              "osVersion": "alpine3.13",
+              "tags": {
+                "alpine-3.13-helix-arm32v7-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
+              },
+              "variant": "v7"
+            }
+          ]
+        },
+        {
+          "platforms": [
+            {
               "dockerfile": "src/ubuntu/16.04/cross",
               "os": "linux",
               "osVersion": "xenial",
