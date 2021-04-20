@@ -1,7 +1,7 @@
 FROM mcr.microsoft.com/dotnet-buildtools/prereqs:alpine-3.13
 RUN apk update
 
-ENV NODE_VERSION=14.6.1
+ENV NODE_VERSION=14.16.1
 
 ### BUILD NODE
 RUN apk add --no-cache \
