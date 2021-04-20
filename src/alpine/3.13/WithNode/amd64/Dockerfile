@@ -40,7 +40,7 @@ RUN apk add --no-cache \
             && apk del .build-deps \
             && cd .. \
             && rm -Rf "node-v$NODE_VERSION" \
-            && rm "node-v$NODE_VERSION.tar.xz" SHASUMS256.txt.asc SHASUMS256.txt
+            && rm "node-v$NODE_VERSION-linux-x64.tar.xz" SHASUMS256.txt.asc SHASUMS256.txt
 
 ENV YARN_VERSION=1.10.1
 
