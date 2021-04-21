@@ -33,13 +33,13 @@ RUN apk add --no-cache \
             && gpg --batch --decrypt --output SHASUMS256.txt SHASUMS256.txt.asc \
             && grep " node-v$NODE_VERSION-linux-x64.tar.xz\$" SHASUMS256.txt | sha256sum -c - \
             && tar -xf "node-v$NODE_VERSION-linux-x64.tar.xz" \
-            && cd "node-v$NODE_VERSION" \
+            && cd "node-v$NODE_VERSION-linux-x64" \
             && ./configure \
             && make -j$(getconf _NPROCESSORS_ONLN) \
             && make install \
             && apk del .build-deps \
             && cd .. \
-            && rm -Rf "node-v$NODE_VERSION" \
+            && rm -Rf "node-v$NODE_VERSION-linux-x64" \
             && rm "node-v$NODE_VERSION-linux-x64.tar.xz" SHASUMS256.txt.asc SHASUMS256.txt
 
 ENV YARN_VERSION=1.10.1
