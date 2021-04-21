@@ -34,7 +34,7 @@ RUN apk add --no-cache \
             && grep " node-v$NODE_VERSION-linux-x64.tar.xz\$" SHASUMS256.txt | sha256sum -c - \
             && tar -xf "node-v$NODE_VERSION-linux-x64.tar.xz" \
             && cd "node-v$NODE_VERSION-linux-x64" \
-            && ./configure \
+            && ./lib/node_modules/npm/configure \
             && make -j$(getconf _NPROCESSORS_ONLN) \
             && make install \
             && apk del .build-deps \
