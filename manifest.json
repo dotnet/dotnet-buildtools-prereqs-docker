@@ -1088,6 +1088,18 @@
               }
             }
           ]
+        },
+        {
+          "platforms": [
+            {
+              "dockerfile": "src/windowsservercore/2004/helix/webassembly",
+              "os": "windows",
+              "osVersion": "windowsservercore-2004",
+              "tags": {
+                "windowsservercore-2004-helix-webassembly-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
+              }
+            }
+          ]
         }
       ]
     }
