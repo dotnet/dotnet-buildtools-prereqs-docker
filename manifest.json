@@ -1084,7 +1084,22 @@
               "os": "windows",
               "osVersion": "windowsservercore-2004",
               "tags": {
-                "windowsservercore-2004-helix-amd64-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
+                "windowsservercore-2004-helix-amd64-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
+                "windowsservercore-2004-helix-amd64": {
+                  "isLocal": true
+                }
+              }
+            }
+          ]
+        },
+        {
+          "platforms": [
+            {
+              "dockerfile": "src/windowsservercore/2004/helix/webassembly",
+              "os": "windows",
+              "osVersion": "windowsservercore-2004",
+              "tags": {
+                "windowsservercore-2004-helix-webassembly-amd64-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
               }
             }
           ]
