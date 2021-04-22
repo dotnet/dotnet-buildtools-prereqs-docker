@@ -5,6 +5,7 @@ ENV GIT_VERSION=2.31.1
 ENV GIT_INSTALLER=MinGit-${GIT_VERSION}-64-bit.zip
 
 RUN curl -SL --output %TEMP%\%GIT_INSTALLER% https://github.com/git-for-windows/git/releases/download/v2.31.1.windows.1/%GIT_INSTALLER% \
+    && mkdir C:\git \
     && tar -C C:\git -zxf %TEMP%\%GIT_INSTALLER% \
     && setx PATH "%PATH%;C:\git\cmd"
 
