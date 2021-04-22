@@ -1,4 +1,4 @@
-FROM mcr.microsoft.com/dotnet-buildtools/prereqs:windowsservercore-2004-helix-amd64
+FROM mcr.microsoft.com/dotnet-buildtools/prereqs:windowsservercore-2004-helix-amd64-20200904200251-272704c
 
 # Install git
 ENV GIT_VERSION=2.31.1
