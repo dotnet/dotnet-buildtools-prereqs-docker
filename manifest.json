@@ -632,18 +632,6 @@
         {
           "platforms": [
             {
-              "dockerfile": "src/ubuntu/18.04/mlnet",
-              "os": "linux",
-              "osVersion": "bionic",
-              "tags": {
-                "ubuntu-18.04-mlnet-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
-              }
-            }
-          ]
-        },
-        {
-          "platforms": [
-            {
               "dockerfile": "src/ubuntu/18.04/amd64",
               "os": "linux",
               "osVersion": "bionic",
@@ -664,6 +652,18 @@
               "osVersion": "bionic",
               "tags": {
                 "ubuntu-18.04-debpkg-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
+              }
+            }
+          ]
+        },
+        {
+          "platforms": [
+            {
+              "dockerfile": "src/ubuntu/18.04/mlnet",
+              "os": "linux",
+              "osVersion": "bionic",
+              "tags": {
+                "ubuntu-18.04-mlnet-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
               }
             }
           ]
