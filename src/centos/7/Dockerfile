@@ -59,19 +59,23 @@ RUN wget -O cmake-install.sh https://github.com/Kitware/CMake/releases/download/
 RUN wget ftp://sourceware.org/pub/binutils/snapshots/binutils-2.29.1.tar.xz && \
     wget http://releases.llvm.org/9.0.0/cfe-9.0.0.src.tar.xz && \
     wget http://releases.llvm.org/9.0.0/llvm-9.0.0.src.tar.xz && \
+    wget http://releases.llvm.org/9.0.0/lld-9.0.0.src.tar.xz && \
     wget http://releases.llvm.org/9.0.0/lldb-9.0.0.src.tar.xz && \
     wget http://releases.llvm.org/9.0.0/compiler-rt-9.0.0.src.tar.xz && \
     \
     tar -xf binutils-2.29.1.tar.xz && \
     tar -xf llvm-9.0.0.src.tar.xz && \
     mkdir llvm-9.0.0.src/tools/clang && \
+    mkdir llvm-9.0.0.src/tools/lld && \
     mkdir llvm-9.0.0.src/tools/lldb && \
     mkdir llvm-9.0.0.src/projects/compiler-rt && \
     tar -xf cfe-9.0.0.src.tar.xz --strip 1 -C llvm-9.0.0.src/tools/clang && \
+    tar -xf lld-9.0.0.src.tar.xz --strip 1 -C llvm-9.0.0.src/tools/lld && \
     tar -xf lldb-9.0.0.src.tar.xz --strip 1 -C llvm-9.0.0.src/tools/lldb && \
     tar -xf compiler-rt-9.0.0.src.tar.xz --strip 1 -C llvm-9.0.0.src/projects/compiler-rt && \
     rm binutils-2.29.1.tar.xz && \
     rm cfe-9.0.0.src.tar.xz && \
+    rm lld-9.0.0.src.tar.xz && \
     rm lldb-9.0.0.src.tar.xz && \
     rm llvm-9.0.0.src.tar.xz && \
     rm compiler-rt-9.0.0.src.tar.xz && \

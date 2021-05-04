@@ -31,6 +31,7 @@ RUN dnf install --setopt tsflags=nodocs --refresh -y \
         libtool \
         libuuid-devel \
         libxml2-devel \
+        lld \
         lldb-devel \
         llvm \
         lttng-ust-devel \
