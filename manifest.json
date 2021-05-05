@@ -219,7 +219,7 @@
               }
             }
           }]
-        },        
+        },
         {
           "platforms": [{
             "dockerfile": "src/fedora/33/helix/amd64",
@@ -229,7 +229,7 @@
               "fedora-33-helix-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
             }
           }]
-        },        
+        },
         {
           "platforms": [{
             "dockerfile": "src/fedora/rawhide/amd64",
@@ -562,7 +562,7 @@
               "variant": "v8"
             }
           ]
-        },        
+        },
         {
           "platforms": [
             {
@@ -659,6 +659,18 @@
         {
           "platforms": [
             {
+              "dockerfile": "src/ubuntu/18.04/mlnet",
+              "os": "linux",
+              "osVersion": "bionic",
+              "tags": {
+                "ubuntu-18.04-mlnet-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
+              }
+            }
+          ]
+        },
+        {
+          "platforms": [
+            {
               "architecture": "amd64",
               "dockerfile": "src/ubuntu/20.04/crossdac/amd64",
               "os": "linux",
@@ -681,7 +693,7 @@
               }
             }
           ]
-        },        
+        },
         {
           "platforms": [
             {
