@@ -8,6 +8,8 @@ RUN apt-get update \
 
 ADD rootfs.arm64.tar crossrootfs
 
+RUN apt-key adv --keyserver keyserver.ubuntu.com --recv-keys DE19EB17684BA42D
+
 # Install openmp support with Clang
 RUN apt-get update \
     && apt-get install -y \
