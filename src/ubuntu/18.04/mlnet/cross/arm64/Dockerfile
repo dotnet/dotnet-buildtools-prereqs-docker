@@ -6,16 +6,12 @@ RUN apt-key adv --keyserver keyserver.ubuntu.com --recv-keys DE19EB17684BA42D
 RUN apt-get update \
     && apt-get install -y \
         binutils-aarch64-linux-gnu \
+        clang-3.9 \
+        libomp5 \
+        libomp-dev \
     && rm -rf /var/lib/apt/lists/*
 
 ADD rootfs.arm64.tar crossrootfs
-
-# Install openmp support with Clang
-RUN apt-get update \
-    && apt-get install -y \
-        clang-3.9 \
-        libomp5 \
-        libomp-dev
 
 # Configure system locale
 RUN update-locale LANG=en_US.UTF-8
