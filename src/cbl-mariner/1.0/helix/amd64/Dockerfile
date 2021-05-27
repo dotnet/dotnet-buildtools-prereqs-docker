@@ -4,7 +4,12 @@ FROM cblmariner.azurecr.io/base/core:1.0
 
 ENV LANG=en_US.utf8
 
-RUN tdnf install -y python3-pip
+RUN tdnf install --setopt tsflags=nodocs --refresh -y \
+         gcc \
+         python3-pip \
+         icu \
+         which \
+    && tdnf clean all
 
 RUN ln -sf /usr/bin/python3 /usr/bin/python && \
     python -m pip install --upgrade pip==21.1.2 && \
