@@ -1,0 +1,16 @@
+trigger:
+  branches:
+    include:
+    - main
+  paths:
+    include:
+    - src/cbl-mariner/*
+pr: none
+
+variables:
+- template: variables/common.yml
+- name: imageBuilder.pathArgs
+  value: --path 'src/cbl-mariner/*'
+
+stages:
+  - template: ../common/templates/stages/build-test-publish-repo.yml
