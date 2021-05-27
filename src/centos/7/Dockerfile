@@ -28,6 +28,7 @@ RUN yum install -y \
         libunwind-devel \
         libuuid-devel \
         libxml2-devel \
+        lld \
         lttng-ust-devel \
         lzma \
         make \
