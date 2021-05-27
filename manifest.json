@@ -84,7 +84,7 @@
             {
               "dockerfile": "src/cbl-mariner/1.0/helix/amd64",
               "os": "linux",
-              "osVersion": "cblMariner",
+              "osVersion": "cbl-mariner1.0",
               "tags": {
                 "cbl-mariner-1.0-helix-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
               }

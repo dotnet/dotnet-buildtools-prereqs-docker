@@ -1,4 +1,4 @@
-FROM cblmariner.azurecr.io/cblmariner:1.0
+FROM cblmariner.azurecr.io/base/core:1.0
 
 # Install Helix Dependencies
 
@@ -11,7 +11,8 @@ RUN ln -sf /usr/bin/python3 /usr/bin/python && \
     python -m pip install virtualenv==16.6.0 && \
     python -m pip install --upgrade setuptools && \
     pip download --no-deps helix-scripts --index-url https://dnceng.pkgs.visualstudio.com/public/_packaging/helix-client-prod/pypi/simple && \ 
-    pip install ./helix_scripts-*-py3-none-any.whl
+    pip install ./helix_scripts-*-py3-none-any.whl && \
+    rm ./helix_scripts-*-py3-none-any.whl
 
 # create helixbot user and give rights to sudo without password
 RUN /usr/sbin/useradd -c '' --uid 1000 --shell /bin/bash --groups adm helixbot && \
