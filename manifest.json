@@ -82,6 +82,18 @@
         {
           "platforms": [
             {
+              "dockerfile": "src/cbl-mariner/1.0/helix/amd64",
+              "os": "linux",
+              "osVersion": "cblMariner",
+              "tags": {
+                "cbl-mariner-1.0-helix-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
+              }
+            }
+          ]
+        },
+        {
+          "platforms": [
+            {
               "dockerfile": "src/centos/8",
               "os": "linux",
               "osVersion": "centos8",
