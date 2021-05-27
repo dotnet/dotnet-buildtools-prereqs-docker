@@ -152,7 +152,22 @@
               "os": "linux",
               "osVersion": "centos7",
               "tags": {
-                "centos-7-mlnet-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
+                "centos-7-mlnet-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
+                "centos-7-mlnet": {
+                  "isLocal": true
+                }
+              }
+            }
+          ]
+        },
+        {
+          "platforms": [
+            {
+              "dockerfile": "src/centos/7/mlnet/helix",
+              "os": "linux",
+              "osVersion": "centos7",
+              "tags": {
+                "centos-7-mlnet-helix-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
               }
             }
           ]
@@ -636,7 +651,22 @@
               "os": "linux",
               "osVersion": "xenial",
               "tags": {
-                "ubuntu-16.04-mlnet-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
+                "ubuntu-16.04-mlnet-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
+                "ubuntu-16.04-mlnet": {
+                  "isLocal": true
+                }
+              }
+            }
+          ]
+        },
+        {
+          "platforms": [
+            {
+              "dockerfile": "src/ubuntu/16.04/mlnet/helix",
+              "os": "linux",
+              "osVersion": "xenial",
+              "tags": {
+                "ubuntu-16.04-mlnet-helix-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
               }
             }
           ]
