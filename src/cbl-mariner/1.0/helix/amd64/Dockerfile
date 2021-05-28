@@ -7,7 +7,9 @@ ENV LANG=en_US.utf8
 RUN tdnf install --setopt tsflags=nodocs --refresh -y \
          gcc \
          icu \
+         iputils \
          python3-pip \
+         tzdata \
          which \
     && tdnf clean all
 
