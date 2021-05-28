@@ -5,6 +5,7 @@ FROM cblmariner.azurecr.io/base/core:1.0
 ENV LANG=en_US.utf8
 
 RUN tdnf install --setopt tsflags=nodocs --refresh -y \
+         ca-certificates-microsoft \
          gcc \
          icu \
          iputils \
