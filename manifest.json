@@ -109,6 +109,18 @@
         {
           "platforms": [
             {
+              "dockerfile": "src/cbl-mariner/1.0/helix/amd64",
+              "os": "linux",
+              "osVersion": "cbl-mariner1.0",
+              "tags": {
+                "cbl-mariner-1.0-helix-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
+              }
+            }
+          ]
+        },
+        {
+          "platforms": [
+            {
               "dockerfile": "src/centos/8",
               "os": "linux",
               "osVersion": "centos8",
@@ -167,7 +179,22 @@
               "os": "linux",
               "osVersion": "centos7",
               "tags": {
-                "centos-7-mlnet-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
+                "centos-7-mlnet-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
+                "centos-7-mlnet": {
+                  "isLocal": true
+                }
+              }
+            }
+          ]
+        },
+        {
+          "platforms": [
+            {
+              "dockerfile": "src/centos/7/mlnet/helix",
+              "os": "linux",
+              "osVersion": "centos7",
+              "tags": {
+                "centos-7-mlnet-helix-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
               }
             }
           ]
@@ -246,7 +273,7 @@
               }
             }
           }]
-        },        
+        },
         {
           "platforms": [{
             "dockerfile": "src/fedora/33/helix/amd64",
@@ -256,7 +283,7 @@
               "fedora-33-helix-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
             }
           }]
-        },        
+        },
         {
           "platforms": [{
             "dockerfile": "src/fedora/rawhide/amd64",
@@ -332,6 +359,18 @@
               "osVersion": "xenial",
               "tags": {
                 "ubuntu-16.04-cross-arm64-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
+              }
+            }
+          ]
+        },
+        {
+          "platforms": [
+            {
+              "dockerfile": "src/ubuntu/16.04/cross/arm-alpine",
+              "os": "linux",
+              "osVersion": "xenial",
+              "tags": {
+                "ubuntu-16.04-cross-arm-alpine-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
               }
             }
           ]
@@ -577,7 +616,21 @@
               "variant": "v8"
             }
           ]
-        },        
+        },
+        {
+          "platforms": [
+            {
+              "architecture": "arm",
+              "dockerfile": "src/alpine/3.13/helix/arm32v7",
+              "os": "linux",
+              "osVersion": "alpine3.13",
+              "tags": {
+                "alpine-3.13-helix-arm32v7-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
+              },
+              "variant": "v7"
+            }
+          ]
+        },
         {
           "platforms": [
             {
@@ -625,7 +678,22 @@
               "os": "linux",
               "osVersion": "xenial",
               "tags": {
-                "ubuntu-16.04-mlnet-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
+                "ubuntu-16.04-mlnet-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
+                "ubuntu-16.04-mlnet": {
+                  "isLocal": true
+                }
+              }
+            }
+          ]
+        },
+        {
+          "platforms": [
+            {
+              "dockerfile": "src/ubuntu/16.04/mlnet/helix",
+              "os": "linux",
+              "osVersion": "xenial",
+              "tags": {
+                "ubuntu-16.04-mlnet-helix-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
               }
             }
           ]
@@ -660,6 +728,42 @@
         {
           "platforms": [
             {
+              "dockerfile": "src/ubuntu/18.04/mlnet",
+              "os": "linux",
+              "osVersion": "bionic",
+              "tags": {
+                "ubuntu-18.04-mlnet-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
+              }
+            }
+          ]
+        },
+        {
+          "platforms": [
+            {
+              "dockerfile": "src/ubuntu/18.04/mlnet/cross/arm",
+              "os": "linux",
+              "osVersion": "bionic",
+              "tags": {
+                "ubuntu-18.04-mlnet-cross-arm-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
+              }
+            }
+          ]
+        },
+        {
+          "platforms": [
+            {
+              "dockerfile": "src/ubuntu/18.04/mlnet/cross/arm64",
+              "os": "linux",
+              "osVersion": "bionic",
+              "tags": {
+                "ubuntu-18.04-mlnet-cross-arm64-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
+              }
+            }
+          ]
+        },
+        {
+          "platforms": [
+            {
               "architecture": "amd64",
               "dockerfile": "src/ubuntu/20.04/crossdac/amd64",
               "os": "linux",
@@ -682,7 +786,7 @@
               }
             }
           ]
-        },        
+        },
         {
           "platforms": [
             {
@@ -1069,11 +1173,14 @@
         {
           "platforms": [
             {
-              "dockerfile": "src/windowsservercore/1909/helix/amd64",
+              "dockerfile": "src/windowsservercore/2004/helix/amd64",
               "os": "windows",
-              "osVersion": "windowsservercore-1909",
+              "osVersion": "windowsservercore-2004",
               "tags": {
-                "windowsservercore-1909-helix-amd64-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
+                "windowsservercore-2004-helix-amd64-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
+                "windowsservercore-2004-helix-amd64": {
+                  "isLocal": true
+                }
               }
             }
           ]
@@ -1081,11 +1188,11 @@
         {
           "platforms": [
             {
-              "dockerfile": "src/windowsservercore/2004/helix/amd64",
+              "dockerfile": "src/windowsservercore/2004/helix/webassembly",
               "os": "windows",
               "osVersion": "windowsservercore-2004",
               "tags": {
-                "windowsservercore-2004-helix-amd64-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
+                "windowsservercore-2004-helix-webassembly-amd64-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
               }
             }
           ]
