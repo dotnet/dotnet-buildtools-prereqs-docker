@@ -4,7 +4,7 @@ RUN apk update
 ENV NODE_VERSION=14.16.1
 
 ### INSTALL NODE
-RUN apk install --no-cache nodejs
+RUN apk add --no-cache nodejs
 
 ENV YARN_VERSION=1.10.1
 
