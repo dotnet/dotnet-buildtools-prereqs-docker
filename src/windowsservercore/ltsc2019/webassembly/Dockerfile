@@ -1,7 +1,7 @@
 FROM mcr.microsoft.com/dotnet-buildtools/prereqs:windowsservercore-ltsc2019-helix-amd64
 
 # Install git
-ENV GIT_VERSION=2.31.1
+ENV GIT_VERSION=2.32.0
 ENV GIT_INSTALLER=MinGit-${GIT_VERSION}-64-bit.zip
 
 RUN curl -SL --output %TEMP%\%GIT_INSTALLER% https://github.com/git-for-windows/git/releases/download/v2.31.1.windows.1/%GIT_INSTALLER% \
@@ -25,7 +25,7 @@ RUN cd %EMSDK_PATH% \
     && .\emsdk activate %EMSCRIPTEN_VERSION%-upstream
 
 # install Node JS
-ENV NODE_VERSION 16.0.0
+ENV NODE_VERSION 16.3.0
 
 RUN curl -SL --output %TEMP%\nodejs.msi https://nodejs.org/dist/v%NODE_VERSION%/node-v%NODE_VERSION%-x64.msi
 RUN msiexec /i %TEMP%\nodejs.msi /quiet /passive /qn /norestart
