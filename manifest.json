@@ -1165,7 +1165,22 @@
               "os": "windows",
               "osVersion": "windowsservercore-ltsc2019",
               "tags": {
-                "windowsservercore-ltsc2019-helix-amd64-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
+                "windowsservercore-ltsc2019-helix-amd64-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
+                "windowsservercore-ltsc2019-helix-amd64": {
+                  "isLocal": true
+                }
+              }
+            }
+          ]
+        },
+        {
+          "platforms": [
+            {
+              "dockerfile": "src/windowsservercore/ltsc2019/webassembly",
+              "os": "windows",
+              "osVersion": "windowsservercore-ltsc2019",
+              "tags": {
+                "windowsservercore-ltsc2019-webassembly-amd64-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
               }
             }
           ]
