@@ -70,7 +70,7 @@ RUN curl -SL --output %TEMP%\cmake-win.zip https://github.com/Kitware/CMake/rele
     && del /q %TEMP%\cmake-win.zip
 
 # Install Visual Studio .NET and C++ tools
-RUN curl -SL --output vs_buildtools.exe https://aka.ms/vs/15/release/vs_buildtools.exe \
+RUN curl -SL --output vs_buildtools.exe https://aka.ms/vs/16/release/vs_buildtools.exe \
     && (start /w vs_buildtools.exe --quiet --wait --norestart --nocache modify \
     --installPath "%ProgramFiles(x86)%\Microsoft Visual Studio\2019\BuildTools" \
     --add Microsoft.VisualStudio.Workload.ManagedDesktopBuildTools \
