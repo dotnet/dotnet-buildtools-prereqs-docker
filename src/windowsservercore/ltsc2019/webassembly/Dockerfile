@@ -39,7 +39,7 @@ RUN curl -SL --output %TEMP%\ninja-win.zip https://github.com/ninja-build/ninja/
 RUN certutil -generateSSTFromWU roots.sst && certutil -addstore -f root roots.sst && del roots.sst
 
 # Install Emscripten toolchain
-ENV EMSCRIPTEN_VERSION=2.0.23
+ENV EMSCRIPTEN_VERSION=2.0.21
 ENV EMSCRIPTEN_PATH="C:\emscripten"
 ENV EMSDK_PATH="C:\emscripten\emsdk"
 
