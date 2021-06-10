@@ -83,7 +83,3 @@ RUN curl -SL --output vs_buildtools.exe https://aka.ms/vs/16/release/vs_buildtoo
     --add Microsoft.VisualStudio.Component.Windows10SDK.17763 \
 || IF "%ERRORLEVEL%"=="3010" EXIT 0) \
     && del /q vs_buildtools.exe
-
-# Define the entry point for the docker container.
-# This entry point starts the developer command prompt and launches the PowerShell shell.
-ENTRYPOINT ["C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\BuildTools\\Common7\\Tools\\VsDevCmd.bat", "&&", "powershell.exe", "-NoLogo", "-ExecutionPolicy", "Bypass"]
