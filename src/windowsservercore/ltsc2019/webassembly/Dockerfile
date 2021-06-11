@@ -81,3 +81,5 @@ RUN curl -SL --output vs_buildtools.exe https://aka.ms/vs/16/release/vs_buildtoo
     --add Microsoft.VisualStudio.Component.Windows10SDK.17763 \
 || IF "%ERRORLEVEL%"=="3010" EXIT 0) \
     && del /q vs_buildtools.exe
+
+RUN del /q /f /s %TEMP%\*
