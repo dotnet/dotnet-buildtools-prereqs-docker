@@ -45,21 +45,21 @@ ENV EMSDK_PATH="C:\emscripten\emsdk"
 
 RUN mkdir %EMSCRIPTEN_PATH% \
     && cd %EMSCRIPTEN_PATH% \
-    && git clone https://github.com/emscripten-core/emsdk.git %EMSDK_PATH%
-RUN cd %EMSDK_PATH% \
+    && git clone https://github.com/emscripten-core/emsdk.git %EMSDK_PATH% \
+    && cd %EMSDK_PATH% \
     && .\emsdk install %EMSCRIPTEN_VERSION%-upstream  \
     && .\emsdk activate %EMSCRIPTEN_VERSION%-upstream
 
 # install Node JS
 ENV NODE_VERSION 16.3.0
 
-RUN curl -SL --output %TEMP%\nodejs.msi https://nodejs.org/dist/v%NODE_VERSION%/node-v%NODE_VERSION%-x64.msi
-RUN msiexec /i %TEMP%\nodejs.msi /quiet /passive /qn /norestart
+RUN curl -SL --output %TEMP%\nodejs.msi https://nodejs.org/dist/v%NODE_VERSION%/node-v%NODE_VERSION%-x64.msi \
+    && msiexec /i %TEMP%\nodejs.msi /quiet /passive /qn /norestart
 
 # install jsvu and engines
-RUN npm install jsvu -g
-RUN npm exec -c "jsvu --os=win64 --engines=v8,spidermonkey"
-RUN setx /M PATH "%PATH%;%USERPROFILE%\.jsvu"
+RUN npm install jsvu -g \
+    && npm exec -c "jsvu --os=win64 --engines=v8,spidermonkey" \
+    && setx /M PATH "%PATH%;%USERPROFILE%\.jsvu"
 
 # Install cmake
 ENV CMAKE_VERSION 3.20.3
