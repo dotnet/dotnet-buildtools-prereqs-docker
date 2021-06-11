@@ -45,21 +45,21 @@ ENV EMSDK_PATH="C:\emscripten\emsdk"
 
 RUN mkdir %EMSCRIPTEN_PATH% \
     && cd %EMSCRIPTEN_PATH% \
-    && git clone https://github.com/emscripten-core/emsdk.git %EMSDK_PATH%
-RUN cd %EMSDK_PATH% \
+    && git clone https://github.com/emscripten-core/emsdk.git %EMSDK_PATH% \
+    && cd %EMSDK_PATH% \
     && .\emsdk install %EMSCRIPTEN_VERSION%-upstream  \
     && .\emsdk activate %EMSCRIPTEN_VERSION%-upstream
 
 # install Node JS
 ENV NODE_VERSION 16.3.0
-
-RUN curl -SL --output %TEMP%\nodejs.msi https://nodejs.org/dist/v%NODE_VERSION%/node-v%NODE_VERSION%-x64.msi
-RUN msiexec /i %TEMP%\nodejs.msi /quiet /passive /qn /norestart
+RUN curl -SL --output %TEMP%\nodejs.msi https://nodejs.org/dist/v%NODE_VERSION%/node-v%NODE_VERSION%-x64.msi \
+    && msiexec /i %TEMP%\nodejs.msi /quiet /passive /qn /norestart \
+    && del /q %TEMP%\nodejs.msi
 
 # install jsvu and engines
-RUN npm install jsvu -g
-RUN npm exec -c "jsvu --os=win64 --engines=v8,spidermonkey"
-RUN setx /M PATH "%PATH%;%USERPROFILE%\.jsvu"
+RUN npm install jsvu -g \
+    && npm exec -c "jsvu --os=win64 --engines=v8,spidermonkey" \
+    && setx /M PATH "%PATH%;%USERPROFILE%\.jsvu"
 
 # Install cmake
 ENV CMAKE_VERSION 3.20.3
@@ -73,13 +73,12 @@ RUN curl -SL --output %TEMP%\cmake-win.zip https://github.com/Kitware/CMake/rele
 RUN curl -SL --output vs_buildtools.exe https://aka.ms/vs/16/release/vs_buildtools.exe \
     && (start /w vs_buildtools.exe --quiet --wait --norestart --nocache modify \
     --installPath "%ProgramFiles(x86)%\Microsoft Visual Studio\2019\BuildTools" \
-    --add Microsoft.VisualStudio.Workload.ManagedDesktopBuildTools \
-    --add Microsoft.VisualStudio.Workload.VCTools \
     --add Microsoft.VisualStudio.Component.VC.Tools.x86.x64 \
     --remove Microsoft.VisualStudio.Component.Windows10SDK.10240 \
     --remove Microsoft.VisualStudio.Component.Windows10SDK.10586 \
     --remove Microsoft.VisualStudio.Component.Windows10SDK.14393 \
     --remove Microsoft.VisualStudio.Component.Windows81SDK \
     --add Microsoft.VisualStudio.Component.Windows10SDK.17763 \
-|| IF "%ERRORLEVEL%"=="3010" EXIT 0) \
-    && del /q vs_buildtools.exe
+    || IF "%ERRORLEVEL%"=="3010" EXIT 0) \
+    && del /q vs_buildtools.exe \
+    && del /q /f /s %TEMP%\*
