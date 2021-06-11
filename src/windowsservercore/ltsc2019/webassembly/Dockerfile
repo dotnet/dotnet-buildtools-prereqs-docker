@@ -52,9 +52,9 @@ RUN mkdir %EMSCRIPTEN_PATH% \
 
 # install Node JS
 ENV NODE_VERSION 16.3.0
-
 RUN curl -SL --output %TEMP%\nodejs.msi https://nodejs.org/dist/v%NODE_VERSION%/node-v%NODE_VERSION%-x64.msi \
-    && msiexec /i %TEMP%\nodejs.msi /quiet /passive /qn /norestart
+    && msiexec /i %TEMP%\nodejs.msi /quiet /passive /qn /norestart \
+    && del /q %TEMP%\nodejs.msi
 
 # install jsvu and engines
 RUN npm install jsvu -g \
