@@ -1,8 +1,25 @@
-FROM mcr.microsoft.com/dotnet/framework/sdk:4.8-windowsservercore-ltsc2019
+FROM mcr.microsoft.com/dotnet/framework/runtime:4.8-windowsservercore-ltsc2019
 
 SHELL ["cmd", "/S", "/C"]
 
 USER ContainerAdministrator
+
+# Install Visual Studio .NET and C++ tools
+RUN curl -SL --output vs_buildtools.exe https://aka.ms/vs/16/release/vs_buildtools.exe \
+    && (start /w vs_buildtools.exe --quiet --wait --norestart --nocache \
+    --installPath "%ProgramFiles(x86)%\Microsoft Visual Studio\2019\BuildTools" \
+    --add Microsoft.VisualStudio.Component.VC.Tools.x86.x64 \
+    --remove Microsoft.VisualStudio.Component.Windows10SDK.10240 \
+    --remove Microsoft.VisualStudio.Component.Windows10SDK.10586 \
+    --remove Microsoft.VisualStudio.Component.Windows10SDK.14393 \
+    --remove Microsoft.VisualStudio.Component.Windows81SDK \
+    --add Microsoft.VisualStudio.Component.Windows10SDK.17763 \
+    || IF "%ERRORLEVEL%"=="3010" EXIT 0) \
+    && del /q vs_buildtools.exe \
+    && del /q /f /s %TEMP%\* \
+    && (for /D %i in ("%ProgramFiles(x86)%\Microsoft Visual Studio\Installer\*") do rmdir /S /Q "%i") \
+    && (for %i in ("%ProgramFiles(x86)%\Microsoft Visual Studio\Installer\*") do if not "%~nxi" == "vswhere.exe" del "%~i") \
+    && rmdir /S /Q "%ProgramData%\Package Cache"
 
 # Install python
 ENV PYTHON_VERSION=3.9.5
@@ -68,17 +85,3 @@ RUN curl -SL --output %TEMP%\cmake-win.zip https://github.com/Kitware/CMake/rele
     && tar -C C:\cmake -zxf %TEMP%\cmake-win.zip \
     && setx /M PATH "%PATH%;C:\cmake\cmake-%CMAKE_VERSION%-windows-x86_64\bin" \
     && del /q %TEMP%\cmake-win.zip
-
-# Install Visual Studio .NET and C++ tools
-RUN curl -SL --output vs_buildtools.exe https://aka.ms/vs/16/release/vs_buildtools.exe \
-    && (start /w vs_buildtools.exe --quiet --wait --norestart --nocache modify \
-    --installPath "%ProgramFiles(x86)%\Microsoft Visual Studio\2019\BuildTools" \
-    --add Microsoft.VisualStudio.Component.VC.Tools.x86.x64 \
-    --remove Microsoft.VisualStudio.Component.Windows10SDK.10240 \
-    --remove Microsoft.VisualStudio.Component.Windows10SDK.10586 \
-    --remove Microsoft.VisualStudio.Component.Windows10SDK.14393 \
-    --remove Microsoft.VisualStudio.Component.Windows81SDK \
-    --add Microsoft.VisualStudio.Component.Windows10SDK.17763 \
-    || IF "%ERRORLEVEL%"=="3010" EXIT 0) \
-    && del /q vs_buildtools.exe \
-    && del /q /f /s %TEMP%\*
