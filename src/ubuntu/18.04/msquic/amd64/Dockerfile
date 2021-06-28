@@ -13,12 +13,13 @@ RUN curl -OL https://packages.microsoft.com/config/ubuntu/18.04/packages-microso
         wget \
     && apt-get update \
     && apt-get install -y \
+        build-essential \
         dotnet-sdk-5.0 \
         git \
-        build-essential \
         liblttng-ust-dev \
         lttng-tools \
-        ruby ruby-dev rpm \
+        rpm \
+        ruby ruby-dev \
         sudo \
     && rm -rf /var/lib/apt/lists/* \
     &&  gem install fpm \
