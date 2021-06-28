@@ -564,6 +564,18 @@
         {
           "platforms": [
             {
+              "dockerfile": "src/ubuntu/18.04/msquic/amd64",
+              "os": "linux",
+              "osVersion": "bionic",
+              "tags": {
+                "ubuntu-18.04-msquic-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
+              }
+            }
+          ]
+        },
+        {
+          "platforms": [
+            {
               "architecture": "arm64",
               "dockerfile": "src/alpine/3.10/helix/arm64v8",
               "os": "linux",
