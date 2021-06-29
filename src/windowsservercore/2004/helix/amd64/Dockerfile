@@ -3,7 +3,7 @@ FROM mcr.microsoft.com/windows/servercore:2004-amd64
 
 USER ContainerAdministrator
 
-RUN curl -SL --output %TEMP%\python.zip https://www.nuget.org/api/v2/package/python/3.7.3 `
+RUN curl -SL --output %TEMP%\python.zip https://www.nuget.org/api/v2/package/python/3.9.6 `
     && md C:\Python C:\PythonTemp `
     && tar -zxf %TEMP%\python.zip -C C:\PythonTemp `
     && xcopy /s c:\PythonTemp\tools C:\Python `
