@@ -1,5 +1,8 @@
 FROM mcr.microsoft.com/dotnet-buildtools/prereqs:windowsservercore-2004-helix-amd64
 
+# Install arial font for chrome
+COPY arial.ttf c:/windows/fonts
+
 # Install git
 ENV GIT_VERSION=2.31.1
 ENV GIT_INSTALLER=MinGit-${GIT_VERSION}-64-bit.zip
