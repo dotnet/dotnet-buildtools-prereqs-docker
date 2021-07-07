@@ -3,7 +3,11 @@ FROM mcr.microsoft.com/dotnet-buildtools/prereqs:ubuntu-18.04-coredeps
 # Dependencies for WebAssembly build
 RUN apt-get update \
     && apt-get install -y \
+        libssl1.0-dev \
         locales \
+        nodejs-dev \
+        node-gyp \
+        npm \
         wget \
         unzip \
     && rm -rf /var/lib/apt/lists/*
