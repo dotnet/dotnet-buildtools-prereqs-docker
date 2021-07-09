@@ -15,4 +15,4 @@ variables:
 stages:
   - template: ../common/templates/stages/build-test-publish-repo.yml
     parameters:
-      linuxAmdBuildJobTimeout: 210
+      linuxAmdBuildJobTimeout: 300
