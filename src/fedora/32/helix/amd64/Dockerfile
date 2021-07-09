@@ -1,11 +1,17 @@
 FROM mcr.microsoft.com/dotnet-buildtools/prereqs:fedora-32
 
+# Add MS package repo
+COPY  microsoft.asc /tmp
+RUN dnf config-manager --add-repo https://packages.microsoft.com/fedora/32/prod/ && \
+    rpm --import /tmp/microsoft.asc
+
 # Install Helix Dependencies
 
 RUN dnf install -y \
         python3 \
         python3-devel \
         libffi-devel \
+        libmsquic \
         redhat-rpm-config \
         sudo \
     && dnf clean all
