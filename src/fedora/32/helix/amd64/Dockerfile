@@ -31,7 +31,8 @@ ENV LANG=en-US.UTF-8
 # Fedora does not have all options as other Linux systems
 RUN /usr/sbin/adduser --uid 1000 --shell /bin/bash --group adm helixbot && \
     chmod 755 /root && \
-    echo "helixbot ALL=(ALL)       NOPASSWD: ALL" > /etc/sudoers
+    echo "helixbot ALL=(ALL)       NOPASSWD: ALL" > /etc/sudoers && \
+    chmod +s /usr/bin/ping
 
 USER helixbot
 
