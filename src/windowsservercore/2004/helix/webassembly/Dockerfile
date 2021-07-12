@@ -1,5 +1,13 @@
 FROM mcr.microsoft.com/dotnet-buildtools/prereqs:windowsservercore-2004-helix-amd64
 
+# Install 7zip
+ENV ZIP7_VERSION=1900
+
+RUN curl -SL --output %TEMP%\7zip-x64.exe https://www.7-zip.org/a/7z%ZIP7_VERSION%-x64.exe \
+    && mkdir C:\7z \
+    && %TEMP%\7zip-x64.exe /S /D="C:\7z" \
+    && setx PATH "%PATH%;C:\7z"
+
 # Install arial font for chrome
 COPY arial.ttf c:/windows/fonts
 
