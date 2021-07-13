@@ -8,6 +8,7 @@ RUN yum clean all \
         ruby-devel \
         rubygems \
     && gem install --no-document \
+        git:1.7.0 \
         ffi:1.12.2 \
         fpm \
     && yum clean all
