@@ -27,6 +27,9 @@ RUN apt-get update \
         libarchive-dev \
         libbsd-dev \
         libmpc-dev \
+        libxml2-utils \
+        cpio \
+        rpm2cpio \
     && rm -rf /var/lib/apt/lists/*
 
 RUN apt-get update \

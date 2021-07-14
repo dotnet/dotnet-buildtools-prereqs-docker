@@ -49,12 +49,12 @@ if [ $? -ne 0 ]; then
     exit 1
 fi
 
-echo "Checking existence of /rootfs/$arch/bin"
+echo "Checking existence of /rootfs/$arch/usr/bin"
 docker exec $buildRootFSContainer \
-    [ -d /rootfs/$arch/bin ]
+    [ -d /rootfs/$arch/usr/bin ]
 
 if [ $? -ne 0 ]; then
-    echo "Rootfs build failed: rootfs/$arch/bin empty"
+    echo "Rootfs build failed: rootfs/$arch/usr/bin empty"
     docker rm -f $buildRootFSContainer
     exit 1
 fi
