@@ -24,8 +24,8 @@ RUN apk update && \
         libffi \
         libffi-dev \
         linux-headers \
-        llvm \
         lldb-dev \
+        llvm \
         make \
         openssl \
         openssl-dev \
