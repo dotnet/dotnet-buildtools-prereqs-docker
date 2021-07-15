@@ -21,6 +21,7 @@ RUN apk add --no-cache \
         libunwind-dev \
         linux-headers \
         llvm \
+        lldb-dev \
         make \
         openssl \
         openssl-dev \
