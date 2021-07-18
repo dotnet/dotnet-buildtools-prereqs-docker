@@ -16,6 +16,7 @@ RUN apt-get update \
 
 # Dependencies for CoreCLR, Mono and CoreFX
 RUN apt-get update \
+    && apt-get -f install -y \
     && apt-get install -y \
         autoconf \
         automake \
