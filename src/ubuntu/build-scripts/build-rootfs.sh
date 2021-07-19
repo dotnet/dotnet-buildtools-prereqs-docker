@@ -9,11 +9,15 @@ os=$1
 crossToolset=$2
 archArg=${3:-}
 lldb=${4:-}
+rootfsBinDirArg=${5:-}
 
 dockerCrossDepsTag="${DOCKER_REPO:-mcr.microsoft.com/dotnet-buildtools/prereqs}:${os}-crossdeps"
 
 # If argument three was set, use that as the arch, otherwise use default arch : 'arm'
 arch=${archArg:-'arm'}
+
+# If argument five was set, use that as the rootfsBinDir, otherwise use default : '/rootfs/$arch/bin'
+rootfsBinDir=${rootfsBinDirArg:-"/rootfs/$arch/bin"}
 
 rm -rf $PWD/rootfs.$arch.tar
 
@@ -49,12 +53,12 @@ if [ $? -ne 0 ]; then
     exit 1
 fi
 
-echo "Checking existence of /rootfs/$arch/bin"
+echo "Checking existence of $rootfsBinDir"
 docker exec $buildRootFSContainer \
-    [ -d /rootfs/$arch/bin ]
+    [ -d $rootfsBinDir ]
 
 if [ $? -ne 0 ]; then
-    echo "Rootfs build failed: rootfs/$arch/bin empty"
+    echo "Rootfs build failed: $rootfsBinDir empty"
     docker rm -f $buildRootFSContainer
     exit 1
 fi

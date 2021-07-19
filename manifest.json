@@ -492,6 +492,18 @@
         {
           "platforms": [
             {
+              "dockerfile": "src/ubuntu/18.04/cross/armel-tizen",
+              "os": "linux",
+              "osVersion": "bionic",
+              "tags": {
+                "ubuntu-18.04-cross-armel-tizen-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
+              }
+            }
+          ]
+        },
+        {
+          "platforms": [
+            {
               "dockerfile": "src/ubuntu/18.04/cross/s390x",
               "os": "linux",
               "osVersion": "bionic",

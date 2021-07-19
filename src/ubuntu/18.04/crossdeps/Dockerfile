@@ -16,17 +16,20 @@ RUN apt-get update \
         binutils-arm-linux-gnueabihf \
         build-essential \
         cmake \
+        cpio \
         debootstrap \
         gdb \
         make \
         qemu \
         qemu-user-static \
+        rpm2cpio \
         libbz2-dev \
         libz-dev \
         liblzma-dev \
         libarchive-dev \
         libbsd-dev \
         libmpc-dev \
+        libxml2-utils \
     && rm -rf /var/lib/apt/lists/*
 
 RUN apt-get update \
