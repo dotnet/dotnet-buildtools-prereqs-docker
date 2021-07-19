@@ -31,6 +31,7 @@ RUN apt-get update \
         clang-9 \
         clang-tools-9 \
         liblldb-6.0-dev \
+        lld-9 \
         lldb-6.0 \
         llvm-9 \
         python-lldb-6.0 \
