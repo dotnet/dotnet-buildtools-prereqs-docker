@@ -28,7 +28,7 @@ RUN apk add --no-cache --virtual .build-deps-yarn \
             && apk del .build-deps-yarn
 
 # Add label for bring your own node in azure devops
-LABEL "com.azure.dev.pipelines.agent.handler.node.path"="/usr/local/bin/node"
+LABEL "com.azure.dev.pipelines.agent.handler.node.path"="/usr/bin/node"
 
 # Start node
 CMD [ "node" ]
