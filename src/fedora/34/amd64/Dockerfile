@@ -20,7 +20,8 @@ RUN dnf install -y \
 # Add MS package repo
 COPY  microsoft.asc /tmp
 RUN dnf config-manager --add-repo https://packages.microsoft.com/fedora/34/prod/ && \
-    rpm --import /tmp/microsoft.asc && rm /tmp/microsoft.asc
+    rpm --import /tmp/microsoft.asc && \
+    rm /tmp/microsoft.asc
 
 # Install tools used by build automation.
 RUN dnf install -y \

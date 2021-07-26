@@ -8,8 +8,8 @@ RUN dnf install -y \
         libatomic \
         libffi-devel \
         redhat-rpm-config \
-        sudo \
-        && dnf clean all
+        sudo && \
+    dnf clean all
 
 RUN ln -sf /usr/bin/python3 /usr/bin/python && \
     curl https://bootstrap.pypa.io/get-pip.py -o ./get-pip.py --fail --silent --show-error && \
@@ -19,13 +19,14 @@ RUN ln -sf /usr/bin/python3 /usr/bin/python && \
     pip download --no-deps helix-scripts --index-url https://dnceng.pkgs.visualstudio.com/public/_packaging/helix-client-prod/pypi/simple && \
     pip install ./helix_scripts-*-py3-none-any.whl
 
-# This is temporary until we have flow to packages. microsoft.com
+# This is temporary until we have flow to packages.microsoft.com
 
 RUN dnf install -y dotnet gem lttng-tools perl-FindBin rpmdevtools ruby-devel && \
     rpm -i https://github.com/PowerShell/PowerShell/releases/download/v7.0.6/powershell-lts-7.0.6-1.rhel.7.x86_64.rpm && \
     gem  install fpm && \
     git clone --depth 1 --single-branch --recursive https://github.com/dotnet/msquic && \
-    cd msquic &&  PATH=~/.dotnet/tools:$PATH ./build.sh  -c Release -ci /p:ExtraMsquicArgs=-DisableLogs && \
+    cd msquic &&  PATH=~/.dotnet/tools:$PATH ./build.sh  -c Release -ci /p:ExtraMsquicArgs=-DisableLogs 2>/tmp/error.txt && \
+    cat /tmp/error.txt && \
     cd /msquic/src/msquic && touch artifacts/bin/linux/x64_Release_openssl/libmsquic.lttng.so ; ./scripts/make-packages.sh --output /tmp && \
     rpm -i /tmp/libmsquic*rpm  && \
     cd ~ ; rm -rf msquic /tmp/libmsquic* && \
