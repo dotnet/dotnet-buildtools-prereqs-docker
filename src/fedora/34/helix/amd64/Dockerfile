@@ -25,7 +25,7 @@ RUN dnf install -y dotnet gem lttng-tools perl-FindBin rpmdevtools ruby-devel &&
     rpm -i https://github.com/PowerShell/PowerShell/releases/download/v7.0.6/powershell-lts-7.0.6-1.rhel.7.x86_64.rpm && \
     gem  install fpm && \
     git clone --depth 1 --single-branch --recursive https://github.com/dotnet/msquic && \
-    cd msquic &&  PATH=~/.dotnet/tools:$PATH ./build.sh  -c Release -ci /p:ExtraMsquicArgs=-DisableLogs 2>/tmp/error.txt && \
+    cd msquic &&  PATH=~/.dotnet/tools:$PATH ./build.sh  -c Release /p:ExtraMsquicArgs=-DisableLogs 2>/tmp/error.txt && \
     cat /tmp/error.txt && \
     cd /msquic/src/msquic && touch artifacts/bin/linux/x64_Release_openssl/libmsquic.lttng.so ; ./scripts/make-packages.sh --output /tmp && \
     rpm -i /tmp/libmsquic*rpm  && \
