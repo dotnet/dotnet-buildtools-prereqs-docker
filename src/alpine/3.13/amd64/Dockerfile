@@ -20,12 +20,14 @@ RUN apk add --no-cache \
         libtool \
         libunwind-dev \
         linux-headers \
+        lldb \
         lldb-dev \
         llvm \
         make \
         openssl \
         openssl-dev \
         paxctl \
+        py3-lldb \
         python2 \
         python3 \
         python3-dev \
