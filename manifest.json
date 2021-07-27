@@ -285,6 +285,29 @@
           }]
         },
         {
+          "platforms": [{
+            "dockerfile": "src/fedora/34/amd64",
+            "os": "linux",
+            "osVersion": "fedora34",
+            "tags": {
+              "fedora-34-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
+              "fedora-34": {
+                "isLocal": true
+              }
+            }
+          }]
+        },
+        {
+          "platforms": [{
+            "dockerfile": "src/fedora/34/helix/amd64",
+            "os": "linux",
+            "osVersion": "fedora34",
+            "tags": {
+              "fedora-34-helix-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
+            }
+          }]
+        },
+        {
           "platforms": [
             {
               "dockerfile": "src/ubuntu/16.04",
