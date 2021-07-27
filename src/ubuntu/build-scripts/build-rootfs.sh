@@ -17,7 +17,7 @@ dockerCrossDepsTag="${DOCKER_REPO:-mcr.microsoft.com/dotnet-buildtools/prereqs}:
 arch=${archArg:-'arm'}
 
 # If argument five was set, use that as the rootfsBinDir, otherwise use default : '/rootfs/$arch/bin'
-rootfsBinDir=${rootfsBinDirArg:-"/rootfs/$arch/bin"}
+rootfsBinDir="${rootfsBinDirArg:-"/rootfs/$arch/bin"}"
 
 rm -rf $PWD/rootfs.$arch.tar
 
@@ -55,7 +55,7 @@ fi
 
 echo "Checking existence of $rootfsBinDir"
 docker exec $buildRootFSContainer \
-    [ -d $rootfsBinDir ]
+    [ -d "$rootfsBinDir" ]
 
 if [ $? -ne 0 ]; then
     echo "Rootfs build failed: $rootfsBinDir empty"
