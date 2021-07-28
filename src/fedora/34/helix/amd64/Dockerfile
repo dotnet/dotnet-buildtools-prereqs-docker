@@ -3,6 +3,7 @@ FROM mcr.microsoft.com/dotnet-buildtools/prereqs:fedora-34
 # Install Helix Dependencies
 
 RUN dnf install -y \
+        openssl \
         python3 \
         python3-devel \
         libatomic \
@@ -25,8 +26,8 @@ RUN dnf install -y dotnet gem lttng-tools perl-FindBin rpmdevtools ruby-devel &&
     rpm -i https://github.com/PowerShell/PowerShell/releases/download/v7.0.6/powershell-lts-7.0.6-1.rhel.7.x86_64.rpm && \
     gem  install fpm && \
     git clone --depth 1 --single-branch --recursive https://github.com/dotnet/msquic && \
-    cd msquic &&  PATH=~/.dotnet/tools:$PATH ./build.sh  -c Release /p:ExtraMsquicArgs=-DisableLogs && \
-    cd /msquic/src/msquic && touch artifacts/bin/linux/x64_Release_openssl/libmsquic.lttng.so ; ./scripts/make-packages.sh --output /tmp && \
+    cd msquic/src/msquic  &&  PATH=~/.dotnet/tools:$PATH pwsh scripts/build.ps1 -Config Release -DisableLogs && \
+    touch artifacts/bin/linux/x64_Release_openssl/libmsquic.lttng.so && ./scripts/make-packages.sh --output /tmp && \
     rpm -i /tmp/libmsquic*rpm  && \
     cd ~ ; rm -rf msquic /tmp/libmsquic* && \
     rpm -e powershell-lts dotnet lttng-tools perl-FindBin rpmdevtools ruby-devel && \
