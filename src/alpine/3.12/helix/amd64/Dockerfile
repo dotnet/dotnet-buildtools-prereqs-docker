@@ -24,12 +24,14 @@ RUN apk update && \
         libffi \
         libffi-dev \
         linux-headers \
+        lldb \
         lldb-dev \
         llvm \
         make \
         openssl \
         openssl-dev \
         py-cffi \
+        py3-lldb \
         python3 \
         python3-dev \
         sudo \
