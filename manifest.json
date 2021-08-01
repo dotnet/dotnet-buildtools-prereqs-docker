@@ -109,6 +109,45 @@
         {
           "platforms": [
             {
+              "dockerfile": "src/alpine/3.14/amd64",
+              "os": "linux",
+              "osVersion": "alpine3.14",
+              "tags": {
+                "alpine-3.14-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
+                "alpine-3.14": {
+                  "isLocal": true
+                }
+              }
+            }
+          ]
+        },
+        {
+          "platforms": [
+            {
+              "dockerfile": "src/alpine/3.14/WithNode/amd64",
+              "os": "linux",
+              "osVersion": "alpine3.14",
+              "tags": {
+                "alpine-3.14-WithNode-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
+              }
+            }
+          ]
+        },
+        {
+          "platforms": [
+            {
+              "dockerfile": "src/alpine/3.14/helix/amd64",
+              "os": "linux",
+              "osVersion": "alpine3.14",
+              "tags": {
+                "alpine-3.14-helix-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
+              }
+            }
+          ]
+        },
+        {
+          "platforms": [
+            {
               "dockerfile": "src/cbl-mariner/1.0/helix/amd64",
               "os": "linux",
               "osVersion": "cbl-mariner1.0",
@@ -1178,6 +1217,34 @@
               "osVersion": "alpine3.9",
               "tags": {
                 "alpine-3.9-arm64v8-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
+              },
+              "variant": "v8"
+            }
+          ]
+        },
+        {
+          "platforms": [
+            {
+              "architecture": "arm",
+              "dockerfile": "src/alpine/3.14/arm32v7",
+              "os": "linux",
+              "osVersion": "alpine3.14",
+              "tags": {
+                "alpine-3.14-arm32v7-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
+              },
+              "variant": "v7"
+            }
+          ]
+        },
+        {
+          "platforms": [
+            {
+              "architecture": "arm64",
+              "dockerfile": "src/alpine/3.14/arm64v8",
+              "os": "linux",
+              "osVersion": "alpine3.14",
+              "tags": {
+                "alpine-3.14-arm64v8-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
               },
               "variant": "v8"
             }
