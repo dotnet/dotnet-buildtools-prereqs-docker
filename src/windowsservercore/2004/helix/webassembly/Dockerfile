@@ -24,7 +24,7 @@ RUN curl -SL --output %TEMP%\%GIT_INSTALLER% https://github.com/git-for-windows/
 RUN certutil -generateSSTFromWU roots.sst && certutil -addstore -f root roots.sst && del roots.sst
 
 # Install Emscripten toolchain
-ENV EMSCRIPTEN_VERSION=2.0.23
+ENV EMSCRIPTEN_VERSION=2.0.26
 ENV EMSCRIPTEN_PATH="C:\emscripten"
 ENV EMSDK_PATH="C:\emscripten\emsdk"
 
