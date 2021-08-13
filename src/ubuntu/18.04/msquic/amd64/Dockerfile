@@ -17,8 +17,8 @@ RUN curl -OL https://packages.microsoft.com/config/ubuntu/18.04/packages-microso
         dotnet-sdk-5.0 \
         git \
         liblttng-ust-dev \
-        lttng-tools \
         libssl-dev \
+        lttng-tools \
         rpm \
         ruby ruby-dev \
         sudo \
