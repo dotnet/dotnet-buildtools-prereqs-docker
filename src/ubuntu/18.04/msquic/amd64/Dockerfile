@@ -18,11 +18,12 @@ RUN curl -OL https://packages.microsoft.com/config/ubuntu/18.04/packages-microso
         git \
         liblttng-ust-dev \
         lttng-tools \
+        libssl-dev \
         rpm \
         ruby ruby-dev \
         sudo \
     && rm -rf /var/lib/apt/lists/* \
-    &&  gem install fpm \
+    && gem install fpm \
     && curl -OL https://cmake.org/files/v3.17/cmake-3.17.0-Linux-x86_64.tar.gz \
     && tar -xf cmake-3.17.0-Linux-x86_64.tar.gz --strip 1 -C /usr/local \
     && rm cmake-3.17.0-Linux-x86_64.tar.gz
