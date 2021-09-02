@@ -9,6 +9,7 @@ RUN apk add --no-cache \
         build-base \
         clang \
         clang-dev \
+        cmake \
         coreutils \
         curl \
         curl-dev \
@@ -23,12 +24,13 @@ RUN apk add --no-cache \
         lldb \
         lldb-dev \
         llvm \
+        lttng-ust-dev \
         make \
+        numactl-dev \
         openssl \
         openssl-dev \
         paxctl \
         py3-lldb \
-        python2 \
         python3 \
         python3-dev \
         shadow \
@@ -36,10 +38,3 @@ RUN apk add --no-cache \
         util-linux-dev \
         which \
         zlib-dev
-
-RUN apk -X http://dl-cdn.alpinelinux.org/alpine/v3.13/main add --no-cache \
-        cmake && \
-    apk -X http://dl-cdn.alpinelinux.org/alpine/edge/main add --no-cache \
-        userspace-rcu-dev \
-        lttng-ust-dev \
-        numactl-dev
