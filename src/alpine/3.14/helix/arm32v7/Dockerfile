@@ -1,4 +1,4 @@
-FROM arm32v7/alpine:3.13
+FROM arm32v7/alpine:3.14
 
 # Install .NET Core Dependencies for Alpine
 
@@ -28,6 +28,7 @@ RUN apk update && \
         llvm \
         lttng-ust-dev \
         make \
+        numactl-dev \
         openssl \
         openssl-dev \
         paxctl \

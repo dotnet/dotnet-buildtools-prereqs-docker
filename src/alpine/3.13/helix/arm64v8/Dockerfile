@@ -1,4 +1,4 @@
-FROM arm32v7/alpine:3.13
+FROM arm64v8/alpine:3.13
 
 # Install .NET Core Dependencies for Alpine
 
@@ -28,6 +28,7 @@ RUN apk update && \
         llvm \
         lttng-ust-dev \
         make \
+        numactl-dev \
         openssl \
         openssl-dev \
         paxctl \
@@ -42,9 +43,6 @@ RUN apk update && \
         zlib-dev
 
 # Install Helix Dependencies
-
-# Workaround: https://github.com/pypa/wheel/issues/367
-ENV _PYTHON_HOST_PLATFORM=linux_armv7l
 
 RUN ln -sf /usr/bin/python3 /usr/bin/python && \
     curl https://bootstrap.pypa.io/get-pip.py -o ./get-pip.py --fail --silent --show-error && \

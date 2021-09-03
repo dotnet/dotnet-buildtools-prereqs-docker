@@ -97,6 +97,18 @@
         {
           "platforms": [
             {
+              "dockerfile": "src/alpine/3.13/helix/amd64",
+              "os": "linux",
+              "osVersion": "alpine3.13",
+              "tags": {
+                "alpine-3.13-helix-amd64-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
+              }
+            }
+          ]
+        },
+        {
+          "platforms": [
+            {
               "dockerfile": "src/alpine/3.13/WithNode/amd64",
               "os": "linux",
               "osVersion": "alpine3.13",
@@ -124,11 +136,11 @@
         {
           "platforms": [
             {
-              "dockerfile": "src/alpine/3.14/WithNode/amd64",
+              "dockerfile": "src/alpine/3.14/helix/amd64",
               "os": "linux",
               "osVersion": "alpine3.14",
               "tags": {
-                "alpine-3.14-WithNode-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
+                "alpine-3.14-helix-amd64-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
               }
             }
           ]
@@ -136,11 +148,11 @@
         {
           "platforms": [
             {
-              "dockerfile": "src/alpine/3.14/helix/amd64",
+              "dockerfile": "src/alpine/3.14/WithNode/amd64",
               "os": "linux",
               "osVersion": "alpine3.14",
               "tags": {
-                "alpine-3.14-helix-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
+                "alpine-3.14-WithNode-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
               }
             }
           ]
@@ -710,6 +722,20 @@
         {
           "platforms": [
             {
+              "architecture": "arm64",
+              "dockerfile": "src/alpine/3.13/helix/arm64v8",
+              "os": "linux",
+              "osVersion": "alpine3.13",
+              "tags": {
+                "alpine-3.13-helix-arm64v8-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
+              },
+              "variant": "v8"
+            }
+          ]
+        },
+        {
+          "platforms": [
+            {
               "dockerfile": "src/ubuntu/16.04/cross",
               "os": "linux",
               "osVersion": "xenial",
@@ -1226,11 +1252,11 @@
           "platforms": [
             {
               "architecture": "arm",
-              "dockerfile": "src/alpine/3.14/arm32v7",
+              "dockerfile": "src/alpine/3.14/helix/arm32v7",
               "os": "linux",
               "osVersion": "alpine3.14",
               "tags": {
-                "alpine-3.14-arm32v7-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
+                "alpine-3.14-helix-arm32v7-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
               },
               "variant": "v7"
             }
@@ -1240,11 +1266,11 @@
           "platforms": [
             {
               "architecture": "arm64",
-              "dockerfile": "src/alpine/3.14/arm64v8",
+              "dockerfile": "src/alpine/3.14/helix/arm64v8",
               "os": "linux",
               "osVersion": "alpine3.14",
               "tags": {
-                "alpine-3.14-arm64v8-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
+                "alpine-3.14-helix-arm64v8-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
               },
               "variant": "v8"
             }
