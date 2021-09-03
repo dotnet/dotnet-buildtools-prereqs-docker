@@ -15,3 +15,5 @@ variables:
 - ${{ if eq(variables['System.TeamProject'], 'internal') }}:
     - name: build.imageBuilderDockerRunExtraOptions
       value: -e DOCKER_REPO=$(acr.server)/$(stagingRepoPrefix)dotnet-buildtools/prereqs
+    - group: DotNet-Docker-Common
+    - group: DotNet-Docker-Secrets 
