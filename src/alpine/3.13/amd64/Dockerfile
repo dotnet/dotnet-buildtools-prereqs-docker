@@ -35,6 +35,7 @@ RUN apk add --no-cache \
         python3-dev \
         shadow \
         sudo \
+        tzdata \
         util-linux-dev \
         which \
         zlib-dev
