@@ -2,8 +2,7 @@ FROM mcr.microsoft.com/dotnet-buildtools/prereqs:alpine-3.13
 RUN apk update && apk add --no-cache \
     cargo \
     iputils \
-    libffi-dev \
-    rust
+    libffi-dev
 
 # Install Helix Dependencies
 

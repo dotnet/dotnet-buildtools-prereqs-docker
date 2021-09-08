@@ -1,8 +1,7 @@
 FROM alpine:3.13
 
-RUN apk update
-
-RUN apk add --no-cache \
+RUN apk update && \
+    apk add --no-cache \
         autoconf \
         automake \
         bash \
@@ -12,7 +11,6 @@ RUN apk add --no-cache \
         cmake \
         coreutils \
         curl \
-        curl-dev \
         gcc \
         gettext-dev \
         git \
@@ -21,7 +19,7 @@ RUN apk add --no-cache \
         libtool \
         libunwind-dev \
         linux-headers \
-        lldb \
+        lld \
         lldb-dev \
         llvm \
         lttng-ust-dev \
@@ -31,10 +29,10 @@ RUN apk add --no-cache \
         openssl-dev \
         paxctl \
         py3-lldb \
-        python3 \
         python3-dev \
         shadow \
         sudo \
+        tzdata \
         util-linux-dev \
         which \
         zlib-dev

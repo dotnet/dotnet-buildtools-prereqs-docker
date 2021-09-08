@@ -1,7 +1,5 @@
 FROM arm32v7/alpine:3.14
 
-# Install .NET Core Dependencies for Alpine
-
 RUN apk update && \
     apk add --no-cache \
         autoconf \
@@ -22,7 +20,6 @@ RUN apk update && \
         krb5-dev \
         libtool \
         libunwind-dev \
-        libffi \
         libffi-dev \
         linux-headers \
         llvm \
@@ -33,9 +30,7 @@ RUN apk update && \
         openssl-dev \
         paxctl \
         py-cffi \
-        python3 \
         python3-dev \
-        rust \
         sudo \
         tzdata \
         util-linux-dev \
