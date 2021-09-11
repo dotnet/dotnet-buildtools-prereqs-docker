@@ -3,7 +3,7 @@ FROM registry.fedoraproject.org/fedora:34
 # Install the base toolchain we need to build anything (clang, cmake, make and the like)
 # this does not include libraries that we need to compile different projects, we'd like
 # them in a different layer.
-RUN dnf install -y \
+RUN dnf --setopt=install_weak_deps=False install -y \
         clang \
         cmake \
         dnf-plugins-core \
@@ -24,7 +24,7 @@ RUN dnf config-manager --add-repo https://packages.microsoft.com/fedora/34/prod/
     rm /tmp/microsoft.asc
 
 # Install tools used by build automation.
-RUN dnf install -y \
+RUN dnf --setopt=install_weak_deps=False install -y \
         git \
         tar \
         procps \
@@ -32,7 +32,7 @@ RUN dnf install -y \
     && dnf clean all
 
 # Dependencies of CoreCLR, Mono and CoreFX.
-RUN dnf install -y \
+RUN dnf --setopt=install_weak_deps=False install -y \
         autoconf \
         automake \
         glibc-locale-source \
@@ -41,6 +41,7 @@ RUN dnf install -y \
         libcurl-devel \
         libgdiplus \
         libicu-devel \
+        libomp-devel \
         libtool \
         libunwind-devel \
         libuuid-devel \
