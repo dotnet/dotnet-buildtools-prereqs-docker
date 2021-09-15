@@ -291,29 +291,6 @@
         },
         {
           "platforms": [{
-            "dockerfile": "src/fedora/32/amd64",
-            "os": "linux",
-            "osVersion": "fedora32",
-            "tags": {
-              "fedora-32-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
-              "fedora-32": {
-                "isLocal": true
-              }
-            }
-          }]
-        },
-        {
-          "platforms": [{
-            "dockerfile": "src/fedora/32/helix/amd64",
-            "os": "linux",
-            "osVersion": "fedora32",
-            "tags": {
-              "fedora-32-helix-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
-            }
-          }]
-        },
-        {
-          "platforms": [{
             "dockerfile": "src/fedora/33/amd64",
             "os": "linux",
             "osVersion": "fedora33",
@@ -355,6 +332,29 @@
             "osVersion": "fedora34",
             "tags": {
               "fedora-34-helix-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
+            }
+          }]
+        },
+        {
+          "platforms": [{
+            "dockerfile": "src/fedora/35/amd64",
+            "os": "linux",
+            "osVersion": "fedora35",
+            "tags": {
+              "fedora-35-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
+              "fedora-35": {
+                "isLocal": true
+              }
+            }
+          }]
+        },
+        {
+          "platforms": [{
+            "dockerfile": "src/fedora/35/helix/amd64",
+            "os": "linux",
+            "osVersion": "fedora35",
+            "tags": {
+              "fedora-35-helix-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
             }
           }]
         },

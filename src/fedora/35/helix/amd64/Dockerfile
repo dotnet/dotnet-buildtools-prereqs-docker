@@ -1,4 +1,4 @@
-FROM mcr.microsoft.com/dotnet-buildtools/prereqs:fedora-34
+FROM mcr.microsoft.com/dotnet-buildtools/prereqs:fedora-35
 
 # Install Helix Dependencies
 
@@ -12,12 +12,8 @@ RUN dnf install -y \
         sudo && \
     dnf clean all
 
-RUN ln -sf /usr/bin/python3 /usr/bin/python && \
-    curl https://bootstrap.pypa.io/get-pip.py -o ./get-pip.py --fail --silent --show-error && \
-    python ./get-pip.py && rm ./get-pip.py && \
-    python -m pip install --upgrade pip==20.2 && \
-    python -m pip install virtualenv==16.6.0 && \
-    pip download --no-deps helix-scripts --index-url https://dnceng.pkgs.visualstudio.com/public/_packaging/helix-client-prod/pypi/simple && \
+RUN pip download --no-deps helix-scripts --index-url https://dnceng.pkgs.visualstudio.com/public/_packaging/helix-client-prod/pypi/simple && \
+    python -m pip install virtualenv && \
     pip install ./helix_scripts-*-py3-none-any.whl
 
 # This is temporary until we have flow to packages.microsoft.com
@@ -25,7 +21,7 @@ RUN ln -sf /usr/bin/python3 /usr/bin/python && \
 RUN dnf install -y dotnet gem lttng-tools perl-FindBin rpmdevtools ruby-devel && \
     rpm -i https://github.com/PowerShell/PowerShell/releases/download/v7.0.6/powershell-lts-7.0.6-1.rhel.7.x86_64.rpm && \
     gem  install fpm && \
-    git clone --depth 1 --single-branch -b release/6.0 --recursive https://github.com/dotnet/msquic && \
+    git clone --depth 1 --single-branch --recursive https://github.com/dotnet/msquic && \
     cd msquic/src/msquic  &&  PATH=~/.dotnet/tools:$PATH pwsh scripts/build.ps1 -Config Release -DisableLogs && \
     touch artifacts/bin/linux/x64_Release_openssl/libmsquic.lttng.so && ./scripts/make-packages.sh --output /tmp && \
     rpm -i /tmp/libmsquic*rpm  && \
@@ -45,4 +41,4 @@ RUN /usr/sbin/adduser --uid 1000 --shell /bin/bash --group adm helixbot && \
 
 USER helixbot
 
-RUN python -m virtualenv --no-site-packages /home/helixbot/.vsts-env
+RUN python -m virtualenv /home/helixbot/.vsts-env
