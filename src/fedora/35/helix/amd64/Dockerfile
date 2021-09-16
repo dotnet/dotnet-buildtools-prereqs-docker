@@ -1,6 +1,10 @@
 FROM mcr.microsoft.com/dotnet-buildtools/prereqs:fedora-35
 
 # Install Helix Dependencies
+RUN cat /etc/resolv.conf 
+RUN ping -c 1 google.com
+RUN ping -c 1 fedora.org
+RUN ping -c 1 mirrors.fedoraproject.org
 
 RUN dnf install -y \
         openssl \
