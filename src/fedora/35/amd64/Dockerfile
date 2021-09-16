@@ -1,5 +1,10 @@
 FROM registry.fedoraproject.org/fedora:35
 
+RUN cat /etc/resolv.conf
+RUN ping -c 1 google.com
+RUN ping -c 1 fedora.org
+RUN ping -c 1 mirrors.fedoraproject.org
+
 # Install the base toolchain we need to build anything (clang, cmake, make and the like)
 # this does not include libraries that we need to compile different projects, we'd like
 # them in a different layer.
