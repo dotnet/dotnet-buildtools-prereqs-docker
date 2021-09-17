@@ -993,7 +993,7 @@
               "architecture": "arm",
               "dockerfile": "src/ubuntu/21.04/helix/arm32v7",
               "os": "linux",
-              "osVersion": "bionic",
+              "osVersion": "hirsute",
               "tags": {
                 "ubuntu-21.04-helix-arm32v7-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
               },
@@ -1007,7 +1007,7 @@
               "architecture": "arm64",
               "dockerfile": "src/ubuntu/21.04/helix/arm64v8",
               "os": "linux",
-              "osVersion": "bionic",
+              "osVersion": "hirsute",
               "tags": {
                 "ubuntu-21.04-helix-arm64v8-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
               },
@@ -1021,7 +1021,7 @@
               "architecture": "amd64",
               "dockerfile": "src/ubuntu/21.04/helix/amd64",
               "os": "linux",
-              "osVersion": "bionic",
+              "osVersion": "hirsute",
               "tags": {
                 "ubuntu-21.04-helix-amd64-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
                 "ubuntu-21.04-helix-amd64": {
