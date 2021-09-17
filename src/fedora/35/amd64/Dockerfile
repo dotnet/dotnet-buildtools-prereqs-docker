@@ -1,5 +1,6 @@
 FROM registry.fedoraproject.org/fedora:35
 
+RUN sleep 30
 RUN cat /etc/resolv.conf
 RUN curl -v http://google.com/
 RUN curl -v http://fedora.org/
