@@ -1,6 +1,7 @@
 FROM mcr.microsoft.com/dotnet-buildtools/prereqs:fedora-35
 
 # Install Helix Dependencies
+RUN sleep 30
 RUN cat /etc/resolv.conf 
 RUN ping -c 1 google.com
 RUN ping -c 1 fedora.org
