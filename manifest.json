@@ -1354,6 +1354,19 @@
               }
             }
           ]
+        },
+        {
+          "platforms": [
+            {
+              "architecture": "amd64",
+              "dockerfile": "src/opensuse/18.04/helix/amd64",
+              "os": "linux",
+              "osVersion": "leap",
+              "tags": {
+                "opensuse-15.02-helix-amd64-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
+              }
+            }
+          ]
         }
       ]
     }
