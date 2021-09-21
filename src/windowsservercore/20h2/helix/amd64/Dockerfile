@@ -30,4 +30,3 @@ RUN md c:\\helixtmp && pushd c:\\helixtmp &&`
    setx /M PATH "%PATH%;C:\Python;C:\python\scripts"    
 
 WORKDIR C:\\Work
-
