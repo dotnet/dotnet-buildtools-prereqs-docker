@@ -1,0 +1,23 @@
+trigger: none
+pr:
+  branches:
+    include:
+    - main
+  paths:
+    include:
+    - src/opensuse/*
+
+resources:
+  repositories:
+  - repository: VersionsRepo
+    type: github
+    endpoint: dotnet
+    name: dotnet/versions
+
+variables:
+- template: variables/common.yml
+- name: imageBuilder.pathArgs
+  value: --path 'src/opensuse/*'
+
+stages:
+  - template: ../common/templates/stages/build-test-publish-repo.yml

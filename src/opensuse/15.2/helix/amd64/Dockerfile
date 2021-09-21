@@ -7,10 +7,12 @@ RUN zypper ref && \
     zypper install -y \
         autoconf \
         automake \
-        cmake \
         clang \
+        cmake \
+        gcc-locale \
         gdb \
         git \
+        glibc-i18ndata \
         gssntlmssp \
         iputils \
         libffi-devel \
@@ -20,12 +22,10 @@ RUN zypper ref && \
         libtool \
         libunwind \
         lldb-devel \
-        gcc-locale \
         python3-devel \
         python3-pip \
         sudo \
-        unzip \
-        glibc-i18ndata && \
+        unzip && \
         \
         zypper clean -a
 
