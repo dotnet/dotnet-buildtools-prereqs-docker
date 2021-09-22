@@ -1,0 +1,16 @@
+trigger:
+  branches:
+    include:
+    - main
+  paths:
+    include:
+    - src/opensuse/*
+pr: none
+
+variables:
+- template: variables/common.yml
+- name: imageBuilder.pathArgs
+  value: --path 'src/opensuse/*'
+
+stages:
+  - template: ../common/templates/stages/build-test-publish-repo.yml
