@@ -1354,6 +1354,18 @@
               }
             }
           ]
+        },
+        {
+          "platforms": [
+            {
+              "dockerfile": "src/windowsservercore/20H2/helix/amd64",
+              "os": "windows",
+              "osVersion": "windowsservercore-20H2",
+              "tags": {
+                "windowsservercore-20H2-helix-amd64-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
+              }
+            }
+          ]
         }
       ]
     }
