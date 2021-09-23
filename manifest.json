@@ -291,29 +291,6 @@
         },
         {
           "platforms": [{
-            "dockerfile": "src/fedora/32/amd64",
-            "os": "linux",
-            "osVersion": "fedora32",
-            "tags": {
-              "fedora-32-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
-              "fedora-32": {
-                "isLocal": true
-              }
-            }
-          }]
-        },
-        {
-          "platforms": [{
-            "dockerfile": "src/fedora/32/helix/amd64",
-            "os": "linux",
-            "osVersion": "fedora32",
-            "tags": {
-              "fedora-32-helix-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
-            }
-          }]
-        },
-        {
-          "platforms": [{
             "dockerfile": "src/fedora/33/amd64",
             "os": "linux",
             "osVersion": "fedora33",
@@ -597,18 +574,6 @@
               "osVersion": "bionic",
               "tags": {
                 "ubuntu-18.04-cross-arm-16.04-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
-              }
-            }
-          ]
-        },
-        {
-          "platforms": [
-            {
-              "dockerfile": "src/ubuntu/18.04/cross/freebsd/11",
-              "os": "linux",
-              "osVersion": "bionic",
-              "tags": {
-                "ubuntu-18.04-cross-freebsd-11-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
               }
             }
           ]
