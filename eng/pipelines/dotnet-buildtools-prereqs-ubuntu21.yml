@@ -4,7 +4,7 @@ trigger:
     - main
   paths:
     include:
-    - src/ubuntu/21*
+    - src/ubuntu/21.04/*
 pr: none
 
 variables:
