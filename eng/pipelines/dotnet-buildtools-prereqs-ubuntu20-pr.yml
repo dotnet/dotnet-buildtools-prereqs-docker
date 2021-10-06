@@ -5,7 +5,7 @@ pr:
     - main
   paths:
     include:
-    - src/ubuntu/20*
+    - src/ubuntu/20.04/*
 
 resources:
   repositories:
