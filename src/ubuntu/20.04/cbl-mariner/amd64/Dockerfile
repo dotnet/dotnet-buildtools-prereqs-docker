@@ -13,6 +13,7 @@ RUN apt-get update \
         genisoimage \
         git \
         golang-1.13-go \
+        jq \
         make \
         pigz \
         python3 \
