@@ -1,1 +1,1 @@
-cp /windows/fonts/arial.ttf .
+cp $env:windir/fonts/arial.ttf .
