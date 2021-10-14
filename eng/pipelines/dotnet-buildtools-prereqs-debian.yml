@@ -8,10 +8,19 @@ trigger:
 
 pr: none
 
+resources:
+  repositories:
+  - repository: InternalVersionsRepo
+    type: git
+    name: internal/dotnet-versions
+
 variables:
 - template: variables/common.yml
 - name: imageBuilder.pathArgs
   value: --path 'src/debian/*'
 
 stages:
-  - template: ../common/templates/stages/build-test-publish-repo.yml
+- template: ../common/templates/stages/dotnet/build-test-publish-repo.yml
+  parameters:
+    internalProjectName: ${{ variables.internalProjectName }}
+    publicProjectName: ${{ variables.publicProjectName }}

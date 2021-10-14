@@ -8,7 +8,10 @@ parameters:
   buildMatrixCustomBuildLegGroupArgs: ""
   customBuildInitSteps: []
   customPublishInitSteps: []
-
+  linuxAmdBuildJobTimeout: 60
+  linuxAmd64Pool:
+    vmImage: $(defaultLinuxAmd64PoolImage)
+  
 stages:
 - template: ../build-test-publish-repo.yml
   parameters:
@@ -18,6 +21,7 @@ stages:
     buildMatrixCustomBuildLegGroupArgs: ${{ parameters.buildMatrixCustomBuildLegGroupArgs }}
     customBuildInitSteps: ${{ parameters.customBuildInitSteps }}
     customPublishInitSteps: ${{ parameters.customPublishInitSteps }}
+    linuxAmdBuildJobTimeout: ${{ parameters.linuxAmdBuildJobTimeout }}
 
     internalVersionsRepoRef: InternalVersionsRepo
     publicVersionsRepoRef: PublicVersionsRepo

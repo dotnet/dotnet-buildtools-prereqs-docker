@@ -7,12 +7,20 @@ trigger:
     - src/centos/7/*
 pr: none
 
+resources:
+  repositories:
+  - repository: InternalVersionsRepo
+    type: git
+    name: internal/dotnet-versions
+
 variables:
 - template: variables/common.yml
 - name: imageBuilder.pathArgs
   value: --path 'src/centos/7*'
 
 stages:
-  - template: ../common/templates/stages/build-test-publish-repo.yml
-    parameters:
-      linuxAmdBuildJobTimeout: 300
+- template: ../common/templates/stages/dotnet/build-test-publish-repo.yml
+  parameters:
+    internalProjectName: ${{ variables.internalProjectName }}
+    publicProjectName: ${{ variables.publicProjectName }}
+    linuxAmdBuildJobTimeout: 300

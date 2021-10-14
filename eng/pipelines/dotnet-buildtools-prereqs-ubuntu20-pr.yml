@@ -9,7 +9,7 @@ pr:
 
 resources:
   repositories:
-  - repository: VersionsRepo
+  - repository: PublicVersionsRepo
     type: github
     endpoint: dotnet
     name: dotnet/versions
@@ -20,7 +20,9 @@ variables:
   value: --path 'src/ubuntu/20*'
 
 stages:
-  - template: ../common/templates/stages/build-test-publish-repo.yml
-    parameters:
-      customBuildInitSteps:
-      - template: /eng/pipelines/steps/install-cross-build-prereqs.yml
+- template: ../common/templates/stages/dotnet/build-test-publish-repo.yml
+  parameters:
+    internalProjectName: ${{ variables.internalProjectName }}
+    publicProjectName: ${{ variables.publicProjectName }}
+    customBuildInitSteps:
+    - template: /eng/pipelines/steps/install-cross-build-prereqs.yml

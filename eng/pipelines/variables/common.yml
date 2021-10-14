@@ -1,5 +1,5 @@
 variables:
-- template: ../../common/templates/variables/common.yml
+- template: ../../common/templates/variables/dotnet/build-test-publish.yml
 - name: manifest
   value: manifest.json
 - name: dotnetVersion
@@ -12,8 +12,8 @@ variables:
   value: https://github.com/dotnet/dotnet-buildtools-prereqs-docker
 - name: manifestVariables
   value: --var UniqueId=$(sourceBuildId)
+- name: publicSourceBranch
+  value: main
 - ${{ if eq(variables['System.TeamProject'], 'internal') }}:
     - name: build.imageBuilderDockerRunExtraOptions
       value: -e DOCKER_REPO=$(acr.server)/$(stagingRepoPrefix)dotnet-buildtools/prereqs
-    - group: DotNet-Docker-Common
-    - group: DotNet-Docker-Secrets 
