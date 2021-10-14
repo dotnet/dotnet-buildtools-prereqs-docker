@@ -9,7 +9,7 @@ pr:
 
 resources:
   repositories:
-  - repository: VersionsRepo
+  - repository: PublicVersionsRepo
     type: github
     endpoint: dotnet
     name: dotnet/versions
@@ -20,6 +20,7 @@ variables:
   value: --path 'src/centos/7*'
 
 stages:
-  - template: ../common/templates/stages/build-test-publish-repo.yml
-    parameters:
-      linuxAmdBuildJobTimeout: 300
+- template: ../common/templates/stages/dotnet/build-test-publish-repo.yml
+  parameters:
+    internalProjectName: ${{ variables.internalProjectName }}
+    publicProjectName: ${{ variables.publicProjectName }}

@@ -7,16 +7,22 @@ trigger:
     - src/ubuntu/18.04/*
 pr: none
 
+resources:
+  repositories:
+  - repository: InternalVersionsRepo
+    type: git
+    name: internal/dotnet-versions
+
 variables:
 - template: variables/common.yml
 - name: imageBuilder.pathArgs
   value: --path 'src/ubuntu/18.04*'
 
 stages:
-  - template: ../common/templates/stages/build-test-publish-repo.yml
-    parameters:
-      linuxAmdBuildJobTimeout: 150
-      linuxAmdBuildPool: "NetCoreInternal-Pool"
-      linuxAmdBuildQueue: "BuildPool.Ubuntu.1604.Amd64"
-      customBuildInitSteps:
-      - template: /eng/pipelines/steps/install-cross-build-prereqs.yml
+- template: ../common/templates/stages/dotnet/build-test-publish-repo.yml
+  parameters:
+    internalProjectName: ${{ variables.internalProjectName }}
+    publicProjectName: ${{ variables.publicProjectName }}
+    linuxAmdBuildJobTimeout: 150
+    customBuildInitSteps:
+    - template: /eng/pipelines/steps/install-cross-build-prereqs.yml
