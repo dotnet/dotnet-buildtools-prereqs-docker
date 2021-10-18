@@ -15,6 +15,7 @@ RUN zypper ref && \
         glibc-i18ndata \
         gssntlmssp \
         iputils \
+        lato-fonts \
         libffi-devel \
         libgdiplus-devel \
         libicu-devel \
