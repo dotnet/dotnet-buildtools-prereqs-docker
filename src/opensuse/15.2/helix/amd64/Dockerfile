@@ -15,13 +15,16 @@ RUN zypper ref && \
         glibc-i18ndata \
         gssntlmssp \
         iputils \
+        krb5-devel \
+        lato-fonts \
         libffi-devel \
         libgdiplus-devel \
         libicu-devel \
-        libssl48 \
+        libopenssl-devel \
         libtool \
         libunwind \
         lldb-devel \
+        lttng-ust-devel \
         python3-devel \
         python3-pip \
         sudo \
