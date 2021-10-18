@@ -799,7 +799,10 @@
               "os": "linux",
               "osVersion": "bionic",
               "tags": {
-                "ubuntu-18.04-mlnet-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
+                "ubuntu-18.04-mlnet-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
+                "ubuntu-18.04-mlnet": {
+                  "isLocal": true
+                }
               }
             }
           ]
@@ -824,6 +827,18 @@
               "osVersion": "bionic",
               "tags": {
                 "ubuntu-18.04-mlnet-cross-arm64-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
+              }
+            }
+          ]
+        },
+        {
+          "platforms": [
+            {
+              "dockerfile": "src/ubuntu/18.04/mlnet/helix",
+              "os": "linux",
+              "osVersion": "bionic",
+              "tags": {
+                "ubuntu-18.04-mlnet-helix-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
               }
             }
           ]
