@@ -521,6 +521,18 @@
         {
           "platforms": [
             {
+              "dockerfile": "src/ubuntu/18.04/cross/x86-linux",
+              "os": "linux",
+              "osVersion": "bionic",
+              "tags": {
+                "ubuntu-18.04-cross-x86-linux-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
+              }
+            }
+          ]
+        },
+        {
+          "platforms": [
+            {
               "dockerfile": "src/ubuntu/18.04/cross/arm64-alpine",
               "os": "linux",
               "osVersion": "bionic",
