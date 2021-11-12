@@ -6,6 +6,7 @@ pr:
   paths:
     include:
     - src/ubuntu/21.04/*
+    - src/ubuntu/21.10/*
 
 resources:
   repositories:
