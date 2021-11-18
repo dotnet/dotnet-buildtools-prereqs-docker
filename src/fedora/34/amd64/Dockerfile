@@ -48,4 +48,5 @@ RUN dnf --setopt=install_weak_deps=False install -y \
         lttng-ust-devel \
         openssl-devel \
         uuid-devel \
+        zlib-devel \
     && dnf clean all

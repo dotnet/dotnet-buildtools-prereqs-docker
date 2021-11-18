@@ -223,6 +223,18 @@
         {
           "platforms": [
             {
+              "dockerfile": "src/centos/8/source-build",
+              "os": "linux",
+              "osVersion": "centos8",
+              "tags": {
+                "centos-8-source-build-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
+              }
+            }
+          ]
+        },
+        {
+          "platforms": [
+            {
               "dockerfile": "src/centos/7",
               "os": "linux",
               "osVersion": "centos7",
