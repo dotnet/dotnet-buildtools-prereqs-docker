@@ -1,17 +1,16 @@
-FROM alpine:3.9
+FROM alpine:3.15
 
-RUN apk update
-
-RUN apk add --no-cache \
+RUN apk update && \
+    apk add --no-cache \
         autoconf \
         automake \
         bash \
         build-base \
         clang \
         clang-dev \
+        cmake \
         coreutils \
         curl \
-        curl-dev \
         gcc \
         gettext-dev \
         git \
@@ -21,23 +20,19 @@ RUN apk add --no-cache \
         libunwind-dev \
         linux-headers \
         lld \
+        lldb-dev \
         llvm \
+        lttng-ust-dev \
         make \
+        numactl-dev \
         openssl \
         openssl-dev \
         paxctl \
-        python \
-        python3 \
+        py3-lldb \
         python3-dev \
         shadow \
         sudo \
+        tzdata \
         util-linux-dev \
         which \
         zlib-dev
-
-RUN apk -X http://dl-cdn.alpinelinux.org/alpine/v3.10/main add --no-cache \
-        cmake && \
-    apk -X http://dl-cdn.alpinelinux.org/alpine/edge/main add --no-cache \
-        userspace-rcu-dev \
-        lttng-ust-dev \
-        numactl-dev
