@@ -593,18 +593,6 @@
         {
           "platforms": [
             {
-              "dockerfile": "src/ubuntu/18.04/cross/armv6/10",
-              "os": "linux",
-              "osVersion": "bionic",
-              "tags": {
-                "ubuntu-18.04-cross-armv6-raspbian-10-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
-              }
-            }
-          ]
-        },
-        {
-          "platforms": [
-            {
               "dockerfile": "src/ubuntu/18.04/cross/freebsd/12",
               "os": "linux",
               "osVersion": "bionic",
@@ -634,6 +622,48 @@
               "osVersion": "bionic",
               "tags": {
                 "ubuntu-18.04-msquic-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
+              }
+            }
+          ]
+        },
+        {
+          "platforms": [
+            {
+              "dockerfile": "src/ubuntu/20.04/coredeps",
+              "os": "linux",
+              "osVersion": "focal",
+              "tags": {
+                "ubuntu-20.04-coredeps-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
+                "ubuntu-20.04-coredeps": {
+                  "isLocal": true
+                }
+              }
+            }
+          ]
+        },
+        {
+          "platforms": [
+            {
+              "dockerfile": "src/ubuntu/20.04/crossdeps",
+              "os": "linux",
+              "osVersion": "focal",
+              "tags": {
+                "ubuntu-20.04-crossdeps-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
+                "ubuntu-20.04-crossdeps": {
+                  "isLocal": true
+                }
+              }
+            }
+          ]
+        },
+        {
+          "platforms": [
+            {
+              "dockerfile": "src/ubuntu/20.04/cross/armv6/10",
+              "os": "linux",
+              "osVersion": "focal",
+              "tags": {
+                "ubuntu-20.04-cross-armv6-raspbian-10-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
               }
             }
           ]
