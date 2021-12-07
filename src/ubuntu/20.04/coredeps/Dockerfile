@@ -10,7 +10,7 @@ RUN apt-get update \
         zip \
     && rm -rf /var/lib/apt/lists/* \
     && npm install -g azure-cli@0.9.20 \
-    && npm cache clean
+    && npm cache clean --force
 
 # Dependencies for CoreCLR, Mono and CoreFX
 RUN apt-get update \
