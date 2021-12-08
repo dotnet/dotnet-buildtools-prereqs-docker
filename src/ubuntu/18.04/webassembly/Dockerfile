@@ -23,7 +23,7 @@ RUN locale-gen en_US.UTF-8
 RUN npm i -g typescript
 
 # Install Emscripten toolchain
-ENV EMSCRIPTEN_VERSION=2.0.26
+ENV EMSCRIPTEN_VERSION=2.0.34
 ENV EMSCRIPTEN_PATH=/usr/local/emscripten
 ENV EMSDK_PATH=/usr/local/emscripten/emsdk
 
