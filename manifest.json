@@ -1243,6 +1243,20 @@
         {
           "platforms": [
             {
+              "architecture": "armv6",
+              "dockerfile": "src/raspbian/10/helix/arm32v6",
+              "os": "linux",
+              "osVersion": "buster",
+              "tags": {
+                "raspbian-10-helix-arm32v6-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
+              },
+              "variant": "v6"
+            }
+          ]
+        },
+        {
+          "platforms": [
+            {
               "architecture": "arm",
               "dockerfile": "src/ubuntu/16.04/arm32v7",
               "os": "linux",
