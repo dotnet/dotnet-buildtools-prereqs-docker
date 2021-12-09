@@ -1243,7 +1243,7 @@
         {
           "platforms": [
             {
-              "architecture": "armv6",
+              "architecture": "arm",
               "dockerfile": "src/raspbian/10/helix/arm32v6",
               "os": "linux",
               "osVersion": "buster",
