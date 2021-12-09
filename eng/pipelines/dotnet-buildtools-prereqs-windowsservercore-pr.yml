@@ -1,22 +1,23 @@
-trigger:
+trigger: none
+pr:
   branches:
     include:
     - main
   paths:
     include:
-    - src/windowsservercore/ltsc2019/*
-pr: none
+    - src/windowsservercore/*
 
 resources:
   repositories:
-  - repository: InternalVersionsRepo
-    type: git
-    name: internal/dotnet-versions
+  - repository: PublicVersionsRepo
+    type: github
+    endpoint: dotnet
+    name: dotnet/versions
 
 variables:
 - template: variables/common.yml
 - name: imageBuilder.pathArgs
-  value: --path 'src/windowsservercore/ltsc2019/*'
+  value: --path 'src/windowsservercore/*'
 
 stages:
 - template: ../common/templates/stages/dotnet/build-test-publish-repo.yml

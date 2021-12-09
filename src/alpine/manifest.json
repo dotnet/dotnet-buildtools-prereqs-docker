@@ -1,0 +1,250 @@
+{
+  "repos": [
+    {
+      "name": "dotnet-buildtools/prereqs",
+      "images": [
+        {
+          "platforms": [
+            {
+              "dockerfile": "src/alpine/3.12/helix/amd64",
+              "os": "linux",
+              "osVersion": "alpine3.12",
+              "tags": {
+                "alpine-3.12-helix-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
+              }
+            }
+          ]
+        },
+        {
+          "platforms": [
+            {
+              "architecture": "arm",
+              "dockerfile": "src/alpine/3.12/helix/arm32v7",
+              "os": "linux",
+              "osVersion": "alpine3.12",
+              "tags": {
+                "alpine-3.12-helix-arm32v7-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
+              },
+              "variant": "v7"
+            }
+          ]
+        },
+        {
+          "platforms": [
+            {
+              "architecture": "arm64",
+              "dockerfile": "src/alpine/3.12/helix/arm64v8",
+              "os": "linux",
+              "osVersion": "alpine3.12",
+              "tags": {
+                "alpine-3.12-helix-arm64v8-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
+              },
+              "variant": "v8"
+            }
+          ]
+        },
+        {
+          "platforms": [
+            {
+              "dockerfile": "src/alpine/3.13/amd64",
+              "os": "linux",
+              "osVersion": "alpine3.13",
+              "tags": {
+                "alpine-3.13-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
+                "alpine-3.13": {
+                  "isLocal": true
+                }
+              }
+            }
+          ]
+        },
+        {
+          "platforms": [
+            {
+              "dockerfile": "src/alpine/3.13/helix/amd64",
+              "os": "linux",
+              "osVersion": "alpine3.13",
+              "tags": {
+                "alpine-3.13-helix-amd64-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
+              }
+            }
+          ]
+        },
+        {
+          "platforms": [
+            {
+              "architecture": "arm",
+              "dockerfile": "src/alpine/3.13/helix/arm32v7",
+              "os": "linux",
+              "osVersion": "alpine3.13",
+              "tags": {
+                "alpine-3.13-helix-arm32v7-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
+              },
+              "variant": "v7"
+            }
+          ]
+        },
+        {
+          "platforms": [
+            {
+              "architecture": "arm64",
+              "dockerfile": "src/alpine/3.13/helix/arm64v8",
+              "os": "linux",
+              "osVersion": "alpine3.13",
+              "tags": {
+                "alpine-3.13-helix-arm64v8-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
+              },
+              "variant": "v8"
+            }
+          ]
+        },
+        {
+          "platforms": [
+            {
+              "dockerfile": "src/alpine/3.13/WithNode/amd64",
+              "os": "linux",
+              "osVersion": "alpine3.13",
+              "tags": {
+                "alpine-3.13-WithNode-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
+              }
+            }
+          ]
+        },
+        {
+          "platforms": [
+            {
+              "dockerfile": "src/alpine/3.14/amd64",
+              "os": "linux",
+              "osVersion": "alpine3.14",
+              "tags": {
+                "alpine-3.14-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
+                "alpine-3.14": {
+                  "isLocal": true
+                }
+              }
+            }
+          ]
+        },
+        {
+          "platforms": [
+            {
+              "dockerfile": "src/alpine/3.14/helix/amd64",
+              "os": "linux",
+              "osVersion": "alpine3.14",
+              "tags": {
+                "alpine-3.14-helix-amd64-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
+              }
+            }
+          ]
+        },
+        {
+          "platforms": [
+            {
+              "architecture": "arm",
+              "dockerfile": "src/alpine/3.14/helix/arm32v7",
+              "os": "linux",
+              "osVersion": "alpine3.14",
+              "tags": {
+                "alpine-3.14-helix-arm32v7-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
+              },
+              "variant": "v7"
+            }
+          ]
+        },
+        {
+          "platforms": [
+            {
+              "architecture": "arm64",
+              "dockerfile": "src/alpine/3.14/helix/arm64v8",
+              "os": "linux",
+              "osVersion": "alpine3.14",
+              "tags": {
+                "alpine-3.14-helix-arm64v8-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
+              },
+              "variant": "v8"
+            }
+          ]
+        },
+        {
+          "platforms": [
+            {
+              "dockerfile": "src/alpine/3.14/WithNode/amd64",
+              "os": "linux",
+              "osVersion": "alpine3.14",
+              "tags": {
+                "alpine-3.14-WithNode-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
+              }
+            }
+          ]
+        },
+        {
+          "platforms": [
+            {
+              "dockerfile": "src/alpine/3.15/amd64",
+              "os": "linux",
+              "osVersion": "alpine3.15",
+              "tags": {
+                "alpine-3.15-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
+                "alpine-3.15": {
+                  "isLocal": true
+                }
+              }
+            }
+          ]
+        },
+        {
+          "platforms": [
+            {
+              "dockerfile": "src/alpine/3.15/helix/amd64",
+              "os": "linux",
+              "osVersion": "alpine3.15",
+              "tags": {
+                "alpine-3.15-helix-amd64-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
+              }
+            }
+          ]
+        },
+        {
+          "platforms": [
+            {
+              "architecture": "arm",
+              "dockerfile": "src/alpine/3.15/helix/arm32v7",
+              "os": "linux",
+              "osVersion": "alpine3.15",
+              "tags": {
+                "alpine-3.15-helix-arm32v7-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
+              },
+              "variant": "v7"
+            }
+          ]
+        },
+        {
+          "platforms": [
+            {
+              "architecture": "arm64",
+              "dockerfile": "src/alpine/3.15/helix/arm64v8",
+              "os": "linux",
+              "osVersion": "alpine3.15",
+              "tags": {
+                "alpine-3.15-helix-arm64v8-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
+              },
+              "variant": "v8"
+            }
+          ]
+        },
+        {
+          "platforms": [
+            {
+              "dockerfile": "src/alpine/3.15/WithNode/amd64",
+              "os": "linux",
+              "osVersion": "alpine3.15",
+              "tags": {
+                "alpine-3.15-WithNode-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

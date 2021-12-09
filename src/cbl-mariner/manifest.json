@@ -1,0 +1,21 @@
+{
+  "repos": [
+    {
+      "name": "dotnet-buildtools/prereqs",
+      "images": [
+        {
+          "platforms": [
+            {
+              "dockerfile": "src/cbl-mariner/1.0/helix/amd64",
+              "os": "linux",
+              "osVersion": "cbl-mariner1.0",
+              "tags": {
+                "cbl-mariner-1.0-helix-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
