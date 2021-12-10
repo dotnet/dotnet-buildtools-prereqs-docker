@@ -15,6 +15,7 @@ RUN apt-get update && \
         automake \
         at \
         build-essential \
+        ca-certificates \
         curl \
         gcc \
         gdb \
