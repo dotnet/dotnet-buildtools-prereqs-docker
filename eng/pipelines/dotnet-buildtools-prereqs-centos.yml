@@ -1,26 +1,26 @@
-trigger: none
-pr:
+trigger:
   branches:
     include:
     - main
   paths:
     include:
-    - src/windowsservercore/2004/*
+    - src/centos/*
+pr: none
 
 resources:
   repositories:
-  - repository: PublicVersionsRepo
-    type: github
-    endpoint: dotnet
-    name: dotnet/versions
+  - repository: InternalVersionsRepo
+    type: git
+    name: internal/dotnet-versions
 
 variables:
 - template: variables/common.yml
 - name: imageBuilder.pathArgs
-  value: --path 'src/windowsservercore/2004/*'
+  value: --path 'src/centos/*'
 
 stages:
 - template: ../common/templates/stages/dotnet/build-test-publish-repo.yml
   parameters:
     internalProjectName: ${{ variables.internalProjectName }}
     publicProjectName: ${{ variables.publicProjectName }}
+    linuxAmdBuildJobTimeout: 210

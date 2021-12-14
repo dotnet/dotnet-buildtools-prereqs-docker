@@ -1,0 +1,21 @@
+{
+  "repos": [
+    {
+      "name": "dotnet-buildtools/prereqs",
+      "images": [
+        {
+          "platforms": [
+            {
+              "dockerfile": "src/nanoserver/1809/helix/amd64",
+              "os": "windows",
+              "osVersion": "nanoserver-1809",
+              "tags": {
+                "nanoserver-1809-helix-amd64-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
