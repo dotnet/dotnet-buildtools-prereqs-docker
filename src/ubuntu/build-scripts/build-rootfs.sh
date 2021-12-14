@@ -10,6 +10,7 @@ crossToolset=$2
 archArg=${3:-}
 lldb=${4:-}
 rootfsBinDirArg=${5:-}
+bypassArchDirArg=${6:-}
 
 dockerCrossDepsTag="${DOCKER_REPO:-mcr.microsoft.com/dotnet-buildtools/prereqs}:${os}-crossdeps"
 
@@ -18,6 +19,12 @@ arch=${archArg:-'arm'}
 
 # If argument five was set, use that as the rootfsBinDir, otherwise use default : '/rootfs/$arch/bin'
 rootfsBinDir="${rootfsBinDirArg:-"/rootfs/$arch/bin"}"
+
+if [ -z "${bypassArchDirArg}" ]; then
+    rootfsBaseDir="/rootfs"
+else
+    rootfsBaseDir="/rootfs/${arch}"
+fi
 
 rm -rf $PWD/rootfs.$arch.tar
 
@@ -69,10 +76,10 @@ docker exec $buildRootFSContainer \
 
 echo "Tarring rootfs"
 docker exec $buildRootFSContainer \
-    tar Ccf /rootfs - . > $PWD/rootfs.$arch.tar
+    tar Ccf ${rootfsBaseDir} - . > $PWD/rootfs.$arch.tar
 
 if [ $? -ne 0 ]; then
-    echo "Rootfs build failed: 'tar Ccf /rootfs - .' returned error"
+    echo "Rootfs build failed: 'tar Ccf ${rootfsBaseDir} - .' returned error"
     docker rm -f $buildRootFSContainer
     exit 1
 fi

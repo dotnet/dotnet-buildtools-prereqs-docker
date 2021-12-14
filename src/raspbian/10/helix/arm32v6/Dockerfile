@@ -4,26 +4,7 @@ FROM scratch
 # But we can use a crossrootfs from our image generation scripts, and
 # symlink all the folders into the image root
 
-ADD rootfs.armv6.tar crossrootfs
-
-RUN ln -sf /crossrootfs/armv6/bin / && \
-    ln -sf /crossrootfs/armv6/boot / && \
-    ln -sf /crossrootfs/armv6/dev / && \
-    ln -sf /crossrootfs/armv6/etc / && \
-    ln -sf /crossrootfs/armv6/home / && \
-    ln -sf /crossrootfs/armv6/lib / && \
-    ln -sf /crossrootfs/armv6/media / && \
-    ln -sf /crossrootfs/armv6/mnt / && \
-    ln -sf /crossrootfs/armv6/opt / && \
-    ln -sf /crossrootfs/armv6/proc / && \
-    ln -sf /crossrootfs/armv6/root / && \
-    ln -sf /crossrootfs/armv6/run / && \
-    ln -sf /crossrootfs/armv6/sbin / && \
-    ln -sf /crossrootfs/armv6/srv / && \
-    ln -sf /crossrootfs/armv6/sys / && \
-    ln -sf /crossrootfs/armv6/tmp / && \
-    ln -sf /crossrootfs/armv6/usr / && \
-    ln -sf /crossrootfs/armv6/var /
+ADD rootfs.armv6.tar /
 
 ENV _PYTHON_HOST_PLATFORM=linux_armv6l
 
