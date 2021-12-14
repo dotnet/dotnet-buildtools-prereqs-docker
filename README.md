@@ -58,7 +58,7 @@ The folder structure used in [src](./src) aligns with the tagging convention - `
 
 ### Manifest
 
-The [manifest.json](./manifest.json) contains metadata used by the build infrastructure to produce the Docker images.  The metadata describes which Dockerfiles to build, what tags to produce, and where to publish the images.  It is critical that the manifest gets updated appropriately when Dockerfiles are added/removed.  Each Dockerfile will have an entry that looks like the following.
+The [manifest.json](./manifest.json) contains metadata used by the build infrastructure to produce the Docker images.  The metadata describes which Dockerfiles to build, what tags to produce, and where to publish the images.  It is critical that the manifest gets updated appropriately when Dockerfiles are added/removed.  The manifest at the root of the repo represents the global manifest.  It has references to sub-manifests within each of the OS folders (e.g. [src/alpine/manifest.json](./src/alpine/manifest.json)).  When adding or modifying entries for Dockerfiles, those changes should be made to the appropriate OS-specific sub-manifest file.  Each Dockerfile will have an entry that looks like the following.
 
 ```json
 {
