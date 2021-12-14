@@ -1,0 +1,22 @@
+{
+  "repos": [
+    {
+      "name": "dotnet-buildtools/prereqs",
+      "images": [
+        {
+          "platforms": [
+            {
+              "architecture": "amd64",
+              "dockerfile": "src/opensuse/15.2/helix/amd64",
+              "os": "linux",
+              "osVersion": "leap15.2",
+              "tags": {
+                "opensuse-15.2-helix-amd64-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

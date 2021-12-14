@@ -5,7 +5,7 @@ pr:
     - main
   paths:
     include:
-    - src/windowsservercore/ltsc2019/*
+    - src/nanoserver/*
 
 resources:
   repositories:
@@ -17,7 +17,7 @@ resources:
 variables:
 - template: variables/common.yml
 - name: imageBuilder.pathArgs
-  value: --path 'src/windowsservercore/ltsc2019/*'
+  value: --path 'src/nanoserver/*'
 
 stages:
 - template: ../common/templates/stages/dotnet/build-test-publish-repo.yml

@@ -4,7 +4,7 @@ trigger:
     - main
   paths:
     include:
-    - src/ubuntu/16.04/*
+    - src/nanoserver/*
 pr: none
 
 resources:
@@ -16,13 +16,10 @@ resources:
 variables:
 - template: variables/common.yml
 - name: imageBuilder.pathArgs
-  value: --path 'src/ubuntu/16.04*'
+  value: --path 'src/nanoserver/*'
 
 stages:
 - template: ../common/templates/stages/dotnet/build-test-publish-repo.yml
   parameters:
     internalProjectName: ${{ variables.internalProjectName }}
     publicProjectName: ${{ variables.publicProjectName }}
-    linuxAmdBuildJobTimeout: 120
-    customBuildInitSteps:
-    - template: /eng/pipelines/steps/install-cross-build-prereqs.yml

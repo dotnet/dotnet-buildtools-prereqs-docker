@@ -5,7 +5,7 @@ pr:
     - main
   paths:
     include:
-    - src/nanoserver/1809/*
+    - src/centos/*
 
 resources:
   repositories:
@@ -17,10 +17,11 @@ resources:
 variables:
 - template: variables/common.yml
 - name: imageBuilder.pathArgs
-  value: --path 'src/nanoserver/1809/*'
+  value: --path 'src/centos/*'
 
 stages:
 - template: ../common/templates/stages/dotnet/build-test-publish-repo.yml
   parameters:
     internalProjectName: ${{ variables.internalProjectName }}
     publicProjectName: ${{ variables.publicProjectName }}
+    linuxAmdBuildJobTimeout: 210

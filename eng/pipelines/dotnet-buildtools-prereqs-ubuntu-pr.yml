@@ -5,8 +5,7 @@ pr:
     - main
   paths:
     include:
-    - src/ubuntu/21.04/*
-    - src/ubuntu/21.10/*
+    - src/ubuntu/*
 
 resources:
   repositories:
@@ -18,12 +17,13 @@ resources:
 variables:
 - template: variables/common.yml
 - name: imageBuilder.pathArgs
-  value: --path 'src/ubuntu/21*'
+  value: --path 'src/ubuntu/*'
 
 stages:
 - template: ../common/templates/stages/dotnet/build-test-publish-repo.yml
   parameters:
     internalProjectName: ${{ variables.internalProjectName }}
     publicProjectName: ${{ variables.publicProjectName }}
+    linuxAmdBuildJobTimeout: 150
     customBuildInitSteps:
     - template: /eng/pipelines/steps/install-cross-build-prereqs.yml
