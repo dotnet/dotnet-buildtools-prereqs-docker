@@ -6,18 +6,6 @@
         {
           "platforms": [
             {
-              "dockerfile": "src/ubuntu/20.04/cross/armv6/10",
-              "os": "linux",
-              "osVersion": "focal",
-              "tags": {
-                "ubuntu-20.04-cross-armv6-raspbian-10-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
-              }
-            }
-          ]
-        },
-        {
-          "platforms": [
-            {
               "architecture": "arm",
               "dockerfile": "src/raspbian/10/crossdeps",
               "os": "linux",
