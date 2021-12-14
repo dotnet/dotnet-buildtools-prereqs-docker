@@ -1,10 +1,30 @@
-FROM tianon/raspbian:buster
-# There doesn't seem to be an official Raspberry Pi OS Docker image
-# This is s compromise - it's a repo run by Tianon Gravi, the engineer
-# responsible for the Docker Hub official images repo - this is as close
-# to official as it's possible to be, without being official.
+FROM scratch
 
-# Workaround: https://github.com/pypa/wheel/issues/367
+# There doesn't seem to be an official Raspberry Pi OS Docker image
+# But we can use a crossrootfs from our image generation scripts, and
+# symlink all the folders into the image root
+
+ADD rootfs.armv6.tar crossrootfs
+
+RUN ln -sf /crossrootfs/armv6/bin / && \
+    ln -sf /crossrootfs/armv6/boot / && \
+    ln -sf /crossrootfs/armv6/dev / && \
+    ln -sf /crossrootfs/armv6/etc / && \
+    ln -sf /crossrootfs/armv6/home / && \
+    ln -sf /crossrootfs/armv6/lib / && \
+    ln -sf /crossrootfs/armv6/media / && \
+    ln -sf /crossrootfs/armv6/mnt / && \
+    ln -sf /crossrootfs/armv6/opt / && \
+    ln -sf /crossrootfs/armv6/proc / && \
+    ln -sf /crossrootfs/armv6/root / && \
+    ln -sf /crossrootfs/armv6/run / && \
+    ln -sf /crossrootfs/armv6/sbin / && \
+    ln -sf /crossrootfs/armv6/srv / && \
+    ln -sf /crossrootfs/armv6/sys / && \
+    ln -sf /crossrootfs/armv6/tmp / && \
+    ln -sf /crossrootfs/armv6/usr / && \
+    ln -sf /crossrootfs/armv6/var /
+
 ENV _PYTHON_HOST_PLATFORM=linux_armv6l
 
 # Install Helix Dependencies
