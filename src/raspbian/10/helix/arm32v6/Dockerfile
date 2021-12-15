@@ -1,3 +1,6 @@
+# dummy FROM to establish a dependency
+FROM mcr.microsoft.com/dotnet-buildtools/prereqs:raspbian-10-crossdeps AS dependency
+
 FROM scratch
 
 # There doesn't seem to be an official Raspberry Pi OS Docker image
