@@ -1,5 +1,5 @@
-# dummy FROM to establish a dependency
-FROM mcr.microsoft.com/dotnet-buildtools/prereqs:raspbian-10-crossdeps AS dependency
+# dummy F R O M to establish a dependency
+# FROM mcr.microsoft.com/dotnet-buildtools/prereqs:raspbian-10-crossdeps
 
 FROM scratch
 
