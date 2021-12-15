@@ -1,4 +1,4 @@
 steps:
 - script: ./$(buildRepoName)/src/ubuntu/build-scripts/install-cross-build-prereqs.sh
   displayName: Install Cross Build Pre-Reqs
-  condition: and(succeeded(), contains(variables.imageBuilderPaths, '/cross'))
+  condition: and(succeeded(), contains(variables.imageBuilderPaths, '/cross'), not(contains(variables.imageBuilderPaths, '/raspbian')))

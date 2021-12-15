@@ -1,0 +1,5 @@
+#!/usr/bin/env sh
+
+SCRIPT=$(readlink -f "$0")
+SCRIPTPATH=$(dirname "$SCRIPT")
+$SCRIPTPATH/../../../../../ubuntu/build-scripts/build-rootfs.sh raspbian-10 raspbian armv6 "" "" true

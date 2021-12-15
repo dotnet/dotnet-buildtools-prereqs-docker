@@ -8,6 +8,7 @@
     "src/fedora/manifest.json",
     "src/nanoserver/manifest.json",
     "src/opensuse/manifest.json",
+    "src/raspbian/manifest.json",
     "src/ubuntu/manifest.json",
     "src/windowsservercore/manifest.json"
   ]
