@@ -5,7 +5,7 @@ FROM scratch
 
 # There doesn't seem to be an official Raspberry Pi OS Docker image
 # But we can use a crossrootfs from our image generation scripts, and
-# symlink all the folders into the image root
+# extract into the image root
 
 ADD rootfs.armv6.tar /
 
