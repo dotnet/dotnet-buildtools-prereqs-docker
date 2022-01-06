@@ -39,6 +39,7 @@ RUN dnf install --setopt tsflags=nodocs --refresh -y \
         ncurses-devel \
         numactl-devel \
         openssl-devel \
+        procps-ng \
         python3 \
         python3-devel \
         readline-devel \
