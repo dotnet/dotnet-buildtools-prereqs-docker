@@ -31,6 +31,25 @@
               "tags": {
                 "windowsservercore-20H2-helix-amd64-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
               }
+            },
+            {
+              "dockerfile": "src/windowsservercore/ltsc2022/helix/amd64",
+              "os": "windows",
+              "osVersion": "windowsservercore-ltsc2022",
+              "tags": {
+                "windowsservercore-ltsc2022-helix-amd64-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
+                "windowsservercore-ltsc2022-helix-amd64": {
+                  "isLocal": true
+                }
+              }
+            },
+            {
+              "dockerfile": "src/windowsservercore/ltsc2022/helix/webassembly",
+              "os": "windows",
+              "osVersion": "windowsservercore-ltsc2022",
+              "tags": {
+                "windowsservercore-ltsc2022-helix-webassembly-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
+              }
             }
           ]
         }
