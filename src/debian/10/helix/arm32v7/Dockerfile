@@ -25,6 +25,7 @@ RUN apt-get update && \
         libunwind8 \
         locales \
         locales-all \
+        procps \
         python3-dev \
         python3-pip \
         sudo \
