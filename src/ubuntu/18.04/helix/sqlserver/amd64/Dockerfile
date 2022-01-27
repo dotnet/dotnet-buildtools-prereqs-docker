@@ -19,11 +19,9 @@ RUN apt-get update \
 RUN groupadd -g 1000 sqlserver_users \
     && usermod -a -G sqlserver_users helixbot \
     # Create required directory to avoid giving permission to /
-    && mkdir /.system \
-    && chgrp -R sqlserver_users /.system \
+    && mkdir /var/opt/mssql/.system/system \
     && chgrp -R sqlserver_users /var/opt/mssql \
-    && chmod 770 /.system \
-    && chmod 770 /var/opt/mssql
+    && chmod -R 770 /var/opt/mssql
 
 CMD ["/opt/mssql/bin/sqlservr"]
 
