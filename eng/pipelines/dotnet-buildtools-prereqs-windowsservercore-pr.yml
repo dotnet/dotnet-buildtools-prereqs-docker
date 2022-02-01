@@ -20,7 +20,7 @@ variables:
   value: --path 'src/windowsservercore/*'
 
 stages:
-- template: ../common/templates/stages/dotnet/build-test-publish-repo.yml
+- template: stages/build-test-publish-repo.yml
   parameters:
     internalProjectName: ${{ variables.internalProjectName }}
     publicProjectName: ${{ variables.publicProjectName }}

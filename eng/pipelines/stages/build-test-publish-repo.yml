@@ -1,0 +1,19 @@
+parameters:
+  internalProjectName: null
+  publicProjectName: null
+  customBuildInitSteps: []
+  linuxAmdBuildJobTimeout: 60
+
+stages:
+- template: ../../common/templates/stages/dotnet/build-test-publish-repo.yml
+  parameters:
+    internalProjectName: ${{ parameters.internalProjectName }}
+    publicProjectName: ${{ parameters.publicProjectName }}
+    customBuildInitSteps: ${{ parameters.customBuildInitSteps }}
+    linuxAmdBuildJobTimeout: ${{ parameters.linuxAmdBuildJobTimeout }}
+    linuxAmd64Pool:
+      ${{ if eq(variables['System.TeamProject'], parameters.publicProjectName) }}:
+        vmImage: $(defaultLinuxAmd64PoolImage)
+      ${{ elseif eq(variables['System.TeamProject'], parameters.internalProjectName) }}:
+        name: NetCore1ESPool-Internal
+        demands: ImageOverride -equals Build.Ubuntu.1804.Amd64
