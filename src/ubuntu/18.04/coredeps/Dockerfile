@@ -1,4 +1,4 @@
-FROM mcr.microsoft.com/powershell:6.2.1-ubuntu-18.04
+FROM mcr.microsoft.com/powershell:lts-ubuntu-18.04
 
 # Install tools used by the VSO build automation.
 RUN apt-get update \

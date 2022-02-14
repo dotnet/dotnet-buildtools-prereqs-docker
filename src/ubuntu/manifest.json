@@ -387,6 +387,18 @@
         {
           "platforms": [
             {
+              "dockerfile": "src/ubuntu/18.04/cross/ppc64le",
+              "os": "linux",
+              "osVersion": "bionic",
+              "tags": {
+                "ubuntu-18.04-cross-ppc64le-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
+              }
+            }
+          ]
+        },
+        {
+          "platforms": [
+            {
               "dockerfile": "src/ubuntu/18.04/cross/s390x",
               "os": "linux",
               "osVersion": "bionic",
