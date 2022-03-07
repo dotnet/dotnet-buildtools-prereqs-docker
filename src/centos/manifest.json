@@ -131,6 +131,18 @@
               }
             }
           ]
+        },
+        {
+          "platforms": [
+            {
+              "dockerfile": "src/centos/stream9/helix/amd64",
+              "os": "linux",
+              "osVersion": "centos-stream9",
+              "tags": {
+                "centos-stream9-helix-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
+              }
+            }
+          ]
         }
       ]
     }
