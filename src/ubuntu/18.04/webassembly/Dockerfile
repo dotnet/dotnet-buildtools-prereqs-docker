@@ -4,6 +4,7 @@ FROM mcr.microsoft.com/dotnet-buildtools/prereqs:ubuntu-18.04-coredeps
 RUN apt-get update \
     && apt-get install -y \
         libssl1.0-dev \
+        libdbus-glib-1-2 \
         locales \
         nodejs-dev \
         node-gyp \
@@ -23,7 +24,7 @@ RUN locale-gen en_US.UTF-8
 RUN npm i -g typescript
 
 # Install Emscripten toolchain
-ENV EMSCRIPTEN_VERSION=3.1.7
+ENV EMSCRIPTEN_VERSION=2.0.23
 ENV EMSCRIPTEN_PATH=/usr/local/emscripten
 ENV EMSDK_PATH=/usr/local/emscripten/emsdk
 
