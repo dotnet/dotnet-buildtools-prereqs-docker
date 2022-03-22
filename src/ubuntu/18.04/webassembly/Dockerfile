@@ -5,6 +5,9 @@ RUN apt-get update \
     && apt-get install -y \
         libssl1.0-dev \
         libdbus-glib-1-2 \
+        libgtk-3-0 \
+        libasound2 \
+        libx11-xcb-dev \
         locales \
         nodejs-dev \
         node-gyp \
