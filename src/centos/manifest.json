@@ -111,7 +111,7 @@
         {
           "platforms": [
             {
-              "dockerfile": "src/centos/7/source-build",
+              "dockerfile": "src/centos/7/source-build/amd64",
               "os": "linux",
               "osVersion": "centos7",
               "tags": {
@@ -123,12 +123,14 @@
         {
           "platforms": [
             {
-              "dockerfile": "src/centos/stream9",
+              "architecture": "arm64",
+              "dockerfile": "src/centos/7/source-build/arm64",
               "os": "linux",
-              "osVersion": "centos-stream9",
+              "osVersion": "centos7",
               "tags": {
-                "centos-stream9-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
-              }
+                "centos-7-source-build-arm64-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
+              },
+              "variant": "v8"
             }
           ]
         }
