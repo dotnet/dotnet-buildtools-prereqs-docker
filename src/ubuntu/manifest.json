@@ -729,6 +729,33 @@
               "variant": "v8"
             }
           ]
+        },
+        {
+          "platforms": [
+            {
+              "architecture": "amd64",
+              "dockerfile": "src/ubuntu/22.04/helix/amd64",
+              "os": "linux",
+              "osVersion": "jammy",
+              "tags": {
+                "ubuntu-22.04-helix-amd64-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
+              }
+            }
+          ]
+        },
+        {
+          "platforms": [
+            {
+              "architecture": "arm64",
+              "dockerfile": "src/ubuntu/22.04/helix/arm64v8",
+              "os": "linux",
+              "osVersion": "jammy",
+              "tags": {
+                "ubuntu-22.04-helix-arm64v8-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
+              },
+              "variant": "v8"
+            }
+          ]
         }
       ]
     }
