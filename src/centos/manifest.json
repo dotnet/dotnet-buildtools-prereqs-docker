@@ -119,20 +119,6 @@
               }
             }
           ]
-        },
-        {
-          "platforms": [
-            {
-              "architecture": "arm64",
-              "dockerfile": "src/centos/7/source-build/arm64",
-              "os": "linux",
-              "osVersion": "centos7",
-              "tags": {
-                "centos-7-source-build-arm64-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
-              },
-              "variant": "v8"
-            }
-          ]
         }
       ]
     }
