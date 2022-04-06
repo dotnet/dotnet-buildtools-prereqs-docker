@@ -12,6 +12,7 @@ RUN apt-get update \
         nodejs-dev \
         node-gyp \
         npm \
+        sudo \
         wget \
         unzip \
     && rm -rf /var/lib/apt/lists/*
