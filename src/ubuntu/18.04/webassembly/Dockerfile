@@ -49,4 +49,5 @@ RUN curl -sSL "https://netcorenativeassets.blob.core.windows.net/resource-packag
     && echo $'#!/usr/bin/env bash\n\
 "/usr/local/v8/d8" --snapshot_blob="/usr/local/v8/snapshot_blob.bin" "$@"\n' > /usr/local/bin/v8 \
     && chmod +x /usr/local/bin/v8
-    
+
+RUN update-alternatives --install /usr/bin/python python /usr/bin/python3 1
