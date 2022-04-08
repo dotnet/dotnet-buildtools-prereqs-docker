@@ -51,3 +51,5 @@ RUN curl -sSL "https://netcorenativeassets.blob.core.windows.net/resource-packag
     && chmod +x /usr/local/bin/v8
 
 RUN update-alternatives --install /usr/bin/python python /usr/bin/python3 1
+
+RUN pip3 install --upgrade pip
