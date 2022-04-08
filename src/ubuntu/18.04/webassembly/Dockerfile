@@ -15,6 +15,7 @@ RUN apt-get update \
         sudo \
         wget \
         unzip \
+        python3-pip \
     && rm -rf /var/lib/apt/lists/*
 
 RUN wget https://cmake.org/files/v3.17/cmake-3.17.0-Linux-x86_64.tar.gz \
@@ -48,5 +49,4 @@ RUN curl -sSL "https://netcorenativeassets.blob.core.windows.net/resource-packag
     && echo $'#!/usr/bin/env bash\n\
 "/usr/local/v8/d8" --snapshot_blob="/usr/local/v8/snapshot_blob.bin" "$@"\n' > /usr/local/bin/v8 \
     && chmod +x /usr/local/bin/v8
-
-RUN alias python=python3
+    
