@@ -50,6 +50,19 @@
               }
             }
           ]
+        },
+        {
+          "platforms": [{
+            "dockerfile": "src/fedora/35/amd64",
+            "os": "linux",
+            "osVersion": "fedora35",
+            "tags": {
+              "fedora-35-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
+              "fedora-35": {
+                "isLocal": true
+              }
+            }
+          }]
         }
       ]
     }
