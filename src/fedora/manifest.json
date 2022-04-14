@@ -50,6 +50,31 @@
               }
             }
           ]
+        },
+        {
+          "platforms": [{
+            "dockerfile": "src/fedora/36/amd64",
+            "os": "linux",
+            "osVersion": "fedora36",
+            "tags": {
+              "fedora-36-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
+              "fedora-36": {
+                "isLocal": true
+              }
+            }
+          }]
+        },
+        {
+          "platforms": [
+            {
+              "dockerfile": "src/fedora/36/helix/amd64",
+              "os": "linux",
+              "osVersion": "fedora36",
+              "tags": {
+                "fedora-36-helix-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
+              }
+            }
+          ]
         }
       ]
     }
