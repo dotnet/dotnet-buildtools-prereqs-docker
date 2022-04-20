@@ -119,6 +119,18 @@
               }
             }
           ]
+        },
+        {
+          "platforms": [
+            {
+              "dockerfile": "src/centos/stream9",
+              "os": "linux",
+              "osVersion": "centos-stream9",
+              "tags": {
+                "centos-stream9-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
+              }
+            }
+          ]
         }
       ]
     }
