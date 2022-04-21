@@ -733,6 +733,21 @@
         {
           "platforms": [
             {
+              "dockerfile": "src/ubuntu/22.04/amd64",
+              "os": "linux",
+              "osVersion": "jammy",
+              "tags": {
+                "ubuntu-22.04-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
+                "ubuntu-22.04": {
+                  "isLocal": true
+                }
+              }
+            }
+          ]
+        },
+        {
+          "platforms": [
+            {
               "architecture": "amd64",
               "dockerfile": "src/ubuntu/22.04/helix/amd64",
               "os": "linux",
@@ -754,6 +769,18 @@
                 "ubuntu-22.04-helix-arm64v8-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
               },
               "variant": "v8"
+            }
+          ]
+        },
+        {
+          "platforms": [
+            {
+              "dockerfile": "src/ubuntu/22.04/debpkg",
+              "os": "linux",
+              "osVersion": "jammy",
+              "tags": {
+                "ubuntu-22.04-debpkg-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
+              }
             }
           ]
         }
