@@ -9,9 +9,9 @@ RUN apt-get update \
         openjdk-8-jdk \
     && rm -rf /var/lib/apt/lists/*
 
-RUN wget https://cmake.org/files/v3.17/cmake-3.17.0-Linux-x86_64.tar.gz \
-    && tar -xf cmake-3.17.0-Linux-x86_64.tar.gz --strip 1 -C /usr/local \
-    && rm cmake-3.17.0-Linux-x86_64.tar.gz
+RUN wget https://cmake.org/files/v3.23/cmake-3.23.1-linux-x86_64.tar.gz \
+    && tar -xf cmake-3.23.1-linux-x86_64.tar.gz --strip 1 -C /usr/local \
+    && rm cmake-3.23.1-linux-x86_64.tar.gz
 
 # Android build needs working UTF-8 locale
 RUN locale-gen en_US.UTF-8
