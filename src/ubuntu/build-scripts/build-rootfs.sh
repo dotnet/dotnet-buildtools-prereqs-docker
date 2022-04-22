@@ -11,6 +11,7 @@ archArg=${3:-}
 lldb=${4:-}
 rootfsBinDirArg=${5:-}
 bypassArchDirArg=${6:-}
+llvm=${7:-}
 
 dockerCrossDepsTag="${DOCKER_REPO:-mcr.microsoft.com/dotnet-buildtools/prereqs}:${os}-crossdeps"
 
@@ -52,7 +53,7 @@ fi
 
 echo "Running build-rootfs.sh"
 docker exec -e ROOTFS_DIR=/rootfs/$arch $buildRootFSContainer \
-        /scripts/eng/common/cross/build-rootfs.sh $arch $crossToolset $lldb --skipunmount
+        /scripts/eng/common/cross/build-rootfs.sh $arch $crossToolset $lldb $llvm --skipunmount
 
 if [ $? -ne 0 ]; then
     echo "Rootfs build failed: build-rootfs.sh returned error"
