@@ -303,6 +303,18 @@
         {
           "platforms": [
             {
+              "dockerfile": "src/ubuntu/18.04/cross/arm",
+              "os": "linux",
+              "osVersion": "bionic",
+              "tags": {
+                "ubuntu-18.04-cross-arm-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
+              }
+            }
+          ]
+        },
+        {
+          "platforms": [
+            {
               "dockerfile": "src/ubuntu/18.04/cross/arm-alpine",
               "os": "linux",
               "osVersion": "bionic",
