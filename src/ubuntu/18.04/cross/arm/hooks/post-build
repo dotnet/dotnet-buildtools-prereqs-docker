@@ -1,1 +1,5 @@
-../../../../build-scripts/build-rootfs-cleanup.sh
+#!/usr/bin/env sh
+
+SCRIPT=$(readlink -f "$0")
+SCRIPTPATH=$(dirname "$SCRIPT")
+$SCRIPTPATH/../../../../build-scripts/build-rootfs-cleanup.sh
