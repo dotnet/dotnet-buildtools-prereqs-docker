@@ -1,8 +1,11 @@
 FROM mcr.microsoft.com/dotnet-buildtools/prereqs:ubuntu-20.04-helix-amd64
 
+
 ENV DEBIAN_FRONTEND=noninteractive
 
 # Need some additional packages
+
+USER root
 
 RUN apt-get clean && \
     mv /etc/apt/sources.list /etc/apt/sources.list1 && apt-get update && \
@@ -24,3 +27,4 @@ RUN sudo npm install jsvu -g && \
 
 ENV PATH="/home/helixbot/.jsvu:${PATH}"
 
+USER helixbot
