@@ -676,6 +676,22 @@
           "platforms": [
             {
               "architecture": "amd64",
+              "dockerfile": "src/ubuntu/20.04/helix/amd64",
+              "os": "linux",
+              "osVersion": "focal",
+              "tags": {
+                "ubuntu-20.04-helix-amd64-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
+                "ubuntu-20.04-helix-amd64": {
+                  "isLocal": true
+                }
+              }
+            }
+          ]
+        },
+        {
+          "platforms": [
+            {
+              "architecture": "amd64",
               "dockerfile": "src/ubuntu/20.04/helix/wasm/amd64",
               "os": "linux",
               "osVersion": "focal",
