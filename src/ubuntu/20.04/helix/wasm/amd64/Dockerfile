@@ -1,6 +1,5 @@
 FROM mcr.microsoft.com/dotnet-buildtools/prereqs:ubuntu-20.04-helix-amd64
 
-
 ENV DEBIAN_FRONTEND=noninteractive
 
 # Need some additional packages
