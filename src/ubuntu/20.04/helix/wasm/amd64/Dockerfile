@@ -17,11 +17,9 @@ RUN apt-get clean && \
      \
      && localedef -i en_US -c -f UTF-8 -A /usr/share/locale/locale.alias en_US.UTF-8
 
-
 # Install V8 & other engines in the non-root context
 
-# This gets an ignorable warning described in https://github.com/sudo-project/sudo/issues/42
-RUN sudo npm install jsvu -g && \
+RUN npm install jsvu -g && \
     jsvu --os=linux64 --engines=all
 
 ENV PATH="/home/helixbot/.jsvu:${PATH}"
