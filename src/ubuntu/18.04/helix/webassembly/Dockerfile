@@ -11,6 +11,7 @@ RUN apt-get update \
         nodejs-dev \
         node-gyp \
         npm \
+        sudo \
         wget \
         unzip \
         python3-pip \

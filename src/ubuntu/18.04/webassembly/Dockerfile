@@ -4,7 +4,6 @@ FROM mcr.microsoft.com/dotnet-buildtools/prereqs:ubuntu-18.04-coredeps
 RUN apt-get update \
     && apt-get install -y \
         libssl1.0-dev \
-        libdbus-glib-1-2 \
         locales \
         nodejs-dev \
         node-gyp \
