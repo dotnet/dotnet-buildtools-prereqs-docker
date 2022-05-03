@@ -5,17 +5,12 @@ RUN apt-get update \
     && apt-get install -y \
         libssl1.0-dev \
         libdbus-glib-1-2 \
-        libgtk-3-0 \
-        libasound2 \
-        libx11-xcb-dev \
         locales \
         nodejs-dev \
         node-gyp \
         npm \
-        sudo \
         wget \
         unzip \
-        python3-pip \
     && rm -rf /var/lib/apt/lists/*
 
 RUN wget https://cmake.org/files/v3.17/cmake-3.17.0-Linux-x86_64.tar.gz \
@@ -49,7 +44,3 @@ RUN curl -sSL "https://netcorenativeassets.blob.core.windows.net/resource-packag
     && echo $'#!/usr/bin/env bash\n\
 "/usr/local/v8/d8" --snapshot_blob="/usr/local/v8/snapshot_blob.bin" "$@"\n' > /usr/local/bin/v8 \
     && chmod +x /usr/local/bin/v8
-
-RUN update-alternatives --install /usr/bin/python python /usr/bin/python3 1
-
-RUN pip3 install --upgrade pip
