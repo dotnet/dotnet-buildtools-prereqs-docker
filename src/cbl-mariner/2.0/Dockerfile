@@ -35,9 +35,7 @@ RUN tdnf install -y \
         wget \
         which \
         xz \
-        zlib-devel \
-        && \
-        yum clean all
+        zlib-devel
 
 # Install CMake 3.15.5
 
