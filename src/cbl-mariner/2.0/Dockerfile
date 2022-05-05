@@ -1,11 +1,8 @@
-FROM cblmariner2preview.azurecr.io/base/core:2.0
-RUN yum install -y \
+FROM mcr.microsoft.com/cbl-mariner/base/core:2.0
+RUN tdnf install -y \
         ca-certificates \
-#       "perl(Time::HiRes)" \
         autoconf \
         automake \
-#       devtoolset-9-gcc* \
-# added to replace devtoolset-9-gcc* 
         gcc \
         cmake \
         doxygen \
@@ -14,9 +11,7 @@ RUN yum install -y \
         krb5-devel \
         libcurl-devel \
         libedit-devel \
-#       libgdiplus \        
         libicu-devel \
-        libidn2-devel \
         libmetalink-devel \
         libnghttp2-devel \
         libssh2-devel \
@@ -30,13 +25,13 @@ RUN yum install -y \
         ncurses-devel \
         numactl-devel \
         openssl-devel \
-#       python-argparse \
-        python2 \
-        python2-devel \
+	pkgconf \
         readline-devel \
         python3 \
+	sed \
         sudo \
         swig \
+	tar \
         wget \
         which \
         xz \
