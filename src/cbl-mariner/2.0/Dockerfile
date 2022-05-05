@@ -6,7 +6,8 @@ RUN yum install -y \
         automake \
 #       devtoolset-9-gcc* \
 # added to replace devtoolset-9-gcc* 
-        libgcc-devel.x86_64 \
+        gcc \
+        cmake \
         doxygen \
         gdb \
         git \
