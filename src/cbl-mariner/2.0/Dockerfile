@@ -3,9 +3,10 @@ RUN tdnf install -y \
         ca-certificates \
         autoconf \
         automake \
-        gcc \
+        build-essential \
         cmake \
         doxygen \
+        gcc \
         gdb \
         git \
         krb5-devel \
@@ -28,6 +29,7 @@ RUN tdnf install -y \
 	pkgconf \
         readline-devel \
         python3 \
+        python3-devel \
 	sed \
         sudo \
         swig \
@@ -67,24 +69,29 @@ RUN wget ftp://sourceware.org/pub/binutils/snapshots/binutils-2.29.1.tar.xz && \
     rm lld-9.0.0.src.tar.xz && \
     rm lldb-9.0.0.src.tar.xz && \
     rm llvm-9.0.0.src.tar.xz && \
-    rm compiler-rt-9.0.0.src.tar.xz 
-    #\
-#    mkdir llvmbuild && \
-#    cd llvmbuild && \
-#    scl enable devtoolset-9 'cmake \
-#        -DCMAKE_BUILD_TYPE=Release \
-#        -DLLVM_LIBDIR_SUFFIX=64\
-#        -DLLVM_ENABLE_EH=1 \
-#        -DLLVM_ENABLE_RTTI=1 \
-#        -DLLVM_BINUTILS_INCDIR=../binutils-2.29.1/include \
-#        ../llvm-9.0.0.src' \
-#    && \
-#    scl enable devtoolset-9 'make -j $(($(getconf _NPROCESSORS_ONLN)+1))' && \
-    #make install && \
-#    cd .. && \
-#    rm -r llvmbuild && \
-#    rm -r llvm-9.0.0.src && \
-#    rm -r binutils-2.29.1
+    rm compiler-rt-9.0.0.src.tar.xz
+
+RUN ln -s /usr/bin/python3 /usr/bin/python &&\
+    mkdir llvmbuild && \
+    cd llvmbuild && \
+    cmake \
+        -DCMAKE_BUILD_TYPE=Release \
+        -DLLVM_LIBDIR_SUFFIX=64 \
+        -DLLVM_ENABLE_EH=1 \
+        -DLLVM_ENABLE_RTTI=1 \
+        -DLLVM_BINUTILS_INCDIR=../binutils-2.29.1/include \
+        ../llvm-9.0.0.src
+WORKDIR /llvmbuild
+RUN make
+#-j $(($(getconf _NPROCESSORS_ONLN)+1))
+
+# RUN make install
+
+#RUN \
+    #cd .. && \
+    #rm -r llvmbuild && \
+    #rm -r llvm-9.0.0.src && \
+    #m -r binutils-2.29.1
 
 # Create gcc-9 symlink available in PATH
 #RUN ln -s /opt/rh/devtoolset-9/root/usr/bin/gcc /usr/local/bin/gcc-9 && \
