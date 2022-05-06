@@ -82,7 +82,7 @@ RUN ln -s /usr/bin/python3 /usr/bin/python &&\
         -DLLVM_BINUTILS_INCDIR=../binutils-2.29.1/include \
         ../llvm-9.0.0.src
 WORKDIR /llvmbuild
-RUN make
+#RUN make
 #-j $(($(getconf _NPROCESSORS_ONLN)+1))
 
 # RUN make install
