@@ -1,4 +1,4 @@
-FROM gcc:11-bullseye
+FROM gcc:12-bullseye
 
 # Dependencies for dotnet/runtime native components.
 RUN apt-get update && \
@@ -25,7 +25,7 @@ RUN apt-get update && \
 
 ENV LANG=en_US.utf8
 
-# These symlinks are required because this docker has gcc-10 suffixed with version and gcc-11 unsuffixed in PATH.
+# These symlinks are required because this docker has gcc-10 suffixed with version and gcc-12 unsuffixed in PATH.
 # In the runtime repo, we (by design) give precedence to suffixed compilers before selecting unsuffixed one in PATH.
-RUN ln -s $(command -v gcc) /usr/bin/gcc-11 && \
-    ln -s $(command -v g++) /usr/bin/g++-11
+RUN ln -s $(command -v gcc) /usr/bin/gcc-12 && \
+    ln -s $(command -v g++) /usr/bin/g++-12
