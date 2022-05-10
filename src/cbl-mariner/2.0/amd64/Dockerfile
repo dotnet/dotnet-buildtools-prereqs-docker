@@ -1,9 +1,9 @@
 FROM mcr.microsoft.com/cbl-mariner/base/core:2.0
 RUN tdnf install -y \
-        ca-certificates \
         autoconf \
         automake \
         build-essential \
+        ca-certificates \
         clang \
         cmake \
         doxygen \
@@ -28,9 +28,9 @@ RUN tdnf install -y \
         numactl-devel \
         openssl-devel \
 	pkgconf \
-        readline-devel \
         python3 \
         python3-devel \
+        readline-devel \
 	sed \
         sudo \
         swig \
@@ -38,4 +38,5 @@ RUN tdnf install -y \
         wget \
         which \
         xz \
-        zlib-devel
+        zlib-devel \
+    && tdnf clean all
