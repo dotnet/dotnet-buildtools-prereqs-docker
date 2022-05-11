@@ -14,6 +14,18 @@
               }
             }
           ]
+        },
+        {
+          "platforms": [
+            {
+              "dockerfile": "src/cbl-mariner/2.0/amd64",
+              "os": "linux",
+              "osVersion": "cbl-mariner2.0",
+              "tags": {
+                "cbl-mariner-2.0-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
+              }
+            }
+          ]
         }
       ]
     }

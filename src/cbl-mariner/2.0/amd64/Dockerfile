@@ -1,0 +1,42 @@
+FROM mcr.microsoft.com/cbl-mariner/base/core:2.0
+RUN tdnf install -y \
+        autoconf \
+        automake \
+        build-essential \
+        ca-certificates \
+        clang \
+        cmake \
+        doxygen \
+        gcc \
+        gdb \
+        git \
+        krb5-devel \
+        libcurl-devel \
+        libedit-devel \
+        libicu-devel \
+        libmetalink-devel \
+        libnghttp2-devel \
+        libssh2-devel \
+        libtool \
+        libunwind-devel \
+        libuuid-devel \
+        libxml2-devel \
+        lttng-ust-devel \
+        lzma \
+        make \
+        ncurses-devel \
+        numactl-devel \
+        openssl-devel \
+	pkgconf \
+        python3 \
+        python3-devel \
+        readline-devel \
+	sed \
+        sudo \
+        swig \
+	tar \
+        wget \
+        which \
+        xz \
+        zlib-devel \
+    && tdnf clean all
