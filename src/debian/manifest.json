@@ -144,11 +144,11 @@
           "platforms": [
             {
               "architecture": "amd64",
-              "dockerfile": "src/debian/11/gcc11",
+              "dockerfile": "src/debian/11/gcc12",
               "os": "linux",
               "osVersion": "bullseye",
               "tags": {
-                "debian-11-gcc11-amd64-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
+                "debian-11-gcc12-amd64-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
               }
             }
           ]
