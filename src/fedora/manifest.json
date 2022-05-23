@@ -5,29 +5,6 @@
       "images": [
         {
           "platforms": [{
-            "dockerfile": "src/fedora/33/amd64",
-            "os": "linux",
-            "osVersion": "fedora33",
-            "tags": {
-              "fedora-33-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
-              "fedora-33": {
-                "isLocal": true
-              }
-            }
-          }]
-        },
-        {
-          "platforms": [{
-            "dockerfile": "src/fedora/33/helix/amd64",
-            "os": "linux",
-            "osVersion": "fedora33",
-            "tags": {
-              "fedora-33-helix-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
-            }
-          }]
-        },
-        {
-          "platforms": [{
             "dockerfile": "src/fedora/34/amd64",
             "os": "linux",
             "osVersion": "fedora34",
