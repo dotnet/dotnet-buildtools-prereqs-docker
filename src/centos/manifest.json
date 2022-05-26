@@ -6,57 +6,6 @@
         {
           "platforms": [
             {
-              "dockerfile": "src/centos/8",
-              "os": "linux",
-              "osVersion": "centos8",
-              "tags": {
-                "centos-8-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
-                "centos-8": {
-                  "isLocal": true
-                }
-              }
-            }
-          ]
-        },
-        {
-          "platforms": [
-            {
-              "dockerfile": "src/centos/8/rpmpkg",
-              "os": "linux",
-              "osVersion": "centos8",
-              "tags": {
-                "centos-8-rpmpkg-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
-              }
-            }
-          ]
-        },
-        {
-          "platforms": [
-            {
-              "dockerfile": "src/centos/8/helix/amd64",
-              "os": "linux",
-              "osVersion": "centos8",
-              "tags": {
-                "centos-8-helix-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
-              }
-            }
-          ]
-        },
-        {
-          "platforms": [
-            {
-              "dockerfile": "src/centos/8/source-build",
-              "os": "linux",
-              "osVersion": "centos8",
-              "tags": {
-                "centos-8-source-build-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
-              }
-            }
-          ]
-        },
-        {
-          "platforms": [
-            {
               "dockerfile": "src/centos/7",
               "os": "linux",
               "osVersion": "centos7",
