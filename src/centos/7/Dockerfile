@@ -5,13 +5,13 @@ FROM centos:7
 RUN yum install -y \
         centos-release-scl \
         epel-release \
-        ca-certificates \
         scl-utils-build \
     && \
     yum install -y \
         "perl(Time::HiRes)" \
         autoconf \
         automake \
+        ca-certificates \
         devtoolset-9-gcc* \
         doxygen \
         gdb \
