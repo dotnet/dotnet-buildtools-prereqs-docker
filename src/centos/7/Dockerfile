@@ -11,6 +11,7 @@ RUN yum install -y \
         "perl(Time::HiRes)" \
         autoconf \
         automake \
+        ca-certificates \
         devtoolset-9-gcc* \
         doxygen \
         gdb \
