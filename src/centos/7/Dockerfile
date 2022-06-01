@@ -5,6 +5,7 @@ FROM centos:7
 RUN yum install -y \
         centos-release-scl \
         epel-release \
+        ca-certificates \
         scl-utils-build \
     && \
     yum install -y \
