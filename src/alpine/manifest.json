@@ -6,46 +6,6 @@
         {
           "platforms": [
             {
-              "dockerfile": "src/alpine/3.12/helix/amd64",
-              "os": "linux",
-              "osVersion": "alpine3.12",
-              "tags": {
-                "alpine-3.12-helix-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
-              }
-            }
-          ]
-        },
-        {
-          "platforms": [
-            {
-              "architecture": "arm",
-              "dockerfile": "src/alpine/3.12/helix/arm32v7",
-              "os": "linux",
-              "osVersion": "alpine3.12",
-              "tags": {
-                "alpine-3.12-helix-arm32v7-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
-              },
-              "variant": "v7"
-            }
-          ]
-        },
-        {
-          "platforms": [
-            {
-              "architecture": "arm64",
-              "dockerfile": "src/alpine/3.12/helix/arm64v8",
-              "os": "linux",
-              "osVersion": "alpine3.12",
-              "tags": {
-                "alpine-3.12-helix-arm64v8-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
-              },
-              "variant": "v8"
-            }
-          ]
-        },
-        {
-          "platforms": [
-            {
               "dockerfile": "src/alpine/3.13/amd64",
               "os": "linux",
               "osVersion": "alpine3.13",
