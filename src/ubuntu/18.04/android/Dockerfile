@@ -17,10 +17,10 @@ RUN wget https://cmake.org/files/v3.23/cmake-3.23.1-linux-x86_64.tar.gz \
 RUN locale-gen en_US.UTF-8
 
 # Install Android NDK
-RUN wget https://dl.google.com/android/repository/android-ndk-r23b-linux.zip \
-    && unzip android-ndk-r23b-linux.zip -d /usr/local \
-    && mv /usr/local/android-ndk-r23b /usr/local/android-ndk \
-    && rm -f android-ndk-r23b-linux.zip
+RUN wget https://dl.google.com/android/repository/android-ndk-r23c-linux.zip \
+    && unzip android-ndk-r23c-linux.zip -d /usr/local \
+    && mv /usr/local/android-ndk-r23c /usr/local/android-ndk \
+    && rm -f android-ndk-r23c-linux.zip
 
 ENV ANDROID_NDK_ROOT=/usr/local/android-ndk
 
