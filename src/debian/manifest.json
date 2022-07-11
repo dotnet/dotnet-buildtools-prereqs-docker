@@ -6,6 +6,30 @@
         {
           "platforms": [
             {
+              "dockerfile": "src/debian/8/aspnet-benchmarks/mongo",
+              "os": "linux",
+              "osVersion": "jessie",
+              "tags": {
+                "debian-jessie-AspnetBenchmarks-mongo-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
+              }
+            }
+          ]
+        },
+        {
+          "platforms": [
+            {
+              "dockerfile": "src/debian/8/aspnet-benchmarks/postgres-techempower",
+              "os": "linux",
+              "osVersion": "jessie",
+              "tags": {
+                "debian-jessie-AspnetBenchmarks-postgres-techempower-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
+              }
+            }
+          ]
+        },
+        {
+          "platforms": [
+            {
               "dockerfile": "src/debian/9/amd64",
               "os": "linux",
               "osVersion": "stretch",
@@ -71,6 +95,18 @@
                 "debian-9-helix-arm64v8-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
               },
               "variant": "v8"
+            }
+          ]
+        },
+        {
+          "platforms": [
+            {
+              "dockerfile": "src/debian/9/aspnet-benchmarks",
+              "os": "linux",
+              "osVersion": "stretch",
+              "tags": {
+                "debian-9-AspnetBenchmarks-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
+              }
             }
           ]
         },
@@ -205,6 +241,18 @@
                 "debian-iot-arm32v7-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
               },
               "variant": "v7"
+            }
+          ]
+        },
+        {
+          "platforms": [
+            {
+              "dockerfile": "src/debian/11/aspnet-benchmarks",
+              "os": "linux",
+              "osVersion": "bullseye",
+              "tags": {
+                "debian-11-AspnetBenchmarks-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
+              }
             }
           ]
         }

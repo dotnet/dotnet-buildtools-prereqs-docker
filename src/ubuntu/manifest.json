@@ -633,6 +633,18 @@
         {
           "platforms": [
             {
+              "dockerfile": "src/ubuntu/18.04/aspnet-benchmarks",
+              "os": "linux",
+              "osVersion": "bionic",
+              "tags": {
+                "ubuntu-18.04-AspnetBenchmarks-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
+              }
+            }
+          ]
+        },
+        {
+          "platforms": [
+            {
               "dockerfile": "src/ubuntu/20.04/coredeps",
               "os": "linux",
               "osVersion": "focal",

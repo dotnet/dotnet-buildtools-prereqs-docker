@@ -203,6 +203,18 @@
               }
             }
           ]
+        },
+                {
+          "platforms": [
+            {
+              "dockerfile": "src/alpine/3.16/aspnet-benchmarks",
+              "os": "linux",
+              "osVersion": "alpine3.16",
+              "tags": {
+                "alpine-3.16-AspnetBenchmarks-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
+              }
+            }
+          ]
         }
       ]
     }
