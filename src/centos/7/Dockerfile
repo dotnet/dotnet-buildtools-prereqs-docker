@@ -12,6 +12,7 @@ RUN yum install -y \
         autoconf \
         automake \
         ca-certificates \
+        devtoolset-7-gcc* \
         devtoolset-9-gcc* \
         doxygen \
         gdb \
@@ -97,6 +98,10 @@ RUN wget ftp://sourceware.org/pub/binutils/snapshots/binutils-2.29.1.tar.xz && \
     rm -r llvmbuild && \
     rm -r llvm-9.0.0.src && \
     rm -r binutils-2.29.1
+
+# Create gcc-7 symlink available in PATH
+RUN ln -s /opt/rh/devtoolset-7/root/usr/bin/gcc /usr/local/bin/gcc-7 && \
+    ln -s /opt/rh/devtoolset-7/root/usr/bin/g++ /usr/local/bin/g++-7
 
 # Create gcc-9 symlink available in PATH
 RUN ln -s /opt/rh/devtoolset-9/root/usr/bin/gcc /usr/local/bin/gcc-9 && \
