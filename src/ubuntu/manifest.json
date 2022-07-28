@@ -729,33 +729,6 @@
         {
           "platforms": [
             {
-              "architecture": "amd64",
-              "dockerfile": "src/ubuntu/21.10/helix/amd64",
-              "os": "linux",
-              "osVersion": "impish",
-              "tags": {
-                "ubuntu-21.10-helix-amd64-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
-              }
-            }
-          ]
-        },
-        {
-          "platforms": [
-            {
-              "architecture": "arm64",
-              "dockerfile": "src/ubuntu/21.10/helix/arm64v8",
-              "os": "linux",
-              "osVersion": "impish",
-              "tags": {
-                "ubuntu-21.10-helix-arm64v8-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
-              },
-              "variant": "v8"
-            }
-          ]
-        },
-        {
-          "platforms": [
-            {
               "dockerfile": "src/ubuntu/22.04/amd64",
               "os": "linux",
               "osVersion": "jammy",
