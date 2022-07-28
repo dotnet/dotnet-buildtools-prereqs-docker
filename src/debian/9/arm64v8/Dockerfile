@@ -1,6 +1,6 @@
 FROM arm64v8/debian:9
 
-# Dependencies for generic .NET Core builds and the base toolchain we need to 
+# Dependencies for generic .NET Core builds and the base toolchain we need to
 # build anything (clang, cmake, make and the like)
 RUN apt-get update \
     && apt-get install -y \
@@ -15,6 +15,7 @@ RUN apt-get update \
             gdb \
             git \
             gnupg \
+            jq \
             libcurl4-openssl-dev \
             libgdiplus \
             libicu-dev \

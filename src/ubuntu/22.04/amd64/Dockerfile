@@ -40,6 +40,7 @@ RUN apt-get update \
         curl \
         build-essential \
         gettext \
+        jq \
         libgdiplus \
         libicu-dev \
         libkrb5-dev \

@@ -14,7 +14,7 @@ RUN apt-get update \
     && npm install -g azure-cli@0.9.20 \
     && npm cache clean
 
-# Dependencies for CoreCLR, Mono and CoreFX
+# Runtime dependencies
 RUN apt-get update \
     && apt-get -f install -y \
     && apt-get install -y \
@@ -22,6 +22,7 @@ RUN apt-get update \
         automake \
         build-essential \
         gettext \
+        jq \
         libcurl4-openssl-dev \
         libgdiplus \
         libicu-dev \

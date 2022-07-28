@@ -51,7 +51,7 @@ RUN apt-get update \
         azure-cli \
     && rm -rf /var/lib/apt/lists/*
 
-# Dependencies for CoreCLR, Mono and CoreFX
+# Runtime dependencies
 RUN apt-get update \
     && apt-get install -y \
         autoconf \
@@ -59,6 +59,7 @@ RUN apt-get update \
         curl \
         build-essential \
         gettext \
+        jq \
         libgdiplus \
         libicu-dev \
         libkrb5-dev \
