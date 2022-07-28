@@ -36,12 +36,13 @@ RUN apt-get install -y git \
 # .NET SDK MSBuild requires US.UTF-8 locale to execute tasks
 RUN locale-gen en_US.UTF-8
 
-# Dependencies for CoreCLR, Mono and CoreFX
+# Runtime dependencies
 RUN apt-get install -y \
             autoconf \
             automake \
             build-essential \
             gettext \
+            jq \
             libcurl4-openssl-dev \
             libgdiplus \
             libicu-dev \

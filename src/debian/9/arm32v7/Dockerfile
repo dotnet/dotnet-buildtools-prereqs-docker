@@ -8,6 +8,7 @@ RUN apt-get update \
             build-essential \
             curl \
             gettext \
+            jq \
             libcurl4-openssl-dev \
             libgdiplus \
             libicu-dev \

@@ -21,6 +21,7 @@ RUN dnf install --setopt tsflags=nodocs --refresh -y \
         git \
         glibc-langpack-en \
         hostname \
+        jq \
         krb5-devel \
         libcurl-devel \
         libedit-devel \

@@ -15,6 +15,7 @@ RUN apk update && \
         gettext-dev \
         git \
         icu-dev \
+        jq \
         krb5-dev \
         libtool \
         libunwind-dev \

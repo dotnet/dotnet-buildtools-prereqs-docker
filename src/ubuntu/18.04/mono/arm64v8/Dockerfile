@@ -16,6 +16,7 @@ RUN apt-get update && \
         gettext \
         git \
         iputils-ping \
+        jq \
         libgdiplus \
         libtool \
         locales \

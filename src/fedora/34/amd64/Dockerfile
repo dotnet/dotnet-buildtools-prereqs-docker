@@ -31,12 +31,13 @@ RUN dnf --setopt=install_weak_deps=False install -y \
         zip \
     && dnf clean all
 
-# Dependencies of CoreCLR, Mono and CoreFX.
+# Runtime dependencies
 RUN dnf --setopt=install_weak_deps=False install -y \
         autoconf \
         automake \
         glibc-locale-source \
         iputils \
+        jq \
         krb5-devel \
         libcurl-devel \
         libgdiplus \

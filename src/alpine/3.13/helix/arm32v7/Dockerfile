@@ -17,6 +17,7 @@ RUN apk update && \
         git \
         icu-dev \
         iputils \
+        jq \
         krb5-dev \
         libtool \
         libunwind-dev \

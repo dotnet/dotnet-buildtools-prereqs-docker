@@ -15,6 +15,7 @@ RUN yum install -y \
         doxygen \
         gdb \
         git \
+        jq \
         krb5-devel \
         libcurl-devel \
         libedit-devel \
