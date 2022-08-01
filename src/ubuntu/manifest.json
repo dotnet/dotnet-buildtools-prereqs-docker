@@ -687,6 +687,18 @@
         {
           "platforms": [
             {
+              "dockerfile": "src/ubuntu/20.04/cross/riscv64",
+              "os": "linux",
+              "osVersion": "focal",
+              "tags": {
+                "ubuntu-20.04-cross-riscv64-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
+              }
+            }
+          ]
+        },
+        {
+          "platforms": [
+            {
               "architecture": "amd64",
               "dockerfile": "src/ubuntu/20.04/crossdac/amd64",
               "os": "linux",
