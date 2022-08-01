@@ -9,8 +9,7 @@ set -u
 # which are available in Ubuntu 20.04+ repositories
 . /etc/os-release
 if [ "$(echo "$VERSION_ID" | tr -d .)" -lt 2004 ]; then
-    cat /etc/apt/sources.list | sed "s/$UBUNTU_CODENAME/focal/g" > /tmp/focal.list
-    sudo mv /tmp/focal.list /etc/apt/sources.list.d/
+    sed "s/$UBUNTU_CODENAME/focal/g" /etc/apt/sources.list | sudo dd of=/etc/apt/sources.list.d/focal.list
 fi
 
 # see (see https://github.com/dotnet/dotnet-buildtools-prereqs-docker/issues/120)
