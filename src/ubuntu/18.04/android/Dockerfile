@@ -13,6 +13,21 @@ RUN wget https://cmake.org/files/v3.23/cmake-3.23.1-linux-x86_64.tar.gz \
     && tar -xf cmake-3.23.1-linux-x86_64.tar.gz --strip 1 -C /usr/local \
     && rm cmake-3.23.1-linux-x86_64.tar.gz
 
+# Install Docker
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends \
+        apt-transport-https \
+        ca-certificates \
+        curl \
+        gnupg2 \
+        software-properties-common \
+    && curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add - \
+    && add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" \
+    && apt-get update \
+    && apt-get install -y --no-install-recommends \
+        docker-ce \
+    && rm -rf /var/lib/apt/lists/*
+
 # Android build needs working UTF-8 locale
 RUN locale-gen en_US.UTF-8
 
