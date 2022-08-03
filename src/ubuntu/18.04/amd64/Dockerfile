@@ -13,9 +13,11 @@ RUN apt-get update \
         locales \
         make \
         python-lldb-9 \
+        ruby-dev \
         sudo \
         wget \
     && rm -rf /var/lib/apt/lists/* \
+    && gem install fpm \
     && wget https://cmake.org/files/v3.23/cmake-3.23.1-linux-x86_64.tar.gz \
     && tar -xf cmake-3.23.1-linux-x86_64.tar.gz --strip 1 -C /usr/local \
     && rm cmake-3.23.1-linux-x86_64.tar.gz
