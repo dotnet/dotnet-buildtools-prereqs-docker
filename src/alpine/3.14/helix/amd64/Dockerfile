@@ -15,6 +15,18 @@ RUN ln -sf /usr/bin/python3 /usr/bin/python && \
     pip download --no-deps helix-scripts --index-url https://dnceng.pkgs.visualstudio.com/public/_packaging/helix-client-prod/pypi/simple && \
     pip install ./helix_scripts-*-py3-none-any.whl
 
+# build MsQuic as we don't have packages
+RUN cd /tmp && \
+    mkdir pwsh && \
+    cd pwsh && \
+    curl -L https://github.com/PowerShell/PowerShell/releases/download/v7.2.5/powershell-7.2.5-linux-alpine-x64.tar.gz | tar xfz - && \
+    cd .. && \
+    git clone --depth 1 --single-branch --recursive https://github.com/dotnet/msquic && \
+    cd msquic/src/msquic  &&  PATH=~/.dotnet/tools:$PATH /tmp/pwsh/pwsh scripts/build.ps1 -Config Release && \
+    cp artifacts/bin/linux/x64_Release_openssl/libmsquic.so.2 artifacts/bin/linux/x64_Release_openssl/libmsquic.lttng.so.2.1.0 /usr/lib && \
+    cd /tmp && \
+    rm -r pwsh msquic
+
 # Needed for corefx tests to pass
 ENV LANG=en-US.UTF-8
 
