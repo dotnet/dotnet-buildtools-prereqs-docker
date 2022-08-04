@@ -15,6 +15,6 @@ RUN apt-get update && \
         libssl-dev \
         libtool \
         libkrb5-dev \
-        ruby-deb \
+        ruby-dev \
     && gem install fpm \
     && rm -rf /var/lib/apt/lists/*
