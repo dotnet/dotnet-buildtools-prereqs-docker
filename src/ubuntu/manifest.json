@@ -621,18 +621,6 @@
         {
           "platforms": [
             {
-              "dockerfile": "src/ubuntu/18.04/msquic/amd64",
-              "os": "linux",
-              "osVersion": "bionic",
-              "tags": {
-                "ubuntu-18.04-msquic-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
-              }
-            }
-          ]
-        },
-        {
-          "platforms": [
-            {
               "dockerfile": "src/ubuntu/18.04/webassembly",
               "os": "linux",
               "osVersion": "bionic",
