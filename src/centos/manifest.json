@@ -27,9 +27,6 @@
               "osVersion": "centos7",
               "tags": {
                 "centos-7-arm64v8-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
-                "centos-7-arm64v8": {
-                  "isLocal": true
-                }
               },
               "variant": "v8"
             }
