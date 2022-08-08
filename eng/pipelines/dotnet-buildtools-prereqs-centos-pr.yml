@@ -25,4 +25,4 @@ stages:
     internalProjectName: ${{ variables.internalProjectName }}
     publicProjectName: ${{ variables.publicProjectName }}
     linuxAmdBuildJobTimeout: 210
-    linuxArmBuildJobTimeout: 280
+    linuxArmBuildJobTimeout: 300
