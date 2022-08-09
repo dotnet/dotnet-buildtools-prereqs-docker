@@ -86,6 +86,18 @@
         {
           "platforms": [
             {
+              "dockerfile": "src/centos/stream8",
+              "os": "linux",
+              "osVersion": "centos-stream8",
+              "tags": {
+                "centos-stream8-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
+              }
+            }
+          ]
+        },
+        {
+          "platforms": [
+            {
               "dockerfile": "src/centos/stream9",
               "os": "linux",
               "osVersion": "centos-stream9",
