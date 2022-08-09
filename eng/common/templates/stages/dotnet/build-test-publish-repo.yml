@@ -14,6 +14,9 @@ parameters:
   windowsAmdBuildJobTimeout: 60
   windowsAmdTestJobTimeout: 60
   linuxAmdBuildJobTimeout: 60
+  linuxAmdTestJobTimeout: 60
+  linuxArmBuildJobTimeout: 60
+  linuxArmTestJobTimeout: 60
   linuxAmd64Pool: ""
   buildMatrixType: platformDependencyGraph
   testMatrixType: platformVersionedOs
@@ -51,6 +54,9 @@ stages:
     windowsAmdBuildJobTimeout: ${{ parameters.windowsAmdBuildJobTimeout }}
     windowsAmdTestJobTimeout: ${{ parameters.windowsAmdTestJobTimeout }}
     linuxAmdBuildJobTimeout: ${{ parameters.linuxAmdBuildJobTimeout }}
+    linuxAmdTestJobTimeout: ${{ parameters.linuxAmdTestJobTimeout }}
+    linuxArmBuildJobTimeout: ${{ parameters.linuxArmBuildJobTimeout }}
+    linuxArmTestJobTimeout: ${{ parameters.linuxArmTestJobTimeout }}
     buildMatrixType: ${{ parameters.buildMatrixType }}
     testMatrixType: ${{ parameters.testMatrixType }}
 
