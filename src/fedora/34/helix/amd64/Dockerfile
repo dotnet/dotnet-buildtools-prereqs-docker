@@ -25,7 +25,7 @@ RUN ln -sf /usr/bin/python3 /usr/bin/python && \
 RUN dnf install -y dotnet gem lttng-tools perl-FindBin rpmdevtools ruby-devel && \
     rpm -i https://github.com/PowerShell/PowerShell/releases/download/v7.0.6/powershell-lts-7.0.6-1.rhel.7.x86_64.rpm && \
     gem  install fpm && \
-    git clone --depth 1 --single-branch --recursive https://github.com/dotnet/msquic && \
+    git clone --depth 1 --single-branch --branch release/7.0 --recursive https://github.com/dotnet/msquic && \
     cd msquic/src/msquic  &&  PATH=~/.dotnet/tools:$PATH pwsh scripts/build.ps1 -Config Release -DisableLogs && \
     touch artifacts/bin/linux/x64_Release_openssl/libmsquic.lttng.so && ./scripts/make-packages.sh --output /tmp && \
     rpm -i /tmp/libmsquic*rpm  && \
