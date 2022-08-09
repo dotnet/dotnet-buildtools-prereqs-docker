@@ -5,6 +5,8 @@ FROM quay.io/centos/centos:stream8
 RUN dnf install --setopt tsflags=nodocs --refresh -y \
         dnf-plugins-core \
     && \
+    dnf config-manager --set-enabled powertools \
+    && \
     dnf install --setopt tsflags=nodocs -y \
         "perl(Time::HiRes)" \
         autoconf \
