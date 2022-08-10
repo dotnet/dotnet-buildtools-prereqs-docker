@@ -202,7 +202,7 @@
               "os": "linux",
               "osVersion": "bullseye",
               "tags": {
-                "debian-11-helix-arm64v8-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
+                "debian-11-opt-arm64v8-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
               },
               "variant": "v8"
             }
