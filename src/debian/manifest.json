@@ -197,6 +197,20 @@
         {
           "platforms": [
             {
+              "architecture": "arm64",
+              "dockerfile": "src/debian/11/opt/arm64v8",
+              "os": "linux",
+              "osVersion": "bullseye",
+              "tags": {
+                "debian-11-opt-arm64v8-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
+              },
+              "variant": "v8"
+            }
+          ]
+        },
+        {
+          "platforms": [
+            {
               "architecture": "arm",
               "dockerfile": "src/debian/iot/arm32v7",
               "os": "linux",
