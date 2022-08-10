@@ -6,7 +6,6 @@ RUN apt-get update \
             autoconf \
             automake \
             build-essential \
-            clang \
             cmake \
             curl \
             g++ \
@@ -23,7 +22,7 @@ RUN apt-get update \
             libnuma-dev \
             libtool \
             libunwind8-dev \
-            llvm \
+            llvm-9 \
             locales \
             make \
             sudo \
@@ -33,6 +32,8 @@ RUN apt-get update \
             zlib1g-dev \
     && rm -rf /var/lib/apt/lists/*
 
+# Link llvm-profdata-9 to llvm-profdata
+RUN ln /usr/bin/llvm-profdata-9 /usr/bin/llvm-profdata
 
 # .NET SDK MSBuild requires US.UTF-8 locale to execute tasks
 # These commands are from https://askubuntu.com/a/1027038
