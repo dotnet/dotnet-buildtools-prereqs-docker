@@ -21,20 +21,6 @@
         {
           "platforms": [
             {
-              "architecture": "arm64",
-              "dockerfile": "src/centos/7/arm64v8",
-              "os": "linux",
-              "osVersion": "centos7",
-              "tags": {
-                "centos-7-arm64v8-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
-              },
-              "variant": "v8"
-            }
-          ]
-        },
-        {
-          "platforms": [
-            {
               "dockerfile": "src/centos/7/mlnet",
               "os": "linux",
               "osVersion": "centos7",
