@@ -729,6 +729,21 @@
         {
           "platforms": [
             {
+              "dockerfile": "src/ubuntu/20.04/amd64",
+              "os": "linux",
+              "osVersion": "focal",
+              "tags": {
+                "ubuntu-20.04-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
+                "ubuntu-20.04": {
+                  "isLocal": true
+                }
+              }
+            }
+          ]
+        },
+        {
+          "platforms": [
+            {
               "dockerfile": "src/ubuntu/22.04/amd64",
               "os": "linux",
               "osVersion": "jammy",
