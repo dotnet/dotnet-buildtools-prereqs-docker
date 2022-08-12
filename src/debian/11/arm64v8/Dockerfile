@@ -20,29 +20,25 @@ RUN apt-get update \
             libgdiplus \
             libicu-dev \
             libkrb5-dev \
-            liblldb-3.9-dev \
+            liblldb-dev \
             liblttng-ust-dev \
             libnuma-dev \
-            libssl1.0-dev \
-            libssl1.0.2 \
+            libssl-dev \
+            libssl1.1 \
             libtool \
             libunwind8-dev \
-            lldb-3.9 \
+            lldb \
             llvm \
             locales \
             make \
-            python-lldb-3.9 \
+            nodejs \
+            python-lldb \
             sudo \
             tar \
             uuid-dev \
             zip \
             zlib1g-dev \
     && rm -rf /var/lib/apt/lists/*
-
-# Install tools used by the VSO build automation.
-RUN curl -sL https://deb.nodesource.com/setup_9.x | bash - \
-    && apt-get install -y nodejs \
-    && npm install -g azure-cli --unsafe-perm
 
 # .NET SDK MSBuild requires US.UTF-8 locale to execute tasks
 # These commands are from https://askubuntu.com/a/1027038
