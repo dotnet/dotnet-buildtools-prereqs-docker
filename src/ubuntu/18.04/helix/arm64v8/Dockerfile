@@ -9,7 +9,6 @@ RUN apt-get update && \
         autoconf \
         automake \
         build-essential \
-        cmake \
         clang \
         gcc \
         gdb \
@@ -35,7 +34,10 @@ RUN apt-get update && \
         unzip \
         curl \
     && rm -rf /var/lib/apt/lists/* \
-    \
+    && curl -O https://cmake.org/files/v3.23/cmake-3.23.1-linux-aarch64.tar.gz \
+    && cat cmake-3.23.1-linux-aarch64.tar.gz  | sha256sum -c <(echo "74062efddeb935bce3d33694a4db534cef9a650f77a9a153a9f217d9dc385c75  -") \
+    && tar -xf cmake-3.23.1-linux-aarch64.tar.gz  --strip 1 -C /usr/local \
+    && rm cmake-3.23.1-linux-aarch64.tar.gz \
     && localedef -i en_US -c -f UTF-8 -A /usr/share/locale/locale.alias en_US.UTF-8
 
 ENV LANG=en_US.utf8
@@ -51,13 +53,16 @@ RUN ln -sf /usr/bin/python3 /usr/bin/python && \
 RUN cd /tmp && \
     mkdir pwsh && \
     cd pwsh && \
-    curl -L https://github.com/PowerShell/PowerShell/releases/download/v7.2.5/powershell-7.2.5-linux-arm64.tar.gz | tar xfz - && \
+    curl -LO https://github.com/PowerShell/PowerShell/releases/download/v7.2.5/powershell-7.2.5-linux-arm64.tar.gz && \
+    cat powershell-7.2.5-linux-arm64.tar.gz | sha256sum -c <(echo "709265A0B99232CD8AB6F8A02C01F3AEE94262B959E1A4B0FD871C8789C07396 -") && \
+    tar xf powershell-7.2.5-linux-arm64.tar.gz && \
     cd .. && \
     git clone --depth 1 --single-branch --branch release/7.0 --recursive https://github.com/dotnet/msquic && \
-    cd msquic/src/msquic  &&  PATH=~/.dotnet/tools:$PATH /tmp/pwsh/pwsh scripts/build.ps1 -arch arm64 -Config Release && \
+    cd msquic/src/msquic  &&  PATH=~/.dotnet/tools:$PATH /tmp/pwsh/pwsh scripts/build.ps1 -arch arm64 -Config Release -parallel 2 && \
     cp artifacts/bin/linux/arm64_Release_openssl/libmsquic.so.2 artifacts/bin/linux/arm64_Release_openssl/libmsquic.lttng.so.2.1.0 /usr/lib && \
     cd /tmp && \
-    rm -r pwsh msquic
+    rm -r pwsh msquic powershell-7.2.5-linux-arm64.tar.gz
+
 RUN adduser --disabled-password --gecos '' --uid 1001 --shell /bin/bash --ingroup adm helixbot && \
     chmod -R +x /root && \
     echo 'helixbot ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
