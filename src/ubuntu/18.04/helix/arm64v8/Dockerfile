@@ -47,6 +47,17 @@ RUN ln -sf /usr/bin/python3 /usr/bin/python && \
     export CRYPTOGRAPHY_DONT_BUILD_RUST=1 && \
     pip install ./helix_scripts-*-py3-none-any.whl
 
+# build MsQuic as we don't have packages
+RUN cd /tmp && \
+    mkdir pwsh && \
+    cd pwsh && \
+    curl -L https://github.com/PowerShell/PowerShell/releases/download/v7.2.5/powershell-7.2.5-linux-arm64.tar.gz | tar xfz - && \
+    cd .. && \
+    git clone --depth 1 --single-branch --branch release/7.0 --recursive https://github.com/dotnet/msquic && \
+    cd msquic/src/msquic  &&  PATH=~/.dotnet/tools:$PATH /tmp/pwsh/pwsh scripts/build.ps1 -arch arm64 -Config Release && \
+    cp artifacts/bin/linux/arm64_Release_openssl/libmsquic.so.2 artifacts/bin/linux/arm64_Release_openssl/libmsquic.lttng.so.2.1.0 /usr/lib && \
+    cd /tmp && \
+    rm -r pwsh msquic
 RUN adduser --disabled-password --gecos '' --uid 1001 --shell /bin/bash --ingroup adm helixbot && \
     chmod -R +x /root && \
     echo 'helixbot ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
