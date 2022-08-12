@@ -19,5 +19,11 @@ variables:
 - name: testScriptPath
   value: ""
 - ${{ if eq(variables['System.TeamProject'], 'internal') }}:
-    - name: build.imageBuilderDockerRunExtraOptions
-      value: -e DOCKER_REPO=$(acr.server)/$(stagingRepoPrefix)dotnet-buildtools/prereqs
+  - name: build.imageBuilderDockerRunExtraOptions
+    value: -e DOCKER_REPO=$(acr.server)/$(stagingRepoPrefix)dotnet-buildtools/prereqs
+- ${{ if eq(variables['Build.SourceBranch'], 'refs/heads/production') }}:
+  - name: LatestTag
+    value: 'latest'
+- else:
+  - name: LatestTag
+    value: 'staging'
