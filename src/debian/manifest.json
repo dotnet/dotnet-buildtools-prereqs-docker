@@ -221,6 +221,20 @@
               "variant": "v7"
             }
           ]
+        },
+        {
+          "platforms": [
+            {
+              "architecture": "arm64",
+              "dockerfile": "src/debian/11/arm64v8",
+              "os": "linux",
+              "osVersion": "bullseye",
+              "tags": {
+                "debian-11-arm64v8-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
+              },
+              "variant": "v8"
+            }
+          ]
         }
       ]
     }
