@@ -31,7 +31,6 @@ RUN apt-get update \
             llvm \
             locales \
             make \
-            nodejs \
             python-lldb \
             sudo \
             tar \
