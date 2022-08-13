@@ -53,4 +53,5 @@ RUN apt-get update \
         libunwind8 \
         libunwind8-dev \
         uuid-dev \
+        zlib1g-dev \
     && rm -rf /var/lib/apt/lists/*
