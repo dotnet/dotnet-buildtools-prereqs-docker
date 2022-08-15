@@ -7,6 +7,7 @@ RUN apt-get update \
         git \
         nodejs \
         npm \
+        rpm \
         ruby-dev \
         tar \
         zip \
