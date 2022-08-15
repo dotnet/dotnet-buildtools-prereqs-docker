@@ -22,8 +22,8 @@ variables:
   - name: build.imageBuilderDockerRunExtraOptions
     value: -e DOCKER_REPO=$(acr.server)/$(stagingRepoPrefix)dotnet-buildtools/prereqs
 - ${{ if eq(variables['Build.SourceBranch'], 'refs/heads/production') }}:
-  - name: LatestTag
-    value: 'latest'
+  - name: latestTag
+    value: --var LatestTag=latest
 - else:
-  - name: LatestTag
-    value: 'staging'
+  - name: latestTag
+    value: --var LatestTag=staging
