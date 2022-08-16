@@ -12,10 +12,10 @@ variables:
   value: https://github.com/dotnet/dotnet-buildtools-prereqs-docker
 - ${{ if eq(variables['Build.SourceBranch'], 'refs/heads/production') }}:
   - name: manifestVariables
-    value: --var UniqueId=$(sourceBuildId) --var LatestTag=latest
+    value: --var UniqueId=$(sourceBuildId) --var FloatingTagSuffix=latest
 - ${{ else }}:
   - name: manifestVariables
-    value: --var UniqueId=$(sourceBuildId) --var LatestTag=staging
+    value: --var UniqueId=$(sourceBuildId) --var FloatingTagSuffix=staging
 - name: publicSourceBranch
   value: main
 - name: ingestKustoImageInfo
