@@ -10,8 +10,12 @@ variables:
   value: false
 - name: publicGitRepoUri
   value: https://github.com/dotnet/dotnet-buildtools-prereqs-docker
-- name: manifestVariables
-  value: --var UniqueId=$(sourceBuildId)
+- ${{ if eq(variables['Build.SourceBranch'], 'refs/heads/production') }}:
+  - name: manifestVariables
+    value: --var UniqueId=$(sourceBuildId) --var LatestTag=latest
+- ${{ else }}:
+  - name: manifestVariables
+    value: --var UniqueId=$(sourceBuildId) --var LatestTag=staging
 - name: publicSourceBranch
   value: main
 - name: ingestKustoImageInfo
@@ -21,9 +25,3 @@ variables:
 - ${{ if eq(variables['System.TeamProject'], 'internal') }}:
   - name: build.imageBuilderDockerRunExtraOptions
     value: -e DOCKER_REPO=$(acr.server)/$(stagingRepoPrefix)dotnet-buildtools/prereqs
-- ${{ if eq(variables['Build.SourceBranch'], 'refs/heads/production') }}:
-  - name: latestTag
-    value: --var LatestTag=latest
-- else:
-  - name: latestTag
-    value: --var LatestTag=staging

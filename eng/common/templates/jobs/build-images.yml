@@ -113,7 +113,6 @@ jobs:
       --source-repo $(publicGitRepoUri)
       --digests-out-var 'builtImages'
       $(manifestVariables)
-      $(latestTag)
       $(imageBuilderBuildArgs)
     name: BuildImages
     displayName: Build Images
