@@ -52,7 +52,7 @@ RUN cd /tmp && \
     echo "709265A0B99232CD8AB6F8A02C01F3AEE94262B959E1A4B0FD871C8789C07396 powershell-7.2.5-linux-arm64.tar.gz" | sha256sum --check - && \
     tar xf powershell-7.2.5-linux-arm64.tar.gz && \
     cd .. && \
-    git clone --depth 1 --single-branch --branch release/7.0 --recursive https://github.com/dotnet/msquic && \
+    git clone --depth 1 --single-branch --branch main --recursive https://github.com/dotnet/msquic && \
     cd msquic/src/msquic  &&  PATH=~/.dotnet/tools:$PATH /tmp/pwsh/pwsh scripts/build.ps1 -arch arm64 -Config Release -UseSystemOpenSSLCrypto -DisableTools -DisableTest -DisablePerf && \
     cp artifacts/bin/linux/arm64_Release_openssl/libmsquic.so.2 artifacts/bin/linux/arm64_Release_openssl/libmsquic.lttng.so.2.1.0 /usr/lib/aarch64-linux-gnu && \
     cd /tmp && \
