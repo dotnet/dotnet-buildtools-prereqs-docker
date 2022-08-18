@@ -14,12 +14,16 @@ RUN apt-get update \
     && apt-get install -y \
         binfmt-support \
         binutils-arm-linux-gnueabihf \
+        bison \
+        bisonc++ \
         build-essential \
         cmake \
         cpio \
         debootstrap \
+        flex \
         gdb \
         make \
+        nasm \
         qemu \
         qemu-user-static \
         rpm2cpio \
@@ -30,6 +34,7 @@ RUN apt-get update \
         libbsd-dev \
         libmpc-dev \
         libxml2-utils \
+        libzstd-dev \
     && rm -rf /var/lib/apt/lists/*
 
 RUN apt-get update \
