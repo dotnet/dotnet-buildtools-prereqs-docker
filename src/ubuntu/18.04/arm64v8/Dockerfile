@@ -16,5 +16,6 @@ RUN apt-get update && \
         libtool \
         libkrb5-dev \
         ruby-dev \
+    && gem install public_suffix -v 4.0.7 \
     && gem install fpm \
     && rm -rf /var/lib/apt/lists/*

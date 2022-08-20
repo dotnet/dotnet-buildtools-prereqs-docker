@@ -17,6 +17,7 @@ RUN apt-get update \
         sudo \
         wget \
     && rm -rf /var/lib/apt/lists/* \
+    && gem install public_suffix -v 4.0.7 \
     && gem install fpm \
     && wget https://cmake.org/files/v3.23/cmake-3.23.1-linux-x86_64.tar.gz \
     && tar -xf cmake-3.23.1-linux-x86_64.tar.gz --strip 1 -C /usr/local \

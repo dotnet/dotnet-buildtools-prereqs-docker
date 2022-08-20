@@ -11,6 +11,7 @@ RUN apt-get update \
         ruby-dev \
         tar \
         zip \
+    && gem install public_suffix -v 4.0.7 \
     && gem install fpm \
     && rm -rf /var/lib/apt/lists/* \
     && npm install -g azure-cli@0.9.20 \
