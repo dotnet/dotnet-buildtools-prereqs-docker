@@ -1,5 +1,7 @@
 FROM arm64v8/ubuntu:18.04
 
+# fpm install may fail without adding public_suffix explicitly. May be remove in the future.
+# https://github.com/dotnet/dotnet-buildtools-prereqs-docker/pull/675
 RUN apt-get update && \
     apt-get install -y \
         autoconf \

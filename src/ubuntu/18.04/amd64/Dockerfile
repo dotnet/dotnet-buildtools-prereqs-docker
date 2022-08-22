@@ -3,6 +3,8 @@ FROM ubuntu:18.04
 # Install the base toolchain we need to build anything (clang, cmake, make and the like)
 # this does not include libraries that we need to compile different projects, we'd like
 # them in a different layer.
+# fpm install may fail without adding public_suffix explicitly. May be remove in the future.
+# https://github.com/dotnet/dotnet-buildtools-prereqs-docker/pull/675
 RUN apt-get update \
     && apt-get install -y \
         clang-9 \
