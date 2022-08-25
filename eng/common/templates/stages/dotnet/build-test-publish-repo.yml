@@ -14,9 +14,6 @@ parameters:
   windowsAmdBuildJobTimeout: 60
   windowsAmdTestJobTimeout: 60
   linuxAmdBuildJobTimeout: 60
-  linuxAmdTestJobTimeout: 60
-  linuxArmBuildJobTimeout: 60
-  linuxArmTestJobTimeout: 60
   linuxAmd64Pool: ""
   buildMatrixType: platformDependencyGraph
   testMatrixType: platformVersionedOs
@@ -54,9 +51,6 @@ stages:
     windowsAmdBuildJobTimeout: ${{ parameters.windowsAmdBuildJobTimeout }}
     windowsAmdTestJobTimeout: ${{ parameters.windowsAmdTestJobTimeout }}
     linuxAmdBuildJobTimeout: ${{ parameters.linuxAmdBuildJobTimeout }}
-    linuxAmdTestJobTimeout: ${{ parameters.linuxAmdTestJobTimeout }}
-    linuxArmBuildJobTimeout: ${{ parameters.linuxArmBuildJobTimeout }}
-    linuxArmTestJobTimeout: ${{ parameters.linuxArmTestJobTimeout }}
     buildMatrixType: ${{ parameters.buildMatrixType }}
     testMatrixType: ${{ parameters.testMatrixType }}
 
@@ -88,5 +82,4 @@ stages:
         name: Docker-Linux-Arm-Internal
     windows2016Pool: Docker-2016-${{ variables['System.TeamProject'] }}
     windows1809Pool: Docker-1809-${{ variables['System.TeamProject'] }}
-    windows20H2Pool: Docker-20H2-${{ variables['System.TeamProject'] }}
     windows2022Pool: Docker-2022-${{ variables['System.TeamProject'] }}

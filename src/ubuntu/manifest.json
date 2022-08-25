@@ -726,26 +726,12 @@
         {
           "platforms": [
             {
-              "dockerfile": "src/ubuntu/20.04/cross/riscv64",
-              "os": "linux",
-              "osVersion": "focal",
-              "tags": {
-                "ubuntu-20.04-cross-riscv64-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
-                "ubuntu-20.04-cross-riscv64-$(FloatingTagSuffix)": {}
-              }
-            }
-          ]
-        },
-        {
-          "platforms": [
-            {
               "architecture": "amd64",
               "dockerfile": "src/ubuntu/20.04/crossdac/amd64",
               "os": "linux",
               "osVersion": "focal",
               "tags": {
-                "ubuntu-20.04-crossdac-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
-                "ubuntu-20.04-crossdac-$(FloatingTagSuffix)": {}
+                "ubuntu-20.04-crossdac-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
               }
             }
           ]
@@ -759,7 +745,6 @@
               "osVersion": "focal",
               "tags": {
                 "ubuntu-20.04-helix-amd64-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
-                "ubuntu-20.04-helix-amd64-$(FloatingTagSuffix)": {},
                 "ubuntu-20.04-helix-amd64": {
                   "isLocal": true
                 }
@@ -775,8 +760,22 @@
               "os": "linux",
               "osVersion": "focal",
               "tags": {
-                "ubuntu-20.04-helix-wasm-amd64-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
-                "ubuntu-20.04-helix-wasm-amd64-$(FloatingTagSuffix)": {}
+                "ubuntu-20.04-helix-wasm-amd64-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
+              }
+            }
+          ]
+        },
+        {
+          "platforms": [
+            {
+              "dockerfile": "src/ubuntu/20.04/amd64",
+              "os": "linux",
+              "osVersion": "focal",
+              "tags": {
+                "ubuntu-20.04-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
+                "ubuntu-20.04": {
+                  "isLocal": true
+                }
               }
             }
           ]
@@ -793,6 +792,60 @@
                 "ubuntu-22.04": {
                   "isLocal": true
                 }
+              }
+            }
+          ]
+        },
+        {
+          "platforms": [
+            {
+              "dockerfile": "src/ubuntu/22.04/coredeps",
+              "os": "linux",
+              "osVersion": "jammy",
+              "tags": {
+                "ubuntu-22.04-coredeps-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
+                "ubuntu-22.04-coredeps": {
+                  "isLocal": true
+                }
+              }
+            }
+          ]
+        },
+        {
+          "platforms": [
+            {
+              "dockerfile": "src/ubuntu/22.04/crossdeps",
+              "os": "linux",
+              "osVersion": "jammy",
+              "tags": {
+                "ubuntu-22.04-crossdeps-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
+                "ubuntu-22.04-crossdeps": {
+                  "isLocal": true
+                }
+              }
+            }
+          ]
+        },
+        {
+          "platforms": [
+            {
+              "dockerfile": "src/ubuntu/22.04/cross/riscv64",
+              "os": "linux",
+              "osVersion": "jammy",
+              "tags": {
+                "ubuntu-22.04-cross-riscv64-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
+              }
+            }
+          ]
+        },
+        {
+          "platforms": [
+            {
+              "dockerfile": "src/ubuntu/22.04/cross/haiku",
+              "os": "linux",
+              "osVersion": "jammy",
+              "tags": {
+                "ubuntu-22.04-cross-haiku-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
               }
             }
           ]

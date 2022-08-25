@@ -154,6 +154,19 @@
           "platforms": [
             {
               "architecture": "amd64",
+              "dockerfile": "src/debian/11/amd64",
+              "os": "linux",
+              "osVersion": "bullseye",
+              "tags": {
+                "debian-11-amd64-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
+              }
+            }
+          ]
+        },
+        {
+          "platforms": [
+            {
+              "architecture": "amd64",
               "dockerfile": "src/debian/11/gcc12",
               "os": "linux",
               "osVersion": "bullseye",
@@ -235,6 +248,20 @@
                 "debian-iot-arm32v7-$(FloatingTagSuffix)": {}
               },
               "variant": "v7"
+            }
+          ]
+        },
+        {
+          "platforms": [
+            {
+              "architecture": "arm64",
+              "dockerfile": "src/debian/11/arm64v8",
+              "os": "linux",
+              "osVersion": "bullseye",
+              "tags": {
+                "debian-11-arm64v8-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
+              },
+              "variant": "v8"
             }
           ]
         }

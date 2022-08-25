@@ -4,10 +4,15 @@ FROM registry.fedoraproject.org/fedora:36
 # this does not include libraries that we need to compile different projects, we'd like
 # them in a different layer.
 RUN dnf --setopt=install_weak_deps=False install -y \
+        clang \
+        cmake \
         dnf-plugins-core \
         findutils \
         gdb \
         glibc-langpack-en \
+        lldb-devel \
+        llvm-devel \
+        make \
         python \
         which \
     && dnf clean all
@@ -32,6 +37,7 @@ RUN dnf --setopt=install_weak_deps=False install -y \
         automake \
         glibc-locale-source \
         iputils \
+        jq \
         krb5-devel \
         libcurl-devel \
         libgdiplus \

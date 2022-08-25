@@ -1,0 +1,5 @@
+#!/usr/bin/env sh
+
+SCRIPT=$(readlink -f "$0")
+SCRIPTPATH=$(dirname "$SCRIPT")
+$SCRIPTPATH/../../../../build-scripts/build-rootfs.sh ubuntu-22.04 haiku x64 "" /rootfs/x64/boot/system/bin
