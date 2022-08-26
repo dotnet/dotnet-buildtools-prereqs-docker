@@ -13,11 +13,14 @@ variables:
 - ${{ if eq(variables['Build.SourceBranch'], 'refs/heads/production') }}:
   - name: manifestVariables
     value: --var UniqueId=$(sourceBuildId) --var FloatingTagSuffix=latest
-- ${{ else }}:
+- ${{ elseif eq(variables['Build.SourceBranch'], 'refs/heads/main') }}:
   - name: manifestVariables
     value: --var UniqueId=$(sourceBuildId) --var FloatingTagSuffix=staging
+- ${{ else }}:
+  - name: manifestVariables
+    value: --var UniqueId=$(sourceBuildId) --var FloatingTagSuffix=$(Build.SourceBranchName)
 - name: publicSourceBranch
-  value: main
+  value: $(Build.SourceBranchName)
 - name: ingestKustoImageInfo
   value: false
 - name: testScriptPath
