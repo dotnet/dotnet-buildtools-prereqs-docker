@@ -19,8 +19,12 @@ variables:
 - ${{ else }}:
   - name: manifestVariables
     value: --var UniqueId=$(sourceBuildId) --var FloatingTagSuffix=$(Build.SourceBranchName)
-- name: publicSourceBranch
-  value: $(Build.SourceBranchName)
+- ${{ if or(eq($(Build.SourceBranch), "refs/heads/production"), eq($(System.PullRequest.TargetBranch), "refs/heads/production")) }}:
+  - name: publicSourceBranch
+    value: production
+- ${{ else }}:
+  - name: publicSourceBranch
+    value: main
 - name: ingestKustoImageInfo
   value: false
 - name: testScriptPath
