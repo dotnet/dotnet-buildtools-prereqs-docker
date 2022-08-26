@@ -19,7 +19,7 @@ variables:
 - ${{ else }}:
   - name: manifestVariables
     value: --var UniqueId=$(sourceBuildId) --var FloatingTagSuffix=$(Build.SourceBranchName)
-- ${{ if or(eq($(Build.SourceBranch), "refs/heads/production"), eq($(System.PullRequest.TargetBranch), "refs/heads/production")) }}:
+- ${{ if or(eq(variables['Build.SourceBranch'], 'refs/heads/production'), eq(variables['System.PullRequest.TargetBranch'], 'refs/heads/production')) }}:
   - name: publicSourceBranch
     value: production
 - ${{ else }}:
