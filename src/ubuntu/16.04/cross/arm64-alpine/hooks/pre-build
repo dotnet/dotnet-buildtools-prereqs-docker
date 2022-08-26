@@ -1,5 +1,0 @@
-#!/usr/bin/env sh
-
-SCRIPT=$(readlink -f "$0")
-SCRIPTPATH=$(dirname "$SCRIPT")
-$SCRIPTPATH/../../../../build-scripts/build-rootfs.sh ubuntu-16.04 alpine arm64 lldb3.9
