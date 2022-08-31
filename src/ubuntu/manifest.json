@@ -103,18 +103,6 @@
         {
           "platforms": [
             {
-              "dockerfile": "src/ubuntu/18.04/cross/arm/16.04",
-              "os": "linux",
-              "osVersion": "bionic",
-              "tags": {
-                "ubuntu-18.04-cross-arm-16.04-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
-              }
-            }
-          ]
-        },
-        {
-          "platforms": [
-            {
               "dockerfile": "src/ubuntu/18.04/cross/arm",
               "os": "linux",
               "osVersion": "bionic",
@@ -144,18 +132,6 @@
               "osVersion": "bionic",
               "tags": {
                 "ubuntu-18.04-cross-arm64-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
-              }
-            }
-          ]
-        },
-        {
-          "platforms": [
-            {
-              "dockerfile": "src/ubuntu/18.04/cross/arm64/16.04",
-              "os": "linux",
-              "osVersion": "bionic",
-              "tags": {
-                "ubuntu-18.04-cross-arm64-16.04-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
               }
             }
           ]
