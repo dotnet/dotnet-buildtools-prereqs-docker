@@ -6,10 +6,22 @@ RUN dnf install --setopt tsflags=nodocs --refresh -y \
     && \
     dnf config-manager --set-enabled crb \
     && \
-    dnf install --setopt tsflags=nodocs -y \
+    dnf install --setopt tsflags=nodocs -y --allowerasing \
+        autoconf \
+        automake \
+        curl \
+        file \
         gcc \
+        gcc-c++ \
+        gdb \
+        git-core \
+        iputils \
         libicu \
+        libtool \
+        make \
         openssl \
+        openssl-devel \
+        perl \
         python3 \
         python3-devel \
         sudo \
