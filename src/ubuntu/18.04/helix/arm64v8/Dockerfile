@@ -51,11 +51,14 @@ RUN ln -sf /usr/bin/python3 /usr/bin/python && \
     pip install ./helix_scripts-*-py3-none-any.whl
 
 # Add MsQuic
+# MsQuic did not publish arm64 package for 18.04 but there is one for 20.04.
+# Since the binary is identical we will use 20.04 repo for now.
+# This can be fixed in the future if/when package is available.
 RUN curl -LO https://packages.microsoft.com/keys/microsoft.asc && \
     echo 2cfd20a306b2fa5e25522d78f2ef50a1f429d35fd30bd983e2ebffc2b80944fa microsoft.asc| sha256sum --check - && \
     apt-key add microsoft.asc && \
     rm microsoft.asc && \
-    apt-add-repository https://packages.microsoft.com/ubuntu/18.04/prod && \
+    apt-add-repository https://packages.microsoft.com/ubuntu/20.04/prod && \
     apt-get update && \
     apt-get install -y libmsquic && \
     rm -rf /var/lib/apt/lists/*
