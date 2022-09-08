@@ -18,6 +18,7 @@ RUN apt-get update \
         cmake \
         cpio \
         debootstrap \
+        flex \
         gdb \
         make \
         qemu \

@@ -1,5 +1,0 @@
-#!/usr/bin/env sh
-
-SCRIPT=$(readlink -f "$0")
-SCRIPTPATH=$(dirname "$SCRIPT")
-$SCRIPTPATH/../../../../build-scripts/build-rootfs.sh ubuntu-20.04 focal riscv64

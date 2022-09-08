@@ -31,5 +31,6 @@ RUN apt-get update \
         libunwind8 \
         libunwind8-dev \
         python3 \
+        python3-pip \
         uuid-dev \
     && rm -rf /var/lib/apt/lists/*
