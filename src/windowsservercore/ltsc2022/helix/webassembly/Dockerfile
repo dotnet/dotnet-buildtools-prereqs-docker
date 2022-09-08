@@ -45,3 +45,4 @@ RUN msiexec /i %TEMP%\nodejs.msi /quiet /passive /qn /norestart
 RUN npm install jsvu -g
 RUN npm exec -c "jsvu --os=win64 --engines=v8"
 RUN setx PATH "%PATH%;%USERPROFILE%\.jsvu"
+RUN v8 -e "console.log(version());quit();"

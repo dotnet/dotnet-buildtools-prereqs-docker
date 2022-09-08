@@ -43,13 +43,13 @@ RUN ln -sf /usr/bin/python3 /usr/bin/python && \
     pip install ./helix_scripts-*-py3-none-any.whl
 
 # Add MsQuic
-COPY  microsoft.asc /tmp
-RUN apt-key add /tmp/microsoft.asc \
-    && rm /tmp/microsoft.asc \
-    && apt-add-repository https://packages.microsoft.com/debian/10/prod \
-    && apt-get update \
-    && apt-get install -y libmsquic \
-    && rm -rf /var/lib/apt/lists/*
+RUN curl -LO https://packages.microsoft.com/keys/microsoft.asc && \
+    echo 2cfd20a306b2fa5e25522d78f2ef50a1f429d35fd30bd983e2ebffc2b80944fa microsoft.asc| sha256sum --check - && \
+    apt-key add microsoft.asc && \
+    apt-add-repository https://packages.microsoft.com/debian/10/prod && \
+    apt-get update && \
+    apt-get install libmsquic && \
+    rm -rf /var/lib/apt/lists/* microsoft.asc
 
 # Create helixbot user and give rights to sudo without password
 # additionally, preinstall the virtualenv packages used for VSTS reporting to save time
