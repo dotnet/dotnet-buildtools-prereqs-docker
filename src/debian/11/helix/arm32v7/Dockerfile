@@ -27,12 +27,23 @@ RUN apt-get update && \
         locales-all \
         python3-dev \
         python3-pip \
+        software-properties-common \
         sudo \
         tzdata \
         unzip \
     && rm -rf /var/lib/apt/lists/* \
     \
     && localedef -i en_US -c -f UTF-8 -A /usr/share/locale/locale.alias en_US.UTF-8
+
+# Add MsQuic
+RUN curl -LO https://packages.microsoft.com/keys/microsoft.asc && \
+    echo 2cfd20a306b2fa5e25522d78f2ef50a1f429d35fd30bd983e2ebffc2b80944fa microsoft.asc| sha256sum --check - && \
+    apt-key add microsoft.asc && \
+    apt-add-repository https://packages.microsoft.com/debian/11/prod && \
+    apt-get update && \
+    apt-get install libmsquic && \
+    rm -rf /var/lib/apt/lists/* microsoft.asc
+
 
 ENV LANG=en_US.utf8
 

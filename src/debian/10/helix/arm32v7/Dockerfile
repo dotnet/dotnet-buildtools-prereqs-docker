@@ -28,6 +28,7 @@ RUN apt-get update && \
         procps \
         python3-dev \
         python3-pip \
+        software-properties-common \
         sudo \
         tzdata \
         unzip \
@@ -45,6 +46,15 @@ RUN ln -sf /usr/bin/python3 /usr/bin/python && \
     pip download --no-deps helix-scripts --index-url https://dnceng.pkgs.visualstudio.com/public/_packaging/helix-client-prod/pypi/simple && \
     export CRYPTOGRAPHY_DONT_BUILD_RUST=1 && \
     pip install ./helix_scripts-*-py3-none-any.whl
+
+# Add MsQuic
+RUN curl -LO https://packages.microsoft.com/keys/microsoft.asc && \
+    echo 2cfd20a306b2fa5e25522d78f2ef50a1f429d35fd30bd983e2ebffc2b80944fa microsoft.asc| sha256sum --check - && \
+    apt-key add microsoft.asc && \
+    apt-add-repository https://packages.microsoft.com/debian/10/prod && \
+    apt-get update && \
+    apt-get install libmsquic && \
+    rm -rf /var/lib/apt/lists/* microsoft.asc
 
 # Create helixbot user and give rights to sudo without password
 # additionally, preinstall the virtualenv packages used for VSTS reporting to save time
