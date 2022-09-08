@@ -20,17 +20,11 @@ RUN ln -sf /usr/bin/python3 /usr/bin/python && \
     pip download --no-deps helix-scripts --index-url https://dnceng.pkgs.visualstudio.com/public/_packaging/helix-client-prod/pypi/simple && \
     pip install ./helix_scripts-*-py3-none-any.whl
 
-# This is temporary until we have flow to packages.microsoft.com
-
-RUN dnf install -y dotnet gem lttng-tools perl-FindBin rpmdevtools ruby-devel && \
-    rpm -i https://github.com/PowerShell/PowerShell/releases/download/v7.0.6/powershell-lts-7.0.6-1.rhel.7.x86_64.rpm && \
-    gem  install fpm && \
-    git clone --depth 1 --single-branch --branch release/7.0 --recursive https://github.com/dotnet/msquic && \
-    cd msquic/src/msquic  &&  PATH=~/.dotnet/tools:$PATH pwsh scripts/build.ps1 -Config Release -DisableLogs && \
-    touch artifacts/bin/linux/x64_Release_openssl/libmsquic.lttng.so && ./scripts/make-packages.sh --output /tmp && \
-    rpm -i /tmp/libmsquic*rpm  && \
-    cd ~ ; rm -rf msquic /tmp/libmsquic* && \
-    rpm -e powershell-lts dotnet lttng-tools perl-FindBin rpmdevtools ruby-devel && \
+# MsQuic
+RUN dnf install -y libmsquic && \
+    dnf download libmsquic-1.9* && \
+    rpm -i --force libmsquic-1.9* && \
+    rm -f libmsquic-1.9* && \
     dnf clean all
 
 # Needed for .NET corefx tests to pass

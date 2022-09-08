@@ -21,8 +21,8 @@ RUN dnf remove -y  python3-pip && \
     pip download --no-deps helix-scripts --index-url https://dnceng.pkgs.visualstudio.com/public/_packaging/helix-client-prod/pypi/simple && \
     pip install ./helix_scripts-*-py3-none-any.whl
 
-# There is problem with signature on 2.0 package. --nogpgcheck should be removed once resolved.
-RUN dnf install -y --nogpgcheck libmsquic && \
+# MsQuic
+RUN dnf install -y libmsquic && \
     dnf download libmsquic-1.9* && \
     rpm -i --force libmsquic-1.9* && \
     rm -f libmsquic-1.9* && \
