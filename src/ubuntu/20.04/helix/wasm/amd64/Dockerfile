@@ -23,5 +23,6 @@ RUN npm install jsvu -g && \
     jsvu --os=linux64 --engines=all
 
 ENV PATH="/home/helixbot/.jsvu:${PATH}"
+RUN v8 -e "console.log(version());quit();"
 
 USER helixbot
