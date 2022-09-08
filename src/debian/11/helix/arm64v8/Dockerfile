@@ -25,6 +25,7 @@ RUN apt-get update && \
         locales-all \
         python3-dev \
         python3-pip \
+        software-properties-common \
         sudo \
         tzdata \
         unzip \
