@@ -148,7 +148,10 @@
               "os": "linux",
               "osVersion": "bullseye",
               "tags": {
-                "debian-11-amd64-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
+                "debian-11-amd64-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
+                "debian-11-amd64": {
+                    "isLocal": true
+                }
               }
             }
           ]
@@ -174,7 +177,10 @@
               "os": "linux",
               "osVersion": "bullseye",
               "tags": {
-                "debian-11-helix-amd64-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
+                "debian-11-helix-amd64-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
+                "debian-11-helix-amd64": {
+                    "isLocal": true
+                }
               }
             }
           ]
@@ -218,6 +224,32 @@
                 "debian-11-opt-arm64v8-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
               },
               "variant": "v8"
+            }
+          ]
+        },
+        {
+          "platforms": [
+            {
+              "architecture": "amd64",
+              "dockerfile": "src/debian/11/unknown/amd64",
+              "os": "linux",
+              "osVersion": "bullseye",
+              "tags": {
+                "debian-11-unknown-amd64-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
+              }
+            }
+          ]
+        },
+        {
+          "platforms": [
+            {
+              "architecture": "amd64",
+              "dockerfile": "src/debian/11/unknown-helix/amd64",
+              "os": "linux",
+              "osVersion": "bullseye",
+              "tags": {
+                "debian-11-unknown-helix-amd64-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
+              }
             }
           ]
         },
