@@ -17,12 +17,12 @@ RUN apt-get clean && \
      \
      && localedef -i en_US -c -f UTF-8 -A /usr/share/locale/locale.alias en_US.UTF-8
 
-# Install V8 & other engines in the non-root context
 
-RUN npm install jsvu -g && \
-    jsvu --os=linux64 --engines=all
-
-ENV PATH="/home/helixbot/.jsvu:${PATH}"
-RUN /home/helixbot/.jsvu/v8 -e "console.log(version());quit();"
+RUN npm install jsvu -g
 
 USER helixbot
+
+# Install V8 & other engines in the non-root context
+RUN jsvu --os=linux64 --engines=v8
+ENV PATH="/home/helixbot/.jsvu:${PATH}"
+RUN v8 -e "console.log(version());quit();"
