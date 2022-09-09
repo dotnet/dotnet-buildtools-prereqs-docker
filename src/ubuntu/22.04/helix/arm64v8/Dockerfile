@@ -47,7 +47,9 @@ RUN ln -sf /usr/bin/python3 /usr/bin/python && \
     export CRYPTOGRAPHY_DONT_BUILD_RUST=1 && \
     pip install ./helix_scripts-*-py3-none-any.whl
 
-# build MsQuic as we don't have packages
+# build MsQuic as we don't have binary package.
+# Ubuntu 22  does not have OpenSSL 1.1.1 package and Quic releases currently do not work with OpenSsl3
+# support for OpenSSL3 is early progress in msquic/main
 RUN cd /tmp && \
     mkdir pwsh && \
     cd pwsh && \
