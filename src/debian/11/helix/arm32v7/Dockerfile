@@ -39,7 +39,7 @@ RUN apt-get update && \
 # There is problem with posting, use direct link instead. (signed binaries)
 RUN curl -LO https://github.com/microsoft/msquic/releases/download/v2.1.1/libmsquic_2.1.1_armv7l.deb && \
     dpkg --force-architecture -i libmsquic_2.1.1_armv7l.deb && \
-        rm libmsquic_2.1.1_armv7l.deb
+    rm libmsquic_2.1.1_armv7l.deb
 
 ENV LANG=en_US.utf8
 
