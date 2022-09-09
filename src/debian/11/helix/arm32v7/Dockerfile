@@ -27,12 +27,19 @@ RUN apt-get update && \
         locales-all \
         python3-dev \
         python3-pip \
+        software-properties-common \
         sudo \
         tzdata \
         unzip \
     && rm -rf /var/lib/apt/lists/* \
     \
     && localedef -i en_US -c -f UTF-8 -A /usr/share/locale/locale.alias en_US.UTF-8
+
+# Add MsQuic
+# There is problem with posting, use direct link instead. (signed binaries)
+RUN curl -LO https://github.com/microsoft/msquic/releases/download/v2.1.1/libmsquic_2.1.1_armv7l.deb && \
+    dpkg --force-architecture -i libmsquic_2.1.1_armv7l.deb && \
+    rm libmsquic_2.1.1_armv7l.deb
 
 ENV LANG=en_US.utf8
 
