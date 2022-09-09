@@ -36,14 +36,10 @@ RUN apt-get update && \
     && localedef -i en_US -c -f UTF-8 -A /usr/share/locale/locale.alias en_US.UTF-8
 
 # Add MsQuic
-RUN curl -LO https://packages.microsoft.com/keys/microsoft.asc && \
-    echo 2cfd20a306b2fa5e25522d78f2ef50a1f429d35fd30bd983e2ebffc2b80944fa microsoft.asc| sha256sum --check - && \
-    apt-key add microsoft.asc && \
-    apt-add-repository https://packages.microsoft.com/debian/11/prod && \
-    apt-get update && \
-    apt-get install libmsquic && \
-    rm -rf /var/lib/apt/lists/* microsoft.asc
-
+# There is problem with posting, use direct link instead. (signed binaries)
+RUN curl -LO https://github.com/microsoft/msquic/releases/download/v2.1.1/libmsquic_2.1.1_armv7l.deb && \
+    dpkg --force-architecture -i libmsquic_2.1.1_armv7l.deb && \
+        rm libmsquic_2.1.1_armv7l.deb
 
 ENV LANG=en_US.utf8
 
