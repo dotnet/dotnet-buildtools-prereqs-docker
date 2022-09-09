@@ -29,7 +29,6 @@ RUN apt-get update && \
         locales-all \
         python3-dev \
         python3-pip \
-        software-properties-common \
         sudo \
         tzdata \
         unzip \
@@ -51,17 +50,11 @@ RUN ln -sf /usr/bin/python3 /usr/bin/python && \
     pip install ./helix_scripts-*-py3-none-any.whl
 
 # Add MsQuic
-# MsQuic did not publish arm64 package for 18.04 but there is one for 20.04.
-# Since the binary is identical we will use 20.04 repo for now.
-# This can be fixed in the future if/when package is available.
-RUN curl -LO https://packages.microsoft.com/keys/microsoft.asc && \
-    echo 2cfd20a306b2fa5e25522d78f2ef50a1f429d35fd30bd983e2ebffc2b80944fa microsoft.asc| sha256sum --check - && \
-    apt-key add microsoft.asc && \
-    rm microsoft.asc && \
-    apt-add-repository https://packages.microsoft.com/ubuntu/20.04/prod && \
-    apt-get update && \
-    apt-get install -y libmsquic && \
-    rm -rf /var/lib/apt/lists/*
+# MsQuic did not publish arm64 package for 18.04
+# Use direct link to signed binary for now
+RUN curl -LO https://github.com/microsoft/msquic/releases/download/v2.1.1/libmsquic_2.1.1_arm64.deb && \
+    dpkg -i libmsquic_2.1.1_arm64.deb && \
+    rm -f libmsquic_2.1.1_arm64.deb
 
 RUN adduser --disabled-password --gecos '' --uid 1001 --shell /bin/bash --ingroup adm helixbot && \
     chmod -R +x /root && \
