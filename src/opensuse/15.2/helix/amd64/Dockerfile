@@ -28,11 +28,16 @@ RUN zypper ref && \
         python3-devel \
         python3-pip \
         sudo \
+        wget \
         unzip && \
         \
         zypper clean -a
 
 ENV LANG=en_US.utf8
+
+RUN wget https://github.com/microsoft/msquic/releases/download/v2.1.1/libmsquic-2.1.1-1.x86_64.rpm && \
+    rpm -i libmsquic-2.1.1-1.x86_64.rpm && \
+    rm libmsquic-2.1.1-1.x86_64.rpm
 
 RUN ln -sf /usr/bin/python3 /usr/bin/python && \
     python -m pip install --upgrade pip==20.2 && \
