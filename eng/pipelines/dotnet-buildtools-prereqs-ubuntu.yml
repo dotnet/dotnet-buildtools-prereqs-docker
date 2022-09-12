@@ -27,3 +27,9 @@ stages:
     linuxAmdBuildJobTimeout: 360
     customBuildInitSteps:
     - template: /eng/pipelines/steps/install-cross-build-prereqs.yml
+    - ${{ if eq(variables['System.TeamProject'], 'internal') }}:
+      - template: ../../../pipelines/steps/set-base-image-override-options.yml
+        parameters:
+          variableName: customCopyBaseImagesArgs
+          dockerfileOs: ubuntu
+          baseOverrideRegistry: $(overrideRegistry) # Comes from DotNet-Docker-Common variable group

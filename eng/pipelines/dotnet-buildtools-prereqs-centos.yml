@@ -26,3 +26,10 @@ stages:
     publicProjectName: ${{ variables.publicProjectName }}
     linuxAmdBuildJobTimeout: 210
     linuxArmBuildJobTimeout: 300
+    ${{ if eq(variables['System.TeamProject'], 'internal') }}:
+      customCopyBaseImagesInitSteps:
+      - template: ../../../pipelines/steps/set-base-image-override-options.yml
+        parameters:
+          variableName: customCopyBaseImagesArgs
+          dockerfileOs: centos
+          baseOverrideRegistry: $(overrideRegistry) # Comes from DotNet-Docker-Common variable group

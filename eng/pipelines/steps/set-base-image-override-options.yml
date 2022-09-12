@@ -1,0 +1,25 @@
+parameters:
+  # Name of the pipeline variable to append the options to
+  variableName: null
+  dockerfileOs: ''
+  baseOverrideRegistry: ''
+
+steps:
+# Configures Image Builder options to override the base image tags for Ubuntu as defined in the Dockerfiles
+# and instead use the corresponding image from the Ubuntu ACR.
+- powershell: |
+    # For official builds, we configure the regex and substitution
+    # to use a different registry. (e.g. "ubuntu:20.04" becomes "ubuntu.azurecr.io/ubuntu:20.04")".
+    # These tags are multi-arch tags so they'll work across all the architectures we provide.
+    $baseOverrideRegex = "($(${{ parameters.dockerfileOs }}):.+)"
+
+    # Be sure to use the string literal syntax here (single quote) to avoid $1 being interpreted as a variable
+    $baseOverrideSubstitution = "$(${{ parameters.baseOverrideRegistry }})"
+    $baseOverrideSubstitution += '/$1'
+    
+    # Assume the variable already exists and append to it. This allows us to dynamically append additional
+    # options to a general purpose variable.
+    $options = "$(${{ parameters.variableName }})"
+    $options += " --base-override-regex '$baseOverrideRegex' --base-override-sub '$baseOverrideSubstitution'"
+    echo "##vso[task.setvariable variable=${{ parameters.variableName }}]$options"
+  displayName: Set Base Image Override Options
