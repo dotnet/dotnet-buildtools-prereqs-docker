@@ -611,7 +611,8 @@
               "os": "linux",
               "osVersion": "jammy",
               "tags": {
-                "ubuntu-22.04-cross-arm-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
+                "ubuntu-22.04-cross-arm-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
+                "ubuntu-22.04-cross-arm-$(FloatingTagSuffix)": {}
               }
             }
           ]
@@ -623,7 +624,8 @@
               "os": "linux",
               "osVersion": "jammy",
               "tags": {
-                "ubuntu-22.04-cross-arm-alpine-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
+                "ubuntu-22.04-cross-arm-alpine-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
+                "ubuntu-22.04-cross-arm-alpine-$(FloatingTagSuffix)": {}
               }
             }
           ]
@@ -635,7 +637,8 @@
               "os": "linux",
               "osVersion": "jammy",
               "tags": {
-                "ubuntu-22.04-cross-arm64-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
+                "ubuntu-22.04-cross-arm64-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
+                "ubuntu-22.04-cross-arm64-$(FloatingTagSuffix)": {}
               }
             }
           ]
@@ -647,7 +650,8 @@
               "os": "linux",
               "osVersion": "jammy",
               "tags": {
-                "ubuntu-22.04-cross-arm64-alpine-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
+                "ubuntu-22.04-cross-arm64-alpine-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
+                "ubuntu-22.04-cross-arm64-alpine-$(FloatingTagSuffix)": {}
               }
             }
           ]
@@ -714,7 +718,8 @@
               "os": "linux",
               "osVersion": "jammy",
               "tags": {
-                "ubuntu-22.04-debpkg-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
+                "ubuntu-22.04-debpkg-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
+                "ubuntu-22.04-debpkg-$(FloatingTagSuffix)": {}
               }
             }
           ]
@@ -727,6 +732,7 @@
               "osVersion": "jammy",
               "tags": {
                 "ubuntu-22.04-mlnet-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
+                "ubuntu-22.04-mlnet-$(FloatingTagSuffix)": {},
                 "ubuntu-22.04-mlnet": {
                   "isLocal": true
                 }
@@ -741,7 +747,8 @@
               "os": "linux",
               "osVersion": "jammy",
               "tags": {
-                "ubuntu-22.04-mlnet-helix-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
+                "ubuntu-22.04-mlnet-helix-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
+                "ubuntu-22.04-mlnet-helix-$(FloatingTagSuffix)": {}
               }
             }
           ]
