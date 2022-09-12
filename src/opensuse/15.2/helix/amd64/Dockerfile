@@ -28,11 +28,20 @@ RUN zypper ref && \
         python3-devel \
         python3-pip \
         sudo \
-        unzip && \
+        unzip \
+        wget && \
         \
         zypper clean -a
 
 ENV LANG=en_US.utf8
+
+# Install MsQuic from official GitHub releases
+RUN wget https://packages.microsoft.com/keys/microsoft.asc && \
+    echo 2cfd20a306b2fa5e25522d78f2ef50a1f429d35fd30bd983e2ebffc2b80944fa microsoft.asc | sha256sum --check - && \
+    rpm --import microsoft.asc && \
+    rm microsoft.asc && \
+    zypper install -y https://github.com/microsoft/msquic/releases/download/v2.1.1/libmsquic-2.1.1-1.x86_64.rpm && \
+    zypper clean -a
 
 RUN ln -sf /usr/bin/python3 /usr/bin/python && \
     python -m pip install --upgrade pip==20.2 && \
