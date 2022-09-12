@@ -28,8 +28,8 @@ RUN zypper ref && \
         python3-devel \
         python3-pip \
         sudo \
-        wget \
-        unzip && \
+        unzip \
+        wget && \
         \
         zypper clean -a
 
