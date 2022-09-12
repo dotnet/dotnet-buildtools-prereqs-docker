@@ -10,14 +10,27 @@ variables:
   value: false
 - name: publicGitRepoUri
   value: https://github.com/dotnet/dotnet-buildtools-prereqs-docker
+- ${{ if eq(variables['Build.SourceBranch'], 'refs/heads/production') }}:
+  - name: floatingTagSuffix
+    value: latest
+- ${{ elseif eq(variables['Build.SourceBranch'], 'refs/heads/main') }}:
+  - name: floatingTagSuffix
+    value: staging
+- ${{ else }}:
+  - name: floatingTagSuffix
+    value: $(Build.SourceBranchName)
 - name: manifestVariables
-  value: --var UniqueId=$(sourceBuildId)
-- name: publicSourceBranch
-  value: main
+  value: --var UniqueId=$(sourceBuildId) --var FloatingTagSuffix=$(floatingTagSuffix)
+- ${{ if or(eq(variables['Build.SourceBranch'], 'refs/heads/production'), eq(variables['System.PullRequest.TargetBranch'], 'refs/heads/production')) }}:
+  - name: publicSourceBranch
+    value: production
+- ${{ else }}:
+  - name: publicSourceBranch
+    value: main
 - name: ingestKustoImageInfo
   value: false
 - name: testScriptPath
   value: ""
 - ${{ if eq(variables['System.TeamProject'], 'internal') }}:
-    - name: build.imageBuilderDockerRunExtraOptions
-      value: -e DOCKER_REPO=$(acr.server)/$(stagingRepoPrefix)dotnet-buildtools/prereqs
+  - name: build.imageBuilderDockerRunExtraOptions
+    value: -e DOCKER_REPO=$(acr.server)/$(stagingRepoPrefix)dotnet-buildtools/prereqs

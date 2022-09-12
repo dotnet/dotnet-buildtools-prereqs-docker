@@ -10,6 +10,7 @@
             "osVersion": "fedora34",
             "tags": {
               "fedora-34-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
+              "fedora-34-$(FloatingTagSuffix)": {},
               "fedora-34": {
                 "isLocal": true
               }
@@ -23,7 +24,8 @@
               "os": "linux",
               "osVersion": "fedora34",
               "tags": {
-                "fedora-34-helix-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
+                "fedora-34-helix-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
+                "fedora-34-helix-$(FloatingTagSuffix)": {}
               }
             }
           ]
@@ -35,6 +37,7 @@
             "osVersion": "fedora36",
             "tags": {
               "fedora-36-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
+              "fedora-36-$(FloatingTagSuffix)": {},
               "fedora-36": {
                 "isLocal": true
               }
@@ -48,7 +51,8 @@
               "os": "linux",
               "osVersion": "fedora36",
               "tags": {
-                "fedora-36-helix-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
+                "fedora-36-helix-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
+                "fedora-36-helix-$(FloatingTagSuffix)": {}
               }
             }
           ]

@@ -11,6 +11,7 @@
               "osVersion": "centos7",
               "tags": {
                 "centos-7-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
+                "centos-7-$(FloatingTagSuffix)": {},
                 "centos-7": {
                   "isLocal": true
                 }
@@ -26,6 +27,7 @@
               "osVersion": "centos7",
               "tags": {
                 "centos-7-mlnet-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
+                "centos-7-mlnet-$(FloatingTagSuffix)": {},
                 "centos-7-mlnet": {
                   "isLocal": true
                 }
@@ -40,7 +42,8 @@
               "os": "linux",
               "osVersion": "centos7",
               "tags": {
-                "centos-7-mlnet-helix-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
+                "centos-7-mlnet-helix-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
+                "centos-7-mlnet-helix-$(FloatingTagSuffix)": {}
               }
             }
           ]
@@ -52,7 +55,8 @@
               "os": "linux",
               "osVersion": "centos7",
               "tags": {
-                "centos-7-rpmpkg-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
+                "centos-7-rpmpkg-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
+                "centos-7-rpmpkg-$(FloatingTagSuffix)": {}
               }
             }
           ]
@@ -64,7 +68,8 @@
               "os": "linux",
               "osVersion": "centos7",
               "tags": {
-                "centos-7-source-build-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
+                "centos-7-source-build-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
+                "centos-7-source-build-$(FloatingTagSuffix)": {}
               }
             }
           ]
@@ -76,7 +81,8 @@
               "os": "linux",
               "osVersion": "centos-stream8",
               "tags": {
-                "centos-stream8-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
+                "centos-stream8-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
+                "centos-stream8-$(FloatingTagSuffix)": {}
               }
             }
           ]
@@ -88,7 +94,8 @@
               "os": "linux",
               "osVersion": "centos-stream9",
               "tags": {
-                "centos-stream9-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
+                "centos-stream9-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
+                "centos-stream9-$(FloatingTagSuffix)": {}
               }
             }
           ]
@@ -100,7 +107,8 @@
               "os": "linux",
               "osVersion": "centos-stream9",
               "tags": {
-                "centos-stream9-helix-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
+                "centos-stream9-helix-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
+                "centos-stream9-helix-$(FloatingTagSuffix)": {}
               }
             }
           ]
