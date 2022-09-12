@@ -10,7 +10,8 @@
               "os": "windows",
               "osVersion": "nanoserver-1809",
               "tags": {
-                "nanoserver-1809-helix-amd64-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
+                "nanoserver-1809-helix-amd64-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
+                "nanoserver-1809-helix-amd64-$(FloatingTagSuffix)": {}
               }
             }
           ]

@@ -11,6 +11,7 @@
               "osVersion": "alpine3.13",
               "tags": {
                 "alpine-3.13-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
+                "alpine-3.13-$(FloatingTagSuffix)": {},
                 "alpine-3.13": {
                   "isLocal": true
                 }
@@ -25,7 +26,8 @@
               "os": "linux",
               "osVersion": "alpine3.13",
               "tags": {
-                "alpine-3.13-helix-amd64-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
+                "alpine-3.13-helix-amd64-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
+                "alpine-3.13-helix-amd64-$(FloatingTagSuffix)": {}
               }
             }
           ]
@@ -38,7 +40,8 @@
               "os": "linux",
               "osVersion": "alpine3.13",
               "tags": {
-                "alpine-3.13-helix-arm32v7-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
+                "alpine-3.13-helix-arm32v7-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
+                "alpine-3.13-helix-arm32v7-$(FloatingTagSuffix)": {}
               },
               "variant": "v7"
             }
@@ -52,7 +55,8 @@
               "os": "linux",
               "osVersion": "alpine3.13",
               "tags": {
-                "alpine-3.13-helix-arm64v8-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
+                "alpine-3.13-helix-arm64v8-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
+                "alpine-3.13-helix-arm64v8-$(FloatingTagSuffix)": {}
               },
               "variant": "v8"
             }
@@ -65,7 +69,8 @@
               "os": "linux",
               "osVersion": "alpine3.13",
               "tags": {
-                "alpine-3.13-WithNode-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
+                "alpine-3.13-WithNode-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
+                "alpine-3.13-WithNode-$(FloatingTagSuffix)": {}
               }
             }
           ]
@@ -78,6 +83,7 @@
               "osVersion": "alpine3.14",
               "tags": {
                 "alpine-3.14-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
+                "alpine-3.14-$(FloatingTagSuffix)": {},
                 "alpine-3.14": {
                   "isLocal": true
                 }
@@ -92,7 +98,8 @@
               "os": "linux",
               "osVersion": "alpine3.14",
               "tags": {
-                "alpine-3.14-helix-amd64-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
+                "alpine-3.14-helix-amd64-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
+                "alpine-3.14-helix-amd64-$(FloatingTagSuffix)": {}
               }
             }
           ]
@@ -105,7 +112,8 @@
               "os": "linux",
               "osVersion": "alpine3.14",
               "tags": {
-                "alpine-3.14-helix-arm32v7-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
+                "alpine-3.14-helix-arm32v7-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
+                "alpine-3.14-helix-arm32v7-$(FloatingTagSuffix)": {}
               },
               "variant": "v7"
             }
@@ -119,7 +127,8 @@
               "os": "linux",
               "osVersion": "alpine3.14",
               "tags": {
-                "alpine-3.14-helix-arm64v8-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
+                "alpine-3.14-helix-arm64v8-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
+                "alpine-3.14-helix-arm64v8-$(FloatingTagSuffix)": {}
               },
               "variant": "v8"
             }
@@ -132,7 +141,8 @@
               "os": "linux",
               "osVersion": "alpine3.14",
               "tags": {
-                "alpine-3.14-WithNode-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
+                "alpine-3.14-WithNode-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
+                "alpine-3.14-WithNode-$(FloatingTagSuffix)": {}
               }
             }
           ]
@@ -145,6 +155,7 @@
               "osVersion": "alpine3.15",
               "tags": {
                 "alpine-3.15-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
+                "alpine-3.15-$(FloatingTagSuffix)": {},
                 "alpine-3.15": {
                   "isLocal": true
                 }
@@ -159,7 +170,8 @@
               "os": "linux",
               "osVersion": "alpine3.15",
               "tags": {
-                "alpine-3.15-helix-amd64-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
+                "alpine-3.15-helix-amd64-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
+                "alpine-3.15-helix-amd64-$(FloatingTagSuffix)": {}
               }
             }
           ]
@@ -172,7 +184,8 @@
               "os": "linux",
               "osVersion": "alpine3.15",
               "tags": {
-                "alpine-3.15-helix-arm32v7-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
+                "alpine-3.15-helix-arm32v7-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
+                "alpine-3.15-helix-arm32v7-$(FloatingTagSuffix)": {}
               },
               "variant": "v7"
             }
@@ -186,7 +199,8 @@
               "os": "linux",
               "osVersion": "alpine3.15",
               "tags": {
-                "alpine-3.15-helix-arm64v8-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
+                "alpine-3.15-helix-arm64v8-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
+                "alpine-3.15-helix-arm64v8-$(FloatingTagSuffix)": {}
               },
               "variant": "v8"
             }
@@ -199,7 +213,8 @@
               "os": "linux",
               "osVersion": "alpine3.15",
               "tags": {
-                "alpine-3.15-WithNode-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
+                "alpine-3.15-WithNode-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
+                "alpine-3.15-WithNode-$(FloatingTagSuffix)": {}
               }
             }
           ]

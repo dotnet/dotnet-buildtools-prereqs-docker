@@ -12,6 +12,7 @@
               "osVersion": "buster",
               "tags": {
                 "raspbian-10-crossdeps-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
+                "raspbian-10-crossdeps-$(FloatingTagSuffix)": {},
                 "raspbian-10-crossdeps": {
                   "isLocal": true
                 }
@@ -29,7 +30,8 @@
               "os": "linux",
               "osVersion": "buster",
               "tags": {
-                "raspbian-10-helix-arm32v6-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
+                "raspbian-10-helix-arm32v6-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
+                "raspbian-10-helix-arm32v6-$(FloatingTagSuffix)": {}
               },
               "variant": "v6"
             }

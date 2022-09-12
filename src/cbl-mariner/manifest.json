@@ -10,7 +10,8 @@
               "os": "linux",
               "osVersion": "cbl-mariner1.0",
               "tags": {
-                "cbl-mariner-1.0-helix-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
+                "cbl-mariner-1.0-helix-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
+                "cbl-mariner-1.0-helix-$(FloatingTagSuffix)": {}
               }
             }
           ]
@@ -23,6 +24,7 @@
               "osVersion": "cbl-mariner2.0",
               "tags": {
                 "cbl-mariner-2.0-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
+                "cbl-mariner-2.0-$(FloatingTagSuffix)": {}
               }
             }
           ]
@@ -35,6 +37,7 @@
               "osVersion": "cbl-mariner2.0",
               "tags": {
                 "cbl-mariner-2.0-fpm-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
+                "cbl-mariner-2.0-fpm-$(FloatingTagSuffix)": {}
               }
             }
           ]
