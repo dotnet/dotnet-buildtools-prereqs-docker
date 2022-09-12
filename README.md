@@ -98,16 +98,16 @@ The [manifest.json](./manifest.json) contains metadata used by the build infrast
 
 ### Image Dependency
 
-A precondition for building an image is to ensure that the base image specified in the [FROM]((https://docs.docker.com/engine/reference/builder/#from)) statement of the Dockerfile is available either locally or can be pulled from a Docker registry.  Some of the Dockerfiles depend on images produced from other Dockerfiles (e.g. [src/ubuntu/16.04/debpkg](./src/ubuntu/16.04/debpkg)).  In these cases, the `FROM` reference should not include the `<date-time>-<dockerfile-commit-sha>` portion of the tags.  This is referred to as a stable tag as it does not change from build to build.  This pattern is used so that the Dockerfiles do not need constant updating as new versions of the base images are built.  To support this scenario, the manifest entry for the base image must be defined to produce the stable tag.
+A precondition for building an image is to ensure that the base image specified in the [FROM]((https://docs.docker.com/engine/reference/builder/#from)) statement of the Dockerfile is available either locally or can be pulled from a Docker registry.  Some of the Dockerfiles depend on images produced from other Dockerfiles (e.g. [src/ubuntu/22.04/debpkg](./src/ubuntu/22.04/debpkg)).  In these cases, the `FROM` reference should not include the `<date-time>-<dockerfile-commit-sha>` portion of the tags.  This is referred to as a stable tag as it does not change from build to build.  This pattern is used so that the Dockerfiles do not need constant updating as new versions of the base images are built.  To support this scenario, the manifest entry for the base image must be defined to produce the stable tag.
 
 ```json
 "platforms": [
     {
-        "dockerfile": "ubuntu/16.04",
+        "dockerfile": "ubuntu/22.04",
         "os": "linux",
         "tags": {
-            "ubuntu-16.04-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
-            "ubuntu-16.04": {
+            "ubuntu-22.04-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
+            "ubuntu-22.04": {
                 "isLocal": true
             }
         }

@@ -6,208 +6,6 @@
         {
           "platforms": [
             {
-              "dockerfile": "src/ubuntu/16.04",
-              "os": "linux",
-              "osVersion": "xenial",
-              "tags": {
-                "ubuntu-16.04-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
-                "ubuntu-16.04-$(FloatingTagSuffix)": {},
-                "ubuntu-16.04": {
-                  "isLocal": true
-                }
-              }
-            }
-          ]
-        },
-        {
-          "platforms": [
-            {
-              "architecture": "arm",
-              "dockerfile": "src/ubuntu/16.04/arm32v7",
-              "os": "linux",
-              "osVersion": "xenial",
-              "tags": {
-                "ubuntu-16.04-arm32v7-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
-                "ubuntu-16.04-arm32v7-$(FloatingTagSuffix)": {}
-              },
-              "variant": "v7"
-            }
-          ]
-        },
-        {
-          "platforms": [
-            {
-              "architecture": "arm64",
-              "dockerfile": "src/ubuntu/16.04/arm64v8",
-              "os": "linux",
-              "osVersion": "xenial",
-              "tags": {
-                "ubuntu-16.04-arm64v8-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
-                "ubuntu-16.04-arm64v8-$(FloatingTagSuffix)": {}
-              },
-              "variant": "v8"
-            }
-          ]
-        },
-        {
-          "platforms": [
-            {
-              "dockerfile": "src/ubuntu/16.04/coredeps",
-              "os": "linux",
-              "osVersion": "xenial",
-              "tags": {
-                "ubuntu-16.04-coredeps-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
-                "ubuntu-16.04-coredeps-$(FloatingTagSuffix)": {},
-                "ubuntu-16.04-coredeps": {
-                  "isLocal": true
-                }
-              }
-            }
-          ]
-        },
-        {
-          "platforms": [
-            {
-              "dockerfile": "src/ubuntu/16.04/crossdeps",
-              "os": "linux",
-              "osVersion": "xenial",
-              "tags": {
-                "ubuntu-16.04-crossdeps-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
-                "ubuntu-16.04-crossdeps-$(FloatingTagSuffix)": {},
-                "ubuntu-16.04-crossdeps": {
-                  "isLocal": true
-                }
-              }
-            }
-          ]
-        },
-        {
-          "platforms": [
-            {
-              "dockerfile": "src/ubuntu/16.04/cross",
-              "os": "linux",
-              "osVersion": "xenial",
-              "tags": {
-                "ubuntu-16.04-cross-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
-                "ubuntu-16.04-cross-$(FloatingTagSuffix)": {}
-              }
-            }
-          ]
-        },
-        {
-          "platforms": [
-            {
-              "dockerfile": "src/ubuntu/16.04/cross/arm-alpine",
-              "os": "linux",
-              "osVersion": "xenial",
-              "tags": {
-                "ubuntu-16.04-cross-arm-alpine-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
-                "ubuntu-16.04-cross-arm-alpine-$(FloatingTagSuffix)": {}
-              }
-            }
-          ]
-        },
-        {
-          "platforms": [
-            {
-              "dockerfile": "src/ubuntu/16.04/cross/arm64",
-              "os": "linux",
-              "osVersion": "xenial",
-              "tags": {
-                "ubuntu-16.04-cross-arm64-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
-                "ubuntu-16.04-cross-arm64-$(FloatingTagSuffix)": {}
-              }
-            }
-          ]
-        },
-        {
-          "platforms": [
-            {
-              "dockerfile": "src/ubuntu/16.04/cross/arm64-alpine",
-              "os": "linux",
-              "osVersion": "xenial",
-              "tags": {
-                "ubuntu-16.04-cross-arm64-alpine-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
-                "ubuntu-16.04-cross-arm64-alpine-$(FloatingTagSuffix)": {}
-              }
-            }
-          ]
-        },
-        {
-          "platforms": [
-            {
-              "dockerfile": "src/ubuntu/16.04/debpkg",
-              "os": "linux",
-              "osVersion": "xenial",
-              "tags": {
-                "ubuntu-16.04-debpkg-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
-                "ubuntu-16.04-debpkg-$(FloatingTagSuffix)": {}
-              }
-            }
-          ]
-        },
-        {
-          "platforms": [
-            {
-              "architecture": "arm",
-              "dockerfile": "src/ubuntu/16.04/helix/arm32v7",
-              "os": "linux",
-              "osVersion": "xenial",
-              "tags": {
-                "ubuntu-16.04-helix-arm32v7-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
-                "ubuntu-16.04-helix-arm32v7-$(FloatingTagSuffix)": {}
-              },
-              "variant": "v7"
-            }
-          ]
-        },
-        {
-          "platforms": [
-            {
-              "architecture": "arm64",
-              "dockerfile": "src/ubuntu/16.04/helix/arm64v8",
-              "os": "linux",
-              "osVersion": "xenial",
-              "tags": {
-                "ubuntu-16.04-helix-arm64v8-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
-                "ubuntu-16.04-helix-arm64v8-$(FloatingTagSuffix)": {}
-              },
-              "variant": "v8"
-            }
-          ]
-        },
-        {
-          "platforms": [
-            {
-              "dockerfile": "src/ubuntu/16.04/mlnet",
-              "os": "linux",
-              "osVersion": "xenial",
-              "tags": {
-                "ubuntu-16.04-mlnet-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
-                "ubuntu-16.04-mlnet-$(FloatingTagSuffix)": {},
-                "ubuntu-16.04-mlnet": {
-                  "isLocal": true
-                }
-              }
-            }
-          ]
-        },
-        {
-          "platforms": [
-            {
-              "dockerfile": "src/ubuntu/16.04/mlnet/helix",
-              "os": "linux",
-              "osVersion": "xenial",
-              "tags": {
-                "ubuntu-16.04-mlnet-helix-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
-                "ubuntu-16.04-mlnet-helix-$(FloatingTagSuffix)": {}
-              }
-            }
-          ]
-        },
-        {
-          "platforms": [
-            {
               "dockerfile": "src/ubuntu/18.04/amd64",
               "os": "linux",
               "osVersion": "bionic",
@@ -312,19 +110,6 @@
         {
           "platforms": [
             {
-              "dockerfile": "src/ubuntu/18.04/cross/arm/16.04",
-              "os": "linux",
-              "osVersion": "bionic",
-              "tags": {
-                "ubuntu-18.04-cross-arm-16.04-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
-                "ubuntu-18.04-cross-arm-16.04-$(FloatingTagSuffix)": {}
-              }
-            }
-          ]
-        },
-        {
-          "platforms": [
-            {
               "dockerfile": "src/ubuntu/18.04/cross/arm",
               "os": "linux",
               "osVersion": "bionic",
@@ -357,19 +142,6 @@
               "tags": {
                 "ubuntu-18.04-cross-arm64-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
                 "ubuntu-18.04-cross-arm64-$(FloatingTagSuffix)": {}
-              }
-            }
-          ]
-        },
-        {
-          "platforms": [
-            {
-              "dockerfile": "src/ubuntu/18.04/cross/arm64/16.04",
-              "os": "linux",
-              "osVersion": "bionic",
-              "tags": {
-                "ubuntu-18.04-cross-arm64-16.04-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
-                "ubuntu-18.04-cross-arm64-16.04-$(FloatingTagSuffix)": {}
               }
             }
           ]
@@ -835,6 +607,54 @@
         {
           "platforms": [
             {
+              "dockerfile": "src/ubuntu/22.04/cross/arm",
+              "os": "linux",
+              "osVersion": "jammy",
+              "tags": {
+                "ubuntu-22.04-cross-arm-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
+              }
+            }
+          ]
+        },
+        {
+          "platforms": [
+            {
+              "dockerfile": "src/ubuntu/22.04/cross/arm-alpine",
+              "os": "linux",
+              "osVersion": "jammy",
+              "tags": {
+                "ubuntu-22.04-cross-arm-alpine-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
+              }
+            }
+          ]
+        },
+        {
+          "platforms": [
+            {
+              "dockerfile": "src/ubuntu/22.04/cross/arm64",
+              "os": "linux",
+              "osVersion": "jammy",
+              "tags": {
+                "ubuntu-22.04-cross-arm64-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
+              }
+            }
+          ]
+        },
+        {
+          "platforms": [
+            {
+              "dockerfile": "src/ubuntu/22.04/cross/arm64-alpine",
+              "os": "linux",
+              "osVersion": "jammy",
+              "tags": {
+                "ubuntu-22.04-cross-arm64-alpine-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
+              }
+            }
+          ]
+        },
+        {
+          "platforms": [
+            {
               "dockerfile": "src/ubuntu/22.04/cross/riscv64",
               "os": "linux",
               "osVersion": "jammy",
@@ -894,8 +714,34 @@
               "os": "linux",
               "osVersion": "jammy",
               "tags": {
-                "ubuntu-22.04-debpkg-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
-                "ubuntu-22.04-debpkg-$(FloatingTagSuffix)": {}
+                "ubuntu-22.04-debpkg-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
+              }
+            }
+          ]
+        },
+        {
+          "platforms": [
+            {
+              "dockerfile": "src/ubuntu/22.04/mlnet",
+              "os": "linux",
+              "osVersion": "jammy",
+              "tags": {
+                "ubuntu-22.04-mlnet-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
+                "ubuntu-22.04-mlnet": {
+                  "isLocal": true
+                }
+              }
+            }
+          ]
+        },
+        {
+          "platforms": [
+            {
+              "dockerfile": "src/ubuntu/22.04/mlnet/helix",
+              "os": "linux",
+              "osVersion": "jammy",
+              "tags": {
+                "ubuntu-22.04-mlnet-helix-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
               }
             }
           ]

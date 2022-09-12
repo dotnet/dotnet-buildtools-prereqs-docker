@@ -18,7 +18,6 @@ RUN apt-get update && \
         libffi-dev \
         libgdiplus \
         libicu-dev \
-        liblttng-ust-dev \
         libssl-dev \
         libtool \
         libunwind8 \
@@ -26,6 +25,7 @@ RUN apt-get update && \
         locales-all \
         python3-dev \
         python3-pip \
+        software-properties-common \
         sudo \
         tzdata \
         unzip \
@@ -44,19 +44,15 @@ RUN ln -sf /usr/bin/python3 /usr/bin/python && \
     export CRYPTOGRAPHY_DONT_BUILD_RUST=1 && \
     pip install ./helix_scripts-*-py3-none-any.whl
 
-# build MsQuic as we don't have packages
-RUN cd /tmp && \
-    mkdir pwsh && \
-    cd pwsh && \
-    curl -LO https://github.com/PowerShell/PowerShell/releases/download/v7.2.5/powershell-7.2.5-linux-arm64.tar.gz && \
-    echo "709265A0B99232CD8AB6F8A02C01F3AEE94262B959E1A4B0FD871C8789C07396 powershell-7.2.5-linux-arm64.tar.gz" | sha256sum --check - && \
-    tar xf powershell-7.2.5-linux-arm64.tar.gz && \
-    cd .. && \
-    git clone --depth 1 --single-branch --branch main --recursive https://github.com/dotnet/msquic && \
-    cd msquic/src/msquic  &&  PATH=~/.dotnet/tools:$PATH /tmp/pwsh/pwsh scripts/build.ps1 -arch arm64 -Config Release -UseSystemOpenSSLCrypto -DisableTools -DisableTest -DisablePerf && \
-    cp artifacts/bin/linux/arm64_Release_openssl/libmsquic.so.2 artifacts/bin/linux/arm64_Release_openssl/libmsquic.lttng.so.2.2.0 /usr/lib/aarch64-linux-gnu && \
-    cd /tmp && \
-    rm -rf pwsh msquic
+# Add MsQuic
+RUN curl -LO https://packages.microsoft.com/keys/microsoft.asc && \
+    echo 2cfd20a306b2fa5e25522d78f2ef50a1f429d35fd30bd983e2ebffc2b80944fa microsoft.asc| sha256sum --check - && \
+    apt-key add microsoft.asc && \
+    rm microsoft.asc && \
+    apt-add-repository https://packages.microsoft.com/debian/11/prod && \
+    apt-get update && \
+    apt-get install -y libmsquic && \
+    rm -rf /var/lib/apt/lists/*
 
 # Create helixbot user and give rights to sudo without password
 # additionally, preinstall the virtualenv packages used for VSTS reporting to save time
