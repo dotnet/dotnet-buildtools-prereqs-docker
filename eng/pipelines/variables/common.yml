@@ -1,5 +1,8 @@
 variables:
 - template: ../../common/templates/variables/dotnet/build-test-publish.yml
+- name: officialBranches
+  # comma-delimited list of branch names
+  value: main,production
 - name: manifest
   value: manifest.json
 - name: dotnetVersion
