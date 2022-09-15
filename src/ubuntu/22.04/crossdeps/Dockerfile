@@ -27,6 +27,7 @@ RUN apt-get update \
         qemu \
         qemu-user-static \
         rpm2cpio \
+        texinfo \
         libbz2-dev \
         libz-dev \
         liblzma-dev \
