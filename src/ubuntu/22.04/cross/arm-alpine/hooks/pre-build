@@ -2,4 +2,4 @@
 
 SCRIPT=$(readlink -f "$0")
 SCRIPTPATH=$(dirname "$SCRIPT")
-$SCRIPTPATH/../../../../build-scripts/build-rootfs.sh ubuntu-22.04 alpine arm
+$SCRIPTPATH/../../../../build-scripts/run-arcade-build-rootfs.sh ubuntu-22.04 alpine arm

@@ -52,7 +52,7 @@ if [ $? -ne 0 ]; then
     exit 1
 fi
 
-echo "Running build-rootfs.sh"
+echo "Running dotnet/arcade's build-rootfs.sh"
 docker exec -e ROOTFS_DIR=/rootfs/$arch $buildRootFSContainer \
         /scripts/eng/common/cross/build-rootfs.sh $arch $crossToolset $lldb $llvm --skipunmount
 

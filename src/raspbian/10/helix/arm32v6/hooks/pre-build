@@ -2,4 +2,4 @@
 
 SCRIPT=$(readlink -f "$0")
 SCRIPTPATH=$(dirname "$SCRIPT")
-$SCRIPTPATH/../../../../../ubuntu/build-scripts/build-rootfs.sh raspbian-10 raspbian armv6 "" "" true
+$SCRIPTPATH/../../../../../ubuntu/build-scripts/run-arcade-build-rootfs.sh raspbian-10 raspbian armv6 "" "" true
