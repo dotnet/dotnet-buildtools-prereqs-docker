@@ -19,7 +19,8 @@ RUN ln -sf /usr/bin/python3 /usr/bin/python && \
 RUN cd /tmp && \
     mkdir pwsh && \
     cd pwsh && \
-    curl -L https://github.com/PowerShell/PowerShell/releases/download/v7.2.5/powershell-7.2.5-linux-alpine-x64.tar.gz | tar xfz - && \
+    powerShellVersionTag=$(curl --silent https://api.github.com/repos/PowerShell/PowerShell/releases/latest | jq -r .tag_name) && \
+    curl -L https://github.com/PowerShell/PowerShell/releases/download/$powerShellVersionTag/powershell-${powerShellVersionTag:1}-linux-alpine-x64.tar.gz | tar xfz - && \
     cd .. && \
     git clone --depth 1 --single-branch --branch release/7.0 --recursive https://github.com/dotnet/msquic && \
     cd msquic/src/msquic  &&  PATH=~/.dotnet/tools:$PATH /tmp/pwsh/pwsh scripts/build.ps1 -Config Release -UseSystemOpenSSLCrypto -DisableTools -DisableTest -DisablePerf && \
