@@ -48,5 +48,3 @@ RUN wget -O- https://apt.llvm.org/llvm.sh | bash -s -- 15 \
         llvm \
         python3-lldb \
     && rm -rf /var/lib/apt/lists/*
-
-RUN echo "a dummy change!"
