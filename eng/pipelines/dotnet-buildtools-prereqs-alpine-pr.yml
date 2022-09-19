@@ -25,9 +25,3 @@ stages:
   parameters:
     internalProjectName: ${{ variables.internalProjectName }}
     publicProjectName: ${{ variables.publicProjectName }}
-    customCopyBaseImagesInitSteps:
-    - template: ../../../pipelines/steps/set-base-image-override-options.yml
-      parameters:
-        variableName: customCopyBaseImagesArgs
-        dockerfileOs: alpine
-        baseOverrideRegistry: test
