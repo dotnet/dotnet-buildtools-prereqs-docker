@@ -13,15 +13,13 @@ steps:
     # These tags are multi-arch tags so they'll work across all the architectures we provide.
     $baseOverrideRegex = '($(${{ parameters.dockerfileOs }}):.+)'
 
-    Write-Host $baseOverrideRegex
-
-    # # Be sure to use the string literal syntax here (single quote) to avoid $1 being interpreted as a variable
-    # $baseOverrideSubstitution = "$(${{ parameters.baseOverrideRegistry }})"
-    # $baseOverrideSubstitution += '/$1'
+    # Be sure to use the string literal syntax here (single quote) to avoid $1 being interpreted as a variable
+    $baseOverrideSubstitution = "$(${{ parameters.baseOverrideRegistry }})"
+    $baseOverrideSubstitution += '/$1'
     
-    # # Assume the variable already exists and append to it. This allows us to dynamically append additional
-    # # options to a general purpose variable.
-    # $options = "$(${{ parameters.variableName }})"
-    # $options += " --base-override-regex '$baseOverrideRegex' --base-override-sub '$baseOverrideSubstitution'"
-    # echo "##vso[task.setvariable variable=${{ parameters.variableName }}]$options"
+    # Assume the variable already exists and append to it. This allows us to dynamically append additional
+    # options to a general purpose variable.
+    $options = "$(${{ parameters.variableName }})"
+    $options += " --base-override-regex '$baseOverrideRegex' --base-override-sub '$baseOverrideSubstitution'"
+    echo "##vso[task.setvariable variable=${{ parameters.variableName }}]$options"
   displayName: Set Base Image Override Options
