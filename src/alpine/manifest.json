@@ -218,6 +218,19 @@
               }
             }
           ]
+        },
+        {
+          "platforms": [
+            {
+              "dockerfile": "src/alpine/3.16/helix/amd64",
+              "os": "linux",
+              "osVersion": "alpine3.16",
+              "tags": {
+                "alpine-3.16-helix-amd64-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
+                "alpine-3.16-helix-amd64-$(FloatingTagSuffix)": {}
+              }
+            }
+          ]
         }
       ]
     }
