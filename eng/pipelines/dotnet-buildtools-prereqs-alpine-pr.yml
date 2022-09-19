@@ -30,3 +30,4 @@ stages:
       parameters:
         variableName: customCopyBaseImagesArgs
         dockerfileOs: alpine
+        baseOverrideRegistry: test
