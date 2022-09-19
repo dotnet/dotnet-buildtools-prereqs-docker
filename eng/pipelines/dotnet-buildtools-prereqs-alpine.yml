@@ -25,10 +25,10 @@ stages:
   parameters:
     internalProjectName: ${{ variables.internalProjectName }}
     publicProjectName: ${{ variables.publicProjectName }}
-    ${{ if eq(variables['System.TeamProject'], 'internal') }}:
-      customCopyBaseImagesInitSteps:
-      - template: ../../../pipelines/steps/set-base-image-override-options.yml
-        parameters:
-          variableName: customCopyBaseImagesArgs
-          dockerfileOs: alpine
-          baseOverrideRegistry: $(overrideRegistry) # Comes from DotNet-Docker-Common variable group
+    #${{ if eq(variables['System.TeamProject'], 'internal') }}:
+    customCopyBaseImagesInitSteps:
+    - template: ../../../pipelines/steps/set-base-image-override-options.yml
+      parameters:
+        variableName: customCopyBaseImagesArgs
+        dockerfileOs: alpine
+        # baseOverrideRegistry: $(overrideRegistry) # Comes from DotNet-Docker-Common variable group
