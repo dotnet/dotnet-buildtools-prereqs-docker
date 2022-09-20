@@ -33,6 +33,7 @@ stages:
           variableName: customCopyBaseImagesArgs
           dockerfileOs: debian
           baseOverrideRegistry: $(overrideRegistry) # Comes from DotNet-Docker-Common variable group
+      customBuildInitSteps:
       - template: ../../../pipelines/steps/set-base-image-override-options.yml
         parameters:
           variableName: imageBuilderBuildArgs

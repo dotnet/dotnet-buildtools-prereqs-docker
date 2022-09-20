@@ -34,6 +34,8 @@ stages:
           variableName: customCopyBaseImagesArgs
           dockerfileOs: ubuntu
           baseOverrideRegistry: $(overrideRegistry) # Comes from DotNet-Docker-Common variable group
+    - ${{ if eq(variables['System.TeamProject'], 'internal') }}:
+      customBuildInitSteps:
       - template: ../../../pipelines/steps/set-base-image-override-options.yml
         parameters:
           variableName: imageBuilderBuildArgs
