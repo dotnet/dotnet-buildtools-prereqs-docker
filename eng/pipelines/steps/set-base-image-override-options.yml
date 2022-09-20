@@ -17,7 +17,7 @@ steps:
     
     # Assume the variable already exists and append to it. This allows us to dynamically append additional
     # options to a general purpose variable.
-    $options = '$(${{ parameters.variableName }})'
+    $options = "$(${{ parameters.variableName }})"
     $options += " --base-override-regex '$baseOverrideRegex' --base-override-sub '$baseOverrideSubstitution'"
     echo "##vso[task.setvariable variable=${{ parameters.variableName }}]$options"
   displayName: Set Base Image Override Options
