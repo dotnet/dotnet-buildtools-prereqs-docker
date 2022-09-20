@@ -11,6 +11,8 @@ variables:
   value: ''
 - name: publishReadme
   value: false
+- name: imageBuilderBuildArgs
+  value: ''
 - name: publicGitRepoUri
   value: https://github.com/dotnet/dotnet-buildtools-prereqs-docker
 - ${{ if eq(variables['Build.SourceBranch'], 'refs/heads/production') }}:
