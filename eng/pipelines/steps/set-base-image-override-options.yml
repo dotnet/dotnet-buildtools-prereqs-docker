@@ -10,8 +10,7 @@ steps:
 - powershell: |
     # For official builds, we configure the regex and substitution
     # to use a different registry. (e.g. "ubuntu:20.04" becomes "ubuntu.azurecr.io/ubuntu:20.04")".
-    # These tags are multi-arch tags so they'll work across all the architectures we provide.
-    $baseOverrideRegex = "(${{ parameters.dockerfileOs }}:.+)"
+    $baseOverrideRegex = "^(${{ parameters.dockerfileOs }}:.+)"
 
     # Be sure to use the string literal syntax here (single quote) to avoid $1 being interpreted as a variable
     $baseOverrideSubstitution = '${{ parameters.baseOverrideRegistry }}/$1'

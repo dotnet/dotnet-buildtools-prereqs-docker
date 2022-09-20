@@ -32,3 +32,8 @@ stages:
           variableName: customCopyBaseImagesArgs
           dockerfileOs: fedora
           baseOverrideRegistry: $(overrideRegistry) # Comes from DotNet-Docker-Common variable group
+      - template: ../../../pipelines/steps/set-base-image-override-options.yml
+        parameters:
+          variableName: imageBuilderBuildArgs
+          dockerfileOs: fedora
+          baseOverrideRegistry: $(overrideRegistry) # Comes from DotNet-Docker-Common variable group

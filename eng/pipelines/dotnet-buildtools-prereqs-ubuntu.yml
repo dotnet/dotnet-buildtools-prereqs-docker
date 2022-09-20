@@ -34,3 +34,8 @@ stages:
           variableName: customCopyBaseImagesArgs
           dockerfileOs: ubuntu
           baseOverrideRegistry: $(overrideRegistry) # Comes from DotNet-Docker-Common variable group
+      - template: ../../../pipelines/steps/set-base-image-override-options.yml
+        parameters:
+          variableName: imageBuilderBuildArgs
+          dockerfileOs: ubuntu
+          baseOverrideRegistry: $(overrideRegistry) # Comes from DotNet-Docker-Common variable group
