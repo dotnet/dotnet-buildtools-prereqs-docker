@@ -26,7 +26,7 @@ stages:
     internalProjectName: ${{ variables.internalProjectName }}
     publicProjectName: ${{ variables.publicProjectName }}
     linuxAmdBuildJobTimeout: 360
-    - ${{ if eq(variables['System.TeamProject'], 'internal') }}:
+    ${{ if eq(variables['System.TeamProject'], 'internal') }}:
       customBuildInitSteps:
       - template: ../../../pipelines/steps/set-base-image-override-options.yml
         parameters:
