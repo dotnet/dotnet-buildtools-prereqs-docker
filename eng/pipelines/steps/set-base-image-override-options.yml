@@ -9,7 +9,7 @@ steps:
 # and instead use the corresponding image from the Ubuntu ACR.
 - powershell: |
     # For official builds, we configure the regex and substitution
-    # to use a different registry. (e.g. "ubuntu:20.04" becomes "ubuntu.azurecr.io/ubuntu:20.04")".
+    # to use a different registry. (e.g. "ubuntu:20.04" becomes "parameters.baseOverrideRegistry/ubuntu:20.04")".
     $baseOverrideRegex = "^(${{ parameters.dockerfileOs }}:.+)"
 
     # Be sure to use the string literal syntax here (single quote) to avoid $1 being interpreted as a variable
