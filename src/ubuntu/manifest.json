@@ -11,7 +11,7 @@
               "osVersion": "bionic",
               "tags": {
                 "ubuntu-18.04-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
-                "ubuntu-18.04-$(FloatingTagSuffix)": {},
+                "ubuntu-18.04$(FloatingTagSuffix)": {},
                 "ubuntu-18.04": {
                   "isLocal": true
                 }
@@ -28,7 +28,7 @@
               "osVersion": "bionic",
               "tags": {
                 "ubuntu-18.04-arm32v7-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
-                "ubuntu-18.04-arm32v7-$(FloatingTagSuffix)": {}
+                "ubuntu-18.04-arm32v7$(FloatingTagSuffix)": {}
               },
               "variant": "v7"
             }
@@ -43,7 +43,7 @@
               "osVersion": "bionic",
               "tags": {
                 "ubuntu-18.04-arm64v8-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
-                "ubuntu-18.04-arm64v8-$(FloatingTagSuffix)": {}
+                "ubuntu-18.04-arm64v8$(FloatingTagSuffix)": {}
               },
               "variant": "v8"
             }
@@ -57,7 +57,7 @@
               "osVersion": "bionic",
               "tags": {
                 "ubuntu-18.04-coredeps-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
-                "ubuntu-18.04-coredeps-$(FloatingTagSuffix)": {},
+                "ubuntu-18.04-coredeps$(FloatingTagSuffix)": {},
                 "ubuntu-18.04-coredeps": {
                   "isLocal": true
                 }
@@ -73,7 +73,7 @@
               "osVersion": "bionic",
               "tags": {
                 "ubuntu-18.04-android-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
-                "ubuntu-18.04-android-$(FloatingTagSuffix)": {}
+                "ubuntu-18.04-android$(FloatingTagSuffix)": {}
               }
             }
           ]
@@ -86,7 +86,7 @@
               "osVersion": "bionic",
               "tags": {
                 "ubuntu-18.04-crossdeps-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
-                "ubuntu-18.04-crossdeps-$(FloatingTagSuffix)": {},
+                "ubuntu-18.04-crossdeps$(FloatingTagSuffix)": {},
                 "ubuntu-18.04-crossdeps": {
                   "isLocal": true
                 }
@@ -102,7 +102,7 @@
               "osVersion": "bionic",
               "tags": {
                 "ubuntu-18.04-cross-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
-                "ubuntu-18.04-cross-$(FloatingTagSuffix)": {}
+                "ubuntu-18.04-cross$(FloatingTagSuffix)": {}
               }
             }
           ]
@@ -115,7 +115,7 @@
               "osVersion": "bionic",
               "tags": {
                 "ubuntu-18.04-cross-arm-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
-                "ubuntu-18.04-cross-arm-$(FloatingTagSuffix)": {}
+                "ubuntu-18.04-cross-arm$(FloatingTagSuffix)": {}
               }
             }
           ]
@@ -128,7 +128,7 @@
               "osVersion": "bionic",
               "tags": {
                 "ubuntu-18.04-cross-arm-alpine-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
-                "ubuntu-18.04-cross-arm-alpine-$(FloatingTagSuffix)": {}
+                "ubuntu-18.04-cross-arm-alpine$(FloatingTagSuffix)": {}
               }
             }
           ]
@@ -141,7 +141,7 @@
               "osVersion": "bionic",
               "tags": {
                 "ubuntu-18.04-cross-arm64-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
-                "ubuntu-18.04-cross-arm64-$(FloatingTagSuffix)": {}
+                "ubuntu-18.04-cross-arm64$(FloatingTagSuffix)": {}
               }
             }
           ]
@@ -154,7 +154,7 @@
               "osVersion": "bionic",
               "tags": {
                 "ubuntu-18.04-cross-arm64-alpine-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
-                "ubuntu-18.04-cross-arm64-alpine-$(FloatingTagSuffix)": {}
+                "ubuntu-18.04-cross-arm64-alpine$(FloatingTagSuffix)": {}
               }
             }
           ]
@@ -167,7 +167,7 @@
               "osVersion": "bionic",
               "tags": {
                 "ubuntu-18.04-cross-armel-tizen-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
-                "ubuntu-18.04-cross-armel-tizen-$(FloatingTagSuffix)": {}
+                "ubuntu-18.04-cross-armel-tizen$(FloatingTagSuffix)": {}
               }
             }
           ]
@@ -180,7 +180,7 @@
               "osVersion": "bionic",
               "tags": {
                 "ubuntu-18.04-cross-freebsd-12-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
-                "ubuntu-18.04-cross-freebsd-12-$(FloatingTagSuffix)": {}
+                "ubuntu-18.04-cross-freebsd-12$(FloatingTagSuffix)": {}
               }
             }
           ]
@@ -193,7 +193,7 @@
               "osVersion": "bionic",
               "tags": {
                 "ubuntu-18.04-cross-arm64-freebsd-13-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
-                "ubuntu-18.04-cross-arm64-freebsd-13-$(FloatingTagSuffix)": {}
+                "ubuntu-18.04-cross-arm64-freebsd-13$(FloatingTagSuffix)": {}
               }
             }
           ]
@@ -206,7 +206,7 @@
               "osVersion": "bionic",
               "tags": {
                 "ubuntu-18.04-cross-illumos-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
-                "ubuntu-18.04-cross-illumos-$(FloatingTagSuffix)": {}
+                "ubuntu-18.04-cross-illumos$(FloatingTagSuffix)": {}
               }
             }
           ]
@@ -219,7 +219,7 @@
               "osVersion": "bionic",
               "tags": {
                 "ubuntu-18.04-cross-ppc64le-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
-                "ubuntu-18.04-cross-ppc64le-$(FloatingTagSuffix)": {}
+                "ubuntu-18.04-cross-ppc64le$(FloatingTagSuffix)": {}
               }
             }
           ]
@@ -232,7 +232,7 @@
               "osVersion": "bionic",
               "tags": {
                 "ubuntu-18.04-cross-s390x-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
-                "ubuntu-18.04-cross-s390x-$(FloatingTagSuffix)": {}
+                "ubuntu-18.04-cross-s390x$(FloatingTagSuffix)": {}
               }
             }
           ]
@@ -245,7 +245,7 @@
               "osVersion": "bionic",
               "tags": {
                 "ubuntu-18.04-cross-x86-linux-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
-                "ubuntu-18.04-cross-x86-linux-$(FloatingTagSuffix)": {}
+                "ubuntu-18.04-cross-x86-linux$(FloatingTagSuffix)": {}
               }
             }
           ]
@@ -258,7 +258,7 @@
               "osVersion": "bionic",
               "tags": {
                 "ubuntu-18.04-debpkg-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
-                "ubuntu-18.04-debpkg-$(FloatingTagSuffix)": {}
+                "ubuntu-18.04-debpkg$(FloatingTagSuffix)": {}
               }
             }
           ]
@@ -272,7 +272,7 @@
               "osVersion": "bionic",
               "tags": {
                 "ubuntu-18.04-helix-amd64-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
-                "ubuntu-18.04-helix-amd64-$(FloatingTagSuffix)": {},
+                "ubuntu-18.04-helix-amd64$(FloatingTagSuffix)": {},
                 "ubuntu-18.04-helix-amd64": {
                   "isLocal": true
                 }
@@ -289,7 +289,7 @@
               "osVersion": "bionic",
               "tags": {
                 "ubuntu-18.04-helix-arm32v7-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
-                "ubuntu-18.04-helix-arm32v7-$(FloatingTagSuffix)": {}
+                "ubuntu-18.04-helix-arm32v7$(FloatingTagSuffix)": {}
               },
               "variant": "v7"
             }
@@ -304,7 +304,7 @@
               "osVersion": "bionic",
               "tags": {
                 "ubuntu-18.04-helix-arm64v8-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
-                "ubuntu-18.04-helix-arm64v8-$(FloatingTagSuffix)": {}
+                "ubuntu-18.04-helix-arm64v8$(FloatingTagSuffix)": {}
               },
               "variant": "v8"
             }
@@ -319,7 +319,7 @@
               "osVersion": "bionic",
               "tags": {
                 "ubuntu-18.04-helix-webassembly-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
-                "ubuntu-18.04-helix-webassembly-$(FloatingTagSuffix)": {}
+                "ubuntu-18.04-helix-webassembly$(FloatingTagSuffix)": {}
               }
             }
           ]
@@ -333,7 +333,7 @@
               "osVersion": "bionic",
               "tags": {
                 "ubuntu-18.04-helix-sqlserver-amd64-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
-                "ubuntu-18.04-helix-sqlserver-amd64-$(FloatingTagSuffix)": {}
+                "ubuntu-18.04-helix-sqlserver-amd64$(FloatingTagSuffix)": {}
               }
             }
           ]
@@ -346,7 +346,7 @@
               "osVersion": "bionic",
               "tags": {
                 "ubuntu-18.04-mlnet-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
-                "ubuntu-18.04-mlnet-$(FloatingTagSuffix)": {},
+                "ubuntu-18.04-mlnet$(FloatingTagSuffix)": {},
                 "ubuntu-18.04-mlnet": {
                   "isLocal": true
                 }
@@ -362,7 +362,7 @@
               "osVersion": "bionic",
               "tags": {
                 "ubuntu-18.04-mlnet-cross-arm-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
-                "ubuntu-18.04-mlnet-cross-arm-$(FloatingTagSuffix)": {}
+                "ubuntu-18.04-mlnet-cross-arm$(FloatingTagSuffix)": {}
               }
             }
           ]
@@ -375,7 +375,7 @@
               "osVersion": "bionic",
               "tags": {
                 "ubuntu-18.04-mlnet-cross-arm64-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
-                "ubuntu-18.04-mlnet-cross-arm64-$(FloatingTagSuffix)": {}
+                "ubuntu-18.04-mlnet-cross-arm64$(FloatingTagSuffix)": {}
               }
             }
           ]
@@ -388,7 +388,7 @@
               "osVersion": "bionic",
               "tags": {
                 "ubuntu-18.04-mlnet-helix-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
-                "ubuntu-18.04-mlnet-helix-$(FloatingTagSuffix)": {}
+                "ubuntu-18.04-mlnet-helix$(FloatingTagSuffix)": {}
               }
             }
           ]
@@ -402,7 +402,7 @@
               "osVersion": "bionic",
               "tags": {
                 "ubuntu-18.04-mono-amd64-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
-                "ubuntu-18.04-mono-amd64-$(FloatingTagSuffix)": {}
+                "ubuntu-18.04-mono-amd64$(FloatingTagSuffix)": {}
               }
             }
           ]
@@ -416,7 +416,7 @@
               "osVersion": "bionic",
               "tags": {
                 "ubuntu-18.04-mono-arm32v7-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
-                "ubuntu-18.04-mono-arm32v7-$(FloatingTagSuffix)": {}
+                "ubuntu-18.04-mono-arm32v7$(FloatingTagSuffix)": {}
               },
               "variant": "v7"
             }
@@ -431,7 +431,7 @@
               "osVersion": "bionic",
               "tags": {
                 "ubuntu-18.04-mono-arm64v8-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
-                "ubuntu-18.04-mono-arm64v8-$(FloatingTagSuffix)": {}
+                "ubuntu-18.04-mono-arm64v8$(FloatingTagSuffix)": {}
               },
               "variant": "v8"
             }
@@ -445,7 +445,7 @@
               "osVersion": "bionic",
               "tags": {
                 "ubuntu-18.04-webassembly-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
-                "ubuntu-18.04-webassembly-$(FloatingTagSuffix)": {}
+                "ubuntu-18.04-webassembly$(FloatingTagSuffix)": {}
               }
             }
           ]
@@ -458,7 +458,7 @@
               "osVersion": "focal",
               "tags": {
                 "ubuntu-20.04-coredeps-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
-                "ubuntu-20.04-coredeps-$(FloatingTagSuffix)": {},
+                "ubuntu-20.04-coredeps$(FloatingTagSuffix)": {},
                 "ubuntu-20.04-coredeps": {
                   "isLocal": true
                 }
@@ -474,7 +474,7 @@
               "osVersion": "focal",
               "tags": {
                 "ubuntu-20.04-crossdeps-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
-                "ubuntu-20.04-crossdeps-$(FloatingTagSuffix)": {},
+                "ubuntu-20.04-crossdeps$(FloatingTagSuffix)": {},
                 "ubuntu-20.04-crossdeps": {
                   "isLocal": true
                 }
@@ -490,7 +490,7 @@
               "osVersion": "focal",
               "tags": {
                 "ubuntu-20.04-cross-armv6-raspbian-10-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
-                "ubuntu-20.04-cross-armv6-raspbian-10-$(FloatingTagSuffix)": {}
+                "ubuntu-20.04-cross-armv6-raspbian-10$(FloatingTagSuffix)": {}
               }
             }
           ]
@@ -504,7 +504,7 @@
               "osVersion": "focal",
               "tags": {
                 "ubuntu-20.04-crossdac-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
-                "ubuntu-20.04-crossdac-$(FloatingTagSuffix)": {}
+                "ubuntu-20.04-crossdac$(FloatingTagSuffix)": {}
               }
             }
           ]
@@ -518,7 +518,7 @@
               "osVersion": "focal",
               "tags": {
                 "ubuntu-20.04-helix-amd64-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
-                "ubuntu-20.04-helix-amd64-$(FloatingTagSuffix)": {},
+                "ubuntu-20.04-helix-amd64$(FloatingTagSuffix)": {},
                 "ubuntu-20.04-helix-amd64": {
                   "isLocal": true
                 }
@@ -535,7 +535,7 @@
               "osVersion": "focal",
               "tags": {
                 "ubuntu-20.04-helix-wasm-amd64-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
-                "ubuntu-20.04-helix-wasm-amd64-$(FloatingTagSuffix)": {}
+                "ubuntu-20.04-helix-wasm-amd64$(FloatingTagSuffix)": {}
               }
             }
           ]
@@ -548,7 +548,7 @@
               "osVersion": "focal",
               "tags": {
                 "ubuntu-20.04-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
-                "ubuntu-20.04-$(FloatingTagSuffix)": {},
+                "ubuntu-20.04$(FloatingTagSuffix)": {},
                 "ubuntu-20.04": {
                   "isLocal": true
                 }
@@ -564,7 +564,7 @@
               "osVersion": "jammy",
               "tags": {
                 "ubuntu-22.04-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
-                "ubuntu-22.04-$(FloatingTagSuffix)": {},
+                "ubuntu-22.04$(FloatingTagSuffix)": {},
                 "ubuntu-22.04": {
                   "isLocal": true
                 }
@@ -580,7 +580,7 @@
               "osVersion": "jammy",
               "tags": {
                 "ubuntu-22.04-coredeps-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
-                "ubuntu-22.04-coredeps-$(FloatingTagSuffix)": {},
+                "ubuntu-22.04-coredeps$(FloatingTagSuffix)": {},
                 "ubuntu-22.04-coredeps": {
                   "isLocal": true
                 }
@@ -596,7 +596,7 @@
               "osVersion": "jammy",
               "tags": {
                 "ubuntu-22.04-crossdeps-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
-                "ubuntu-22.04-crossdeps-$(FloatingTagSuffix)": {},
+                "ubuntu-22.04-crossdeps$(FloatingTagSuffix)": {},
                 "ubuntu-22.04-crossdeps": {
                   "isLocal": true
                 }
@@ -612,7 +612,7 @@
               "osVersion": "jammy",
               "tags": {
                 "ubuntu-22.04-cross-arm-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
-                "ubuntu-22.04-cross-arm-$(FloatingTagSuffix)": {}
+                "ubuntu-22.04-cross-arm$(FloatingTagSuffix)": {}
               }
             }
           ]
@@ -625,7 +625,7 @@
               "osVersion": "jammy",
               "tags": {
                 "ubuntu-22.04-cross-arm-alpine-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
-                "ubuntu-22.04-cross-arm-alpine-$(FloatingTagSuffix)": {}
+                "ubuntu-22.04-cross-arm-alpine$(FloatingTagSuffix)": {}
               }
             }
           ]
@@ -638,7 +638,7 @@
               "osVersion": "jammy",
               "tags": {
                 "ubuntu-22.04-cross-arm64-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
-                "ubuntu-22.04-cross-arm64-$(FloatingTagSuffix)": {}
+                "ubuntu-22.04-cross-arm64$(FloatingTagSuffix)": {}
               }
             }
           ]
@@ -651,7 +651,7 @@
               "osVersion": "jammy",
               "tags": {
                 "ubuntu-22.04-cross-arm64-alpine-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
-                "ubuntu-22.04-cross-arm64-alpine-$(FloatingTagSuffix)": {}
+                "ubuntu-22.04-cross-arm64-alpine$(FloatingTagSuffix)": {}
               }
             }
           ]
@@ -664,7 +664,7 @@
               "osVersion": "jammy",
               "tags": {
                 "ubuntu-22.04-cross-riscv64-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
-                "ubuntu-22.04-cross-riscv64-$(FloatingTagSuffix)": {}
+                "ubuntu-22.04-cross-riscv64$(FloatingTagSuffix)": {}
               }
             }
           ]
@@ -677,7 +677,7 @@
               "osVersion": "jammy",
               "tags": {
                 "ubuntu-22.04-cross-haiku-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
-                "ubuntu-22.04-cross-haiku-$(FloatingTagSuffix)": {}
+                "ubuntu-22.04-cross-haiku$(FloatingTagSuffix)": {}
               }
             }
           ]
@@ -691,7 +691,7 @@
               "osVersion": "jammy",
               "tags": {
                 "ubuntu-22.04-helix-amd64-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
-                "ubuntu-22.04-helix-amd64-$(FloatingTagSuffix)": {}
+                "ubuntu-22.04-helix-amd64$(FloatingTagSuffix)": {}
               }
             }
           ]
@@ -705,7 +705,7 @@
               "osVersion": "jammy",
               "tags": {
                 "ubuntu-22.04-helix-arm64v8-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
-                "ubuntu-22.04-helix-arm64v8-$(FloatingTagSuffix)": {}
+                "ubuntu-22.04-helix-arm64v8$(FloatingTagSuffix)": {}
               },
               "variant": "v8"
             }
@@ -719,7 +719,7 @@
               "osVersion": "jammy",
               "tags": {
                 "ubuntu-22.04-debpkg-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
-                "ubuntu-22.04-debpkg-$(FloatingTagSuffix)": {}
+                "ubuntu-22.04-debpkg$(FloatingTagSuffix)": {}
               }
             }
           ]
@@ -732,7 +732,7 @@
               "osVersion": "jammy",
               "tags": {
                 "ubuntu-22.04-mlnet-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
-                "ubuntu-22.04-mlnet-$(FloatingTagSuffix)": {},
+                "ubuntu-22.04-mlnet$(FloatingTagSuffix)": {},
                 "ubuntu-22.04-mlnet": {
                   "isLocal": true
                 }
@@ -748,7 +748,7 @@
               "osVersion": "jammy",
               "tags": {
                 "ubuntu-22.04-mlnet-helix-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
-                "ubuntu-22.04-mlnet-helix-$(FloatingTagSuffix)": {}
+                "ubuntu-22.04-mlnet-helix$(FloatingTagSuffix)": {}
               }
             }
           ]
