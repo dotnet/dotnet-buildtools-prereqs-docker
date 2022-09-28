@@ -11,7 +11,7 @@
               "osVersion": "stretch",
               "tags": {
                 "debian-stretch-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
-                "debian-stretch-$(FloatingTagSuffix)": {},
+                "debian-stretch$(FloatingTagSuffix)": {},
                 "debian-stretch": {
                   "isLocal": true
                 }
@@ -28,7 +28,7 @@
               "osVersion": "stretch",
               "tags": {
                 "debian-9-arm32v7-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
-                "debian-9-arm32v7-$(FloatingTagSuffix)": {}
+                "debian-9-arm32v7$(FloatingTagSuffix)": {}
               },
               "variant": "v7"
             }
@@ -43,7 +43,7 @@
               "osVersion": "stretch",
               "tags": {
                 "debian-9-arm64v8-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
-                "debian-9-arm64v8-$(FloatingTagSuffix)": {}
+                "debian-9-arm64v8$(FloatingTagSuffix)": {}
               },
               "variant": "v8"
             }
@@ -58,7 +58,7 @@
               "osVersion": "stretch",
               "tags": {
                 "debian-9-helix-arm32v7-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
-                "debian-9-helix-arm32v7-$(FloatingTagSuffix)": {}
+                "debian-9-helix-arm32v7$(FloatingTagSuffix)": {}
               },
               "variant": "v7"
             }
@@ -73,7 +73,7 @@
               "osVersion": "stretch",
               "tags": {
                 "debian-9-helix-arm64v8-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
-                "debian-9-helix-arm64v8-$(FloatingTagSuffix)": {}
+                "debian-9-helix-arm64v8$(FloatingTagSuffix)": {}
               },
               "variant": "v8"
             }
@@ -90,7 +90,7 @@
               "osVersion": "buster",
               "tags": {
                 "debian-buster-slim-docker-testrunner-amd64-$(UniqueId)": {},
-                "debian-buster-slim-docker-testrunner-amd64-$(FloatingTagSuffix)": {}
+                "debian-buster-slim-docker-testrunner-amd64$(FloatingTagSuffix)": {}
               }
             },
             {
@@ -100,7 +100,7 @@
               "osVersion": "buster",
               "tags": {
                 "debian-buster-slim-docker-testrunner-arm64v8-$(UniqueId)": {},
-                "debian-buster-slim-docker-testrunner-arm64v8-$(FloatingTagSuffix)": {}
+                "debian-buster-slim-docker-testrunner-arm64v8$(FloatingTagSuffix)": {}
               },
               "variant": "v8"
             }
@@ -115,7 +115,7 @@
               "osVersion": "buster",
               "tags": {
                 "debian-10-helix-amd64-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
-                "debian-10-helix-amd64-$(FloatingTagSuffix)": {}
+                "debian-10-helix-amd64$(FloatingTagSuffix)": {}
               }
             }
           ]
@@ -129,7 +129,7 @@
               "osVersion": "buster",
               "tags": {
                 "debian-10-helix-arm32v7-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
-                "debian-10-helix-arm32v7-$(FloatingTagSuffix)": {}
+                "debian-10-helix-arm32v7$(FloatingTagSuffix)": {}
               },
               "variant": "v7"
             }
@@ -144,7 +144,7 @@
               "osVersion": "buster",
               "tags": {
                 "debian-10-helix-arm64v8-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
-                "debian-10-helix-arm64v8-$(FloatingTagSuffix)": {}
+                "debian-10-helix-arm64v8$(FloatingTagSuffix)": {}
               },
               "variant": "v8"
             }
@@ -159,7 +159,7 @@
               "osVersion": "bullseye",
               "tags": {
                 "debian-11-amd64-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
-                "debian-11-amd64-$(FloatingTagSuffix)": {}
+                "debian-11-amd64$(FloatingTagSuffix)": {}
               }
             }
           ]
@@ -173,7 +173,7 @@
               "osVersion": "bullseye",
               "tags": {
                 "debian-11-gcc12-amd64-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
-                "debian-11-gcc12-amd64-$(FloatingTagSuffix)": {}
+                "debian-11-gcc12-amd64$(FloatingTagSuffix)": {}
               }
             }
           ]
@@ -187,7 +187,7 @@
               "osVersion": "bullseye",
               "tags": {
                 "debian-11-helix-amd64-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
-                "debian-11-helix-amd64-$(FloatingTagSuffix)": {}
+                "debian-11-helix-amd64$(FloatingTagSuffix)": {}
               }
             }
           ]
@@ -201,7 +201,7 @@
               "osVersion": "bullseye",
               "tags": {
                 "debian-11-helix-arm32v7-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
-                "debian-11-helix-arm32v7-$(FloatingTagSuffix)": {}
+                "debian-11-helix-arm32v7$(FloatingTagSuffix)": {}
               },
               "variant": "v7"
             }
@@ -216,7 +216,7 @@
               "osVersion": "bullseye",
               "tags": {
                 "debian-11-helix-arm64v8-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
-                "debian-11-helix-arm64v8-$(FloatingTagSuffix)": {}
+                "debian-11-helix-arm64v8$(FloatingTagSuffix)": {}
               },
               "variant": "v8"
             }
@@ -231,7 +231,7 @@
               "osVersion": "bullseye",
               "tags": {
                 "debian-11-opt-arm64v8-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
-                "debian-11-opt-arm64v8-$(FloatingTagSuffix)": {}
+                "debian-11-opt-arm64v8$(FloatingTagSuffix)": {}
               },
               "variant": "v8"
             }
@@ -246,7 +246,7 @@
               "osVersion": "debian",
               "tags": {
                 "debian-iot-arm32v7-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
-                "debian-iot-arm32v7-$(FloatingTagSuffix)": {}
+                "debian-iot-arm32v7$(FloatingTagSuffix)": {}
               },
               "variant": "v7"
             }
@@ -261,7 +261,7 @@
               "osVersion": "bullseye",
               "tags": {
                 "debian-11-arm64v8-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
-                "debian-11-arm64v8-$(FloatingTagSuffix)": {}
+                "debian-11-arm64v8$(FloatingTagSuffix)": {}
               },
               "variant": "v8"
             }

@@ -11,7 +11,7 @@
               "osVersion": "centos7",
               "tags": {
                 "centos-7-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
-                "centos-7-$(FloatingTagSuffix)": {},
+                "centos-7$(FloatingTagSuffix)": {},
                 "centos-7": {
                   "isLocal": true
                 }
@@ -27,7 +27,7 @@
               "osVersion": "centos7",
               "tags": {
                 "centos-7-mlnet-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
-                "centos-7-mlnet-$(FloatingTagSuffix)": {},
+                "centos-7-mlnet$(FloatingTagSuffix)": {},
                 "centos-7-mlnet": {
                   "isLocal": true
                 }
@@ -43,7 +43,7 @@
               "osVersion": "centos7",
               "tags": {
                 "centos-7-mlnet-helix-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
-                "centos-7-mlnet-helix-$(FloatingTagSuffix)": {}
+                "centos-7-mlnet-helix$(FloatingTagSuffix)": {}
               }
             }
           ]
@@ -56,7 +56,7 @@
               "osVersion": "centos7",
               "tags": {
                 "centos-7-rpmpkg-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
-                "centos-7-rpmpkg-$(FloatingTagSuffix)": {}
+                "centos-7-rpmpkg$(FloatingTagSuffix)": {}
               }
             }
           ]
@@ -69,7 +69,7 @@
               "osVersion": "centos7",
               "tags": {
                 "centos-7-source-build-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
-                "centos-7-source-build-$(FloatingTagSuffix)": {}
+                "centos-7-source-build$(FloatingTagSuffix)": {}
               }
             }
           ]
@@ -82,7 +82,7 @@
               "osVersion": "centos-stream8",
               "tags": {
                 "centos-stream8-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
-                "centos-stream8-$(FloatingTagSuffix)": {}
+                "centos-stream8$(FloatingTagSuffix)": {}
               }
             }
           ]
@@ -95,7 +95,7 @@
               "osVersion": "centos-stream9",
               "tags": {
                 "centos-stream9-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
-                "centos-stream9-$(FloatingTagSuffix)": {}
+                "centos-stream9$(FloatingTagSuffix)": {}
               }
             }
           ]
@@ -108,7 +108,7 @@
               "osVersion": "centos-stream9",
               "tags": {
                 "centos-stream9-helix-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
-                "centos-stream9-helix-$(FloatingTagSuffix)": {}
+                "centos-stream9-helix$(FloatingTagSuffix)": {}
               }
             }
           ]
