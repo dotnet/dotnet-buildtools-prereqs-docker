@@ -15,10 +15,10 @@ variables:
   value: https://github.com/dotnet/dotnet-buildtools-prereqs-docker
 - ${{ if eq(variables['Build.SourceBranch'], 'refs/heads/production') }}:
   - name: floatingTagSuffix
-    value: latest
+    value: ""
 - ${{ elseif eq(variables['Build.SourceBranch'], 'refs/heads/main') }}:
   - name: floatingTagSuffix
-    value: staging
+    value: -staging
 - ${{ else }}:
   - name: floatingTagSuffix
     value: $(Build.SourceBranchName)

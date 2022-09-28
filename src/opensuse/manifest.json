@@ -12,7 +12,7 @@
               "osVersion": "leap15.2",
               "tags": {
                 "opensuse-15.2-helix-amd64-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
-                "opensuse-15.2-helix-amd64-$(FloatingTagSuffix)": {}
+                "opensuse-15.2-helix-amd64$(FloatingTagSuffix)": {}
               }
             }
           ]
