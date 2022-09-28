@@ -1,4 +1,4 @@
-FROM mcr.microsoft.com/dotnet-buildtools/prereqs:ubuntu-18.04-coredeps
+FROM mcr.microsoft.com/dotnet-buildtools/prereqs:ubuntu-18.04-coredeps-local
 
 # Dependencies for Android build
 RUN apt-get update \

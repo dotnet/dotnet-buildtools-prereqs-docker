@@ -1,4 +1,4 @@
-FROM mcr.microsoft.com/dotnet-buildtools/prereqs:ubuntu-22.04-mlnet
+FROM mcr.microsoft.com/dotnet-buildtools/prereqs:ubuntu-22.04-mlnet-local
 
 # Install Helix Dependencies
 RUN apt-get update \

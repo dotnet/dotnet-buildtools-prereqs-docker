@@ -1,4 +1,4 @@
-FROM mcr.microsoft.com/dotnet-buildtools/prereqs:ubuntu-18.04
+FROM mcr.microsoft.com/dotnet-buildtools/prereqs:ubuntu-18.04-local
 
 # Install openmp support with Clang
 RUN apt-get update \

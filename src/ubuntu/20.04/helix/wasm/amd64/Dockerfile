@@ -1,4 +1,4 @@
-FROM mcr.microsoft.com/dotnet-buildtools/prereqs:ubuntu-20.04-helix-amd64
+FROM mcr.microsoft.com/dotnet-buildtools/prereqs:ubuntu-20.04-helix-amd64-local
 
 ENV DEBIAN_FRONTEND=noninteractive
 
