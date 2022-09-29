@@ -12,7 +12,7 @@
               "tags": {
                 "alpine-3.13-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
                 "alpine-3.13$(FloatingTagSuffix)": {},
-                "alpine-3.13": {
+                "alpine-3.13-local": {
                   "isLocal": true
                 }
               }
@@ -84,7 +84,7 @@
               "tags": {
                 "alpine-3.14-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
                 "alpine-3.14$(FloatingTagSuffix)": {},
-                "alpine-3.14": {
+                "alpine-3.14-local": {
                   "isLocal": true
                 }
               }
@@ -156,7 +156,7 @@
               "tags": {
                 "alpine-3.15-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
                 "alpine-3.15$(FloatingTagSuffix)": {},
-                "alpine-3.15": {
+                "alpine-3.15-local": {
                   "isLocal": true
                 }
               }

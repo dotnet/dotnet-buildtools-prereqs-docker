@@ -1,4 +1,4 @@
-FROM mcr.microsoft.com/dotnet-buildtools/prereqs:ubuntu-18.04-mlnet
+FROM mcr.microsoft.com/dotnet-buildtools/prereqs:ubuntu-18.04-mlnet-local
 
 # Install Helix Dependencies
 ENV DEBIAN_FRONTEND=noninteractive

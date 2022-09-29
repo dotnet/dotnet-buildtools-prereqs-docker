@@ -1,4 +1,4 @@
-FROM mcr.microsoft.com/dotnet-buildtools/prereqs:fedora-36
+FROM mcr.microsoft.com/dotnet-buildtools/prereqs:fedora-36-local
 
 # Install Helix Dependencies
 

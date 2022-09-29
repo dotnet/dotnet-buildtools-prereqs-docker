@@ -1,4 +1,4 @@
-FROM mcr.microsoft.com/dotnet-buildtools/prereqs:ubuntu-18.04-crossdeps
+FROM mcr.microsoft.com/dotnet-buildtools/prereqs:ubuntu-18.04-crossdeps-local
 
 # Install bison. This is required to build musl-cross-make
 RUN apt-get update \

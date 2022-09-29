@@ -13,7 +13,7 @@ rootfsBinDirArg=${5:-}
 bypassArchDirArg=${6:-}
 llvm=${7:-}
 
-dockerCrossDepsTag="${DOCKER_REPO:-mcr.microsoft.com/dotnet-buildtools/prereqs}:${os}-crossdeps"
+dockerCrossDepsTag="${DOCKER_REPO:-mcr.microsoft.com/dotnet-buildtools/prereqs}:${os}-crossdeps-local"
 
 # If argument three was set, use that as the arch, otherwise use default arch : 'arm'
 arch=${archArg:-'arm'}

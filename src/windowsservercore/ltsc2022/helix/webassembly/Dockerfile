@@ -1,4 +1,4 @@
-FROM mcr.microsoft.com/dotnet-buildtools/prereqs:windowsservercore-ltsc2022-helix-amd64
+FROM mcr.microsoft.com/dotnet-buildtools/prereqs:windowsservercore-ltsc2022-helix-amd64-local
 
 # Install 7zip
 ENV ZIP7_VERSION=1900

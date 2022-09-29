@@ -1,4 +1,4 @@
-FROM mcr.microsoft.com/dotnet-buildtools/prereqs:centos-7
+FROM mcr.microsoft.com/dotnet-buildtools/prereqs:centos-7-local
 
 RUN yum install -y \
         perl-Data-Dumper

@@ -12,7 +12,7 @@
               "tags": {
                 "windowsservercore-ltsc2019-helix-amd64-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
                 "windowsservercore-ltsc2019-helix-amd64$(FloatingTagSuffix)": {},
-                "windowsservercore-ltsc2019-helix-amd64": {
+                "windowsservercore-ltsc2019-helix-amd64-local": {
                   "isLocal": true
                 }
               }
@@ -33,7 +33,7 @@
               "tags": {
                 "windowsservercore-ltsc2022-helix-amd64-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
                 "windowsservercore-ltsc2022-helix-amd64$(FloatingTagSuffix)": {},
-                "windowsservercore-ltsc2022-helix-amd64": {
+                "windowsservercore-ltsc2022-helix-amd64-local": {
                   "isLocal": true
                 }
               }

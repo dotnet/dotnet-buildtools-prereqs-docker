@@ -1,4 +1,4 @@
-FROM mcr.microsoft.com/dotnet-buildtools/prereqs:alpine-3.15
+FROM mcr.microsoft.com/dotnet-buildtools/prereqs:alpine-3.15-local
 
 RUN apk update && \
     apk add --no-cache \
