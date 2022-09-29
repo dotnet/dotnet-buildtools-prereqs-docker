@@ -13,7 +13,7 @@
               "tags": {
                 "raspbian-10-crossdeps-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
                 "raspbian-10-crossdeps$(FloatingTagSuffix)": {},
-                "raspbian-10-crossdeps": {
+                "raspbian-10-crossdeps-local": {
                   "isLocal": true
                 }
               },

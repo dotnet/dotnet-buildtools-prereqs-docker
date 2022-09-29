@@ -1,4 +1,4 @@
-FROM mcr.microsoft.com/dotnet-buildtools/prereqs:ubuntu-18.04-crossdeps
+FROM mcr.microsoft.com/dotnet-buildtools/prereqs:ubuntu-18.04-crossdeps-local
 
 RUN apt-key adv --keyserver keyserver.ubuntu.com --recv-keys DE19EB17684BA42D
 

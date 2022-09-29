@@ -11,7 +11,7 @@
             "tags": {
               "fedora-34-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
               "fedora-34$(FloatingTagSuffix)": {},
-              "fedora-34": {
+              "fedora-34-local": {
                 "isLocal": true
               }
             }
@@ -38,7 +38,7 @@
             "tags": {
               "fedora-36-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
               "fedora-36$(FloatingTagSuffix)": {},
-              "fedora-36": {
+              "fedora-36-local": {
                 "isLocal": true
               }
             }

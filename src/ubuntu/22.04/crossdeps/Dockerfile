@@ -1,4 +1,4 @@
-FROM mcr.microsoft.com/dotnet-buildtools/prereqs:ubuntu-22.04-coredeps
+FROM mcr.microsoft.com/dotnet-buildtools/prereqs:ubuntu-22.04-coredeps-local
 
 # Install the base toolchain we need to build anything (clang, cmake, make and the like).
 RUN apt-get update \

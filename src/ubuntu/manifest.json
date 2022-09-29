@@ -12,7 +12,7 @@
               "tags": {
                 "ubuntu-18.04-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
                 "ubuntu-18.04$(FloatingTagSuffix)": {},
-                "ubuntu-18.04": {
+                "ubuntu-18.04-local": {
                   "isLocal": true
                 }
               }
@@ -58,7 +58,7 @@
               "tags": {
                 "ubuntu-18.04-coredeps-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
                 "ubuntu-18.04-coredeps$(FloatingTagSuffix)": {},
-                "ubuntu-18.04-coredeps": {
+                "ubuntu-18.04-coredeps-local": {
                   "isLocal": true
                 }
               }
@@ -87,7 +87,7 @@
               "tags": {
                 "ubuntu-18.04-crossdeps-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
                 "ubuntu-18.04-crossdeps$(FloatingTagSuffix)": {},
-                "ubuntu-18.04-crossdeps": {
+                "ubuntu-18.04-crossdeps-local": {
                   "isLocal": true
                 }
               }
@@ -273,7 +273,7 @@
               "tags": {
                 "ubuntu-18.04-helix-amd64-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
                 "ubuntu-18.04-helix-amd64$(FloatingTagSuffix)": {},
-                "ubuntu-18.04-helix-amd64": {
+                "ubuntu-18.04-helix-amd64-local": {
                   "isLocal": true
                 }
               }
@@ -347,7 +347,7 @@
               "tags": {
                 "ubuntu-18.04-mlnet-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
                 "ubuntu-18.04-mlnet$(FloatingTagSuffix)": {},
-                "ubuntu-18.04-mlnet": {
+                "ubuntu-18.04-mlnet-local": {
                   "isLocal": true
                 }
               }
@@ -459,7 +459,7 @@
               "tags": {
                 "ubuntu-20.04-coredeps-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
                 "ubuntu-20.04-coredeps$(FloatingTagSuffix)": {},
-                "ubuntu-20.04-coredeps": {
+                "ubuntu-20.04-coredeps-local": {
                   "isLocal": true
                 }
               }
@@ -475,7 +475,7 @@
               "tags": {
                 "ubuntu-20.04-crossdeps-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
                 "ubuntu-20.04-crossdeps$(FloatingTagSuffix)": {},
-                "ubuntu-20.04-crossdeps": {
+                "ubuntu-20.04-crossdeps-local": {
                   "isLocal": true
                 }
               }
@@ -519,7 +519,7 @@
               "tags": {
                 "ubuntu-20.04-helix-amd64-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
                 "ubuntu-20.04-helix-amd64$(FloatingTagSuffix)": {},
-                "ubuntu-20.04-helix-amd64": {
+                "ubuntu-20.04-helix-amd64-local": {
                   "isLocal": true
                 }
               }
@@ -549,7 +549,7 @@
               "tags": {
                 "ubuntu-20.04-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
                 "ubuntu-20.04$(FloatingTagSuffix)": {},
-                "ubuntu-20.04": {
+                "ubuntu-20.04-local": {
                   "isLocal": true
                 }
               }
@@ -565,7 +565,7 @@
               "tags": {
                 "ubuntu-22.04-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
                 "ubuntu-22.04$(FloatingTagSuffix)": {},
-                "ubuntu-22.04": {
+                "ubuntu-22.04-local": {
                   "isLocal": true
                 }
               }
@@ -581,7 +581,7 @@
               "tags": {
                 "ubuntu-22.04-coredeps-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
                 "ubuntu-22.04-coredeps$(FloatingTagSuffix)": {},
-                "ubuntu-22.04-coredeps": {
+                "ubuntu-22.04-coredeps-local": {
                   "isLocal": true
                 }
               }
@@ -597,7 +597,7 @@
               "tags": {
                 "ubuntu-22.04-crossdeps-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
                 "ubuntu-22.04-crossdeps$(FloatingTagSuffix)": {},
-                "ubuntu-22.04-crossdeps": {
+                "ubuntu-22.04-crossdeps-local": {
                   "isLocal": true
                 }
               }
@@ -733,7 +733,7 @@
               "tags": {
                 "ubuntu-22.04-mlnet-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
                 "ubuntu-22.04-mlnet$(FloatingTagSuffix)": {},
-                "ubuntu-22.04-mlnet": {
+                "ubuntu-22.04-mlnet-local": {
                   "isLocal": true
                 }
               }

@@ -1,4 +1,4 @@
-FROM mcr.microsoft.com/dotnet-buildtools/prereqs:ubuntu-22.04-crossdeps
+FROM mcr.microsoft.com/dotnet-buildtools/prereqs:ubuntu-22.04-crossdeps-local
 
 RUN cd /tmp \
     && wget https://ftp.gnu.org/gnu/binutils/binutils-2.39.tar.gz \

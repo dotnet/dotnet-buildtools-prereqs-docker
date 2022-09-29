@@ -1,4 +1,4 @@
-FROM mcr.microsoft.com/dotnet-buildtools/prereqs:centos-7
+FROM mcr.microsoft.com/dotnet-buildtools/prereqs:centos-7-local
 
 # Install the rpm packaging toolchain required to build rpms
 RUN yum clean all \

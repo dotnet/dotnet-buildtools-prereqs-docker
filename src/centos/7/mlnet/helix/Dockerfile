@@ -1,4 +1,4 @@
-FROM mcr.microsoft.com/dotnet-buildtools/prereqs:centos-7-mlnet
+FROM mcr.microsoft.com/dotnet-buildtools/prereqs:centos-7-mlnet-local
 
 RUN yum install -y \
         dnf

@@ -12,7 +12,7 @@
               "tags": {
                 "centos-7-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
                 "centos-7$(FloatingTagSuffix)": {},
-                "centos-7": {
+                "centos-7-local": {
                   "isLocal": true
                 }
               }
@@ -28,7 +28,7 @@
               "tags": {
                 "centos-7-mlnet-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
                 "centos-7-mlnet$(FloatingTagSuffix)": {},
-                "centos-7-mlnet": {
+                "centos-7-mlnet-local": {
                   "isLocal": true
                 }
               }
