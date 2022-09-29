@@ -1,4 +1,4 @@
-FROM arm64v8/debian:buster
+FROM debian:buster
 
 # Install Helix Dependencies
 

@@ -1,4 +1,4 @@
-FROM arm32v7/ubuntu:18.04
+FROM ubuntu:18.04
 
 # Install Helix Dependencies
 

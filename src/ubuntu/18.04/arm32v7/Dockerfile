@@ -1,4 +1,4 @@
-FROM arm32v7/ubuntu:18.04
+FROM ubuntu:18.04
 
 # fpm install may fail without adding public_suffix explicitly. May be remove in the future.
 # https://github.com/dotnet/dotnet-buildtools-prereqs-docker/pull/675

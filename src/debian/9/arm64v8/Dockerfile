@@ -1,4 +1,4 @@
-FROM arm64v8/debian:9
+FROM debian:9
 
 # Dependencies for generic .NET Core builds and the base toolchain we need to
 # build anything (clang, cmake, make and the like)

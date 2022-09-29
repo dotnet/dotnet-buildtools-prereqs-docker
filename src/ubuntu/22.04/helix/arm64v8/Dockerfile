@@ -1,4 +1,4 @@
-FROM arm64v8/ubuntu:22.04
+FROM ubuntu:22.04
 
 # Install Helix Dependencies
 ENV DEBIAN_FRONTEND=noninteractive
