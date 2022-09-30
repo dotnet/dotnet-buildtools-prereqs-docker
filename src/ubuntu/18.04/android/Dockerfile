@@ -48,4 +48,4 @@ RUN wget https://dl.google.com/android/repository/commandlinetools-linux-8092744
 ENV ANDROID_SDK_ROOT=/usr/local/android-sdk
 
 RUN yes | $ANDROID_SDK_ROOT/cmdline-tools/cmdline-tools/bin/sdkmanager --licenses
-RUN $ANDROID_SDK_ROOT/cmdline-tools/cmdline-tools/bin/sdkmanager --install "build-tools;29.0.3" "platforms;android-29"
+RUN $ANDROID_SDK_ROOT/cmdline-tools/cmdline-tools/bin/sdkmanager --install "build-tools;33.0.0" "platforms;android-33"
