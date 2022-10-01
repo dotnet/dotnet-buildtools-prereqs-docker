@@ -37,9 +37,9 @@ RUN apt-get update && \
 
 # Add MsQuic
 # There is problem with posting, use direct link instead. (signed binaries)
-RUN curl -LO https://github.com/microsoft/msquic/releases/download/v2.1.1/libmsquic_2.1.1_armv7l.deb && \
-    dpkg --force-architecture -i libmsquic_2.1.1_armv7l.deb && \
-    rm libmsquic_2.1.1_armv7l.deb
+RUN curl -LO https://github.com/microsoft/msquic/releases/download/v2.1.2/libmsquic_2.1.2_armhf.deb && \
+    dpkg -i libmsquic_2.*.deb && \
+    rm libmsquic_2.*.deb
 
 ENV LANG=en_US.utf8
 

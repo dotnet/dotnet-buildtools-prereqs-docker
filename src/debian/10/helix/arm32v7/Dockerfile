@@ -48,9 +48,9 @@ RUN ln -sf /usr/bin/python3 /usr/bin/python && \
 
 # Add MsQuic
 # There is problem with posting, use direct link instead. (signed binaries)
-RUN curl -LO https://github.com/microsoft/msquic/releases/download/v2.1.1/libmsquic_2.1.1_armv7l.deb && \
-    dpkg --force-architecture -i libmsquic_2.1.1_armv7l.deb && \
-    rm libmsquic_2.1.1_armv7l.deb
+RUN curl -LO https://github.com/microsoft/msquic/releases/download/v2.1.2/libmsquic_2.1.2_armhf.deb && \
+    dpkg -i libmsquic_2.*.deb && \
+    rm libmsquic_2.*.deb
 
 # Create helixbot user and give rights to sudo without password
 # additionally, preinstall the virtualenv packages used for VSTS reporting to save time
