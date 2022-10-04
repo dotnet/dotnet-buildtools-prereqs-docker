@@ -1,4 +1,4 @@
-FROM arm64v8/debian:bullseye
+FROM debian:bullseye
 
 # Dependencies for generic .NET Core optimization runs
 RUN apt-get update \

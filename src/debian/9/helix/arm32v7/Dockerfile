@@ -1,4 +1,4 @@
-FROM arm32v7/debian:9
+FROM debian:9
 
 # Install Helix Dependencies
 

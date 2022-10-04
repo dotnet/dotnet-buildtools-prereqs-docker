@@ -1,7 +1,7 @@
 # Dockerfile used to create a testrunner image that can perform Docker operations.
 # Usage:  docker run --rm -v /var/run/docker.sock:/var/run/docker.sock testrunner pwsh -File xyz.ps1
 
-FROM arm64v8/debian:buster-slim
+FROM debian:buster-slim
 
 # Install Docker
 RUN apt-get update \

@@ -1,4 +1,4 @@
-FROM arm32v7/debian:9
+FROM debian:9
 
 # Dependencies for generic .NET Core builds
 RUN apt-get update \
