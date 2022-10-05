@@ -1,0 +1,22 @@
+trigger: none
+pr: none
+
+resources:
+  repositories:
+  - repository: InternalVersionsRepo
+    type: github
+    endpoint: dotnet
+    name: dotnet/versions
+
+variables:
+- template: variables/common.yml
+
+stages:
+- template: ../common/templates/stages/dotnet/build-test-publish-repo.yml
+  parameters:
+    internalProjectName: ${{ variables.internalProjectName }}
+    publicProjectName: ${{ variables.publicProjectName }}
+    linuxAmdBuildJobTimeout: 210
+    linuxArmBuildJobTimeout: 300
+    customBuildInitSteps:
+    - template: /eng/pipelines/steps/install-cross-build-prereqs.yml
