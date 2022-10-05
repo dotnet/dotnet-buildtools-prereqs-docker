@@ -56,6 +56,12 @@ RUN apt-get update \
         azure-cli \
     && rm -rf /var/lib/apt/lists/*
 
+# Install Powershell
+RUN wget -q https://packages.microsoft.com/config/ubuntu/18.04/packages-microsoft-prod.deb \
+    && dpkg -i packages-microsoft-prod.deb \
+    && apt-get update \
+    && apt-get install -y powershell
+
 # Runtime dependencies
 RUN apt-get update \
     && apt-get install -y \

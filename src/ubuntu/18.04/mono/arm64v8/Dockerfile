@@ -1,4 +1,4 @@
-FROM arm64v8/ubuntu:18.04
+FROM ubuntu:18.04
 
 # Install Mono build dependencies
 ENV DEBIAN_FRONTEND=noninteractive

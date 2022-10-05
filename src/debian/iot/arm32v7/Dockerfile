@@ -1,4 +1,4 @@
-FROM arm32v7/debian:latest
+FROM debian:latest
 
 # Dependencies for downloading and running the installation script of libgpiod
 RUN apt-get update \
