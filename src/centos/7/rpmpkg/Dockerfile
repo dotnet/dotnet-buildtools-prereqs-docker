@@ -13,8 +13,9 @@ RUN yum clean all \
     && scl enable ${RUBY_SCL} 'gem install --no-document fpm git:1.7.0 ffi:1.12.2' \
     && yum clean all
 
-ENV PATH="/opt/rh/${RUBY_SCL}/root/usr/local/bin:/opt/rh/${RUBY_SCL}/root/usr/bin:${PATH}" \
-    LD_LIBRARY_PATH="/opt/rh/${RUBY_SCL}/root/usr/local/lib64:/opt/rh/${RUBY_SCL}/root/usr/lib64" \
-    X_SCLS="scl enable ${RUBY_SCL}" \
-    XDG_DATA_DIRS="/opt/rh/${RUBY_SCL}/root/usr/local/share:/opt/rh/${RUBY_SCL}/root/usr/share:/usr/local/share:/usr/share" \
-    PKG_CONFIG_PATH="/opt/rh/${RUBY_SCL}/root/usr/local/lib64/pkgconfig:/opt/rh/${RUBY_SCL}/root/usr/lib64/pkgconfig"
+# Create symlinks for fpm and ruby so they are on the path
+RUN ln -sf /opt/rh/${RUBY_SCL}/root/usr/local/bin/fpm /usr/bin/fpm \
+    && ln -sf /opt/rh/${RUBY_SCL}/root/usr/bin/ruby /usr/bin/ruby
+
+# # Set up additional environment variables so fpm can run
+ENV LD_LIBRARY_PATH="/opt/rh/${RUBY_SCL}/root/usr/local/lib64:/opt/rh/${RUBY_SCL}/root/usr/lib64" \
