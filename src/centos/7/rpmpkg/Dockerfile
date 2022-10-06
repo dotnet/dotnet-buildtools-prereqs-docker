@@ -18,4 +18,4 @@ RUN ln -sf /opt/rh/${RUBY_SCL}/root/usr/local/bin/fpm /usr/bin/fpm \
     && ln -sf /opt/rh/${RUBY_SCL}/root/usr/bin/ruby /usr/bin/ruby
 
 # Set up additional environment variables so fpm can run
-ENV LD_LIBRARY_PATH="/opt/rh/${RUBY_SCL}/root/usr/lib64:/opt/rh/${RUBY_SCL}/root/usr/local/lib64" \
+ENV LD_LIBRARY_PATH="/opt/rh/${RUBY_SCL}/root/usr/lib64:/opt/rh/${RUBY_SCL}/root/usr/local/lib64"
