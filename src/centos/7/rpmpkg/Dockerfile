@@ -13,9 +13,14 @@ RUN yum clean all \
     && scl enable ${RUBY_SCL} 'gem install --no-document fpm git:1.7.0 ffi:1.12.2' \
     && yum clean all
 
-# Create symlinks for fpm and ruby so they are on the path
-RUN ln -sf /opt/rh/${RUBY_SCL}/root/usr/local/bin/fpm /usr/bin/fpm \
-    && ln -sf /opt/rh/${RUBY_SCL}/root/usr/bin/ruby /usr/bin/ruby
+ENV CONTAINER_SCRIPTS_PATH=/opt/app-root \
+    ENABLED_COLLECTIONS="${RUBY_SCL}"
 
-# Set up additional environment variables so fpm can run
-ENV LD_LIBRARY_PATH="/opt/rh/${RUBY_SCL}/root/usr/lib64:/opt/rh/${RUBY_SCL}/root/usr/local/lib64" \
+COPY ./scl_enable ${CONTAINER_SCRIPTS_PATH}/etc/scl_enable
+
+# When bash is started non-interactively, to run a shell script, for example it
+# looks for this variable and source the content of this file. This will enable
+# the SCL for all scripts without need to do 'scl enable'.
+ENV BASH_ENV=${CONTAINER_SCRIPTS_PATH}/etc/scl_enable \
+    ENV=${CONTAINER_SCRIPTS_PATH}/etc/scl_enable \
+    PROMPT_COMMAND=". ${CONTAINER_SCRIPTS_PATH}/etc/scl_enable"
