@@ -1,4 +1,4 @@
-FROM debian:latest
+FROM debian:bullseye
 
 # Dependencies for downloading and running the installation script of libgpiod
 RUN apt-get update \

@@ -1,4 +1,4 @@
-FROM debian:11
+FROM debian:bullseye
 
 # Dependencies for generic .NET Core builds and the base toolchain we need to
 # build anything (clang, cmake, make and the like)
