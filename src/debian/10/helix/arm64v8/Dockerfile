@@ -55,10 +55,13 @@ RUN curl -LO https://packages.microsoft.com/keys/microsoft.asc && \
     rm -rf /var/lib/apt/lists/* microsoft.asc
 
 # Create helixbot user and give rights to sudo without password
+# (we use two users here to ensure volume mounting works with two possible UIDs of the host UID)
 # additionally, preinstall the virtualenv packages used for VSTS reporting to save time
 RUN /usr/sbin/adduser --disabled-password --gecos '' --uid 1001 --shell /bin/bash --ingroup adm helixbot && \
+    /usr/sbin/adduser --disabled-password --gecos '' --uid 1000 --shell /bin/bash --ingroup adm helixbot2 && \
     chmod 755 /root && \
-    echo "helixbot ALL=(ALL)       NOPASSWD: ALL" > /etc/sudoers
+    echo "helixbot ALL=(ALL)       NOPASSWD: ALL" > /etc/sudoers && \
+    echo "helixbot2 ALL=(ALL)       NOPASSWD: ALL" > /etc/sudoers
 
 USER helixbot
 

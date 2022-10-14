@@ -53,9 +53,12 @@ ENV LANG=en-US.UTF-8
 
 # create helixbot user and give rights to sudo without password
 # Alpine does not support long options
+# (we use two users here to ensure volume mounting works with two possible UIDs of the host UID)
 RUN /usr/sbin/adduser -D -g '' -G adm -s /bin/bash -u 1001 helixbot && \
+    /usr/sbin/adduser -D -g '' -G adm -s /bin/bash -u 1000 helixbot2 && \
     chmod 755 /root && \
-    echo "helixbot ALL=(ALL)       NOPASSWD: ALL" > /etc/sudoers.d/helixbot
+    echo "helixbot ALL=(ALL)       NOPASSWD: ALL" > /etc/sudoers.d/helixbot && \
+    echo "helixbot2 ALL=(ALL)       NOPASSWD: ALL" > /etc/sudoers.d/helixbot2
 
 USER helixbot
 
