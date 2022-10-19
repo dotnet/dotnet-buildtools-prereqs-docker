@@ -56,8 +56,10 @@ RUN ln -sf /usr/bin/python3 /usr/bin/python && \
     pip install ./helix_scripts-*-py3-none-any.whl
 
 RUN adduser --disabled-password --gecos '' --uid 1001 --shell /bin/bash --ingroup adm helixbot && \
+    adduser --disabled-password --gecos '' --uid 1000 --shell /bin/bash --ingroup adm helixbot2 && \
     chmod -R +x /root && \
-    echo 'helixbot ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
+    echo 'helixbot ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers && \
+    echo 'helixbot2 ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
 
 USER helixbot
 
