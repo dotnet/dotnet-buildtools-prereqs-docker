@@ -76,7 +76,7 @@ RUN apt-get update \
         libkrb5-dev \
         liblttng-ust-dev \
         libnuma-dev \
-        libssl1.0-dev \
+        libssl-dev \
         libtool \
         libunwind8 \
         libunwind8-dev \
