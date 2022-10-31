@@ -1,4 +1,7 @@
-trigger: none
+trigger: 
+  branches:
+    include:
+    - production
 pr: none
 
 resources:
