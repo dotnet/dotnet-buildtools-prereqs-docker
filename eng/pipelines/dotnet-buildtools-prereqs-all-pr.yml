@@ -1,26 +1,25 @@
 trigger: none
-pr:
+pr: 
   branches:
     include:
-    - main
-  paths:
-    include:
-    - src/debian/*
+    - production
 
 resources:
   repositories:
-  - repository: PublicVersionsRepo
+  - repository: InternalVersionsRepo
     type: github
-    endpoint: public
+    endpoint: dotnet
     name: dotnet/versions
 
 variables:
 - template: variables/common.yml
-- name: imageBuilder.pathArgs
-  value: --path 'src/debian/*'
 
 stages:
 - template: ../common/templates/stages/dotnet/build-test-publish-repo.yml
   parameters:
     internalProjectName: ${{ variables.internalProjectName }}
     publicProjectName: ${{ variables.publicProjectName }}
+    linuxAmdBuildJobTimeout: 210
+    linuxArmBuildJobTimeout: 300
+    customBuildInitSteps:
+    - template: /eng/pipelines/steps/install-cross-build-prereqs.yml

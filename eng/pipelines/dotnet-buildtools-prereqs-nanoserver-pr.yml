@@ -3,7 +3,6 @@ pr:
   branches:
     include:
     - main
-    - production
   paths:
     include:
     - src/nanoserver/*
