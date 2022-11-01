@@ -6,9 +6,9 @@ pr:
 
 resources:
   repositories:
-  - repository: InternalVersionsRepo
+  - repository: PublicVersionsRepo
     type: github
-    endpoint: dotnet
+    endpoint: public
     name: dotnet/versions
 
 variables:
