@@ -19,7 +19,7 @@ stages:
   parameters:
     internalProjectName: ${{ variables.internalProjectName }}
     publicProjectName: ${{ variables.publicProjectName }}
-    linuxAmdBuildJobTimeout: 210
+    linuxAmdBuildJobTimeout: 360
     linuxArmBuildJobTimeout: 300
     ${{ if eq(variables['System.TeamProject'], 'internal') }}:
       customCopyBaseImagesInitSteps:
