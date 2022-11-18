@@ -15,7 +15,8 @@ RUN apt-get update \
         binfmt-support \
         binutils-arm-linux-gnueabihf \
         build-essential \
-        cmake \
+        cmake=3.24.1-0kitware1ubuntu18.04.1 \
+        cmake-data=3.24.1-0kitware1ubuntu18.04.1 \
         cpio \
         debootstrap \
         gdb \
