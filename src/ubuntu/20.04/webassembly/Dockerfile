@@ -3,10 +3,10 @@ FROM mcr.microsoft.com/dotnet-buildtools/prereqs:ubuntu-20.04-coredeps-local
 # Dependencies for WebAssembly build
 RUN apt-get update \
     && apt-get install -y \
-        libssl1.0-dev \
+        libssl-dev \
         libtinfo-dev \
         locales \
-        nodejs-dev \
+        nodejs \
         node-gyp \
         npm \
         wget \
@@ -36,6 +36,14 @@ RUN mkdir ${EMSCRIPTEN_PATH} \
     && ./emsdk activate ${EMSCRIPTEN_VERSION}-upstream \
     && chmod -R 777 ${EMSCRIPTEN_PATH}
 
+# Install V8 Engine
+SHELL ["/bin/bash", "-c"]
+
+RUN curl -sSL "https://netcorenativeassets.blob.core.windows.net/resource-packages/external/linux/chromium-v8/v8-linux64-rel-8.5.183.zip" -o ./v8.zip \
+    && unzip ./v8.zip -d /usr/local/v8 \
+    && echo $'#!/usr/bin/env bash\n\
+"/usr/local/v8/d8" --snapshot_blob="/usr/local/v8/snapshot_blob.bin" "$@"\n' > /usr/local/bin/v8 \
+    && chmod +x /usr/local/bin/v8
 
 # Install Wasi toolchain
 ENV WASI_SDK_VESION=16
@@ -46,14 +54,19 @@ RUN mkdir -p ${WASI_SDK_PATH} \
     && cd /tmp \
     && curl -L -o /tmp/wasi-sdk.tar.gz ${WASI_SDK_URL} \
     && tar --strip-components=1 -xvzf /tmp/wasi-sdk.tar.gz -C ${WASI_SDK_PATH} \
-    && echo ${WASI_SDK_VESION} > $(WASI_SDK_PATH)/wasi-sdk-version.txt \
+    && echo ${WASI_SDK_VESION} > ${WASI_SDK_PATH}/wasi-sdk-version.txt \
     && rm /tmp/wasi-sdk.tar.gz
 
-# Install V8 Engine
-SHELL ["/bin/bash", "-c"]
 
-RUN curl -sSL "https://netcorenativeassets.blob.core.windows.net/resource-packages/external/linux/chromium-v8/v8-linux64-rel-8.5.183.zip" -o ./v8.zip \
-    && unzip ./v8.zip -d /usr/local/v8 \
-    && echo $'#!/usr/bin/env bash\n\
-"/usr/local/v8/d8" --snapshot_blob="/usr/local/v8/snapshot_blob.bin" "$@"\n' > /usr/local/bin/v8 \
-    && chmod +x /usr/local/bin/v8
+ENV WASMTIME_VESION=3.0.0
+ENV WASMTIME_PATH=/usr/local/wasmtime
+ENV WASMTIME_URL=https://github.com/bytecodealliance/wasmtime/releases/download/v${WASMTIME_VESION}/wasmtime-v${WASMTIME_VESION}-x86_64-linux.tar.xz
+
+
+RUN mkdir -p ${WASMTIME_PATH} \
+    && cd /tmp \
+    && curl -L -o /tmp/wasmtime.tar.xz ${WASMTIME_URL} \
+    && tar --strip-components=1 -xvf /tmp/wasmtime.tar.xz -C ${WASMTIME_PATH} \
+    && echo ${WASMTIME_VESION} > ${WASMTIME_PATH}/wasmtime-version.txt \
+    && rm /tmp/wasmtime.tar.xz \
+    && ln -s ${WASMTIME_PATH}/wasmtime /bin/wasmtime
