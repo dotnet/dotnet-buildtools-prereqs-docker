@@ -564,10 +564,7 @@
               "osVersion": "focal",
               "tags": {
                 "ubuntu-20.04-webassembly-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
-                "ubuntu-20.04-webassembly$(FloatingTagSuffix)": {},
-                "ubuntu-20.04-webassembly-local": {
-                  "isLocal": true
-                }
+                "ubuntu-20.04-webassembly$(FloatingTagSuffix)": {}
               }
             }
           ]
