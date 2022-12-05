@@ -1,4 +1,4 @@
-FROM mcr.microsoft.com/dotnet-buildtools/prereqs:ubuntu-20.04-helix-amd64-local
+FROM mcr.microsoft.com/dotnet-buildtools/prereqs:ubuntu-20.04-coredeps-local
 
 # Dependencies for WebAssembly build
 RUN apt-get update \
