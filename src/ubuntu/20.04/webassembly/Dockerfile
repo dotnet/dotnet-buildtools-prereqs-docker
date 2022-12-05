@@ -63,7 +63,6 @@ ENV WASMTIME_VERSION=3.0.0
 ENV WASMTIME_PATH=/usr/local/wasmtime
 ENV WASMTIME_URL=https://github.com/bytecodealliance/wasmtime/releases/download/v${WASMTIME_VERSION}/wasmtime-v${WASMTIME_VERSION}-x86_64-linux.tar.xz
 
-
 RUN mkdir -p ${WASMTIME_PATH} \
     && cd /tmp \
     && curl -L -o /tmp/wasmtime.tar.xz ${WASMTIME_URL} \
