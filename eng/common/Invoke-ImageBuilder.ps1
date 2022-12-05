@@ -42,7 +42,7 @@ function Log {
     Write-Output $Message
 }
 
-function Exec {
+function LocalExec {
     param ([string] $Cmd)
 
     Log "Executing: '$Cmd'"
@@ -65,7 +65,7 @@ try {
         $imageBuilderImageName = "microsoft-dotnet-imagebuilder-withrepo"
         if ($ReuseImageBuilderImage -ne $True) {
             & ./eng/common/Get-ImageBuilder.ps1
-            Exec ("docker build -t $imageBuilderImageName --build-arg " `
+            LocalExec ("docker build -t $imageBuilderImageName --build-arg " `
                 + "IMAGE=${imageNames.imageBuilderName} -f eng/common/Dockerfile.WithRepo .")
         }
 
@@ -78,18 +78,18 @@ try {
         $imageBuilderCmd = [System.IO.Path]::Combine($imageBuilderFolder, "Microsoft.DotNet.ImageBuilder.exe")
         if (-not (Test-Path -Path "$imageBuilderCmd" -PathType Leaf)) {
             & ./eng/common/Get-ImageBuilder.ps1
-            Exec "docker create --name $imageBuilderContainerName ${imageNames.imageBuilderName}"
+            LocalExec "docker create --name $imageBuilderContainerName ${imageNames.imageBuilderName}"
             $containerCreated = $true
             if (Test-Path -Path $imageBuilderFolder)
             {
                 Remove-Item -Recurse -Force -Path $imageBuilderFolder
             }
 
-            Exec "docker cp ${imageBuilderContainerName}:/image-builder $imageBuilderFolder"
+            LocalExec "docker cp ${imageBuilderContainerName}:/image-builder $imageBuilderFolder"
         }
     }
 
-    Exec "$imageBuilderCmd $ImageBuilderArgs"
+    LocalExec "$imageBuilderCmd $ImageBuilderArgs"
 
     if ($OnCommandExecuted) {
         Invoke-Command $OnCommandExecuted -ArgumentList $imageBuilderContainerName
@@ -97,7 +97,7 @@ try {
 }
 finally {
     if ($containerCreated) {
-        Exec "docker container rm -f $imageBuilderContainerName"
+        LocalExec "docker container rm -f $imageBuilderContainerName"
     }
     
     popd
