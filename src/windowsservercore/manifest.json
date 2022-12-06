@@ -16,7 +16,11 @@
                   "isLocal": true
                 }
               }
-            },
+            }
+          ]
+        },
+        {
+          "platforms": [
             {
               "dockerfile": "src/windowsservercore/ltsc2019/webassembly",
               "os": "windows",
@@ -25,7 +29,11 @@
                 "windowsservercore-ltsc2019-webassembly-amd64-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
                 "windowsservercore-ltsc2019-webassembly-amd64$(FloatingTagSuffix)": {}
               }
-            },
+            }
+          ]
+        },
+        {
+          "platforms": [
             {
               "dockerfile": "src/windowsservercore/ltsc2022/helix/amd64",
               "os": "windows",
@@ -37,7 +45,11 @@
                   "isLocal": true
                 }
               }
-            },
+            }
+          ]
+        },
+        {
+          "platforms": [
             {
               "dockerfile": "src/windowsservercore/ltsc2022/helix/webassembly",
               "os": "windows",
