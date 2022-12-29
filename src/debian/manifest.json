@@ -5,7 +5,7 @@
       "images": [
         {
           "sharedTags": {
-            "debian-bullseye-slim-docker-testrunner-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
+            "debian-bullseye-slim-docker-testrunner-$(UniqueId)": {},
             "debian-bullseye-slim-docker-testrunner$(FloatingTagSuffix)": {}
           },
           "platforms": [
@@ -14,7 +14,7 @@
               "os": "linux",
               "osVersion": "bullseye",
               "tags": {
-                "debian-bullseye-slim-docker-testrunner-amd64-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
+                "debian-bullseye-slim-docker-testrunner-amd64-$(UniqueId)": {},
                 "debian-bullseye-slim-docker-testrunner-amd64$(FloatingTagSuffix)": {}
               }
             },
@@ -24,7 +24,7 @@
               "os": "linux",
               "osVersion": "bullseye",
               "tags": {
-                "debian-bullseye-slim-docker-testrunner-arm64v8-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
+                "debian-bullseye-slim-docker-testrunner-arm64v8-$(UniqueId)": {},
                 "debian-bullseye-slim-docker-testrunner-arm64v8$(FloatingTagSuffix)": {}
               },
               "variant": "v8"
