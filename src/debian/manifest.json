@@ -10,7 +10,7 @@
           },
           "platforms": [
             {
-              "dockerfile": "src/debian/11/docker-testrunner/amd64",
+              "dockerfile": "src/debian/11/docker-testrunner",
               "os": "linux",
               "osVersion": "bullseye",
               "tags": {
@@ -20,7 +20,7 @@
             },
             {
               "architecture": "arm64",
-              "dockerfile": "src/debian/11/docker-testrunner/arm64v8",
+              "dockerfile": "src/debian/11/docker-testrunner",
               "os": "linux",
               "osVersion": "bullseye",
               "tags": {
