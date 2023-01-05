@@ -22,7 +22,7 @@ RUN npm install jsvu -g
 
 USER helixbot
 
-# Install V8 & other engines in the non-root context
+# Install latest V8 engine
 RUN jsvu --os=linux64 --engines=v8
 ENV PATH="/home/helixbot/.jsvu/bin:${PATH}"
 RUN v8 -e "console.log(version());quit();"
