@@ -29,7 +29,7 @@ RUN cd ~ && \
 
 USER root
 
-ENV PATH=/home/helixbot/node-v18.12.1-linux-x64/bin:$PATH
+ENV PATH=/home/helixbot/node-v${NODE_VERSION}-linux-x64/bin:$PATH
 RUN npm install -g npm
 RUN npm install jsvu -g
 
