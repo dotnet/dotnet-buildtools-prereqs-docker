@@ -11,6 +11,7 @@ RUN apt-get clean && \
     mv /etc/apt/sources.list1 /etc/apt/sources.list &&  apt-get update && \
     apt-get install -qq -y \
         libnode-dev \
+        curl \
         node-gyp \
         npm \
      && rm -rf /var/lib/apt/lists/* \
