@@ -23,7 +23,7 @@ function installPkgs {
 
 # Retry apt-get update due to https://github.com/dotnet/dotnet-buildtools-prereqs-docker/issues/758
 retryCount=0
-waitSecs=30
+waitSecs=60
 until installPkgs; do
     retryCount=$((retryCount+1))
     if [ $retryCount -lt 5 ]; then
