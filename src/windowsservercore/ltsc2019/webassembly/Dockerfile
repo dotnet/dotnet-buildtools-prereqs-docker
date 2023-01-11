@@ -76,7 +76,7 @@ RUN curl -SL --output %TEMP%\nodejs.msi https://nodejs.org/dist/v%NODE_VERSION%/
 # install jsvu and engines
 RUN npm install jsvu -g \
     && npm exec -c "jsvu --os=win64 --engines=v8,spidermonkey" \
-    && setx /M PATH "%PATH%;%USERPROFILE%\.jsvu"
+    && setx /M PATH "%PATH%;%USERPROFILE%\.jsvu\bin"
 
 # Install cmake
 ENV CMAKE_VERSION 3.20.3

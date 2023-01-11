@@ -41,8 +41,8 @@ ENV NODE_VERSION 17.3.1
 RUN curl -SL --output %TEMP%\nodejs.msi https://nodejs.org/dist/v%NODE_VERSION%/node-v%NODE_VERSION%-x64.msi
 RUN msiexec /i %TEMP%\nodejs.msi /quiet /passive /qn /norestart
 
-# install jsvu and engines
+# install latest jsvu and v8 engine
 RUN npm install jsvu -g
 RUN npm exec -c "jsvu --os=win64 --engines=v8"
-RUN setx PATH "%PATH%;%USERPROFILE%\.jsvu"
+RUN setx PATH "%PATH%;%USERPROFILE%\.jsvu\bin"
 RUN v8 -e "console.log(version());quit();"
