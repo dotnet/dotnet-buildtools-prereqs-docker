@@ -26,7 +26,7 @@ retryCount=0
 waitSecs=60
 until installPkgs; do
     retryCount=$((retryCount+1))
-    if [ $retryCount -lt 5 ]; then
+    if [ $retryCount -lt 10 ]; then
         echo "Failed to update apt-get, retrying in $waitSecs seconds..."
         sleep $waitSecs
     else
