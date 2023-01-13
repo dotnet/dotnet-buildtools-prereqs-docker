@@ -55,5 +55,5 @@ RUN dnf --setopt=install_weak_deps=False install -y \
 # Dependencies for running the VMR tooling
 # LibGit2Sharp requires this when synchronizing the VMR in a Codespace
 RUN dnf --setopt=install_weak_deps=False install -y \
-        openssl1.1.x86_64 \
+        openssl1.1 \
     && dnf clean all
