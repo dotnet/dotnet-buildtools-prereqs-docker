@@ -51,3 +51,9 @@ RUN dnf --setopt=install_weak_deps=False install -y \
         uuid-devel \
         zlib-devel \
     && dnf clean all
+
+# Dependencies for running the VMR tooling
+# LibGit2Sharp requires this when synchronizing the VMR in a Codespace
+RUN dnf --setopt=install_weak_deps=False install -y \
+        openssl1.1.x86_64 \
+    && dnf clean all
