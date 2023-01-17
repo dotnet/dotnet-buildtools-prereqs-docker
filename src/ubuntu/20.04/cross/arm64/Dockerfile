@@ -24,26 +24,25 @@ RUN mkdir compiler-rt-build && \
     cd compiler-rt-build && \
     \
     TARGET_TRIPLE=aarch64-linux-gnu \
-    BUILD_C_FLAGS="-v --sysroot=$ROOTFS_DIR" && \
+    BUILD_CXX_FLAGS="-v --sysroot=$ROOTFS_DIR" && \
     \
     cmake ../compiler-rt-9.0.1.src \
-    -DCOMPILER_RT_BUILD_PROFILE=ON \
-    -DCOMPILER_RT_BUILD_BUILTINS=OFF \
-    -DCOMPILER_RT_BUILD_SANITIZERS=OFF \
-    -DCOMPILER_RT_BUILD_XRAY=OFF \
-    -DCOMPILER_RT_BUILD_LIBFUZZER=OFF \
-    \
-    -DCMAKE_C_COMPILER=/usr/bin/clang-9 \
-    -DCMAKE_CXX_COMPILER=/usr/bin/clang++-9 \
-    -DCMAKE_EXE_LINKER_FLAGS="-fuse-ld=lld" \
-    -DCMAKE_C_COMPILER_TARGET="${TARGET_TRIPLE}" \
-    -DCMAKE_CXX_COMPILER_TARGET="${TARGET_TRIPLE}" \
-    -DCOMPILER_RT_DEFAULT_TARGET_ONLY=ON \
-    -DLLVM_CONFIG_PATH=/usr/bin/llvm-config-9 \
-    \
-    -DCMAKE_C_FLAGS="${BUILD_C_FLAGS}" \
-    -DCMAKE_CXX_FLAGS="${BUILD_C_FLAGS}" \
-    -DCMAKE_C_COMPILER_EXTERNAL_TOOLCHAIN="$ROOTFS_DIR/usr"
+        -DCOMPILER_RT_BUILD_PROFILE=ON \
+        -DCOMPILER_RT_BUILD_BUILTINS=OFF \
+        -DCOMPILER_RT_BUILD_SANITIZERS=OFF \
+        -DCOMPILER_RT_BUILD_XRAY=OFF \
+        -DCOMPILER_RT_BUILD_LIBFUZZER=OFF \
+        \
+        -DCMAKE_C_COMPILER=/usr/bin/clang-9 \
+        -DCMAKE_CXX_COMPILER=/usr/bin/clang++-9 \
+        -DCMAKE_EXE_LINKER_FLAGS="-fuse-ld=lld" \
+        -DCMAKE_C_COMPILER_TARGET="${TARGET_TRIPLE}" \
+        -DCMAKE_CXX_COMPILER_TARGET="${TARGET_TRIPLE}" \
+        -DCOMPILER_RT_DEFAULT_TARGET_ONLY=ON \
+        -DLLVM_CONFIG_PATH=/usr/bin/llvm-config-9 \
+        \
+        -DCMAKE_C_FLAGS="${BUILD_CXX_FLAGS}" \
+        -DCMAKE_CXX_FLAGS="${BUILD_CXX_FLAGS}"
 
 RUN cd compiler-rt-build && make
 
