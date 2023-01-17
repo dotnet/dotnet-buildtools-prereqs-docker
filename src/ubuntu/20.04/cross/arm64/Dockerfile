@@ -24,7 +24,7 @@ RUN mkdir compiler-rt-build && \
     cd compiler-rt-build && \
     \
     TARGET_TRIPLE=aarch64-linux-gnu \
-    BUILD_CXX_FLAGS="-v --sysroot=$ROOTFS_DIR" && \
+    BUILD_FLAGS="-v --sysroot=$ROOTFS_DIR" && \
     \
     cmake ../compiler-rt-9.0.1.src \
         -DCOMPILER_RT_BUILD_PROFILE=ON \
@@ -41,8 +41,8 @@ RUN mkdir compiler-rt-build && \
         -DCOMPILER_RT_DEFAULT_TARGET_ONLY=ON \
         -DLLVM_CONFIG_PATH=/usr/bin/llvm-config-9 \
         \
-        -DCMAKE_C_FLAGS="${BUILD_CXX_FLAGS}" \
-        -DCMAKE_CXX_FLAGS="${BUILD_CXX_FLAGS}"
+        -DCMAKE_C_FLAGS="${BUILD_FLAGS}" \
+        -DCMAKE_CXX_FLAGS="${BUILD_FLAGS}"
 
 RUN cd compiler-rt-build && make
 
