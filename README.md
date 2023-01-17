@@ -120,6 +120,8 @@ A precondition for building an image is to ensure that the base image specified 
 
 In certain cases, it is necessary to run custom logic before and after the Dockerfiles are built.  For example, to build the Dockerfiles that are used for cross-gen builds, the rootfs that gets copied into the Docker image needs to be built on the host OS.  To support these scenarios a `pre-build` or `post-build` bash or PowerShell script can be placed in a `hooks` folder next to the Dockerfile.  The scripts will get invoked by the build process.
 
+Note that multi-stage docker builds can be used to accomplish the same without build hooks, and are easier to iterate on locally because this takes advantage of docker image caching to avoid re-running steps when nothing has changed (whereas pre-build hooks run every time the dockerfile is built).
+
 **Warning:** It is generally recommended to avoid the need to use hooks whenever possible.
 
 ### Image-Builder
