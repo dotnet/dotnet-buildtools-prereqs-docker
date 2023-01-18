@@ -6,7 +6,8 @@ The Dockerfiles in this repository are used for building the .NET Core product. 
 
 The images produced from the Dockerfiles are published to the mcr.microsoft.com/dotnet-buildtools/prereqs Docker repository.
 
-  - [Latest tags](https://github.com/dotnet/versions/blob/main/build-info/docker/image-info.dotnet-dotnet-buildtools-prereqs-docker-main.json)
+  - [Latest tags (production)](https://github.com/dotnet/versions/blob/main/build-info/docker/image-info.dotnet-dotnet-buildtools-prereqs-docker-production.json)
+  - [Latest tags (staging)](https://github.com/dotnet/versions/blob/main/build-info/docker/image-info.dotnet-dotnet-buildtools-prereqs-docker-main.json)
   - [Full list of tags](https://mcr.microsoft.com/v2/dotnet-buildtools/prereqs/tags/list)
 
 ## How to identify an image
@@ -118,6 +119,8 @@ A precondition for building an image is to ensure that the base image specified 
 ### Hooks
 
 In certain cases, it is necessary to run custom logic before and after the Dockerfiles are built.  For example, to build the Dockerfiles that are used for cross-gen builds, the rootfs that gets copied into the Docker image needs to be built on the host OS.  To support these scenarios a `pre-build` or `post-build` bash or PowerShell script can be placed in a `hooks` folder next to the Dockerfile.  The scripts will get invoked by the build process.
+
+Note that multi-stage docker builds can be used to accomplish the same without build hooks, and are easier to iterate on locally because this takes advantage of docker image caching to avoid re-running steps when nothing has changed (whereas pre-build hooks run every time the dockerfile is built).
 
 **Warning:** It is generally recommended to avoid the need to use hooks whenever possible.
 

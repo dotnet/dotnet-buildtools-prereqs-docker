@@ -485,6 +485,19 @@
         {
           "platforms": [
             {
+              "dockerfile": "src/ubuntu/20.04/cross/arm64",
+              "os": "linux",
+              "osVersion": "focal",
+              "tags": {
+                "ubuntu-20.04-cross-arm64-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
+                "ubuntu-20.04-cross-arm64$(FloatingTagSuffix)": {}
+              }
+            }
+          ]
+        },
+        {
+          "platforms": [
+            {
               "dockerfile": "src/ubuntu/20.04/cross/armv6/10",
               "os": "linux",
               "osVersion": "focal",
