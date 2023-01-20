@@ -12,6 +12,18 @@ RUN apt-get update \
         libasound2 \
         libx11-xcb-dev \
         npm \
+        libnss3 \
+        libatk1.0-0 \
+        libatk-bridge2.0-0 \
+        libcups2 \
+        libdrm2 \
+        libxkbcommon-x11-0 \
+        libxcomposite-dev \
+        libxdamage1 \
+        libxrandr2 \
+        libgbm-dev \
+        libpango-1.0-0 \
+        libcairo2 \
     && rm -rf /var/lib/apt/lists/*
 
 USER helixbot
