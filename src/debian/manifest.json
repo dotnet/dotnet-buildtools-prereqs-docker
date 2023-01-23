@@ -192,9 +192,9 @@
         },
         {
           "architecture": "arm64",
-          "dockerfile": "src/debian/11/helix/arm64v8",
+          "dockerfile": "src/debian/12/helix/arm64v8",
           "os": "linux",
-          "osVersion": "bullseye",
+          "osVersion": "bookworm",
           "tags": {
             "debian-12-helix-arm64v8-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
             "debian-12-helix-arm64v8$(FloatingTagSuffix)": {}
