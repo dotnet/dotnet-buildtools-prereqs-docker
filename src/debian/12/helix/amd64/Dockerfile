@@ -34,12 +34,9 @@ RUN apt-get update && \
 ENV LANG=en_US.utf8
 
 RUN ln -sf /usr/bin/python3 /usr/bin/python && \
-    curl https://bootstrap.pypa.io/get-pip.py -o ./get-pip.py --fail --silent --show-error && \
-    python ./get-pip.py && rm ./get-pip.py && \
-    python -m pip install --upgrade pip==20.2 && \
-    python -m pip install virtualenv==16.6.0 && \
-    pip download --no-deps helix-scripts --index-url https://dnceng.pkgs.visualstudio.com/public/_packaging/helix-client-prod/pypi/simple && \
-    pip install ./helix_scripts-*-py3-none-any.whl
+    python -m pip install virtualenv && \
+    python -m pip download --no-deps helix-scripts --index-url https://dnceng.pkgs.visualstudio.com/public/_packaging/helix-client-prod/pypi/simple && \
+    python -m pip install ./helix_scripts-*-py3-none-any.whl
 
 # Create helixbot user and give rights to sudo without password
 # additionally, preinstall the virtualenv packages used for VSTS reporting to save time
@@ -49,4 +46,4 @@ RUN /usr/sbin/adduser --disabled-password --gecos '' --uid 1000 --shell /bin/bas
 
 USER helixbot
 
-RUN python -m virtualenv --no-site-packages /home/helixbot/.vsts-env
+RUN python -m virtualenv /home/helixbot/.vsts-env
