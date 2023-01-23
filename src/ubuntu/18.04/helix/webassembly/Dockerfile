@@ -7,10 +7,22 @@ USER root
 RUN apt-get update \
     && apt-get install -y \
         curl \
-        libdbus-glib-1-2 \
-        libgtk-3-0 \
         libasound2 \
+        libatk1.0-0 \
+        libatk-bridge2.0-0 \
+        libcairo2 \
+        libcups2 \
+        libdbus-glib-1-2 \
+        libdrm2 \
+        libgbm-dev \
+        libgtk-3-0 \
+        libnss3 \
+        libpango-1.0-0 \
         libx11-xcb-dev \
+        libxcomposite-dev \
+        libxdamage1 \
+        libxkbcommon-x11-0 \
+        libxrandr2 \
         npm \
     && rm -rf /var/lib/apt/lists/*
 
