@@ -27,14 +27,14 @@ RUN tdnf install -y \
         ncurses-devel \
         numactl-devel \
         openssl-devel \
-	pkgconf \
+        pkgconf \
         python3 \
         python3-devel \
         readline-devel \
-	sed \
+        sed \
         sudo \
         swig \
-	tar \
+        tar \
         wget \
         which \
         xz \

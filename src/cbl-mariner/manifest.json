@@ -19,6 +19,19 @@
         {
           "platforms": [
             {
+              "dockerfile": "src/cbl-mariner/2.0/helix/amd64",
+              "os": "linux",
+              "osVersion": "cbl-mariner2.0",
+              "tags": {
+                "cbl-mariner-2.0-helix-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
+                "cbl-mariner-2.0-helix$(FloatingTagSuffix)": {}
+              }
+            }
+          ]
+        },
+        {
+          "platforms": [
+            {
               "dockerfile": "src/cbl-mariner/2.0/amd64",
               "os": "linux",
               "osVersion": "cbl-mariner2.0",
