@@ -176,6 +176,35 @@
               "variant": "v8"
             }
           ]
+        },
+        {
+          "platforms": [
+            {
+              "architecture": "amd64",
+              "dockerfile": "src/debian/12/helix/amd64",
+              "os": "linux",
+              "osVersion": "bookworm",
+              "tags": {
+                "debian-12-helix-amd64-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
+                "debian-12-helix-amd64$(FloatingTagSuffix)": {}
+              }
+            }
+          ]
+        },
+        {
+          "platforms": [
+            {
+              "architecture": "arm64",
+              "dockerfile": "src/debian/12/helix/arm64v8",
+              "os": "linux",
+              "osVersion": "bookworm",
+              "tags": {
+                "debian-12-helix-arm64v8-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
+                "debian-12-helix-arm64v8$(FloatingTagSuffix)": {}
+              },
+              "variant": "v8"
+            }
+          ]
         }
       ]
     }
