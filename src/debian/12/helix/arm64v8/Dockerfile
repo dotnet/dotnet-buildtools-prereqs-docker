@@ -46,7 +46,7 @@ RUN ln -sf /usr/bin/python3 /usr/bin/python && \
 # additionally, preinstall the virtualenv packages used for VSTS reporting to save time
 RUN /usr/sbin/adduser --disabled-password --gecos '' --uid 1000 --shell /bin/bash --ingroup adm helixbot && \
     chmod 755 /root && \
-    echo "helixbot ALL=(ALL)       NOPASSWD: ALL" > /etc/sudoers && \
+    echo "helixbot ALL=(ALL)       NOPASSWD: ALL" > /etc/sudoers
 
 USER helixbot
 
