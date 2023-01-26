@@ -1,5 +1,7 @@
 FROM mcr.microsoft.com/dotnet-buildtools/prereqs:ubuntu-20.04-coredeps-local
 
+RUN echo triggering rebuild!
+
 # Install the base toolchain we need to build anything (clang, cmake, make and the like).
 RUN apt-get update \
     && apt-get install -y \
