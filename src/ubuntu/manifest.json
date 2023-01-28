@@ -328,6 +328,19 @@
           "platforms": [
             {
               "architecture": "amd64",
+              "dockerfile": "src/ubuntu/18.04/helix/webassembly-3130",
+              "os": "linux",
+              "osVersion": "bionic",
+              "tags": {
+                "ubuntu-18.04-helix-webassembly3130-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
+              }
+            }
+          ]
+        },
+        {
+          "platforms": [
+            {
+              "architecture": "amd64",
               "dockerfile": "src/ubuntu/18.04/helix/sqlserver/amd64",
               "os": "linux",
               "osVersion": "bionic",
