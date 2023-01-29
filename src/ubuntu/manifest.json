@@ -453,6 +453,18 @@
         {
           "platforms": [
             {
+              "dockerfile": "src/ubuntu/18.04/webassembly-3130",
+              "os": "linux",
+              "osVersion": "bionic",
+              "tags": {
+                "ubuntu-18.04-webassembly3130-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
+              }
+            }
+          ]
+        },
+        {
+          "platforms": [
+            {
               "dockerfile": "src/ubuntu/20.04/coredeps",
               "os": "linux",
               "osVersion": "focal",
