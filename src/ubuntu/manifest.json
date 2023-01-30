@@ -597,6 +597,18 @@
         {
           "platforms": [
             {
+              "dockerfile": "src/ubuntu/20.04/webassembly-3130",
+              "os": "linux",
+              "osVersion": "focal",
+              "tags": {
+                "ubuntu-20.04-webassembly3130-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
+              }
+            }
+          ]
+        },
+        {
+          "platforms": [
+            {
               "dockerfile": "src/ubuntu/22.04/amd64",
               "os": "linux",
               "osVersion": "jammy",
