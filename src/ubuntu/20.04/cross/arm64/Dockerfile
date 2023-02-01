@@ -8,7 +8,7 @@ RUN apt-get update \
 
 
 FROM binutils AS rootfsbuild
-ARG ROOTFS_DIR=/crossrootfs
+ARG ROOTFS_DIR=/crossrootfs/arm64
 
 # Build rootfs
 RUN git config --global user.email builder@dotnet-buildtools-prereqs-docker && \
@@ -52,5 +52,5 @@ RUN mkdir -p $ROOTFS_DIR/usr/lib/llvm-9/lib/clang/9.0.1/lib/linux/ && \
 
 
 FROM binutils
-ARG ROOTFS_DIR=/crossrootfs
+ARG ROOTFS_DIR=/crossrootfs/arm64
 COPY --from=rootfsbuild $ROOTFS_DIR $ROOTFS_DIR

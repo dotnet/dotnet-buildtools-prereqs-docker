@@ -29,6 +29,8 @@ variables:
 - ${{ if or(eq(variables['Build.SourceBranch'], 'refs/heads/production'), eq(variables['System.PullRequest.TargetBranch'], 'refs/heads/production')) }}:
   - name: publicSourceBranch
     value: production
+  - name: noCache
+    value: true
 - ${{ else }}:
   - name: publicSourceBranch
     value: main
