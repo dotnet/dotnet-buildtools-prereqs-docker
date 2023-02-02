@@ -31,7 +31,7 @@ RUN ln -sf /usr/bin/python3 /usr/bin/python && \
 # create helixbot user and give rights to sudo without password
 RUN /usr/sbin/useradd -c '' --uid 1000 --shell /bin/bash --groups adm helixbot && \
     chmod 755 /root && \
-    echo "helixbot ALL=(ALL)       NOPASSWD: ALL" > /etc/sudoers && \
+    echo "helixbot ALL=(ALL)       NOPASSWD: ALL" >> /etc/sudoers && \
     mkdir /home/helixbot/ && chown -R helixbot /home/helixbot/
 
 USER helixbot
