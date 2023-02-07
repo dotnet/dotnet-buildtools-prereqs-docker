@@ -26,7 +26,7 @@ stages:
       - template: ../../../pipelines/steps/set-base-image-override-options.yml
         parameters:
           variableName: customCopyBaseImagesArgs
-          dockerfileOs: (alpine|centos|debian|fedora|ubuntu)
+          dockerfileOs: (centos|debian|fedora|ubuntu)
           baseOverrideRegistry: $(overrideRegistry) # Comes from DotNet-Docker-Common variable group
     customBuildInitSteps:
     - template: /eng/pipelines/steps/install-cross-build-prereqs.yml
@@ -34,6 +34,6 @@ stages:
       - template: ../../../pipelines/steps/set-base-image-override-options.yml
         parameters:
           variableName: imageBuilderBuildArgs
-          dockerfileOs: (alpine|centos|debian|fedora|ubuntu)
+          dockerfileOs: (centos|debian|fedora|ubuntu)
           baseOverrideRegistry: $(overrideRegistry) # Comes from DotNet-Docker-Common variable group
     
