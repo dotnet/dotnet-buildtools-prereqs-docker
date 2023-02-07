@@ -1,17 +1,54 @@
-FROM mcr.microsoft.com/dotnet-buildtools/prereqs:alpine-3.15-local
-RUN apk update && apk add --no-cache \
-    cargo \
-    iputils \
-    libffi-dev \
-    rust
+FROM alpine:3.17
+
+RUN apk update && \
+    apk add --no-cache \
+        autoconf \
+        automake \
+        bash \
+        build-base \
+        cargo \
+        clang \
+        clang-dev \
+        cmake \
+        coreutils \
+        curl \
+        gcc \
+        gettext-dev \
+        git \
+        icu-dev \
+        iputils \
+        jq \
+        krb5-dev \
+        libffi-dev \
+        libtool \
+        libunwind-dev \
+        linux-headers \
+        lld \
+        lldb-dev \
+        llvm \
+        lttng-ust-dev \
+        make \
+        numactl-dev \
+        openssl \
+        openssl-dev \
+        paxctl \
+        py3-lldb \
+        python3-dev \
+        rust \
+        shadow \
+        sudo \
+        tzdata \
+        util-linux-dev \
+        which \
+        zlib-dev
 
 # Install Helix Dependencies
 
 RUN ln -sf /usr/bin/python3 /usr/bin/python && \
     curl https://bootstrap.pypa.io/get-pip.py -o ./get-pip.py --fail --silent --show-error && \
     python ./get-pip.py && rm ./get-pip.py && \
-    python -m pip install --upgrade pip==21.2.4 && \
-    python -m pip install virtualenv==16.6.0 && \
+    python -m pip install --upgrade pip==22.2.2 && \
+    python -m pip install virtualenv==20.16.5 && \
     pip download --no-deps helix-scripts --index-url https://dnceng.pkgs.visualstudio.com/public/_packaging/helix-client-prod/pypi/simple && \
     pip install ./helix_scripts-*-py3-none-any.whl
 
@@ -23,7 +60,7 @@ RUN cd /tmp && \
     cd .. && \
     git clone --depth 1 --single-branch --branch main --recursive https://github.com/dotnet/msquic && \
     cd msquic/src/msquic  &&  PATH=~/.dotnet/tools:$PATH /tmp/pwsh/pwsh scripts/build.ps1 -Config Release -UseSystemOpenSSLCrypto -DisableTools -DisableTest -DisablePerf && \
-    cp artifacts/bin/linux/x64_Release_openssl/libmsquic.so.2 artifacts/bin/linux/x64_Release_openssl/libmsquic.lttng.so.2.* /usr/lib && \
+    cp artifacts/bin/linux/x64_Release_openssl3/libmsquic.so.2 artifacts/bin/linux/x64_Release_openssl3/libmsquic.lttng.so.2.* /usr/lib && \
     cd /tmp && \
     rm -r pwsh msquic
 
@@ -38,4 +75,4 @@ RUN /usr/sbin/adduser -D -g '' -G adm -s /bin/bash -u 1000 helixbot && \
 
 USER helixbot
 
-RUN python -m virtualenv --no-site-packages /home/helixbot/.vsts-env
+RUN python -m virtualenv /home/helixbot/.vsts-env
