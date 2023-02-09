@@ -43,7 +43,6 @@ RUN apk update && \
         zlib-dev
 
 # Install Helix Dependencies
-
 RUN ln -sf /usr/bin/python3 /usr/bin/python && \
     curl https://bootstrap.pypa.io/get-pip.py -o ./get-pip.py --fail --silent --show-error && \
     python ./get-pip.py && rm ./get-pip.py && \
@@ -66,6 +65,7 @@ RUN cd /tmp && \
 
 # Needed for corefx tests to pass
 ENV LANG=en-US.UTF-8
+RUN echo export LANG=en-US.UTF-8  >> /etc/profile.d/locale.sh
 
 # create helixbot user and give rights to sudo without password
 # Alpine does not support long options
