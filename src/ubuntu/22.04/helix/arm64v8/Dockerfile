@@ -58,8 +58,8 @@ RUN cd /tmp && \
     tar xf powershell-7.2.5-linux-arm64.tar.gz && \
     cd .. && \
     git clone --depth 1 --single-branch --branch main --recursive https://github.com/dotnet/msquic && \
-    cd msquic/src/msquic  &&  PATH=~/.dotnet/tools:$PATH /tmp/pwsh/pwsh scripts/build.ps1 -arch arm64 -Config Release -DisableTools -DisableTest -DisablePerf && \
-    cp artifacts/bin/linux/arm64_Release_openssl/libmsquic.so.2 artifacts/bin/linux/arm64_Release_openssl/libmsquic.lttng.so.2.2.0 /usr/lib/aarch64-linux-gnu && \
+    cd msquic/src/msquic  &&  PATH=~/.dotnet/tools:$PATH /tmp/pwsh/pwsh scripts/build.ps1 -arch arm64 -Config Release -DisableTools -DisableTest -DisablePerf -UseSystemOpenSSLCrypto && \
+    cp artifacts/bin/linux/arm64_Release_openssl3/libmsquic.so.2 artifacts/bin/linux/arm64_Release_openssl3/libmsquic.lttng.so.2.2.0 /usr/lib/aarch64-linux-gnu && \
     cd /tmp && \
     rm -r pwsh msquic
 
