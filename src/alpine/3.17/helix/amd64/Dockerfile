@@ -1,46 +1,10 @@
-FROM alpine:3.17
-
-RUN apk update && \
-    apk add --no-cache \
-        autoconf \
-        automake \
-        bash \
-        build-base \
-        cargo \
-        clang \
-        clang-dev \
-        cmake \
-        coreutils \
-        curl \
-        gcc \
-        gettext-dev \
-        git \
-        icu-dev \
-        iputils \
-        jq \
-        krb5-dev \
-        libffi-dev \
-        libtool \
-        libunwind-dev \
-        linux-headers \
-        lld \
-        lldb-dev \
-        llvm \
-        lttng-ust-dev \
-        make \
-        numactl-dev \
-        openssl \
-        openssl-dev \
-        paxctl \
-        py3-lldb \
-        python3-dev \
-        rust \
-        shadow \
-        sudo \
-        tzdata \
-        util-linux-dev \
-        which \
-        zlib-dev
+FROM mcr.microsoft.com/dotnet-buildtools/prereqs:alpine-3.17-local
+RUN apk update && apk add --no-cache \
+    cargo \
+    iputils \
+    libffi-dev \
+    musl-locales \
+    rust
 
 # Install Helix Dependencies
 RUN ln -sf /usr/bin/python3 /usr/bin/python && \
@@ -65,7 +29,7 @@ RUN cd /tmp && \
 
 # Needed for corefx tests to pass
 ENV LANG=en-US.UTF-8
-RUN echo export LANG=en-US.UTF-8  >> /etc/profile.d/locale.sh
+RUN echo export LANG=${LANG}  >> /etc/profile.d/locale.sh
 
 # create helixbot user and give rights to sudo without password
 # Alpine does not support long options
