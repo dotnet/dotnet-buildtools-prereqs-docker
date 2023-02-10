@@ -28,6 +28,7 @@ RUN apk update && \
         llvm \
         lttng-ust-dev \
         make \
+        musl-locales \
         numactl-dev \
         openssl \
         openssl-dev \
