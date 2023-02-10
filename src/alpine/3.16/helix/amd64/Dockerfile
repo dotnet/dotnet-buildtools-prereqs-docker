@@ -66,6 +66,7 @@ RUN cd /tmp && \
 
 # Needed for corefx tests to pass
 ENV LANG=en-US.UTF-8
+RUN echo export LANG=${LANG}  >> /etc/profile.d/locale.sh
 
 # create helixbot user and give rights to sudo without password
 # Alpine does not support long options
