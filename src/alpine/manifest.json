@@ -240,7 +240,10 @@
               "osVersion": "alpine3.17",
               "tags": {
                 "alpine-3.17-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
-                "alpine-3.17$(FloatingTagSuffix)": {}
+                "alpine-3.17$(FloatingTagSuffix)": {},
+                "alpine-3.17-local": {
+                  "isLocal": true
+                }
               }
             }
           ]
