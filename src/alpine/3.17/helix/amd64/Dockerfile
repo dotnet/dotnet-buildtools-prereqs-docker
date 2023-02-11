@@ -1,6 +1,7 @@
 FROM mcr.microsoft.com/dotnet-buildtools/prereqs:alpine-3.17-local
 RUN apk update && apk add --no-cache \
     cargo \
+    icu-data-full \
     iputils \
     libffi-dev \
     musl-locales \

@@ -15,6 +15,7 @@ RUN apk update && \
         gcc \
         gettext-dev \
         git \
+        icu-data-full \
         icu-dev \
         iputils \
         jq \
