@@ -14,6 +14,7 @@ RUN apk update && \
         gcc \
         gettext-dev \
         git \
+        icu-data-full \
         icu-dev \
         jq \
         krb5-dev \
