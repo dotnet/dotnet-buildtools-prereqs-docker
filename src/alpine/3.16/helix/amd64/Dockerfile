@@ -15,6 +15,7 @@ RUN apk update && \
         gcc \
         gettext-dev \
         git \
+        icu-data-full \
         icu-dev \
         iputils \
         jq \
@@ -28,6 +29,7 @@ RUN apk update && \
         llvm \
         lttng-ust-dev \
         make \
+        musl-locales \
         numactl-dev \
         openssl \
         openssl-dev \
@@ -66,6 +68,7 @@ RUN cd /tmp && \
 
 # Needed for corefx tests to pass
 ENV LANG=en-US.UTF-8
+RUN echo export LANG=${LANG}  >> /etc/profile.d/locale.sh
 
 # create helixbot user and give rights to sudo without password
 # Alpine does not support long options
