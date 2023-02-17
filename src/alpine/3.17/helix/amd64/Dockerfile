@@ -16,7 +16,6 @@ RUN apk update && apk add --no-cache \
 # Install Helix Dependencies
 RUN apk update && apk add --no-cache && \
     apk add cargo linux-headers python3-dev openssl-dev && \
-    apk list --installed > /start2.txt && \
     ln -sf /usr/bin/python3 /usr/bin/python && \
     curl https://bootstrap.pypa.io/get-pip.py -o ./get-pip.py --fail --silent --show-error && \
     python3 ./get-pip.py && rm ./get-pip.py && \
