@@ -6,6 +6,7 @@ RUN apk update && apk add --no-cache \
     curl \
     icu-data-full \
     iputils \
+    lldb \
     lttng-ust \
     musl-locales \
     openssl \
