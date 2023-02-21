@@ -48,7 +48,6 @@ RUN ln -sf /usr/bin/python3 /usr/bin/python && \
 # Support for OpenSSL 3 is early progress in msquic/main.
 RUN apt-get update && \
     apt-get install -qq -y \
-        libnuma-dev \
         liblttng-ust-dev \
         ruby-dev && \
     gem install fpm && \
@@ -69,7 +68,6 @@ RUN apt-get update && \
      dpkg -i artifacts/packages/linux/x64_Release_openssl3/libmsquic_*.deb && \
      rm -rf /tmp/msquic && \
      apt-get remove -y \
-        libnuma-dev \
         liblttng-ust-dev \
         ruby-dev && \
      apt autoremove -y && \
