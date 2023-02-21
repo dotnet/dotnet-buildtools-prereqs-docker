@@ -43,9 +43,9 @@ RUN ln -sf /usr/bin/python3 /usr/bin/python && \
     pip download --no-deps helix-scripts --index-url https://dnceng.pkgs.visualstudio.com/public/_packaging/helix-client-prod/pypi/simple && \
     pip install ./helix_scripts-*-py3-none-any.whl
 
-# build MsQuic as we don't have binary package.
-# Ubuntu 22  does not have OpenSSL 1.1.1 package and Quic releases currently do not work with OpenSsl3
-# support for OpenSSL3 is early progress in msquic/main
+# Build MsQuic as we don't have binary package.
+# Ubuntu 22  does not have OpenSSL 1.1.1 package and MsQuic releases currently do not work with OpenSSL 3.
+# Support for OpenSSL 3 is early progress in msquic/main.
 RUN apt-get update && \
     apt-get install -qq -y libnuma-dev liblttng-ust-dev ruby-dev && \
     gem install fpm && \
