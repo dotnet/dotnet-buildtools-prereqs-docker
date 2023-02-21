@@ -47,11 +47,14 @@ RUN ln -sf /usr/bin/python3 /usr/bin/python && \
     export CRYPTOGRAPHY_DONT_BUILD_RUST=1 && \
     pip install ./helix_scripts-*-py3-none-any.whl
 
-# build MsQuic as we don't have binary package.
-# Ubuntu 22  does not have OpenSSL 1.1.1 package and Quic releases currently do not work with OpenSsl3
-# support for OpenSSL3 is early progress in msquic/main
+#Build MsQuic as we don't have binary package.
+# Ubuntu 22  does not have OpenSSL 1.1.1 package and MsQuic releases currently do not work with OpenSSL 3.
+# Support for OpenSSL 3 is early progress in msquic/main.
 RUN apt-get update && \
-    apt-get install -qq -y libnuma-dev liblttng-ust-dev ruby-dev && \
+    apt-get install -qq -y \
+        libnuma-dev \
+        liblttng-ust-dev \
+        ruby-dev && \
     gem install fpm && \
     cd /tmp && \
     git clone --depth 1 --single-branch --branch main --recursive https://github.com/dotnet/msquic && \
@@ -69,9 +72,11 @@ RUN apt-get update && \
      ./scripts/make-packages.sh --tls openssl3 --config Release && \
      dpkg -i artifacts/packages/linux/arm64_Release_openssl3/libmsquic_*.deb && \
      rm -rf /tmp/msquic && \
-     apt-get remove -y libnuma-dev liblttng-ust-dev ruby-dev && \
+     apt-get remove -y
+        libnuma-dev \
+        liblttng-ust-dev \
+        ruby-dev && \
      apt autoremove -y && \
-     rm -rf  /tmp/msquic && \
      rm -rf /var/lib/apt/lists/*
 
 # (we use two users here to ensure volume mounting works with two possible UIDs of the host UID)

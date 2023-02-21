@@ -47,7 +47,10 @@ RUN ln -sf /usr/bin/python3 /usr/bin/python && \
 # Ubuntu 22  does not have OpenSSL 1.1.1 package and MsQuic releases currently do not work with OpenSSL 3.
 # Support for OpenSSL 3 is early progress in msquic/main.
 RUN apt-get update && \
-    apt-get install -qq -y libnuma-dev liblttng-ust-dev ruby-dev && \
+    apt-get install -qq -y \
+        libnuma-dev \
+        liblttng-ust-dev \
+        ruby-dev && \
     gem install fpm && \
     cd /tmp && \
     git clone --depth 1 --single-branch --branch main --recursive https://github.com/dotnet/msquic && \
@@ -65,9 +68,11 @@ RUN apt-get update && \
      ./scripts/make-packages.sh --tls openssl3 --config Release && \
      dpkg -i artifacts/packages/linux/x64_Release_openssl3/libmsquic_*.deb && \
      rm -rf /tmp/msquic && \
-     apt-get remove -y libnuma-dev liblttng-ust-dev ruby-dev && \
+     apt-get remove -y \
+        libnuma-dev \
+        liblttng-ust-dev \
+        ruby-dev && \
      apt autoremove -y && \
-     rm -rf  /tmp/msquic && \
      rm -rf /var/lib/apt/lists/*
 
 # create helixbot user and give rights to sudo without password
