@@ -59,7 +59,7 @@ RUN mkdir -p ${WASI_SDK_PATH} \
     && echo ${WASI_SDK_VERSION} > ${WASI_SDK_PATH}/wasi-sdk-version.txt \
     && rm /tmp/wasi-sdk.tar.gz
 
-ENV WASMTIME_VERSION=3.0.0
+ENV WASMTIME_VERSION=5.0.0
 ENV WASMTIME_PATH=/usr/local/wasmtime
 ENV WASMTIME_URL=https://github.com/bytecodealliance/wasmtime/releases/download/v${WASMTIME_VERSION}/wasmtime-v${WASMTIME_VERSION}-x86_64-linux.tar.xz
 
