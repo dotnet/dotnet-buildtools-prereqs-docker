@@ -16,7 +16,11 @@ RUN apk update && apk add --no-cache \
 
 # Install Helix Dependencies
 RUN apk update && apk add --no-cache && \
-    apk add cargo linux-headers python3-dev openssl-dev && \
+    apk add \
+        cargo \
+        linux-headers \
+        python3-dev \
+        openssl-dev && \
     ln -sf /usr/bin/python3 /usr/bin/python && \
     curl https://bootstrap.pypa.io/get-pip.py -o ./get-pip.py --fail --silent --show-error && \
     python3 ./get-pip.py && rm ./get-pip.py && \
@@ -24,11 +28,26 @@ RUN apk update && apk add --no-cache && \
     python3 -m pip install virtualenv==20.16.5 && \
     pip download --no-deps helix-scripts --index-url https://dnceng.pkgs.visualstudio.com/public/_packaging/helix-client-prod/pypi/simple && \
     pip install ./helix_scripts-*-py3-none-any.whl && \
-    apk del cargo linux-headers python3-dev openssl-dev
+    apk del \
+        cargo \
+        linux-headers \
+        python3-dev \
+        openssl-dev
 
 # build MsQuic as we don't have Alpine packages (yet)
 RUN apk update && apk add --no-cache && \
-    apk add cmake g++ gcc git numactl-dev linux-headers lttng-ust-dev make musl-dev openssl-dev perl && \
+    apk add \
+        cmake \
+        g++ \
+        gcc \
+        git \
+        numactl-dev \
+        linux-headers \
+        lttng-ust-dev \
+        make \
+        musl-dev \
+        openssl-dev \
+        perl && \
     cd /tmp && \
     git clone --depth 1 --single-branch --branch main --recursive https://github.com/dotnet/msquic && \
     cd msquic/src/msquic && \
@@ -44,7 +63,17 @@ RUN apk update && apk add --no-cache && \
     cmake --build build/linux/x64_openssl3  --config Release && \
     cp artifacts/bin/linux/x64_Release_openssl3/libmsquic.so.* artifacts/bin/linux/x64_Release_openssl3/libmsquic.lttng.so.* /usr/lib && \
     rm -rf /tmp/msquic && \
-    apk del cmake g++ gcc git linux-headers lttng-ust-dev make musl-dev openssl-dev perl
+    apk del \
+        cmake \
+        g++ \
+        gcc \
+        git \
+        linux-headers \
+        lttng-ust-dev \
+        make \
+        musl-dev \
+        openssl-dev \
+        perl
 
 # Needed for runtime tests to pass
 ENV LANG=en-US.UTF-8
