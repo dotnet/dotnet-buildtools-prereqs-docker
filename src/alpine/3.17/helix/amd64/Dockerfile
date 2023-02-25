@@ -5,6 +5,7 @@ RUN apk update && apk add --no-cache \
     coreutils \
     curl \
     icu-data-full \
+    icu-libs \
     iputils \
     lldb \
     lttng-ust \
