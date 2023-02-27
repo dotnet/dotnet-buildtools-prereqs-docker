@@ -16,11 +16,13 @@ variables:
 - name: publicGitRepoUri
   value: https://github.com/dotnet/dotnet-buildtools-prereqs-docker
 - ${{ if eq(variables['Build.SourceBranch'], 'refs/heads/production') }}:
+  # See https://github.com/dotnet/dotnet-buildtools-prereqs-docker/pull/814 for why the value for this is blank.
+  # If/When we get back to flowing changes to production, we will want to change this back to -staging
   - name: floatingTagSuffix
     value: ""
 - ${{ elseif eq(variables['Build.SourceBranch'], 'refs/heads/main') }}:
   - name: floatingTagSuffix
-    value: -staging
+    value: ""
 - ${{ else }}:
   - name: floatingTagSuffix
     value: $(Build.SourceBranchName)
