@@ -20,7 +20,7 @@ variables:
     value: ""
 - ${{ elseif eq(variables['Build.SourceBranch'], 'refs/heads/main') }}:
   - name: floatingTagSuffix
-    value: -staging
+    value: ""
 - ${{ else }}:
   - name: floatingTagSuffix
     value: $(Build.SourceBranchName)
