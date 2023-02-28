@@ -265,6 +265,7 @@
         {
           "platforms": [
             {
+              "architecture": "arm",
               "dockerfile": "src/alpine/3.17/helix/arm32v7",
               "os": "linux",
               "osVersion": "alpine3.17",
@@ -278,6 +279,7 @@
         {
           "platforms": [
             {
+              "architecture": "arm64",
               "dockerfile": "src/alpine/3.17/helix/arm64v8",
               "os": "linux",
               "osVersion": "alpine3.17",
