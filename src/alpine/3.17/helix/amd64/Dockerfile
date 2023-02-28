@@ -7,6 +7,7 @@ RUN apk update && apk add --no-cache \
     icu-data-full \
     icu-libs \
     iputils \
+    krb5-libs \
     lldb \
     lttng-ust \
     musl-locales \
