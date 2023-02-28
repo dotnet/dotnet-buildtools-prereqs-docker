@@ -244,7 +244,8 @@
                 "alpine-3.17-local": {
                   "isLocal": true
                 }
-              }
+              },
+              "variant": "v7"
             }
           ]
         },
@@ -283,7 +284,8 @@
               "tags": {
                 "alpine-3.17-helix-arm64v8-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
                 "alpine-3.17-helix-arm64v8$(FloatingTagSuffix)": {}
-              }
+              },
+              "variant": "v8"
             }
           ]
         }
