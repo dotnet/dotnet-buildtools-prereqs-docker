@@ -61,7 +61,7 @@ RUN apk update && apk add --no-cache && \
        -DQUIC_BUILD_TOOLS=off \
        -DQUIC_BUILD_TEST=off \
        -DQUIC_BUILD_PERF=off && \
-    cmake --build build/linux/arm_openssl3  --config Release && \
+    cmake --build build/linux/arm64_openssl3  --config Release && \
     cp artifacts/bin/linux/arm64_Release_openssl3/libmsquic.so.* artifacts/bin/linux/arm64_Release_openssl3/libmsquic.lttng.so.* /usr/lib && \
     rm -rf /tmp/msquic && \
     apk del \
