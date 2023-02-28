@@ -1,4 +1,4 @@
-FROM arm64v8/alpine:3.16
+FROM arm64v8/alpine:3.17
 # Install .NET and test dependencies
 RUN apk update && apk add --no-cache \
     bash \
