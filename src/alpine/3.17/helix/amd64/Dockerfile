@@ -19,6 +19,7 @@ RUN apk update && apk add --no-cache \
 RUN apk update && apk add --no-cache && \
     apk add \
         cargo \
+        libffi-dev \
         linux-headers \
         python3-dev \
         openssl-dev && \
@@ -31,6 +32,7 @@ RUN apk update && apk add --no-cache && \
     pip install ./helix_scripts-*-py3-none-any.whl && \
     apk del \
         cargo \
+        libffi-dev \
         linux-headers \
         python3-dev \
         openssl-dev
