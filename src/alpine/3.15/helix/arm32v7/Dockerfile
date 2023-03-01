@@ -4,7 +4,7 @@ RUN apk update && apk add --no-cache \
     bash \
     coreutils \
     curl \
-    icu-data-full \
+    icu-data \
     icu-libs \
     iputils \
     krb5-libs \
