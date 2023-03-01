@@ -86,8 +86,10 @@ RUN echo export LANG=${LANG}  >> /etc/profile.d/locale.sh
 # create helixbot user and give rights to sudo without password
 # Alpine does not support long options
 RUN /usr/sbin/adduser -D -g '' -G adm -s /bin/bash -u 1000 helixbot && \
+    /usr/sbin/adduser -D -g '' -G adm -s /bin/bash -u 1000 helixbot2 && \
     chmod 755 /root && \
-    echo "helixbot ALL=(ALL)       NOPASSWD: ALL" > /etc/sudoers.d/helixbot
+    echo "helixbot ALL=(ALL)       NOPASSWD: ALL" > /etc/sudoers.d/helixbot && \
+    echo "helixbot2 ALL=(ALL) NOPASSWD: ALL" > /etc/sudoers.d/helixbot2
 
 USER helixbot
 
