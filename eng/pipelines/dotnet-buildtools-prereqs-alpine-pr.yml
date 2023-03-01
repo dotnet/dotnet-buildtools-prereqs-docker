@@ -22,7 +22,5 @@ variables:
 stages:
 - template: ../common/templates/stages/dotnet/build-test-publish-repo.yml
   parameters:
-    linuxAmdBuildJobTimeout: 210
-    linuxArmBuildJobTimeout: 300
     internalProjectName: ${{ variables.internalProjectName }}
     publicProjectName: ${{ variables.publicProjectName }}
