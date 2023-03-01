@@ -89,7 +89,7 @@ RUN /usr/sbin/adduser -D -g '' -G adm -s /bin/bash -u 1000 helixbot && \
     /usr/sbin/adduser -D -g '' -G adm -s /bin/bash -u 1000 helixbot2 && \
     chmod 755 /root && \
     echo "helixbot ALL=(ALL)       NOPASSWD: ALL" > /etc/sudoers.d/helixbot && \
-    echo "helixbot2 ALL=(ALL) NOPASSWD: ALL" > /etc/sudoers.d/helixbot2
+    echo "helixbot2 ALL=(ALL)      NOPASSWD: ALL" > /etc/sudoers.d/helixbot2
 
 USER helixbot
 
