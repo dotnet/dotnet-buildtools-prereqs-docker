@@ -54,8 +54,8 @@ RUN apk update && apk add --no-cache && \
     cd /tmp && \
     git clone --depth 1 --single-branch --branch main --recursive https://github.com/dotnet/msquic && \
     cd msquic/src/msquic && \
-    cmake -B build/linux/arm64_openssl3 \
-       -DQUIC_OUTPUT_DIR=/tmp/msquic/src/msquic/artifacts/bin/linux/arm64_Release_openssl3 \
+    cmake -B build/linux/arm64_openssl \
+       -DQUIC_OUTPUT_DIR=/tmp/msquic/src/msquic/artifacts/bin/linux/arm64_Release_openssl \
        -DCMAKE_BUILD_TYPE=Release \
        -DCMAKE_TARGET_ARCHITECTURE=arm64 \
        -DQUIC_TLS=openssl \
