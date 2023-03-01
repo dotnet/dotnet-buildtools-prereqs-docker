@@ -1,4 +1,4 @@
-FROM alpine:3.17
+FROM arm64v8/alpine:3.17
 # Install .NET and test dependencies
 RUN apk update && apk add --no-cache \
     bash \
@@ -16,7 +16,6 @@ RUN apk update && apk add --no-cache \
     sudo \
     tzdata
 
-# Install Helix Dependencies
 RUN apk update && apk add --no-cache && \
     apk add \
         cargo \
@@ -55,17 +54,18 @@ RUN apk update && apk add --no-cache && \
     cd /tmp && \
     git clone --depth 1 --single-branch --branch main --recursive https://github.com/dotnet/msquic && \
     cd msquic/src/msquic && \
-    cmake -B build/linux/x64_openssl3 \
-       -DQUIC_OUTPUT_DIR=/tmp/msquic/src/msquic/artifacts/bin/linux/x64_Release_openssl3 \
+    cmake -B build/linux/arm64_openssl3 \
+       -DQUIC_OUTPUT_DIR=/tmp/msquic/src/msquic/artifacts/bin/linux/arm64_Release_openssl3 \
        -DCMAKE_BUILD_TYPE=Release \
+       -DCMAKE_TARGET_ARCHITECTURE=arm64 \
        -DQUIC_TLS=openssl3 \
        -DQUIC_ENABLE_LOGGING=true \
        -DQUIC_USE_SYSTEM_LIBCRYPTO=true \
        -DQUIC_BUILD_TOOLS=off \
        -DQUIC_BUILD_TEST=off \
        -DQUIC_BUILD_PERF=off && \
-    cmake --build build/linux/x64_openssl3  --config Release && \
-    cp artifacts/bin/linux/x64_Release_openssl3/libmsquic.so.* artifacts/bin/linux/x64_Release_openssl3/libmsquic.lttng.so.* /usr/lib && \
+    cmake --build build/linux/arm64_openssl3  --config Release && \
+    cp artifacts/bin/linux/arm64_Release_openssl3/libmsquic.so.* artifacts/bin/linux/arm64_Release_openssl3/libmsquic.lttng.so.* /usr/lib && \
     rm -rf /tmp/msquic && \
     apk del \
         cmake \
