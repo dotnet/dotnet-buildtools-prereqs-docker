@@ -1,34 +1,86 @@
-FROM mcr.microsoft.com/dotnet-buildtools/prereqs:alpine-3.15-local
+FROM alpine:3.15
+# Install .NET and test dependencies
 RUN apk update && apk add --no-cache \
-    cargo \
+    bash \
+    coreutils \
+    curl \
+    icu-data \
+    icu-libs \
     iputils \
-    libffi-dev \
-    rust
+    lldb \
+    lttng-ust \
+    musl-locales \
+    openssl \
+    python3 \
+    sudo \
+    tzdata
 
 # Install Helix Dependencies
-
-RUN ln -sf /usr/bin/python3 /usr/bin/python && \
+RUN apk update && apk add --no-cache && \
+    apk add \
+        cargo \
+        libffi-dev \
+        linux-headers \
+        python3-dev \
+        openssl-dev && \
+    ln -sf /usr/bin/python3 /usr/bin/python && \
     curl https://bootstrap.pypa.io/get-pip.py -o ./get-pip.py --fail --silent --show-error && \
-    python ./get-pip.py && rm ./get-pip.py && \
-    python -m pip install --upgrade pip==21.2.4 && \
-    python -m pip install virtualenv==16.6.0 && \
+    python3 ./get-pip.py && rm ./get-pip.py && \
+    python3 -m pip install --upgrade pip==22.2.2 && \
+    python3 -m pip install virtualenv==20.16.5 && \
     pip download --no-deps helix-scripts --index-url https://dnceng.pkgs.visualstudio.com/public/_packaging/helix-client-prod/pypi/simple && \
-    pip install ./helix_scripts-*-py3-none-any.whl
+    pip install ./helix_scripts-*-py3-none-any.whl && \
+    apk del \
+        cargo \
+        libffi-dev \
+        linux-headers \
+        python3-dev \
+        openssl-dev
 
-# build MsQuic as we don't have packages
-RUN cd /tmp && \
-    mkdir pwsh && \
-    cd pwsh && \
-    curl -L https://github.com/PowerShell/PowerShell/releases/download/v7.2.5/powershell-7.2.5-linux-alpine-x64.tar.gz | tar xfz - && \
-    cd .. && \
-    git clone --depth 1 --single-branch --branch main --recursive https://github.com/dotnet/msquic && \
-    cd msquic/src/msquic  &&  PATH=~/.dotnet/tools:$PATH /tmp/pwsh/pwsh scripts/build.ps1 -Config Release -UseSystemOpenSSLCrypto -DisableTools -DisableTest -DisablePerf && \
-    cp artifacts/bin/linux/x64_Release_openssl/libmsquic.so.2 artifacts/bin/linux/x64_Release_openssl/libmsquic.lttng.so.2.* /usr/lib && \
+# build MsQuic as we don't have Alpine packages (yet)
+RUN apk update && apk add --no-cache && \
+    apk add \
+        cmake \
+        g++ \
+        gcc \
+        git \
+        numactl-dev \
+        linux-headers \
+        lttng-ust-dev \
+        make \
+        musl-dev \
+        openssl-dev \
+        perl && \
     cd /tmp && \
-    rm -r pwsh msquic
+    git clone --depth 1 --single-branch --branch main --recursive https://github.com/dotnet/msquic && \
+    cd msquic/src/msquic && \
+    cmake -B build/linux/x64_openssl \
+       -DQUIC_OUTPUT_DIR=/tmp/msquic/src/msquic/artifacts/bin/linux/x64_Release_openssl \
+       -DCMAKE_BUILD_TYPE=Release \
+       -DQUIC_TLS=openssl \
+       -DQUIC_ENABLE_LOGGING=true \
+       -DQUIC_USE_SYSTEM_LIBCRYPTO=true \
+       -DQUIC_BUILD_TOOLS=off \
+       -DQUIC_BUILD_TEST=off \
+       -DQUIC_BUILD_PERF=off && \
+    cmake --build build/linux/x64_openssl  --config Release && \
+    cp artifacts/bin/linux/x64_Release_openssl/libmsquic.so.* artifacts/bin/linux/x64_Release_openssl/libmsquic.lttng.so.* /usr/lib && \
+    rm -rf /tmp/msquic && \
+    apk del \
+        cmake \
+        g++ \
+        gcc \
+        git \
+        linux-headers \
+        lttng-ust-dev \
+        make \
+        musl-dev \
+        openssl-dev \
+        perl
 
-# Needed for corefx tests to pass
+# Needed for runtime tests to pass
 ENV LANG=en-US.UTF-8
+RUN echo export LANG=${LANG}  >> /etc/profile.d/locale.sh
 
 # create helixbot user and give rights to sudo without password
 # Alpine does not support long options
@@ -38,4 +90,4 @@ RUN /usr/sbin/adduser -D -g '' -G adm -s /bin/bash -u 1000 helixbot && \
 
 USER helixbot
 
-RUN python -m virtualenv --no-site-packages /home/helixbot/.vsts-env
+RUN python3 -m virtualenv /home/helixbot/.vsts-env
