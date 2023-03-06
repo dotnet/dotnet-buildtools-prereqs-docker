@@ -466,11 +466,12 @@
         {
           "platforms": [
             {
-              "dockerfile": "src/ubuntu/18.04/webassembly-3130",
+              "dockerfile": "src/ubuntu/18.04/webassembly-net8",
               "os": "linux",
               "osVersion": "bionic",
               "tags": {
-                "ubuntu-18.04-webassembly3130-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
+                "ubuntu-18.04-webassembly-net8-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
+                "ubuntu-18.04-webassembly-net8-$(FloatingTagSuffix)": {}
               }
             }
           ]
@@ -610,11 +611,12 @@
         {
           "platforms": [
             {
-              "dockerfile": "src/ubuntu/20.04/webassembly-3130",
+              "dockerfile": "src/ubuntu/20.04/webassembly-net8",
               "os": "linux",
               "osVersion": "focal",
               "tags": {
-                "ubuntu-20.04-webassembly3130-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {}
+                "ubuntu-20.04-webassembly-net8-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
+                "ubuntu-20.04-webassembly-net8-$(FloatingTagSuffix)": {}
               }
             }
           ]
