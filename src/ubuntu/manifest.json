@@ -735,6 +735,19 @@
         {
           "platforms": [
             {
+              "dockerfile": "src/ubuntu/22.04/cross/riscv64-alpine",
+              "os": "linux",
+              "osVersion": "jammy",
+              "tags": {
+                "ubuntu-22.04-cross-riscv64-alpine-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
+                "ubuntu-22.04-cross-riscv64-alpine$(FloatingTagSuffix)": {}
+              }
+            }
+          ]
+        },
+        {
+          "platforms": [
+            {
               "dockerfile": "src/ubuntu/22.04/cross/haiku",
               "os": "linux",
               "osVersion": "jammy",
