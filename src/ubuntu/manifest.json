@@ -471,7 +471,7 @@
               "osVersion": "bionic",
               "tags": {
                 "ubuntu-18.04-webassembly-net8-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
-                "ubuntu-18.04-webassembly-net8-$(FloatingTagSuffix)": {}
+                "ubuntu-18.04-webassembly-net8$(FloatingTagSuffix)": {}
               }
             }
           ]
@@ -616,7 +616,7 @@
               "osVersion": "focal",
               "tags": {
                 "ubuntu-20.04-webassembly-net8-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
-                "ubuntu-20.04-webassembly-net8-$(FloatingTagSuffix)": {}
+                "ubuntu-20.04-webassembly-net8$(FloatingTagSuffix)": {}
               }
             }
           ]
