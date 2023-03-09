@@ -737,12 +737,51 @@
         {
           "platforms": [
             {
+              "dockerfile": "src/ubuntu/22.04/cross/ppc64le-alpine",
+              "os": "linux",
+              "osVersion": "jammy",
+              "tags": {
+                "ubuntu-22.04-cross-ppc64le-alpine-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
+                "ubuntu-22.04-cross-ppc64le-alpine$(FloatingTagSuffix)": {}
+              }
+            }
+          ]
+        },
+        {
+          "platforms": [
+            {
               "dockerfile": "src/ubuntu/22.04/cross/riscv64-alpine",
               "os": "linux",
               "osVersion": "jammy",
               "tags": {
                 "ubuntu-22.04-cross-riscv64-alpine-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
                 "ubuntu-22.04-cross-riscv64-alpine$(FloatingTagSuffix)": {}
+              }
+            }
+          ]
+        },
+        {
+          "platforms": [
+            {
+              "dockerfile": "src/ubuntu/22.04/cross/s390x-alpine",
+              "os": "linux",
+              "osVersion": "jammy",
+              "tags": {
+                "ubuntu-22.04-cross-s390x-alpine-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
+                "ubuntu-22.04-cross-s390x-alpine$(FloatingTagSuffix)": {}
+              }
+            }
+          ]
+        },
+        {
+          "platforms": [
+            {
+              "dockerfile": "src/ubuntu/22.04/cross/x86-alpine",
+              "os": "linux",
+              "osVersion": "jammy",
+              "tags": {
+                "ubuntu-22.04-cross-x86-alpine-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
+                "ubuntu-22.04-cross-x86-alpine$(FloatingTagSuffix)": {}
               }
             }
           ]
