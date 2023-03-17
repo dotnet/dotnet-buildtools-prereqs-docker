@@ -33,7 +33,8 @@ RUN mkdir %EMSCRIPTEN_PATH% \
     && git clone https://github.com/emscripten-core/emsdk.git %EMSDK_PATH%
 RUN cd %EMSDK_PATH% \
     && .\emsdk install %EMSCRIPTEN_VERSION%-upstream  \
-    && .\emsdk activate %EMSCRIPTEN_VERSION%-upstream
+    && .\emsdk activate %EMSCRIPTEN_VERSION%-upstream \
+    && ./upstream/emscripten/embuilder.bat build MINIMAL
 
 # install Node JS
 ENV NODE_VERSION 17.3.1
