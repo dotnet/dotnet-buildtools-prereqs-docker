@@ -34,6 +34,7 @@ RUN mkdir ${EMSCRIPTEN_PATH} \
     && cd ${EMSDK_PATH} \
     && ./emsdk install ${EMSCRIPTEN_VERSION}-upstream \
     && ./emsdk activate ${EMSCRIPTEN_VERSION}-upstream \
+    && ./upstream/emscripten/embuilder build MINIMAL \
     && chmod -R 777 ${EMSCRIPTEN_PATH}
 
 # Install V8 Engine
