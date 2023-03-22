@@ -47,10 +47,13 @@ RUN ln -sf /usr/bin/python3 /usr/bin/python && \
     pip install ./helix_scripts-*-py3-none-any.whl
 
 # Add MsQuic
-# There is problem with posting, use direct link instead. (signed binaries)
-RUN curl -LO https://github.com/microsoft/msquic/releases/download/v2.1.2/libmsquic_2.1.2_armhf.deb && \
-    dpkg -i libmsquic_2.*.deb && \
-    rm libmsquic_2.*.deb
+RUN curl -LO https://packages.microsoft.com/keys/microsoft.asc && \
+    echo 2cfd20a306b2fa5e25522d78f2ef50a1f429d35fd30bd983e2ebffc2b80944fa microsoft.asc| sha256sum --check - && \
+    apt-key add microsoft.asc && \
+    apt-add-repository https://packages.microsoft.com/debian/10/prod && \
+    apt-get update && \
+    apt-get install libmsquic && \
+    rm -rf /var/lib/apt/lists/* microsoft.asc
 
 # Create helixbot user and give rights to sudo without password
 # (we use two users here to ensure volume mounting works with two possible UIDs of the host UID)
