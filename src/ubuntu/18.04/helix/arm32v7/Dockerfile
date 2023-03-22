@@ -51,8 +51,8 @@ RUN apt-get update && \
 # MsQuic did not publish arm32 package for 18.04
 # Use direct link to signed binary for now
 RUN curl -LO https://github.com/microsoft/msquic/releases/download/v2.1.8/libmsquic_2.1.8_armhf.deb && \
-    dpkg -i libmsquic_*_arm64.deb && \
-    rm -f libmsquic_*_arm64.deb
+    dpkg -i libmsquic_*_armhf.deb && \
+    rm -f libmsquic_*_armhf.deb
 
 ENV LANG=en_US.utf8
 
