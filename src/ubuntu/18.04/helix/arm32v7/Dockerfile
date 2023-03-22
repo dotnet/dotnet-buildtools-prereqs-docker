@@ -20,6 +20,7 @@ RUN apt-get update && \
         build-essential \
         clang \
         cmake \
+        curl \
         gcc \
         gdb \
         git \
@@ -45,6 +46,13 @@ RUN apt-get update && \
     && rm -rf /var/lib/apt/lists/* \
     \
     && localedef -i en_US -c -f UTF-8 -A /usr/share/locale/locale.alias en_US.UTF-8
+
+# Add MsQuic
+# MsQuic did not publish arm32 package for 18.04
+# Use direct link to signed binary for now
+RUN curl -LO https://github.com/microsoft/msquic/releases/download/v2.1.8/libmsquic_2.1.8_armhf.deb && \
+    dpkg -i libmsquic_*_armhf.deb && \
+    rm -f libmsquic_*_armhf.deb
 
 ENV LANG=en_US.utf8
 
