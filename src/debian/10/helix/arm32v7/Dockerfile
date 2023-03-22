@@ -28,6 +28,7 @@ RUN apt-get update && \
         procps \
         python3-dev \
         python3-pip \
+        software-properties-common \
         sudo \
         tzdata \
         unzip \
