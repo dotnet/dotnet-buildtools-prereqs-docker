@@ -46,6 +46,13 @@ RUN apt-get update && \
     \
     && localedef -i en_US -c -f UTF-8 -A /usr/share/locale/locale.alias en_US.UTF-8
 
+# Add MsQuic
+# MsQuic did not publish arm64 package for 18.04
+# Use direct link to signed binary for now
+RUN curl -LO https://github.com/microsoft/msquic/releases/download/v2.1.8/libmsquic_2.1.8_armhf.deb && \
+    dpkg -i libmsquic_*_arm64.deb && \
+    rm -f libmsquic_*_arm64.deb
+
 ENV LANG=en_US.utf8
 
 RUN ln -sf /usr/bin/python3 /usr/bin/python && \

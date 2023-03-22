@@ -52,9 +52,9 @@ RUN ln -sf /usr/bin/python3 /usr/bin/python && \
 # Add MsQuic
 # MsQuic did not publish arm64 package for 18.04
 # Use direct link to signed binary for now
-RUN curl -LO https://github.com/microsoft/msquic/releases/download/v2.1.1/libmsquic_2.1.1_arm64.deb && \
-    dpkg -i libmsquic_2.1.1_arm64.deb && \
-    rm -f libmsquic_2.1.1_arm64.deb
+RUN curl -LO https://github.com/microsoft/msquic/releases/download/v2.1.8/libmsquic_2.1.8_arm64.deb && \
+    dpkg -i libmsquic_*_arm64.deb && \
+    rm -f libmsquic_*_arm64.deb
 
 ## (we use two users here to ensure volume mounting works with two possible UIDs of the host UID)
 RUN adduser --disabled-password --gecos '' --uid 1001 --shell /bin/bash --ingroup adm helixbot && \
