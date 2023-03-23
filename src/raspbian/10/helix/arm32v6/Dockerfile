@@ -7,6 +7,7 @@ FROM scratch
 # But we can use a crossrootfs from our image generation scripts, and
 # extract into the image root
 
+RUN echo no-op
 ADD rootfs.armv6.tar /
 
 ENV _PYTHON_HOST_PLATFORM=linux_armv6l
