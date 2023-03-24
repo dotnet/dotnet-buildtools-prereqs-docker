@@ -34,8 +34,8 @@ RUN tar -xf llvm-project.src.tar.xz --directory llvm-project.src --strip-compone
     make -j $(getconf _NPROCESSORS_ONLN) && \
     make install
 
-# Copy into rootfs
-RUN mkdir -p $ROOTFS_DIR/usr/lib/llvm-12/lib/clang/12.0.1/lib/linux/ && \
-    cp compiler-rt_build/lib/linux/libclang_rt.profile-aarch64.a $ROOTFS_DIR/usr/lib/llvm-12/lib/clang/12.0.1/lib/linux/
+RUN LLVM_VERSION=12.0.1 LLVM_VERSION_MAJOR="${LLVM_VERSION%%.*}" && \
+    mkdir -p $ROOTFS_DIR/usr/lib/llvm-${LLVM_VERSION_MAJOR}/lib/clang/${LLVM_VERSION}/lib/linux/ && \
+    cp compiler-rt_build/lib/linux/libclang_rt.profile-aarch64.a $ROOTFS_DIR/usr/lib/llvm-${LLVM_VERSION_MAJOR}/lib/clang/${LLVM_VERSION}/lib/linux/
 
 RUN rm -r compiler-rt_build llvm-project.src

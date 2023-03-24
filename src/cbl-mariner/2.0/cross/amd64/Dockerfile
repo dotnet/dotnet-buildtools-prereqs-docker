@@ -5,5 +5,6 @@ RUN tdnf install -y debootstrap
 
 RUN /scripts/eng/common/cross/build-rootfs.sh x64 xenial --skipunmount
 
-RUN mkdir -p $ROOTFS_DIR/usr/lib/llvm-12/lib/clang/12.0.1/lib/linux/ && \
-    cp /usr/lib/clang/12.0.1/lib/linux/libclang_rt.profile-x86_64.a $ROOTFS_DIR/usr/lib/llvm-12/lib/clang/12.0.1/lib/linux/
+RUN LLVM_VERSION=12.0.1 LLVM_VERSION_MAJOR="${LLVM_VERSION%%.*}" && \
+    mkdir -p $ROOTFS_DIR/usr/lib/llvm-${LLVM_VERSION_MAJOR}/lib/clang/${LLVM_VERSION}/lib/linux/ && \
+    cp /usr/lib/clang/${LLVM_VERSION}/lib/linux/libclang_rt.profile-x86_64.a $ROOTFS_DIR/usr/lib/llvm-${LLVM_VERSION_MAJOR}/lib/clang/${LLVM_VERSION}/lib/linux/
