@@ -7,13 +7,13 @@ RUN /scripts/eng/common/cross/build-rootfs.sh arm64 xenial --skipunmount
 
 # Build compiler-rt profile library for PGO instrumentation
 COPY --from=mcr.microsoft.com/dotnet-buildtools/prereqs:cbl-mariner-2.0-crossdeps-artifacts-local \
-    /llvm-project-12.0.1.src.tar.xz .
-RUN tar -xf llvm-project-12.0.1.src.tar.xz && \
-    rm llvm-project-12.0.1.src.tar.xz && \
+    /llvm-project.src.tar.xz .
+RUN tar -xf llvm-project.src.tar.xz --directory llvm-project.src --strip-components=1 && \
+    rm llvm-project.src.tar.xz && \
     mkdir compiler-rt_build && cd compiler-rt_build && \
     BUILD_FLAGS="-v --sysroot=$ROOTFS_DIR" \
     TARGET_TRIPLE=aarch64-linux-gnu && \
-    cmake ../llvm-project-12.0.1.src/compiler-rt \
+    cmake ../llvm-project.src/compiler-rt \
         -DCOMPILER_RT_BUILD_PROFILE=ON \
         -DCOMPILER_RT_BUILD_BUILTINS=OFF \
         -DCOMPILER_RT_BUILD_SANITIZERS=OFF \
@@ -38,4 +38,4 @@ RUN tar -xf llvm-project-12.0.1.src.tar.xz && \
 RUN mkdir -p $ROOTFS_DIR/usr/lib/llvm-12/lib/clang/12.0.1/lib/linux/ && \
     cp compiler-rt_build/lib/linux/libclang_rt.profile-aarch64.a $ROOTFS_DIR/usr/lib/llvm-12/lib/clang/12.0.1/lib/linux/
 
-RUN rm -r compiler-rt_build llvm-project-12.0.1.src
+RUN rm -r compiler-rt_build llvm-project.src
