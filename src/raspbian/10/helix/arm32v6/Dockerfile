@@ -1,13 +1,13 @@
 # dummy F R O M to establish a dependency
 FROM mcr.microsoft.com/dotnet-buildtools/prereqs:raspbian-10-crossdeps-local
 
+RUN echo no-op
+
 FROM scratch
 
 # There doesn't seem to be an official Raspberry Pi OS Docker image
 # But we can use a crossrootfs from our image generation scripts, and
 # extract into the image root
-
-RUN echo no-op
 ADD rootfs.armv6.tar /
 
 ENV _PYTHON_HOST_PLATFORM=linux_armv6l
