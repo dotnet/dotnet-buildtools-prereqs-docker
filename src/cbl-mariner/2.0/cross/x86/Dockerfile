@@ -37,7 +37,7 @@ RUN tar -xf llvm-project-12.0.1.src.tar.xz && \
         -DCMAKE_C_FLAGS="${BUILD_FLAGS}" \
         -DCMAKE_CXX_FLAGS="${BUILD_FLAGS}" && \
     make -j $(getconf _NPROCESSORS_ONLN) && \
-    make install && echo hi
+    make install
 
 RUN mkdir -p $ROOTFS_DIR/usr/lib/llvm-12/lib/clang/12.0.1/lib/linux/ && \
     cp compiler-rt_build/lib/linux/libclang_rt.profile-i386.a $ROOTFS_DIR/usr/lib/llvm-12/lib/clang/12.0.1/lib/linux/

@@ -38,5 +38,4 @@ RUN tar -xf llvm-project-12.0.1.src.tar.xz && \
 RUN mkdir -p $ROOTFS_DIR/usr/lib/llvm-12/lib/clang/12.0.1/lib/linux/ && \
     cp compiler-rt_build/lib/linux/libclang_rt.profile-aarch64.a $ROOTFS_DIR/usr/lib/llvm-12/lib/clang/12.0.1/lib/linux/
 
-# Remove LLVM build dependencies
 RUN rm -r compiler-rt_build llvm-project-12.0.1.src
