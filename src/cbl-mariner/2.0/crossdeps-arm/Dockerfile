@@ -9,7 +9,7 @@ RUN tdnf install -y \
 # Build LLVM cross-toolchain (with support for targeting arm architectures)
 COPY --from=mcr.microsoft.com/dotnet-buildtools/prereqs:cbl-mariner-2.0-crossdeps-artifacts-local \
     /llvm-project.src.tar.xz .
-RUN mkdir -p llvm-project.src && \
+RUN mkdir llvm-project.src && \
     tar -xf llvm-project.src.tar.xz --directory llvm-project.src --strip-components=1 && \
     rm llvm-project.src.tar.xz && \
     mkdir build && cd build && \
