@@ -52,6 +52,4 @@ RUN wget -O- https://apt.llvm.org/llvm.sh | bash -s -- 15 \
 # Install debian ports package signing keys
 RUN wget https://www.ports.debian.org/archive_2024.key && \
     echo "5dba676e1c2b14882a39a93d002f77a11464d3c0ddce503a7601202a34fd5d48f1fead96fd8f975cfed00f525444b02aaf0c1c222a44c8759cbb04e55408f6d3 archive_2024.key" | sha512sum -c && \
-    gpg --no-default-keyring --keyring=debian-ports-archive-keyring.gpg --import archive_2024.key && \
-    rm archive_2024.key && \
-    gpg --no-default-keyring --keyring=debian-ports-archive-keyring.gpg --export > /usr/share/keyrings/debian-ports-archive-keyring.gpg
+    gpg --output /usr/share/keyrings/debian-ports-archive-keyring.gpg --dearmor archive_2024.key
