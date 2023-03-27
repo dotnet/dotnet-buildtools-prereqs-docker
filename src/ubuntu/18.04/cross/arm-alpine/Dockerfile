@@ -1,6 +1,5 @@
 FROM mcr.microsoft.com/dotnet-buildtools/prereqs:ubuntu-18.04-crossdeps-local
 
-RUN echo no-op
 # Install bison. This is required to build musl-cross-make
 RUN apt-get update \
     && apt-get install -y \
