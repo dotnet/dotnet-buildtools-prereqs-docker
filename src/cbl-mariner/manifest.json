@@ -45,6 +45,20 @@
         {
           "platforms": [
             {
+              "dockerfile": "src/cbl-mariner/2.0/crossdeps-artifacts",
+              "os": "linux",
+              "osVersion": "cbl-mariner2.0",
+              "tags": {
+                "cbl-mariner-2.0-crossdeps-artifacts-local": {
+                  "isLocal": true
+                }
+              }
+            }
+          ]
+        },
+        {
+          "platforms": [
+            {
               "dockerfile": "src/cbl-mariner/2.0/crossdeps",
               "os": "linux",
               "osVersion": "cbl-mariner2.0",
@@ -78,20 +92,6 @@
               "osVersion": "cbl-mariner2.0",
               "tags": {
                 "cbl-mariner-2.0-crossdeps-arm-local": {
-                  "isLocal": true
-                }
-              }
-            }
-          ]
-        },
-        {
-          "platforms": [
-            {
-              "dockerfile": "src/cbl-mariner/2.0/crossdeps-artifacts",
-              "os": "linux",
-              "osVersion": "cbl-mariner2.0",
-              "tags": {
-                "cbl-mariner-2.0-crossdeps-artifacts-local": {
                   "isLocal": true
                 }
               }
