@@ -1,3 +1,5 @@
+FROM mcr.microsoft.com/dotnet-buildtools/prereqs:cbl-mariner-2.0-crossdeps-artifacts-local as artifacts
+
 FROM mcr.microsoft.com/dotnet-buildtools/prereqs:cbl-mariner-2.0-crossdeps-local
 
 # Install LLVM-only build dependencies
@@ -7,8 +9,7 @@ RUN tdnf install -y \
     binutils
 
 # Build LLVM cross-toolchain (with support for targeting arm architectures)
-COPY --from=mcr.microsoft.com/dotnet-buildtools/prereqs:cbl-mariner-2.0-crossdeps-artifacts-local \
-    /llvm-project.src.tar.xz .
+COPY --from=artifacts /llvm-project.src.tar.xz .
 RUN mkdir llvm-project.src && \
     tar -xf llvm-project.src.tar.xz --directory llvm-project.src --strip-components=1 && \
     rm llvm-project.src.tar.xz && \

@@ -1,3 +1,5 @@
+FROM mcr.microsoft.com/dotnet-buildtools/prereqs:cbl-mariner-2.0-crossdeps-artifacts-local as artifacts
+
 FROM mcr.microsoft.com/dotnet-buildtools/prereqs:cbl-mariner-2.0-crossdeps-amd64-local AS rootfsbuild
 ARG ROOTFS_DIR=/crossrootfs/x86
 
@@ -11,8 +13,7 @@ RUN tdnf install -y \
 RUN /scripts/eng/common/cross/build-rootfs.sh x86 xenial --skipunmount
 
 # Build compiler-rt profile library for PGO instrumentation
-COPY --from=mcr.microsoft.com/dotnet-buildtools/prereqs:cbl-mariner-2.0-crossdeps-artifacts-local \
-    /llvm-project.src.tar.xz .
+COPY --from=artifacts /llvm-project.src.tar.xz .
 RUN mkdir llvm-project.src && \
     tar -xf llvm-project.src.tar.xz --directory llvm-project.src --strip-components=1 && \
     rm llvm-project.src.tar.xz && \
