@@ -1,4 +1,4 @@
-FROM mcr.microsoft.com/dotnet-buildtools/prereqs:cbl-mariner-2.0-crossdeps-builder-local as builder
+FROM mcr.microsoft.com/dotnet-buildtools/prereqs:cbl-mariner-2.0-crossdeps-builder-local AS builder
 ARG ROOTFS_DIR=/crossrootfs/x86
 
 # Provides LLVMConfig.cmake, needed to build compiler-rt. Only needed on x86.
