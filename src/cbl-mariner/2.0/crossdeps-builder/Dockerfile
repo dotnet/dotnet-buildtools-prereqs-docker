@@ -4,12 +4,12 @@ FROM mcr.microsoft.com/dotnet-buildtools/prereqs:cbl-mariner-2.0-crossdeps-local
 COPY mariner-extended.repo /etc/yum.repos.d/
 
 RUN tdnf install -y \
-    # Rootfs build dependencies
-    debootstrap \
-    # LLVM build dependencies
-    texinfo \
-    diffutils \
-    binutils
+        # Rootfs build dependencies
+        debootstrap \
+        # LLVM build dependencies
+        texinfo \
+        diffutils \
+        binutils
 
 # Obtain ubuntu package signing key (for use by debootstrap)
 # 1. Add public key used to sign the ubuntu keyring
