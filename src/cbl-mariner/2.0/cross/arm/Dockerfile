@@ -33,17 +33,6 @@ RUN LLVM_VERSION=12.0.1 LLVM_VERSION_MAJOR="${LLVM_VERSION%%.*}" && \
     mkdir -p $ROOTFS_DIR/usr/lib/llvm-${LLVM_VERSION_MAJOR}/lib/clang/${LLVM_VERSION}/lib/linux/ && \
     cp compiler-rt_build/lib/linux/libclang_rt.profile-armhf.a $ROOTFS_DIR/usr/lib/llvm-${LLVM_VERSION_MAJOR}/lib/clang/${LLVM_VERSION}/lib/linux/
 
-# Add numa headers (libnuma-dev is not available on Ubuntu Xenial arm)
-# 2.0.11 matches the version available on Ubuntu Xenial amd64.
-RUN NUMACTL_VERSION=2.0.11 && \
-    wget -O numactl.tar.gz https://github.com/numactl/numactl/archive/v${NUMACTL_VERSION}.tar.gz && \
-    echo "3e099a59b2c527bcdbddd34e1952ca87462d2cef4c93da9b0bc03f02903f7089 numactl.tar.gz" | sha256sum -c && \
-    mkdir numactl && \
-    tar -xf numactl.tar.gz --directory numactl --strip-components=1 && \
-    rm numactl.tar.gz && \
-    cd numactl && \
-    cp numacompat1.h numa.h numaif.h $ROOTFS_DIR/usr/local/include/
-
 
 FROM mcr.microsoft.com/dotnet-buildtools/prereqs:cbl-mariner-2.0-crossdeps-arm-local
 ARG ROOTFS_DIR=/crossrootfs/arm
