@@ -8,6 +8,7 @@ RUN dnf install -y \
         python3-devel \
         libatomic \
         libffi-devel \
+        libmsquic \
         redhat-rpm-config \
         sudo && \
     dnf clean all
@@ -21,12 +22,12 @@ RUN dnf remove -y  python3-pip && \
     pip download --no-deps helix-scripts --index-url https://dnceng.pkgs.visualstudio.com/public/_packaging/helix-client-prod/pypi/simple && \
     pip install ./helix_scripts-*-py3-none-any.whl
 
-# MsQuic
-RUN dnf install -y libmsquic && \
-    dnf download libmsquic-1.9* && \
+# Add MsQuic 1.9 in addition to 2+
+# MsQuic did not publish 1.9 x64 package for Fedora 36
+# Use direct link to signed binary from Fedora 34
+RUN curl -LO https://packages.microsoft.com/fedora/34/prod/Packages/l/libmsquic-1.9.1-1.x86_64.rpm && \
     rpm -i --force libmsquic-1.9* && \
-    rm -f libmsquic-1.9* && \
-    dnf clean all
+    rm -f libmsquic-1.9*
 
 # Needed for .NET corefx tests to pass
 ENV LANG=en-US.UTF-8
