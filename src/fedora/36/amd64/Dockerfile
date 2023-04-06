@@ -17,9 +17,9 @@ RUN dnf --setopt=install_weak_deps=False install -y \
         which \
     && dnf clean all
 
-# Add MS package repo. We don't have 35 & 36 but that should be ok for now.
+# Add MS package repo.
 COPY  microsoft.asc /tmp
-RUN dnf config-manager --add-repo https://packages.microsoft.com/fedora/34/prod/ && \
+RUN dnf config-manager --add-repo https://packages.microsoft.com/fedora/36/prod/ && \
     rpm --import /tmp/microsoft.asc && \
     rm /tmp/microsoft.asc
 
