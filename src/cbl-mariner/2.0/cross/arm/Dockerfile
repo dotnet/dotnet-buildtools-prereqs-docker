@@ -26,12 +26,12 @@ RUN mkdir compiler-rt_build && cd compiler-rt_build && \
         -DCMAKE_C_FLAGS="-v --sysroot=$ROOTFS_DIR" && \
     make -j $(getconf _NPROCESSORS_ONLN)
 
-RUN LLVM_VERSION=12.0.1 LLVM_VERSION_MAJOR="${LLVM_VERSION%%.*}" && \
+RUN LLVM_VERSION=16.0.0 LLVM_VERSION_MAJOR="${LLVM_VERSION%%.*}" && \
     mkdir -p $ROOTFS_DIR/usr/lib/llvm-${LLVM_VERSION_MAJOR}/lib/clang/${LLVM_VERSION}/lib/linux/ && \
     cp compiler-rt_build/lib/linux/libclang_rt.profile-armhf.a $ROOTFS_DIR/usr/lib/llvm-${LLVM_VERSION_MAJOR}/lib/clang/${LLVM_VERSION}/lib/linux/
 
 
-FROM mcr.microsoft.com/dotnet-buildtools/prereqs:cbl-mariner-2.0-crossdeps-arm-local
+FROM mcr.microsoft.com/dotnet-buildtools/prereqs:cbl-mariner-2.0-crossdeps-llvm-local
 ARG ROOTFS_DIR=/crossrootfs/arm
 
 COPY --from=builder $ROOTFS_DIR $ROOTFS_DIR
