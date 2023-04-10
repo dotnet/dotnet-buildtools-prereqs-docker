@@ -12,6 +12,7 @@ RUN tdnf update -y && \
         awk \
         icu \
         tar \
+        diffutils \
         # Crosscomponents build dependencies
         glibc-devel \
         lttng-ust-devel \

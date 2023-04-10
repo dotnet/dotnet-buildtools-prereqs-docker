@@ -8,7 +8,6 @@ RUN tdnf install -y \
         debootstrap \
         # LLVM build dependencies
         texinfo \
-        diffutils \
         binutils
 
 # Obtain ubuntu package signing key (for use by debootstrap)
