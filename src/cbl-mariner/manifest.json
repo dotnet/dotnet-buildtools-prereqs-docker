@@ -77,29 +77,13 @@
         {
           "platforms": [
             {
-              "dockerfile": "src/cbl-mariner/2.0/crossdeps-amd64",
+              "dockerfile": "src/cbl-mariner/2.0/crossdeps-llvm",
               "os": "linux",
               "osVersion": "cbl-mariner2.0",
               "tags": {
-                "cbl-mariner-2.0-crossdeps-amd64-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
-                "cbl-mariner-2.0-crossdeps-amd64$(FloatingTagSuffix)": {},
-                "cbl-mariner-2.0-crossdeps-amd64-local": {
-                  "isLocal": true
-                }
-              }
-            }
-          ]
-        },
-        {
-          "platforms": [
-            {
-              "dockerfile": "src/cbl-mariner/2.0/crossdeps-arm",
-              "os": "linux",
-              "osVersion": "cbl-mariner2.0",
-              "tags": {
-                "cbl-mariner-2.0-crossdeps-arm-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
-                "cbl-mariner-2.0-crossdeps-arm$(FloatingTagSuffix)": {},
-                "cbl-mariner-2.0-crossdeps-arm-local": {
+                "cbl-mariner-2.0-crossdeps-llvm-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
+                "cbl-mariner-2.0-crossdeps-llvm$(FloatingTagSuffix)": {},
+                "cbl-mariner-2.0-crossdeps-llvm-local": {
                   "isLocal": true
                 }
               }
