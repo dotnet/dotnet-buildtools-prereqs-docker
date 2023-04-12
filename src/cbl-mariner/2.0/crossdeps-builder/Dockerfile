@@ -4,6 +4,8 @@ FROM mcr.microsoft.com/dotnet-buildtools/prereqs:cbl-mariner-2.0-crossdeps-local
 COPY mariner-extended.repo /etc/yum.repos.d/
 
 RUN tdnf install -y \
+        # LLVM build dependencies
+        clang \
         # Rootfs build dependencies
         debootstrap \
         # LLVM build dependencies
@@ -52,6 +54,8 @@ RUN mkdir llvm-project.src && \
     mkdir build && cd build && \
     cmake ../llvm-project.src/llvm \
         -DCMAKE_BUILD_TYPE=Release \
+        -DCMAKE_C_COMPILER=clang \
+        -DCMAKE_CXX_COMPILER=clang++ \
         -DLLVM_TARGETS_TO_BUILD="host;AArch64;ARM" \
         -Wno-dev \
         -DLLVM_ENABLE_PROJECTS="clang;lld" && \
