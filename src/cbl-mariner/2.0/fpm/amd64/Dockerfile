@@ -4,7 +4,6 @@ RUN tdnf install -y \
         ca-certificates \
         git \
         icu \
-        libunwind \
         rpm-build \
         ruby \
         # Provides useradd
