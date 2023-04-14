@@ -10,5 +10,6 @@ RUN tdnf install -y \
         tar \
         # Provides su
         util-linux \
+        git \
     && tdnf clean all \
     && gem install fpm
