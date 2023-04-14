@@ -16,4 +16,6 @@ RUN tdnf update -y && \
         # Crosscomponents build dependencies
         glibc-devel \
         lttng-ust-devel \
-        kernel-headers
+        kernel-headers \
+        # Jit rolling build dependency
+        python3-pip
