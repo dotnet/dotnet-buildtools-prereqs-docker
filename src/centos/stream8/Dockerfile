@@ -7,6 +7,7 @@ RUN dnf install --setopt tsflags=nodocs --refresh -y \
     && \
     dnf config-manager --set-enabled powertools \
     && \
+    dnf install -y epel-release && \
     dnf install --setopt tsflags=nodocs -y \
         "perl(Time::HiRes)" \
         autoconf \
@@ -30,6 +31,7 @@ RUN dnf install --setopt tsflags=nodocs --refresh -y \
         libnghttp2-devel \
         libtool \
         libuuid-devel \
+        libunwind \
         libxml2-devel \
         lld \
         lldb-devel \
