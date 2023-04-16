@@ -3,7 +3,6 @@ FROM gcc:12-bullseye
 # Dependencies for dotnet/runtime native components.
 RUN apt-get update && \
     apt-get install -y \
-        cmake \
         curl \
         gdb \
         git \
@@ -24,6 +23,13 @@ RUN apt-get update && \
     && localedef -i en_US -c -f UTF-8 -A /usr/share/locale/locale.alias en_US.UTF-8
 
 ENV LANG=en_US.utf8
+
+# we want a higher version of cmake (3.20 or above) which is not available in the stable repo,
+# so switching to stable-bpo repo
+RUN echo 'deb http://deb.debian.org/debian bullseye-backports main' >> /etc/apt/sources.list && \
+    apt-get update && \
+    apt-get install -t bullseye-backports -y cmake \
+    && rm -rf /var/lib/apt/lists/*
 
 # These symlinks are required because this docker has gcc-10 suffixed with version and gcc-12 unsuffixed in PATH.
 # In the runtime repo, we (by design) give precedence to suffixed compilers before selecting unsuffixed one in PATH.
