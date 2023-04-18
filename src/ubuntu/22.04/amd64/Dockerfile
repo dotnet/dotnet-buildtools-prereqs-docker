@@ -40,7 +40,6 @@ RUN apt-get update \
         curl \
         build-essential \
         gettext \
-        gcc-12 \
         jq \
         libgdiplus \
         libicu-dev \
