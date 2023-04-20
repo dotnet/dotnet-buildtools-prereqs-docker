@@ -869,6 +869,21 @@
               }
             }
           ]
+        },
+        {
+          "platforms": [
+            {
+              "architecture": "arm64",
+              "dockerfile": "src/ubuntu/22.04/opt/arm64v8",
+              "os": "linux",
+              "osVersion": "jammy",
+              "tags": {
+                "ubuntu-22.04-opt-arm64v8-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
+                "ubuntu-22.04-opt-arm64v8$(FloatingTagSuffix)": {}
+              },
+              "variant": "v8"
+            }
+          ]
         }
       ]
     }
