@@ -11,4 +11,5 @@ COPY --from=builder $ROOTFS_DIR $ROOTFS_DIR
 
 RUN LLVM_VERSION=12.0.1 LLVM_VERSION_MAJOR="${LLVM_VERSION%%.*}" && \
     mkdir -p $ROOTFS_DIR/usr/lib/llvm-${LLVM_VERSION_MAJOR}/lib/clang/${LLVM_VERSION}/lib/linux/ && \
-    cp /usr/lib/clang/${LLVM_VERSION}/lib/linux/libclang_rt.profile-x86_64.a $ROOTFS_DIR/usr/lib/llvm-${LLVM_VERSION_MAJOR}/lib/clang/${LLVM_VERSION}/lib/linux/
+    cp /usr/lib/clang/${LLVM_VERSION}/lib/linux/libclang_rt.*-x86_64.a $ROOTFS_DIR/usr/lib/llvm-${LLVM_VERSION_MAJOR}/lib/clang/${LLVM_VERSION}/lib/linux/ && \
+    cp -r /usr/include/sanitizer $ROOTFS_DIR/usr/include
