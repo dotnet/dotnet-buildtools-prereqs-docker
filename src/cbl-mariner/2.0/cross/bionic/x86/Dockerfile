@@ -41,7 +41,7 @@ RUN LLVM_VERSION=12.0.1 LLVM_VERSION_MAJOR="${LLVM_VERSION%%.*}" && \
     cp -r compiler-rt_build/include/sanitizer $ROOTFS_DIR/usr/include
 
 
-FROM mcr.microsoft.com/dotnet-buildtools/prereqs:cbl-mariner-2.0-crossdeps-x86-local
+FROM mcr.microsoft.com/dotnet-buildtools/prereqs:cbl-mariner-2.0-crossdeps-amd64-local
 ARG ROOTFS_DIR=/crossrootfs/x86
 
 COPY --from=builder $ROOTFS_DIR $ROOTFS_DIR
