@@ -1,0 +1,22 @@
+{
+  "repos": [
+    {
+      "name": "dotnet-buildtools/prereqs",
+      "images": [
+        {
+          "platforms": [
+            {
+              "dockerfile": "src/almalinux/8/helix/amd64",
+              "os": "linux",
+              "osVersion": "almalinux8",
+              "tags": {
+                "almalinux-8-helix-amd64-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
+                "almalinux-8-helix-amd64$(FloatingTagSuffix)": {}
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
