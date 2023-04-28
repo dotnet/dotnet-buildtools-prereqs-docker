@@ -32,6 +32,7 @@ RUN mkdir ${EMSCRIPTEN_PATH} \
     && cd ${EMSCRIPTEN_PATH} \
     && git clone https://github.com/emscripten-core/emsdk.git ${EMSDK_PATH} \
     && cd ${EMSDK_PATH} \
+    && git checkout ${EMSCRIPTEN_VERSION} \
     && ./emsdk install ${EMSCRIPTEN_VERSION}-upstream \
     && ./emsdk activate ${EMSCRIPTEN_VERSION}-upstream \
     && ./upstream/emscripten/embuilder build MINIMAL \
