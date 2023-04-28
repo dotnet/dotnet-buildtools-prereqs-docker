@@ -15,7 +15,7 @@ RUN rpm -Uvh https://packages.microsoft.com/config/centos/8/packages-microsoft-p
         libicu \
         libmsquic
 
-RUn python3 -m pip download --no-deps helix-scripts --index-url https://dnceng.pkgs.visualstudio.com/public/_packaging/helix-client-prod/pypi/simple && \
+RUN python3 -m pip download --no-deps helix-scripts --index-url https://dnceng.pkgs.visualstudio.com/public/_packaging/helix-client-prod/pypi/simple && \
     python3 -m pip install virtualenv && \
     python3 -m pip install ./helix_scripts-*-py3-none-any.whl
 
