@@ -200,6 +200,34 @@
         {
           "platforms": [
             {
+              "dockerfile": "src/cbl-mariner/2.0/opt/amd64",
+              "os": "linux",
+              "osVersion": "cbl-mariner2.0",
+              "tags": {
+                "cbl-mariner-2.0-opt-amd64-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
+                "cbl-mariner-2.0-opt-amd64$(FloatingTagSuffix)": {}
+              },
+            }
+          ]
+        },
+        {
+          "platforms": [
+            {
+              "architecture": "arm64",
+              "dockerfile": "src/cbl-mariner/2.0/opt/arm64v8",
+              "os": "linux",
+              "osVersion": "cbl-mariner2.0",
+              "tags": {
+                "cbl-mariner-2.0-opt-arm64v8-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
+                "cbl-mariner-2.0-opt-arm64v8$(FloatingTagSuffix)": {}
+              },
+              "variant": "v8"
+            }
+          ]
+        },
+        {
+          "platforms": [
+            {
               "dockerfile": "src/cbl-mariner/2.0/fpm/amd64",
               "os": "linux",
               "osVersion": "cbl-mariner2.0",
