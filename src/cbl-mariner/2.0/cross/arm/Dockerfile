@@ -1,8 +1,6 @@
 FROM mcr.microsoft.com/dotnet-buildtools/prereqs:cbl-mariner-2.0-crossdeps-builder-local AS builder
 ARG ROOTFS_DIR=/crossrootfs/arm
 
-RUN tdnf install -y debootstrap
-
 RUN /scripts/eng/common/cross/build-rootfs.sh arm xenial --skipunmount
 
 # Build compiler-rt profile library for PGO instrumentation
@@ -11,27 +9,26 @@ RUN mkdir compiler-rt_build && cd compiler-rt_build && \
     TARGET_TRIPLE="arm-linux-gnueabihf" && \
     cmake ../llvm-project.src/compiler-rt \
         -DCOMPILER_RT_BUILD_PROFILE=ON \
-        -DCOMPILER_RT_BUILD_BUILTINS=OFF \
         -DCOMPILER_RT_BUILD_SANITIZERS=ON \
-        -DCOMPILER_RT_BUILD_CRT=OFF \
-        -DCOMPILER_RT_BUILD_MEMPROF=OFF \
-        -DCOMPILER_RT_BUILD_GWP_ASAN=OFF \
-        -DCOMPILER_RT_BUILD_XRAY=OFF \
-        -DCOMPILER_RT_BUILD_LIBFUZZER=OFF \
-        -DCOMPILER_RT_BUILD_ORC=OFF \
+        -DCOMPILER_RT_DEFAULT_TARGET_ONLY=ON \
         \
-        -DCMAKE_C_COMPILER=clang \
+        -DCOMPILER_RT_BUILD_BUILTINS=OFF \
+        -DCOMPILER_RT_BUILD_CRT=OFF \
+        -DCOMPILER_RT_BUILD_GWP_ASAN=OFF \
+        -DCOMPILER_RT_BUILD_LIBFUZZER=OFF \
+        -DCOMPILER_RT_BUILD_MEMPROF=OFF \
+        -DCOMPILER_RT_BUILD_ORC=OFF \
+        -DCOMPILER_RT_BUILD_XRAY=OFF \
+        \
+        -DCMAKE_BUILD_TYPE=Release \
         -DCMAKE_ASM_COMPILER=clang \
+        -DCMAKE_C_COMPILER=clang \
         -DCMAKE_CXX_COMPILER=clang++ \
         -DCMAKE_SHARED_LINKER_FLAGS="-fuse-ld=lld" \
         -DCMAKE_EXE_LINKER_FLAGS="-fuse-ld=lld" \
-        -DCMAKE_ASM_COMPILER_TARGET=${TARGET_TRIPLE} \
-        -DCMAKE_C_COMPILER_TARGET=${TARGET_TRIPLE} \
-        -DCMAKE_CXX_COMPILER_TARGET=${TARGET_TRIPLE} \
-        -DLLVM_CONFIG_PATH=llvm-config \
-        -DCOMPILER_RT_DEFAULT_TARGET_ONLY=ON \
-        -DCMAKE_BUILD_TYPE=Release \
-        -DCMAKE_INSTALL_PREFIX=$ROOTFS_DIR/usr \
+        -DCMAKE_ASM_COMPILER_TARGET="${TARGET_TRIPLE}" \
+        -DCMAKE_C_COMPILER_TARGET="${TARGET_TRIPLE}" \
+        -DCMAKE_CXX_COMPILER_TARGET="${TARGET_TRIPLE}" \
         -DCMAKE_ASM_FLAGS="${BUILD_FLAGS}" \
         -DCMAKE_C_FLAGS="${BUILD_FLAGS}" \
         -DCMAKE_CXX_FLAGS="${BUILD_FLAGS}" && \
