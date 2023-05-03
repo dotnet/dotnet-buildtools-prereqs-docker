@@ -6,13 +6,17 @@ RUN /scripts/eng/common/cross/build-rootfs.sh arm64 xenial --skipunmount
 # Build compiler-rt profile library for PGO instrumentation
 RUN mkdir compiler-rt_build && cd compiler-rt_build && \
     BUILD_FLAGS="-v --sysroot=$ROOTFS_DIR" \
-    TARGET_TRIPLE=aarch64-linux-gnu && \
+    TARGET_TRIPLE="aarch64-linux-gnu" \
     cmake ../llvm-project.src/compiler-rt \
         -DCOMPILER_RT_BUILD_PROFILE=ON \
         -DCOMPILER_RT_BUILD_BUILTINS=OFF \
         -DCOMPILER_RT_BUILD_SANITIZERS=ON \
+        -DCOMPILER_RT_BUILD_CRT=OFF \
+        -DCOMPILER_RT_BUILD_MEMPROF=OFF \
+        -DCOMPILER_RT_BUILD_GWP_ASAN=OFF \
         -DCOMPILER_RT_BUILD_XRAY=OFF \
         -DCOMPILER_RT_BUILD_LIBFUZZER=OFF \
+        -DCOMPILER_RT_BUILD_ORC=OFF \
         \
         -DCMAKE_C_COMPILER=clang \
         -DCMAKE_ASM_COMPILER=clang \
@@ -31,13 +35,13 @@ RUN mkdir compiler-rt_build && cd compiler-rt_build && \
         -DCMAKE_CXX_FLAGS="${BUILD_FLAGS}" && \
     make -j $(getconf _NPROCESSORS_ONLN)
 
-RUN LLVM_VERSION=12.0.1 LLVM_VERSION_MAJOR="${LLVM_VERSION%%.*}" && \
+RUN LLVM_VERSION=16.0.0 LLVM_VERSION_MAJOR="${LLVM_VERSION%%.*}" && \
     mkdir -p $ROOTFS_DIR/usr/lib/llvm-${LLVM_VERSION_MAJOR}/lib/clang/${LLVM_VERSION}/lib/linux/ && \
     cp compiler-rt_build/lib/linux/libclang_rt.*-aarch64.a $ROOTFS_DIR/usr/lib/llvm-${LLVM_VERSION_MAJOR}/lib/clang/${LLVM_VERSION}/lib/linux/ && \
     cp -r compiler-rt_build/include/sanitizer $ROOTFS_DIR/usr/include
 
 
-FROM mcr.microsoft.com/dotnet-buildtools/prereqs:cbl-mariner-2.0-crossdeps-arm-local
+FROM mcr.microsoft.com/dotnet-buildtools/prereqs:cbl-mariner-2.0-crossdeps-llvm-local
 ARG ROOTFS_DIR=/crossrootfs/arm64
 
 COPY --from=builder $ROOTFS_DIR $ROOTFS_DIR
