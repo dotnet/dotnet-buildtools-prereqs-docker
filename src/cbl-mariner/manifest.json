@@ -213,7 +213,6 @@
         {
           "platforms": [
             {
-              "architecture": "arm64",
               "dockerfile": "src/cbl-mariner/2.0/opt/arm64v8",
               "os": "linux",
               "osVersion": "cbl-mariner2.0",
@@ -221,7 +220,6 @@
                 "cbl-mariner-2.0-opt-arm64v8-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
                 "cbl-mariner-2.0-opt-arm64v8$(FloatingTagSuffix)": {}
               },
-              "variant": "v8"
             }
           ]
         },
