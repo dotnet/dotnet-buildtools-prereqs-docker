@@ -205,8 +205,11 @@
               "osVersion": "cbl-mariner2.0",
               "tags": {
                 "cbl-mariner-2.0-opt-amd64-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
-                "cbl-mariner-2.0-opt-amd64$(FloatingTagSuffix)": {}
-              },
+                "cbl-mariner-2.0-opt-amd64$(FloatingTagSuffix)": {},
+                "cbl-mariner-2.0-opt-amd64-local": {
+                  "isLocal": true
+                }
+              }
             }
           ]
         },
