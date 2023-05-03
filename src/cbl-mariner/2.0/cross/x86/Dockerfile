@@ -5,6 +5,7 @@ RUN /scripts/eng/common/cross/build-rootfs.sh x86 xenial --skipunmount
 
 # Build compiler-rt profile library for PGO instrumentation
 RUN mkdir compiler-rt_build && cd compiler-rt_build && \
+    BUILD_FLAGS="-v --sysroot=$ROOTFS_DIR" \
     TARGET_TRIPLE="i386-linux-gnu" && \
     cmake ../llvm-project.src/compiler-rt \
         -DCOMPILER_RT_BUILD_PROFILE=ON \
@@ -28,7 +29,9 @@ RUN mkdir compiler-rt_build && cd compiler-rt_build && \
         -DLLVM_CONFIG_PATH=llvm-config \
         -DCOMPILER_RT_DEFAULT_TARGET_ONLY=ON \
         -DCMAKE_BUILD_TYPE=Release \
-        -DCMAKE_C_FLAGS="-v --sysroot=$ROOTFS_DIR" && \
+        -DCMAKE_ASM_FLAGS="${BUILD_FLAGS}" \
+        -DCMAKE_C_FLAGS="${BUILD_FLAGS}" \
+        -DCMAKE_CXX_FLAGS="${BUILD_FLAGS}" && \
     make -j $(getconf _NPROCESSORS_ONLN)
 
 RUN LLVM_VERSION=16.0.0 LLVM_VERSION_MAJOR="${LLVM_VERSION%%.*}" && \

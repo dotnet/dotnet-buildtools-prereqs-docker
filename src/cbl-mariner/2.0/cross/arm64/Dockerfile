@@ -6,7 +6,7 @@ RUN /scripts/eng/common/cross/build-rootfs.sh arm64 xenial --skipunmount
 # Build compiler-rt profile library for PGO instrumentation
 RUN mkdir compiler-rt_build && cd compiler-rt_build && \
     BUILD_FLAGS="-v --sysroot=$ROOTFS_DIR" \
-    TARGET_TRIPLE="aarch64-linux-gnu" \
+    TARGET_TRIPLE="aarch64-linux-gnu" && \
     cmake ../llvm-project.src/compiler-rt \
         -DCOMPILER_RT_BUILD_PROFILE=ON \
         -DCOMPILER_RT_BUILD_BUILTINS=OFF \

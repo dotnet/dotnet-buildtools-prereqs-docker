@@ -6,23 +6,30 @@ RUN /scripts/eng/common/cross/build-rootfs.sh x64 xenial --skipunmount
 
 # Build compiler-rt profile library for PGO instrumentation
 RUN mkdir compiler-rt_build && cd compiler-rt_build && \
+    BUILD_FLAGS="-v --sysroot=$ROOTFS_DIR" \
+    TARGET_TRIPLE="x86_64-linux-gnu" && \
     cmake ../llvm-project.src/compiler-rt \
         -DCOMPILER_RT_BUILD_PROFILE=ON \
         -DCOMPILER_RT_BUILD_BUILTINS=OFF \
         -DCOMPILER_RT_BUILD_CRT=OFF \
         -DCOMPILER_RT_BUILD_MEMPROF=OFF \
         -DCOMPILER_RT_BUILD_GWP_ASAN=OFF \
-        -DCOMPILER_RT_BUILD_SANITIZERS=OFF \
+        -DCOMPILER_RT_BUILD_SANITIZERS=ON \
         -DCOMPILER_RT_BUILD_XRAY=OFF \
         -DCOMPILER_RT_BUILD_LIBFUZZER=OFF \
         -DCOMPILER_RT_BUILD_ORC=OFF \
         \
         -DCMAKE_C_COMPILER=clang \
+        -DCMAKE_SHARED_LINKER_FLAGS="-fuse-ld=lld" \
         -DCMAKE_EXE_LINKER_FLAGS="-fuse-ld=lld" \
-        -DCMAKE_C_COMPILER_TARGET="x86_64-linux-gnu" \
+        -DCMAKE_ASM_COMPILER_TARGET="${TARGET_TRIPLE}" \
+        -DCMAKE_C_COMPILER_TARGET="${TARGET_TRIPLE}" \
+        -DCMAKE_CXX_COMPILER_TARGET="${TARGET_TRIPLE}" \
         -DCOMPILER_RT_DEFAULT_TARGET_ONLY=ON \
         -DCMAKE_BUILD_TYPE=Release \
-        -DCMAKE_C_FLAGS="-v --sysroot=$ROOTFS_DIR" && \
+        -DCMAKE_ASM_FLAGS="${BUILD_FLAGS}" \
+        -DCMAKE_C_FLAGS="${BUILD_FLAGS}" \
+        -DCMAKE_CXX_FLAGS="${BUILD_FLAGS}" && \
     make -j $(getconf _NPROCESSORS_ONLN)
 
 RUN LLVM_VERSION=16.0.0 LLVM_VERSION_MAJOR="${LLVM_VERSION%%.*}" && \

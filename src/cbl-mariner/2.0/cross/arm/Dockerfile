@@ -8,7 +8,7 @@ RUN /scripts/eng/common/cross/build-rootfs.sh arm xenial --skipunmount
 # Build compiler-rt profile library for PGO instrumentation
 RUN mkdir compiler-rt_build && cd compiler-rt_build && \
     BUILD_FLAGS="-v --sysroot=$ROOTFS_DIR" \
-    TARGET_TRIPLE="arm-linux-gnueabihf" \
+    TARGET_TRIPLE="arm-linux-gnueabihf" && \
     cmake ../llvm-project.src/compiler-rt \
         -DCOMPILER_RT_BUILD_PROFILE=ON \
         -DCOMPILER_RT_BUILD_BUILTINS=OFF \
