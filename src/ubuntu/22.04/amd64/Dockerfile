@@ -50,7 +50,6 @@ RUN apt-get update \
         libtool \
         libunwind8 \
         libunwind8-dev \
-        lld \
         uuid-dev \
         zlib1g-dev \
     && rm -rf /var/lib/apt/lists/*
