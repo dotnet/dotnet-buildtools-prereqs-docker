@@ -10,12 +10,12 @@ RUN apt-get update && \
         build-essential \
         cmake \
         clang \
+        curl \
         gcc \
         gdb \
         git \
         gss-ntlmssp \
         iputils-ping \
-        libcurl4 \
         libffi-dev \
         libgdiplus \
         libicu-dev \
@@ -30,6 +30,7 @@ RUN apt-get update && \
         locales-all \
         python3-dev \
         python3-pip \
+        software-properties-common \
         sudo \
         tzdata \
         unzip \
@@ -47,35 +48,15 @@ RUN ln -sf /usr/bin/python3 /usr/bin/python && \
     export CRYPTOGRAPHY_DONT_BUILD_RUST=1 && \
     pip install ./helix_scripts-*-py3-none-any.whl
 
-#Build MsQuic as we don't have binary package.
-# Ubuntu 22  does not have OpenSSL 1.1.1 package and MsQuic releases currently do not work with OpenSSL 3.
-# Support for OpenSSL 3 is early progress in msquic/main.
-RUN apt-get update && \
-    apt-get install -qq -y \
-        liblttng-ust-dev \
-        ruby-dev && \
-    gem install fpm && \
-    cd /tmp && \
-    git clone --depth 1 --single-branch --branch main --recursive https://github.com/dotnet/msquic && \
-    cd msquic/src/msquic && \
-    cmake -B build/linux/arm64_openssl3 \
-        -DQUIC_OUTPUT_DIR=/tmp/msquic/src/msquic/artifacts/bin/linux/arm64_Release_openssl3 \
-        -DCMAKE_BUILD_TYPE=Release \
-        -DQUIC_TLS=openssl3 \
-        -DQUIC_ENABLE_LOGGING=true \
-        -DQUIC_USE_SYSTEM_LIBCRYPTO=true \
-        -DQUIC_BUILD_TOOLS=off \
-        -DQUIC_BUILD_TEST=off \
-        -DQUIC_BUILD_PERF=off && \
-     cmake --build build/linux/arm64_openssl3  --config Release && \
-     ./scripts/make-packages.sh --tls openssl3 --config Release && \
-     dpkg -i artifacts/packages/linux/arm64_Release_openssl3/libmsquic_*.deb && \
-     rm -rf /tmp/msquic && \
-     apt-get remove -y \
-        liblttng-ust-dev \
-        ruby-dev && \
-     apt autoremove -y && \
-     rm -rf /var/lib/apt/lists/*
+# Add MsQuic
+RUN curl -LO https://packages.microsoft.com/keys/microsoft.asc && \
+    echo 2cfd20a306b2fa5e25522d78f2ef50a1f429d35fd30bd983e2ebffc2b80944fa microsoft.asc| sha256sum --check - && \
+    apt-key add microsoft.asc && \
+    rm microsoft.asc && \
+    apt-add-repository https://packages.microsoft.com/ubuntu/22.04/prod && \
+    apt-get update && \
+    apt-get install -y libmsquic && \
+    rm -rf /var/lib/apt/lists/*
 
 # (we use two users here to ensure volume mounting works with two possible UIDs of the host UID)
 RUN adduser --disabled-password --gecos '' --uid 1001 --shell /bin/bash --ingroup adm helixbot && \
