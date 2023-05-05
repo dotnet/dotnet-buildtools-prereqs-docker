@@ -6,6 +6,15 @@
         {
           "platforms": [
             {
+              "dockerfile": "src/almalinux/8/source-build/amd64",
+              "os": "linux",
+              "osVersion": "almalinux8",
+              "tags": {
+                "almalinux-8-source-build--$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
+                "almalinux-8-source-build$(FloatingTagSuffix)": {}
+              }
+            },
+            {
               "dockerfile": "src/almalinux/8/helix/amd64",
               "os": "linux",
               "osVersion": "almalinux8",
