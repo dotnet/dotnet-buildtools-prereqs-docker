@@ -10,7 +10,7 @@
               "os": "linux",
               "osVersion": "almalinux8",
               "tags": {
-                "almalinux-8-source-build--$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
+                "almalinux-8-source-build-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
                 "almalinux-8-source-build$(FloatingTagSuffix)": {}
               }
             },
