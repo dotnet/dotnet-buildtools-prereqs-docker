@@ -2,9 +2,12 @@ FROM almalinux:8
 
 # Install dependencies
 
-RUN dnf install -y 'dnf-command(config-manager)' && \
-    dnf config-manager --set-enabled powertools && \
-     yum install -y \
+RUN dnf install -y \
+     'dnf-command(config-manager)' \
+     epel-release && \
+     dnf config-manager --set-enabled powertools && \
+     dnf config-manager --set-enabled epel && \
+     dnf install -y \
         "perl(Time::HiRes)" \
         autoconf \
         automake \
@@ -17,9 +20,12 @@ RUN dnf install -y 'dnf-command(config-manager)' && \
         libcurl-devel \
         libicu-devel \
         libtool \
+        # Requires epel
+        libunwind-devel \
         libuuid-devel \
         libxml2-devel \
         llvm-toolset \
+        # Requires powertools
         lttng-ust-devel \
         make \
         ncurses-devel \
@@ -34,8 +40,4 @@ RUN dnf install -y 'dnf-command(config-manager)' && \
         xz \
         zlib-devel \
     && \
-    yum clean all
-
-ENV LANG en_US.UTF-8  
-ENV LANGUAGE en_US:en  
-ENV LC_ALL en_US.UTF-8  
+    dnf clean all
