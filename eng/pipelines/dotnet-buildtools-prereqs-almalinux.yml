@@ -1,0 +1,26 @@
+trigger:
+  branches:
+    include:
+    - main
+  paths:
+    include:
+    - src/almalinux/*
+pr: none
+
+resources:
+  repositories:
+  - repository: InternalVersionsRepo
+    type: github
+    endpoint: dotnet
+    name: dotnet/versions
+
+variables:
+- template: variables/common.yml
+- name: imageBuilder.pathArgs
+  value: --path 'src/almalinux/*'
+
+stages:
+- template: ../common/templates/stages/dotnet/build-test-publish-repo.yml
+  parameters:
+    internalProjectName: ${{ variables.internalProjectName }}
+    publicProjectName: ${{ variables.publicProjectName }}

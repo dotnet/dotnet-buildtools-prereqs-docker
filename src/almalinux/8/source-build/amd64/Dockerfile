@@ -1,0 +1,43 @@
+FROM almalinux:8
+
+# Install dependencies
+
+RUN dnf install -y \
+     'dnf-command(config-manager)' \
+     epel-release && \
+     dnf config-manager --set-enabled powertools && \
+     dnf config-manager --set-enabled epel && \
+     dnf install -y \
+        "perl(Time::HiRes)" \
+        autoconf \
+        automake \
+        cmake \
+        gdb \
+        git \
+        glibc-langpack-en \
+        jq \
+        krb5-devel \
+        libcurl-devel \
+        libicu-devel \
+        libtool \
+        # Requires epel
+        libunwind-devel \
+        libuuid-devel \
+        libxml2-devel \
+        llvm-toolset \
+        # Requires powertools
+        lttng-ust-devel \
+        make \
+        ncurses-devel \
+        numactl-devel \
+        openssl-devel \
+        readline-devel \
+        python3 \
+        sudo \
+        swig \
+        wget \
+        which \
+        xz \
+        zlib-devel \
+    && \
+    dnf clean all
