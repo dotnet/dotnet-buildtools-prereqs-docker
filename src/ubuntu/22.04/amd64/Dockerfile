@@ -16,7 +16,7 @@ RUN apt-get update \
         sudo
 
 # This link fixes the broken lldb python scripting that the diagnostics tests require
-RUN mkdir /usr/lib/local/lib/python3.10/dist-packages/lldb 
+RUN mkdir /usr/lib/local/lib/python3.10/dist-packages/lldb \
     && ln -s /usr/lib/llvm-14/lib/python3.10/dist-packages/lldb/* /usr/lib/local/lib/python3.10/dist-packages/lldb
 
 # Install tools used by the VSO build automation.
