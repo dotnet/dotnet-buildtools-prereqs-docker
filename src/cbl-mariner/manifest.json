@@ -262,7 +262,7 @@
         {
           "platforms": [
             {
-              "architecture": "armd64",
+              "architecture": "arm64",
               "dockerfile": "src/cbl-mariner/2.0/opt/arm64",
               "os": "linux",
               "osVersion": "cbl-mariner2.0",
