@@ -1,10 +1,14 @@
-FROM quay.io/centos/centos:stream9-development
+FROM quay.io/centos/centos:stream8
 
 # Install dependencies
-RUN dnf install --setopt tsflags=nodocs --refresh -y \
+RUN curl -LO https://packages.microsoft.com/keys/microsoft.asc && \
+    echo 2cfd20a306b2fa5e25522d78f2ef50a1f429d35fd30bd983e2ebffc2b80944fa microsoft.asc| sha256sum --check - && \
+    rpm --import microsoft.asc && \
+    rm microsoft.asc && \
+    dnf install --setopt tsflags=nodocs --refresh -y \
         dnf-plugins-core \
     && \
-    dnf config-manager --set-enabled crb \
+    dnf config-manager --add-repo https://packages.microsoft.com/centos/8/prod \
     && \
     dnf install --setopt tsflags=nodocs -y --allowerasing \
         autoconf \
@@ -17,6 +21,7 @@ RUN dnf install --setopt tsflags=nodocs --refresh -y \
         git-core \
         iputils \
         libicu \
+        libmsquic \
         libtool \
         make \
         openssl \
