@@ -8,7 +8,7 @@ RUN tdnf update -y \
         awk \
         binutils \
         cmake \
-        clang \
+        clang16 \
         diffutils \
         glibc-devel \
         git \
