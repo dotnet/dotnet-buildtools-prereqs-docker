@@ -23,12 +23,6 @@ RUN tdnf update -y \
         unzip \
         wget
 
-# Emsdk expects the python executable to be named python.
-RUN ln /usr/bin/python3 /usr/bin/python
-
-# WebAssembly build needs working UTF-8 locale
-ENV LANG=en_US.utf8
-
 # WebAssembly build needs typescript
 RUN npm i -g typescript
 
