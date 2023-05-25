@@ -7,7 +7,7 @@ RUN tdnf update -y \
         ca-certificates \
         binutils \
         cmake \
-        clang \
+        clang16 \
         diffutils \
         git \
         tar \
