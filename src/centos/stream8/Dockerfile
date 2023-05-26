@@ -16,6 +16,8 @@ RUN dnf install --setopt tsflags=nodocs --refresh -y \
         cmake \
         curl-devel \
         doxygen \
+        elfutils \
+        file \
         findutils \
         gcc \
         gdb \
