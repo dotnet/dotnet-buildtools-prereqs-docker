@@ -19,6 +19,7 @@ RUN tdnf update -y \
         # Runtime dependencies
         icu \
         # Android dependencies
+        zip \
         unzip
 
 # Install Android NDK
