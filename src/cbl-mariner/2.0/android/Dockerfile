@@ -19,7 +19,9 @@ RUN tdnf update -y \
         # Runtime dependencies
         icu \
         # Android dependencies
-        unzip
+        unzip \
+        # ICU dependencies
+        gawk
 
 # Install Android NDK
 RUN wget https://dl.google.com/android/repository/android-ndk-r23c-linux.zip \
