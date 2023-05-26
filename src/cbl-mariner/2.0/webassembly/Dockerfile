@@ -3,6 +3,8 @@ FROM mcr.microsoft.com/cbl-mariner/base/core:2.0
 # Dependencies for WebAssembly build
 RUN tdnf update -y \
     && tdnf install -y \
+        # Provides 'su', required by Azure DevOps
+        util-linux \
         ca-certificates \
         # Common runtime build dependencies
         awk \
