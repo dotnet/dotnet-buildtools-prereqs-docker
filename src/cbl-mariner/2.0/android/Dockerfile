@@ -3,6 +3,8 @@ FROM mcr.microsoft.com/openjdk/jdk:8-mariner
 # Dependencies for Android build
 RUN tdnf update -y \
     && tdnf install -y \
+        # Provides 'su', required by Azure DevOps
+        util-linux \
         # Common dependencies
         ca-certificates \
         binutils \
