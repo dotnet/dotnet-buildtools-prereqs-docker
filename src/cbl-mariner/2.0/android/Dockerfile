@@ -3,6 +3,8 @@ FROM mcr.microsoft.com/openjdk/jdk:8-mariner
 # Dependencies for Android build
 RUN tdnf update -y \
     && tdnf install -y \
+        # Provides 'su', required by Azure DevOps
+        util-linux \
         # Common dependencies
         ca-certificates \
         binutils \
@@ -19,9 +21,10 @@ RUN tdnf update -y \
         # Runtime dependencies
         icu \
         # Android dependencies
+        zip
         unzip \
         # ICU dependencies
-        gawk
+        awk
 
 # Install Android NDK
 RUN wget https://dl.google.com/android/repository/android-ndk-r23c-linux.zip \

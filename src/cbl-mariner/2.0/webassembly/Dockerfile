@@ -1,0 +1,78 @@
+FROM mcr.microsoft.com/cbl-mariner/base/core:2.0
+
+# Dependencies for WebAssembly build
+RUN tdnf update -y \
+    && tdnf install -y \
+        # Provides 'su', required by Azure DevOps
+        util-linux \
+        ca-certificates \
+        # Common runtime build dependencies
+        awk \
+        binutils \
+        cmake \
+        clang16 \
+        diffutils \
+        glibc-devel \
+        git \
+        icu \
+        kernel-headers \
+        tar \
+        openssl-devel \
+        which \
+        # WebAssembly build dependencies
+        nodejs \
+        python3 \
+        unzip \
+        wget
+
+# WebAssembly build needs typescript
+RUN npm i -g typescript
+
+# Install Emscripten toolchain
+ENV EMSCRIPTEN_VERSION=3.1.34
+ENV EMSCRIPTEN_PATH=/usr/local/emscripten
+ENV EMSDK_PATH=/usr/local/emscripten/emsdk
+
+RUN mkdir ${EMSCRIPTEN_PATH} \
+    && cd ${EMSCRIPTEN_PATH} \
+    && git clone https://github.com/emscripten-core/emsdk.git ${EMSDK_PATH} \
+    && cd ${EMSDK_PATH} \
+    && git checkout ${EMSCRIPTEN_VERSION} \
+    && ./emsdk install ${EMSCRIPTEN_VERSION}-upstream \
+    && ./emsdk activate ${EMSCRIPTEN_VERSION}-upstream \
+    && ./upstream/emscripten/embuilder build MINIMAL \
+    && chmod -R 777 ${EMSCRIPTEN_PATH}
+
+# Install V8 Engine
+SHELL ["/bin/bash", "-c"]
+
+ENV V8_VERSION=8.5.183
+RUN curl -sSL https://netcorenativeassets.blob.core.windows.net/resource-packages/external/linux/chromium-v8/v8-linux64-rel-${V8_VERSION}.zip -o ./v8.zip \
+    && unzip ./v8.zip -d /usr/local/v8 \
+    && echo $'#!/usr/bin/env bash\n\
+"/usr/local/v8/d8" --snapshot_blob="/usr/local/v8/snapshot_blob.bin" "$@"\n' > /usr/local/bin/v8 \
+    && chmod +x /usr/local/bin/v8
+
+# Install Wasi toolchain
+ENV WASI_SDK_VERSION=16
+ENV WASI_SDK_PATH=/usr/local/wasi-sdk
+ENV WASI_SDK_URL=https://github.com/WebAssembly/wasi-sdk/releases/download/wasi-sdk-${WASI_SDK_VERSION}/wasi-sdk-${WASI_SDK_VERSION}.0-linux.tar.gz
+
+RUN mkdir -p ${WASI_SDK_PATH} \
+    && cd /tmp \
+    && curl -L -o /tmp/wasi-sdk.tar.gz ${WASI_SDK_URL} \
+    && tar --strip-components=1 -xvzf /tmp/wasi-sdk.tar.gz -C ${WASI_SDK_PATH} \
+    && echo ${WASI_SDK_VERSION} > ${WASI_SDK_PATH}/wasi-sdk-version.txt \
+    && rm /tmp/wasi-sdk.tar.gz
+
+ENV WASMTIME_VERSION=5.0.0
+ENV WASMTIME_PATH=/usr/local/wasmtime
+ENV WASMTIME_URL=https://github.com/bytecodealliance/wasmtime/releases/download/v${WASMTIME_VERSION}/wasmtime-v${WASMTIME_VERSION}-x86_64-linux.tar.xz
+
+RUN mkdir -p ${WASMTIME_PATH} \
+    && cd /tmp \
+    && curl -L -o /tmp/wasmtime.tar.xz ${WASMTIME_URL} \
+    && tar --strip-components=1 -xvf /tmp/wasmtime.tar.xz -C ${WASMTIME_PATH} \
+    && echo ${WASMTIME_VERSION} > ${WASMTIME_PATH}/wasmtime-version.txt \
+    && rm /tmp/wasmtime.tar.xz \
+    && ln -s ${WASMTIME_PATH}/wasmtime /bin/wasmtime
