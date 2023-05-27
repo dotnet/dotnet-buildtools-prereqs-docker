@@ -21,7 +21,7 @@ RUN tdnf update -y \
         # Runtime dependencies
         icu \
         # Android dependencies
-        zip
+        zip \
         unzip \
         # ICU dependencies
         awk
