@@ -93,20 +93,6 @@
           "platforms": [
             {
               "architecture": "amd64",
-              "dockerfile": "src/debian/11/gcc12",
-              "os": "linux",
-              "osVersion": "bullseye",
-              "tags": {
-                "debian-11-gcc12-amd64-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
-                "debian-11-gcc12-amd64$(FloatingTagSuffix)": {}
-              }
-            }
-          ]
-        },
-        {
-          "platforms": [
-            {
-              "architecture": "amd64",
               "dockerfile": "src/debian/11/helix/amd64",
               "os": "linux",
               "osVersion": "bullseye",
