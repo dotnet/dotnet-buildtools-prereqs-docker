@@ -23,6 +23,8 @@ RUN tdnf update -y \
         # Android dependencies
         zip \
         unzip \
+        # linux-bionic build dependencies
+        openssl-devel \
         # ICU dependencies
         awk
 
