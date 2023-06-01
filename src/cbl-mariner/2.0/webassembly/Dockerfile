@@ -1,29 +1,13 @@
-FROM mcr.microsoft.com/cbl-mariner/base/core:2.0
+FROM mcr.microsoft.com/dotnet-buildtools/prereqs:cbl-mariner-2.0-cross-amd64-local
 
 # Dependencies for WebAssembly build
 RUN tdnf update -y \
     && tdnf install -y \
-        # Provides 'su', required by Azure DevOps
-        util-linux \
-        ca-certificates \
-        # Common runtime build dependencies
-        awk \
-        binutils \
-        cmake \
-        clang16 \
-        diffutils \
-        glibc-devel \
-        git \
-        icu \
-        kernel-headers \
-        tar \
-        openssl-devel \
-        which \
         # WebAssembly build dependencies
+        which \
         nodejs \
         python3 \
-        unzip \
-        wget
+        unzip
 
 # WebAssembly build needs typescript
 RUN npm i -g typescript
