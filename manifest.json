@@ -6,7 +6,6 @@
     "src/cbl-mariner/manifest.json",
     "src/centos/manifest.json",
     "src/debian/manifest.json",
-    "src/fedora/manifest.json",
     "src/nanoserver/manifest.json",
     "src/opensuse/manifest.json",
     "src/raspbian/manifest.json",
