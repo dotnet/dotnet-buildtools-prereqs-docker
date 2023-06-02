@@ -1,4 +1,4 @@
-FROM mcr.microsoft.com/dotnet-buildtools/prereqs:fedora-36-local
+FROM mcr.microsoft.com/dotnet-buildtools/prereqs:fedora-38-local
 
 # Install Helix Dependencies
 
@@ -23,7 +23,7 @@ RUN dnf remove -y  python3-pip && \
     pip install ./helix_scripts-*-py3-none-any.whl
 
 # Add MsQuic 1.9 in addition to 2+
-# MsQuic did not publish 1.9 x64 package for Fedora 36
+# MsQuic did not publish 1.9 x64 package for Fedora 38
 # Use direct link to signed binary from Fedora 34
 RUN curl -LO https://packages.microsoft.com/fedora/34/prod/Packages/l/libmsquic-1.9.1-1.x86_64.rpm && \
     rpm -i --force libmsquic-1.9* && \
