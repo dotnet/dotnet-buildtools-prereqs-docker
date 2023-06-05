@@ -5,13 +5,13 @@
       "images": [
         {
           "platforms": [{
-            "dockerfile": "src/fedora/36/amd64",
+            "dockerfile": "src/fedora/38/amd64",
             "os": "linux",
-            "osVersion": "fedora36",
+            "osVersion": "fedora38",
             "tags": {
-              "fedora-36-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
-              "fedora-36$(FloatingTagSuffix)": {},
-              "fedora-36-local": {
+              "fedora-38-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
+              "fedora-38$(FloatingTagSuffix)": {},
+              "fedora-38-local": {
                 "isLocal": true
               }
             }
@@ -20,12 +20,12 @@
         {
           "platforms": [
             {
-              "dockerfile": "src/fedora/36/helix/amd64",
+              "dockerfile": "src/fedora/38/helix/amd64",
               "os": "linux",
-              "osVersion": "fedora36",
+              "osVersion": "fedora38",
               "tags": {
-                "fedora-36-helix-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
-                "fedora-36-helix$(FloatingTagSuffix)": {}
+                "fedora-38-helix-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
+                "fedora-38-helix$(FloatingTagSuffix)": {}
               }
             }
           ]
