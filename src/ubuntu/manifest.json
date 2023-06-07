@@ -582,6 +582,20 @@
         {
           "platforms": [
             {
+              "architecture": "amd64",
+              "dockerfile": "src/ubuntu/20.04/helix/sqlserver/amd64",
+              "os": "linux",
+              "osVersion": "focal",
+              "tags": {
+                "ubuntu-20.04-helix-sqlserver-amd64-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
+                "ubuntu-20.04-helix-sqlserver-amd64$(FloatingTagSuffix)": {}
+              }
+            }
+          ]
+        },
+        {
+          "platforms": [
+            {
               "dockerfile": "src/ubuntu/20.04/amd64",
               "os": "linux",
               "osVersion": "focal",
