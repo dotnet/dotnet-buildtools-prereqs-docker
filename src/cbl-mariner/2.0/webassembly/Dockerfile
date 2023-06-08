@@ -7,6 +7,7 @@ RUN tdnf update -y \
         which \
         nodejs \
         python3 \
+        libxml2 \
         unzip
 
 # WebAssembly build needs typescript
