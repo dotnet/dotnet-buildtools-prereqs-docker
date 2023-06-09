@@ -10,6 +10,8 @@ RUN apt-get update \
             clang \
             cmake \
             curl \
+            elfutils \
+            file \
             g++ \
             gettext \
             gdb \
