@@ -51,7 +51,7 @@ RUN curl -LO https://packages.microsoft.com/keys/microsoft.asc && \
     rm microsoft.asc && \
     apt-add-repository https://packages.microsoft.com/debian/11/prod && \
     apt-get update && \
-    apt-get install -y libmsquic && \
+    apt-get install -y libnuma1 libmsquic && \
     rm -rf /var/lib/apt/lists/*
 
 # Create helixbot users and give rights to sudo without password
