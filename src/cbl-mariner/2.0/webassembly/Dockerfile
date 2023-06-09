@@ -7,6 +7,7 @@ RUN tdnf update -y \
         which \
         nodejs \
         python3 \
+        libxml2 \
         unzip
 
 # WebAssembly build needs typescript
@@ -30,7 +31,7 @@ RUN mkdir ${EMSCRIPTEN_PATH} \
 # Install V8 Engine
 SHELL ["/bin/bash", "-c"]
 
-ENV V8_VERSION=8.5.183
+ENV V8_VERSION=10.8.168
 RUN curl -sSL https://netcorenativeassets.blob.core.windows.net/resource-packages/external/linux/chromium-v8/v8-linux64-rel-${V8_VERSION}.zip -o ./v8.zip \
     && unzip ./v8.zip -d /usr/local/v8 \
     && echo $'#!/usr/bin/env bash\n\
