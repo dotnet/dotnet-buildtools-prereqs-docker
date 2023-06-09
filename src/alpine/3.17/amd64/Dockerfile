@@ -11,6 +11,8 @@ RUN apk update && \
         cmake \
         coreutils \
         curl \
+        elfutils \
+        file \
         gcc \
         gettext-dev \
         git \

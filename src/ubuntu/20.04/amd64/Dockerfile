@@ -55,3 +55,10 @@ RUN apt-get update \
         uuid-dev \
         zlib1g-dev \
     && rm -rf /var/lib/apt/lists/*
+
+# Dependencies for VMR/source-build tests
+RUN apt-get update \
+    && apt-get install -y \
+        elfutils \
+        file \
+    && rm -rf /var/lib/apt/lists/*

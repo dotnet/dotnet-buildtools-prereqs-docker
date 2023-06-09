@@ -57,3 +57,9 @@ RUN dnf --setopt=install_weak_deps=False install -y \
 RUN dnf --setopt=install_weak_deps=False install -y \
         openssl1.1 \
     && dnf clean all
+
+# Dependencies for VMR/source-build tests
+RUN dnf --setopt=install_weak_deps=False install -y \
+        elfutils \
+        file \
+    && dnf clean all
