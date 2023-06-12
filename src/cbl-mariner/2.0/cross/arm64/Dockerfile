@@ -37,7 +37,7 @@ RUN mkdir compiler-rt_build && cd compiler-rt_build && \
 RUN LLVM_VERSION=16.0.0 LLVM_VERSION_MAJOR="${LLVM_VERSION%%.*}" SANITIZER_RUNTIMES_DIR=/sanitizer-runtimes && \
     mkdir -p $ROOTFS_DIR/usr/lib/llvm-${LLVM_VERSION_MAJOR}/lib/clang/${LLVM_VERSION}/lib/linux/ && \
     cp compiler-rt_build/lib/linux/libclang_rt.profile-aarch64.a $ROOTFS_DIR/usr/lib/llvm-${LLVM_VERSION_MAJOR}/lib/clang/${LLVM_VERSION}/lib/linux/ && \
-    mkdir /sanitizer-runtimes && \
+    mkdir ${SANITIZER_RUNTIMES_DIR} && \
     cp compiler-rt_build/lib/linux/libclang_rt.*-aarch64.a $SANITIZER_RUNTIMES_DIR && \
     cp -r compiler-rt_build/include/sanitizer $ROOTFS_DIR/usr/include
 
