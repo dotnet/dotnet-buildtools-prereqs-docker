@@ -42,7 +42,7 @@ RUN LLVM_VERSION=16.0.0 LLVM_VERSION_MAJOR="${LLVM_VERSION%%.*}" SANITIZER_RUNTI
     cp -r compiler-rt_build/include/sanitizer $ROOTFS_DIR/usr/include
 
 
-FROM mcr.microsoft.com/dotnet-buildtools/prereqs:cbl-mariner-2.0-crossdeps-llvm
+FROM mcr.microsoft.com/dotnet-buildtools/prereqs:cbl-mariner-2.0-crossdeps-llvm-local
 ARG ROOTFS_DIR=/crossrootfs/x64
 ARG LLVM_VERSION_MAJOR=16
 
