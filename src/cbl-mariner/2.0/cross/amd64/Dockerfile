@@ -1,4 +1,4 @@
-FROM mcr.microsoft.com/dotnet-buildtools/prereqs:cbl-mariner-2.0-crossdeps-builder-local AS builder
+FROM mcr.microsoft.com/dotnet-buildtools/prereqs:cbl-mariner-2.0-crossdeps-builder AS builder
 ARG ROOTFS_DIR=/crossrootfs/x64
 
 RUN /scripts/eng/common/cross/build-rootfs.sh x64 xenial --skipunmount
@@ -34,13 +34,19 @@ RUN mkdir compiler-rt_build && cd compiler-rt_build && \
         -DCMAKE_CXX_FLAGS="${BUILD_FLAGS}" && \
     make -j $(getconf _NPROCESSORS_ONLN)
 
+ARG SANITIZER_RUNTIMES_DIR=/sanitizer-runtimes
+
 RUN LLVM_VERSION=16.0.0 LLVM_VERSION_MAJOR="${LLVM_VERSION%%.*}" && \
     mkdir -p $ROOTFS_DIR/usr/lib/llvm-${LLVM_VERSION_MAJOR}/lib/clang/${LLVM_VERSION}/lib/linux/ && \
     cp compiler-rt_build/lib/linux/libclang_rt.profile-x86_64.a $ROOTFS_DIR/usr/lib/llvm-${LLVM_VERSION_MAJOR}/lib/clang/${LLVM_VERSION}/lib/linux/ && \
+    mkdir /sanitizer-runtimes && \
+    cp compiler-rt_build/lib/linux/libclang_rt.*-x86_64.a $SANITIZER_RUNTIMES_DIR && \
     cp -r compiler-rt_build/include/sanitizer $ROOTFS_DIR/usr/include
 
 
-FROM mcr.microsoft.com/dotnet-buildtools/prereqs:cbl-mariner-2.0-crossdeps-llvm-local
+FROM mcr.microsoft.com/dotnet-buildtools/prereqs:cbl-mariner-2.0-crossdeps-llvm
 ARG ROOTFS_DIR=/crossrootfs/x64
+ARG LLVM_VERSION_MAJOR=16
 
 COPY --from=builder $ROOTFS_DIR $ROOTFS_DIR
+COPY --from=builder /sanitizer-runtimes /usr/local/lib/clang/$LLVM_VERSION_MAJOR/lib/linux/
