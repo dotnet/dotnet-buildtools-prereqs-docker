@@ -26,6 +26,7 @@ RUN dnf install --setopt tsflags=nodocs --refresh -y \
         hostname \
         jq \
         krb5-devel \
+        libatomic \
         libcurl-devel \
         libedit-devel \
         libicu-devel \
