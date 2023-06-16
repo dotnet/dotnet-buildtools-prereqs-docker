@@ -26,6 +26,7 @@ RUN dnf install --setopt tsflags=nodocs --refresh -y \
         hostname \
         jq \
         krb5-devel \
+        # new dependency required when linking against libc++ instead of libstdc++ \
         libatomic \
         libcurl-devel \
         libedit-devel \
