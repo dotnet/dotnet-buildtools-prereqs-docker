@@ -638,13 +638,30 @@
         {
           "platforms": [
             {
-              "dockerfile": "src/ubuntu/22.04/amd64",
+              "dockerfile": "src/ubuntu/22.04/",
               "os": "linux",
               "osVersion": "jammy",
               "tags": {
                 "ubuntu-22.04-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
                 "ubuntu-22.04$(FloatingTagSuffix)": {},
                 "ubuntu-22.04-local": {
+                  "isLocal": true
+                }
+              }
+            }
+          ]
+        },
+        {
+          "platforms": [
+            {
+              "architecture": "arm64",
+              "dockerfile": "src/ubuntu/22.04/",
+              "os": "linux",
+              "osVersion": "jammy",
+              "tags": {
+                "ubuntu-22.04-arm64-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
+                "ubuntu-22.04-arm64$(FloatingTagSuffix)": {},
+                "ubuntu-22.04-arm64-local": {
                   "isLocal": true
                 }
               }
