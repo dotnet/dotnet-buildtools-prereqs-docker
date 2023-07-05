@@ -1,0 +1,22 @@
+parameters:
+  noCache: false
+  internalProjectName: null
+  publicProjectName: null
+  linuxAmdBuildJobTimeout: null
+  linuxArmBuildJobTimeout: null
+  customBuildInitSteps: []
+  customCopyBaseImagesInitSteps: []
+
+stages:
+- template: ../../common/templates/stages/dotnet/build-test-publish-repo.yml
+  parameters:
+    noCache: ${{ parameters.noCache }}
+    internalProjectName: ${{ variables.internalProjectName }}
+    publicProjectName: ${{ variables.publicProjectName }}
+
+    linuxAmd64Pool: ${{ variables.linuxAmd64Pool }}
+    linuxAmdBuildJobTimeout: ${{ parameters.linuxAmdBuildJobTimeout }}
+    linuxArmBuildJobTimeout: ${{ parameters.linuxArmBuildJobTimeout }}
+
+    customBuildInitSteps: ${{ parameters.customBuildInitSteps }}
+    customCopyBaseImagesInitSteps: ${{ parameters.customCopyBaseImagesInitSteps }}
