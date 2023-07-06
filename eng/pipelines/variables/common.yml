@@ -43,11 +43,3 @@ variables:
 - ${{ if eq(variables['System.TeamProject'], 'internal') }}:
   - name: build.imageBuilderDockerRunExtraOptions
     value: -e DOCKER_REPO=$(acr.server)/$(stagingRepoPrefix)dotnet-buildtools/prereqs
-- ${{ if eq(variables['System.TeamProject'], 'internal') }}:
-  linuxAmd64Pool:
-    name: NetCore1ESPool-Internal
-    demands: ImageOverride -equals build.ubuntu.2204.amd64
-- ${{ else }}:
-  linuxAmd64Pool:
-    name: NetCore-Public
-    demands: ImageOverride -equals build.ubuntu.2204.amd64.open
