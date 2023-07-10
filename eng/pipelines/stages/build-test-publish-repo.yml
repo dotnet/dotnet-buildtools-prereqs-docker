@@ -1,0 +1,29 @@
+parameters:
+  noCache: false
+  internalProjectName: null
+  publicProjectName: null
+  linuxAmdBuildJobTimeout: null
+  linuxArmBuildJobTimeout: null
+  customBuildInitSteps: []
+  customCopyBaseImagesInitSteps: []
+
+stages:
+- template: ../../common/templates/stages/dotnet/build-test-publish-repo.yml
+  parameters:
+    noCache: ${{ parameters.noCache }}
+    internalProjectName: ${{ parameters.internalProjectName }}
+    publicProjectName: ${{ parameters.publicProjectName }}
+
+    linuxAmd64Pool:
+      ${{ if eq(variables['System.TeamProject'], 'internal') }}:
+        name: NetCore1ESPool-Internal
+        demands: ImageOverride -equals build.ubuntu.2204.amd64
+      ${{ else }}:
+        name: NetCore-Public
+        demands: ImageOverride -equals build.ubuntu.2204.amd64.open
+
+    linuxAmdBuildJobTimeout: ${{ parameters.linuxAmdBuildJobTimeout }}
+    linuxArmBuildJobTimeout: ${{ parameters.linuxArmBuildJobTimeout }}
+
+    customBuildInitSteps: ${{ parameters.customBuildInitSteps }}
+    customCopyBaseImagesInitSteps: ${{ parameters.customCopyBaseImagesInitSteps }}
