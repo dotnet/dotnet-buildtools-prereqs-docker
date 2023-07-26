@@ -2,20 +2,25 @@ FROM mcr.microsoft.com/cbl-mariner/base/core:2.0
 
 RUN tdnf update -y && \
     tdnf install -y \
+
         # Provides 'su', required by Azure DevOps
-        util-linux \
-        wget \
         ca-certificates \
         git \
+        util-linux \
+        wget \
+
         # Common runtime build dependencies
-        cmake \
         awk \
+        cmake \
+        diffutils \
         icu \
         tar \
-        diffutils \
+        zlib-devel \
+
         # Crosscomponents build dependencies
         glibc-devel \
-        lttng-ust-devel \
         kernel-headers \
+        lttng-ust-devel \
+
         # Jit rolling build dependency
         python3-pip
