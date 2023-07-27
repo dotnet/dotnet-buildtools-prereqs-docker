@@ -8,6 +8,7 @@ RUN tdnf update -y && \
         git \
         util-linux \
         wget \
+        sudo \
 
         # Common runtime build dependencies
         awk \
