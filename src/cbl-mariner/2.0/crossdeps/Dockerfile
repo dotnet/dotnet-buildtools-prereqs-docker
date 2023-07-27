@@ -6,9 +6,9 @@ RUN tdnf update -y && \
         # Provides 'su', required by Azure DevOps
         ca-certificates \
         git \
+        sudo \
         util-linux \
         wget \
-        sudo \
 
         # Common runtime build dependencies
         awk \
