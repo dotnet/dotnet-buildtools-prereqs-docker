@@ -38,8 +38,7 @@ RUN LLVM_VERSION=16.0.0 LLVM_VERSION_MAJOR="${LLVM_VERSION%%.*}" SANITIZER_RUNTI
     mkdir -p $ROOTFS_DIR/usr/lib/llvm-${LLVM_VERSION_MAJOR}/lib/clang/${LLVM_VERSION}/lib/linux/ && \
     cp compiler-rt_build/lib/linux/libclang_rt.profile-i386.a $ROOTFS_DIR/usr/lib/llvm-${LLVM_VERSION_MAJOR}/lib/clang/${LLVM_VERSION}/lib/linux/ && \
     mkdir ${SANITIZER_RUNTIMES_DIR} && \
-    cp compiler-rt_build/lib/linux/libclang_rt.*-i386.a $SANITIZER_RUNTIMES_DIR && \
-    cp -r compiler-rt_build/include/sanitizer $ROOTFS_DIR/usr/include
+    cp compiler-rt_build/lib/linux/libclang_rt.*-i386.a $SANITIZER_RUNTIMES_DIR
 
 
 FROM mcr.microsoft.com/dotnet-buildtools/prereqs:cbl-mariner-2.0-crossdeps-llvm-local
@@ -48,3 +47,4 @@ ARG LLVM_VERSION_MAJOR=16
 
 COPY --from=builder $ROOTFS_DIR $ROOTFS_DIR
 COPY --from=builder /sanitizer-runtimes /usr/local/lib/clang/$LLVM_VERSION_MAJOR/lib/linux/
+COPY --from=builder compiler-rt_build/include/sanitizer /usr/local/lib/clang/$LLVM_VERSION_MAJOR/include/sanitizer/
