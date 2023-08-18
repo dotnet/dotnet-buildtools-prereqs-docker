@@ -2,8 +2,8 @@ parameters:
   noCache: false
   internalProjectName: null
   publicProjectName: null
-  linuxAmdBuildJobTimeout: null
-  linuxArmBuildJobTimeout: null
+  linuxAmdBuildJobTimeout: 60
+  linuxArmBuildJobTimeout: 60
   customBuildInitSteps: []
   customCopyBaseImagesInitSteps: []
 
