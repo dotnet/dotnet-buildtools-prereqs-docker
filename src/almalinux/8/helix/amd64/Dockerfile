@@ -4,7 +4,7 @@ FROM almalinux:8
 # (Use centos/8 rather than rhel/8 because the latter doesn't have
 #  libmsquic except in the 8.1-specific packages feed.)
 RUN rpm -Uvh https://packages.microsoft.com/config/centos/8/packages-microsoft-prod.rpm && \
-    yum update && \
+    yum update -y && \
     yum install -y \
         # Get recent python3 This is needed to get a pip recent enough
         # not to fail the build when installing cryptography library as
