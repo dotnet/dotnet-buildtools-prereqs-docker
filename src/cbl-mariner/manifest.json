@@ -114,7 +114,10 @@
               "osVersion": "cbl-mariner2.0",
               "tags": {
                 "cbl-mariner-2.0-cross-amd64-alpine-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
-                "cbl-mariner-2.0-cross-amd64-alpine$(FloatingTagSuffix)": {}
+                "cbl-mariner-2.0-cross-amd64-alpine$(FloatingTagSuffix)": {},
+                "cbl-mariner-2.0-cross-amd64-alpine-local": {
+                  "isLocal": true
+                }
               }
             }
           ]
@@ -153,7 +156,10 @@
               "osVersion": "cbl-mariner2.0",
               "tags": {
                 "cbl-mariner-2.0-cross-arm64-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
-                "cbl-mariner-2.0-cross-arm64$(FloatingTagSuffix)": {}
+                "cbl-mariner-2.0-cross-arm64$(FloatingTagSuffix)": {},
+                "cbl-mariner-2.0-cross-arm64-local": {
+                  "isLocal": true
+                }
               }
             }
           ]
@@ -166,7 +172,10 @@
               "osVersion": "cbl-mariner2.0",
               "tags": {
                 "cbl-mariner-2.0-cross-arm64-alpine-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
-                "cbl-mariner-2.0-cross-arm64-alpine$(FloatingTagSuffix)": {}
+                "cbl-mariner-2.0-cross-arm64-alpine$(FloatingTagSuffix)": {},
+                "cbl-mariner-2.0-cross-arm64-alpine-local": {
+                  "isLocal": true
+                }
               }
             }
           ]
@@ -314,6 +323,45 @@
               "tags": {
                 "cbl-mariner-2.0-android-docker-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
                 "cbl-mariner-2.0-android-docker$(FloatingTagSuffix)": {}
+              }
+            }
+          ]
+        },
+        {
+          "platforms": [
+            {
+              "dockerfile": "src/cbl-mariner/2.0/cross/biarch/arm64",
+              "os": "linux",
+              "osVersion": "cbl-mariner2.0",
+              "tags": {
+                "cbl-mariner-2.0-cross-biarch-amd64-arm64-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
+                "cbl-mariner-2.0-cross-biarch-amd64-arm64$(FloatingTagSuffix)": {}
+              }
+            }
+          ]
+        },
+        {
+          "platforms": [
+            {
+              "dockerfile": "src/cbl-mariner/2.0/cross/biarch/arm64-alpine",
+              "os": "linux",
+              "osVersion": "cbl-mariner2.0",
+              "tags": {
+                "cbl-mariner-2.0-cross-biarch-amd64-arm64-alpine-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
+                "cbl-mariner-2.0-cross-biarch-amd64-arm64-alpine$(FloatingTagSuffix)": {}
+              }
+            }
+          ]
+        },
+        {
+          "platforms": [
+            {
+              "dockerfile": "src/cbl-mariner/2.0/cross/biarch/amd64-alpine",
+              "os": "linux",
+              "osVersion": "cbl-mariner2.0",
+              "tags": {
+                "cbl-mariner-2.0-cross-biarch-amd64-amd64-alpine-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
+                "cbl-mariner-2.0-cross-biarch-amd64-amd64-alpine$(FloatingTagSuffix)": {}
               }
             }
           ]
