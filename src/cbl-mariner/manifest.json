@@ -360,7 +360,7 @@
               "os": "linux",
               "osVersion": "cbl-mariner2.0",
               "tags": {
-                "cbl-mariner-2.0-cross-biarch-amd64-amd64-alpine$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
+                "cbl-mariner-2.0-cross-biarch-amd64-amd64-alpine-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
                 "cbl-mariner-2.0-cross-biarch-amd64-amd64-alpine$(FloatingTagSuffix)": {}
               }
             }
