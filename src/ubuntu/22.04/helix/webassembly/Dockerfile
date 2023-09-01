@@ -36,11 +36,8 @@ RUN wget https://cmake.org/files/v${CMAKE_VERSION}/cmake-${CMAKE_VERSION}.0-Linu
 RUN locale-gen en_US.UTF-8
 
 # install node, which is required for newer npm, jsvu and v8
-RUN cd ~ && \
-    curl -fsSL https://deb.nodesource.com/setup_18.x | bash - && \
-    apt-get -y install nodejs
-
-USER root
+COPY ./setup-node-18.x.sh /tmp
+RUN /tmp/setup-node-18.x.sh && apt-get -y install nodejs
 
 RUN npm install -g npm
 RUN npm install jsvu -g
