@@ -22,6 +22,7 @@ RUN apt-get update \
         libxdamage1 \
         libxkbcommon-x11-0 \
         libxrandr2 \
+        libx11-xcb-dev \
         locales \
         unzip \
         wget \
