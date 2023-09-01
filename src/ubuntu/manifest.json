@@ -837,7 +837,10 @@
               "osVersion": "jammy",
               "tags": {
                 "ubuntu-22.04-helix-amd64-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
-                "ubuntu-22.04-helix-amd64$(FloatingTagSuffix)": {}
+                "ubuntu-22.04-helix-amd64$(FloatingTagSuffix)": {},
+                "ubuntu-22.04-helix-amd64-local": {
+                  "isLocal": true
+                }
               }
             }
           ]
@@ -866,6 +869,20 @@
               "tags": {
                 "ubuntu-22.04-debpkg-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
                 "ubuntu-22.04-debpkg$(FloatingTagSuffix)": {}
+              }
+            }
+          ]
+        },
+        {
+          "platforms": [
+            {
+              "architecture": "amd64",
+              "dockerfile": "src/ubuntu/22.04/helix/webassembly",
+              "os": "linux",
+              "osVersion": "jammy",
+              "tags": {
+                "ubuntu-22.04-helix-webassembly-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
+                "ubuntu-22.04-helix-webassembly$(FloatingTagSuffix)": {}
               }
             }
           ]
