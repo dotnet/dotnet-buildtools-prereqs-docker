@@ -1,4 +1,4 @@
-FROM mcr.microsoft.com/powershell:7.2-ubuntu-22.04
+FROM mcr.microsoft.com/powershell:lts-ubuntu-22.04
 
 # Install tools used by the VSO build automation.
 RUN apt-get update \

@@ -1,4 +1,4 @@
-FROM mcr.microsoft.com/powershell:7.1.0-ubuntu-20.04
+FROM mcr.microsoft.com/powershell:lts-ubuntu-20.04
 
 # Install tools used by the VSO build automation.
 RUN apt-get update \

@@ -1,4 +1,4 @@
-FROM mcr.microsoft.com/dotnet/core/sdk:3.1-focal
+FROM mcr.microsoft.com/dotnet/sdk:6.0-focal
 
 ENV DEBIAN_FRONTEND=noninteractive
 
