@@ -52,12 +52,6 @@ RUN dnf --setopt=install_weak_deps=False install -y \
         zlib-devel \
     && dnf clean all
 
-# Dependencies for running the VMR tooling
-# LibGit2Sharp requires this when synchronizing the VMR in a Codespace
-RUN dnf --setopt=install_weak_deps=False install -y \
-        openssl1.1 \
-    && dnf clean all
-
 # Dependencies for VMR/source-build tests
 RUN dnf --setopt=install_weak_deps=False install -y \
         elfutils \
