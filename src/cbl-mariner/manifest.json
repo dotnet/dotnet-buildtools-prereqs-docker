@@ -4,6 +4,34 @@
       "name": "dotnet-buildtools/prereqs",
       "images": [
         {
+          "sharedTags": {
+            "cbl-mariner2.0-docker-testrunner-$(UniqueId)": {},
+            "cbl-mariner2.0-docker-testrunner$(FloatingTagSuffix)": {}
+          },
+          "platforms": [
+            {
+              "dockerfile": "src/cbl-mariner/2.0/docker-testrunner",
+              "os": "linux",
+              "osVersion": "cbl-mariner2.0",
+              "tags": {
+                "cbl-mariner2.0-docker-testrunner-amd64-$(UniqueId)": {},
+                "cbl-mariner2.0-docker-testrunner-amd64$(FloatingTagSuffix)": {}
+              }
+            },
+            {
+              "architecture": "arm64",
+              "dockerfile": "src/cbl-mariner/2.0/docker-testrunner",
+              "os": "linux",
+              "osVersion": "cbl-mariner2.0",
+              "tags": {
+                "cbl-mariner2.0-docker-testrunner-arm64v8-$(UniqueId)": {},
+                "cbl-mariner2.0-docker-testrunner-arm64v8$(FloatingTagSuffix)": {}
+              },
+              "variant": "v8"
+            }
+          ]
+        },
+        {
           "platforms": [
             {
               "dockerfile": "src/cbl-mariner/1.0/helix/amd64",
