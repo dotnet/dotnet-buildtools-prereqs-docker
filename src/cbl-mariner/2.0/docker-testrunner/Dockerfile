@@ -10,5 +10,6 @@ RUN tdnf install -y \
         moby-buildx \
         moby-cli \
         # Test dependencies
+        git \
         powershell \
     && tdnf clean all
