@@ -4,34 +4,6 @@
       "name": "dotnet-buildtools/prereqs",
       "images": [
         {
-          "sharedTags": {
-            "debian-bullseye-slim-docker-testrunner-$(UniqueId)": {},
-            "debian-bullseye-slim-docker-testrunner$(FloatingTagSuffix)": {}
-          },
-          "platforms": [
-            {
-              "dockerfile": "src/debian/11/docker-testrunner",
-              "os": "linux",
-              "osVersion": "bullseye",
-              "tags": {
-                "debian-bullseye-slim-docker-testrunner-amd64-$(UniqueId)": {},
-                "debian-bullseye-slim-docker-testrunner-amd64$(FloatingTagSuffix)": {}
-              }
-            },
-            {
-              "architecture": "arm64",
-              "dockerfile": "src/debian/11/docker-testrunner",
-              "os": "linux",
-              "osVersion": "bullseye",
-              "tags": {
-                "debian-bullseye-slim-docker-testrunner-arm64v8-$(UniqueId)": {},
-                "debian-bullseye-slim-docker-testrunner-arm64v8$(FloatingTagSuffix)": {}
-              },
-              "variant": "v8"
-            }
-          ]
-        },
-        {
           "platforms": [
             {
               "architecture": "amd64",
