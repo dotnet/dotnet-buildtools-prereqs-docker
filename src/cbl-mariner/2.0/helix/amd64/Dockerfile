@@ -12,6 +12,7 @@ RUN tdnf install --setopt tsflags=nodocs --refresh -y \
          libmsquic \
          python3-pip \
          shadow-utils \
+         sudo \
          tzdata \
          which \
     && tdnf clean all
