@@ -50,7 +50,7 @@ RUN apt-get update && \
 # Add MsQuic
 # MsQuic did not publish arm32 package for 18.04
 # Use direct link to signed binary for now
-RUN curl -LO https://packages.microsoft.com/ubuntu/20.04/prod/pool/main/libm/libmsquic/libmsquic_2.2.2_armhf.deb && \
+RUN curl -LO https://packages.microsoft.com/ubuntu/20.04/prod/pool/main/libm/libmsquic/libmsquic_2.2.3_armhf.deb && \
     dpkg -i libmsquic_*_armhf.deb && \
     rm -f libmsquic_*_armhf.deb
 
