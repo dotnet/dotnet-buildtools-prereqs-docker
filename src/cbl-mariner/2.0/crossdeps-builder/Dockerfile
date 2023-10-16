@@ -1,8 +1,5 @@
 FROM mcr.microsoft.com/cbl-mariner/base/core:2.0
 
-# TODO: remove this once debootstrap is available in the base repos.
-COPY mariner-extended.repo /etc/yum.repos.d/
-
 RUN tdnf install -y \
         # Common utilities
         ca-certificates \
