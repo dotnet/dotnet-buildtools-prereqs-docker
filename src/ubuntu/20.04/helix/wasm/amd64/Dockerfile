@@ -22,7 +22,7 @@ RUN apt-get clean && \
 USER helixbot
 
 # update node, which is required for newer npm, jsvu and v8
-ENV NODE_VERSION 18.12.1
+ENV NODE_VERSION 18.18.2
 RUN cd ~ && \
     curl -LO https://nodejs.org/dist/v${NODE_VERSION}/node-v${NODE_VERSION}-linux-x64.tar.xz && \
     tar xf node-v${NODE_VERSION}-linux-x64.tar.xz
