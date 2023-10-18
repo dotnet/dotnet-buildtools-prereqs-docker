@@ -36,6 +36,8 @@ RUN apt-get update && \
         locales-all \
         python3-dev \
         python3-pip \
+        # rustc is needed to build cryptography wheel
+        rustc \
         sudo \
         tzdata \
         unzip \
