@@ -52,7 +52,7 @@ RUN ln -sf /usr/bin/python3 /usr/bin/python && \
 # Add MsQuic
 # MsQuic did not publish arm64 package for 18.04
 # Use direct link to signed binary for now
-RUN curl -LO https://packages.microsoft.com/ubuntu/20.04/prod/pool/main/libm/libmsquic/libmsquic_2.2.2_arm64.deb && \
+RUN curl -LO https://packages.microsoft.com/ubuntu/20.04/prod/pool/main/libm/libmsquic/libmsquic_2.2.3_arm64.deb && \
     dpkg -i libmsquic_*_arm64.deb && \
     rm -f libmsquic_*_arm64.deb
 
