@@ -40,6 +40,8 @@ RUN apt-get update && \
         locales-all \
         python3-dev \
         python3-pip \
+        # cryptography wheel requires rust to build on arm32
+        rust-all \
         sudo \
         tzdata \
         unzip \
