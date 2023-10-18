@@ -36,8 +36,6 @@ RUN apt-get update && \
         locales-all \
         python3-dev \
         python3-pip \
-        # rustc is needed to build cryptography wheel
-        rustc \
         sudo \
         tzdata \
         unzip \
@@ -51,7 +49,7 @@ ENV LANG=en_US.utf8
 RUN ln -sf /usr/bin/python3 /usr/bin/python && \
     curl https://bootstrap.pypa.io/get-pip.py -o ./get-pip.py --fail --silent --show-error && \
     python ./get-pip.py && rm ./get-pip.py && \
-    python -m pip install --upgrade pip==20.2 && \
+    python -m pip install --upgrade pip==23.3 && \
     python -m pip install virtualenv==16.6.0 && \
     pip download --no-deps helix-scripts --index-url https://dnceng.pkgs.visualstudio.com/public/_packaging/helix-client-prod/pypi/simple && \
     export CRYPTOGRAPHY_DONT_BUILD_RUST=1 && \
