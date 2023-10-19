@@ -2,6 +2,7 @@ FROM debian:buster
 
 # Workaround: https://github.com/pypa/wheel/issues/367
 ENV _PYTHON_HOST_PLATFORM=linux_armv7l
+ENV CRYPTOGRAPHY_DONT_BUILD_RUST=1
 
 # Install Helix Dependencies
 
@@ -44,7 +45,6 @@ RUN ln -sf /usr/bin/python3 /usr/bin/python && \
     python -m pip install --upgrade pip==20.2 && \
     python -m pip install virtualenv==16.6.0 && \
     pip download --no-deps helix-scripts --index-url https://dnceng.pkgs.visualstudio.com/public/_packaging/helix-client-prod/pypi/simple && \
-    export CRYPTOGRAPHY_DONT_BUILD_RUST=1 && \
     pip install ./helix_scripts-*-py3-none-any.whl
 
 # Add MsQuic
