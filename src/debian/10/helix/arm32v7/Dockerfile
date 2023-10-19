@@ -11,6 +11,8 @@ RUN apt-get update && \
         automake \
         at \
         build-essential \
+        # cryptography wheel requires rust to build on arm32
+        cargo \
         curl \
         gcc \
         gdb \
@@ -28,8 +30,6 @@ RUN apt-get update && \
         procps \
         python3-dev \
         python3-pip \
-        # cryptography wheel requires rust to build on arm32
-        rust-all \
         software-properties-common \
         sudo \
         tzdata \
