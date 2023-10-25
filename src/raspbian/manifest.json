@@ -20,22 +20,6 @@
               "variant": "v7"
             }
           ]
-        },
-
-        {
-          "platforms": [
-            {
-              "architecture": "arm",
-              "dockerfile": "src/raspbian/10/helix/arm32v6",
-              "os": "linux",
-              "osVersion": "buster",
-              "tags": {
-                "raspbian-10-helix-arm32v6-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
-                "raspbian-10-helix-arm32v6$(FloatingTagSuffix)": {}
-              },
-              "variant": "v6"
-            }
-          ]
         }
       ]
     }
