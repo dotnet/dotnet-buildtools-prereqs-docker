@@ -20,21 +20,6 @@
         {
           "platforms": [
             {
-              "architecture": "arm",
-              "dockerfile": "src/debian/10/helix/arm32v7",
-              "os": "linux",
-              "osVersion": "buster",
-              "tags": {
-                "debian-10-helix-arm32v7-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
-                "debian-10-helix-arm32v7$(FloatingTagSuffix)": {}
-              },
-              "variant": "v7"
-            }
-          ]
-        },
-        {
-          "platforms": [
-            {
               "architecture": "arm64",
               "dockerfile": "src/debian/10/helix/arm64v8",
               "os": "linux",
@@ -72,21 +57,6 @@
                 "debian-11-helix-amd64-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
                 "debian-11-helix-amd64$(FloatingTagSuffix)": {}
               }
-            }
-          ]
-        },
-        {
-          "platforms": [
-            {
-              "architecture": "arm",
-              "dockerfile": "src/debian/11/helix/arm32v7",
-              "os": "linux",
-              "osVersion": "bullseye",
-              "tags": {
-                "debian-11-helix-arm32v7-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
-                "debian-11-helix-arm32v7$(FloatingTagSuffix)": {}
-              },
-              "variant": "v7"
             }
           ]
         },

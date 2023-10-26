@@ -40,6 +40,8 @@ RUN apt-get update && \
         locales-all \
         python3-dev \
         python3-pip \
+        # cryptography wheel requires rust to build on arm32
+        rust-all \
         sudo \
         tzdata \
         unzip \
@@ -50,14 +52,14 @@ RUN apt-get update && \
 # Add MsQuic
 # MsQuic did not publish arm32 package for 18.04
 # Use direct link to signed binary for now
-RUN curl -LO https://packages.microsoft.com/ubuntu/20.04/prod/pool/main/libm/libmsquic/libmsquic_2.2.2_armhf.deb && \
+RUN curl -LO https://packages.microsoft.com/ubuntu/20.04/prod/pool/main/libm/libmsquic/libmsquic_2.2.3_armhf.deb && \
     dpkg -i libmsquic_*_armhf.deb && \
     rm -f libmsquic_*_armhf.deb
 
 ENV LANG=en_US.utf8
 
 RUN ln -sf /usr/bin/python3 /usr/bin/python && \
-    python -m pip install --upgrade pip==20.2 && \
+    python -m pip install --upgrade pip==21.3.1 && \
     python -m pip install virtualenv==16.6.0 && \
     pip download --no-deps helix-scripts --index-url https://dnceng.pkgs.visualstudio.com/public/_packaging/helix-client-prod/pypi/simple && \
     export CRYPTOGRAPHY_DONT_BUILD_RUST=1 && \
