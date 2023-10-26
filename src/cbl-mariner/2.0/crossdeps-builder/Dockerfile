@@ -63,7 +63,7 @@ RUN mkdir llvm-project.src && \
         -DCMAKE_CXX_COMPILER=clang++ \
         -DLLVM_TARGETS_TO_BUILD="host;AArch64;ARM" \
         -Wno-dev \
-        -DLLVM_ENABLE_PROJECTS="clang;lld" && \
+        -DLLVM_ENABLE_PROJECTS="clang;lld;clang-tools-extra" && \
     make -j $(getconf _NPROCESSORS_ONLN) && \
     make install
 
