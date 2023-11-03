@@ -1,4 +1,4 @@
-FROM quay.io/centos/centos:stream9-development
+FROM quay.io/centos/centos:stream9
 
 # Install dependencies
 
