@@ -55,16 +55,45 @@ RUN ln -sf /usr/bin/python3 /usr/bin/python && \
     pip install ./helix_scripts-*-py3-none-any.whl
 
 # build MsQuic as we don't have packages
-RUN cd /tmp && \
-    mkdir pwsh && \
-    cd pwsh && \
-    curl -L https://github.com/PowerShell/PowerShell/releases/download/v7.2.5/powershell-7.2.5-linux-alpine-x64.tar.gz | tar xfz - && \
-    cd .. && \
-    git clone --depth 1 --single-branch --branch release/7.0 --recursive https://github.com/dotnet/msquic && \
-    cd msquic/src/msquic  &&  PATH=~/.dotnet/tools:$PATH /tmp/pwsh/pwsh scripts/build.ps1 -Config Release -UseSystemOpenSSLCrypto -DisableTools -DisableTest -DisablePerf && \
-    cp artifacts/bin/linux/x64_Release_openssl/libmsquic.so.2 artifacts/bin/linux/x64_Release_openssl/libmsquic.lttng.so.2.* /usr/lib && \
+RUN apk update && apk add --no-cache && \
+    apk add \
+        cmake \
+        g++ \
+        gcc \
+        git \
+        numactl-dev \
+        linux-headers \
+        lttng-ust-dev \
+        make \
+        musl-dev \
+        openssl-dev \
+        perl && \
     cd /tmp && \
-    rm -r pwsh msquic
+    git clone --depth 1 --single-branch --branch main --recursive https://github.com/dotnet/msquic && \
+    cd msquic/src/msquic && \
+    cmake -B build/linux/x64_openssl \
+       -DQUIC_OUTPUT_DIR=/tmp/msquic/src/msquic/artifacts/bin/linux/x64_Release_openssl \
+       -DCMAKE_BUILD_TYPE=Release \
+       -DQUIC_TLS=openssl \
+       -DQUIC_ENABLE_LOGGING=true \
+       -DQUIC_USE_SYSTEM_LIBCRYPTO=true \
+       -DQUIC_BUILD_TOOLS=off \
+       -DQUIC_BUILD_TEST=off \
+       -DQUIC_BUILD_PERF=off && \
+    cmake --build build/linux/x64_openssl  --config Release && \
+    cp artifacts/bin/linux/x64_Release_openssl/libmsquic.so.* artifacts/bin/linux/x64_Release_openssl/libmsquic.lttng.so.* /usr/lib && \
+    rm -rf /tmp/msquic && \
+    apk del \
+        cmake \
+        g++ \
+        gcc \
+        git \
+        linux-headers \
+        lttng-ust-dev \
+        make \
+        musl-dev \
+        openssl-dev \
+        perl
 
 # Needed for corefx tests to pass
 ENV LANG=en-US.UTF-8
