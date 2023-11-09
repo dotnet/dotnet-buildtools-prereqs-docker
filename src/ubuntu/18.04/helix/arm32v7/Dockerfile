@@ -36,6 +36,7 @@ RUN apt-get update && \
         libunwind8 \
         libunwind-dev \
         lldb-3.9 \
+        llvm \
         locales \
         locales-all \
         python3-dev \
@@ -74,5 +75,3 @@ RUN adduser --disabled-password --gecos '' --uid 1001 --shell /bin/bash --ingrou
 USER helixbot
 
 RUN python -m virtualenv --no-site-packages /home/helixbot/.vsts-env 
-
-
