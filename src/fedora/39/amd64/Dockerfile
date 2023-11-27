@@ -19,7 +19,7 @@ RUN dnf --setopt=install_weak_deps=False install -y \
 
 # Add MS package repo.
 COPY  microsoft.asc /tmp
-RUN dnf config-manager --add-repo https://packages.microsoft.com/fedora/37/prod/ && \
+RUN dnf config-manager --add-repo https://packages.microsoft.com/fedora/39/prod/ && \
     rpm --import /tmp/microsoft.asc && \
     rm /tmp/microsoft.asc
 
