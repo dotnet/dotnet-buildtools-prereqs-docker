@@ -37,10 +37,7 @@
             "osVersion": "fedora39",
             "tags": {
               "fedora-39-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
-              "fedora-39$(FloatingTagSuffix)": {},
-              "fedora-39-local": {
-                "isLocal": true
-              }
+              "fedora-39$(FloatingTagSuffix)": {}
             }
           }]
         }
