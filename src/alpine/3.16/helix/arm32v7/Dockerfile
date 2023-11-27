@@ -53,7 +53,7 @@ RUN apk update && apk add --no-cache && \
         openssl-dev \
         perl && \
     cd /tmp && \
-    git clone --depth 1 --single-branch --branch alpine-arm32-pin-2023-08 --recursive https://github.com/dotnet/msquic && \
+    git clone --depth 1 --single-branch --branch msquic-v2.2.2 --recursive https://github.com/dotnet/msquic && \
     cd msquic/src/msquic && \
     cmake -B build/linux/arm_openssl \
        -DQUIC_OUTPUT_DIR=/tmp/msquic/src/msquic/artifacts/bin/linux/arm_Release_openssl \
