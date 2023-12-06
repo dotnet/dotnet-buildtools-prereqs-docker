@@ -36,7 +36,7 @@ RUN cd %EMSDK_PATH% \
     && .\emsdk activate %EMSCRIPTEN_VERSION%-upstream
 
 # install Node JS
-ENV NODE_VERSION 17.3.1
+ENV NODE_VERSION 18.17.1
 
 RUN curl -SL --output %TEMP%\nodejs.msi https://nodejs.org/dist/v%NODE_VERSION%/node-v%NODE_VERSION%-x64.msi
 RUN msiexec /i %TEMP%\nodejs.msi /quiet /passive /qn /norestart
