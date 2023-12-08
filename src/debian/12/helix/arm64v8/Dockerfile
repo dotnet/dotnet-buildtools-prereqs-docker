@@ -47,6 +47,7 @@ RUN curl -LO https://packages.microsoft.com/keys/microsoft.asc && \
     apt-key add microsoft.asc && \
     rm microsoft.asc && \
     apt-add-repository https://packages.microsoft.com/debian/12/prod && \
+    echo deb https://packages.microsoft.com/debian/12/prod bookworm main >> /etc/apt/sources.list.d/microsoft.list && \
     apt-get update && \
     apt-get install -y libmsquic && \
     rm -rf /var/lib/apt/lists/*
