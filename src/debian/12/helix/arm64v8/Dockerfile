@@ -41,6 +41,16 @@ RUN ln -sf /usr/bin/python3 /usr/bin/python && \
     export CRYPTOGRAPHY_DONT_BUILD_RUST=1 && \
     python3  -m pip install ./helix_scripts-*-py3-none-any.whl --break-system-packages
 
+# Add MsQuic
+RUN curl -LO https://packages.microsoft.com/keys/microsoft.asc && \
+    echo 2cfd20a306b2fa5e25522d78f2ef50a1f429d35fd30bd983e2ebffc2b80944fa microsoft.asc| sha256sum --check - && \
+    apt-key add microsoft.asc && \
+    rm microsoft.asc && \
+    echo deb https://packages.microsoft.com/debian/12/prod bookworm main >> /etc/apt/sources.list.d/microsoft.list && \
+    apt-get update && \
+    apt-get install -y libmsquic && \
+    rm -rf /var/lib/apt/lists/*
+
 # Create helixbot users and give rights to sudo without password
 # (we use two users here to ensure volume mounting works with two possible UIDs of the host UID)
 # additionally, preinstall the virtualenv packages used for VSTS reporting to save time
