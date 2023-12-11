@@ -82,7 +82,10 @@
               "osVersion": "centos-stream8",
               "tags": {
                 "centos-stream8-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
-                "centos-stream8$(FloatingTagSuffix)": {}
+                "centos-stream8$(FloatingTagSuffix)": {},
+                "centos-stream8-local": {
+                  "isLocal": true
+                }
               }
             }
           ]
@@ -96,6 +99,19 @@
               "tags": {
                 "centos-stream8-helix-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
                 "centos-stream8-helix$(FloatingTagSuffix)": {}
+              }
+            }
+          ]
+        },
+        {
+          "platforms": [
+            {
+              "dockerfile": "src/centos/stream8/mlnet",
+              "os": "linux",
+              "osVersion": "centos-stream8",
+              "tags": {
+                "centos-stream8-mlnet-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
+                "centos-stream8-mlnet$(FloatingTagSuffix)": {}
               }
             }
           ]
