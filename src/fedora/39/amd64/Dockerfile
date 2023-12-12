@@ -57,3 +57,8 @@ RUN dnf --setopt=install_weak_deps=False install -y \
         elfutils \
         file \
     && dnf clean all
+
+# Install ICU package to support globalization
+RUN dnf --setopt=install_weak_deps=False install -y \
+        icu \
+    && dnf clean all
