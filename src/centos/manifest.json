@@ -111,7 +111,23 @@
               "osVersion": "centos-stream8",
               "tags": {
                 "centos-stream8-mlnet-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
-                "centos-stream8-mlnet$(FloatingTagSuffix)": {}
+                "centos-stream8-mlnet$(FloatingTagSuffix)": {},
+                "centos-stream8-mlnet-local": {
+                  "isLocal": true
+                }
+              }
+            }
+          ]
+        },
+        {
+          "platforms": [
+            {
+              "dockerfile": "src/centos/stream8/mlnet/helix",
+              "os": "linux",
+              "osVersion": "centos-stream8",
+              "tags": {
+                "centos-stream8-mlnet-helix-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
+                "centos-stream8-mlnet-helix$(FloatingTagSuffix)": {}
               }
             }
           ]
