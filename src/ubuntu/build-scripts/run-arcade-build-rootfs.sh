@@ -44,7 +44,7 @@ fi
 echo "Using $dockerCrossDepsTag to clone arcade to fetch scripts used to build cross-toolset"
 docker exec $buildRootFSContainer sh -c '
     git config --global user.email builder@dotnet-buildtools-prereqs-docker &&
-    git clone --depth 1 --single-branch https://github.com/dotnet/arcade /scripts'
+    git clone --depth 1 --single-branch https://github.com/dkurt/arcade -b dkurt/update_riscv64_rootfs /scripts'
 
 if [ $? -ne 0 ]; then
     echo "Rootfs build failed: `git clone https://github.com/dotnet/arcade /scripts` returned error"
