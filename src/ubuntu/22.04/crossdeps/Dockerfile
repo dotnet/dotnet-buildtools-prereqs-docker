@@ -38,8 +38,8 @@ RUN apt-get update \
         libzstd-dev \
     && rm -rf /var/lib/apt/lists/*
 
-# install llvm-toolchain v15 using official script
-RUN wget -O- https://apt.llvm.org/llvm.sh | bash -s -- 15 \
+# install llvm-toolchain v17 using official script
+RUN wget -O- https://apt.llvm.org/llvm.sh | bash -s -- 17 \
         clang \
         clang-tools \
         liblldb-dev \
