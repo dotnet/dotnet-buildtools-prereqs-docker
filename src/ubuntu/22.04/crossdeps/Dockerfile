@@ -19,8 +19,8 @@ RUN apt-get update \
         build-essential \
         cmake \
         cpio \
-        debootstrap \
         debian-archive-keyring \
+        debootstrap \
         flex \
         gdb \
         make \
