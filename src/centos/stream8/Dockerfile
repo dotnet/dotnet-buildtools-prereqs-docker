@@ -44,7 +44,7 @@ RUN dnf install --setopt tsflags=nodocs --refresh -y \
         lzma \
         make \
         ncurses-devel \
-        nodejs:20 \
+        nodejs:20/common \
         numactl-devel \
         openssl-devel \
         procps-ng \
