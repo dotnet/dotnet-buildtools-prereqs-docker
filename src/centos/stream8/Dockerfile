@@ -7,6 +7,7 @@ RUN dnf install --setopt tsflags=nodocs --refresh -y \
     && \
     dnf config-manager --set-enabled powertools \
     && \
+    dnf module install --setopt tsflags=nodocs -y nodejs:20/common && \
     dnf install -y epel-release && \
     dnf install --setopt tsflags=nodocs -y \
         "perl(Time::HiRes)" \
