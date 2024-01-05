@@ -219,6 +219,35 @@
               "variant": "v8"
             }
           ]
+        },
+        {
+          "platforms": [
+            {
+              "dockerfile": "src/alpine/3.19/amd64",
+              "os": "linux",
+              "osVersion": "alpine3.19",
+              "tags": {
+                "alpine-3.19-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
+                "alpine-3.19$(FloatingTagSuffix)": {},
+                "alpine-3.19-local": {
+                  "isLocal": true
+                }
+              }
+            }
+          ]
+        },
+        {
+          "platforms": [
+            {
+              "dockerfile": "src/alpine/3.19/WithNode/amd64",
+              "os": "linux",
+              "osVersion": "alpine3.19",
+              "tags": {
+                "alpine-3.19-WithNode-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
+                "alpine-3.19-WithNode$(FloatingTagSuffix)": {}
+              }
+            }
+          ]
         }
       ]
     }
