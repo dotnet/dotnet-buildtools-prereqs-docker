@@ -64,5 +64,5 @@ RUN dnf --setopt=install_weak_deps=False install -y \
     && dnf clean all
 
 # Dependencies for Aspnetcore
-RUN dnf module install --setopt tsflags=nodocs -y nodejs:20/common && \
+RUN dnf module install --setopt tsflags=nodocs -y nodejs:20/common \
     && dnf clean all
