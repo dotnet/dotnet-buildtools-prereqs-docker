@@ -77,3 +77,9 @@ RUN apt-get update \
         elfutils \
         file \
     && rm -rf /var/lib/apt/lists/*
+
+# update node
+ENV NODE_VERSION 20.9.0
+RUN cd ~ && \
+    curl -LO https://nodejs.org/dist/v${NODE_VERSION}/node-v${NODE_VERSION}-linux-x64.tar.xz && \
+    tar xf node-v${NODE_VERSION}-linux-x64.tar.xz
