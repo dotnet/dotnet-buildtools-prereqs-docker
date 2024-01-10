@@ -64,5 +64,7 @@ RUN dnf --setopt=install_weak_deps=False install -y \
     && dnf clean all
 
 # Dependencies for Aspnetcore
-RUN dnf module install --setopt tsflags=nodocs -y nodejs:20/common \
-    && dnf clean all
+ENV NODE_VERSION 16.19.0 
+RUN cd ~ && \ 
+    curl -LO https://nodejs.org/dist/v${NODE_VERSION}/node-v${NODE_VERSION}-linux-x64.tar.xz && \ 
+    tar xf node-v${NODE_VERSION}-linux-x64.tar.xz 
