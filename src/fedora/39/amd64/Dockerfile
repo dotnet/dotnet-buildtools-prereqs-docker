@@ -62,3 +62,8 @@ RUN dnf --setopt=install_weak_deps=False install -y \
 RUN dnf --setopt=install_weak_deps=False install -y \
         icu \
     && dnf clean all
+
+# Dependencies for Aspnetcore
+RUN cd ~ && \ 
+    curl -sL https://rpm.nodesource.com/setup_20.x
+RUN dnf install -y nodejs && dnf clean all
