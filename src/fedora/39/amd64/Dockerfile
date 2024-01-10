@@ -64,7 +64,6 @@ RUN dnf --setopt=install_weak_deps=False install -y \
     && dnf clean all
 
 # Dependencies for Aspnetcore
-ENV NODE_VERSION 20.9.0 
 RUN cd ~ && \ 
-    curl -LO https://nodejs.org/dist/v${NODE_VERSION}/node-v${NODE_VERSION}-linux-x64.tar.xz && \ 
-    tar xf node-v${NODE_VERSION}-linux-x64.tar.xz 
+    curl -sL https://rpm.nodesource.com/setup_20.x
+RUN dnf install nodejs && dnf clean all
