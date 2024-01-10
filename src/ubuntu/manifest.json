@@ -538,20 +538,6 @@
           "platforms": [
             {
               "architecture": "amd64",
-              "dockerfile": "src/ubuntu/20.04/crossdac/amd64",
-              "os": "linux",
-              "osVersion": "focal",
-              "tags": {
-                "ubuntu-20.04-crossdac-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
-                "ubuntu-20.04-crossdac$(FloatingTagSuffix)": {}
-              }
-            }
-          ]
-        },
-        {
-          "platforms": [
-            {
-              "architecture": "amd64",
               "dockerfile": "src/ubuntu/20.04/helix/amd64",
               "os": "linux",
               "osVersion": "focal",
