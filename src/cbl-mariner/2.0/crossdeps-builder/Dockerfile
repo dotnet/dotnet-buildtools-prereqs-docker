@@ -15,7 +15,16 @@ RUN tdnf install -y \
         kernel-headers \
         texinfo \
         # Rootfs build dependencies
-        debootstrap
+        bzip2-devel \
+        debootstrap \
+        libarchive-devel \
+        openssl-devel
+
+# dependencies which are installed from extended repo require additional setup
+RUN wget https://packages.microsoft.com/cbl-mariner/2.0/prod/extended/x86_64/config.repo -O /etc/yum.repos.d/mariner-extended.repo && \
+    tdnf makecache && \
+    tdnf install -y \
+        libbsd-devel
 
 # Obtain ubuntu package signing key (for use by debootstrap)
 # 1. Add public key used to sign the ubuntu keyring
