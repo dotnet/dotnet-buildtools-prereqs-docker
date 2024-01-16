@@ -8,7 +8,13 @@ RUN apt-get update \
 
 ADD rootfs.arm64.tar crossrootfs
 
-# install node
+# Remove older version of node & install node 20
+RUN cd /etc/apt/sources.list.d  && \
+    rm nodesource.list && \
+    apt --fix-broken install && \
+    apt update && \
+    apt remove nodejs && \
+    apt remove nodejs-doc
 RUN cd ~ && \
     curl -sL https://deb.nodesource.com/setup_20.x -o nodesource_setup.sh && \
     bash nodesource_setup.sh && \
