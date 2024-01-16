@@ -1,6 +1,6 @@
 FROM mcr.microsoft.com/dotnet-buildtools/prereqs:alpine-3.19-local
 
-RUN apk update && apk add --no-cache nodejs npm
+RUN apk update && apk add --no-cache nodejs npm git
 
 # Add label for bring your own node in azure devops
 LABEL "com.azure.dev.pipelines.agent.handler.node.path"="/usr/bin/node"
