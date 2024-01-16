@@ -13,8 +13,8 @@ RUN cd /etc/apt/sources.list.d  && \
     rm -f nodesource.list && \
     apt --fix-broken install && \
     apt update && \
-    apt remove nodejs && \
-    apt remove nodejs-doc
+    apt-get remove nodejs -y && \
+    apt-get remove nodejs-doc -y
 RUN cd ~ && \
     curl -sL https://deb.nodesource.com/setup_20.x -o nodesource_setup.sh && \
     bash nodesource_setup.sh && \
