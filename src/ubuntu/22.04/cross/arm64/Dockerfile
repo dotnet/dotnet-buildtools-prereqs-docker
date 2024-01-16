@@ -11,6 +11,6 @@ ADD rootfs.arm64.tar crossrootfs
 # install node
 RUN cd ~ && \
     curl -sL https://deb.nodesource.com/setup_20.x -o nodesource_setup.sh && \
-    sudo bash nodesource_setup.sh && \
-    sudo apt-get install nodejs -y && \
+    bash nodesource_setup.sh && \
+    apt-get install nodejs -y && \
     rm -rf /var/lib/apt/lists/*
