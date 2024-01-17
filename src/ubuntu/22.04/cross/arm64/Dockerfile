@@ -20,4 +20,7 @@ RUN cd ~ && \
     curl -sL https://deb.nodesource.com/setup_20.x -o nodesource_setup.sh && \
     bash nodesource_setup.sh && \
     apt-get install nodejs -y && \
-    rm -rf /var/lib/apt/lists/*
+    rm -rf /var/lib/apt/lists/* && \
+    rm -f nodesource_setup.sh
+
+ENV NO_UPDATE_NOTIFIER=true
