@@ -4,13 +4,23 @@ FROM mcr.microsoft.com/dotnet-buildtools/prereqs:ubuntu-22.04-crossdeps-local
 RUN apt-get update \
     && apt-get install -y \
         binutils-aarch64-linux-gnu \
-        nodejs \
     && rm -rf /var/lib/apt/lists/*
 
 ADD rootfs.arm64.tar crossrootfs
 
-# update node
-ENV NODE_VERSION 20.9.0
+# Remove older version of node & install node 20
+RUN cd /etc/apt/sources.list.d  && \
+    rm -f nodesource.list && \
+    apt --fix-broken install && \
+    apt update && \
+    apt-get remove nodejs -y && \
+    apt-get remove nodejs-doc -y && \
+    apt-get remove libnode-dev -y
 RUN cd ~ && \
-    curl -LO https://nodejs.org/dist/v${NODE_VERSION}/node-v${NODE_VERSION}-linux-arm64.tar.xz && \
-    tar xf node-v${NODE_VERSION}-linux-arm64.tar.xz
+    curl -sL https://deb.nodesource.com/setup_20.x -o nodesource_setup.sh && \
+    bash nodesource_setup.sh && \
+    apt-get install nodejs -y && \
+    rm -rf /var/lib/apt/lists/* && \
+    rm -f nodesource_setup.sh
+
+ENV NO_UPDATE_NOTIFIER=true

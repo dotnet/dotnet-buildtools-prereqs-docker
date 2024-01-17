@@ -80,6 +80,7 @@ RUN apt-get update \
 
 # update node
 ENV NODE_VERSION 20.9.0
+ENV NO_UPDATE_NOTIFIER=true
 RUN cd ~ && \
     curl -LO https://nodejs.org/dist/v${NODE_VERSION}/node-v${NODE_VERSION}-linux-x64.tar.xz && \
     tar xf node-v${NODE_VERSION}-linux-x64.tar.xz
