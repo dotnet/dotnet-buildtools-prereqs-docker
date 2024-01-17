@@ -10,6 +10,7 @@ ADD rootfs.arm64.tar crossrootfs
 
 # Remove older version of node & install node 20
 RUN cd /etc/apt/sources.list.d  && \
+    ls && \
     rm -f nodesource.list && \
     apt --fix-broken install && \
     apt update && \
