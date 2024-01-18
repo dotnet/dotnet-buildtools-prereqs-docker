@@ -60,3 +60,5 @@ RUN dnf install --setopt tsflags=nodocs --refresh -y \
         zlib-devel \
     && \
     dnf clean all
+
+ENV NO_UPDATE_NOTIFIER=true
