@@ -23,7 +23,6 @@ RUN mkdir -p /usr/lib/local/lib/python3.10/dist-packages/lldb \
 RUN apt-get update \
     && apt-get install -y \
         git \
-        nodejs \
         npm \
         zip \
         curl \
@@ -78,9 +77,20 @@ RUN apt-get update \
         file \
     && rm -rf /var/lib/apt/lists/*
 
-# update node
-ENV NODE_VERSION 20.9.0
-ENV NO_UPDATE_NOTIFIER=true
+# Remove older version of node & install node 20
+RUN cd /etc/apt/sources.list.d  && \
+    rm -f nodesource.list && \
+    apt --fix-broken install && \
+    apt update && \
+    apt-get remove nodejs -y && \
+    apt-get remove nodejs-doc -y && \
+    apt-get remove libnode-dev -y
+
 RUN cd ~ && \
-    curl -LO https://nodejs.org/dist/v${NODE_VERSION}/node-v${NODE_VERSION}-linux-x64.tar.xz && \
-    tar xf node-v${NODE_VERSION}-linux-x64.tar.xz
+    curl -sL https://deb.nodesource.com/setup_20.x -o nodesource_setup.sh && \
+    bash nodesource_setup.sh && \
+    apt-get install nodejs -y && \
+    rm -rf /var/lib/apt/lists/* && \
+    rm -f nodesource_setup.sh
+
+ENV NO_UPDATE_NOTIFIER=true
