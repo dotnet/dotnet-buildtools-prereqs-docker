@@ -423,6 +423,32 @@
         {
           "platforms": [
             {
+              "dockerfile": "src/cbl-mariner/2.0/cross/freebsd/14/amd64",
+              "os": "linux",
+              "osVersion": "cbl-mariner2.0",
+              "tags": {
+                "cbl-mariner-2.0-cross-amd64-freebsd-14-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
+                "cbl-mariner-2.0-cross-amd64-freebsd-14$(FloatingTagSuffix)": {}
+              }
+            }
+          ]
+        },
+        {
+          "platforms": [
+            {
+              "dockerfile": "src/cbl-mariner/2.0/cross/freebsd/14/arm64",
+              "os": "linux",
+              "osVersion": "cbl-mariner2.0",
+              "tags": {
+                "cbl-mariner-2.0-cross-arm64-freebsd-14-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
+                "cbl-mariner-2.0-cross-arm64-freebsd-14$(FloatingTagSuffix)": {}
+              }
+            }
+          ]
+        },
+        {
+          "platforms": [
+            {
               "dockerfile": "src/cbl-mariner/2.0/webassembly",
               "os": "linux",
               "osVersion": "cbl-mariner2.0",
