@@ -18,6 +18,7 @@ RUN dnf install --setopt tsflags=nodocs --refresh -y \
         iputils \
         libicu \
         libtool \
+        llvm \
         make \
         openssl \
         openssl-devel \

@@ -9,6 +9,7 @@ RUN apk update && apk add --no-cache \
     iputils \
     krb5-libs \
     lldb \
+    llvm \
     lttng-ust \
     musl-locales \
     openssl \

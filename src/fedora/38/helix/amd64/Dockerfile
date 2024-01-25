@@ -9,6 +9,7 @@ RUN dnf install -y \
         libatomic \
         libffi-devel \
         libmsquic \
+        llvm \
         redhat-rpm-config \
         sudo && \
     dnf clean all

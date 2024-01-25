@@ -24,6 +24,7 @@ RUN apt-get update && \
         libunwind8 \
         libunwind-dev \
         lldb-3.9 \
+        llvm \
         locales \
         locales-all \
         python3-dev \

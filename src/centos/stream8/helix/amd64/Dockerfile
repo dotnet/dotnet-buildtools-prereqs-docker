@@ -23,6 +23,7 @@ RUN curl -LO https://packages.microsoft.com/keys/microsoft.asc && \
         libicu \
         libmsquic \
         libtool \
+        llvm \
         make \
         openssl \
         openssl-devel \
