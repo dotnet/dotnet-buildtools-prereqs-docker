@@ -14,6 +14,7 @@ RUN apk update && apk add --no-cache \
     musl-locales \
     openssl \
     python3 \
+    py3-cryptography \
     sudo \
     tzdata
 
