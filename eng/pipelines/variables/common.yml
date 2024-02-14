@@ -15,7 +15,7 @@ variables:
   value: ''
 - name: publicGitRepoUri
   value: https://github.com/dotnet/dotnet-buildtools-prereqs-docker
-- ${{ elseif eq(variables['Build.SourceBranch'], 'refs/heads/main') }}:
+- ${{ if eq(variables['Build.SourceBranch'], 'refs/heads/main') }}:
   - name: floatingTagSuffix
     value: ""
 - ${{ else }}:
