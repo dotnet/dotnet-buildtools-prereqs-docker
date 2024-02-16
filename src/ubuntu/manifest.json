@@ -674,6 +674,19 @@
         {
           "platforms": [
             {
+              "dockerfile": "src/ubuntu/22.04/cross/armel-tizen",
+              "os": "linux",
+              "osVersion": "bionic",
+              "tags": {
+                "ubuntu-22.04-cross-armel-tizen-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
+                "ubuntu-22.04-cross-armel-tizen$(FloatingTagSuffix)": {}
+              }
+            }
+          ]
+        },
+        {
+          "platforms": [
+            {
               "dockerfile": "src/ubuntu/22.04/cross/arm64",
               "os": "linux",
               "osVersion": "jammy",
