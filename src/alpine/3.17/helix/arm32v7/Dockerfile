@@ -14,12 +14,9 @@ RUN apk update && apk add --no-cache \
     musl-locales \
     openssl \
     python3 \
-    sudo \
-    tzdata \
-    # Helix dependencies
     py3-cryptography \
-    # GCC is needed for building cffi wheel
-    gcc
+    sudo \
+    tzdata
 
 # Install Helix Dependencies
 RUN apk update && apk add --no-cache && \
@@ -32,7 +29,7 @@ RUN apk update && apk add --no-cache && \
     ln -sf /usr/bin/python3 /usr/bin/python && \
     curl https://bootstrap.pypa.io/get-pip.py -o ./get-pip.py --fail --silent --show-error && \
     python3 ./get-pip.py && rm ./get-pip.py && \
-    python3 -m pip install --upgrade pip==24.0 && \
+    python3 -m pip install --upgrade pip==22.2.2 && \
     python3 -m pip install virtualenv==20.16.5 && \
     pip download --no-deps helix-scripts --index-url https://dnceng.pkgs.visualstudio.com/public/_packaging/helix-client-prod/pypi/simple && \
     pip install ./helix_scripts-*-py3-none-any.whl && \
