@@ -21,6 +21,7 @@ RUN apk update && apk add --no-cache \
 # Install Helix Dependencies
 RUN apk update && apk add --no-cache && \
     apk add \
+        cargo \
         libffi-dev \
         linux-headers \
         python3-dev \
