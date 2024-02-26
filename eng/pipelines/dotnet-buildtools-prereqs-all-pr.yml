@@ -1,8 +1,5 @@
 trigger: none
-pr: 
-  branches:
-    include:
-    - production
+pr: none
 
 resources:
   repositories:

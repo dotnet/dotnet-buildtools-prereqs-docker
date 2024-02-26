@@ -1,7 +1,4 @@
-trigger: 
-  branches:
-    include:
-    - production
+trigger: none
 pr: none
 
 resources:
@@ -36,4 +33,4 @@ stages:
           variableName: imageBuilderBuildArgs
           dockerfileOs: (centos|debian|ubuntu)
           baseOverrideRegistry: $(overrideRegistry) # Comes from DotNet-Docker-Common variable group
-    
+
