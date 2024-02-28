@@ -10,6 +10,7 @@ RUN tdnf install --setopt tsflags=nodocs --refresh -y \
          icu \
          iputils \
          libmsquic \
+         llvm \
          python3-pip \
          shadow-utils \
          tzdata \

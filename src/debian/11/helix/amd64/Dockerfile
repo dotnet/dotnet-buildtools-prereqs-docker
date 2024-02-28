@@ -20,6 +20,7 @@ RUN apt-get update && \
         libssl-dev \
         libtool \
         libunwind8 \
+        llvm \
         locales \
         locales-all \
         python3-dev \

@@ -24,6 +24,7 @@ RUN zypper ref && \
         libtool \
         libunwind \
         lldb-devel \
+        llvm \
         lttng-ust-devel \
         python3-devel \
         python3-pip \

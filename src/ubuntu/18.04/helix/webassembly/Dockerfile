@@ -28,8 +28,8 @@ RUN apt-get update \
 
 USER helixbot
 
-# update node, which is required for newer npm, jsvu and v8
-ENV NODE_VERSION 16.19.0
+# update node, which is required for newer npm, jsvu and v8. These versions are fixed to the last LTS that supported 18.04's glibc
+ENV NODE_VERSION 16.20.2
 RUN cd ~ && \
     curl -LO https://nodejs.org/dist/v${NODE_VERSION}/node-v${NODE_VERSION}-linux-x64.tar.xz && \
     tar xf node-v${NODE_VERSION}-linux-x64.tar.xz
@@ -37,8 +37,8 @@ RUN cd ~ && \
 USER root
 
 ENV PATH=/home/helixbot/node-v${NODE_VERSION}-linux-x64/bin:$PATH
-RUN npm install -g npm
-RUN npm install jsvu -g
+RUN npm install -g npm@8.19.4
+RUN npm install jsvu@1.14.0 -g
 
 USER helixbot
 
