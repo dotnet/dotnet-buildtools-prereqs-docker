@@ -61,7 +61,7 @@ RUN wget https://releases.llvm.org/release-keys.asc && \
     gpg --keyring /release-keys.gpg --verify llvm-project.src.tar.xz.sig && \
     rm llvm-project.src.tar.xz.sig
 
-# Build LLVM cross-toolchain (with support for targeting arm architectures)
+# Build LLVM cross-toolchain (with support for targeting x86/x64, arm64, arm, s390x and ppc64le architectures)
 RUN mkdir llvm-project.src && \
     tar -xf llvm-project.src.tar.xz --directory llvm-project.src --strip-components=1 && \
     rm llvm-project.src.tar.xz && \
@@ -70,7 +70,7 @@ RUN mkdir llvm-project.src && \
         -DCMAKE_BUILD_TYPE=Release \
         -DCMAKE_C_COMPILER=clang \
         -DCMAKE_CXX_COMPILER=clang++ \
-        -DLLVM_TARGETS_TO_BUILD="host;AArch64;ARM" \
+        -DLLVM_TARGETS_TO_BUILD="X86;AArch64;ARM;PowerPC;SystemZ" \
         -Wno-dev \
         -DLLVM_ENABLE_PROJECTS="clang;lld;clang-tools-extra" && \
     make -j $(getconf _NPROCESSORS_ONLN) && \
