@@ -18,16 +18,18 @@ RUN tdnf install -y \
         bzip2-devel \
         debootstrap \
         libarchive-devel \
-        openssl-devel \
-        # Additional dependencies
-        nodejs
-        
+        openssl-devel
 
 # dependencies which are installed from extended repo require additional setup
 RUN wget https://packages.microsoft.com/cbl-mariner/2.0/prod/extended/x86_64/config.repo -O /etc/yum.repos.d/mariner-extended.repo && \
     tdnf makecache && \
     tdnf install -y \
         libbsd-devel
+
+ENV NODE_VERSION 20.11.1
+RUN mkdir /usr/share/node && \
+    curl -sSL https://nodejs.org/dist/v${NODE_VERSION}/node-v${NODE_VERSION}-linux-x64.tar.xz | tar xf - -J -C /usr/share/node --strip-components=1 && \
+    ln -s /usr/share/node/bin/node /usr/local/bin/node
 
 # Obtain ubuntu package signing key (for use by debootstrap)
 # 1. Add public key used to sign the ubuntu keyring
