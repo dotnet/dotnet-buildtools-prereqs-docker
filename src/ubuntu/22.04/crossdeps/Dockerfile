@@ -39,7 +39,7 @@ RUN apt-get update \
         libzstd-dev \
     && rm -rf /var/lib/apt/lists/*
 
-# install llvm-toolchain v17 using official script
+# install llvm-toolchain using official script
 RUN wget -O- https://apt.llvm.org/llvm.sh | bash -s -- 18 \
         clang \
         clang-tools \
