@@ -30,5 +30,7 @@ RUN mkdir /usr/share/node && \
     grep node-v${NODE_VERSION}-linux-x64.tar.xz SHASUMS256.txt | sha256sum -c - && \
     tar xf node-v${NODE_VERSION}-linux-x64.tar.xz -J -C /usr/share/node --strip-components=1 && \
     ln -s /usr/share/node/bin/node /usr/local/bin/node && \
+    ln -s /usr/share/node/bin/npm /usr/local/bin/npm && \
+    ln -s /usr/share/node/bin/npx /usr/local/bin/npx && \
     rm SHASUMS256.txt && \
     rm node-v${NODE_VERSION}-linux-x64.tar.xz
