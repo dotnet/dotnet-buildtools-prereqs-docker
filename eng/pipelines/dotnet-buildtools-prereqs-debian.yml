@@ -10,31 +10,46 @@ pr: none
 
 resources:
   repositories:
+  - repository: 1ESPipelineTemplates
+    type: git
+    name: 1ESPipelineTemplates/1ESPipelineTemplates
+    ref: refs/tags/release
   - repository: InternalVersionsRepo
     type: github
     endpoint: dotnet
     name: dotnet/versions
 
 variables:
-- template: variables/common.yml
+- template: /eng/pipelines/variables/common.yml@self
 - name: imageBuilder.pathArgs
   value: --path 'src/debian/*'
 
-stages:
-- template: stages/build-test-publish-repo.yml
+extends:
+  template: v1/1ES.Official.PipelineTemplate.yml@1ESPipelineTemplates
   parameters:
-    internalProjectName: ${{ variables.internalProjectName }}
-    publicProjectName: ${{ variables.publicProjectName }}
-    ${{ if eq(variables['System.TeamProject'], 'internal') }}:
-      customCopyBaseImagesInitSteps:
-      - template: ../../../pipelines/steps/set-base-image-override-options.yml
-        parameters:
-          variableName: customCopyBaseImagesArgs
-          dockerfileOs: debian
-          baseOverrideRegistry: $(overrideRegistry) # Comes from DotNet-Docker-Common variable group
-      customBuildInitSteps:
-      - template: ../../../pipelines/steps/set-base-image-override-options.yml
-        parameters:
-          variableName: imageBuilderBuildArgs
-          dockerfileOs: debian
-          baseOverrideRegistry: $(overrideRegistry) # Comes from DotNet-Docker-Common variable group
+    pool:
+      name: NetCore1ESPool-Internal
+      image: 1es-windows-2022
+      os: windows
+    sdl:
+      sourceRepositoriesToScan:
+        include:
+        - repository: InternalVersionsRepo
+    stages:
+    - template: /eng/pipelines/stages/build-test-publish-repo.yml@self
+      parameters:
+        internalProjectName: ${{ variables.internalProjectName }}
+        publicProjectName: ${{ variables.publicProjectName }}
+        ${{ if eq(variables['System.TeamProject'], 'internal') }}:
+          customCopyBaseImagesInitSteps:
+          - template: /eng/pipelines/steps/set-base-image-override-options.yml@self
+            parameters:
+              variableName: customCopyBaseImagesArgs
+              dockerfileOs: debian
+              baseOverrideRegistry: $(overrideRegistry) # Comes from DotNet-Docker-Common variable group
+          customBuildInitSteps:
+          - template: /eng/pipelines/steps/set-base-image-override-options.yml@self
+            parameters:
+              variableName: imageBuilderBuildArgs
+              dockerfileOs: debian
+              baseOverrideRegistry: $(overrideRegistry) # Comes from DotNet-Docker-Common variable group

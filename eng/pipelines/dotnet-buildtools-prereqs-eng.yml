@@ -16,12 +16,12 @@ resources:
     name: dotnet/versions
 
 variables:
-- template: variables/common.yml
+- template: /eng/pipelines/variables/common.yml@self
 - name: imageBuilder.pathArgs
   value: --path '*'
 
 stages:
-- template: stages/build-test-publish-repo.yml
+- template: /eng/pipelines/stages/build-test-publish-repo.yml@self
   parameters:
     internalProjectName: ${{ variables.internalProjectName }}
     publicProjectName: ${{ variables.publicProjectName }}
