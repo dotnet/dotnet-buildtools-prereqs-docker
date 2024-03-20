@@ -14,6 +14,11 @@ stages:
     internalProjectName: ${{ parameters.internalProjectName }}
     publicProjectName: ${{ parameters.publicProjectName }}
 
+    ${{ if eq(variables['System.TeamProject'], parameters.publicProjectName) }}:
+      linuxAmd64Pool:
+      name: NetCore-Public
+      demands: ImageOverride -equals build.ubuntu.2204.amd64.open
+
     linuxAmdBuildJobTimeout: ${{ parameters.linuxAmdBuildJobTimeout }}
     linuxArmBuildJobTimeout: ${{ parameters.linuxArmBuildJobTimeout }}
 
