@@ -21,6 +21,7 @@ RUN tdnf install -y \
         libunwind-devel \
         libuuid-devel \
         libxml2-devel \
+        lldb-devel \
         lttng-ust-devel \
         lzma \
         make \
