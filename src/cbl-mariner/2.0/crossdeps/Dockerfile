@@ -20,7 +20,9 @@ RUN tdnf update -y && \
         kernel-headers \
         lttng-ust-devel \
         # Jit rolling build dependency
-        python3-pip
+        python3-pip \
+        # diagnostics build dependency
+        lldb-devel
 
 # Validate checksums with keyring after https://github.com/microsoft/azurelinux/issues/3142 is resolved
 ENV NODE_VERSION=20.11.1
