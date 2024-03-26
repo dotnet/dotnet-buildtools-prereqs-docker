@@ -24,20 +24,6 @@ RUN locale-gen en_US.UTF-8
 # WebAssembly build needs typescript
 RUN npm i -g typescript
 
-# Install Emscripten toolchain
-ENV EMSCRIPTEN_VERSION=3.1.12
-ENV EMSCRIPTEN_PATH=/usr/local/emscripten
-ENV EMSDK_PATH=/usr/local/emscripten/emsdk
-
-RUN mkdir ${EMSCRIPTEN_PATH} \
-    && cd ${EMSCRIPTEN_PATH} \
-    && git clone https://github.com/emscripten-core/emsdk.git ${EMSDK_PATH} \
-    && cd ${EMSDK_PATH} \
-    && git checkout ${EMSCRIPTEN_VERSION} \
-    && ./emsdk install ${EMSCRIPTEN_VERSION}-upstream \
-    && ./emsdk activate ${EMSCRIPTEN_VERSION}-upstream \
-    && chmod -R 777 ${EMSCRIPTEN_PATH}
-
 # Install V8 Engine
 SHELL ["/bin/bash", "-c"]
 
