@@ -1,0 +1,160 @@
+{
+  "repos": [
+    {
+      "name": "dotnet-buildtools/prereqs",
+      "images": [
+        {
+          "platforms": [
+            {
+              "dockerfile": "src/azurelinux/3.0/crossdeps",
+              "os": "linux",
+              "osVersion": "azurelinux3.0",
+              "tags": {
+                "azurelinux-3.0-crossdeps-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
+                "azurelinux-3.0-crossdeps$(FloatingTagSuffix)": {},
+                "azurelinux-3.0-crossdeps-local": {
+                  "isLocal": true
+                }
+              }
+            }
+          ]
+        },
+        {
+          "platforms": [
+            {
+              "dockerfile": "src/azurelinux/3.0/crossdeps-builder",
+              "os": "linux",
+              "osVersion": "azurelinux3.0",
+              "tags": {
+                "azurelinux-3.0-crossdeps-builder-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
+                "azurelinux-3.0-crossdeps-builder$(FloatingTagSuffix)": {},
+                "azurelinux-3.0-crossdeps-builder-local": {
+                  "isLocal": true
+                }
+              }
+            }
+          ]
+        },
+        {
+          "platforms": [
+            {
+              "dockerfile": "src/azurelinux/3.0/crossdeps-llvm",
+              "os": "linux",
+              "osVersion": "azurelinux3.0",
+              "tags": {
+                "azurelinux-3.0-crossdeps-llvm-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
+                "azurelinux-3.0-crossdeps-llvm$(FloatingTagSuffix)": {},
+                "azurelinux-3.0-crossdeps-llvm-local": {
+                  "isLocal": true
+                }
+              }
+            }
+          ]
+        },
+        {
+          "platforms": [
+            {
+              "dockerfile": "src/azurelinux/3.0/cross/amd64-ubuntu-16.04",
+              "os": "linux",
+              "osVersion": "azurelinux3.0",
+              "tags": {
+                "azurelinux-3.0-cross-amd64-ubuntu-16.04-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
+                "azurelinux-3.0-cross-amd64-ubuntu-16.04$(FloatingTagSuffix)": {},
+                "azurelinux-3.0-cross-amd64-ubuntu-16.04-local": {
+                  "isLocal": true
+                }
+              }
+            }
+          ]
+        },
+        {
+          "platforms": [
+            {
+              "dockerfile": "src/azurelinux/3.0/cross/amd64-alpine",
+              "os": "linux",
+              "osVersion": "azurelinux3.0",
+              "tags": {
+                "azurelinux-3.0-cross-amd64-alpine-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
+                "azurelinux-3.0-cross-amd64-alpine$(FloatingTagSuffix)": {},
+                "azurelinux-3.0-cross-amd64-alpine-local": {
+                  "isLocal": true
+                }
+              }
+            }
+          ]
+        },
+        {
+          "platforms": [
+            {
+              "dockerfile": "src/azurelinux/3.0/cross/arm-ubuntu-16.04",
+              "os": "linux",
+              "osVersion": "azurelinux3.0",
+              "tags": {
+                "azurelinux-3.0-cross-arm-ubuntu-16.04-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
+                "azurelinux-3.0-cross-arm-ubuntu-16.04$(FloatingTagSuffix)": {}
+              }
+            }
+          ]
+        },
+        {
+          "platforms": [
+            {
+              "dockerfile": "src/azurelinux/3.0/cross/arm-alpine",
+              "os": "linux",
+              "osVersion": "azurelinux3.0",
+              "tags": {
+                "azurelinux-3.0-cross-arm-alpine-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
+                "azurelinux-3.0-cross-arm-alpine$(FloatingTagSuffix)": {}
+              }
+            }
+          ]
+        },
+        {
+          "platforms": [
+            {
+              "dockerfile": "src/azurelinux/3.0/cross/arm64-ubuntu-16.04",
+              "os": "linux",
+              "osVersion": "azurelinux3.0",
+              "tags": {
+                "azurelinux-3.0-cross-arm64-ubuntu-16.04-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
+                "azurelinux-3.0-cross-arm64-ubuntu-16.04$(FloatingTagSuffix)": {},
+                "azurelinux-3.0-cross-arm64-ubuntu-16.04-local": {
+                  "isLocal": true
+                }
+              }
+            }
+          ]
+        },
+        {
+          "platforms": [
+            {
+              "dockerfile": "src/azurelinux/3.0/cross/arm64-alpine",
+              "os": "linux",
+              "osVersion": "azurelinux3.0",
+              "tags": {
+                "azurelinux-3.0-cross-arm64-alpine-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
+                "azurelinux-3.0-cross-arm64-alpine$(FloatingTagSuffix)": {},
+                "azurelinux-3.0-cross-arm64-alpine-local": {
+                  "isLocal": true
+                }
+              }
+            }
+          ]
+        },
+        {
+          "platforms": [
+            {
+              "dockerfile": "src/azurelinux/3.0/cross/x86-ubuntu-16.04",
+              "os": "linux",
+              "osVersion": "azurelinux3.0",
+              "tags": {
+                "azurelinux-3.0-cross-x86-ubuntu-16.04-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
+                "azurelinux-3.0-cross-x86-ubuntu-16.04$(FloatingTagSuffix)": {}
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
