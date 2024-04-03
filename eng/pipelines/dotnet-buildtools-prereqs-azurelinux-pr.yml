@@ -1,0 +1,29 @@
+trigger: none
+pr:
+  branches:
+    include:
+    - main
+  paths:
+    include:
+    - src/azurelinux/*
+
+resources:
+  repositories:
+  - repository: PublicVersionsRepo
+    type: github
+    endpoint: public
+    name: dotnet/versions
+
+variables:
+- template: variables/common.yml
+- name: imageBuilder.pathArgs
+  value: --path 'src/azurelinux/*'
+
+stages:
+- template: stages/build-test-publish-repo.yml
+  parameters:
+    internalProjectName: ${{ variables.internalProjectName }}
+    publicProjectName: ${{ variables.publicProjectName }}
+    linuxAmdBuildJobTimeout: 360
+    customBuildInitSteps:
+    - template: /eng/pipelines/steps/install-cross-build-prereqs.yml
