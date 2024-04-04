@@ -54,13 +54,13 @@
         {
           "platforms": [
             {
-              "dockerfile": "src/azurelinux/3.0/cross/amd64-ubuntu-16.04",
+              "dockerfile": "src/azurelinux/3.0/cross/amd64-llvm16",
               "os": "linux",
               "osVersion": "azurelinux3.0",
               "tags": {
-                "azurelinux-3.0-cross-amd64-ubuntu-16.04-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
-                "azurelinux-3.0-cross-amd64-ubuntu-16.04$(FloatingTagSuffix)": {},
-                "azurelinux-3.0-cross-amd64-ubuntu-16.04-local": {
+                "azurelinux-3.0-cross-amd64-llvm16-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
+                "azurelinux-3.0-cross-amd64-llvm16$(FloatingTagSuffix)": {},
+                "azurelinux-3.0-cross-amd64-llvm16-local": {
                   "isLocal": true
                 }
               }
@@ -86,12 +86,12 @@
         {
           "platforms": [
             {
-              "dockerfile": "src/azurelinux/3.0/cross/arm-ubuntu-16.04",
+              "dockerfile": "src/azurelinux/3.0/cross/arm-llvm16",
               "os": "linux",
               "osVersion": "azurelinux3.0",
               "tags": {
-                "azurelinux-3.0-cross-arm-ubuntu-16.04-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
-                "azurelinux-3.0-cross-arm-ubuntu-16.04$(FloatingTagSuffix)": {}
+                "azurelinux-3.0-cross-arm-llvm16-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
+                "azurelinux-3.0-cross-arm-llvm16$(FloatingTagSuffix)": {}
               }
             }
           ]
@@ -112,13 +112,13 @@
         {
           "platforms": [
             {
-              "dockerfile": "src/azurelinux/3.0/cross/arm64-ubuntu-16.04",
+              "dockerfile": "src/azurelinux/3.0/cross/arm64-llvm16",
               "os": "linux",
               "osVersion": "azurelinux3.0",
               "tags": {
-                "azurelinux-3.0-cross-arm64-ubuntu-16.04-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
-                "azurelinux-3.0-cross-arm64-ubuntu-16.04$(FloatingTagSuffix)": {},
-                "azurelinux-3.0-cross-arm64-ubuntu-16.04-local": {
+                "azurelinux-3.0-cross-arm64-llvm16-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
+                "azurelinux-3.0-cross-arm64-llvm16$(FloatingTagSuffix)": {},
+                "azurelinux-3.0-cross-arm64-llvm16-local": {
                   "isLocal": true
                 }
               }
@@ -144,12 +144,12 @@
         {
           "platforms": [
             {
-              "dockerfile": "src/azurelinux/3.0/cross/x86-ubuntu-16.04",
+              "dockerfile": "src/azurelinux/3.0/cross/x86-llvm16",
               "os": "linux",
               "osVersion": "azurelinux3.0",
               "tags": {
-                "azurelinux-3.0-cross-x86-ubuntu-16.04-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
-                "azurelinux-3.0-cross-x86-ubuntu-16.04$(FloatingTagSuffix)": {}
+                "azurelinux-3.0-cross-x86-llvm16-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
+                "azurelinux-3.0-cross-x86-llvm16$(FloatingTagSuffix)": {}
               }
             }
           ]
