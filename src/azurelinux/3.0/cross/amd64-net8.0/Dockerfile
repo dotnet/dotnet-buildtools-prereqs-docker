@@ -1,12 +1,12 @@
-FROM mcr.microsoft.com/dotnet-buildtools/prereqs:azurelinux-3.0-crossdeps-builder-local AS builder
-ARG ROOTFS_DIR=/crossrootfs/arm64
+FROM mcr.microsoft.com/dotnet-buildtools/prereqs:azurelinux-3.0-crossdeps-builder-net8.0-local AS builder
+ARG ROOTFS_DIR=/crossrootfs/x64
 
-RUN /scripts/eng/common/cross/build-rootfs.sh arm64 xenial --skipunmount
+RUN /scripts/eng/common/cross/build-rootfs.sh x64 xenial --skipunmount
 
 # Build compiler-rt profile library for PGO instrumentation
 RUN mkdir compiler-rt_build && cd compiler-rt_build && \
     BUILD_FLAGS="-v --sysroot=$ROOTFS_DIR" \
-    TARGET_TRIPLE="aarch64-linux-gnu" && \
+    TARGET_TRIPLE="x86_64-linux-gnu" && \
     cmake ../llvm-project.src/compiler-rt \
         -DCOMPILER_RT_BUILD_PROFILE=ON \
         -DCOMPILER_RT_BUILD_SANITIZERS=ON \
@@ -36,13 +36,13 @@ RUN mkdir compiler-rt_build && cd compiler-rt_build && \
 
 RUN LLVM_VERSION=16.0.0 LLVM_VERSION_MAJOR="${LLVM_VERSION%%.*}" SANITIZER_RUNTIMES_DIR=/sanitizer-runtimes && \
     mkdir -p $ROOTFS_DIR/usr/lib/llvm-${LLVM_VERSION_MAJOR}/lib/clang/${LLVM_VERSION}/lib/linux/ && \
-    cp compiler-rt_build/lib/linux/libclang_rt.profile-aarch64.a $ROOTFS_DIR/usr/lib/llvm-${LLVM_VERSION_MAJOR}/lib/clang/${LLVM_VERSION}/lib/linux/ && \
+    cp compiler-rt_build/lib/linux/libclang_rt.profile-x86_64.a $ROOTFS_DIR/usr/lib/llvm-${LLVM_VERSION_MAJOR}/lib/clang/${LLVM_VERSION}/lib/linux/ && \
     mkdir ${SANITIZER_RUNTIMES_DIR} && \
-    cp compiler-rt_build/lib/linux/libclang_rt.*-aarch64.a $SANITIZER_RUNTIMES_DIR
+    cp compiler-rt_build/lib/linux/libclang_rt.*-x86_64.a $SANITIZER_RUNTIMES_DIR
 
 
 FROM mcr.microsoft.com/dotnet-buildtools/prereqs:azurelinux-3.0-crossdeps-llvm-local
-ARG ROOTFS_DIR=/crossrootfs/arm64
+ARG ROOTFS_DIR=/crossrootfs/x64
 ARG LLVM_VERSION_MAJOR=16
 
 COPY --from=builder $ROOTFS_DIR $ROOTFS_DIR

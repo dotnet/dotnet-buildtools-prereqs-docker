@@ -1,4 +1,4 @@
-FROM mcr.microsoft.com/dotnet-buildtools/prereqs:azurelinux-3.0-crossdeps-builder-local AS builder
+FROM mcr.microsoft.com/dotnet-buildtools/prereqs:azurelinux-3.0-crossdeps-builder-net8.0-local AS builder
 ARG ROOTFS_DIR=/crossrootfs/x64
 
 RUN /scripts/eng/common/cross/build-rootfs.sh x64 alpine3.13 --skipunmount

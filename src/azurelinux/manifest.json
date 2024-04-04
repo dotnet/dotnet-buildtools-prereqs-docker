@@ -22,13 +22,13 @@
         {
           "platforms": [
             {
-              "dockerfile": "src/azurelinux/3.0/crossdeps-builder",
+              "dockerfile": "src/azurelinux/3.0/crossdeps-builder-net8.0",
               "os": "linux",
               "osVersion": "azurelinux3.0",
               "tags": {
-                "azurelinux-3.0-crossdeps-builder-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
-                "azurelinux-3.0-crossdeps-builder$(FloatingTagSuffix)": {},
-                "azurelinux-3.0-crossdeps-builder-local": {
+                "azurelinux-3.0-crossdeps-builder-net8.0-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
+                "azurelinux-3.0-crossdeps-builder-net8.0$(FloatingTagSuffix)": {},
+                "azurelinux-3.0-crossdeps-builder-net8.0-local": {
                   "isLocal": true
                 }
               }
@@ -38,13 +38,13 @@
         {
           "platforms": [
             {
-              "dockerfile": "src/azurelinux/3.0/crossdeps-llvm",
+              "dockerfile": "src/azurelinux/3.0/crossdeps-llvm-net8.0",
               "os": "linux",
               "osVersion": "azurelinux3.0",
               "tags": {
-                "azurelinux-3.0-crossdeps-llvm-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
-                "azurelinux-3.0-crossdeps-llvm$(FloatingTagSuffix)": {},
-                "azurelinux-3.0-crossdeps-llvm-local": {
+                "azurelinux-3.0-crossdeps-llvm-net8.0-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
+                "azurelinux-3.0-crossdeps-llvm-net8.0$(FloatingTagSuffix)": {},
+                "azurelinux-3.0-crossdeps-llvm-net8.0-local": {
                   "isLocal": true
                 }
               }
@@ -54,13 +54,13 @@
         {
           "platforms": [
             {
-              "dockerfile": "src/azurelinux/3.0/cross/amd64-llvm16",
+              "dockerfile": "src/azurelinux/3.0/cross/amd64-net8.0",
               "os": "linux",
               "osVersion": "azurelinux3.0",
               "tags": {
-                "azurelinux-3.0-cross-amd64-llvm16-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
-                "azurelinux-3.0-cross-amd64-llvm16$(FloatingTagSuffix)": {},
-                "azurelinux-3.0-cross-amd64-llvm16-local": {
+                "azurelinux-3.0-cross-amd64-net8.0-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
+                "azurelinux-3.0-cross-amd64-net8.0$(FloatingTagSuffix)": {},
+                "azurelinux-3.0-cross-amd64-net8.0-local": {
                   "isLocal": true
                 }
               }
@@ -70,13 +70,13 @@
         {
           "platforms": [
             {
-              "dockerfile": "src/azurelinux/3.0/cross/amd64-alpine",
+              "dockerfile": "src/azurelinux/3.0/cross/amd64-alpine-net8.0",
               "os": "linux",
               "osVersion": "azurelinux3.0",
               "tags": {
-                "azurelinux-3.0-cross-amd64-alpine-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
-                "azurelinux-3.0-cross-amd64-alpine$(FloatingTagSuffix)": {},
-                "azurelinux-3.0-cross-amd64-alpine-local": {
+                "azurelinux-3.0-cross-amd64-alpine-net8.0-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
+                "azurelinux-3.0-cross-amd64-alpine-net8.0$(FloatingTagSuffix)": {},
+                "azurelinux-3.0-cross-amd64-alpine-net8.0-local": {
                   "isLocal": true
                 }
               }
@@ -86,12 +86,12 @@
         {
           "platforms": [
             {
-              "dockerfile": "src/azurelinux/3.0/cross/arm-llvm16",
+              "dockerfile": "src/azurelinux/3.0/cross/arm-net8.0",
               "os": "linux",
               "osVersion": "azurelinux3.0",
               "tags": {
-                "azurelinux-3.0-cross-arm-llvm16-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
-                "azurelinux-3.0-cross-arm-llvm16$(FloatingTagSuffix)": {}
+                "azurelinux-3.0-cross-arm-net8.0-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
+                "azurelinux-3.0-cross-arm-net8.0$(FloatingTagSuffix)": {}
               }
             }
           ]
@@ -99,12 +99,12 @@
         {
           "platforms": [
             {
-              "dockerfile": "src/azurelinux/3.0/cross/arm-alpine",
+              "dockerfile": "src/azurelinux/3.0/cross/arm-alpine-net8.0",
               "os": "linux",
               "osVersion": "azurelinux3.0",
               "tags": {
-                "azurelinux-3.0-cross-arm-alpine-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
-                "azurelinux-3.0-cross-arm-alpine$(FloatingTagSuffix)": {}
+                "azurelinux-3.0-cross-arm-alpine-net8.0-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
+                "azurelinux-3.0-cross-arm-alpine-net8.0$(FloatingTagSuffix)": {}
               }
             }
           ]
@@ -112,13 +112,13 @@
         {
           "platforms": [
             {
-              "dockerfile": "src/azurelinux/3.0/cross/arm64-llvm16",
+              "dockerfile": "src/azurelinux/3.0/cross/arm64-net8.0",
               "os": "linux",
               "osVersion": "azurelinux3.0",
               "tags": {
-                "azurelinux-3.0-cross-arm64-llvm16-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
-                "azurelinux-3.0-cross-arm64-llvm16$(FloatingTagSuffix)": {},
-                "azurelinux-3.0-cross-arm64-llvm16-local": {
+                "azurelinux-3.0-cross-arm64-net8.0-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
+                "azurelinux-3.0-cross-arm64-net8.0$(FloatingTagSuffix)": {},
+                "azurelinux-3.0-cross-arm64-net8.0-local": {
                   "isLocal": true
                 }
               }
@@ -128,13 +128,13 @@
         {
           "platforms": [
             {
-              "dockerfile": "src/azurelinux/3.0/cross/arm64-alpine",
+              "dockerfile": "src/azurelinux/3.0/cross/arm64-alpine-net8.0",
               "os": "linux",
               "osVersion": "azurelinux3.0",
               "tags": {
-                "azurelinux-3.0-cross-arm64-alpine-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
-                "azurelinux-3.0-cross-arm64-alpine$(FloatingTagSuffix)": {},
-                "azurelinux-3.0-cross-arm64-alpine-local": {
+                "azurelinux-3.0-cross-arm64-alpine-net8.0-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
+                "azurelinux-3.0-cross-arm64-alpine-net8.0$(FloatingTagSuffix)": {},
+                "azurelinux-3.0-cross-arm64-alpine-net8.0-local": {
                   "isLocal": true
                 }
               }
@@ -144,12 +144,12 @@
         {
           "platforms": [
             {
-              "dockerfile": "src/azurelinux/3.0/cross/x86-llvm16",
+              "dockerfile": "src/azurelinux/3.0/cross/x86-net8.0",
               "os": "linux",
               "osVersion": "azurelinux3.0",
               "tags": {
-                "azurelinux-3.0-cross-x86-llvm16-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
-                "azurelinux-3.0-cross-x86-llvm16$(FloatingTagSuffix)": {}
+                "azurelinux-3.0-cross-x86-net8.0-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
+                "azurelinux-3.0-cross-x86-net8.0$(FloatingTagSuffix)": {}
               }
             }
           ]
