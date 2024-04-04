@@ -41,7 +41,7 @@ RUN LLVM_VERSION=16.0.0 LLVM_VERSION_MAJOR="${LLVM_VERSION%%.*}" SANITIZER_RUNTI
     cp compiler-rt_build/lib/linux/libclang_rt.*-armhf.a $SANITIZER_RUNTIMES_DIR
 
 
-FROM mcr.microsoft.com/dotnet-buildtools/prereqs:azurelinux-3.0-crossdeps-llvm-local
+FROM mcr.microsoft.com/dotnet-buildtools/prereqs:azurelinux-3.0-crossdeps-llvm-net8.0-local
 ARG ROOTFS_DIR=/crossrootfs/arm
 ARG LLVM_VERSION_MAJOR=16
 
