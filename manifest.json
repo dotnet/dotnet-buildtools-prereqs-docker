@@ -3,6 +3,7 @@
   "includes": [
     "src/almalinux/manifest.json",
     "src/alpine/manifest.json",
+    "src/azurelinux/manifest.json",
     "src/cbl-mariner/manifest.json",
     "src/centos/manifest.json",
     "src/debian/manifest.json",
