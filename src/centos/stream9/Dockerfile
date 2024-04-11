@@ -57,4 +57,7 @@ RUN dnf install --setopt tsflags=nodocs --refresh -y \
     && \
     dnf clean all
 
-ENV NO_UPDATE_NOTIFIER=true
+ENV \
+    NO_UPDATE_NOTIFIER=true \
+    # Sha1 is disabled by default centos:stream9 but sevaral CI jobs still rely on it.
+    OPENSSL_ENABLE_SHA1_SIGNATURES=1
