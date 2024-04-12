@@ -20,7 +20,5 @@ RUN tdnf update -y && \
         lttng-ust-devel \
         # Jit rolling build dependency
         python3-pip \
-        # diagnostics build dependency
-        lldb-devel \
         # aspnetcore build dependencies
         nodejs
