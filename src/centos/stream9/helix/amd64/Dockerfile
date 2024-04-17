@@ -8,7 +8,7 @@ RUN curl -LO https://packages.microsoft.com/keys/microsoft.asc && \
     dnf install --setopt tsflags=nodocs --refresh -y \
         dnf-plugins-core \
     && \
-    dnf config-manager --add-repo https://packages.microsoft.com/centos/8/prod \
+    dnf https://packages.microsoft.com/rhel/9/prod \
     && \
     dnf install --setopt tsflags=nodocs -y --allowerasing \
         autoconf \
@@ -21,6 +21,7 @@ RUN curl -LO https://packages.microsoft.com/keys/microsoft.asc && \
         git-core \
         iputils \
         libicu \
+        libmsquic \
         libtool \
         llvm \
         make \
