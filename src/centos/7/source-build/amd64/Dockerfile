@@ -2,7 +2,11 @@ FROM centos:7
 
 # Install dependencies
 
-RUN yum install -y \
+RUN \
+    # Since the base image isn't actively maintained, force an upgrade of existing packages
+    yum update -y \
+    && \
+    yum install -y \
         centos-release-scl \
         epel-release \
         scl-utils-build \
