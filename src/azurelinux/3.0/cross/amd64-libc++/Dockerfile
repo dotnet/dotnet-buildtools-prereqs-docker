@@ -3,10 +3,6 @@ ARG ROOTFS_DIR=/crossrootfs/x64
 
 RUN /scripts/eng/common/cross/build-rootfs.sh x64 xenial --skipunmount
 
-#
-# -DLIBCXX_CXX_ABI=libstdc++ \
-# -DLIBCXX_CXX_ABI_INCLUDE_PATHS="$ROOTFS_DIR/usr/include/c++/5.4.0/;$ROOTFS_DIR/usr/include/x86_64-linux-gnu" \
-
 RUN mkdir libcxx && cd libcxx && \
     TARGET_TRIPLE="x86_64-linux-gnu" && \
     cmake ../llvm-project.src/runtimes \
@@ -21,10 +17,10 @@ RUN mkdir libcxx && cd libcxx && \
         -DCMAKE_SYSROOT="$ROOTFS_DIR" \
         -DCMAKE_POSITION_INDEPENDENT_CODE=ON \
         -DLLVM_USE_LINKER=lld \
-        -DLLVM_ENABLE_RUNTIMES="libcxx;libcxxabi" \
+        -DLLVM_ENABLE_RUNTIMES="libcxx" \
         -DLIBCXX_ENABLE_SHARED=OFF \
-        -DLIBCXX_ENABLE_STATIC_ABI_LIBRARY=ON \
-        -DLIBCXXABI_USE_LLVM_UNWINDER=OFF && \
+        -DLIBCXX_CXX_ABI=libstdc++ \
+        -DLIBCXX_CXX_ABI_INCLUDE_PATHS="$ROOTFS_DIR/usr/include/c++/5.4.0/;$ROOTFS_DIR/usr/include/x86_64-linux-gnu" && \
     make -j $(getconf _NPROCESSORS_ONLN) && \
     make install
 
