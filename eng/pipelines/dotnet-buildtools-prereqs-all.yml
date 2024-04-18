@@ -31,7 +31,7 @@ extends:
       parameters:
         internalProjectName: ${{ variables.internalProjectName }}
         publicProjectName: ${{ variables.publicProjectName }}
-        linuxAmdBuildJobTimeout: 360
+        linuxAmdBuildJobTimeout: 480
         linuxArmBuildJobTimeout: 300
         ${{ if eq(variables['System.TeamProject'], 'internal') }}:
           customCopyBaseImagesInitSteps:
