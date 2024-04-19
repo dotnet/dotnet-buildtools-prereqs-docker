@@ -7,6 +7,14 @@ trigger:
     - src/centos/*
 pr: none
 
+schedules:
+- cron: "0 5 * * 1"
+  displayName: Weekly build
+  branches:
+    include:
+    - main
+  always: true
+
 resources:
   repositories:
   - repository: 1ESPipelineTemplates
