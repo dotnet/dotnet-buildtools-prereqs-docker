@@ -17,8 +17,13 @@ RUN mkdir libcxx && cd libcxx && \
         -DCMAKE_SYSROOT="$ROOTFS_DIR" \
         -DCMAKE_POSITION_INDEPENDENT_CODE=ON \
         -DLLVM_USE_LINKER=lld \
-        -DLLVM_ENABLE_RUNTIMES="libcxx" \
+# We build libcxxabi here to get the cxxabi.h header file installed in libc++'s standard include directory.
+# Even though we aren't using libc++abi and we're using libstdc++ to provide the ABI, the header is identical as it
+# defines the methods provided by the Itanium ABI, which is shared by both libc++abi and libstdc++.
+        -DLLVM_ENABLE_RUNTIMES="libcxx;libcxxabi" \
         -DLIBCXX_ENABLE_SHARED=OFF \
+        -DLIBCXXABI_ENABLE_SHARED=OFF \
+        -DLIBCXXABI_USE_LLVM_UNWINDER=OFF \
         -DLIBCXX_CXX_ABI=libstdc++ \
         -DLIBCXX_CXX_ABI_INCLUDE_PATHS="$ROOTFS_DIR/usr/include/c++/5.4.0/;$ROOTFS_DIR/usr/include/x86_64-linux-gnu" && \
     make -j $(getconf _NPROCESSORS_ONLN) && \
