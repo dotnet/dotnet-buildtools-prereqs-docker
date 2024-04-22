@@ -485,19 +485,6 @@
         {
           "platforms": [
             {
-              "dockerfile": "src/ubuntu/20.04/cross/armv6/10",
-              "os": "linux",
-              "osVersion": "focal",
-              "tags": {
-                "ubuntu-20.04-cross-armv6-raspbian-10-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
-                "ubuntu-20.04-cross-armv6-raspbian-10$(FloatingTagSuffix)": {}
-              }
-            }
-          ]
-        },
-        {
-          "platforms": [
-            {
               "architecture": "amd64",
               "dockerfile": "src/ubuntu/20.04/helix/amd64",
               "os": "linux",
