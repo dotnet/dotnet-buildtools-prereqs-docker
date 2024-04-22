@@ -13,6 +13,7 @@ RUN tdnf install --setopt tsflags=nodocs --refresh -y \
          llvm \
          python3-pip \
          shadow-utils \
+         tar \
          tzdata \
          which \
     && tdnf clean all
