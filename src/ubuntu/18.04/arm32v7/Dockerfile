@@ -19,5 +19,6 @@ RUN apt-get update && \
         libkrb5-dev \
         ruby-dev \
     && gem install public_suffix -v 4.0.7 \
+    && gem install dotenv -v 2.8.1 \
     && gem install fpm \
     && rm -rf /var/lib/apt/lists/*
