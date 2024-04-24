@@ -43,7 +43,7 @@ RUN LLVM_VERSION=18.1.3 LLVM_VERSION_MAJOR="${LLVM_VERSION%%.*}" SANITIZER_RUNTI
 
 FROM mcr.microsoft.com/dotnet-buildtools/prereqs:azurelinux-3.0-crossdeps-llvm-net9.0-local
 ARG ROOTFS_DIR=/crossrootfs/x86
-ARG LLVM_VERSION_MAJOR=16
+ARG LLVM_VERSION_MAJOR=18
 
 COPY --from=builder $ROOTFS_DIR $ROOTFS_DIR
 COPY --from=builder /sanitizer-runtimes /usr/local/lib/clang/$LLVM_VERSION_MAJOR/lib/linux/
