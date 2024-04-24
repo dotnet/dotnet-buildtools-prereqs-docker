@@ -198,6 +198,22 @@
         {
           "platforms": [
             {
+              "dockerfile": "src/cbl-mariner/2.0/cross/armv6",
+              "os": "linux",
+              "osVersion": "cbl-mariner2.0",
+              "tags": {
+                "cbl-mariner-2.0-cross-armv6-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
+                "cbl-mariner-2.0-cross-armv6$(FloatingTagSuffix)": {},
+                "cbl-mariner-2.0-cross-armv6-local": {
+                  "isLocal": true
+                }
+              }
+            }
+          ]
+        },
+        {
+          "platforms": [
+            {
               "dockerfile": "src/cbl-mariner/2.0/cross/x86",
               "os": "linux",
               "osVersion": "cbl-mariner2.0",
