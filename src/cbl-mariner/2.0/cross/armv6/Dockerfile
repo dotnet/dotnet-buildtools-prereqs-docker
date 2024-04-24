@@ -8,7 +8,7 @@ RUN wget http://raspbian.raspberrypi.org/raspbian/pool/main/r/raspbian-archive-k
     mv raspbian-archive-keyring-20120528.2/keyrings/raspbian-archive-keyring.gpg /usr/share/keyrings/ && \
     rm -r raspbian-archive-keyring_20120528.2.tar.gz raspbian-archive-keyring-20120528.2
 
-RUN /scripts/eng/common/cross/build-rootfs.sh armv6 bullseye
+RUN /scripts/eng/common/cross/build-rootfs.sh armv6 buster
 
 FROM mcr.microsoft.com/dotnet-buildtools/prereqs:cbl-mariner-2.0-crossdeps-llvm-local
 ARG ROOTFS_DIR=/crossrootfs/armv6
