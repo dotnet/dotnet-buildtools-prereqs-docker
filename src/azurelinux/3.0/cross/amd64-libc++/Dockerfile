@@ -36,11 +36,9 @@ FROM mcr.microsoft.com/dotnet-buildtools/prereqs:azurelinux-3.0-crossdeps-llvm-n
 ARG ROOTFS_DIR=/crossrootfs/x64
 
 COPY --from=builder /cross-libs/ /usr/local/lib/clang/cross
-
 COPY --from=builder $ROOTFS_DIR $ROOTFS_DIR
 
 # Compat with dotnet/runtime's current build: Copy the clang resources to our manually-specified resources dir in the crossrootfs.
 ARG LLVM_VERSION_MAJOR=18
 
-COPY --from=builder $ROOTFS_DIR $ROOTFS_DIR
 COPY --from=builder /cross-libs /usr/local/lib/clang/$LLVM_VERSION_MAJOR/
