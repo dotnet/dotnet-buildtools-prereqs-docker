@@ -1,4 +1,4 @@
-FROM mcr.microsoft.com/dotnet-buildtools/prereqs:azurelinux-3.0-crossdeps-builder-net8.0 AS builder
+FROM mcr.microsoft.com/dotnet-buildtools/prereqs:azurelinux-3.0-crossdeps-builder-libcxx-local AS builder
 ARG ROOTFS_DIR=/crossrootfs/x64
 
 RUN /scripts/eng/common/cross/build-rootfs.sh x64 xenial --skipunmount
@@ -27,11 +27,21 @@ RUN cmake -S llvm-project.src/runtimes -B runtimes \
         -DLIBCXX_CXX_ABI_INCLUDE_PATHS="$ROOTFS_DIR/usr/include/c++/5.4.0/;$ROOTFS_DIR/usr/include/$TARGET_TRIPLE" \
         -DCOMPILER_RT_CXX_LIBRARY="libcxx" \
         -DCOMPILER_RT_STATIC_CXX_LIBRARY=ON \
-        -DSANITIZER_CXX_ABI_LIBNAME="libstdc++" && \
+        -DSANITIZER_CXX_ABI_LIBNAME="libstdc++" \ 
+        -DCOMPILER_RT_INSTALL_PATH="/cross-libs/" && \
     cmake --build runtimes -j $(getconf _NPROCESSORS_ONLN) && \
     cmake --install runtimes --prefix "$ROOTFS_DIR/usr"
 
-FROM mcr.microsoft.com/dotnet-buildtools/prereqs:azurelinux-3.0-crossdeps-llvm-net8.0
+FROM mcr.microsoft.com/dotnet-buildtools/prereqs:azurelinux-3.0-crossdeps-llvm-libcxx-local
 ARG ROOTFS_DIR=/crossrootfs/x64
 
+COPY --from=builder /cross-libs/ /usr/local/lib/clang/cross
+
 COPY --from=builder $ROOTFS_DIR $ROOTFS_DIR
+
+# Compat with dotnet/runtime: Copy the clang resources to our manually-specified resources dir in the crossrootfs.
+ARG LLVM_VERSION_MAJOR=18
+
+COPY --from=builder $ROOTFS_DIR $ROOTFS_DIR
+COPY --from=builder /sanitizer-runtimes /usr/local/lib/clang/$LLVM_VERSION_MAJOR/lib/linux/
+COPY --from=builder compiler-rt_build/include/sanitizer /usr/local/lib/clang/$LLVM_VERSION_MAJOR/include/sanitizer/
