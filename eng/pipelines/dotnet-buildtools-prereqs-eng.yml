@@ -4,11 +4,12 @@ pr:
     include:
     - main
   paths:
-    include:
-    - eng/*
-    - manifest.json
-    - build.ps1
-    - .dockerignore
+    exclude:
+    - src/*
+    - *.md
+    - .git*
+    - CODEOWNERS
+    - LICENSE
 
 resources:
   repositories:
