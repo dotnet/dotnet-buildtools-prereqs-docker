@@ -1,4 +1,4 @@
-FROM mcr.microsoft.com/dotnet-buildtools/prereqs:azurelinux-3.0-crossdeps-builder-libcxx-local AS builder
+FROM mcr.microsoft.com/dotnet-buildtools/prereqs:azurelinux-3.0-crossdeps-builder-net9.0-local AS builder
 ARG ROOTFS_DIR=/crossrootfs/x64
 
 RUN /scripts/eng/common/cross/build-rootfs.sh x64 xenial --skipunmount
@@ -32,14 +32,14 @@ RUN cmake -S llvm-project.src/runtimes -B runtimes \
     cmake --build runtimes -j $(getconf _NPROCESSORS_ONLN) && \
     cmake --install runtimes --prefix "$ROOTFS_DIR/usr"
 
-FROM mcr.microsoft.com/dotnet-buildtools/prereqs:azurelinux-3.0-crossdeps-llvm-libcxx-local
+FROM mcr.microsoft.com/dotnet-buildtools/prereqs:azurelinux-3.0-crossdeps-llvm-net9.0-local
 ARG ROOTFS_DIR=/crossrootfs/x64
 
 COPY --from=builder /cross-libs/ /usr/local/lib/clang/cross
 
 COPY --from=builder $ROOTFS_DIR $ROOTFS_DIR
 
-# Compat with dotnet/runtime: Copy the clang resources to our manually-specified resources dir in the crossrootfs.
+# Compat with dotnet/runtime's current build: Copy the clang resources to our manually-specified resources dir in the crossrootfs.
 ARG LLVM_VERSION_MAJOR=18
 
 COPY --from=builder $ROOTFS_DIR $ROOTFS_DIR
