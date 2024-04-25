@@ -9,8 +9,6 @@ pr:
     - manifest.json
     - build.ps1
     - .dockerignore
-    exclude:
-    - src/*
 
 resources:
   repositories:
