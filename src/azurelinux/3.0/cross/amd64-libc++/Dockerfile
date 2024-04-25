@@ -16,9 +16,9 @@ RUN cmake -S llvm-project.src/runtimes -B runtimes \
         -DCMAKE_SYSROOT="$ROOTFS_DIR" \
         -DCMAKE_POSITION_INDEPENDENT_CODE=ON \
         -DLLVM_USE_LINKER=lld \
-# We build libcxxabi here to get the cxxabi.h header file installed in libc++'s standard include directory.
-# Even though we aren't using libc++abi and we're using libstdc++ to provide the ABI, the header is identical as it
-# defines the methods provided by the Itanium ABI, which is shared by both libc++abi and libstdc++.
+        # We build libcxxabi here to get the cxxabi.h header file installed in libc++'s standard include directory.
+        # Even though we aren't using libc++abi and we're using libstdc++ to provide the ABI, the header is identical as it
+        # defines the methods provided by the Itanium ABI, which is shared by both libc++abi and libstdc++.
         -DLLVM_ENABLE_RUNTIMES="libcxx;libcxxabi;compiler-rt" \
         -DLIBCXX_ENABLE_SHARED=OFF \
         -DLIBCXXABI_ENABLE_SHARED=OFF \
@@ -43,5 +43,4 @@ COPY --from=builder $ROOTFS_DIR $ROOTFS_DIR
 ARG LLVM_VERSION_MAJOR=18
 
 COPY --from=builder $ROOTFS_DIR $ROOTFS_DIR
-COPY --from=builder /sanitizer-runtimes /usr/local/lib/clang/$LLVM_VERSION_MAJOR/lib/linux/
-COPY --from=builder compiler-rt_build/include/sanitizer /usr/local/lib/clang/$LLVM_VERSION_MAJOR/include/sanitizer/
+COPY --from=builder /cross-libs /usr/local/lib/clang/$LLVM_VERSION_MAJOR/
