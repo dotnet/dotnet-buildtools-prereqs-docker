@@ -13,8 +13,13 @@ RUN cmake -S llvm-project.src/runtimes -B runtimes \
         -DCMAKE_ASM_COMPILER_TARGET="$TARGET_TRIPLE" \
         -DCMAKE_C_COMPILER_TARGET="$TARGET_TRIPLE" \
         -DCMAKE_CXX_COMPILER_TARGET="$TARGET_TRIPLE" \
-        -DCMAKE_SYSROOT="$ROOTFS_DIR" \
+        # We're going to link the static libraries we build here into PIC images, so build the static libraries as PIC.
         -DCMAKE_POSITION_INDEPENDENT_CODE=ON \
+        -DCMAKE_SYSROOT="$ROOTFS_DIR" \
+        # Specify linker to use for exes directly for CMake toolchain detection
+        -DCMAKE_EXE_LINKER_FLAGS="-fuse-ld=lld" \
+        # Don't search for tools in the sysroot as we're cross-compiling
+        -DCMAKE_FIND_ROOT_PATH_MODE_PROGRAM="NEVER" \
         -DLLVM_USE_LINKER=lld \
         # We build libcxxabi here to get the cxxabi.h header file installed in libc++'s standard include directory.
         # Even though we aren't using libc++abi and we're using libstdc++ to provide the ABI, the header is identical as it

@@ -34,6 +34,8 @@ RUN cmake -S llvm-project.src/runtimes -B runtimes \
         -DCOMPILER_RT_CXX_LIBRARY="libcxx" \
         -DCOMPILER_RT_STATIC_CXX_LIBRARY=ON \
         -DSANITIZER_CXX_ABI_LIBNAME="libc++" \ 
+        # Install Compiler-RT libraries and headers to the correct path in the final image here
+        # as we use them to build the sanitized libcxxabi and libcxx
         -DCOMPILER_RT_INSTALL_PATH="/usr/local/lib/clang/cross" && \
     # Install the compiler-rt headers first so we can build a sanitized libcxxabi and libcxx
     cmake --install runtimes --component compiler-rt-headers && \
@@ -49,4 +51,4 @@ COPY --from=builder $ROOTFS_DIR $ROOTFS_DIR
 # Compat with dotnet/runtime's current build: Copy the clang resources to our manually-specified resources dir in the crossrootfs.
 ARG LLVM_VERSION_MAJOR=18
 
-COPY --from=builder /cross-libs /usr/local/lib/clang/$LLVM_VERSION_MAJOR/
+COPY --from=builder /usr/local/lib/clang/cross /usr/local/lib/clang/$LLVM_VERSION_MAJOR/
