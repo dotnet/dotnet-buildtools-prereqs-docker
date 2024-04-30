@@ -4,6 +4,7 @@ ARG ROOTFS_DIR=/crossrootfs/arm64
 RUN /scripts/eng/common/cross/build-rootfs.sh arm64 xenial --skipunmount
 
 RUN TARGET_TRIPLE="aarch64-linux-gnu" && \
+    CLANG_MAJOR_VERSION=$(clang --version | grep -oP "(?<=version )\d+") && \
     cmake -S llvm-project.src/runtimes -B runtimes \
         -DCMAKE_BUILD_TYPE=Release \
         -DCMAKE_ASM_COMPILER=clang \
@@ -34,7 +35,7 @@ RUN TARGET_TRIPLE="aarch64-linux-gnu" && \
         # so skip it here.
         -DCOMPILER_RT_BUILD_LIBFUZZER=OFF \
         -DCOMPILER_RT_DEFAULT_TARGET_ONLY=ON \
-        -DCOMPILER_RT_INSTALL_PATH="/cross-libs/" && \
+        -DCOMPILER_RT_INSTALL_PATH="/usr/local/lib/clang/$CLANG_MAJOR_VERSION" && \
     cmake --build runtimes -j $(getconf _NPROCESSORS_ONLN) && \
     cmake --install runtimes --prefix "$ROOTFS_DIR/usr" && \
     # Copy libstdc++'s cxxabi.h header file to libc++'s include directory so that builds that use libc++ can find it.
@@ -43,10 +44,5 @@ RUN TARGET_TRIPLE="aarch64-linux-gnu" && \
 FROM mcr.microsoft.com/dotnet-buildtools/prereqs:azurelinux-3.0-crossdeps-llvm-net9.0-local
 ARG ROOTFS_DIR=/crossrootfs/arm64
 
-COPY --from=builder /cross-libs/ /usr/local/lib/clang/cross
+COPY --from=builder /usr/local/lib/clang /usr/local/lib/clang/
 COPY --from=builder $ROOTFS_DIR $ROOTFS_DIR
-
-# Compat with dotnet/runtime's current build: Copy the clang resources to our manually-specified resources dir in the crossrootfs.
-ARG LLVM_VERSION_MAJOR=18
-
-COPY --from=builder /cross-libs /usr/local/lib/clang/$LLVM_VERSION_MAJOR/

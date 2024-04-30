@@ -4,6 +4,7 @@ ARG ROOTFS_DIR=/crossrootfs/x64
 RUN /scripts/eng/common/cross/build-rootfs.sh x64 xenial --skipunmount
 
 RUN TARGET_TRIPLE="x86_64-linux-gnu" && \
+    CLANG_MAJOR_VERSION=$(clang --version | grep -oP "(?<=version )\d+") && \
     cmake -S llvm-project.src/runtimes -B runtimes \
         -DCMAKE_BUILD_TYPE=Release \
         -DCMAKE_ASM_COMPILER=clang \
@@ -20,9 +21,6 @@ RUN TARGET_TRIPLE="x86_64-linux-gnu" && \
         # Don't search for tools in the sysroot as we're cross-compiling
         -DCMAKE_FIND_ROOT_PATH_MODE_PROGRAM="NEVER" \
         -DLLVM_USE_LINKER=lld \
-        # We build libcxxabi here to get the cxxabi.h header file installed in libc++'s standard include directory.
-        # Even though we aren't using libc++abi and we're using libstdc++ to provide the ABI, the header is identical as it
-        # defines the methods provided by the Itanium ABI, which is shared by both libc++abi and libstdc++.
         -DLLVM_ENABLE_RUNTIMES="compiler-rt;libcxx;libcxxabi" \
         -DLIBCXX_ENABLE_SHARED=OFF \
         -DLIBCXX_CXX_ABI="libcxxabi" \
@@ -34,9 +32,7 @@ RUN TARGET_TRIPLE="x86_64-linux-gnu" && \
         -DCOMPILER_RT_STATIC_CXX_LIBRARY=ON \
         -DSANITIZER_CXX_ABI_LIBNAME="libc++" \ 
         -DCOMPILER_RT_DEFAULT_TARGET_ONLY=ON \
-        # Install Compiler-RT libraries and headers to the correct path in the final image here
-        # as we use them to build the sanitized libcxxabi and libcxx
-        -DCOMPILER_RT_INSTALL_PATH="/usr/local/lib/clang/cross" && \
+        -DCOMPILER_RT_INSTALL_PATH="/usr/local/lib/clang/$CLANG_MAJOR_VERSION" && \
     # Install the compiler-rt headers first so we can build a sanitized libcxxabi and libcxx
     cmake --install runtimes --component compiler-rt-headers && \
     cmake --build runtimes -j && \
@@ -45,10 +41,5 @@ RUN TARGET_TRIPLE="x86_64-linux-gnu" && \
 FROM mcr.microsoft.com/dotnet-buildtools/prereqs:azurelinux-3.0-crossdeps-llvm-net9.0-local
 ARG ROOTFS_DIR=/crossrootfs/x64
 
-COPY --from=builder /usr/local/lib/clang/cross /usr/local/lib/clang/cross
+COPY --from=builder /usr/local/lib/clang /usr/local/lib/clang
 COPY --from=builder $ROOTFS_DIR $ROOTFS_DIR
-
-# Compat with dotnet/runtime's current build: Copy the clang resources to our manually-specified resources dir in the crossrootfs.
-ARG LLVM_VERSION_MAJOR=18
-
-COPY --from=builder /usr/local/lib/clang/cross /usr/local/lib/clang/$LLVM_VERSION_MAJOR/
