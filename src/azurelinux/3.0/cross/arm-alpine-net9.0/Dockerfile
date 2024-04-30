@@ -20,15 +20,15 @@ RUN TARGET_TRIPLE="armv7-alpine-linux-musleabihf" && \
         # Don't search for tools in the sysroot as we're cross-compiling
         -DCMAKE_FIND_ROOT_PATH_MODE_PROGRAM="NEVER" \
         -DLLVM_USE_LINKER=lld \
-        -DLLVM_ENABLE_RUNTIMES="libcxx;libcxxabi" \
+        -DLLVM_ENABLE_RUNTIMES="libcxx" \
         -DLIBCXX_ENABLE_SHARED=OFF \
         -DLIBCXX_HAS_MUSL_LIBC=ON \
-        -DLIBCXXABI_ENABLE_SHARED=OFF \
-        -DLIBCXXABI_USE_LLVM_UNWINDER=OFF \
         -DLIBCXX_CXX_ABI=libstdc++ \
         -DLIBCXX_CXX_ABI_INCLUDE_PATHS="$ROOTFS_DIR/usr/include/c++/10.2.1/;$ROOTFS_DIR/usr/include/c++/10.2.1/$TARGET_TRIPLE" && \
     cmake --build runtimes -j $(getconf _NPROCESSORS_ONLN) && \
-    cmake --install runtimes --prefix "$ROOTFS_DIR/usr"
+    cmake --install runtimes --prefix "$ROOTFS_DIR/usr" && \
+    # Copy libstdc++'s cxxabi.h header file to libc++'s include directory so that builds that use libc++ can find it.
+    cp "$ROOTFS_DIR/usr/include/c++/10.2.1/cxxabi.h" "$ROOTFS_DIR/usr/include/c++/v1/"
 
 FROM mcr.microsoft.com/dotnet-buildtools/prereqs:azurelinux-3.0-crossdeps-llvm-net9.0-local
 ARG ROOTFS_DIR=/crossrootfs/arm

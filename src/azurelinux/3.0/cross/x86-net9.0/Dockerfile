@@ -20,10 +20,7 @@ RUN TARGET_TRIPLE="i386-linux-gnu" && \
         # Don't search for tools in the sysroot as we're cross-compiling
         -DCMAKE_FIND_ROOT_PATH_MODE_PROGRAM="NEVER" \
         -DLLVM_USE_LINKER=lld \
-        # We build libcxxabi here to get the cxxabi.h header file installed in libc++'s standard include directory.
-        # Even though we aren't using libc++abi and we're using libstdc++ to provide the ABI, the header is identical as it
-        # defines the methods provided by the Itanium ABI, which is shared by both libc++abi and libstdc++.
-        -DLLVM_ENABLE_RUNTIMES="libcxx;libcxxabi;compiler-rt" \
+        -DLLVM_ENABLE_RUNTIMES="libcxx;compiler-rt" \
         -DLIBCXX_ENABLE_SHARED=OFF \
         -DLIBCXXABI_ENABLE_SHARED=OFF \
         -DLIBCXXABI_USE_LLVM_UNWINDER=OFF \
@@ -36,7 +33,9 @@ RUN TARGET_TRIPLE="i386-linux-gnu" && \
         -DCOMPILER_RT_DEFAULT_TARGET_ONLY=ON \
         -DCOMPILER_RT_INSTALL_PATH="/cross-libs/" && \
     cmake --build runtimes -j $(getconf _NPROCESSORS_ONLN) && \
-    cmake --install runtimes --prefix "$ROOTFS_DIR/usr"
+    cmake --install runtimes --prefix "$ROOTFS_DIR/usr" && \
+    # Copy libstdc++'s cxxabi.h header file to libc++'s include directory so that builds that use libc++ can find it.
+    cp "$ROOTFS_DIR/usr/include/c++/5.4.0/cxxabi.h" "$ROOTFS_DIR/usr/include/c++/v1/"
 
 FROM mcr.microsoft.com/dotnet-buildtools/prereqs:azurelinux-3.0-crossdeps-llvm-net9.0-local
 ARG ROOTFS_DIR=/crossrootfs/x86
