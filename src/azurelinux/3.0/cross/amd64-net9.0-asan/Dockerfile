@@ -3,9 +3,8 @@ ARG ROOTFS_DIR=/crossrootfs/x64
 
 RUN /scripts/eng/common/cross/build-rootfs.sh x64 xenial --skipunmount
 
-ARG TARGET_TRIPLE="x86_64-linux-gnu"
-
-RUN cmake -S llvm-project.src/runtimes -B runtimes \
+RUN TARGET_TRIPLE="x86_64-linux-gnu" && \
+    cmake -S llvm-project.src/runtimes -B runtimes \
         -DCMAKE_BUILD_TYPE=Release \
         -DCMAKE_ASM_COMPILER=clang \
         -DCMAKE_C_COMPILER=clang \
@@ -34,6 +33,7 @@ RUN cmake -S llvm-project.src/runtimes -B runtimes \
         -DCOMPILER_RT_CXX_LIBRARY="libcxx" \
         -DCOMPILER_RT_STATIC_CXX_LIBRARY=ON \
         -DSANITIZER_CXX_ABI_LIBNAME="libc++" \ 
+        -DCOMPILER_RT_DEFAULT_TARGET_ONLY=ON \
         # Install Compiler-RT libraries and headers to the correct path in the final image here
         # as we use them to build the sanitized libcxxabi and libcxx
         -DCOMPILER_RT_INSTALL_PATH="/usr/local/lib/clang/cross" && \

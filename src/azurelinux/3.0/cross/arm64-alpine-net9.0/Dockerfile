@@ -3,9 +3,8 @@ ARG ROOTFS_DIR=/crossrootfs/arm64
 
 RUN /scripts/eng/common/cross/build-rootfs.sh arm64 alpine3.13 --skipunmount
 
-ARG TARGET_TRIPLE="aarch64-alpine-linux-musl"
-
-RUN cmake -S llvm-project.src/runtimes -B runtimes \
+RUN TARGET_TRIPLE="aarch64-alpine-linux-musl" && \
+    cmake -S llvm-project.src/runtimes -B runtimes \
         -DCMAKE_BUILD_TYPE=Release \
         -DCMAKE_ASM_COMPILER=clang \
         -DCMAKE_C_COMPILER=clang \

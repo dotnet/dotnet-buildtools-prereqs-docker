@@ -3,9 +3,8 @@ ARG ROOTFS_DIR=/crossrootfs/x86
 
 RUN /scripts/eng/common/cross/build-rootfs.sh x86 xenial --skipunmount
 
-ARG TARGET_TRIPLE="i386-linux-gnu"
-
-RUN cmake -S llvm-project.src/runtimes -B runtimes \
+RUN TARGET_TRIPLE="i386-linux-gnu" && \
+    cmake -S llvm-project.src/runtimes -B runtimes \
         -DCMAKE_BUILD_TYPE=Release \
         -DCMAKE_ASM_COMPILER=clang \
         -DCMAKE_C_COMPILER=clang \
@@ -32,7 +31,9 @@ RUN cmake -S llvm-project.src/runtimes -B runtimes \
         -DLIBCXX_CXX_ABI_INCLUDE_PATHS="$ROOTFS_DIR/usr/include/c++/5.4.0/;$ROOTFS_DIR/usr/include/$TARGET_TRIPLE" \
         -DCOMPILER_RT_CXX_LIBRARY="libcxx" \
         -DCOMPILER_RT_STATIC_CXX_LIBRARY=ON \
-        -DSANITIZER_CXX_ABI_LIBNAME="libstdc++" \ 
+        -DCOMPILER_RT_BUILD_SANITIZERS=OFF \
+        -DCOMPILER_RT_BUILD_MEMPROF=OFF \
+        -DCOMPILER_RT_DEFAULT_TARGET_ONLY=ON \
         -DCOMPILER_RT_INSTALL_PATH="/cross-libs/" && \
     cmake --build runtimes -j $(getconf _NPROCESSORS_ONLN) && \
     cmake --install runtimes --prefix "$ROOTFS_DIR/usr"
