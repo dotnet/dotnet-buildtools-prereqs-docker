@@ -30,6 +30,9 @@ RUN TARGET_TRIPLE="i386-linux-gnu" && \
         -DCOMPILER_RT_STATIC_CXX_LIBRARY=ON \
         -DCOMPILER_RT_BUILD_SANITIZERS=OFF \
         -DCOMPILER_RT_BUILD_MEMPROF=OFF \
+        # The libfuzzer build in LLVM doesn't correctly forward the required CMake properties to the "fuzzed libc++" build
+        # so skip it here.
+        -DCOMPILER_RT_BUILD_LIBFUZZER=OFF \
         -DCOMPILER_RT_DEFAULT_TARGET_ONLY=ON \
         -DCOMPILER_RT_INSTALL_PATH="/cross-libs/" && \
     cmake --build runtimes -j $(getconf _NPROCESSORS_ONLN) && \
