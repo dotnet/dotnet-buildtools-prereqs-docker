@@ -24,6 +24,6 @@ stages:
   parameters:
     internalProjectName: ${{ variables.internalProjectName }}
     publicProjectName: ${{ variables.publicProjectName }}
-    linuxAmdBuildJobTimeout: 360
+    linuxAmdBuildJobTimeout: 480
     customBuildInitSteps:
     - template: /eng/pipelines/steps/install-cross-build-prereqs.yml
