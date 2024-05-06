@@ -24,7 +24,7 @@ RUN TARGET_TRIPLE="arm-linux-gnueabihf" && \
         -DLLVM_ENABLE_RUNTIMES="libcxx;compiler-rt" \
         -DLIBCXX_ENABLE_SHARED=OFF \
         -DLIBCXX_CXX_ABI=libstdc++ \
-        -DLIBCXX_CXX_ABI_INCLUDE_PATHS="$ROOTFS_DIR/usr/include/c++/5.4.0/;$ROOTFS_DIR/usr/include/$TARGET_TRIPLE" \
+        -DLIBCXX_CXX_ABI_INCLUDE_PATHS="$ROOTFS_DIR/usr/include/c++/11/;$ROOTFS_DIR/usr/include/$TARGET_TRIPLE" \
         -DCOMPILER_RT_CXX_LIBRARY="libcxx" \
         -DCOMPILER_RT_STATIC_CXX_LIBRARY=ON \
         -DCOMPILER_RT_BUILD_SANITIZERS=OFF \
@@ -37,7 +37,7 @@ RUN TARGET_TRIPLE="arm-linux-gnueabihf" && \
     cmake --build runtimes -j $(getconf _NPROCESSORS_ONLN) && \
     cmake --install runtimes --prefix "$ROOTFS_DIR/usr" && \
     # Copy libstdc++'s cxxabi.h header file to libc++'s include directory so that builds that use libc++ can find it.
-    cp "$ROOTFS_DIR/usr/include/c++/5.4.0/cxxabi.h" "$ROOTFS_DIR/usr/include/c++/v1/"
+    cp "$ROOTFS_DIR/usr/include/c++/11/cxxabi.h" "$ROOTFS_DIR/usr/include/c++/v1/"
 
 FROM mcr.microsoft.com/dotnet-buildtools/prereqs:azurelinux-3.0-crossdeps-llvm-net9.0-local
 ARG ROOTFS_DIR=/crossrootfs/arm
