@@ -1,7 +1,7 @@
 FROM mcr.microsoft.com/dotnet-buildtools/prereqs:azurelinux-3.0-crossdeps-builder-net9.0-local AS builder
 ARG ROOTFS_DIR=/crossrootfs/arm
 
-RUN /scripts/eng/common/cross/build-rootfs.sh arm xenial --skipunmount
+RUN /scripts/eng/common/cross/build-rootfs.sh arm jammy no-lldb --skipunmount
 
 RUN TARGET_TRIPLE="arm-linux-gnueabihf" && \
     CLANG_MAJOR_VERSION=$(clang --version | grep -oP "(?<=version )\d+") && \
