@@ -1,9 +1,9 @@
 FROM mcr.microsoft.com/dotnet-buildtools/prereqs:azurelinux-3.0-crossdeps-builder-net9.0-local AS builder
-ARG ROOTFS_DIR=/crossrootfs/arm64
+ARG ROOTFS_DIR=/crossrootfs/x64
 
-RUN /scripts/eng/common/cross/build-rootfs.sh arm64 xenial --skipunmount
+RUN /scripts/eng/common/cross/build-rootfs.sh x64 xenial --skipunmount
 
-RUN TARGET_TRIPLE="aarch64-linux-gnu" && \
+RUN TARGET_TRIPLE="x86_64-linux-gnu" && \
     CLANG_MAJOR_VERSION=$(clang --version | grep -oP "(?<=version )\d+") && \
     cmake -S llvm-project.src/runtimes -B runtimes \
         -DCMAKE_BUILD_TYPE=Release \
@@ -21,30 +21,27 @@ RUN TARGET_TRIPLE="aarch64-linux-gnu" && \
         # Don't search for tools in the sysroot as we're cross-compiling
         -DCMAKE_FIND_ROOT_PATH_MODE_PROGRAM="NEVER" \
         -DLLVM_USE_LINKER=lld \
-        -DLLVM_ENABLE_RUNTIMES="libcxx;compiler-rt" \
+        -DLLVM_ENABLE_RUNTIMES="compiler-rt;libcxx;libcxxabi" \
         -DLIBCXX_ENABLE_SHARED=OFF \
+        -DLIBCXX_CXX_ABI="libcxxabi" \
+        -DLIBCXX_STATICALLY_LINK_ABI_IN_STATIC_LIBRARY=ON \
+        -DLLVM_USE_SANITIZER="Address" \
         -DLIBCXXABI_ENABLE_SHARED=OFF \
         -DLIBCXXABI_USE_LLVM_UNWINDER=OFF \
-        -DLIBCXX_CXX_ABI=libstdc++ \
-        -DLIBCXX_CXX_ABI_INCLUDE_PATHS="$ROOTFS_DIR/usr/include/c++/5.4.0/;$ROOTFS_DIR/usr/include/$TARGET_TRIPLE" \
         -DCOMPILER_RT_CXX_LIBRARY="libcxx" \
         -DCOMPILER_RT_STATIC_CXX_LIBRARY=ON \
-        -DCOMPILER_RT_BUILD_SANITIZERS=OFF \
-        -DCOMPILER_RT_BUILD_MEMPROF=OFF \
-        # The libfuzzer build in LLVM doesn't correctly forward the required CMake properties to the "fuzzed libc++" build
-        # so skip it here.
-        -DCOMPILER_RT_BUILD_LIBFUZZER=OFF \
+        -DSANITIZER_CXX_ABI_LIBNAME="libc++" \ 
         -DCOMPILER_RT_DEFAULT_TARGET_ONLY=ON \
         -DCOMPILER_RT_INSTALL_PATH="/usr/local/lib/clang/$CLANG_MAJOR_VERSION" && \
-    cmake --build runtimes -j $(getconf _NPROCESSORS_ONLN) && \
-    cmake --install runtimes --prefix "$ROOTFS_DIR/usr" && \
-    # Copy libstdc++'s cxxabi.h header file to libc++'s include directory so that builds that use libc++ can find it.
-    cp "$ROOTFS_DIR/usr/include/c++/5.4.0/cxxabi.h" "$ROOTFS_DIR/usr/include/c++/v1/"
+    # Install the compiler-rt headers first so we can build a sanitized libcxxabi and libcxx
+    cmake --install runtimes --component compiler-rt-headers && \
+    cmake --build runtimes -j && \
+    cmake --install runtimes --prefix "$ROOTFS_DIR/usr"
 
 FROM mcr.microsoft.com/dotnet-buildtools/prereqs:azurelinux-3.0-crossdeps-llvm-net9.0-local
-ARG ROOTFS_DIR=/crossrootfs/arm64
+ARG ROOTFS_DIR=/crossrootfs/x64
 
-COPY --from=builder /usr/local/lib/clang /usr/local/lib/clang/
+COPY --from=builder /usr/local/lib/clang /usr/local/lib/clang
 COPY --from=builder $ROOTFS_DIR $ROOTFS_DIR
 
 # Compat with dotnet/runtime's custom resource dir override for PGO and sanitizer builds:
