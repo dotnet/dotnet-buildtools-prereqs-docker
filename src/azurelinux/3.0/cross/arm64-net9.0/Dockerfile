@@ -37,9 +37,7 @@ RUN TARGET_TRIPLE="aarch64-linux-gnu" && \
         -DCOMPILER_RT_DEFAULT_TARGET_ONLY=ON \
         -DCOMPILER_RT_INSTALL_PATH="/usr/local/lib/clang/$CLANG_MAJOR_VERSION" && \
     cmake --build runtimes -j $(getconf _NPROCESSORS_ONLN) && \
-    cmake --install runtimes --prefix "$ROOTFS_DIR/usr" && \
-    # Copy libstdc++'s cxxabi.h header file to libc++'s include directory so that builds that use libc++ can find it.
-    cp "$ROOTFS_DIR/usr/include/c++/5.4.0/cxxabi.h" "$ROOTFS_DIR/usr/include/c++/v1/"
+    cmake --install runtimes --prefix "$ROOTFS_DIR/usr"
 
 FROM mcr.microsoft.com/dotnet-buildtools/prereqs:azurelinux-3.0-crossdeps-llvm-net9.0-local
 ARG ROOTFS_DIR=/crossrootfs/arm64
