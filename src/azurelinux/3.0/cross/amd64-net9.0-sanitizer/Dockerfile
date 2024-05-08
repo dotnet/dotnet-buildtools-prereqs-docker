@@ -1,7 +1,9 @@
 FROM mcr.microsoft.com/dotnet-buildtools/prereqs:azurelinux-3.0-crossdeps-builder-net9.0-local AS builder
 ARG ROOTFS_DIR=/crossrootfs/x64
 
-RUN /scripts/eng/common/cross/build-rootfs.sh x64 xenial --skipunmount
+# Use Ubuntu Bionic as the base image for the rootfs
+# to get a new enough libstdc++ for the sanitizer runtimes and instrumentation.
+RUN /scripts/eng/common/cross/build-rootfs.sh x64 bionic --skipunmount
 
 RUN TARGET_TRIPLE="x86_64-linux-gnu" && \
     CLANG_MAJOR_VERSION=$(clang --version | grep -oP "(?<=version )\d+") && \
@@ -21,20 +23,19 @@ RUN TARGET_TRIPLE="x86_64-linux-gnu" && \
         # Don't search for tools in the sysroot as we're cross-compiling
         -DCMAKE_FIND_ROOT_PATH_MODE_PROGRAM="NEVER" \
         -DLLVM_USE_LINKER=lld \
-        -DLLVM_ENABLE_RUNTIMES="compiler-rt;libcxx;libcxxabi" \
+        -DLLVM_ENABLE_RUNTIMES="compiler-rt;libcxx" \
         -DLIBCXX_ENABLE_SHARED=OFF \
-        -DLIBCXX_CXX_ABI="libcxxabi" \
-        -DLIBCXX_STATICALLY_LINK_ABI_IN_STATIC_LIBRARY=ON \
-        -DLLVM_USE_SANITIZER="Address" \
-        -DLIBCXXABI_ENABLE_SHARED=OFF \
-        -DLIBCXXABI_USE_LLVM_UNWINDER=OFF \
+        -DLIBCXX_CXX_ABI="libstdc++" \
+        -DLIBCXX_CXX_ABI_INCLUDE_PATHS="$ROOTFS_DIR/usr/include/c++/7.5.0/;$ROOTFS_DIR/usr/include/$TARGET_TRIPLE" \
         -DCOMPILER_RT_CXX_LIBRARY="libcxx" \
         -DCOMPILER_RT_STATIC_CXX_LIBRARY=ON \
-        -DSANITIZER_CXX_ABI_LIBNAME="libc++" \ 
+        -DSANITIZER_CXX_ABI_LIBNAME="libstdc++" \ 
+        -DCOMPILER_RT_BUILD_MEMPROF=OFF \
+        # The libfuzzer build in LLVM doesn't correctly forward the required CMake properties to the "fuzzed libc++" build
+        # so skip it here.
+        -DCOMPILER_RT_BUILD_LIBFUZZER=OFF \
         -DCOMPILER_RT_DEFAULT_TARGET_ONLY=ON \
         -DCOMPILER_RT_INSTALL_PATH="/usr/local/lib/clang/$CLANG_MAJOR_VERSION" && \
-    # Install the compiler-rt headers first so we can build a sanitized libcxxabi and libcxx
-    cmake --install runtimes --component compiler-rt-headers && \
     cmake --build runtimes -j && \
     cmake --install runtimes --prefix "$ROOTFS_DIR/usr"
 
