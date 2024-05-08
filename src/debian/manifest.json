@@ -94,6 +94,21 @@
           "platforms": [
             {
               "architecture": "arm64",
+              "dockerfile": "src/debian/12/helix/arm32v7",
+              "os": "linux",
+              "osVersion": "bookworm",
+              "tags": {
+                "debian-12-helix-arm32v7-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
+                "debian-12-helix-arm32v7$(FloatingTagSuffix)": {}
+              },
+              "variant": "v8"
+            }
+          ]
+        },
+        {
+          "platforms": [
+            {
+              "architecture": "arm64",
               "dockerfile": "src/debian/12/helix/arm64v8",
               "os": "linux",
               "osVersion": "bookworm",
