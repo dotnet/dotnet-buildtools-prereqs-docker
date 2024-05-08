@@ -1,7 +1,9 @@
 FROM mcr.microsoft.com/dotnet-buildtools/prereqs:azurelinux-3.0-crossdeps-builder-net9.0-local AS builder
 ARG ROOTFS_DIR=/crossrootfs/arm
 
-RUN /scripts/eng/common/cross/build-rootfs.sh arm xenial --skipunmount
+# The arm rootfs targets Ubuntu 22.04, which is the first version with a
+# glibc that supports 64-bit time_t. See https://github.com/dotnet/core/discussions/9285.
+RUN /scripts/eng/common/cross/build-rootfs.sh arm jammy no-lldb --skipunmount
 
 RUN TARGET_TRIPLE="arm-linux-gnueabihf" && \
     CLANG_MAJOR_VERSION=$(clang --version | grep -oP "(?<=version )\d+") && \
@@ -24,7 +26,7 @@ RUN TARGET_TRIPLE="arm-linux-gnueabihf" && \
         -DLLVM_ENABLE_RUNTIMES="libcxx;compiler-rt" \
         -DLIBCXX_ENABLE_SHARED=OFF \
         -DLIBCXX_CXX_ABI=libstdc++ \
-        -DLIBCXX_CXX_ABI_INCLUDE_PATHS="$ROOTFS_DIR/usr/include/c++/5.4.0/;$ROOTFS_DIR/usr/include/$TARGET_TRIPLE" \
+        -DLIBCXX_CXX_ABI_INCLUDE_PATHS="$ROOTFS_DIR/usr/include/c++/11/;$ROOTFS_DIR/usr/include/$TARGET_TRIPLE" \
         -DCOMPILER_RT_CXX_LIBRARY="libcxx" \
         -DCOMPILER_RT_STATIC_CXX_LIBRARY=ON \
         -DCOMPILER_RT_BUILD_SANITIZERS=OFF \
