@@ -796,6 +796,21 @@
           "platforms": [
             {
               "architecture": "arm64",
+              "dockerfile": "src/ubuntu/22.04/helix/arm32v7",
+              "os": "linux",
+              "osVersion": "jammy",
+              "tags": {
+                "ubuntu-22.04-helix-arm32v7-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
+                "ubuntu-22.04-helix-arm32v7$(FloatingTagSuffix)": {}
+              },
+              "variant": "v7"
+            }
+          ]
+        },
+        {
+          "platforms": [
+            {
+              "architecture": "arm64",
               "dockerfile": "src/ubuntu/22.04/helix/arm64v8",
               "os": "linux",
               "osVersion": "jammy",
