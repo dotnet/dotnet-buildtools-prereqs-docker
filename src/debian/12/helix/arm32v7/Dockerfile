@@ -26,6 +26,7 @@ RUN apt-get update && \
         llvm \
         locales \
         locales-all \
+        pkg-config \
         python3-cryptography \
         python3-dev \
         python3-pip \
