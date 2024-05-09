@@ -60,6 +60,13 @@ RUN /usr/sbin/adduser --disabled-password --gecos '' --uid 1000 --shell /bin/bas
     chmod 755 /root && \
     echo "helixbot ALL=(ALL)       NOPASSWD: ALL" > /etc/sudoers
 
+# Debian 12 is set up with its python environment marked as externally managed
+# (https://packaging.python.org/en/latest/specifications/externally-managed-environments/).
+# This causes errors when helix setup (at runtime) does 'sudo pip install'.
+# Work around this by overriding the check for externally managed environments.
+RUN mkdir -p ~/.config/pip && \
+    echo "[global]\nbreak-system-packages = true" > ~/.config/pip/pip.conf
+
 USER helixbot
 
 RUN python -m virtualenv /home/helixbot/.vsts-env
