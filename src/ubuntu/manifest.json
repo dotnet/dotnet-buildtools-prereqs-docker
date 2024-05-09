@@ -795,7 +795,7 @@
         {
           "platforms": [
             {
-              "architecture": "arm64",
+              "architecture": "arm",
               "dockerfile": "src/ubuntu/22.04/helix/arm32v7",
               "os": "linux",
               "osVersion": "jammy",
