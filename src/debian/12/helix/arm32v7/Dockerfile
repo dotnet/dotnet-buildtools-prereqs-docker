@@ -1,8 +1,5 @@
 FROM debian:bookworm
 
-# Workaround: https://github.com/pypa/wheel/issues/367
-ENV _PYTHON_HOST_PLATFORM=linux_armv7l
-
 # Install Helix Dependencies
 
 RUN apt-get update && \
