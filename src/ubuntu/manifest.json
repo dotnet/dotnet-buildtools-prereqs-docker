@@ -559,7 +559,7 @@
         {
           "platforms": [
             {
-              "dockerfile": "src/ubuntu/20.04/webassembly-net8",
+              "dockerfile": "src/ubuntu/20.04/webassembly-net8/amd64",
               "os": "linux",
               "osVersion": "focal",
               "tags": {
