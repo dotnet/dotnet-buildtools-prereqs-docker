@@ -60,7 +60,7 @@
         {
           "platforms": [
             {
-              "dockerfile": "src/cbl-mariner/2.0/crossdeps",
+              "dockerfile": "src/cbl-mariner/2.0/crossdeps/amd64",
               "os": "linux",
               "osVersion": "cbl-mariner2.0",
               "tags": {
@@ -76,7 +76,7 @@
         {
           "platforms": [
             {
-              "dockerfile": "src/cbl-mariner/2.0/crossdeps-builder",
+              "dockerfile": "src/cbl-mariner/2.0/crossdeps-builder/amd64",
               "os": "linux",
               "osVersion": "cbl-mariner2.0",
               "tags": {
@@ -92,7 +92,7 @@
         {
           "platforms": [
             {
-              "dockerfile": "src/cbl-mariner/2.0/crossdeps-llvm",
+              "dockerfile": "src/cbl-mariner/2.0/crossdeps-llvm/amd64",
               "os": "linux",
               "osVersion": "cbl-mariner2.0",
               "tags": {
@@ -478,7 +478,7 @@
         {
           "platforms": [
             {
-              "dockerfile": "src/cbl-mariner/2.0/webassembly",
+              "dockerfile": "src/cbl-mariner/2.0/webassembly/amd64",
               "os": "linux",
               "osVersion": "cbl-mariner2.0",
               "tags": {
