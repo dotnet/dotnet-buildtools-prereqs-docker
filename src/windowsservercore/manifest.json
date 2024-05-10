@@ -64,7 +64,7 @@
         {
           "platforms": [
             {
-              "dockerfile": "src/windowsservercore/ltsc2022/helix/webassembly-net8",
+              "dockerfile": "src/windowsservercore/ltsc2022/helix/webassembly-net8/amd64",
               "os": "windows",
               "osVersion": "windowsservercore-ltsc2022",
               "tags": {
