@@ -124,7 +124,7 @@
           "platforms": [
             {
               "architecture": "amd64",
-              "dockerfile": "src/debian/12/gcc14",
+              "dockerfile": "src/debian/12/gcc14/amd64",
               "os": "linux",
               "osVersion": "bookworm",
               "tags": {

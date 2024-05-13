@@ -6,7 +6,7 @@
         {
           "platforms": [
             {
-              "dockerfile": "src/centos/7",
+              "dockerfile": "src/centos/7/amd64",
               "os": "linux",
               "osVersion": "centos7",
               "tags": {
@@ -22,7 +22,7 @@
         {
           "platforms": [
             {
-              "dockerfile": "src/centos/7/mlnet",
+              "dockerfile": "src/centos/7/mlnet/amd64",
               "os": "linux",
               "osVersion": "centos7",
               "tags": {
@@ -38,7 +38,7 @@
         {
           "platforms": [
             {
-              "dockerfile": "src/centos/7/mlnet/helix",
+              "dockerfile": "src/centos/7/mlnet/helix/amd64",
               "os": "linux",
               "osVersion": "centos7",
               "tags": {
@@ -64,7 +64,7 @@
         {
           "platforms": [
             {
-              "dockerfile": "src/centos/stream8",
+              "dockerfile": "src/centos/stream8/amd64",
               "os": "linux",
               "osVersion": "centos-stream8",
               "tags": {
@@ -93,7 +93,7 @@
         {
           "platforms": [
             {
-              "dockerfile": "src/centos/stream8/mlnet",
+              "dockerfile": "src/centos/stream8/mlnet/amd64",
               "os": "linux",
               "osVersion": "centos-stream8",
               "tags": {
@@ -109,7 +109,7 @@
         {
           "platforms": [
             {
-              "dockerfile": "src/centos/stream8/mlnet/helix",
+              "dockerfile": "src/centos/stream8/mlnet/helix/amd64",
               "os": "linux",
               "osVersion": "centos-stream8",
               "tags": {
@@ -122,7 +122,7 @@
         {
           "platforms": [
             {
-              "dockerfile": "src/centos/stream9",
+              "dockerfile": "src/centos/stream9/amd64",
               "os": "linux",
               "osVersion": "centos-stream9",
               "tags": {
