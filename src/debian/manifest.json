@@ -93,6 +93,21 @@
         {
           "platforms": [
             {
+              "architecture": "arm",
+              "dockerfile": "src/debian/12/helix/arm32v7",
+              "os": "linux",
+              "osVersion": "bookworm",
+              "tags": {
+                "debian-12-helix-arm32v7-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
+                "debian-12-helix-arm32v7$(FloatingTagSuffix)": {}
+              },
+              "variant": "v7"
+            }
+          ]
+        },
+        {
+          "platforms": [
+            {
               "architecture": "arm64",
               "dockerfile": "src/debian/12/helix/arm64v8",
               "os": "linux",
@@ -109,12 +124,12 @@
           "platforms": [
             {
               "architecture": "amd64",
-              "dockerfile": "src/debian/12/gcc13",
+              "dockerfile": "src/debian/12/gcc14/amd64",
               "os": "linux",
               "osVersion": "bookworm",
               "tags": {
-                "debian-12-gcc13-amd64-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
-                "debian-12-gcc13-amd64$(FloatingTagSuffix)": {}
+                "debian-12-gcc14-amd64-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
+                "debian-12-gcc14-amd64$(FloatingTagSuffix)": {}
               }
             }
           ]

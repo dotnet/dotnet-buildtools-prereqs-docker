@@ -81,7 +81,7 @@
         {
           "platforms": [
             {
-              "dockerfile": "src/ubuntu/18.04/crossdeps",
+              "dockerfile": "src/ubuntu/18.04/crossdeps/amd64",
               "os": "linux",
               "osVersion": "bionic",
               "tags": {
@@ -227,7 +227,7 @@
         {
           "platforms": [
             {
-              "dockerfile": "src/ubuntu/18.04/debpkg",
+              "dockerfile": "src/ubuntu/18.04/debpkg/amd64",
               "os": "linux",
               "osVersion": "bionic",
               "tags": {
@@ -288,7 +288,7 @@
           "platforms": [
             {
               "architecture": "amd64",
-              "dockerfile": "src/ubuntu/18.04/helix/webassembly",
+              "dockerfile": "src/ubuntu/18.04/helix/webassembly/amd64",
               "os": "linux",
               "osVersion": "bionic",
               "tags": {
@@ -315,7 +315,7 @@
         {
           "platforms": [
             {
-              "dockerfile": "src/ubuntu/18.04/mlnet",
+              "dockerfile": "src/ubuntu/18.04/mlnet/amd64",
               "os": "linux",
               "osVersion": "bionic",
               "tags": {
@@ -357,7 +357,7 @@
         {
           "platforms": [
             {
-              "dockerfile": "src/ubuntu/18.04/mlnet/helix",
+              "dockerfile": "src/ubuntu/18.04/mlnet/helix/amd64",
               "os": "linux",
               "osVersion": "bionic",
               "tags": {
@@ -414,7 +414,7 @@
         {
           "platforms": [
             {
-              "dockerfile": "src/ubuntu/18.04/webassembly",
+              "dockerfile": "src/ubuntu/18.04/webassembly/amd64",
               "os": "linux",
               "osVersion": "bionic",
               "tags": {
@@ -427,7 +427,7 @@
         {
           "platforms": [
             {
-              "dockerfile": "src/ubuntu/18.04/webassembly-net8",
+              "dockerfile": "src/ubuntu/18.04/webassembly-net8/amd64",
               "os": "linux",
               "osVersion": "bionic",
               "tags": {
@@ -546,7 +546,7 @@
         {
           "platforms": [
             {
-              "dockerfile": "src/ubuntu/20.04/webassembly",
+              "dockerfile": "src/ubuntu/20.04/webassembly/amd64",
               "os": "linux",
               "osVersion": "focal",
               "tags": {
@@ -559,7 +559,7 @@
         {
           "platforms": [
             {
-              "dockerfile": "src/ubuntu/20.04/webassembly-net8",
+              "dockerfile": "src/ubuntu/20.04/webassembly-net8/amd64",
               "os": "linux",
               "osVersion": "focal",
               "tags": {
@@ -810,7 +810,7 @@
         {
           "platforms": [
             {
-              "dockerfile": "src/ubuntu/22.04/debpkg",
+              "dockerfile": "src/ubuntu/22.04/debpkg/amd64",
               "os": "linux",
               "osVersion": "jammy",
               "tags": {
@@ -824,7 +824,7 @@
           "platforms": [
             {
               "architecture": "amd64",
-              "dockerfile": "src/ubuntu/22.04/helix/webassembly",
+              "dockerfile": "src/ubuntu/22.04/helix/webassembly/amd64",
               "os": "linux",
               "osVersion": "jammy",
               "tags": {

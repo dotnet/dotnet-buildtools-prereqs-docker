@@ -6,7 +6,7 @@
         {
           "platforms": [
             {
-              "dockerfile": "src/azurelinux/3.0/crossdeps-net8.0",
+              "dockerfile": "src/azurelinux/3.0/crossdeps-net8.0/amd64",
               "os": "linux",
               "osVersion": "azurelinux3.0",
               "tags": {
@@ -22,7 +22,7 @@
         {
           "platforms": [
             {
-              "dockerfile": "src/azurelinux/3.0/crossdeps-net9.0",
+              "dockerfile": "src/azurelinux/3.0/crossdeps-net9.0/amd64",
               "os": "linux",
               "osVersion": "azurelinux3.0",
               "tags": {
@@ -38,7 +38,7 @@
         {
           "platforms": [
             {
-              "dockerfile": "src/azurelinux/3.0/crossdeps-builder-net8.0",
+              "dockerfile": "src/azurelinux/3.0/crossdeps-builder-net8.0/amd64",
               "os": "linux",
               "osVersion": "azurelinux3.0",
               "tags": {
@@ -54,7 +54,7 @@
         {
           "platforms": [
             {
-              "dockerfile": "src/azurelinux/3.0/crossdeps-llvm-net8.0",
+              "dockerfile": "src/azurelinux/3.0/crossdeps-llvm-net8.0/amd64",
               "os": "linux",
               "osVersion": "azurelinux3.0",
               "tags": {
@@ -173,7 +173,7 @@
         {
           "platforms": [
             {
-              "dockerfile": "src/azurelinux/3.0/crossdeps-builder-net9.0",
+              "dockerfile": "src/azurelinux/3.0/crossdeps-builder-net9.0/amd64",
               "os": "linux",
               "osVersion": "azurelinux3.0",
               "tags": {
@@ -189,7 +189,7 @@
         {
           "platforms": [
             {
-              "dockerfile": "src/azurelinux/3.0/crossdeps-llvm-net9.0",
+              "dockerfile": "src/azurelinux/3.0/crossdeps-llvm-net9.0/amd64",
               "os": "linux",
               "osVersion": "azurelinux3.0",
               "tags": {
