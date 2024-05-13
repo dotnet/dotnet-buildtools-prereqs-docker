@@ -1,4 +1,4 @@
-FROM ubuntu.azurecr.io18.04
+FROM ubuntu.azurecr.io/ubuntu:18.04
 
 # Install the base toolchain we need to build anything (clang, cmake, make and the like).
 RUN apt-get update \
