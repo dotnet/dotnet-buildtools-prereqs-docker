@@ -10,7 +10,7 @@
           },
           "platforms": [
             {
-              "dockerfile": "src/cbl-mariner/2.0/docker-testrunner/amd64",
+              "dockerfile": "src/cbl-mariner/2.0/docker-testrunner",
               "os": "linux",
               "osVersion": "cbl-mariner2.0",
               "tags": {
@@ -20,7 +20,7 @@
             },
             {
               "architecture": "arm64",
-              "dockerfile": "src/cbl-mariner/2.0/docker-testrunner/amd64",
+              "dockerfile": "src/cbl-mariner/2.0/docker-testrunner",
               "os": "linux",
               "osVersion": "cbl-mariner2.0",
               "tags": {
