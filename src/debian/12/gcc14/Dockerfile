@@ -1,4 +1,4 @@
-FROM gcc:13-bookworm
+FROM gcc:14-bookworm
 
 # Dependencies for dotnet/runtime native components.
 RUN apt-get update && \
@@ -25,7 +25,7 @@ RUN apt-get update && \
 
 ENV LANG=en_US.utf8
 
-# These symlinks are required because this docker has gcc-12 suffixed with version and gcc-13 unsuffixed in PATH.
+# These symlinks are required because this docker has gcc-12 suffixed with version and gcc-14 unsuffixed in PATH.
 # In the runtime repo, we (by design) give precedence to suffixed compilers before selecting unsuffixed one in PATH.
-RUN ln -s $(command -v gcc) /usr/bin/gcc-13 && \
-    ln -s $(command -v g++) /usr/bin/g++-13
+RUN ln -s $(command -v gcc) /usr/bin/gcc-14 && \
+    ln -s $(command -v g++) /usr/bin/g++-14
