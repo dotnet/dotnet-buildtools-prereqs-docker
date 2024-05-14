@@ -30,9 +30,10 @@ RUN apt-get update \
 # .NET SDK MSBuild requires US.UTF-8 locale to execute tasks
 RUN locale-gen en_US.UTF-8
 
-# Install Azure CLI
-RUN curl -L -o azure-cli_focal_all.deb https://aka.ms/InstallAzureCliFocalEdge \
-    && dpkg -i azure-cli_focal_all.deb
+# Install Azure CLI - https://learn.microsoft.com/en-us/cli/azure/install-azure-cli-linux?pivots=apt#option-1-install-with-one-command
+RUN curl -sL https://aka.ms/InstallAzureCLIDeb | bash \
+    # Install script does apt-get update and install, so we need to clean up after it.
+    && rm -rf /var/lib/apt/lists/*
 
 # Runtime dependencies
 RUN apt-get update \
