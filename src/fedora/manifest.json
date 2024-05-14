@@ -40,6 +40,17 @@
               "fedora-39$(FloatingTagSuffix)": {}
             }
           }]
+        },
+        {
+          "platforms": [{
+            "dockerfile": "src/fedora/40/amd64",
+            "os": "linux",
+            "osVersion": "fedora40",
+            "tags": {
+              "fedora-40-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
+              "fedora-40$(FloatingTagSuffix)": {}
+            }
+          }]
         }
       ]
     }
