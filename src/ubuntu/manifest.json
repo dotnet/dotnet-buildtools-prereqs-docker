@@ -458,6 +458,34 @@
               "variant": "v8"
             }
           ]
+        },
+        {
+          "platforms": [
+            {
+              "dockerfile": "src/ubuntu/24.04",
+              "os": "linux",
+              "osVersion": "noble",
+              "tags": {
+                "ubuntu-24.04-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
+                "ubuntu-24.04$(FloatingTagSuffix)": {}
+              }
+            }
+          ]
+        },
+        {
+          "platforms": [
+            {
+              "architecture": "arm64",
+              "dockerfile": "src/ubuntu/24.04",
+              "os": "linux",
+              "osVersion": "noble",
+              "tags": {
+                "ubuntu-24.04-arm64-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
+                "ubuntu-24.04-arm64$(FloatingTagSuffix)": {}
+              },
+              "variant": "v8"
+            }
+          ]
         }
       ]
     }
