@@ -6,7 +6,7 @@
         {
           "platforms": [
             {
-              "dockerfile": "src/azurelinux/3.0/net8.0/crossdeps",
+              "dockerfile": "src/azurelinux/3.0/net8.0/crossdeps/amd64",
               "os": "linux",
               "osVersion": "azurelinux3.0",
               "tags": {
@@ -22,7 +22,7 @@
         {
           "platforms": [
             {
-              "dockerfile": "src/azurelinux/3.0/net9.0/crossdeps",
+              "dockerfile": "src/azurelinux/3.0/net9.0/crossdeps/amd64",
               "os": "linux",
               "osVersion": "azurelinux3.0",
               "tags": {
@@ -38,7 +38,7 @@
         {
           "platforms": [
             {
-              "dockerfile": "src/azurelinux/3.0/net8.0/crossdeps-builder",
+              "dockerfile": "src/azurelinux/3.0/net8.0/crossdeps-builder/amd64",
               "os": "linux",
               "osVersion": "azurelinux3.0",
               "tags": {
@@ -54,7 +54,7 @@
         {
           "platforms": [
             {
-              "dockerfile": "src/azurelinux/3.0/net8.0/crossdeps-llvm",
+              "dockerfile": "src/azurelinux/3.0/net8.0/crossdeps-llvm/amd64",
               "os": "linux",
               "osVersion": "azurelinux3.0",
               "tags": {
@@ -173,7 +173,7 @@
         {
           "platforms": [
             {
-              "dockerfile": "src/azurelinux/3.0/net9.0/crossdeps-builder",
+              "dockerfile": "src/azurelinux/3.0/net9.0/crossdeps-builder/amd64",
               "os": "linux",
               "osVersion": "azurelinux3.0",
               "tags": {
@@ -189,7 +189,7 @@
         {
           "platforms": [
             {
-              "dockerfile": "src/azurelinux/3.0/net9.0/crossdeps-llvm",
+              "dockerfile": "src/azurelinux/3.0/net9.0/crossdeps-llvm/amd64",
               "os": "linux",
               "osVersion": "azurelinux3.0",
               "tags": {
@@ -212,6 +212,22 @@
                 "azurelinux-3.0-cross-amd64-net9.0-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
                 "azurelinux-3.0-cross-amd64-net9.0$(FloatingTagSuffix)": {},
                 "azurelinux-3.0-cross-amd64-net9.0-local": {
+                  "isLocal": true
+                }
+              }
+            }
+          ]
+        },
+        {
+          "platforms": [
+            {
+              "dockerfile": "src/azurelinux/3.0/net9.0/cross/amd64-sanitizer",
+              "os": "linux",
+              "osVersion": "azurelinux3.0",
+              "tags": {
+                "azurelinux-3.0-cross-amd64-net9.0-sanitizer-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
+                "azurelinux-3.0-cross-amd64-net9.0-sanitizer$(FloatingTagSuffix)": {},
+                "azurelinux-3.0-cross-amd64-net9.0-sanitizer-local": {
                   "isLocal": true
                 }
               }

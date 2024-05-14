@@ -1,4 +1,4 @@
-FROM arm64v8/ubuntu:22.04
+FROM ubuntu.azurecr.io/ubuntu:22.04
 
 RUN apt-get update \
     && apt-get install -y sudo \

@@ -5,39 +5,23 @@
       "images": [
         {
           "platforms": [{
-            "dockerfile": "src/fedora/38/amd64",
-            "os": "linux",
-            "osVersion": "fedora38",
-            "tags": {
-              "fedora-38-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
-              "fedora-38$(FloatingTagSuffix)": {},
-              "fedora-38-local": {
-                "isLocal": true
-              }
-            }
-          }]
-        },
-        {
-          "platforms": [
-            {
-              "dockerfile": "src/fedora/38/helix/amd64",
-              "os": "linux",
-              "osVersion": "fedora38",
-              "tags": {
-                "fedora-38-helix-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
-                "fedora-38-helix$(FloatingTagSuffix)": {}
-              }
-            }
-          ]
-        },
-        {
-          "platforms": [{
             "dockerfile": "src/fedora/39/amd64",
             "os": "linux",
             "osVersion": "fedora39",
             "tags": {
               "fedora-39-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
               "fedora-39$(FloatingTagSuffix)": {}
+            }
+          }]
+        },
+        {
+          "platforms": [{
+            "dockerfile": "src/fedora/40/amd64",
+            "os": "linux",
+            "osVersion": "fedora40",
+            "tags": {
+              "fedora-40-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
+              "fedora-40$(FloatingTagSuffix)": {}
             }
           }]
         }
