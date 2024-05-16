@@ -5,8 +5,8 @@ FROM ubuntu.azurecr.io/ubuntu:24.04
 # them in a different layer.
 RUN apt-get update \
     && apt-get install -y \
-        cmake \
         clang-14 \
+        cmake \
         gdb \
         liblldb-14-dev \
         lldb-14 \
