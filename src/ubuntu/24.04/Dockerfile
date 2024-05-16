@@ -23,10 +23,10 @@ RUN mkdir -p /usr/lib/local/lib/python3.10/dist-packages/lldb \
 # Install tools used by the VSO build automation.
 RUN apt-get update \
     && apt-get install -y \
+        curl \
         git \
         npm \
         zip \
-        curl \
     && rm -rf /var/lib/apt/lists/*
 
 # .NET SDK MSBuild requires US.UTF-8 locale to execute tasks
