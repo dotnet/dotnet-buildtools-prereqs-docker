@@ -10,6 +10,7 @@ RUN tdnf install -y \
         moby-buildx \
         moby-cli \
         # Test dependencies
+        azure-cli \
         git \
         powershell \
     && tdnf clean all
