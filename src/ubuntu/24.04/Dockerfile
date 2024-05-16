@@ -37,8 +37,8 @@ RUN apt-get update \
     && apt-get install -y \
         autoconf \
         automake \
-        curl \
         build-essential \
+        curl \
         gettext \
         jq \
         libgdiplus \
