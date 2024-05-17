@@ -6,7 +6,7 @@ ARG ROOTFS_DIR=/crossrootfs/x64
 RUN /scripts/eng/common/cross/build-rootfs.sh x64 bionic --skipunmount
 
 RUN TARGET_TRIPLE="x86_64-linux-gnu" && \
-    CLANG_MAJOR_VERSION=$(clang --version | grep -oP "(?<=version )\d+") && \
+    CLANG_VERSION=$(clang --version | grep -oP "(?<=version )[0-9.]+") && \
     cmake -S llvm-project.src/runtimes -B runtimes \
         -DCMAKE_BUILD_TYPE=Release \
         -DCMAKE_ASM_COMPILER=clang \
@@ -35,7 +35,7 @@ RUN TARGET_TRIPLE="x86_64-linux-gnu" && \
         # so skip it here.
         -DCOMPILER_RT_BUILD_LIBFUZZER=OFF \
         -DCOMPILER_RT_DEFAULT_TARGET_ONLY=ON \
-        -DCOMPILER_RT_INSTALL_PATH="/usr/local/lib/clang/$CLANG_MAJOR_VERSION" && \
+        -DCOMPILER_RT_INSTALL_PATH="/usr/local/lib/clang/$CLANG_VERSION" && \
     cmake --build runtimes -j && \
     cmake --install runtimes --prefix "$ROOTFS_DIR/usr"
 
@@ -47,7 +47,6 @@ COPY --from=builder $ROOTFS_DIR $ROOTFS_DIR
 
 # Compat with dotnet/runtime's custom resource dir override for PGO and sanitizer builds:
 # Once we update dotnet/runtime to not override the resource directory, we can remove this step.
-RUN CLANG_VERSION=$(clang --version | grep -oP "(?<=version )[0-9.]+") &&  \
-    CLANG_MAJOR_VERSION=$(echo $CLANG_VERSION | grep -oP "\d+" | head -1) && \
-    mkdir -p "$ROOTFS_DIR/usr/lib/llvm-$CLANG_VERSION/lib" && \
-    cp -R /usr/local/lib/clang "$ROOTFS_DIR/usr/lib/llvm-$CLANG_VERSION/lib/clang" 
+RUN CLANG_MAJOR_VERSION=$(clang --version | grep -oP "(?<=version )\d+") && \
+    mkdir -p "$ROOTFS_DIR/usr/lib/llvm-$CLANG_MAJOR_VERSION/lib" && \
+    cp -R /usr/local/lib/clang "$ROOTFS_DIR/usr/lib/llvm-$CLANG_MAJOR_VERSION/lib/clang" 
