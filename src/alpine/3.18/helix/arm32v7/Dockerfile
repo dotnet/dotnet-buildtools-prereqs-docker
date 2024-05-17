@@ -19,7 +19,7 @@ RUN git clone --depth 1 --single-branch --branch v2.3.5 --recursive https://gith
 
 WORKDIR /tmp/msquic
 
-RUN cmake -B build/linux/x64_openssl \
+RUN cmake -B build/linux/arm_Release_openssl \
        -DQUIC_OUTPUT_DIR=/tmp/msquic/artifacts/bin/linux/arm_Release_openssl3 \
        -DCMAKE_BUILD_TYPE=Release \
        -DCMAKE_TARGET_ARCHITECTURE=arm64 \
