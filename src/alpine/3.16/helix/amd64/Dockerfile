@@ -87,7 +87,7 @@ RUN ln -sf /usr/bin/python3 /usr/bin/python && \
     pip download --no-deps helix-scripts --index-url https://dnceng.pkgs.visualstudio.com/public/_packaging/helix-client-prod/pypi/simple && \
     pip install ./helix_scripts-*-py3-none-any.whl
 
-# Copy msquic from the msquic into our image that will run on Helix
+# Copy msquic from the msquic image into our image that will run on Helix
 COPY --from=msquic /msquic /
 
 # Needed for corefx tests to pass

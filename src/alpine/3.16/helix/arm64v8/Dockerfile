@@ -72,7 +72,7 @@ RUN apk update && apk add --no-cache && \
         python3-dev \
         openssl-dev
 
-# Copy msquic from the msquic into our image that will run on Helix
+# Copy msquic from the msquic image into our image that will run on Helix
 COPY --from=msquic /msquic /
 
 # Needed for runtime tests to pass
