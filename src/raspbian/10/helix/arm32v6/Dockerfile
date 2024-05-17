@@ -1,5 +1,7 @@
 FROM mcr.microsoft.com/dotnet-buildtools/prereqs:raspbian-10-crossdeps-local as builder
 
+ARG ROOTFS_DIR=/crossrootfs
+
 # Obtain arcade scripts used to build rootfs
 RUN git config --global user.email builder@dotnet-buildtools-prereqs-docker && \
     git clone --depth 1 --single-branch https://github.com/dotnet/arcade /scripts
@@ -13,7 +15,7 @@ FROM scratch
 # But we can use a crossrootfs from our image generation scripts, and
 # extract into the image root
 
-COPY --from=builder /crossrootfs/armv6 /
+COPY --from=builder /crossrootfs /
 
 ENV _PYTHON_HOST_PLATFORM=linux_armv6l
 

@@ -1,4 +1,5 @@
 FROM mcr.microsoft.com/dotnet-buildtools/prereqs:ubuntu-22.04-crossdeps-local AS builder
+ARG ROOTFS_DIR=/crossrootfs/arm
 
 # Obtain arcade scripts used to build rootfs
 RUN git config --global user.email builder@dotnet-buildtools-prereqs-docker && \
