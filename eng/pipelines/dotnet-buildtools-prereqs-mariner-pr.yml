@@ -25,5 +25,8 @@ stages:
     internalProjectName: ${{ variables.internalProjectName }}
     publicProjectName: ${{ variables.publicProjectName }}
     linuxAmdBuildJobTimeout: 360
+    linuxAmd64Pool:
+      name: NetCore-Public-XL
+      demands: ImageOverride -equals build.Ubuntu.2204.amd64.open
     customBuildInitSteps:
     - template: /eng/pipelines/steps/install-cross-build-prereqs.yml

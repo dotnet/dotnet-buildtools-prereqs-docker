@@ -6,6 +6,7 @@ parameters:
   linuxArmBuildJobTimeout: 60
   customBuildInitSteps: []
   customCopyBaseImagesInitSteps: []
+  linuxAmd64Pool: ''
 
 stages:
 - template: /eng/common/templates/stages/dotnet/build-test-publish-repo.yml@self
@@ -14,10 +15,12 @@ stages:
     internalProjectName: ${{ parameters.internalProjectName }}
     publicProjectName: ${{ parameters.publicProjectName }}
 
-    ${{ if eq(variables['System.TeamProject'], parameters.publicProjectName) }}:
+    ${{ if and(eq(variables['System.TeamProject'], parameters.publicProjectName), eq(parameters.linuxAmd64Pool, ''))}}:
       linuxAmd64Pool:
         name: NetCore-Public
         demands: ImageOverride -equals build.ubuntu.2204.amd64.open
+    ${{ else }}:
+      linuxAmd64Pool: ${{ parameters.linuxAmd64Pool }}
 
     linuxAmdBuildJobTimeout: ${{ parameters.linuxAmdBuildJobTimeout }}
     linuxArmBuildJobTimeout: ${{ parameters.linuxArmBuildJobTimeout }}
