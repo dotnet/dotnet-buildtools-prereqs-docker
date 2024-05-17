@@ -1,5 +1,11 @@
-# dummy F R O M to establish a dependency
-FROM mcr.microsoft.com/dotnet-buildtools/prereqs:raspbian-10-crossdeps-local
+FROM mcr.microsoft.com/dotnet-buildtools/prereqs:raspbian-10-crossdeps-local as builder
+
+# Obtain arcade scripts used to build rootfs
+RUN git config --global user.email builder@dotnet-buildtools-prereqs-docker && \
+    git clone --depth 1 --single-branch https://github.com/dotnet/arcade /scripts
+
+# Build the rootfs
+RUN /scripts/eng/common/cross/build-rootfs.sh armv6 raspbian --skipunmount
 
 FROM scratch
 
@@ -7,7 +13,7 @@ FROM scratch
 # But we can use a crossrootfs from our image generation scripts, and
 # extract into the image root
 
-ADD rootfs.armv6.tar /
+COPY --from=builder /crossrootfs/armv6 /
 
 ENV _PYTHON_HOST_PLATFORM=linux_armv6l
 
