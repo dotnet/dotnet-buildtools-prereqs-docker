@@ -19,18 +19,18 @@ RUN git clone --depth 1 --single-branch --branch v2.3.5 --recursive https://gith
 
 WORKDIR /tmp/msquic
 
-RUN cmake -B build/linux/arm64_Release_openssl \
-       -DQUIC_OUTPUT_DIR=/tmp/msquic/artifacts/bin/linux/arm64_Release_openssl \
+RUN cmake -B build/linux/arm64_Release_openssl3 \
+       -DQUIC_OUTPUT_DIR=/tmp/msquic/artifacts/bin/linux/arm64_Release_openssl3 \
        -DCMAKE_BUILD_TYPE=Release \
        -DCMAKE_TARGET_ARCHITECTURE=arm64 \
-       -DQUIC_TLS=openssl \
+       -DQUIC_TLS=openssl3 \
        -DQUIC_ENABLE_LOGGING=true \
        -DQUIC_USE_SYSTEM_LIBCRYPTO=true \
        -DQUIC_BUILD_TOOLS=off \
        -DQUIC_BUILD_TEST=off \
        -DQUIC_BUILD_PERF=off && \
-    cmake --build build/linux/arm64_Release_openssl  --config Release && \
-    cmake --install build/linux/arm64_Release_openssl --prefix /msquic
+    cmake --build build/linux/arm64_Release_openssl3  --config Release && \
+    cmake --install build/linux/arm64_Release_openssl3 --prefix /msquic
 
 FROM arm64v8/alpine:3.18
 # Install .NET and test dependencies
