@@ -6,7 +6,7 @@
         {
           "platforms": [
             {
-              "dockerfile": "src/azurelinux/3.0/android",
+              "dockerfile": "src/azurelinux/3.0/net9.0/android",
               "os": "linux",
               "osVersion": "azurelinux3.0",
               "tags": {
@@ -22,7 +22,7 @@
         {
           "platforms": [
             {
-              "dockerfile": "src/azurelinux/3.0/cross/android/amd64",
+              "dockerfile": "src/azurelinux/3.0/net9.0/cross/android/amd64",
               "os": "linux",
               "osVersion": "azurelinux3.0",
               "tags": {
@@ -35,7 +35,7 @@
         {
           "platforms": [
             {
-              "dockerfile": "src/azurelinux/3.0/android/docker",
+              "dockerfile": "src/azurelinux/3.0/net9.0/android/docker",
               "os": "linux",
               "osVersion": "azurelinux3.0",
               "tags": {
@@ -215,7 +215,7 @@
         {
           "platforms": [
             {
-              "dockerfile": "src/azurelinux/3.0/cross/s390x",
+              "dockerfile": "src/azurelinux/3.0/net9.0/cross/s390x",
               "os": "linux",
               "osVersion": "azurelinux3.0",
               "tags": {
@@ -228,7 +228,7 @@
         {
           "platforms": [
             {
-              "dockerfile": "src/azurelinux/3.0/cross/ppc64le",
+              "dockerfile": "src/azurelinux/3.0/net9.0/cross/ppc64le",
               "os": "linux",
               "osVersion": "azurelinux3.0",
               "tags": {
@@ -241,7 +241,7 @@
         {
           "platforms": [
             {
-              "dockerfile": "src/azurelinux/3.0/fpm/amd64",
+              "dockerfile": "src/azurelinux/3.0/net9.0/fpm/amd64",
               "os": "linux",
               "osVersion": "azurelinux3.0",
               "tags": {
