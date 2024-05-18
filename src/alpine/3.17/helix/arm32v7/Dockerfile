@@ -22,7 +22,7 @@ WORKDIR /tmp/msquic
 RUN cmake -B build/linux/arm_Release_openssl3 \
        -DQUIC_OUTPUT_DIR=/tmp/msquic/artifacts/bin/linux/arm_Release_openssl3 \
        -DCMAKE_BUILD_TYPE=Release \
-       -DCMAKE_TARGET_ARCHITECTURE=arm64 \
+       -DCMAKE_TARGET_ARCHITECTURE=arm \
        -DQUIC_TLS=openssl3 \
        -DQUIC_ENABLE_LOGGING=true \
        -DQUIC_USE_SYSTEM_LIBCRYPTO=true \
