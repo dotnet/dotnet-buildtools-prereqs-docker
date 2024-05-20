@@ -21,6 +21,10 @@ extends:
         publicProjectName: ${{ variables.publicProjectName }}
         linuxAmdBuildJobTimeout: 480
         linuxArmBuildJobTimeout: 300
+        linuxAmd64Pool:
+          name: NetCore1ESPool-Internal-XL
+          image: 1es-ubuntu-2204
+          os: linux
         ${{ if eq(variables['System.TeamProject'], 'internal') }}:
           customCopyBaseImagesInitSteps:
           - template: /eng/pipelines/steps/set-base-image-override-options.yml@self
