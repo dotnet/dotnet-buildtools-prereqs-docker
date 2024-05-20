@@ -10,12 +10,13 @@ RUN git config --global user.email builder@dotnet-buildtools-prereqs-docker && \
 RUN /scripts/eng/common/cross/build-rootfs.sh armv6 raspbian --skipunmount
 
 FROM scratch
+ARG ROOTFS_DIR=/crossrootfs
 
 # There doesn't seem to be an official Raspberry Pi OS Docker image
 # But we can use a crossrootfs from our image generation scripts, and
 # extract into the image root
 
-COPY --from=builder /crossrootfs /
+COPY --from=builder $ROOTFS_DIR /
 
 ENV _PYTHON_HOST_PLATFORM=linux_armv6l
 
