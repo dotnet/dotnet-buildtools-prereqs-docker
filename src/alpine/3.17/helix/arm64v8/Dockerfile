@@ -1,37 +1,3 @@
-FROM arm64v8/alpine:3.17 as msquic
-
-# build MsQuic as we don't have packages
-RUN apk update && apk add --no-cache && \
-    apk add \
-        cmake \
-        g++ \
-        gcc \
-        git \
-        numactl-dev \
-        linux-headers \
-        lttng-ust-dev \
-        make \
-        musl-dev \
-        openssl-dev \
-        perl
-
-RUN git clone --depth 1 --single-branch --branch v2.3.5 --recursive https://github.com/microsoft/msquic /tmp/msquic
-
-WORKDIR /tmp/msquic
-
-RUN cmake -B build/linux/arm64_Release_openssl3 \
-       -DQUIC_OUTPUT_DIR=/tmp/msquic/artifacts/bin/linux/arm64_Release_openssl3 \
-       -DCMAKE_BUILD_TYPE=Release \
-       -DCMAKE_TARGET_ARCHITECTURE=arm64 \
-       -DQUIC_TLS=openssl3 \
-       -DQUIC_ENABLE_LOGGING=true \
-       -DQUIC_USE_SYSTEM_LIBCRYPTO=true \
-       -DQUIC_BUILD_TOOLS=off \
-       -DQUIC_BUILD_TEST=off \
-       -DQUIC_BUILD_PERF=off && \
-    cmake --build build/linux/arm64_Release_openssl3  --config Release && \
-    cmake --install build/linux/arm64_Release_openssl3 --prefix /msquic
-
 FROM arm64v8/alpine:3.17
 # Install .NET and test dependencies
 RUN apk update && apk add --no-cache \
@@ -72,8 +38,47 @@ RUN apk update && apk add --no-cache && \
         python3-dev \
         openssl-dev
 
-# Copy msquic from the msquic image into our image that will run on Helix
-COPY --from=msquic /msquic /
+# build MsQuic as we don't have Alpine packages (yet)
+RUN apk update && apk add --no-cache && \
+    apk add \
+        cmake \
+        g++ \
+        gcc \
+        git \
+        numactl-dev \
+        linux-headers \
+        lttng-ust-dev \
+        make \
+        musl-dev \
+        openssl-dev \
+        perl && \
+    cd /tmp && \
+    git clone --depth 1 --single-branch --branch v2.3.5 --recursive https://github.com/microsoft/msquic && \
+    cd msquic && \
+    cmake -B build/linux/arm64_openssl3 \
+       -DQUIC_OUTPUT_DIR=/tmp/msquic/artifacts/bin/linux/arm64_Release_openssl3 \
+       -DCMAKE_BUILD_TYPE=Release \
+       -DCMAKE_TARGET_ARCHITECTURE=arm64 \
+       -DQUIC_TLS=openssl3 \
+       -DQUIC_ENABLE_LOGGING=true \
+       -DQUIC_USE_SYSTEM_LIBCRYPTO=true \
+       -DQUIC_BUILD_TOOLS=off \
+       -DQUIC_BUILD_TEST=off \
+       -DQUIC_BUILD_PERF=off && \
+    cmake --build build/linux/arm64_openssl3  --config Release && \
+    cp artifacts/bin/linux/arm64_Release_openssl3/libmsquic.so.* artifacts/bin/linux/arm64_Release_openssl3/libmsquic.lttng.so.* /usr/lib && \
+    rm -rf /tmp/msquic && \
+    apk del \
+        cmake \
+        g++ \
+        gcc \
+        git \
+        linux-headers \
+        lttng-ust-dev \
+        make \
+        musl-dev \
+        openssl-dev \
+        perl
 
 # Needed for runtime tests to pass
 ENV LANG=en-US.UTF-8
