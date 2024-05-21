@@ -75,7 +75,7 @@ RUN apk update && apk add --no-cache && \
         openssl-dev
 
 # Copy msquic from the msquic image into our image that will run on Helix
-COPY --from=msquic /msquic /
+COPY --from=msquic /msquic /usr
 
 # Needed for runtime tests to pass
 ENV LANG=en-US.UTF-8

@@ -88,7 +88,7 @@ RUN ln -sf /usr/bin/python3 /usr/bin/python && \
     pip install ./helix_scripts-*-py3-none-any.whl
 
 # Copy msquic from the msquic image into our image that will run on Helix
-COPY --from=msquic /msquic /
+COPY --from=msquic /msquic /usr
 
 # Needed for corefx tests to pass
 ENV LANG=en-US.UTF-8
