@@ -46,6 +46,7 @@ RUN apk update && apk add --no-cache \
     llvm \
     lttng-ust \
     musl-locales \
+    numactl \
     openssl \
     python3 \
     sudo \
