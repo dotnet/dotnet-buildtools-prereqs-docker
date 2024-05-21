@@ -57,8 +57,14 @@ RUN dnf install --setopt tsflags=nodocs --refresh -y \
         wget \
         which \
         xz \
-        zlib-devel \
-    && \
+        zlib-devel
+
+# Install powershell and the azure cli from the Microsoft repository
+RUN curl -sSL -O https://packages.microsoft.com/config/rhel/8/packages-microsoft-prod.rpm && \
+    rpm -i packages-microsoft-prod.rpm && \
+    rm -f packages-microsoft-prod.rpm && \
+    dnf update && \
+    dnf install -y --setopt tsflags=nodocs powershell azure-cli && \
     dnf clean all
 
 ENV NO_UPDATE_NOTIFIER=true
