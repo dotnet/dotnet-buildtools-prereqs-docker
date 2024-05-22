@@ -5,7 +5,6 @@ RUN tdnf update -y \
     && tdnf install -y \
         # Common dependencies
         binutils \
-        clang16 \
         # Android dependencies
         zip \
         unzip \
