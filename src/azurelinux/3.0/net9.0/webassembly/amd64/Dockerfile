@@ -8,7 +8,10 @@ RUN tdnf update -y \
         nodejs \
         python3 \
         libxml2 \
-        unzip
+        unzip && \
+    # Temporary workaround
+    tdnf remove -y \
+        symcrypt-openssl
 
 # WebAssembly build needs typescript
 RUN npm i -g typescript
