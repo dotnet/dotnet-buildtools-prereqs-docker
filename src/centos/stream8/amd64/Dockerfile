@@ -64,7 +64,9 @@ RUN curl -sSL -O https://packages.microsoft.com/config/rhel/8/packages-microsoft
     rpm -i packages-microsoft-prod.rpm && \
     rm -f packages-microsoft-prod.rpm && \
     dnf update -y && \
-    dnf install -y --setopt tsflags=nodocs powershell azure-cli && \
+    dnf install -y --setopt tsflags=nodocs \
+        azure-cli \
+        powershell && \
     dnf clean all
 
 ENV NO_UPDATE_NOTIFIER=true
