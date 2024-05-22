@@ -57,6 +57,16 @@ RUN dnf install --setopt tsflags=nodocs --refresh -y \
     && \
     dnf clean all
 
+# Install powershell and the azure cli from the Microsoft repository
+RUN curl -sSL -O https://packages.microsoft.com/config/rhel/8/packages-microsoft-prod.rpm && \
+    rpm -i packages-microsoft-prod.rpm && \
+    rm -f packages-microsoft-prod.rpm && \
+    dnf update -y && \
+    dnf install -y --setopt tsflags=nodocs \
+        azure-cli \
+        powershell && \
+    dnf clean all
+
 ENV \
     NO_UPDATE_NOTIFIER=true \
     # Sha1 is disabled by default centos:stream9 but sevaral CI jobs still rely on it.

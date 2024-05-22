@@ -28,5 +28,9 @@ extends:
         internalProjectName: ${{ variables.internalProjectName }}
         publicProjectName: ${{ variables.publicProjectName }}
         linuxAmdBuildJobTimeout: 480
+        linuxAmd64Pool:
+          name: NetCore1ESPool-Internal-XL
+          image: 1es-ubuntu-2204
+          os: linux
         customBuildInitSteps:
         - template: /eng/pipelines/steps/install-cross-build-prereqs.yml@self
