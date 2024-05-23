@@ -42,10 +42,3 @@ ARG ROOTFS_DIR=/crossrootfs/x64
 
 COPY --from=builder /usr/local/lib/clang /usr/local/lib/clang/
 COPY --from=builder $ROOTFS_DIR $ROOTFS_DIR
-
-# Compat with dotnet/runtime's custom resource dir override for PGO and sanitizer builds:
-# Once we update dotnet/runtime to not override the resource directory, we can remove this step.
-RUN CLANG_VERSION=$(clang --version | grep -oP "(?<=version )[0-9.]+") &&  \
-    CLANG_MAJOR_VERSION=$(echo $CLANG_VERSION | grep -oP "\d+" | head -1) && \
-    mkdir -p "$ROOTFS_DIR/usr/lib/llvm-$CLANG_VERSION/lib" && \
-    cp -R /usr/local/lib/clang "$ROOTFS_DIR/usr/lib/llvm-$CLANG_VERSION/lib/clang" 
