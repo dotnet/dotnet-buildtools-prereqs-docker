@@ -6,7 +6,10 @@ pr:
   paths:
     exclude:
     - src/*
-    - README.md
+    - *.md
+    - .git*
+    - CODEOWNERS
+    - LICENSE
 
 resources:
   repositories:
