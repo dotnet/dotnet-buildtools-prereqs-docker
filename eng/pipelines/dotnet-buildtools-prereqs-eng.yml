@@ -6,7 +6,7 @@ pr:
   paths:
     exclude:
     - src/*
-    - *.md
+    - "*.md"
     - .git*
     - CODEOWNERS
     - LICENSE
