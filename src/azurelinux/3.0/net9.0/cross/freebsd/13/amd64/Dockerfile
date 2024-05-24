@@ -1,6 +1,14 @@
 FROM mcr.microsoft.com/dotnet-buildtools/prereqs:azurelinux-3.0-crossdeps-builder-net9.0-local AS builder
 ARG ROOTFS_DIR=/crossrootfs/x64
 
+# Install packages needed by the FreeBSD bootstrap scripts
+RUN tdnf install -y \
+    awk \
+    m4 && \
+    # The xz package in Azure Linux 3.0 doesn't provide liblzma.so, so we need to create a symlink to liblzma.so.5
+    # so the FreeBSD bootstrap can find it. See https://github.com/microsoft/azurelinux/issues/9217
+    ln -s /usr/lib/liblzma.so.5 /usr/lib/liblzma.so
+
 RUN /scripts/eng/common/cross/build-rootfs.sh freebsd13 x64
 
 FROM mcr.microsoft.com/dotnet-buildtools/prereqs:azurelinux-3.0-crossdeps-llvm-net9.0-local
