@@ -3,4 +3,7 @@ FROM mcr.microsoft.com/dotnet-buildtools/prereqs:azurelinux-3.0-android-net9.0-l
 RUN tdnf update -y \
     && tdnf install -y \
         moby-engine \
-        moby-cli
+        moby-cli && \
+    # Temporary workaround
+    tdnf remove -y \
+        symcrypt-openssl
