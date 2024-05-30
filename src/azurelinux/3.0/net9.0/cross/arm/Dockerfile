@@ -1,5 +1,7 @@
-FROM mcr.microsoft.com/dotnet-buildtools/prereqs:azurelinux-3.0-crossdeps-builder-net9.0-local AS builder
 ARG ROOTFS_DIR=/crossrootfs/arm
+
+FROM mcr.microsoft.com/dotnet-buildtools/prereqs:azurelinux-3.0-crossdeps-builder-net9.0-local AS builder
+ARG ROOTFS_DIR
 
 # The arm rootfs targets Ubuntu 22.04, which is the first version with a
 # glibc that supports 64-bit time_t. See https://github.com/dotnet/core/discussions/9285.
@@ -40,7 +42,7 @@ RUN TARGET_TRIPLE="arm-linux-gnueabihf" && \
     cmake --install runtimes --prefix "$ROOTFS_DIR/usr"
 
 FROM mcr.microsoft.com/dotnet-buildtools/prereqs:azurelinux-3.0-crossdeps-llvm-net9.0-local
-ARG ROOTFS_DIR=/crossrootfs/arm
+ARG ROOTFS_DIR
 
 COPY --from=builder /usr/local/lib/clang /usr/local/lib/clang/
 COPY --from=builder $ROOTFS_DIR $ROOTFS_DIR

@@ -1,6 +1,8 @@
+ARG ROOTFS_DIR=/crossrootfs/riscv64
+
 FROM mcr.microsoft.com/dotnet-buildtools/prereqs:ubuntu-22.04-crossdeps-local as builder
 
-ARG ROOTFS_DIR=/crossrootfs/riscv64
+ARG ROOTFS_DIR
 
 # Obtain arcade scripts used to build rootfs
 RUN git config --global user.email builder@dotnet-buildtools-prereqs-docker && \
@@ -30,6 +32,6 @@ RUN cd /tmp \
     && cd .. \
     && rm -r *
 
-ARG ROOTFS_DIR=/crossrootfs/riscv64
+ARG ROOTFS_DIR
 
 COPY --from=builder $ROOTFS_DIR $ROOTFS_DIR

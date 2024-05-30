@@ -1,5 +1,7 @@
-FROM mcr.microsoft.com/dotnet-buildtools/prereqs:cbl-mariner-2.0-crossdeps-builder-local AS builder
 ARG ROOTFS_DIR=/crossrootfs/x86
+
+FROM mcr.microsoft.com/dotnet-buildtools/prereqs:cbl-mariner-2.0-crossdeps-builder-local AS builder
+ARG ROOTFS_DIR
 
 RUN /scripts/eng/common/cross/build-rootfs.sh x86 bionic --skipunmount
 
@@ -42,7 +44,7 @@ RUN LLVM_VERSION=16.0.0 LLVM_VERSION_MAJOR="${LLVM_VERSION%%.*}" SANITIZER_RUNTI
 
 
 FROM mcr.microsoft.com/dotnet-buildtools/prereqs:cbl-mariner-2.0-crossdeps-llvm-local
-ARG ROOTFS_DIR=/crossrootfs/x86
+ARG ROOTFS_DIR
 ARG LLVM_VERSION_MAJOR=16
 
 COPY --from=builder $ROOTFS_DIR $ROOTFS_DIR
