@@ -7,17 +7,32 @@
           "platforms": [
             {
               "architecture": "arm",
-              "dockerfile": "src/raspbian/10/crossdeps/arm32v7",
+              "dockerfile": "src/raspbian/12/crossdeps/arm32v7",
               "os": "linux",
               "osVersion": "buster",
               "tags": {
-                "raspbian-10-crossdeps-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
-                "raspbian-10-crossdeps$(FloatingTagSuffix)": {},
-                "raspbian-10-crossdeps-local": {
+                "raspbian-12-crossdeps-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
+                "raspbian-12-crossdeps$(FloatingTagSuffix)": {},
+                "raspbian-12-crossdeps-local": {
                   "isLocal": true
                 }
               },
               "variant": "v7"
+            }
+          ]
+        },
+        {
+          "platforms": [
+            {
+              "architecture": "arm",
+              "dockerfile": "src/raspbian/12/helix/arm32v6",
+              "os": "linux",
+              "osVersion": "buster",
+              "tags": {
+                "raspbian-10-helix-arm32v6-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
+                "raspbian-10-helix-arm32v6$(FloatingTagSuffix)": {}
+              },
+              "variant": "v6"
             }
           ]
         }
