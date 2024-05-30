@@ -1,4 +1,4 @@
-FROM alpine:3.17 as msquic
+FROM amd64/alpine:3.17 as msquic
 
 # build MsQuic as we don't have packages
 RUN apk update && apk add --no-cache && \
