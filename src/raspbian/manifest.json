@@ -9,7 +9,7 @@
               "architecture": "arm",
               "dockerfile": "src/raspbian/12/crossdeps/arm32v7",
               "os": "linux",
-              "osVersion": "buster",
+              "osVersion": "jammy",
               "tags": {
                 "raspbian-12-crossdeps-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
                 "raspbian-12-crossdeps$(FloatingTagSuffix)": {},
@@ -27,10 +27,10 @@
               "architecture": "arm",
               "dockerfile": "src/raspbian/12/helix/arm32v6",
               "os": "linux",
-              "osVersion": "buster",
+              "osVersion": "bookworm",
               "tags": {
-                "raspbian-10-helix-arm32v6-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
-                "raspbian-10-helix-arm32v6$(FloatingTagSuffix)": {}
+                "raspbian-12-helix-arm32v6-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
+                "raspbian-12-helix-arm32v6$(FloatingTagSuffix)": {}
               },
               "variant": "v6"
             }
