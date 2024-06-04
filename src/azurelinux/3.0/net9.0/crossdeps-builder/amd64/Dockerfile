@@ -19,10 +19,7 @@ RUN tdnf install -y \
         bzip2-devel \
         debootstrap \
         libarchive-devel \
-        openssl-devel && \
-    # Temporary workaround
-    tdnf remove -y \
-        symcrypt-openssl
+        openssl-devel
 
 # dependencies which are installed from extended repo require additional setup
 RUN wget https://packages.microsoft.com/azurelinux/3.0/preview/extended/x86_64/config.repo -O /etc/yum.repos.d/azurelinux-extended.repo && \

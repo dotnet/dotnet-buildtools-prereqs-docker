@@ -14,8 +14,5 @@ RUN tdnf install -y \
         util-linux \
         # Provides sudo
         sudo && \
-    # Temporary workaround
-    tdnf remove -y \
-        symcrypt-openssl \
     && tdnf clean all \
     && gem install fpm

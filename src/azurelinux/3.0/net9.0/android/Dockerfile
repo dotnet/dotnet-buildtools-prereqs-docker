@@ -9,10 +9,7 @@ RUN tdnf update -y \
         zip \
         unzip \
         # linux-bionic build dependencies
-        openssl-devel && \
-    # Temporary workaround
-    tdnf remove -y \
-        symcrypt-openssl
+        openssl-devel
 
 # Install Microsoft OpenJDK from the Microsoft OpenJDK 8.0 Mariner image.
 ENV LANG=en_US.UTF-8
