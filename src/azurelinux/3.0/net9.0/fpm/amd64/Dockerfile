@@ -13,6 +13,6 @@ RUN tdnf install -y \
         # Provides su
         util-linux \
         # Provides sudo
-        sudo && \
+        sudo \
     && tdnf clean all \
     && gem install fpm
