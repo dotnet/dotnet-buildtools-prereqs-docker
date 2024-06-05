@@ -64,64 +64,6 @@
         {
           "platforms": [
             {
-              "dockerfile": "src/centos/stream8/amd64",
-              "os": "linux",
-              "osVersion": "centos-stream8",
-              "tags": {
-                "centos-stream8-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
-                "centos-stream8$(FloatingTagSuffix)": {},
-                "centos-stream8-local": {
-                  "isLocal": true
-                }
-              }
-            }
-          ]
-        },
-        {
-          "platforms": [
-            {
-              "dockerfile": "src/centos/stream8/helix/amd64",
-              "os": "linux",
-              "osVersion": "centos-stream8",
-              "tags": {
-                "centos-stream8-helix-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
-                "centos-stream8-helix$(FloatingTagSuffix)": {}
-              }
-            }
-          ]
-        },
-        {
-          "platforms": [
-            {
-              "dockerfile": "src/centos/stream8/mlnet/amd64",
-              "os": "linux",
-              "osVersion": "centos-stream8",
-              "tags": {
-                "centos-stream8-mlnet-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
-                "centos-stream8-mlnet$(FloatingTagSuffix)": {},
-                "centos-stream8-mlnet-local": {
-                  "isLocal": true
-                }
-              }
-            }
-          ]
-        },
-        {
-          "platforms": [
-            {
-              "dockerfile": "src/centos/stream8/mlnet/helix/amd64",
-              "os": "linux",
-              "osVersion": "centos-stream8",
-              "tags": {
-                "centos-stream8-mlnet-helix-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
-                "centos-stream8-mlnet-helix$(FloatingTagSuffix)": {}
-              }
-            }
-          ]
-        },
-        {
-          "platforms": [
-            {
               "dockerfile": "src/centos/stream9/amd64",
               "os": "linux",
               "osVersion": "centos-stream9",
