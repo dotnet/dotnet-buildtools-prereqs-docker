@@ -20,21 +20,6 @@ RUN curl -SL --output %TEMP%\%GIT_INSTALLER% https://github.com/git-for-windows/
     && tar -C C:\git -zxf %TEMP%\%GIT_INSTALLER% \
     && setx PATH "%PATH%;C:\git\cmd"
 
-# fix certificates for python to be able to download emscripten files
-RUN certutil -generateSSTFromWU roots.sst && certutil -addstore -f root roots.sst && del roots.sst
-
-# Install Emscripten toolchain
-ENV EMSCRIPTEN_VERSION=3.1.12
-ENV EMSCRIPTEN_PATH="C:\emscripten"
-ENV EMSDK_PATH="C:\emscripten\emsdk"
-
-RUN mkdir %EMSCRIPTEN_PATH% \
-    && cd %EMSCRIPTEN_PATH% \
-    && git clone https://github.com/emscripten-core/emsdk.git %EMSDK_PATH%
-RUN cd %EMSDK_PATH% \
-    && .\emsdk install %EMSCRIPTEN_VERSION%-upstream  \
-    && .\emsdk activate %EMSCRIPTEN_VERSION%-upstream
-
 # install Node JS
 ENV NODE_VERSION 18.17.1
 
