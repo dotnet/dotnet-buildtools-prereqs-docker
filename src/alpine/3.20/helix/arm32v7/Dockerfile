@@ -70,6 +70,7 @@ RUN /usr/sbin/adduser -D -g '' -G adm -s /bin/bash -u 1000 helixbot && \
 # Install Helix Dependencies
 RUN apk update && apk add --no-cache \
     build-base \
+    libffi-dev \
     gcc \
     linux-headers && \
     # Create virtual environment
@@ -81,6 +82,7 @@ RUN apk update && apk add --no-cache \
     # Delete unnecessary dependencies
     apk del \
     build-base \
+    libffi-dev \
     gcc \
     linux-headers
 
