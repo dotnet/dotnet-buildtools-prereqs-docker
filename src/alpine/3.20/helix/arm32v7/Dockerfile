@@ -50,6 +50,7 @@ RUN apk update && apk add --no-cache \
     openssl \
     python3 \
     python3-dev \
+    py3-cryptography \
     py3-pip \
     sudo \
     tzdata
