@@ -26,6 +26,7 @@ RUN apt-get update && \
         python3-cryptography \
         python3-dev \
         python3-pip \
+        python3-venv \
         rustc \
         software-properties-common \
         sudo \
