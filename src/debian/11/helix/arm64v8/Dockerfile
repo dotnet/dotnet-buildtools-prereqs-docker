@@ -62,4 +62,4 @@ RUN /usr/sbin/adduser --disabled-password --gecos '' --uid 1001 --shell /bin/bas
 
 USER helixbot
 
-RUN python -m venv --no-site-packages /home/helixbot/.vsts-env
+RUN python -m venv /home/helixbot/.vsts-env

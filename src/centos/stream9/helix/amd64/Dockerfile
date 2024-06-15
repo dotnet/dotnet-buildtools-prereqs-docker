@@ -51,4 +51,4 @@ RUN /usr/sbin/adduser --uid 1000 --shell /bin/bash --gid adm helixbot && \
 
 USER helixbot
 
-RUN python -m venv --no-site-packages /home/helixbot/.vsts-env
+RUN python -m venv /home/helixbot/.vsts-env
