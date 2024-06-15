@@ -68,7 +68,7 @@
         {
           "platforms": [
             {
-              "architecture": "arm64v8",
+              "architecture": "arm64",
               "dockerfile": "src/ubuntu/20.04/helix/arm64v8",
               "os": "linux",
               "osVersion": "focal",
@@ -85,7 +85,7 @@
         {
           "platforms": [
             {
-              "architecture": "arm32v7",
+              "architecture": "arm",
               "dockerfile": "src/ubuntu/20.04/helix/arm32v7",
               "os": "linux",
               "osVersion": "focal",
@@ -541,7 +541,7 @@
         {
           "platforms": [
             {
-              "architecture": "arm64v8",
+              "architecture": "arm64",
               "dockerfile": "src/ubuntu/24.04/helix/arm64v8",
               "os": "linux",
               "osVersion": "focal",
@@ -558,7 +558,7 @@
         {
           "platforms": [
             {
-              "architecture": "arm32v7",
+              "architecture": "arm",
               "dockerfile": "src/ubuntu/24.04/helix/arm32v7",
               "os": "linux",
               "osVersion": "focal",
