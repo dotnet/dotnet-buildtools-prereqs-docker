@@ -19,7 +19,7 @@ RUN python3 -m pip download --no-deps helix-scripts --index-url https://dnceng.p
     python3 -m pip install ./helix_scripts-*-py3-none-any.whl
 
 # Aspnetcore test runs expect python to be available without version suffix
-RUN alternatives --set python /usr/bin/python3 &&
+RUN alternatives --set python /usr/bin/python3 && \
     ln -sf /usr/bin/pip3 /usr/bin/pip
 
 ENV LANG=en-US.UTF-8
