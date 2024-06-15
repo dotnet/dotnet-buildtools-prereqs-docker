@@ -1,4 +1,4 @@
-FROM ubuntu.azurecr.io/ubuntu:20.04
+FROM arm32v7/ubuntu:20.04
 
 # Install Helix Dependencies
 ENV DEBIAN_FRONTEND=noninteractive
