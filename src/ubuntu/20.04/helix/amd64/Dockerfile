@@ -40,8 +40,6 @@ RUN apt-get update && \
 ENV LANG=en_US.utf8
 
 RUN ln -sf /usr/bin/python3 /usr/bin/python && \
-    python -m pip install --upgrade pip==20.2 && \
-    python -m pip install virtualenv==16.6.0 && \
     pip download --no-deps helix-scripts --index-url https://dnceng.pkgs.visualstudio.com/public/_packaging/helix-client-prod/pypi/simple && \
     pip install ./helix_scripts-*-py3-none-any.whl
 
@@ -52,4 +50,4 @@ RUN /usr/sbin/adduser --disabled-password --gecos '' --uid 1000 --shell /bin/bas
 
 USER helixbot
 
-RUN python -m virtualenv --no-site-packages /home/helixbot/.vsts-env
+RUN python -m venv --no-site-packages /home/helixbot/.vsts-env
