@@ -29,6 +29,7 @@ RUN apt-get update && \
         locales-all \
         python3-dev \
         python3-pip \
+        rustc \
         sudo \
         tzdata \
         unzip \
@@ -50,4 +51,4 @@ RUN /usr/sbin/adduser --disabled-password --gecos '' --uid 1000 --shell /bin/bas
 
 USER helixbot
 
-RUN python -m venv --no-site-packages /home/helixbot/.vsts-env
+RUN python -m venv /home/helixbot/.vsts-env

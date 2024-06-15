@@ -24,7 +24,7 @@ RUN apt-get update && \
         libtool \
         libunwind8 \
         libunwind-dev \
-        lldb-12 \
+        lldb \
         llvm \
         locales \
         locales-all \
@@ -42,7 +42,7 @@ ENV LANG=en_US.utf8
 
 RUN ln -sf /usr/bin/python3 /usr/bin/python && \
     pip download --no-deps helix-scripts --index-url https://dnceng.pkgs.visualstudio.com/public/_packaging/helix-client-prod/pypi/simple && \
-    pip install ./helix_scripts-*-py3-none-any.whl
+    pip install --break-system-packages ./helix_scripts-*-py3-none-any.whl
 
 # Add MsQuic
 RUN curl -LO https://packages.microsoft.com/keys/microsoft.asc && \
