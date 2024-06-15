@@ -16,11 +16,11 @@ RUN rpm -Uvh https://packages.microsoft.com/config/centos/8/packages-microsoft-p
         libmsquic
 
 RUN python3 -m pip download --no-deps helix-scripts --index-url https://dnceng.pkgs.visualstudio.com/public/_packaging/helix-client-prod/pypi/simple && \
-    python3 -m pip install virtualenv && \
     python3 -m pip install ./helix_scripts-*-py3-none-any.whl
 
 # Aspnetcore test runs expect python to be available without version suffix
-RUN alternatives --set python /usr/bin/python3
+RUN alternatives --set python /usr/bin/python3 &&
+    ln -sf /usr/bin/pip3 /usr/bin/pip
 
 ENV LANG=en-US.UTF-8
 
@@ -31,4 +31,4 @@ RUN adduser --uid 1000 --shell /bin/bash --gid adm helixbot && \
 
 USER helixbot
 
-RUN python3 -m virtualenv /home/helixbot/.vsts-env
+RUN python3 -m venv /home/helixbot/.vsts-env
