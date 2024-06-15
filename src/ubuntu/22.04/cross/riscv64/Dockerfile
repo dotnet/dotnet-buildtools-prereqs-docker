@@ -7,7 +7,7 @@ RUN git config --global user.email builder@dotnet-buildtools-prereqs-docker && \
     git clone --depth 1 --single-branch https://github.com/dotnet/arcade /scripts
 
 # Build the rootfs
-RUN /scripts/eng/common/cross/build-rootfs.sh riscv64 noble --skipunmount
+RUN /scripts/eng/common/cross/build-rootfs.sh riscv64 sid --skipunmount
 
 FROM mcr.microsoft.com/dotnet-buildtools/prereqs:ubuntu-22.04-crossdeps-local
 
