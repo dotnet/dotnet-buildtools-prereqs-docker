@@ -86,24 +86,6 @@
         {
           "platforms": [
             {
-              "architecture": "arm",
-              "dockerfile": "src/ubuntu/20.04/helix/arm32v7",
-              "os": "linux",
-              "osVersion": "focal",
-              "tags": {
-                "ubuntu-20.04-helix-arm32v7-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
-                "ubuntu-20.04-helix-arm32v7$(FloatingTagSuffix)": {},
-                "ubuntu-20.04-helix-arm32v7-local": {
-                  "isLocal": true
-                }
-              },
-              "variant": "v7"
-            }
-          ]
-        },
-        {
-          "platforms": [
-            {
               "architecture": "amd64",
               "dockerfile": "src/ubuntu/20.04/helix/wasm/amd64",
               "os": "linux",
