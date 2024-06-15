@@ -1,4 +1,4 @@
-FROM ubuntu.azurecr.io/ubuntu:24.04
+FROM ubuntu.azurecr.io/ubuntu:noble
 
 # Install Helix Dependencies
 ENV DEBIAN_FRONTEND=noninteractive
