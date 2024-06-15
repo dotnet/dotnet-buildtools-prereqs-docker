@@ -78,7 +78,8 @@
                 "ubuntu-20.04-helix-arm64v8-local": {
                   "isLocal": true
                 }
-              }
+              },
+              "variant": "v8"
             }
           ]
         },
@@ -95,7 +96,8 @@
                 "ubuntu-20.04-helix-arm32v7-local": {
                   "isLocal": true
                 }
-              }
+              },
+              "variant": "v7"
             }
           ]
         },
@@ -551,7 +553,8 @@
                 "ubuntu-24.04-helix-arm64v8-local": {
                   "isLocal": true
                 }
-              }
+              },
+              "variant": "v8"
             }
           ]
         },
@@ -568,7 +571,8 @@
                 "ubuntu-24.04-helix-arm32v7-local": {
                   "isLocal": true
                 }
-              }
+              },
+              "variant": "v7"
             }
           ]
         },
