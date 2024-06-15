@@ -1,4 +1,4 @@
-FROM arm32v7/ubuntu:noble
+FROM ubuntu.azurecr.io/ubuntu:noble
 
 # Install Helix Dependencies
 ENV DEBIAN_FRONTEND=noninteractive
