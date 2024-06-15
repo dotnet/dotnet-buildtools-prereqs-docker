@@ -62,7 +62,7 @@ RUN /usr/sbin/adduser --disabled-password --gecos '' --uid 1000 --shell /bin/bas
 # Work around this by overriding the check for externally managed environments.
 RUN mkdir -p ~/.config/pip && \
     echo "[global]\nbreak-system-packages = true" > ~/.config/pip/pip.conf
-    
+
 USER helixbot
 
 RUN python3 -m venv /home/helixbot/.vsts-env
