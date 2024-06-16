@@ -30,7 +30,7 @@ RUN curl -LO https://packages.microsoft.com/keys/microsoft.asc && \
     dnf clean all
 
 RUN ln -sf /usr/bin/python3 /usr/bin/python && \
-    ln -sf /usr/bin/pip3 /usr/bin/pip && \
+    python -m pip install --upgrade pip==20.2 && \
     python -m pip install virtualenv==16.6.0 && \
     pip download --no-deps helix-scripts --index-url https://dnceng.pkgs.visualstudio.com/public/_packaging/helix-client-prod/pypi/simple && \
     pip install ./helix_scripts-*-py3-none-any.whl
