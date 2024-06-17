@@ -1,4 +1,4 @@
-FROM gcc:14-bookworm
+FROM library/gcc:14-bookworm
 
 # Dependencies for dotnet/runtime native components.
 RUN apt-get update && \

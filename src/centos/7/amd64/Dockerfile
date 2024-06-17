@@ -1,4 +1,4 @@
-FROM centos:7
+FROM library/centos:7
 
 # Install dependencies
 

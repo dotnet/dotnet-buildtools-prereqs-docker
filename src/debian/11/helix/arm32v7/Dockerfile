@@ -1,4 +1,4 @@
-FROM debian:bullseye
+FROM library/debian:bullseye
 
 # Workaround: https://github.com/pypa/wheel/issues/367
 ENV _PYTHON_HOST_PLATFORM=linux_armv7l

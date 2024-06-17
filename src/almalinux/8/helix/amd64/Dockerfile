@@ -1,4 +1,4 @@
-FROM almalinux:8
+FROM library/almalinux:8
 
 # Add microsoft centos/8 repo for libmsquic.
 # (Use centos/8 rather than rhel/8 because the latter doesn't have
