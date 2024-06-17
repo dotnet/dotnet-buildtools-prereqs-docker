@@ -1,4 +1,4 @@
-FROM amd64/alpine:3.17 as msquic
+FROM arm64v8/alpine:3.20 as msquic
 
 # build MsQuic as we don't have packages
 RUN apk update && apk add --no-cache && \
@@ -19,19 +19,20 @@ RUN git clone --depth 1 --single-branch --branch v2.3.5 --recursive https://gith
 
 WORKDIR /tmp/msquic
 
-RUN cmake -B build/linux/x64_Release_openssl3 \
-       -DQUIC_OUTPUT_DIR=/tmp/msquic/artifacts/bin/linux/x64_Release_openssl3 \
+RUN cmake -B build/linux/arm64_Release_openssl3 \
+       -DQUIC_OUTPUT_DIR=/tmp/msquic/artifacts/bin/linux/arm64_Release_openssl3 \
        -DCMAKE_BUILD_TYPE=Release \
+       -DCMAKE_TARGET_ARCHITECTURE=arm64 \
        -DQUIC_TLS=openssl3 \
        -DQUIC_ENABLE_LOGGING=true \
        -DQUIC_USE_SYSTEM_LIBCRYPTO=true \
        -DQUIC_BUILD_TOOLS=off \
        -DQUIC_BUILD_TEST=off \
        -DQUIC_BUILD_PERF=off && \
-    cmake --build build/linux/x64_Release_openssl3  --config Release && \
-    cmake --install build/linux/x64_Release_openssl3 --prefix /msquic
+    cmake --build build/linux/arm64_Release_openssl3  --config Release && \
+    cmake --install build/linux/arm64_Release_openssl3 --prefix /msquic
 
-FROM alpine:3.17
+FROM arm64v8/alpine:3.20
 # Install .NET and test dependencies
 RUN apk update && apk add --no-cache \
     bash \
@@ -48,30 +49,10 @@ RUN apk update && apk add --no-cache \
     numactl \
     openssl \
     python3 \
+    python3-dev \
+    py3-pip \
     sudo \
     tzdata
-
-# Install Helix Dependencies
-RUN apk update && apk add --no-cache && \
-    apk add \
-        cargo \
-        libffi-dev \
-        linux-headers \
-        python3-dev \
-        openssl-dev && \
-    ln -sf /usr/bin/python3 /usr/bin/python && \
-    curl https://bootstrap.pypa.io/get-pip.py -o ./get-pip.py --fail --silent --show-error && \
-    python3 ./get-pip.py && rm ./get-pip.py && \
-    python3 -m pip install --upgrade pip==22.2.2 && \
-    python3 -m pip install virtualenv==20.16.5 && \
-    pip download --no-deps helix-scripts --index-url https://dnceng.pkgs.visualstudio.com/public/_packaging/helix-client-prod/pypi/simple && \
-    pip install ./helix_scripts-*-py3-none-any.whl && \
-    apk del \
-        cargo \
-        libffi-dev \
-        linux-headers \
-        python3-dev \
-        openssl-dev
 
 # Copy msquic from the msquic image into our image that will run on Helix
 COPY --from=msquic /msquic /usr
@@ -86,6 +67,23 @@ RUN /usr/sbin/adduser -D -g '' -G adm -s /bin/bash -u 1000 helixbot && \
     chmod 755 /root && \
     echo "helixbot ALL=(ALL)       NOPASSWD: ALL" > /etc/sudoers.d/helixbot
 
-USER helixbot
+# Install Helix Dependencies
+RUN apk update && apk add --no-cache \
+    build-base \
+    libffi-dev \
+    gcc \
+    linux-headers && \
+    # Create virtual environment
+    python3 -m venv /home/helixbot/.vsts-env && \
+    source /home/helixbot/.vsts-env/bin/activate && \
+    # Install Helix scripts
+    pip download --no-deps helix-scripts --index-url https://dnceng.pkgs.visualstudio.com/public/_packaging/helix-client-prod/pypi/simple && \
+    pip install ./helix_scripts-*-py3-none-any.whl && \
+    # Delete unnecessary dependencies
+    apk del \
+    build-base \
+    libffi-dev \
+    gcc \
+    linux-headers
 
-RUN python3 -m virtualenv /home/helixbot/.vsts-env
+USER helixbot
