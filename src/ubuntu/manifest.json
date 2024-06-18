@@ -299,38 +299,12 @@
         {
           "platforms": [
             {
-              "dockerfile": "src/ubuntu/22.04/cross/riscv64",
-              "os": "linux",
-              "osVersion": "jammy",
-              "tags": {
-                "ubuntu-22.04-cross-riscv64-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
-                "ubuntu-22.04-cross-riscv64$(FloatingTagSuffix)": {}
-              }
-            }
-          ]
-        },
-        {
-          "platforms": [
-            {
               "dockerfile": "src/ubuntu/22.04/cross/ppc64le-alpine",
               "os": "linux",
               "osVersion": "jammy",
               "tags": {
                 "ubuntu-22.04-cross-ppc64le-alpine-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
                 "ubuntu-22.04-cross-ppc64le-alpine$(FloatingTagSuffix)": {}
-              }
-            }
-          ]
-        },
-        {
-          "platforms": [
-            {
-              "dockerfile": "src/ubuntu/22.04/cross/riscv64-alpine",
-              "os": "linux",
-              "osVersion": "jammy",
-              "tags": {
-                "ubuntu-22.04-cross-riscv64-alpine-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
-                "ubuntu-22.04-cross-riscv64-alpine$(FloatingTagSuffix)": {}
               }
             }
           ]
