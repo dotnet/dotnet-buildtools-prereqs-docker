@@ -27,7 +27,7 @@ RUN apk update && apk add --no-cache \
         less \
         libgcc \
         libintl \
-        libssl1.1 \
+        libssl3 \
         libstdc++ \
         libunwind-dev \
         linux-headers \
