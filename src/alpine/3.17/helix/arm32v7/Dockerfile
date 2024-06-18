@@ -49,6 +49,7 @@ RUN apk update && apk add --no-cache \
     numactl \
     openssl \
     python3 \
+    py3-pip \
     sudo \
     tzdata
 
@@ -61,10 +62,6 @@ RUN apk update && apk add --no-cache && \
         python3-dev \
         openssl-dev && \
     ln -sf /usr/bin/python3 /usr/bin/python && \
-    curl https://bootstrap.pypa.io/get-pip.py -o ./get-pip.py --fail --silent --show-error && \
-    python3 ./get-pip.py && rm ./get-pip.py && \
-    python3 -m pip install --upgrade pip==22.2.2 && \
-    python3 -m pip install virtualenv==20.16.5 && \
     pip download --no-deps helix-scripts --index-url https://dnceng.pkgs.visualstudio.com/public/_packaging/helix-client-prod/pypi/simple && \
     pip install ./helix_scripts-*-py3-none-any.whl && \
     apk del \
@@ -83,13 +80,10 @@ RUN echo export LANG=${LANG}  >> /etc/profile.d/locale.sh
 
 # create helixbot user and give rights to sudo without password
 # Alpine does not support long options
-RUN /usr/sbin/adduser -D -g '' -G adm -s /bin/bash -u 1001 helixbot && \
-    /usr/sbin/adduser -D -g '' -G adm -s /bin/bash -u 1000 helixbot2 && \
+RUN /usr/sbin/adduser -D -g '' -G adm -s /bin/bash -u 1000 helixbot && \
     chmod 755 /root && \
-    echo "helixbot ALL=(ALL)       NOPASSWD: ALL" > /etc/sudoers.d/helixbot && \
-    echo "helixbot2 ALL=(ALL)      NOPASSWD: ALL" > /etc/sudoers.d/helixbot2
-
+    echo "helixbot ALL=(ALL)       NOPASSWD: ALL" > /etc/sudoers.d/helixbot
 
 USER helixbot
 
-RUN python3 -m virtualenv /home/helixbot/.vsts-env
+RUN python3 -m venv /home/helixbot/.vsts-env
