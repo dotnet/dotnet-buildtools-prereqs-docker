@@ -50,4 +50,4 @@ RUN /usr/sbin/adduser --disabled-password --gecos '' --uid 1000 --shell /bin/bas
 
 USER helixbot
 
-RUN python -m /home/helixbot/.vsts-env
+RUN python -m venv /home/helixbot/.vsts-env

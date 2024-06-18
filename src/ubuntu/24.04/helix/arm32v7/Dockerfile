@@ -20,6 +20,7 @@ RUN apt-get update && \
         libffi-dev \
         libgdiplus \
         libicu-dev \
+        libnuma1 \
         libssl-dev \
         libtool \
         libunwind8 \

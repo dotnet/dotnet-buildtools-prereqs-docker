@@ -20,6 +20,7 @@ RUN apt-get update && \
         libgdiplus \
         libicu-dev \
         libnuma-dev \
+        libnuma1 \
         liblttng-ust-dev \
         libssl-dev \
         libtool \
