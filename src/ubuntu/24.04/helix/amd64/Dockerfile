@@ -48,8 +48,8 @@ RUN ln -sf /usr/bin/python3 /usr/bin/python && \
 # MsQuic does not yet publish packages for 24.04
 # Manually install 22.04 package for now
 RUN curl -LO https://packages.microsoft.com/ubuntu/22.04/prod/pool/main/libm/libmsquic/libmsquic_2.3.5_amd64.deb && \
-    dpkg -i libmsquic_*_armhf.deb && \
-    rm -f libmsquic_*_armhf.deb
+    dpkg -i libmsquic_*_amd64.deb && \
+    rm -f libmsquic_*_amd64.deb
 
 # create helixbot user and give rights to sudo without password
 RUN /usr/sbin/adduser --disabled-password --gecos '' --uid 1000 --shell /bin/bash --ingroup adm helixbot && \

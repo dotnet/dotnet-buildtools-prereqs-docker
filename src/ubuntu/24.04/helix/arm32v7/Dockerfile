@@ -16,7 +16,7 @@ RUN apt-get update && \
         git \
         gss-ntlmssp \
         iputils-ping \
-        libcurl4 \
+        libcurl4t64 \
         libffi-dev \
         libgdiplus \
         libicu-dev \

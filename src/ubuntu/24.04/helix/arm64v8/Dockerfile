@@ -51,8 +51,8 @@ RUN ln -sf /usr/bin/python3 /usr/bin/python && \
 # MsQuic does not yet publish packages for 24.04
 # Manually install 22.04 package for now
 RUN curl -LO https://packages.microsoft.com/ubuntu/22.04/prod/pool/main/libm/libmsquic/libmsquic_2.3.5_arm64.deb && \
-    dpkg -i libmsquic_*_armhf.deb && \
-    rm -f libmsquic_*_armhf.deb 
+    dpkg -i libmsquic_*_arm64.deb && \
+    rm -f libmsquic_*_arm64.deb 
 
 # (we use two users here to ensure volume mounting works with two possible UIDs of the host UID)
 RUN adduser --disabled-password --gecos '' --uid 1001 --shell /bin/bash --ingroup adm helixbot && \
