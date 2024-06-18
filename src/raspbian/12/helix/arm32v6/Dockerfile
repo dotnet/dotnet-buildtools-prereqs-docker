@@ -1,4 +1,4 @@
-FROM mcr.microsoft.com/dotnet-buildtools/prereqs:raspbian-12-crossdeps-local as builder
+FROM --platform=linux/arm/v7 mcr.microsoft.com/dotnet-buildtools/prereqs:raspbian-12-crossdeps-local as builder
 
 ARG ROOTFS_DIR=/crossrootfs
 
