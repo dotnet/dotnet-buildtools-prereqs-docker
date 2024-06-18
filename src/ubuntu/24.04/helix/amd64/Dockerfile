@@ -45,14 +45,11 @@ RUN ln -sf /usr/bin/python3 /usr/bin/python && \
     pip install --break-system-packages ./helix_scripts-*-py3-none-any.whl
 
 # Add MsQuic
-RUN curl -LO https://packages.microsoft.com/keys/microsoft.asc && \
-    echo 2cfd20a306b2fa5e25522d78f2ef50a1f429d35fd30bd983e2ebffc2b80944fa microsoft.asc| sha256sum --check - && \
-    apt-key add microsoft.asc && \
-    rm microsoft.asc && \
-    apt-add-repository https://packages.microsoft.com/ubuntu/24.04/prod && \
-    apt-get update && \
-    apt-get install -y libmsquic && \
-    rm -rf /var/lib/apt/lists/*
+# MsQuic does not yet publish packages for 24.04
+# Manually install 22.04 package for now
+RUN curl -LO https://packages.microsoft.com/ubuntu/22.04/prod/pool/main/libm/libmsquic/libmsquic_2.3.5_amd64.deb && \
+    dpkg -i libmsquic_*_armhf.deb && \
+    rm -f libmsquic_*_armhf.deb
 
 # create helixbot user and give rights to sudo without password
 RUN /usr/sbin/adduser --disabled-password --gecos '' --uid 1000 --shell /bin/bash --ingroup adm helixbot && \
