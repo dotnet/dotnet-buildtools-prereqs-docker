@@ -1,7 +1,6 @@
 FROM library/debian:bookworm
 
 # Install Helix Dependencies
-
 RUN apt-get update && \
     apt-get install -y \
         autoconf \
