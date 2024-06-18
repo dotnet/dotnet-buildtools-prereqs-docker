@@ -55,12 +55,10 @@ RUN curl -LO https://packages.microsoft.com/ubuntu/22.04/prod/pool/main/libm/lib
     dpkg -i libmsquic_*_arm64.deb && \
     rm -f libmsquic_*_arm64.deb 
 
-# (we use two users here to ensure volume mounting works with two possible UIDs of the host UID)
-RUN adduser --disabled-password --gecos '' --uid 1001 --shell /bin/bash --ingroup adm helixbot && \
-    adduser --disabled-password --gecos '' --uid 1000 --shell /bin/bash --ingroup adm helixbot2 && \
-    chmod -R +x /root && \
-    echo 'helixbot ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers && \
-    echo 'helixbot2 ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
+# create helixbot user and give rights to sudo without password
+RUN /usr/sbin/adduser --disabled-password --gecos '' --uid 1001 --shell /bin/bash --ingroup adm helixbot && \
+    chmod 755 /root && \
+    echo "helixbot ALL=(ALL)       NOPASSWD: ALL" > /etc/sudoers
 
 USER helixbot
 
