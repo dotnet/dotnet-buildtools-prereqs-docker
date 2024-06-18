@@ -31,7 +31,7 @@ RUN cmake -B build/linux/x64_Release_openssl3 \
     cmake --build build/linux/x64_Release_openssl3  --config Release && \
     cmake --install build/linux/x64_Release_openssl3 --prefix /msquic
 
-FROM alpine:3.20
+FROM amd64/alpine:3.20
 # Install .NET and test dependencies
 RUN apk update && apk add --no-cache \
     bash \

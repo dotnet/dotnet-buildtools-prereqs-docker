@@ -1,4 +1,4 @@
-FROM debian:bookworm
+FROM library/debian:bookworm
 
 # Install Helix Dependencies
 RUN apt-get update && \
