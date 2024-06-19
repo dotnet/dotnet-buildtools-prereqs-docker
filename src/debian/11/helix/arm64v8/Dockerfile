@@ -1,4 +1,4 @@
-FROM debian:bullseye
+FROM library/debian:bullseye
 
 # Install Helix Dependencies
 
