@@ -29,8 +29,10 @@ RUN apt-get update && \
         llvm \
         locales \
         locales-all \
+        openssl \
         python3-dev \
         python3-pip \
+        python3-venv \
         software-properties-common \
         sudo \
         tzdata \
@@ -53,7 +55,7 @@ RUN curl -LO https://packages.microsoft.com/ubuntu/22.04/prod/pool/main/libm/lib
     rm -f libmsquic_*_armhf.deb
 
 # create helixbot user and give rights to sudo without password
-RUN /usr/sbin/adduser --disabled-password --gecos '' --uid 1000 --shell /bin/bash --ingroup adm helixbot && \
+RUN /usr/sbin/adduser --disabled-password --gecos '' --uid 1001 --shell /bin/bash --ingroup adm helixbot && \
     chmod 755 /root && \
     echo "helixbot ALL=(ALL)       NOPASSWD: ALL" > /etc/sudoers
 
