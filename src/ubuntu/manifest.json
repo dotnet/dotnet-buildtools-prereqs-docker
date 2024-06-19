@@ -513,25 +513,7 @@
               "variant": "v8"
             }
           ]
-        },
-        {
-          "platforms": [
-            {
-              "architecture": "arm",
-              "dockerfile": "src/ubuntu/24.04/helix/arm32v7",
-              "os": "linux",
-              "osVersion": "focal",
-              "tags": {
-                "ubuntu-24.04-helix-arm32v7-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
-                "ubuntu-24.04-helix-arm32v7$(FloatingTagSuffix)": {},
-                "ubuntu-24.04-helix-arm32v7-local": {
-                  "isLocal": true
-                }
-              },
-              "variant": "v7"
-            }
-          ]
-        },
+        }
       ]
     }
   ]
