@@ -1,4 +1,4 @@
-FROM alpine:3.17
+FROM amd64/alpine:3.17
 
 RUN apk update && \
     apk add --no-cache \

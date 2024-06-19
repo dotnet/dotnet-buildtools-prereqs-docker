@@ -19,10 +19,7 @@ RUN tdnf install -y \
         bzip2-devel \
         debootstrap \
         libarchive-devel \
-        openssl-devel && \
-    # Temporary workaround
-    tdnf remove -y \
-        symcrypt-openssl
+        openssl-devel
 
 # dependencies which are installed from extended repo require additional setup
 RUN wget https://packages.microsoft.com/azurelinux/3.0/preview/extended/x86_64/config.repo -O /etc/yum.repos.d/azurelinux-extended.repo && \
@@ -73,7 +70,7 @@ RUN mkdir llvm-project.src && \
         -DCMAKE_BUILD_TYPE=Release \
         -DCMAKE_C_COMPILER=clang \
         -DCMAKE_CXX_COMPILER=clang++ \
-        -DLLVM_TARGETS_TO_BUILD="X86;AArch64;ARM;PowerPC;SystemZ" \
+        -DLLVM_TARGETS_TO_BUILD="X86;AArch64;ARM;PowerPC;RISCV;SystemZ" \
         -Wno-dev \
         -DLLVM_ENABLE_PROJECTS="clang;lld;clang-tools-extra" && \
     make -j $(getconf _NPROCESSORS_ONLN) && \

@@ -1,4 +1,4 @@
-FROM alpine:3.19
+FROM amd64/alpine:3.19
 
 # Install .NET and test dependencies
 RUN apk update && apk add --no-cache \
