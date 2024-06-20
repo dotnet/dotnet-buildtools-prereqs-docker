@@ -1,5 +1,7 @@
 FROM mcr.microsoft.com/dotnet-buildtools/prereqs:ubuntu-20.04-crossdeps-local AS binutils
 
+RUN echo "force rebuild"
+
 # Install binutils-aarch64-linux-gnu
 RUN apt-get update \
     && apt-get install -y \
