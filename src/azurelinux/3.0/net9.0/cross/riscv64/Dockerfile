@@ -3,8 +3,7 @@ ARG ROOTFS_DIR=/crossrootfs/riscv64
 
 # Install the latest debootstrap
 RUN tdnf remove -y debootstrap && \
-    git clone --depth 1 "https://git.launchpad.net/ubuntu/+source/debootstrap" /debootstrap && \
-    chmod a+x /debootstrap/debootstrap && \
+    curl -sSL https://deb.debian.org/debian/pool/main/d/debootstrap/debootstrap_1.0.134.tar.gz | tar xzf - -C / && \
     ln -s /debootstrap/debootstrap -t /usr/local/bin
 
 RUN /scripts/eng/common/cross/build-rootfs.sh riscv64 noble --skipunmount
