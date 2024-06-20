@@ -51,15 +51,10 @@ RUN apk update && apk add --no-cache \
         which \
         zlib-dev
 
-RUN apk -X https://dl-cdn.alpinelinux.org/alpine/edge/main add --no-cache \
-    lttng-ust
-
-RUN curl -L https://github.com/PowerShell/PowerShell/releases/download/v7.4.2/powershell-7.4.2-linux-musl-x64.tar.gz -o /tmp/powershell.tar.gz
-
-RUN mkdir -p /opt/microsoft/powershell/7
-
-RUN tar zxf /tmp/powershell.tar.gz -C /opt/microsoft/powershell/7
-
-RUN chmod +x /opt/microsoft/powershell/7/pwsh
-
-RUN ln -s /opt/microsoft/powershell/7/pwsh /usr/bin/pwsh
+RUN apk -X https://dl-cdn.alpinelinux.org/alpine/edge/main add --no-cache lttng-ust \
+    && curl -L https://github.com/PowerShell/PowerShell/releases/download/v7.4.2/powershell-7.4.2-linux-musl-x64.tar.gz -o /tmp/powershell.tar.gz \
+    && mkdir -p /opt/microsoft/powershell/7 \
+    && tar zxf /tmp/powershell.tar.gz -C /opt/microsoft/powershell/7 \
+    && chmod +x /opt/microsoft/powershell/7/pwsh
+    && ln -s /opt/microsoft/powershell/7/pwsh /usr/bin/pwsh
+    && rm -f /tmp/powershell.tar.gz
