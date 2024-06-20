@@ -12,7 +12,7 @@ ARG ROOTFS_DIR=/crossrootfs/arm64
 
 # Build rootfs
 RUN git config --global user.email builder@dotnet-buildtools-prereqs-docker && \
-    git clone --depth 1 --single-branch https://github.com/dotnet/arcade /scripts
+    git clone --depth 1 --branch feature/build-rootfs-freestanding --single-branch https://github.com/am11/arcade /scripts
 RUN /scripts/eng/common/cross/build-rootfs.sh arm64 xenial lldb3.9 --skipunmount
 RUN bash -c "rm -rf $ROOTFS_DIR/*/{var/cache/apt/archives/*,var/lib/apt/lists/*,usr/share/doc,usr/share/man}"
 

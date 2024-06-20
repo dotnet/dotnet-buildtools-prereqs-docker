@@ -21,6 +21,7 @@ RUN apt-get update \
         flex \
         gdb \
         make \
+        nano \
         qemu \
         qemu-user-static \
         rpm2cpio \
@@ -43,4 +44,3 @@ RUN apt-get update \
         llvm-9 \
         python-lldb-6.0 \
     && rm -rf /var/lib/apt/lists/*
-
