@@ -9,6 +9,7 @@ RUN tdnf install -y \
         # LLVM build dependencies
         binutils \
         clang \
+        make \
         cmake \
         diffutils \
         glibc-devel \
