@@ -23,4 +23,5 @@ RUN tdnf update -y && \
         # Jit rolling build dependency
         python3-pip \
         # aspnetcore build dependencies
-        nodejs
+        nodejs \
+        npm
