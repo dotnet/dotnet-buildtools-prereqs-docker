@@ -9,6 +9,7 @@ RUN tdnf update -y && \
         wget \
         # Common runtime build dependencies
         awk \
+        gcc \
         make \
         cmake \
         diffutils \
