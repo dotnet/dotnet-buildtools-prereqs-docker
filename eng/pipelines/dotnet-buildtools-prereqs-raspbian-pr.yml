@@ -24,3 +24,4 @@ stages:
   parameters:
     internalProjectName: ${{ variables.internalProjectName }}
     publicProjectName: ${{ variables.publicProjectName }}
+    linuxArmBuildJobTimeout: 120
