@@ -1,5 +1,7 @@
-FROM mcr.microsoft.com/dotnet-buildtools/prereqs:azurelinux-3.0-crossdeps-builder-net9.0-local AS builder
 ARG ROOTFS_DIR=/crossrootfs/riscv64
+
+FROM mcr.microsoft.com/dotnet-buildtools/prereqs:azurelinux-3.0-crossdeps-builder-net9.0-local AS builder
+ARG ROOTFS_DIR
 
 # Install the latest debootstrap
 RUN tdnf remove -y debootstrap && \
@@ -46,7 +48,7 @@ RUN TARGET_TRIPLE="riscv64-linux-gnu" && \
     cmake --install runtimes --prefix "$ROOTFS_DIR/usr"
 
 FROM mcr.microsoft.com/dotnet-buildtools/prereqs:azurelinux-3.0-crossdeps-llvm-net9.0-local
-ARG ROOTFS_DIR=/crossrootfs/riscv64
+ARG ROOTFS_DIR
 
 COPY --from=builder /usr/local/lib/clang /usr/local/lib/clang/
 COPY --from=builder $ROOTFS_DIR $ROOTFS_DIR
