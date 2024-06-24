@@ -6,7 +6,6 @@ RUN tdnf update -y \
         # WebAssembly build dependencies
         which \
         nodejs \
-        npm \
         python3 \
         libxml2 \
         unzip
