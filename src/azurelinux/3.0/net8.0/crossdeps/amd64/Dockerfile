@@ -9,6 +9,8 @@ RUN tdnf update -y && \
         wget \
         # Common runtime build dependencies
         awk \
+        gcc \
+        make \
         cmake \
         diffutils \
         icu \
@@ -21,4 +23,5 @@ RUN tdnf update -y && \
         # Jit rolling build dependency
         python3-pip \
         # aspnetcore build dependencies
-        nodejs
+        nodejs \
+        npm
