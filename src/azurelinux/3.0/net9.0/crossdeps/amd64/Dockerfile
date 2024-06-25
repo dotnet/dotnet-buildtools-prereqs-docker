@@ -24,4 +24,7 @@ RUN tdnf update -y && \
         python3-pip \
         # aspnetcore build dependencies
         nodejs \
-        npm
+        npm \
+        # Provides azure cli used by some authentication tasks
+        azure-cli \
+        powershell
