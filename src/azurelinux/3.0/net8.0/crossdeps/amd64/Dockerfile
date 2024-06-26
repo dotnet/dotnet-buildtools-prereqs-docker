@@ -36,6 +36,7 @@ RUN curl -sSL -O https://packages.microsoft.com/config/rhel/8/packages-microsoft
     tdnf update -y && \
     tdnf install -y --setopt tsflags=nodocs \
          powershell && \
+    rm /etc/yum.repos.d/microsoft-prod.repo && \
     tdnf clean all
 
 # Install azurecli from PIP
