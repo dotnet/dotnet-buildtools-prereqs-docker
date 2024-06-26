@@ -52,7 +52,7 @@
           "platforms": [
             {
               "architecture": "amd64",
-              "dockerfile": "src/ubuntu/20.04/helix/amd64",
+              "dockerfile": "src/ubuntu/20.04/helix/any",
               "os": "linux",
               "osVersion": "focal",
               "tags": {
@@ -69,7 +69,7 @@
           "platforms": [
             {
               "architecture": "arm64",
-              "dockerfile": "src/ubuntu/20.04/helix/arm64v8",
+              "dockerfile": "src/ubuntu/20.04/helix/any",
               "os": "linux",
               "osVersion": "focal",
               "tags": {
@@ -352,7 +352,7 @@
           "platforms": [
             {
               "architecture": "amd64",
-              "dockerfile": "src/ubuntu/22.04/helix/amd64",
+              "dockerfile": "src/ubuntu/22.04/helix/any",
               "os": "linux",
               "osVersion": "jammy",
               "tags": {
@@ -369,7 +369,7 @@
           "platforms": [
             {
               "architecture": "arm64",
-              "dockerfile": "src/ubuntu/22.04/helix/arm64v8",
+              "dockerfile": "src/ubuntu/22.04/helix/any",
               "os": "linux",
               "osVersion": "jammy",
               "tags": {
@@ -483,9 +483,9 @@
           "platforms": [
             {
               "architecture": "amd64",
-              "dockerfile": "src/ubuntu/24.04/helix/amd64",
+              "dockerfile": "src/ubuntu/24.04/helix/any",
               "os": "linux",
-              "osVersion": "focal",
+              "osVersion": "noble",
               "tags": {
                 "ubuntu-24.04-helix-amd64-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
                 "ubuntu-24.04-helix-amd64$(FloatingTagSuffix)": {},
@@ -500,9 +500,9 @@
           "platforms": [
             {
               "architecture": "arm64",
-              "dockerfile": "src/ubuntu/24.04/helix/arm64v8",
+              "dockerfile": "src/ubuntu/24.04/helix/any",
               "os": "linux",
-              "osVersion": "focal",
+              "osVersion": "noble",
               "tags": {
                 "ubuntu-24.04-helix-arm64v8-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
                 "ubuntu-24.04-helix-arm64v8$(FloatingTagSuffix)": {},
