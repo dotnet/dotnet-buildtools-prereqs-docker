@@ -14,5 +14,7 @@ RUN tdnf install -y \
         util-linux \
         # Provides sudo
         sudo \
+        powershell \
+        azure-cli \
     && tdnf clean all \
     && gem install fpm
