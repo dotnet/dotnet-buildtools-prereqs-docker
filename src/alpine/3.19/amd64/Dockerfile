@@ -51,7 +51,7 @@ RUN apk update && apk add --no-cache \
         which \
         zlib-dev
 
-# Obtain the latest non-preview release.
+# Install the latest non-preview powershell release.
 RUN apk -X https://dl-cdn.alpinelinux.org/alpine/edge/main add --no-cache lttng-ust \
     && LATEST_TAG=$(curl -L https://api.github.com/repos/powershell/powershell/releases/latest | jq -r '.tag_name') \
     # Verify that it's a 7.x release
@@ -62,3 +62,10 @@ RUN apk -X https://dl-cdn.alpinelinux.org/alpine/edge/main add --no-cache lttng-
     && chmod +x /opt/microsoft/powershell/7/pwsh \
     && ln -s /opt/microsoft/powershell/7/pwsh /usr/bin/pwsh \
     && rm -f /tmp/powershell.tar.gz
+
+# Install azurecli from PIP
+RUN azureEnv="/usr/local/share/azure-cli-env" && \
+    python3 -m venv "$azureEnv" && \
+    "$azureEnv/bin/python" -m pip install --upgrade setuptools && \
+    "$azureEnv/bin/python" -m pip install azure-cli && \
+    ln -s "$azureEnv/bin/az" /usr/local/bin/az
