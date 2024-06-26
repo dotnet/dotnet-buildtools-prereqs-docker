@@ -22,6 +22,7 @@ RUN tdnf update -y && \
         python3-pip \
         # diagnostics build dependency
         lldb-devel \
+        # Provdies azure cli and powershell, used for common AzureCLI AzDO tasks
         powershell \
         azure-cli
 
