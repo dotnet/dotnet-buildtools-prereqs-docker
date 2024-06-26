@@ -1,6 +1,8 @@
+ARG ROOTFS_DIR=/crossrootfs
+
 FROM mcr.microsoft.com/dotnet-buildtools/prereqs:raspbian-10-crossdeps-local as builder
 
-ARG ROOTFS_DIR=/crossrootfs
+ARG ROOTFS_DIR
 
 # Obtain arcade scripts used to build rootfs
 RUN git config --global user.email builder@dotnet-buildtools-prereqs-docker && \
@@ -10,7 +12,7 @@ RUN git config --global user.email builder@dotnet-buildtools-prereqs-docker && \
 RUN /scripts/eng/common/cross/build-rootfs.sh armv6 raspbian --skipunmount
 
 FROM scratch
-ARG ROOTFS_DIR=/crossrootfs
+ARG ROOTFS_DIR
 
 # There doesn't seem to be an official Raspberry Pi OS Docker image
 # But we can use a crossrootfs from our image generation scripts, and

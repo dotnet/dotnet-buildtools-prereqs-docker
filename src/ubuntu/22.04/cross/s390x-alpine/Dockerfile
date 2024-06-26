@@ -1,6 +1,8 @@
+ARG ROOTFS_DIR=/crossrootfs/s390x
+
 FROM mcr.microsoft.com/dotnet-buildtools/prereqs:ubuntu-22.04-crossdeps-local as builder
 
-ARG ROOTFS_DIR=/crossrootfs/s390x
+ARG ROOTFS_DIR
 
 # Obtain arcade scripts used to build rootfs
 RUN git config --global user.email builder@dotnet-buildtools-prereqs-docker && \
@@ -11,7 +13,7 @@ RUN /scripts/eng/common/cross/build-rootfs.sh s390x alpine --skipunmount
 
 FROM mcr.microsoft.com/dotnet-buildtools/prereqs:ubuntu-22.04-crossdeps-local
 
-ARG ROOTFS_DIR=/crossrootfs/s390x
+ARG ROOTFS_DIR
 
 RUN cd /tmp \
     && wget https://ftp.gnu.org/gnu/binutils/binutils-2.40.tar.gz \

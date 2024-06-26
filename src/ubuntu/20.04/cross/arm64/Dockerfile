@@ -1,3 +1,5 @@
+ARG ROOTFS_DIR=/crossrootfs/arm64
+
 FROM mcr.microsoft.com/dotnet-buildtools/prereqs:ubuntu-20.04-crossdeps-local AS binutils
 
 # Install binutils-aarch64-linux-gnu
@@ -8,7 +10,7 @@ RUN apt-get update \
 
 
 FROM binutils AS rootfsbuild
-ARG ROOTFS_DIR=/crossrootfs/arm64
+ARG ROOTFS_DIR
 
 # Build rootfs
 RUN git config --global user.email builder@dotnet-buildtools-prereqs-docker && \
@@ -52,5 +54,5 @@ RUN mkdir -p $ROOTFS_DIR/usr/lib/llvm-9/lib/clang/9.0.1/lib/linux/ && \
 
 
 FROM binutils
-ARG ROOTFS_DIR=/crossrootfs/arm64
+ARG ROOTFS_DIR
 COPY --from=rootfsbuild $ROOTFS_DIR $ROOTFS_DIR

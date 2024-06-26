@@ -28,3 +28,5 @@ extends:
         internalProjectName: ${{ variables.internalProjectName }}
         publicProjectName: ${{ variables.publicProjectName }}
         linuxAmdBuildJobTimeout: 360
+        customBuildInitSteps:
+        - template: /eng/pipelines/steps/install-cross-build-prereqs.yml@self
