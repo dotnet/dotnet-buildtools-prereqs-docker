@@ -8,9 +8,8 @@ RUN apt-get update \
         npm \
         tar \
         zip \
-    && rm -rf /var/lib/apt/lists/* \
-    && npm install -g azure-cli@0.9.20 \
-    && npm cache clean --force
+    && curl -sL https://aka.ms/InstallAzureCLIDeb | bash \
+    && rm -rf /var/lib/apt/lists/*
 
 # Runtime dependencies
 RUN apt-get update \
