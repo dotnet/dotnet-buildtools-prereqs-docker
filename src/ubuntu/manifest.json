@@ -333,6 +333,19 @@
         {
           "platforms": [
             {
+              "dockerfile": "src/ubuntu/22.04/cross/illumos",
+              "os": "linux",
+              "osVersion": "jammy",
+              "tags": {
+                "ubuntu-22.04-cross-illumos-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
+                "ubuntu-22.04-cross-illumos$(FloatingTagSuffix)": {}
+              }
+            }
+          ]
+        },
+        {
+          "platforms": [
+            {
               "architecture": "amd64",
               "dockerfile": "src/ubuntu/22.04/helix/amd64",
               "os": "linux",
