@@ -1,4 +1,4 @@
-FROM ubuntu.azurecr.io/ubuntu:22.04
+FROM mcr.microsoft.com/powershell:7.2-ubuntu-22.04
 
 # Install the base toolchain we need to build anything (clang, cmake, make and the like)
 # this does not include libraries that we need to compile different projects, we'd like
