@@ -99,11 +99,11 @@ RUN apt-get update && \
     apt-transport-https \
     software-properties-common \
     curl && \
-    source /etc/os-release && \
-    curl -sL https://packages.microsoft.com/config/ubuntu/$VERSION_ID/packages-microsoft-prod.deb -o packages-microsoft-prod.deb && \
+    curl -sL https://packages.microsoft.com/config/ubuntu/22.04/packages-microsoft-prod.deb -o packages-microsoft-prod.deb && \
     dpkg -i packages-microsoft-prod.deb && \
     rm packages-microsoft-prod.deb && \
     apt-get update && \
-    apt-get install -y powershell
+    apt-get install -y powershell && \
+    rm -rf /var/lib/apt/lists/*
 
 ENV NO_UPDATE_NOTIFIER=true
