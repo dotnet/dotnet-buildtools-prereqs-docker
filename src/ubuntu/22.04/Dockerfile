@@ -93,17 +93,4 @@ RUN cd ~ && \
     rm -rf /var/lib/apt/lists/* && \
     rm -f nodesource_setup.sh
 
-# Install powershell
-RUN apt-get update && \
-    apt-get install -y \
-    apt-transport-https \
-    software-properties-common \
-    curl && \
-    curl -sL https://packages.microsoft.com/config/ubuntu/22.04/packages-microsoft-prod.deb -o packages-microsoft-prod.deb && \
-    dpkg -i packages-microsoft-prod.deb && \
-    rm packages-microsoft-prod.deb && \
-    apt-get update && \
-    apt-get install -y powershell && \
-    rm -rf /var/lib/apt/lists/*
-
 ENV NO_UPDATE_NOTIFIER=true
