@@ -93,7 +93,6 @@ RUN cd ~ && \
     rm -rf /var/lib/apt/lists/* && \
     rm -f nodesource_setup.sh
 
-<<<<<<< HEAD
 # Install powershell
 RUN apt-get install -y \
     apt-transport-https \
@@ -106,6 +105,3 @@ RUN apt-get install -y \
     apt-get install -y powershell
 
 ENV NO_UPDATE_NOTIFIER=true
-=======
-ENV NO_UPDATE_NOTIFIER=true
->>>>>>> origin/fixup-debpkg-image
