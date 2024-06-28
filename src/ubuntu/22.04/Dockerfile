@@ -1,4 +1,4 @@
-FROM mcr.microsoft.com/powershell:7.2-ubuntu-22.04
+FROM ubuntu.azurecr.io/ubuntu:22.04
 
 # Install the base toolchain we need to build anything (clang, cmake, make and the like)
 # this does not include libraries that we need to compile different projects, we'd like
@@ -92,5 +92,16 @@ RUN cd ~ && \
     apt-get install nodejs -y && \
     rm -rf /var/lib/apt/lists/* && \
     rm -f nodesource_setup.sh
+
+# Install powershell
+RUN apt-get install -y \
+    apt-transport-https \
+    software-properties-common && \
+    source /etc/os-release && \
+    curl -sL https://packages.microsoft.com/config/ubuntu/$VERSION_ID/packages-microsoft-prod.deb -o packages-microsoft-prod.deb && \
+    dpkg -i packages-microsoft-prod.deb && \
+    rm packages-microsoft-prod.deb && \
+    apt-get update && \
+    apt-get install -y powershell
 
 ENV NO_UPDATE_NOTIFIER=true
