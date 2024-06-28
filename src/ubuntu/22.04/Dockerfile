@@ -94,9 +94,11 @@ RUN cd ~ && \
     rm -f nodesource_setup.sh
 
 # Install powershell
-RUN apt-get install -y \
+RUN apt-get update && \
+    apt-get install -y \
     apt-transport-https \
-    software-properties-common && \
+    software-properties-common \
+    curl && \
     source /etc/os-release && \
     curl -sL https://packages.microsoft.com/config/ubuntu/$VERSION_ID/packages-microsoft-prod.deb -o packages-microsoft-prod.deb && \
     dpkg -i packages-microsoft-prod.deb && \
