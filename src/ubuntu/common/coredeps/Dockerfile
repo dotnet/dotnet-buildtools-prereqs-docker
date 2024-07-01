@@ -1,6 +1,7 @@
-FROM mcr.microsoft.com/powershell:7.2-ubuntu-22.04
+ARG POWERSHELL_TAG
+FROM mcr.microsoft.com/powershell:$POWERSHELL_TAG
 
-# Install tools used by the VSO build automation.
+# Install tools used by the AzDO build automation.
 RUN apt-get update \
     && apt-get install -y \
         git \
