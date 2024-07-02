@@ -1,5 +1,4 @@
 FROM ubuntu.azurecr.io/ubuntu:noble
-ARG TARGETARCH
 # Install Helix Dependencies
 ENV DEBIAN_FRONTEND=noninteractive
 
@@ -27,10 +26,8 @@ RUN apt-get update && \
         libunwind-dev \
         lldb \
         llvm \
-        libnuma1 \
         locales \
         locales-all \
-        openssl \
         python3-dev \
         python3-pip \
         python3-venv \
