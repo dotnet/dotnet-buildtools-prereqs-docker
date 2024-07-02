@@ -6,64 +6,6 @@
         {
           "platforms": [
             {
-              "dockerfile": "src/centos/7/amd64",
-              "os": "linux",
-              "osVersion": "centos7",
-              "tags": {
-                "centos-7-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
-                "centos-7$(FloatingTagSuffix)": {},
-                "centos-7-local": {
-                  "isLocal": true
-                }
-              }
-            }
-          ]
-        },
-        {
-          "platforms": [
-            {
-              "dockerfile": "src/centos/7/mlnet/amd64",
-              "os": "linux",
-              "osVersion": "centos7",
-              "tags": {
-                "centos-7-mlnet-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
-                "centos-7-mlnet$(FloatingTagSuffix)": {},
-                "centos-7-mlnet-local": {
-                  "isLocal": true
-                }
-              }
-            }
-          ]
-        },
-        {
-          "platforms": [
-            {
-              "dockerfile": "src/centos/7/mlnet/helix/amd64",
-              "os": "linux",
-              "osVersion": "centos7",
-              "tags": {
-                "centos-7-mlnet-helix-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
-                "centos-7-mlnet-helix$(FloatingTagSuffix)": {}
-              }
-            }
-          ]
-        },
-        {
-          "platforms": [
-            {
-              "dockerfile": "src/centos/7/source-build/amd64",
-              "os": "linux",
-              "osVersion": "centos7",
-              "tags": {
-                "centos-7-source-build-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
-                "centos-7-source-build$(FloatingTagSuffix)": {}
-              }
-            }
-          ]
-        },
-        {
-          "platforms": [
-            {
               "dockerfile": "src/centos/stream9/amd64",
               "os": "linux",
               "osVersion": "centos-stream9",
