@@ -31,3 +31,9 @@ RUN npm install jsvu -g
 RUN npm exec -c "jsvu --os=win64 --engines=v8"
 RUN setx PATH "%PATH%;%USERPROFILE%\.jsvu\bin"
 RUN v8 -e "console.log(version());quit();"
+
+# install vc redistributable for llvm 19
+ENV VC_REDIST_VERSION 17
+RUN curl -SL --output %TEMP%\vc_redist.x64.exe https://aka.ms/vs/%VC_REDIST_VERSION%/release/vc_redist.x64.exe \
+    && %TEMP%\vc_redist.x64.exe /install /passive /norestart /wait \
+    && del /q %TEMP%\vc_redist.x64.exe
