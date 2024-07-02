@@ -46,8 +46,6 @@ RUN ln -sf /usr/bin/python3 /usr/bin/python && \
     pip download --no-deps helix-scripts --index-url https://dnceng.pkgs.visualstudio.com/public/_packaging/helix-client-prod/pypi/simple && \
     pip install --break-system-packages ./helix_scripts-*-py3-none-any.whl
 
-
-RUN echo $TARGETARCH
 # Add MsQuic
 # MsQuic does not yet publish packages for 24.04
 # Manually install 22.04 package for now
