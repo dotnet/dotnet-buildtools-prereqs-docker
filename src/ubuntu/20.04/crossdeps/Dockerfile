@@ -20,17 +20,17 @@ RUN apt-get update \
         debootstrap \
         flex \
         gdb \
+        libarchive-dev \
+        libbz2-dev \
+        libbsd-dev \
+        liblzma-dev \
+        libmpc-dev \
+        libxml2-utils \
+        libz-dev \
         make \
         qemu \
         qemu-user-static \
         rpm2cpio \
-        libbz2-dev \
-        libz-dev \
-        liblzma-dev \
-        libarchive-dev \
-        libbsd-dev \
-        libmpc-dev \
-        libxml2-utils \
     && rm -rf /var/lib/apt/lists/*
 
 RUN apt-get update \

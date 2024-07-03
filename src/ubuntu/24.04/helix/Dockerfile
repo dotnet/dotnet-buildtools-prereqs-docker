@@ -1,5 +1,5 @@
-FROM ubuntu.azurecr.io/ubuntu:22.04
-
+FROM ubuntu.azurecr.io/ubuntu:noble
+ARG TARGETARCH
 # Install Helix Dependencies
 ENV DEBIAN_FRONTEND=noninteractive
 
@@ -16,16 +16,16 @@ RUN apt-get update && \
         git \
         gss-ntlmssp \
         iputils-ping \
+        libcurl4 \
         libffi-dev \
         libgdiplus \
         libicu-dev \
-        libnuma-dev \
-        liblttng-ust-dev \
+        libnuma1 \
         libssl-dev \
         libtool \
         libunwind8 \
         libunwind-dev \
-        lldb-12 \
+        lldb \
         llvm \
         locales \
         locales-all \
@@ -36,7 +36,6 @@ RUN apt-get update && \
         sudo \
         tzdata \
         unzip \
-        curl \
     && rm -rf /var/lib/apt/lists/* \
     \
     && localedef -i en_US -c -f UTF-8 -A /usr/share/locale/locale.alias en_US.UTF-8
@@ -45,25 +44,19 @@ ENV LANG=en_US.utf8
 
 RUN ln -sf /usr/bin/python3 /usr/bin/python && \
     pip download --no-deps helix-scripts --index-url https://dnceng.pkgs.visualstudio.com/public/_packaging/helix-client-prod/pypi/simple && \
-    export CRYPTOGRAPHY_DONT_BUILD_RUST=1 && \
-    pip install ./helix_scripts-*-py3-none-any.whl
+    pip install --break-system-packages ./helix_scripts-*-py3-none-any.whl
 
 # Add MsQuic
-RUN curl -LO https://packages.microsoft.com/keys/microsoft.asc && \
-    echo 2cfd20a306b2fa5e25522d78f2ef50a1f429d35fd30bd983e2ebffc2b80944fa microsoft.asc| sha256sum --check - && \
-    apt-key add microsoft.asc && \
-    rm microsoft.asc && \
-    apt-add-repository https://packages.microsoft.com/ubuntu/22.04/prod && \
-    apt-get update && \
-    apt-get install -y libmsquic && \
-    rm -rf /var/lib/apt/lists/*
+# MsQuic does not yet publish packages for 24.04
+# Manually install 22.04 package for now
+RUN curl -LO https://packages.microsoft.com/ubuntu/22.04/prod/pool/main/libm/libmsquic/libmsquic_2.3.5_$TARGETARCH.deb && \
+    dpkg -i libmsquic_*.deb && \
+    rm -f libmsquic_*.deb
 
-# (we use two users here to ensure volume mounting works with two possible UIDs of the host UID)
-RUN adduser --disabled-password --gecos '' --uid 1001 --shell /bin/bash --ingroup adm helixbot && \
-    adduser --disabled-password --gecos '' --uid 1000 --shell /bin/bash --ingroup adm helixbot2 && \
-    chmod -R +x /root && \
-    echo 'helixbot ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers && \
-    echo 'helixbot2 ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
+# create helixbot user and give rights to sudo without password
+RUN /usr/sbin/adduser --disabled-password --gecos '' --uid 1001 --shell /bin/bash --ingroup adm helixbot && \
+    chmod 755 /root && \
+    echo "helixbot ALL=(ALL)       NOPASSWD: ALL" > /etc/sudoers
 
 USER helixbot
 

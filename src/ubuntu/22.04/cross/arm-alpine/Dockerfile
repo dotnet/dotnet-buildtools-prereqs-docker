@@ -1,5 +1,7 @@
-FROM mcr.microsoft.com/dotnet-buildtools/prereqs:ubuntu-22.04-crossdeps-local AS builder
 ARG ROOTFS_DIR=/crossrootfs/arm
+
+FROM mcr.microsoft.com/dotnet-buildtools/prereqs:ubuntu-22.04-crossdeps-local AS builder
+ARG ROOTFS_DIR
 
 # Obtain arcade scripts used to build rootfs
 RUN git config --global user.email builder@dotnet-buildtools-prereqs-docker && \
@@ -9,7 +11,7 @@ RUN git config --global user.email builder@dotnet-buildtools-prereqs-docker && \
 RUN /scripts/eng/common/cross/build-rootfs.sh arm alpine3.14 --skipunmount
 
 FROM mcr.microsoft.com/dotnet-buildtools/prereqs:ubuntu-22.04-crossdeps-local
-ARG ROOTFS_DIR=/crossrootfs/arm
+ARG ROOTFS_DIR
 
 RUN cd /tmp \
     && wget https://ftp.gnu.org/gnu/binutils/binutils-2.39.tar.gz \

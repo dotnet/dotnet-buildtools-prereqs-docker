@@ -52,7 +52,7 @@
           "platforms": [
             {
               "architecture": "amd64",
-              "dockerfile": "src/ubuntu/20.04/helix/amd64",
+              "dockerfile": "src/ubuntu/20.04/helix",
               "os": "linux",
               "osVersion": "focal",
               "tags": {
@@ -62,6 +62,24 @@
                   "isLocal": true
                 }
               }
+            }
+          ]
+        },
+        {
+          "platforms": [
+            {
+              "architecture": "arm64",
+              "dockerfile": "src/ubuntu/20.04/helix",
+              "os": "linux",
+              "osVersion": "focal",
+              "tags": {
+                "ubuntu-20.04-helix-arm64v8-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
+                "ubuntu-20.04-helix-arm64v8$(FloatingTagSuffix)": {},
+                "ubuntu-20.04-helix-arm64v8-local": {
+                  "isLocal": true
+                }
+              },
+              "variant": "v8"
             }
           ]
         },
@@ -333,8 +351,21 @@
         {
           "platforms": [
             {
+              "dockerfile": "src/ubuntu/22.04/cross/illumos",
+              "os": "linux",
+              "osVersion": "jammy",
+              "tags": {
+                "ubuntu-22.04-cross-illumos-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
+                "ubuntu-22.04-cross-illumos$(FloatingTagSuffix)": {}
+              }
+            }
+          ]
+        },
+        {
+          "platforms": [
+            {
               "architecture": "amd64",
-              "dockerfile": "src/ubuntu/22.04/helix/amd64",
+              "dockerfile": "src/ubuntu/22.04/helix",
               "os": "linux",
               "osVersion": "jammy",
               "tags": {
@@ -351,7 +382,7 @@
           "platforms": [
             {
               "architecture": "arm64",
-              "dockerfile": "src/ubuntu/22.04/helix/arm64v8",
+              "dockerfile": "src/ubuntu/22.04/helix",
               "os": "linux",
               "osVersion": "jammy",
               "tags": {
@@ -456,6 +487,41 @@
               "tags": {
                 "ubuntu-24.04-arm64-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
                 "ubuntu-24.04-arm64$(FloatingTagSuffix)": {}
+              },
+              "variant": "v8"
+            }
+          ]
+        },
+        {
+          "platforms": [
+            {
+              "architecture": "amd64",
+              "dockerfile": "src/ubuntu/24.04/helix",
+              "os": "linux",
+              "osVersion": "noble",
+              "tags": {
+                "ubuntu-24.04-helix-amd64-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
+                "ubuntu-24.04-helix-amd64$(FloatingTagSuffix)": {},
+                "ubuntu-24.04-helix-amd64-local": {
+                  "isLocal": true
+                }
+              }
+            }
+          ]
+        },
+        {
+          "platforms": [
+            {
+              "architecture": "arm64",
+              "dockerfile": "src/ubuntu/24.04/helix",
+              "os": "linux",
+              "osVersion": "noble",
+              "tags": {
+                "ubuntu-24.04-helix-arm64v8-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
+                "ubuntu-24.04-helix-arm64v8$(FloatingTagSuffix)": {},
+                "ubuntu-24.04-helix-arm64v8-local": {
+                  "isLocal": true
+                }
               },
               "variant": "v8"
             }

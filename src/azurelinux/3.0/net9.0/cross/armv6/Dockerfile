@@ -1,5 +1,7 @@
-FROM mcr.microsoft.com/dotnet-buildtools/prereqs:azurelinux-3.0-crossdeps-builder-net9.0-local AS builder
 ARG ROOTFS_DIR=/crossrootfs/armv6
+
+FROM mcr.microsoft.com/dotnet-buildtools/prereqs:azurelinux-3.0-crossdeps-builder-net9.0-local AS builder
+ARG ROOTFS_DIR
 
 # Install raspbian package signing keys
 RUN wget http://raspbian.raspberrypi.org/raspbian/pool/main/r/raspbian-archive-keyring/raspbian-archive-keyring_20120528.2.tar.gz && \
@@ -11,6 +13,6 @@ RUN wget http://raspbian.raspberrypi.org/raspbian/pool/main/r/raspbian-archive-k
 RUN /scripts/eng/common/cross/build-rootfs.sh armv6 bookworm lldb13
 
 FROM mcr.microsoft.com/dotnet-buildtools/prereqs:azurelinux-3.0-crossdeps-llvm-net9.0-local
-ARG ROOTFS_DIR=/crossrootfs/armv6
+ARG ROOTFS_DIR
 
 COPY --from=builder "$ROOTFS_DIR" "$ROOTFS_DIR"

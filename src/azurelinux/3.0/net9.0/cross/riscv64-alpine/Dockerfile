@@ -1,5 +1,7 @@
-FROM mcr.microsoft.com/dotnet-buildtools/prereqs:azurelinux-3.0-crossdeps-builder-net9.0-local AS builder
 ARG ROOTFS_DIR=/crossrootfs/riscv64
+
+FROM mcr.microsoft.com/dotnet-buildtools/prereqs:azurelinux-3.0-crossdeps-builder-net9.0-local AS builder
+ARG ROOTFS_DIR
 
 RUN /scripts/eng/common/cross/build-rootfs.sh riscv64 alpine3.20 --skipunmount
 
@@ -29,6 +31,6 @@ RUN TARGET_TRIPLE="riscv64-alpine-linux-musl" && \
     cmake --install runtimes --prefix "$ROOTFS_DIR/usr"
 
 FROM mcr.microsoft.com/dotnet-buildtools/prereqs:azurelinux-3.0-crossdeps-llvm-net9.0-local
-ARG ROOTFS_DIR=/crossrootfs/riscv64
+ARG ROOTFS_DIR
 
 COPY --from=builder $ROOTFS_DIR $ROOTFS_DIR

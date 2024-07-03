@@ -21,7 +21,10 @@ RUN tdnf update -y && \
         # Jit rolling build dependency
         python3-pip \
         # diagnostics build dependency
-        lldb-devel
+        lldb-devel \
+        # Provdies azure cli and powershell, used for common AzureCLI AzDO tasks
+        powershell \
+        azure-cli
 
 # Validate checksums with keyring after https://github.com/microsoft/azurelinux/issues/3142 is resolved
 ENV NODE_VERSION=20.11.1

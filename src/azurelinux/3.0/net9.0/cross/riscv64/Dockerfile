@@ -1,11 +1,15 @@
-FROM mcr.microsoft.com/dotnet-buildtools/prereqs:azurelinux-3.0-crossdeps-builder-net9.0-local AS builder
 ARG ROOTFS_DIR=/crossrootfs/riscv64
+
+FROM mcr.microsoft.com/dotnet-buildtools/prereqs:azurelinux-3.0-crossdeps-builder-net9.0-local AS builder
+ARG ROOTFS_DIR
 
 # Install the latest debootstrap
 RUN tdnf remove -y debootstrap && \
-    git clone --depth 1 "https://git.launchpad.net/ubuntu/+source/debootstrap" /debootstrap && \
-    chmod a+x /debootstrap/debootstrap && \
-    ln -s /debootstrap/debootstrap -t /usr/local/bin
+    curl -sSLO https://deb.debian.org/debian/pool/main/d/debootstrap/debootstrap_1.0.134.tar.gz && \
+    echo "03c1dfbff2f9936acea3954b9c92e348e7e216f706c202744f80c9f1302329b4 debootstrap_1.0.134.tar.gz" | sha256sum -c - && \
+    tar xzf debootstrap_1.0.134.tar.gz -C / && \
+    ln -s /debootstrap/debootstrap -t /usr/local/bin && \
+    rm -f debootstrap_1.0.134.tar.gz
 
 RUN /scripts/eng/common/cross/build-rootfs.sh riscv64 noble --skipunmount
 
@@ -44,7 +48,7 @@ RUN TARGET_TRIPLE="riscv64-linux-gnu" && \
     cmake --install runtimes --prefix "$ROOTFS_DIR/usr"
 
 FROM mcr.microsoft.com/dotnet-buildtools/prereqs:azurelinux-3.0-crossdeps-llvm-net9.0-local
-ARG ROOTFS_DIR=/crossrootfs/riscv64
+ARG ROOTFS_DIR
 
 COPY --from=builder /usr/local/lib/clang /usr/local/lib/clang/
 COPY --from=builder $ROOTFS_DIR $ROOTFS_DIR
