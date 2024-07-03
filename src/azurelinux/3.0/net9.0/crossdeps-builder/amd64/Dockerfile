@@ -16,7 +16,6 @@ RUN tdnf install -y \
         glibc-devel \
         kernel-headers \
         texinfo \
-        zlib-devel \
         # Rootfs build dependencies
         bzip2-devel \
         debootstrap \
