@@ -60,7 +60,7 @@ ENV LANG=en_US.utf8
 RUN ln -sf /usr/bin/python3 /usr/bin/python && \
     pip download --no-deps helix-scripts --index-url https://dnceng.pkgs.visualstudio.com/public/_packaging/helix-client-prod/pypi/simple && \
     export CRYPTOGRAPHY_DONT_BUILD_RUST=1 && \
-    pip install ./helix_scripts-*-py3-none-any.whl
+    pip install ./helix_scripts-*-py3-none-any.whl --break-system-packages
 
 # Create helixbot user and give rights to sudo without password
 # (we use two users here to ensure volume mounting works with two possible UIDs of the host UID)
