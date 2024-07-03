@@ -1,6 +1,6 @@
 ARG ROOTFS_DIR=/crossrootfs
 
-FROM mcr.microsoft.com/dotnet-buildtools/prereqs:raspbian-12-crossdeps-local as builder
+FROM --platform=linux/arm/v7 mcr.microsoft.com/dotnet-buildtools/prereqs:raspbian-12-crossdeps-local as builder
 
 ARG ROOTFS_DIR
 
@@ -9,7 +9,7 @@ RUN git config --global user.email builder@dotnet-buildtools-prereqs-docker && \
     git clone --depth 1 --single-branch https://github.com/dotnet/arcade /scripts
 
 # Build the rootfs
-RUN /scripts/eng/common/cross/build-rootfs.sh armv6 bookworm --skipunmount
+RUN /scripts/eng/common/cross/build-rootfs.sh armv6 bookworm lldb15 --skipunmount
 
 FROM scratch
 ARG ROOTFS_DIR
