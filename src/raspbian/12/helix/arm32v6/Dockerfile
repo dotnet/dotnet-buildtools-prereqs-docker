@@ -47,6 +47,7 @@ RUN apt-get update && \
         locales-all \
         python3-dev \
         python3-pip \
+        rustc \
         sudo \
         tzdata \
         unzip \
