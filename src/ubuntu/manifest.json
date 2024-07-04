@@ -531,7 +531,7 @@
           "platforms": [
             {
               "architecture": "arm",
-              "dockerfile": "src/ubuntu/24.04/helix/arm32v7",
+              "dockerfile": "src/ubuntu/24.04/helix/",
               "os": "linux",
               "osVersion": "noble",
               "tags": {
