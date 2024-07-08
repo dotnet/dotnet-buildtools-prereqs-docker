@@ -17,7 +17,7 @@
                 }
               },
               "buildArgs": {
-                "POWERSHELL_TAG": "lts-7.2-ubuntu-20.04"
+                "POWERSHELL_TAG": "ubuntu-20.04"
               }
             }
           ]
@@ -216,7 +216,7 @@
                 }
               },
               "buildArgs": {
-                "POWERSHELL_TAG": "lts-7.2-ubuntu-22.04"
+                "POWERSHELL_TAG": "ubuntu-22.04"
               }
             }
           ]
