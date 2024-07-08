@@ -1,9 +1,11 @@
 # escape=`
-FROM mcr.microsoft.com/powershell:6.2.0-nanoserver-1809
+FROM mcr.microsoft.com/windows/nanoserver:1809
 
 SHELL ["cmd", "/S", "/C"]
 USER ContainerAdministrator
 ENTRYPOINT C:\Windows\System32\cmd.exe
+
+COPY --from=mcr.microsoft.com/powershell:windowsservercore-ltsc2022 [ "C:\\Program Files\\PowerShell\\latest\\", "C:\\Program Files\\PowerShell\\" ]
 
 RUN curl -SL --output %TEMP%\python.zip https://www.nuget.org/api/v2/package/python/3.7.3 `
     && md C:\Python C:\PythonTemp `
