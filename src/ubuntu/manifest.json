@@ -6,7 +6,7 @@
         {
           "platforms": [
             {
-              "dockerfile": "src/ubuntu/20.04/coredeps",
+              "dockerfile": "src/ubuntu/common/coredeps",
               "os": "linux",
               "osVersion": "focal",
               "tags": {
@@ -15,6 +15,9 @@
                 "ubuntu-20.04-coredeps-local": {
                   "isLocal": true
                 }
+              },
+              "buildArgs": {
+                "POWERSHELL_TAG": "ubuntu-20.04"
               }
             }
           ]
@@ -202,7 +205,7 @@
         {
           "platforms": [
             {
-              "dockerfile": "src/ubuntu/22.04/coredeps",
+              "dockerfile": "src/ubuntu/common/coredeps",
               "os": "linux",
               "osVersion": "jammy",
               "tags": {
@@ -211,6 +214,9 @@
                 "ubuntu-22.04-coredeps-local": {
                   "isLocal": true
                 }
+              },
+              "buildArgs": {
+                "POWERSHELL_TAG": "ubuntu-22.04"
               }
             }
           ]
@@ -524,6 +530,24 @@
                 }
               },
               "variant": "v8"
+            }
+          ]
+        },
+        {
+          "platforms": [
+            {
+              "architecture": "arm",
+              "dockerfile": "src/ubuntu/24.04/helix",
+              "os": "linux",
+              "osVersion": "noble",
+              "tags": {
+                "ubuntu-24.04-helix-arm32v7-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
+                "ubuntu-24.04-helix-arm32v7$(FloatingTagSuffix)": {},
+                "ubuntu-24.04-helix-arm32v7-local": {
+                  "isLocal": true
+                }
+              },
+              "variant": "v7"
             }
           ]
         }

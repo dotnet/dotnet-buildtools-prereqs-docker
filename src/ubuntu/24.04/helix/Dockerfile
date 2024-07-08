@@ -3,7 +3,10 @@ ARG TARGETARCH
 # Install Helix Dependencies
 ENV DEBIAN_FRONTEND=noninteractive
 
-RUN apt-get update && \
+RUN LIBCURL=libcurl4 && \
+    if [ "$TARGETARCH" = "arm" ]; then \
+        LIBCURL="libcurl4t64"; fi && \ 
+    apt-get update && \
     apt-get install -qq -y \
         autoconf \
         automake \
@@ -16,7 +19,7 @@ RUN apt-get update && \
         git \
         gss-ntlmssp \
         iputils-ping \
-        libcurl4 \
+        $LIBCURL \
         libffi-dev \
         libgdiplus \
         libicu-dev \
@@ -46,13 +49,16 @@ RUN ln -sf /usr/bin/python3 /usr/bin/python && \
     pip download --no-deps helix-scripts --index-url https://dnceng.pkgs.visualstudio.com/public/_packaging/helix-client-prod/pypi/simple && \
     pip install --break-system-packages ./helix_scripts-*-py3-none-any.whl
 
-
-RUN echo $TARGETARCH
 # Add MsQuic
 # MsQuic does not yet publish packages for 24.04
 # Manually install 22.04 package for now
-RUN curl -LO https://packages.microsoft.com/ubuntu/22.04/prod/pool/main/libm/libmsquic/libmsquic_2.3.5_$TARGETARCH.deb && \
-    dpkg -i libmsquic_*.deb && \
+RUN DEPS= && \
+    ARCH=$TARGETARCH && \
+    if [ "$TARGETARCH" = "arm" ]; then \
+        DEPS=--ignore-depends=libssl3 && \
+        ARCH=armhf ; fi && \
+    curl -LO https://packages.microsoft.com/ubuntu/22.04/prod/pool/main/libm/libmsquic/libmsquic_2.3.5_$ARCH.deb && \
+    dpkg $DEPS -i libmsquic_*.deb && \
     rm -f libmsquic_*.deb
 
 # create helixbot user and give rights to sudo without password
