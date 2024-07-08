@@ -1,13 +1,11 @@
 FROM ubuntu.azurecr.io/ubuntu:noble
 ARG TARGETARCH
-ARG TARGETPLATFORM
 # Install Helix Dependencies
 ENV DEBIAN_FRONTEND=noninteractive
 
 RUN LIBCURL=libcurl4 && \
     if [ "$TARGETARCH" = "arm" ]; then \
         LIBCURL="libcurl4t64"; fi && \ 
-    echo $LIBCURL && \
     apt-get update && \
     apt-get install -qq -y \
         autoconf \
