@@ -45,6 +45,7 @@ RUN apt-get update && \
         libunwind8 \
         locales \
         locales-all \
+        pkg-config \
         python3-dev \
         python3-pip \
         rustc \

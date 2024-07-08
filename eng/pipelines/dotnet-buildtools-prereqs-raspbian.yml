@@ -28,4 +28,4 @@ extends:
       parameters:
         internalProjectName: ${{ variables.internalProjectName }}
         publicProjectName: ${{ variables.publicProjectName }}
-        linuxArmBuildJobTimeout: 240
+        linuxArmBuildJobTimeout: 360
