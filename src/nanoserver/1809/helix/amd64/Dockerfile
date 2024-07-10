@@ -1,9 +1,23 @@
 # escape=`
-FROM mcr.microsoft.com/powershell:6.2.0-nanoserver-1809
+FROM mcr.microsoft.com/windows/servercore:ltsc2019 AS installer
+
+SHELL ["powershell", "-Command", "$ErrorActionPreference = 'Stop'; $ProgressPreference = 'SilentlyContinue';"]
+
+RUN $apiUrl = 'https://api.github.com/repos/PowerShell/PowerShell/releases/latest'; `
+    $response = Invoke-RestMethod -Uri $apiUrl; `
+    $url = $response.assets | Where-Object { $_.browser_download_url -match 'win-x64.zip' } | Select-Object -ExpandProperty browser_download_url; `
+    Invoke-WebRequest -Uri $url -OutFile C:\powershell.zip; `
+    Expand-Archive -Path C:\powershell.zip -DestinationPath C:\powershell; `
+    Remove-Item -Path C:\powershell.zip
+
+
+FROM mcr.microsoft.com/windows/nanoserver:1809
 
 SHELL ["cmd", "/S", "/C"]
 USER ContainerAdministrator
 ENTRYPOINT C:\Windows\System32\cmd.exe
+
+COPY --from=installer [ "C:\\powershell\\", "C:\\Program Files\\PowerShell\\" ]
 
 RUN curl -SL --output %TEMP%\python.zip https://www.nuget.org/api/v2/package/python/3.7.3 `
     && md C:\Python C:\PythonTemp `
