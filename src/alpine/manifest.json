@@ -214,7 +214,23 @@
               "osVersion": "alpine3.20",
               "tags": {
                 "alpine-3.20-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
-                "alpine-3.20$(FloatingTagSuffix)": {}
+                "alpine-3.20$(FloatingTagSuffix)": {},
+                "alpine-3.20-local": {
+                  "isLocal": true
+                }
+              }
+            }
+          ]
+        },
+        {
+          "platforms": [
+            {
+              "dockerfile": "src/alpine/3.20/withnode/amd64",
+              "os": "linux",
+              "osVersion": "alpine3.20",
+              "tags": {
+                "alpine-3.20-withnode-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
+                "alpine-3.20-withnode$(FloatingTagSuffix)": {}
               }
             }
           ]
