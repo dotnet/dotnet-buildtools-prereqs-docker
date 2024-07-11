@@ -1,7 +1,6 @@
 FROM library/almalinux:8
 
 # Install dependencies
-
 RUN dnf install -y \
      'dnf-command(config-manager)' \
      epel-release && \
@@ -12,6 +11,8 @@ RUN dnf install -y \
         autoconf \
         automake \
         cmake \
+        elfutils \
+        file \
         gdb \
         git \
         glibc-langpack-en \
@@ -39,5 +40,8 @@ RUN dnf install -y \
         which \
         xz \
         zlib-devel \
-    && \
+        && \
+    dnf module install -y \
+        nodejs:20 \
+        && \
     dnf clean all
