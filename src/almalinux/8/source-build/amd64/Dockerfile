@@ -11,6 +11,8 @@ RUN dnf install -y \
         autoconf \
         automake \
         cmake \
+        elfutils \
+        file \
         gdb \
         git \
         glibc-langpack-en \
