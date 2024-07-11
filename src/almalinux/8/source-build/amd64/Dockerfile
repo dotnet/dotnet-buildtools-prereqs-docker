@@ -1,4 +1,4 @@
-FROM library/almalinux:8
+FROM almalinux:8
 
 # Install dependencies
 
@@ -12,6 +12,8 @@ RUN dnf install -y \
         autoconf \
         automake \
         cmake \
+        elfutils \
+        file \
         gdb \
         git \
         glibc-langpack-en \
