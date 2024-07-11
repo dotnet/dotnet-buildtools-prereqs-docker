@@ -1,4 +1,4 @@
-FROM almalinux:8
+FROM library/almalinux:8
 
 # Install dependencies
 
