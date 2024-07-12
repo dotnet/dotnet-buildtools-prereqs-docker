@@ -1,8 +1,7 @@
 FROM amd64/alpine:3.20 as msquic
 
 # build MsQuic as we don't have packages
-RUN apk update && apk add --no-cache && \
-    apk add \
+RUN apk add --no-cache \
         cmake \
         g++ \
         gcc \
@@ -31,9 +30,11 @@ RUN cmake -B build/linux/x64_Release_openssl3 \
     cmake --build build/linux/x64_Release_openssl3  --config Release && \
     cmake --install build/linux/x64_Release_openssl3 --prefix /msquic
 
+    
 FROM amd64/alpine:3.20
+
 # Install .NET and test dependencies
-RUN apk update && apk add --no-cache \
+RUN apk add --no-cache \
     bash \
     coreutils \
     curl \
@@ -67,10 +68,10 @@ RUN /usr/sbin/adduser -D -g '' -G adm -s /bin/bash -u 1000 helixbot && \
     echo "helixbot ALL=(ALL)       NOPASSWD: ALL" > /etc/sudoers.d/helixbot
 
 # Install Helix Dependencies
-RUN apk update && apk add --no-cache \
-    build-base \
-    gcc \
-    linux-headers && \
+RUN apk add --no-cache \
+        build-base \
+        gcc \
+        linux-headers && \
     # Create virtual environment
     python3 -m venv /home/helixbot/.vsts-env && \
     source /home/helixbot/.vsts-env/bin/activate && \
@@ -79,8 +80,8 @@ RUN apk update && apk add --no-cache \
     pip install ./helix_scripts-*-py3-none-any.whl && \
     # Delete unnecessary dependencies
     apk del \
-    build-base \
-    gcc \
-    linux-headers
+        build-base \
+        gcc \
+        linux-headers
 
 USER helixbot
