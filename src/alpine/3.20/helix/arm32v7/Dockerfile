@@ -1,8 +1,7 @@
 FROM arm32v7/alpine:3.20 as msquic
 
 # build MsQuic as we don't have packages
-RUN apk update && apk add --no-cache && \
-    apk add \
+RUN apk add --upgrade --no-cache \
         cmake \
         g++ \
         gcc \
@@ -32,9 +31,11 @@ RUN cmake -B build/linux/arm_Release_openssl3 \
     cmake --build build/linux/arm_Release_openssl3  --config Release && \
     cmake --install build/linux/arm_Release_openssl3 --prefix /msquic
 
+
 FROM arm32v7/alpine:3.20
+
 # Install .NET and test dependencies
-RUN apk update && apk add --no-cache \
+RUN apk add --upgrade --no-cache \
         bash \
         coreutils \
         curl \
@@ -62,7 +63,7 @@ RUN /usr/sbin/adduser -D -g '' -G adm -s /bin/bash -u 1000 helixbot && \
     echo "helixbot ALL=(ALL)       NOPASSWD: ALL" > /etc/sudoers.d/helixbot
 
 # Install Helix Dependencies
-RUN apk update && apk add --no-cache \
+RUN apk add --upgrade --no-cache \
         build-base \
         libffi-dev \
         gcc \

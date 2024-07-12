@@ -1,7 +1,6 @@
 FROM mcr.microsoft.com/dotnet-buildtools/prereqs:alpine-3.20-local
 
-RUN apk update \
-    && apk add --no-cache \
+RUN apk add --upgrade --no-cache \
         nodejs \
         npm
 

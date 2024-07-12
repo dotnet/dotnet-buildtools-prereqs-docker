@@ -1,8 +1,7 @@
 FROM arm64v8/alpine:3.20 as msquic
 
 # build MsQuic as we don't have packages
-RUN apk update && apk add --no-cache && \
-    apk add \
+RUN apk add --upgrade --no-cache \
         cmake \
         g++ \
         gcc \
@@ -32,27 +31,29 @@ RUN cmake -B build/linux/arm64_Release_openssl3 \
     cmake --build build/linux/arm64_Release_openssl3  --config Release && \
     cmake --install build/linux/arm64_Release_openssl3 --prefix /msquic
 
+
 FROM arm64v8/alpine:3.20
+
 # Install .NET and test dependencies
-RUN apk update && apk add --no-cache \
-    bash \
-    coreutils \
-    curl \
-    icu-data-full \
-    icu-libs \
-    iputils \
-    krb5-libs \
-    lldb \
-    llvm \
-    lttng-ust \
-    musl-locales \
-    numactl \
-    openssl \
-    python3 \
-    python3-dev \
-    py3-pip \
-    sudo \
-    tzdata
+RUN apk add --upgrade --no-cache \
+        bash \
+        coreutils \
+        curl \
+        icu-data-full \
+        icu-libs \
+        iputils \
+        krb5-libs \
+        lldb \
+        llvm \
+        lttng-ust \
+        musl-locales \
+        numactl \
+        openssl \
+        python3 \
+        python3-dev \
+        py3-pip \
+        sudo \
+        tzdata
 
 # Copy msquic from the msquic image into our image that will run on Helix
 COPY --from=msquic /msquic /usr
@@ -68,11 +69,11 @@ RUN /usr/sbin/adduser -D -g '' -G adm -s /bin/bash -u 1000 helixbot && \
     echo "helixbot ALL=(ALL)       NOPASSWD: ALL" > /etc/sudoers.d/helixbot
 
 # Install Helix Dependencies
-RUN apk update && apk add --no-cache \
-    build-base \
-    libffi-dev \
-    gcc \
-    linux-headers && \
+RUN apk add --upgrade --no-cache \
+        build-base \
+        libffi-dev \
+        gcc \
+        linux-headers && \
     # Create virtual environment
     python3 -m venv /home/helixbot/.vsts-env && \
     source /home/helixbot/.vsts-env/bin/activate && \
@@ -81,9 +82,9 @@ RUN apk update && apk add --no-cache \
     pip install ./helix_scripts-*-py3-none-any.whl && \
     # Delete unnecessary dependencies
     apk del \
-    build-base \
-    libffi-dev \
-    gcc \
-    linux-headers
+        build-base \
+        libffi-dev \
+        gcc \
+        linux-headers
 
 USER helixbot

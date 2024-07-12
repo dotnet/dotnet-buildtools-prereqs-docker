@@ -1,8 +1,7 @@
 FROM amd64/alpine:3.18 as msquic
 
 # build MsQuic as we don't have packages
-RUN apk update && apk add --no-cache && \
-    apk add \
+RUN apk add --upgrade --no-cache \
         cmake \
         g++ \
         gcc \
@@ -31,30 +30,31 @@ RUN cmake -B build/linux/x64_Release_openssl3 \
     cmake --build build/linux/x64_Release_openssl3  --config Release && \
     cmake --install build/linux/x64_Release_openssl3 --prefix /msquic
 
+
 FROM amd64/alpine:3.18
+
 # Install .NET and test dependencies
-RUN apk update && apk add --no-cache \
-    bash \
-    coreutils \
-    curl \
-    icu-data-full \
-    icu-libs \
-    iputils \
-    krb5-libs \
-    lldb \
-    llvm \
-    lttng-ust \
-    musl-locales \
-    numactl \
-    openssl \
-    python3 \
-    py3-pip \
-    sudo \
-    tzdata
+RUN apk add --upgrade --no-cache \
+        bash \
+        coreutils \
+        curl \
+        icu-data-full \
+        icu-libs \
+        iputils \
+        krb5-libs \
+        lldb \
+        llvm \
+        lttng-ust \
+        musl-locales \
+        numactl \
+        openssl \
+        python3 \
+        py3-pip \
+        sudo \
+        tzdata
 
 # Install Helix Dependencies
-RUN apk update && apk add --no-cache && \
-    apk add \
+RUN apk add --upgrade --no-cache \
         cargo \
         libffi-dev \
         linux-headers \
