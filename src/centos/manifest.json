@@ -37,10 +37,7 @@
               "osVersion": "centos-stream9",
               "tags": {
                 "centos-stream9-mlnet-helix-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
-                "centos-stream9-mlnet-helix$(FloatingTagSuffix)": {},
-                "centos-stream9-mlnet-helix-local": {
-                  "isLocal": true
-                }
+                "centos-stream9-mlnet-helix$(FloatingTagSuffix)": {}
               }
             }
           ]

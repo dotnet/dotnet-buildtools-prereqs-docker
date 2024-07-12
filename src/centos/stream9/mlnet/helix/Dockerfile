@@ -89,8 +89,6 @@ RUN tar -xf openmp-3.9.1.src.tar.xz --strip 1 -C llvm-3.9.1.src/openmp && \
 ENV LD_LIBRARY_PATH=/usr/local/lib:/usr/local/lib64
 
 RUN ln -sf /usr/bin/python3 /usr/bin/python && \
-    python -m pip install --upgrade pip==20.2 && \
-    python -m pip install virtualenv==16.6.0 && \
     pip download --no-deps helix-scripts --index-url https://dnceng.pkgs.visualstudio.com/public/_packaging/helix-client-prod/pypi/simple && \
     pip install ./helix_scripts-*-py3-none-any.whl
 
@@ -103,4 +101,4 @@ RUN /usr/sbin/adduser --uid 1000 --shell /bin/bash --gid adm helixbot && \
 
 USER helixbot
 
-RUN python -m virtualenv --no-site-packages /home/helixbot/.vsts-env
+RUN python -m venv /home/helixbot/.vsts-env
