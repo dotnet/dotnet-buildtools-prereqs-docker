@@ -1,7 +1,6 @@
 FROM amd64/alpine:3.17
 
-RUN apk update && \
-    apk add --no-cache \
+RUN apk add --upgrade --no-cache \
         autoconf \
         automake \
         bash \

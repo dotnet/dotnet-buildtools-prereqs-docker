@@ -1,7 +1,7 @@
 FROM amd64/alpine:3.17 as msquic
 
 # build MsQuic as we don't have packages
-RUN apk add --no-cache \
+RUN apk add --upgrade --no-cache \
         cmake \
         g++ \
         gcc \
@@ -34,7 +34,7 @@ RUN cmake -B build/linux/x64_Release_openssl3 \
 FROM amd64/alpine:3.17
 
 # Install .NET and test dependencies
-RUN apk add --no-cache \
+RUN apk add --upgrade --no-cache \
         bash \
         coreutils \
         curl \
@@ -54,7 +54,7 @@ RUN apk add --no-cache \
         tzdata
 
 # Install Helix Dependencies
-RUN apk add --no-cache \
+RUN apk add --upgrade --no-cache \
         cargo \
         libffi-dev \
         linux-headers \

@@ -1,7 +1,7 @@
 FROM amd64/alpine:3.19
 
 # Install .NET and test dependencies
-RUN apk add --no-cache \
+RUN apk add --upgrade --no-cache \
         autoconf \
         automake \
         bash \

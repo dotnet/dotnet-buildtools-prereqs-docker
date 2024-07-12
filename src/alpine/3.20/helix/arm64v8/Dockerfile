@@ -1,7 +1,7 @@
 FROM arm64v8/alpine:3.20 as msquic
 
 # build MsQuic as we don't have packages
-RUN apk add --no-cache \
+RUN apk add --upgrade --no-cache \
         cmake \
         g++ \
         gcc \
@@ -35,7 +35,7 @@ RUN cmake -B build/linux/arm64_Release_openssl3 \
 FROM arm64v8/alpine:3.20
 
 # Install .NET and test dependencies
-RUN apk add --no-cache \
+RUN apk add --upgrade --no-cache \
         bash \
         coreutils \
         curl \
@@ -69,7 +69,7 @@ RUN /usr/sbin/adduser -D -g '' -G adm -s /bin/bash -u 1000 helixbot && \
     echo "helixbot ALL=(ALL)       NOPASSWD: ALL" > /etc/sudoers.d/helixbot
 
 # Install Helix Dependencies
-RUN apk add --no-cache \
+RUN apk add --upgrade --no-cache \
         build-base \
         libffi-dev \
         gcc \
