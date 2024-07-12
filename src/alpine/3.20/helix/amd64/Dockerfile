@@ -30,29 +30,29 @@ RUN cmake -B build/linux/x64_Release_openssl3 \
     cmake --build build/linux/x64_Release_openssl3  --config Release && \
     cmake --install build/linux/x64_Release_openssl3 --prefix /msquic
 
-    
+
 FROM amd64/alpine:3.20
 
 # Install .NET and test dependencies
 RUN apk add --no-cache \
-    bash \
-    coreutils \
-    curl \
-    icu-data-full \
-    icu-libs \
-    iputils \
-    krb5-libs \
-    lldb \
-    llvm \
-    lttng-ust \
-    musl-locales \
-    numactl \
-    openssl \
-    python3 \
-    python3-dev \
-    py3-pip \
-    sudo \
-    tzdata
+        bash \
+        coreutils \
+        curl \
+        icu-data-full \
+        icu-libs \
+        iputils \
+        krb5-libs \
+        lldb \
+        llvm \
+        lttng-ust \
+        musl-locales \
+        numactl \
+        openssl \
+        python3 \
+        python3-dev \
+        py3-pip \
+        sudo \
+        tzdata
 
 # Copy msquic from the msquic image into our image that will run on Helix
 COPY --from=msquic /msquic /usr
