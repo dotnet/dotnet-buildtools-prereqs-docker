@@ -1,4 +1,4 @@
-FROM amd64/alpine:3.17 as msquic
+FROM amd64/alpine:3.17 AS msquic
 
 # build MsQuic as we don't have packages
 RUN apk add --upgrade --no-cache \
@@ -30,6 +30,19 @@ RUN cmake -B build/linux/x64_Release_openssl3 \
     cmake --build build/linux/x64_Release_openssl3  --config Release && \
     cmake --install build/linux/x64_Release_openssl3 --prefix /msquic
 
+FROM amd64/alpine:3.17 AS venv
+
+RUN apk add --upgrade --no-cache \
+        cargo \
+        libffi-dev \
+        linux-headers \
+        python3-dev \
+        openssl-dev
+
+RUN python3 -m venv /venv && \
+        source /venv/bin/activate && \
+        pip download --no-deps helix-scripts --index-url https://dnceng.pkgs.visualstudio.com/public/_packaging/helix-client-prod/pypi/simple && \
+        pip install ./helix_scripts-*-py3-none-any.whl
 
 FROM amd64/alpine:3.17
 
@@ -53,23 +66,6 @@ RUN apk add --upgrade --no-cache \
         sudo \
         tzdata
 
-# Install Helix Dependencies
-RUN apk add --upgrade --no-cache \
-        cargo \
-        libffi-dev \
-        linux-headers \
-        python3-dev \
-        openssl-dev && \
-    ln -sf /usr/bin/python3 /usr/bin/python && \
-    pip download --no-deps helix-scripts --index-url https://dnceng.pkgs.visualstudio.com/public/_packaging/helix-client-prod/pypi/simple && \
-    pip install ./helix_scripts-*-py3-none-any.whl && \
-    apk del \
-        cargo \
-        libffi-dev \
-        linux-headers \
-        python3-dev \
-        openssl-dev
-
 # Copy msquic from the msquic image into our image that will run on Helix
 COPY --from=msquic /msquic /usr
 
@@ -85,4 +81,9 @@ RUN /usr/sbin/adduser -D -g '' -G adm -s /bin/bash -u 1000 helixbot && \
 
 USER helixbot
 
-RUN python3 -m venv /home/helixbot/.vsts-env
+# Install Helix Dependencies
+
+ENV VIRTUAL_ENV=/home/helixbot/.vsts-env
+RUN python3 -m venv $VIRTUAL_ENV
+ENV PATH="$VIRTUAL_ENV/bin:$PATH"
+COPY --from=venv /venv /home/helixbot/.vsts-env
