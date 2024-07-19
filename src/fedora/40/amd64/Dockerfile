@@ -25,11 +25,12 @@ RUN dnf config-manager --add-repo https://packages.microsoft.com/fedora/40/prod/
 
 # Install tools used by build automation.
 RUN dnf --setopt=install_weak_deps=False install -y \
+        azure-cli \
         git \
+        jq \
         tar \
         procps \
         zip \
-        azure-cli \
     && dnf clean all
 
 # Install the latest non-preview powershell release.
