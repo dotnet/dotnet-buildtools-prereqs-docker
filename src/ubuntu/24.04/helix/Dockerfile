@@ -1,6 +1,21 @@
+FROM ubuntu.azurecr.io/ubuntu:noble AS venv
+ENV DEBIAN_FRONTEND=noninteractive
+
+RUN apt-get update && \
+    apt-get install -y \
+        coreutils \
+        python3-dev \
+        python3-pip \
+        python3-venv \
+    && rm -rf /var/lib/apt/lists/*
+
+RUN python3 -m venv /venv && \
+    . /venv/bin/activate && \
+    pip download --no-deps helix-scripts --index-url https://dnceng.pkgs.visualstudio.com/public/_packaging/helix-client-prod/pypi/simple && \
+    pip install ./helix_scripts-*-py3-none-any.whl
+
 FROM ubuntu.azurecr.io/ubuntu:noble
 ARG TARGETARCH
-# Install Helix Dependencies
 ENV DEBIAN_FRONTEND=noninteractive
 
 RUN LIBCURL=libcurl4 && \
@@ -45,10 +60,6 @@ RUN LIBCURL=libcurl4 && \
 
 ENV LANG=en_US.utf8
 
-RUN ln -sf /usr/bin/python3 /usr/bin/python && \
-    pip download --no-deps helix-scripts --index-url https://dnceng.pkgs.visualstudio.com/public/_packaging/helix-client-prod/pypi/simple && \
-    pip install --break-system-packages ./helix_scripts-*-py3-none-any.whl
-
 # Add MsQuic
 # MsQuic does not yet publish packages for 24.04
 # Manually install 22.04 package for now
@@ -68,4 +79,10 @@ RUN /usr/sbin/adduser --disabled-password --gecos '' --uid 1001 --shell /bin/bas
 
 USER helixbot
 
-RUN python -m venv /home/helixbot/.vsts-env
+# Install Helix Dependencies
+
+ENV VIRTUAL_ENV=/home/helixbot/.vsts-env
+RUN python3 -m venv $VIRTUAL_ENV
+ENV PATH="$VIRTUAL_ENV/bin:$PATH"
+COPY --from=venv /venv /home/helixbot/.vsts-env
+
