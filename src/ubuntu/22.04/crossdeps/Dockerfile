@@ -40,5 +40,5 @@ RUN apt-get update \
     && rm -rf /var/lib/apt/lists/*
 
 # install llvm-toolchain using official script
-RUN wget -O- https://apt.llvm.org/llvm.sh | bash -s -- 18 all
+RUN wget -O- https://apt.llvm.org/llvm.sh | bash -s -- 18 all \
     && rm -rf /var/lib/apt/lists/*
