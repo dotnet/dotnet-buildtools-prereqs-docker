@@ -1,4 +1,4 @@
-FROM arm64v8/alpine:3.20 as msquic
+FROM arm64v8/alpine:3.20 AS msquic
 
 # build MsQuic as we don't have packages
 RUN apk add --upgrade --no-cache \
@@ -34,9 +34,11 @@ RUN cmake -B build/linux/arm64_Release_openssl3 \
 FROM arm64v8/alpine:3.20 AS venv
 
 RUN apk add --upgrade --no-cache \
+        python3-dev \
         build-base \
         libffi-dev \
         gcc \
+        libffi-dev \
         linux-headers
 
 RUN python3 -m venv /venv && \

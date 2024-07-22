@@ -1,4 +1,4 @@
-FROM amd64/alpine:3.20 as msquic
+FROM amd64/alpine:3.20 AS msquic
 
 # build MsQuic as we don't have packages
 RUN apk add --upgrade --no-cache \
@@ -33,7 +33,9 @@ RUN cmake -B build/linux/x64_Release_openssl3 \
 FROM amd64/alpine:3.20 AS venv
 
 RUN apk add --upgrade --no-cache \
+        python3-dev \
         build-base \
+        libffi-dev \
         gcc \
         linux-headers
 
