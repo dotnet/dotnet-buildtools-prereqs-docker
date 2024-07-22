@@ -40,5 +40,9 @@ RUN apt-get update \
     && rm -rf /var/lib/apt/lists/*
 
 # install llvm-toolchain using official script
-RUN wget -O- https://apt.llvm.org/llvm.sh | bash -s -- 18 all \
+RUN wget -O- https://apt.llvm.org/llvm.sh | bash -s -- 18 \
+    && apt-get install -y \
+        clang-tools-18 \
+        liblldb-18-dev \
+        llvm-18 \
     && rm -rf /var/lib/apt/lists/*
