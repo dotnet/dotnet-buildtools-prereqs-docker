@@ -34,6 +34,7 @@ RUN cmake -B build/linux/arm_Release_openssl3 \
 FROM arm32v7/alpine:3.20 AS venv
 
 RUN apk add --upgrade --no-cache \
+        cargo \
         python3-dev \
         build-base \
         libffi-dev \
