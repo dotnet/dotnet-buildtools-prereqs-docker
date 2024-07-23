@@ -65,6 +65,7 @@ RUN apk add --upgrade --no-cache \
     # We need to install a 1.65.0+ version of rust due to cryptography-openssl dependency. This isn't available from Alpine 3.17 so we'll
     # configure package install to target 3.18.    
     echo "https://dl-cdn.alpinelinux.org/alpine/v3.18/main" >> /etc/apk/repositories && \
+    echo "https://dl-cdn.alpinelinux.org/alpine/v3.18/community" >> /etc/apk/repositories && \
     apk update && \
     apk add --no-cache \
         cargo && \
