@@ -8,6 +8,11 @@ RUN apt-get update && \
         python3-venv \
     && rm -rf /var/lib/apt/lists/*
 
+# Install latest version of rust because the package version provided by Debian is too old.
+# Need 1.65.0+ to install the Helix scripts due to cryptography-openssl dependency.
+RUN curl -sSf https://sh.rustup.rs | sh -s -- -y
+ENV PATH="/root/.cargo/bin:${PATH}"
+
 RUN python3 -m venv /venv && \
     . /venv/bin/activate && \
     pip download --no-deps helix-scripts --index-url https://dnceng.pkgs.visualstudio.com/public/_packaging/helix-client-prod/pypi/simple && \

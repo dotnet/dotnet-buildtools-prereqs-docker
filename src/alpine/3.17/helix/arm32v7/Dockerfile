@@ -34,11 +34,16 @@ RUN cmake -B build/linux/arm_Release_openssl3 \
 FROM arm32v7/alpine:3.17 as venv
 
 RUN apk add --upgrade --no-cache \
-        cargo \
         libffi-dev \
         linux-headers \
         python3-dev \
         openssl-dev
+
+RUN echo "https://dl-cdn.alpinelinux.org/alpine/v3.18/main" >> /etc/apk/repositories && \
+        echo "https://dl-cdn.alpinelinux.org/alpine/v3.18/community" >> /etc/apk/repositories && \
+        apk update && \
+        apk add --no-cache \
+        cargo
 
 RUN python3 -m venv /venv && \
         source /venv/bin/activate && \
