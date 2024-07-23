@@ -5,11 +5,11 @@ ARG ROOTFS_DIR
 
 # Install the latest debootstrap
 RUN tdnf remove -y debootstrap && \
-    curl -sSLO https://deb.debian.org/debian/pool/main/d/debootstrap/debootstrap_1.0.134.tar.gz && \
-    echo "03c1dfbff2f9936acea3954b9c92e348e7e216f706c202744f80c9f1302329b4 debootstrap_1.0.134.tar.gz" | sha256sum -c - && \
-    tar xzf debootstrap_1.0.134.tar.gz -C / && \
+    curl -fsL -o debootstrap.tar.gz https://deb.debian.org/debian/pool/main/d/debootstrap/debootstrap_1.0.136.tar.gz && \
+    echo "a5c2067e6480f74df5079016629d3fd35497a2c634c385eb1e1ddf718a9f7498 debootstrap.tar.gz" | sha256sum -c - && \
+    tar xzf debootstrap.tar.gz -C / && \
     ln -s /debootstrap/debootstrap -t /usr/local/bin && \
-    rm -f debootstrap_1.0.134.tar.gz
+    rm -f debootstrap.tar.gz
 
 RUN /scripts/eng/common/cross/build-rootfs.sh riscv64 noble --skipunmount
 
