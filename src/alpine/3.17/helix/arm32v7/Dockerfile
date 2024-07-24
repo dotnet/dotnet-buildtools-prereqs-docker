@@ -31,6 +31,24 @@ RUN cmake -B build/linux/arm_Release_openssl3 \
     cmake --build build/linux/arm_Release_openssl3  --config Release && \
     cmake --install build/linux/arm_Release_openssl3 --prefix /msquic
 
+FROM arm32v7/alpine:3.17 as venv
+
+RUN apk add --upgrade --no-cache \
+        libffi-dev \
+        linux-headers \
+        python3-dev \
+        openssl-dev
+
+RUN echo "https://dl-cdn.alpinelinux.org/alpine/v3.18/main" >> /etc/apk/repositories && \
+        echo "https://dl-cdn.alpinelinux.org/alpine/v3.18/community" >> /etc/apk/repositories && \
+        apk update && \
+        apk add --no-cache \
+        cargo
+
+RUN python3 -m venv /venv && \
+        source /venv/bin/activate && \
+        pip download --no-deps helix-scripts --index-url https://dnceng.pkgs.visualstudio.com/public/_packaging/helix-client-prod/pypi/simple && \
+        pip install ./helix_scripts-*-py3-none-any.whl
 
 FROM arm32v7/alpine:3.17
 
@@ -54,32 +72,6 @@ RUN apk add --upgrade --no-cache \
         sudo \
         tzdata
 
-# Install Helix Dependencies
-RUN apk add --upgrade --no-cache \
-        libffi-dev \
-        linux-headers \
-        python3-dev \
-        openssl-dev && \
-    ln -sf /usr/bin/python3 /usr/bin/python && \
-    \
-    # We need to install a 1.65.0+ version of rust due to cryptography-openssl dependency. This isn't available from Alpine 3.17 so we'll
-    # configure package install to target 3.18.    
-    echo "https://dl-cdn.alpinelinux.org/alpine/v3.18/main" >> /etc/apk/repositories && \
-    echo "https://dl-cdn.alpinelinux.org/alpine/v3.18/community" >> /etc/apk/repositories && \
-    apk update && \
-    apk add --no-cache \
-        cargo && \
-    sed -i '/v3.18/d' /etc/apk/repositories && \
-    \
-    pip download --no-deps helix-scripts --index-url https://dnceng.pkgs.visualstudio.com/public/_packaging/helix-client-prod/pypi/simple && \
-    pip install ./helix_scripts-*-py3-none-any.whl && \
-    apk del \
-        cargo \
-        libffi-dev \
-        linux-headers \
-        python3-dev \
-        openssl-dev
-
 # Copy msquic from the msquic image into our image that will run on Helix
 COPY --from=msquic /msquic /usr
 
@@ -95,4 +87,9 @@ RUN /usr/sbin/adduser -D -g '' -G adm -s /bin/bash -u 1000 helixbot && \
 
 USER helixbot
 
-RUN python3 -m venv /home/helixbot/.vsts-env
+# Install Helix Dependencies
+
+ENV VIRTUAL_ENV=/home/helixbot/.vsts-env
+RUN python3 -m venv $VIRTUAL_ENV
+ENV PATH="$VIRTUAL_ENV/bin:$PATH"
+COPY --from=venv /venv $VIRTUAL_ENV

@@ -1,4 +1,4 @@
-FROM arm64v8/alpine:3.20 as msquic
+FROM arm64v8/alpine:3.20 AS msquic
 
 # build MsQuic as we don't have packages
 RUN apk add --upgrade --no-cache \
@@ -30,6 +30,21 @@ RUN cmake -B build/linux/arm64_Release_openssl3 \
        -DQUIC_BUILD_PERF=off && \
     cmake --build build/linux/arm64_Release_openssl3  --config Release && \
     cmake --install build/linux/arm64_Release_openssl3 --prefix /msquic
+
+FROM arm64v8/alpine:3.20 AS venv
+
+RUN apk add --upgrade --no-cache \
+        python3-dev \
+        build-base \
+        libffi-dev \
+        gcc \
+        libffi-dev \
+        linux-headers
+
+RUN python3 -m venv /venv && \
+        source /venv/bin/activate && \
+        pip download --no-deps helix-scripts --index-url https://dnceng.pkgs.visualstudio.com/public/_packaging/helix-client-prod/pypi/simple && \
+        pip install ./helix_scripts-*-py3-none-any.whl
 
 
 FROM arm64v8/alpine:3.20
@@ -68,23 +83,11 @@ RUN /usr/sbin/adduser -D -g '' -G adm -s /bin/bash -u 1000 helixbot && \
     chmod 755 /root && \
     echo "helixbot ALL=(ALL)       NOPASSWD: ALL" > /etc/sudoers.d/helixbot
 
-# Install Helix Dependencies
-RUN apk add --upgrade --no-cache \
-        build-base \
-        libffi-dev \
-        gcc \
-        linux-headers && \
-    # Create virtual environment
-    python3 -m venv /home/helixbot/.vsts-env && \
-    source /home/helixbot/.vsts-env/bin/activate && \
-    # Install Helix scripts
-    pip download --no-deps helix-scripts --index-url https://dnceng.pkgs.visualstudio.com/public/_packaging/helix-client-prod/pypi/simple && \
-    pip install ./helix_scripts-*-py3-none-any.whl && \
-    # Delete unnecessary dependencies
-    apk del \
-        build-base \
-        libffi-dev \
-        gcc \
-        linux-headers
-
 USER helixbot
+
+# Install Helix Dependencies
+
+ENV VIRTUAL_ENV=/home/helixbot/.vsts-env
+RUN python3 -m venv $VIRTUAL_ENV
+ENV PATH="$VIRTUAL_ENV/bin:$PATH"
+COPY --from=venv /venv $VIRTUAL_ENV
