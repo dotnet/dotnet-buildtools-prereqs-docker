@@ -4,14 +4,17 @@ FROM mcr.microsoft.com/dotnet-buildtools/prereqs:azurelinux-3.0-crossdeps-builde
 ARG ROOTFS_DIR
 
 # Install the latest debootstrap
+# switch to https://deb.debian.org/debian/pool/main/d/debootstrap/debootstrap_1.0.137.tar.gz when it's released
 RUN tdnf remove -y debootstrap && \
-    curl -sSLO https://deb.debian.org/debian/pool/main/d/debootstrap/debootstrap_1.0.134.tar.gz && \
-    echo "03c1dfbff2f9936acea3954b9c92e348e7e216f706c202744f80c9f1302329b4 debootstrap_1.0.134.tar.gz" | sha256sum -c - && \
-    tar xzf debootstrap_1.0.134.tar.gz -C / && \
+    curl -fsL -o debootstrap.tar.gz https://salsa.debian.org/installer-team/debootstrap/-/archive/b85429b6cd198769bbd1ed645679c618471071c6/debootstrap-b85429b6cd198769bbd1ed645679c618471071c6.tar.gz && \
+    echo "522336fd9f96c6a73d293d17b71bef80c52211c0d5218ab6f4b49853d201db9a debootstrap.tar.gz" | sha256sum -c - && \
+    mkdir /debootstrap && \
+    tar xzf debootstrap.tar.gz -C /debootstrap --strip-components=1 && \
     ln -s /debootstrap/debootstrap -t /usr/local/bin && \
-    rm -f debootstrap_1.0.134.tar.gz
+    rm -f debootstrap.tar.gz
 
-RUN /scripts/eng/common/cross/build-rootfs.sh riscv64 noble --skipunmount
+# workaround missing keyring file on host
+RUN /scripts/eng/common/cross/build-rootfs.sh riscv64 noble --skipunmount --skipsigcheck
 
 RUN TARGET_TRIPLE="riscv64-linux-gnu" && \
     CLANG_MAJOR_VERSION=$(clang --version | grep -oP "(?<=version )\d+") && \
