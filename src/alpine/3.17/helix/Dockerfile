@@ -1,4 +1,4 @@
-FROM alpine:3.17 AS msquic
+FROM library/alpine:3.17 AS msquic
 ARG TARGETARCH
 
 # build MsQuic as we don't have packages
@@ -31,7 +31,7 @@ RUN cmake -B build/linux/Release_openssl3 \
     cmake --build build/linux/Release_openssl3  --config Release && \
     cmake --install build/linux/Release_openssl3 --prefix /msquic
 
-FROM alpine:3.17 AS venv
+FROM library/alpine:3.17 AS venv
 
 RUN apk add --upgrade --no-cache \
         cargo \
@@ -45,7 +45,7 @@ RUN python3 -m venv /venv && \
         pip download --no-deps helix-scripts --index-url https://dnceng.pkgs.visualstudio.com/public/_packaging/helix-client-prod/pypi/simple && \
         pip install ./helix_scripts-*-py3-none-any.whl
 
-FROM alpine:3.17
+FROM library/alpine:3.17
 
 # Install .NET and test dependencies
 RUN apk add --upgrade --no-cache \
