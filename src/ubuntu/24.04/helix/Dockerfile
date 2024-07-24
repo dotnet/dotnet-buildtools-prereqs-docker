@@ -70,7 +70,7 @@ RUN DEPS= && \
     if [ "$TARGETARCH" = "arm" ]; then \
         DEPS=--ignore-depends=libssl3 && \
         ARCH=armhf ; fi && \
-    curl -LO https://packages.microsoft.com/ubuntu/22.04/prod/pool/main/libm/libmsquic/libmsquic_2.3.5_$ARCH.deb && \
+    curl -LO https://packages.microsoft.com/ubuntu/22.04/prod/pool/main/libm/libmsquic/libmsquic_2.3.6_$ARCH.deb && \
     dpkg $DEPS -i libmsquic_*.deb && \
     rm -f libmsquic_*.deb
 
