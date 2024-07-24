@@ -38,6 +38,7 @@ RUN apk add --upgrade --no-cache \
         python3-dev \
         build-base \
         libffi-dev \
+        openssl-dev \
         gcc \
         linux-headers
 
