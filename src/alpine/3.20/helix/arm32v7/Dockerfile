@@ -39,6 +39,7 @@ RUN apk add --upgrade --no-cache \
         build-base \
         libffi-dev \
         gcc \
+        openssl-dev \
         linux-headers
 
 RUN python3 -m venv /venv && \

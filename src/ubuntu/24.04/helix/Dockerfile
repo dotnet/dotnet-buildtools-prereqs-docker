@@ -4,6 +4,7 @@ ENV DEBIAN_FRONTEND=noninteractive
 RUN apt-get update && \
     apt-get install -y \
         cargo \
+        pkg-config \
         libffi-dev \
         coreutils \
         python3-dev \

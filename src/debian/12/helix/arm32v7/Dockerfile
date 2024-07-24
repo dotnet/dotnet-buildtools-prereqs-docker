@@ -2,6 +2,8 @@ FROM library/debian:bookworm AS venv
 
 RUN apt-get update && \
     apt-get install -y \
+        curl \
+        pkg-config \
         coreutils \
         python3-dev \
         python3-pip \
@@ -53,11 +55,6 @@ RUN apt-get update && \
         unzip \
     && rm -rf /var/lib/apt/lists/* \
     && localedef -i en_US -c -f UTF-8 -A /usr/share/locale/locale.alias en_US.UTF-8
-
-# Install latest version of rust because the package version provided by Debian is too old.
-# Need 1.65.0+ to install the Helix scripts due to cryptography-openssl dependency.
-RUN curl -sSf https://sh.rustup.rs | sh -s -- -y
-ENV PATH="/root/.cargo/bin:${PATH}"
 
 ENV LANG=en_US.utf8
 
