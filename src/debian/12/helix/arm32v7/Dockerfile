@@ -6,6 +6,7 @@ RUN apt-get update && \
         python3-dev \
         python3-pip \
         python3-venv \
+        libffi-dev \
     && rm -rf /var/lib/apt/lists/*
 
 # Install latest version of rust because the package version provided by Debian is too old.
