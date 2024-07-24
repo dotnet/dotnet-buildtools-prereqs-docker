@@ -56,12 +56,21 @@ RUN apk add --upgrade --no-cache \
 
 # Install Helix Dependencies
 RUN apk add --upgrade --no-cache \
-        cargo \
         libffi-dev \
         linux-headers \
         python3-dev \
         openssl-dev && \
     ln -sf /usr/bin/python3 /usr/bin/python && \
+    \
+    # We need to install a 1.65.0+ version of rust due to cryptography-openssl dependency. This isn't available from Alpine 3.17 so we'll
+    # configure package install to target 3.18.    
+    echo "https://dl-cdn.alpinelinux.org/alpine/v3.18/main" >> /etc/apk/repositories && \
+    echo "https://dl-cdn.alpinelinux.org/alpine/v3.18/community" >> /etc/apk/repositories && \
+    apk update && \
+    apk add --no-cache \
+        cargo && \
+    sed -i '/v3.18/d' /etc/apk/repositories && \
+    \
     pip download --no-deps helix-scripts --index-url https://dnceng.pkgs.visualstudio.com/public/_packaging/helix-client-prod/pypi/simple && \
     pip install ./helix_scripts-*-py3-none-any.whl && \
     apk del \
