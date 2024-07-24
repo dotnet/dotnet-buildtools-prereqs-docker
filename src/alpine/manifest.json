@@ -22,6 +22,24 @@
         {
           "platforms": [
             {
+              "architecture": "arm64",
+              "dockerfile": "src/alpine/3.17/arm64v8",
+              "os": "linux",
+              "osVersion": "alpine3.17",
+              "tags": {
+                "alpine-3.17-arm64v8-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
+                "alpine-3.17-arm64v8$(FloatingTagSuffix)": {},
+                "alpine-3.17-arm64v8-local": {
+                  "isLocal": true
+                }
+              },
+              "variant": "v8"
+            }
+          ]
+        },
+        {
+          "platforms": [
+            {
               "dockerfile": "src/alpine/3.17/helix/amd64",
               "os": "linux",
               "osVersion": "alpine3.17",
