@@ -9,6 +9,7 @@ RUN apt-get update && \
         python3-pip \
         python3-venv \
         libffi-dev \
+        libssl-dev \
     && rm -rf /var/lib/apt/lists/*
 
 # Install latest version of rust because the package version provided by Debian is too old.
