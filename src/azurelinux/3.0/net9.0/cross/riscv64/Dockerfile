@@ -13,8 +13,7 @@ RUN tdnf remove -y debootstrap && \
     ln -s /debootstrap/debootstrap -t /usr/local/bin && \
     rm -f debootstrap.tar.gz
 
-# workaround missing keyring file on host
-RUN /scripts/eng/common/cross/build-rootfs.sh riscv64 noble --skipunmount --skipsigcheck
+RUN /scripts/eng/common/cross/build-rootfs.sh riscv64 noble --skipunmount
 
 RUN TARGET_TRIPLE="riscv64-linux-gnu" && \
     CLANG_MAJOR_VERSION=$(clang --version | grep -oP "(?<=version )\d+") && \
