@@ -1,4 +1,5 @@
-FROM amd64/alpine:3.17 AS msquic
+FROM library/alpine:3.17 AS msquic
+ARG TARGETARCH
 
 # build MsQuic as we don't have packages
 RUN apk add --upgrade --no-cache \
@@ -18,33 +19,38 @@ RUN git clone --depth 1 --single-branch --branch v2.3.6 --recursive https://gith
 
 WORKDIR /tmp/msquic
 
-RUN cmake -B build/linux/x64_Release_openssl3 \
-       -DQUIC_OUTPUT_DIR=/tmp/msquic/artifacts/bin/linux/x64_Release_openssl3 \
+RUN cmake -B build/linux/Release_openssl3 \
        -DCMAKE_BUILD_TYPE=Release \
+       -DCMAKE_TARGET_ARCHITECTURE=${TARGETARCH} \
        -DQUIC_TLS=openssl3 \
        -DQUIC_ENABLE_LOGGING=true \
        -DQUIC_USE_SYSTEM_LIBCRYPTO=true \
        -DQUIC_BUILD_TOOLS=off \
        -DQUIC_BUILD_TEST=off \
        -DQUIC_BUILD_PERF=off && \
-    cmake --build build/linux/x64_Release_openssl3  --config Release && \
-    cmake --install build/linux/x64_Release_openssl3 --prefix /msquic
+    cmake --build build/linux/Release_openssl3  --config Release && \
+    cmake --install build/linux/Release_openssl3 --prefix /msquic
 
-FROM amd64/alpine:3.17 AS venv
+FROM library/alpine:3.17 AS venv
 
 RUN apk add --upgrade --no-cache \
-        cargo \
         libffi-dev \
         linux-headers \
         python3-dev \
         openssl-dev
+
+RUN echo "https://dl-cdn.alpinelinux.org/alpine/v3.18/main" >> /etc/apk/repositories && \
+        echo "https://dl-cdn.alpinelinux.org/alpine/v3.18/community" >> /etc/apk/repositories && \
+        apk update && \
+        apk add --no-cache \
+        cargo
 
 RUN python3 -m venv /venv && \
         source /venv/bin/activate && \
         pip download --no-deps helix-scripts --index-url https://dnceng.pkgs.visualstudio.com/public/_packaging/helix-client-prod/pypi/simple && \
         pip install ./helix_scripts-*-py3-none-any.whl
 
-FROM amd64/alpine:3.17
+FROM library/alpine:3.17
 
 # Install .NET and test dependencies
 RUN apk add --upgrade --no-cache \
