@@ -45,7 +45,8 @@ RUN gpg --import dimitri_john_ledkov.asc && \
     sha512sum -c SHA512SUMS.txt && \
 # 4. Install the needed keyring and delete the rest
     mkdir -p /usr/share/keyrings && \
-    mv keyrings/ubuntu-archive*.gpg /usr/share/keyrings && \
+    mv keyrings/ubuntu-archive-keyring.gpg /usr/share/keyrings && \
+    wget -qO- "http://keyserver.ubuntu.com/pks/lookup?op=get&search=0x871920D1991BC93C" | gpg --dearmor > /usr/share/keyrings/ubuntu-archive-removed-keys.gpg && \
     popd && \
     rm -r ubuntu-keyring
 
