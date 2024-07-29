@@ -4,12 +4,10 @@ FROM mcr.microsoft.com/dotnet-buildtools/prereqs:azurelinux-3.0-crossdeps-builde
 ARG ROOTFS_DIR
 
 # Install the latest debootstrap
-# switch to https://deb.debian.org/debian/pool/main/d/debootstrap/debootstrap_1.0.137.tar.gz when it's released
 RUN tdnf remove -y debootstrap && \
-    curl -fsL -o debootstrap.tar.gz https://salsa.debian.org/installer-team/debootstrap/-/archive/b85429b6cd198769bbd1ed645679c618471071c6/debootstrap-b85429b6cd198769bbd1ed645679c618471071c6.tar.gz && \
-    echo "522336fd9f96c6a73d293d17b71bef80c52211c0d5218ab6f4b49853d201db9a debootstrap.tar.gz" | sha256sum -c - && \
-    mkdir /debootstrap && \
-    tar xzf debootstrap.tar.gz -C /debootstrap --strip-components=1 && \
+    curl -fsL -o debootstrap.tar.gz https://deb.debian.org/debian/pool/main/d/debootstrap/debootstrap_1.0.137.tar.gz && \
+    echo "666927457ee4b0b3e68e55a0efbf3fb69189610b7abbd534017d7032cb3ae833 debootstrap.tar.gz" | sha256sum -c - && \
+    tar xzf debootstrap.tar.gz -C / && \
     ln -s /debootstrap/debootstrap -t /usr/local/bin && \
     rm -f debootstrap.tar.gz
 
