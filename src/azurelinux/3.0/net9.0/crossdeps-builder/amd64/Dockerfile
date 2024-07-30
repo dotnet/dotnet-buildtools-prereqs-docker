@@ -35,19 +35,20 @@ COPY dimitri_john_ledkov.asc .
 RUN gpg --import dimitri_john_ledkov.asc && \
     rm dimitri_john_ledkov.asc && \
 # 2. Download the ubuntu keyrings
-    wget https://mirrors.edge.kernel.org/ubuntu/pool/main/u/ubuntu-keyring/ubuntu-keyring_2021.03.26.tar.gz && \
-    echo "492eed5c06408c6f632577adb0796130af5d6542013ef418f47187a209e49bb1 ubuntu-keyring_2021.03.26.tar.gz" | sha256sum -c && \
-    tar xf ubuntu-keyring_2021.03.26.tar.gz && \
-    rm ubuntu-keyring_2021.03.26.tar.gz && \
+    wget https://mirrors.edge.kernel.org/ubuntu/pool/main/u/ubuntu-keyring/ubuntu-keyring_2023.11.28.1.tar.xz && \
+    echo "aecd455ae15561371d6e454f121f079f0641d5e1b579a5563a2bc363fc74aa2e ubuntu-keyring_2023.11.28.1.tar.xz" | sha256sum -c && \
+    tar xf ubuntu-keyring_2023.11.28.1.tar.xz && \
+    rm ubuntu-keyring_2023.11.28.1.tar.xz && \
 # 3. Verify keyrings
-    pushd ubuntu-keyring-2021.03.26 && \
+    pushd ubuntu-keyring && \
     gpg --output SHA512SUMS.txt --decrypt SHA512SUMS.txt.asc && \
     sha512sum -c SHA512SUMS.txt && \
 # 4. Install the needed keyring and delete the rest
     mkdir -p /usr/share/keyrings && \
     mv keyrings/ubuntu-archive-keyring.gpg /usr/share/keyrings && \
+    wget -qO- "http://keyserver.ubuntu.com/pks/lookup?op=get&search=0x871920D1991BC93C" | gpg --dearmor > /usr/share/keyrings/ubuntu-archive-removed-keys.gpg && \
     popd && \
-    rm -r ubuntu-keyring-2021.03.26
+    rm -r ubuntu-keyring
 
 # 1. Obtain signing keys used to sign llvm sources
 RUN wget https://releases.llvm.org/release-keys.asc && \
