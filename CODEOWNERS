@@ -9,10 +9,10 @@ eng/ @dotnet/dotnet-docker-reviewers
 
 # almalinux
 src/almalinux/**/source-build/ @dotnet/source-build-internal
-src/almalinux/**/helix/ @sbomer
+src/almalinux/**/helix/ @dotnet/dnceng
 
 # alpine
-src/alpine/**/helix/ @dotnet/runtime-infrastructure @dotnet/ncl
+src/alpine/**/helix/ @dotnet/dnceng
 src/alpine/**/amd64/ @dotnet/dotnet-source-build-internal
 
 # azurelinux
@@ -29,18 +29,18 @@ src/cbl-mariner/**/fpm/ @dotnet/runtime-infrastructure
 src/cbl-mariner/**/opt/ @dotnet/runtime-infrastructure
 src/cbl-mariner/**/webassembly/ @dotnet/runtime-infrastructure
 src/cbl-mariner/**/docker-testrunner/ @lbussell @mthalman @dotnet/dotnet-docker-reviewers
-src/cbl-mariner/2.0/amd64/ @richlander
-src/cbl-mariner/2.0/helix/ @dotnet/ncl
+src/cbl-mariner/2.0/amd64/ @dotnet/runtime-infrastructure
+src/cbl-mariner/2.0/helix/ @dotnet/dnceng
 
 # centos
 src/centos/stream9/amd64/ @dotnet/source-build-internal
-src/centos/stream9/helix/ @dotnet/runtime-infrastructure
-src/centos/stream9/mlnet/helix/ @LittleLittleCloud
+src/centos/stream9/helix/ @dotnet/dnceng
+src/centos/stream9/mlnet/helix/ @dotnet/dnceng
 
 # debian
 src/debian/11/amd64/ @dotnet/source-build-internal
 src/debian/11/arm64v8/ @dotnet/source-build-internal
-src/debian/**/helix/ @dotnet/runtime-infrastructure
+src/debian/**/helix/ @dotnet/dnceng
 src/debian/11/opt/arm64v8/ @dotnet/runtime-infrastructure
 src/debian/12/gcc14/amd64/ @dotnet/runtime-infrastructure
 
@@ -55,10 +55,10 @@ src/opensuse/15.4/helix/amd64/ @dotnet/dnceng
 
 # raspbian
 src/raspbian/10/crossdeps/arm32v7/ @dotnet/runtime-infrastructure
-src/raspbian/10/helix/arm32v6/ @dotnet/runtime-infrastructure
+src/raspbian/10/helix/arm32v6/ @dotnet/dnceng
 
 # ubuntu
-src/ubuntu/**/helix/ @dotnet/runtime-infrastructure
+src/ubuntu/**/helix/ @dotnet/dnceng
 src/ubuntu/**/cross*/ @dotnet/runtime-infrastructure
 src/ubuntu/**/debpkg/ @dotnet/runtime-infrastructure
 src/ubuntu/**/webassembly*/ @dotnet/runtime-infrastructure
@@ -70,5 +70,5 @@ src/ubuntu/22.04/Dockerfile @dotnet/source-build-internal
 src/ubuntu/24.04/Dockerfile @dotnet/source-build-internal
 
 # windowsservercore
-src/windowsservercore/**/helix/ @dotnet/source-build-internal
-src/windowsservercore/**/webassembly/ @dotnet/source-build-internal
+src/windowsservercore/**/helix/ @dotnet/runtime-infrastructure
+src/windowsservercore/**/webassembly/ @dotnet/runtime-infrastructure

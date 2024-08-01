@@ -34,25 +34,23 @@ jobs:
 
           # Check each Dockerfile for an owner
           for dockerfile in $dockerfiles; do
-          ownerFound=false
-          for path in "${codeOwnerPaths[@]}"; do
-            if [[ "$dockerfile" =~ $path ]]; then
-              ownerFound=true
-              break
-            fi
-          done
+            ownerFound=false
+            for path in "${codeOwnerPaths[@]}"; do
+              if [[ "$dockerfile" =~ $path ]]; then
+                ownerFound=true
+                break
+              fi
+            done
 
-          if [[ "$ownerFound" == false ]]; then
-            filesWithoutOwner+=("$dockerfile")
-          fi
+            if [[ "$ownerFound" == false ]]; then
+              filesWithoutOwner+=("$dockerfile")
+            fi
           done
 
           # Fail the build if there are files without an owner
           if [[ ${#filesWithoutOwner[@]} -gt 0 ]]; then
             echo "The following Dockerfiles do not have an owner in the CODEOWNERS file:"
-              for file in "${filesWithoutOwner[@]}"; do
-                echo "$file"
-              done
+              printf "%s\n" "${filesWithoutOwner[@]}"
             exit 1
           fi
 
