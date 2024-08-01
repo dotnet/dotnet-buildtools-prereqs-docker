@@ -1,4 +1,74 @@
 # Users referenced in this file will automatically be requested as reviewers for PRs that modify the given paths.
 # See https://help.github.com/articles/about-code-owners/
 
-* @dotnet/dotnet-docker-reviewers
+### General infra ###
+/* @dotnet/dotnet-docker-reviewers
+eng/ @dotnet/dotnet-docker-reviewers
+
+### Dockerfiles ###
+
+# almalinux
+src/almalinux/**/source-build/ @dotnet/source-build-internal
+src/almalinux/**/helix/ @sbomer
+
+# alpine
+src/alpine/**/helix/ @dotnet/runtime-infrastructure @dotnet/ncl
+src/alpine/**/amd64/ @dotnet/dotnet-source-build-internal
+
+# azurelinux
+src/azurelinux/**/cross*/ @dotnet/runtime-infrastructure
+src/azurelinux/**/android/ @dotnet/runtime-infrastructure
+src/azurelinux/**/fpm/ @dotnet/runtime-infrastructure
+src/azurelinux/**/opt/ @dotnet/runtime-infrastructure
+src/azurelinux/**/webassembly/ @dotnet/runtime-infrastructure
+
+# cbl-mariner
+src/cbl-mariner/**/cross*/ @dotnet/runtime-infrastructure
+src/cbl-mariner/**/android/ @dotnet/runtime-infrastructure
+src/cbl-mariner/**/fpm/ @dotnet/runtime-infrastructure
+src/cbl-mariner/**/opt/ @dotnet/runtime-infrastructure
+src/cbl-mariner/**/webassembly/ @dotnet/runtime-infrastructure
+src/cbl-mariner/**/docker-testrunner/ @lbussell @mthalman @dotnet/dotnet-docker-reviewers
+src/cbl-mariner/2.0/amd64/ @richlander
+src/cbl-mariner/2.0/helix/ @dotnet/ncl
+
+# centos
+src/centos/stream9/amd64/ @dotnet/source-build-internal
+src/centos/stream9/helix/ @dotnet/runtime-infrastructure
+src/centos/stream9/mlnet/helix/ @LittleLittleCloud
+
+# debian
+src/debian/11/amd64/ @dotnet/source-build-internal
+src/debian/11/arm64v8/ @dotnet/source-build-internal
+src/debian/**/helix/ @dotnet/runtime-infrastructure
+src/debian/11/opt/arm64v8/ @dotnet/runtime-infrastructure
+src/debian/12/gcc14/amd64/ @dotnet/runtime-infrastructure
+
+# fedora
+src/fedora/**/amd64/ @dotnet/source-build-internal
+
+# nanoserver
+src/nanoserver/1809/helix/amd64/ @dotnet/dnceng
+
+# opensuse
+src/opensuse/15.4/helix/amd64/ @dotnet/dnceng
+
+# raspbian
+src/raspbian/10/crossdeps/arm32v7/ @dotnet/runtime-infrastructure
+src/raspbian/10/helix/arm32v6/ @dotnet/runtime-infrastructure
+
+# ubuntu
+src/ubuntu/**/helix/ @dotnet/runtime-infrastructure
+src/ubuntu/**/cross*/ @dotnet/runtime-infrastructure
+src/ubuntu/**/debpkg/ @dotnet/runtime-infrastructure
+src/ubuntu/**/webassembly*/ @dotnet/runtime-infrastructure
+src/ubuntu/22.04/mlnet/ @dotnet/runtime-infrastructure
+src/ubuntu/22.04/opt/arm64v8/ @dotnet/runtime-infrastructure
+src/ubuntu/common/coredeps/ @dotnet/runtime-infrastructure
+src/ubuntu/20.04/Dockerfile @dotnet/source-build-internal
+src/ubuntu/22.04/Dockerfile @dotnet/source-build-internal
+src/ubuntu/24.04/Dockerfile @dotnet/source-build-internal
+
+# windowsservercore
+src/windowsservercore/**/helix/ @dotnet/source-build-internal
+src/windowsservercore/**/webassembly/ @dotnet/source-build-internal

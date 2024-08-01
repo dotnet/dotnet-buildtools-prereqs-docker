@@ -1,0 +1,58 @@
+name: CODEOWNERS Validation
+run-name: ${{ github.actor }} is checking each Dockerfile for a CODEOWNER
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  CheckDockerfileCodeowners:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v4
+      - name: Check each Dockerfile for a CODEOWNER
+        run: |
+          #!/bin/bash
+          set -e
+
+          codeOwnersFilePath="CODEOWNERS"
+          codeOwnerPaths=()
+
+          # Read and parse the CODEOWNERS file
+          while IFS= read -r line; do
+            if [[ "$line" =~ ^\s*# ]] || [[ -z "$line" ]] || [[ "$line" =~ ^[[:space:]]*$ ]]; then
+              continue
+            fi
+
+            path=$(echo "$line" | cut -d' ' -f1 | sed 's/^[[:space:]]*//' | sed 's/[\/&]/\\&/g' | sed 's/\./\\./g' | sed 's/\*/.*/g')
+            codeOwnerPaths+=("$path")
+          done < "$codeOwnersFilePath"
+
+          filesWithoutOwner=()
+          dockerfiles=$(find . -type f -name "Dockerfile")
+
+          # Check each Dockerfile for an owner
+          for dockerfile in $dockerfiles; do
+          ownerFound=false
+          for path in "${codeOwnerPaths[@]}"; do
+            if [[ "$dockerfile" =~ $path ]]; then
+              ownerFound=true
+              break
+            fi
+          done
+
+          if [[ "$ownerFound" == false ]]; then
+            filesWithoutOwner+=("$dockerfile")
+          fi
+          done
+
+          # Fail the build if there are files without an owner
+          if [[ ${#filesWithoutOwner[@]} -gt 0 ]]; then
+            echo "The following Dockerfiles do not have an owner in the CODEOWNERS file:"
+              for file in "${filesWithoutOwner[@]}"; do
+                echo "$file"
+              done
+            exit 1
+          fi
+
