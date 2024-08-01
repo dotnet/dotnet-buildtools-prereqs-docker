@@ -1,5 +1,5 @@
 name: CODEOWNERS Validation
-run-name: ${{ github.actor }} is checking each Dockerfile for a CODEOWNER
+run-name: ${{ github.actor }} is validating CODEOWNERS
 on:
   pull_request:
     branches:
@@ -11,28 +11,55 @@ jobs:
     steps:
       - name: Check out repository code
         uses: actions/checkout@v4
-      - name: Check each Dockerfile for a CODEOWNER
+
+      - name: Define functions
+        run: |
+          #!/bin/bash
+          set -e
+
+          read_codeowners_file() {
+            local codeOwnersFilePath="CODEOWNERS"
+            local codeOwnerPaths=()
+
+            while IFS= read -r line; do
+              if [[ "$line" =~ ^\s*# ]] || [[ -z "$line" ]] || [[ "$line" =~ ^[[:space:]]*$ ]]; then
+                continue
+              fi
+
+              path=$(echo "$line" | cut -d' ' -f1 | sed 's/^[[:space:]]*//' | sed 's/[\/&]/\\&/g' | sed 's/\./\\./g' | sed 's/\*/.*/g')
+              codeOwnerPaths+=("$path")
+            done < "$codeOwnersFilePath"
+
+            echo "${codeOwnerPaths[@]}"
+          }
+
+          export -f read_codeowners_file
+
+      - name: Ensure each CODEOWNER is a team
         run: |
           #!/bin/bash
           set -e
 
           codeOwnersFilePath="CODEOWNERS"
-          codeOwnerPaths=()
+          codeOwners=$(grep -v '^#' "$codeOwnersFilePath" | cut -d' ' -f2)
 
-          # Read and parse the CODEOWNERS file
-          while IFS= read -r line; do
-            if [[ "$line" =~ ^\s*# ]] || [[ -z "$line" ]] || [[ "$line" =~ ^[[:space:]]*$ ]]; then
-              continue
+          for codeOwner in $codeOwners; do
+            if [[ "$codeOwner" != *"/"* ]]; then
+              echo "The CODEOWNERS file must contain teams, not individual users."
+              exit 1
             fi
+          done
 
-            path=$(echo "$line" | cut -d' ' -f1 | sed 's/^[[:space:]]*//' | sed 's/[\/&]/\\&/g' | sed 's/\./\\./g' | sed 's/\*/.*/g')
-            codeOwnerPaths+=("$path")
-          done < "$codeOwnersFilePath"
+      - name: Check each Dockerfile for a CODEOWNER
+        run: |
+          #!/bin/bash
+          set -e
+
+          codeOwnerPaths=($(read_codeowners_file))
 
           filesWithoutOwner=()
           dockerfiles=$(find . -type f -name "Dockerfile")
 
-          # Check each Dockerfile for an owner
           for dockerfile in $dockerfiles; do
             ownerFound=false
             for path in "${codeOwnerPaths[@]}"; do
@@ -47,10 +74,38 @@ jobs:
             fi
           done
 
-          # Fail the build if there are files without an owner
           if [[ ${#filesWithoutOwner[@]} -gt 0 ]]; then
             echo "The following Dockerfiles do not have an owner in the CODEOWNERS file:"
-              printf "%s\n" "${filesWithoutOwner[@]}"
+            printf "%s\n" "${filesWithoutOwner[@]}"
             exit 1
           fi
 
+      - name: Check for unused CODEOWNER paths
+        run: |
+          #!/bin/bash
+          set -e
+
+          codeOwnerPaths=($(read_codeowners_file))
+
+          unusedPaths=()
+          allFiles=$(find . -type f)
+
+          for path in "${codeOwnerPaths[@]}"; do
+            pathUsed=false
+            for file in $allFiles; do
+              if [[ "$file" =~ $path ]]; then
+                pathUsed=true
+                break
+              fi
+            done
+
+            if [[ "$pathUsed" == false ]]; then
+              unusedPaths+=("$path")
+            fi
+          done
+
+          if [[ ${#unusedPaths[@]} -gt 0 ]]; then
+            echo "The following paths in the CODEOWNERS file are not used by any file in the repository:"
+            printf "%s\n" "${unusedPaths[@]}"
+            exit 1
+          fi
