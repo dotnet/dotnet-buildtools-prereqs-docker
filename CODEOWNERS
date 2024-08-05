@@ -50,4 +50,3 @@ src/ubuntu/common/coredeps/ @dotnet/runtime-infrastructure
 src/ubuntu/20.04/Dockerfile @dotnet/source-build-internal
 src/ubuntu/22.04/Dockerfile @dotnet/source-build-internal
 src/ubuntu/24.04/Dockerfile @dotnet/source-build-internal
-
