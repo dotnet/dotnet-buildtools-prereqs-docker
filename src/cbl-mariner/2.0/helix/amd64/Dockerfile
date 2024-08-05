@@ -9,7 +9,8 @@ RUN tdnf install --setopt tsflags=nodocs --refresh -y \
          gcc \
          icu \
          iputils \
-         libmsquic \
+         # temporarilly fix msquic to 2.3.6 due to https://github.com/dotnet/runtime/issues/105788
+         libmsquic-2.3.6-1 \
          llvm \
          python3-pip \
          shadow-utils \
