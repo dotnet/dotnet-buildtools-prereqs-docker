@@ -10,15 +10,21 @@ fi
 declare -A codeOwnerEntries
 readCodeOwnersFile() {
   codeOwnersFilePath="CODEOWNERS"
+
+  # A newline is needed at the end of the file for the last line to be read
+  # but git likes to remove trailing newlines so we add one if it is missing
+  if [ "$(tail -c 1 "$codeOwnersFilePath")" != "" ]; then
+    echo "" >> "$codeOwnersFilePath"
+  fi
   
   while IFS= read -r line; do
     # Skip blank lines and comments
     if [[ "$line" =~ ^\s*# ]] || [[ -z "$line" ]] || [[ "$line" =~ ^[[:space:]]*$ ]]; then
-        continue
+      continue
     fi
 
-    path=$(echo "$line" | awk '{print $1}' | sed 's/[[:space:]]*$//')
-    owner=$(echo "$line" | sed 's/^[^ ]* //' | sed 's/[[:space:]]*$//')
+    path=$(echo "$line" | awk '{print $1}' | awk '{$1=$1};1')
+    owner=$(echo "$line" | awk '{print $2}' | awk '{$1=$1};1')
 
     # Escape periods
     path=$(echo "$path" | sed 's/\./\\./g')
