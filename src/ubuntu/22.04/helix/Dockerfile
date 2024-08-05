@@ -52,7 +52,8 @@ RUN curl -LO https://packages.microsoft.com/keys/microsoft.asc && \
     rm microsoft.asc && \
     apt-add-repository https://packages.microsoft.com/ubuntu/22.04/prod && \
     apt-get update && \
-    apt-get install -y libmsquic && \
+    # temporarilly fix msquic to 2.3.6 due to https://github.com/dotnet/runtime/issues/105788
+    apt-get install -y libmsquic=2.3.6 && \
     rm -rf /var/lib/apt/lists/*
 
 # create helixbot user and give rights to sudo without password
