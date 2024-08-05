@@ -42,8 +42,7 @@ RUN wget https://packages.microsoft.com/keys/microsoft.asc && \
     rpm --import microsoft.asc && \
     rm microsoft.asc && \
     zypper addrepo https://packages.microsoft.com/opensuse/15/prod/ "MS Packages" && \
-    # temporarilly fix msquic to 2.3.6 due to https://github.com/dotnet/runtime/issues/105788
-    zypper install -y libmsquic=2.3.6-1 && \
+    zypper install -y libmsquic && \
     zypper clean -a
 
 RUN ln -sf /usr/bin/python3 /usr/bin/python && \
