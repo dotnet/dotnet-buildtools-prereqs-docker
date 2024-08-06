@@ -3,7 +3,7 @@
 set -e
 
 if [ $# -eq 0 ]; then
-  echo "No function name provided. Usage: ./test.sh <ownersAreTeams|pathsAreUsed|dockerfilesHaveOwners>"
+  echo "No function name provided. Usage: ./validate-codeowners.sh <ownersAreTeams|pathsAreUsed|dockerfilesHaveOwners>"
   exit 1
 fi
 
@@ -18,8 +18,9 @@ readCodeOwnersFile() {
   fi
   
   while IFS= read -r line; do
-    # Skip blank lines and comments
-    if [[ "$line" =~ ^\s*# ]] || [[ -z "$line" ]] || [[ "$line" =~ ^[[:space:]]*$ ]]; then
+
+    # Skip blank lines, comments, and * paths
+    if [[ "$line" =~ ^[[:space:]]*# ]] || [[ "$line" =~ ^[[:space:]]*$ ]] || [[ "$line" =~ ^\*[[:space:]] ]]; then
       continue
     fi
 
@@ -29,16 +30,30 @@ readCodeOwnersFile() {
     # Escape periods
     path=$(echo "$path" | sed 's/\./\\./g')
 
-    # Single * matches anything that is not a slash
-    # Double ** matches anything
-    # Trailing / matches anything
-    # Remove leading slashes
-    path=$(echo "$path" | sed -E 's/([^*]|^)\*([^*]|$)/\1[^\/]*\2/g')
-    path=$(echo "$path" | sed 's/\*\*/.*/g')
+    # A single asterisk matches anything that is not a slash (as long as it is not at the beginning of a pattern)
+    if [[ ! "$path" =~ ^\* ]]; then
+      path=$(echo "$path" | sed -E 's/([^*]|^)\*([^*]|$)/\1[^\/]*\2/g')
+    fi
+
+    # Trailing /** and leading **/ should match anything in all directories
+    path=$(echo "$path" | sed 's/\/\*\*$/\/.*/g')
+    path=$(echo "$path" | sed 's/^\*\*\//.*\//g')
+
+    # /**/ matches zero or more directories
+    path=$(echo "$path" | sed 's/\/\*\*\//\/.*/g')
+
+    # If the asterisk is at the beginning of the pattern or the pattern does not start with a slash, then match everything
+    if [[ "$path" =~ ^\* ]]; then
+      path=".$path"
+    elif [[ ! "$path" =~ ^/ && ! "$path" =~ ^\.\* ]]; then
+      path=".*$path"
+    fi
+
+    # If there is a trailing slash, then match everything below the directory
     if [[ "${path: -1}" == "/" ]]; then
       path="$path.*"
     fi
-    path=$(echo "$path" | sed 's/^\///')
+  
     path="^$path$"
 
     # Use git check-ignore to determine if the path matches the patterns
@@ -65,7 +80,7 @@ ownersAreTeams() {
 }
 
 pathsAreUsed() {
-  allFiles=$(find . -type f | sed 's/^\.\///')
+  allFiles=$(find . -type f | sed 's/^\.//')
   unusedPaths=()
 
   for path in "${!codeOwnerEntries[@]}"; do
@@ -94,7 +109,7 @@ pathsAreUsed() {
 }
 
 dockerfilesHaveOwners() {
-  dockerfiles=$(find . -type f -name "Dockerfile" | sed 's/^\.\///')
+  dockerfiles=$(find . -type f -name "Dockerfile" | sed 's/^\.//')
   filesWithoutOwner=()
 
   for file in $dockerfiles; do
