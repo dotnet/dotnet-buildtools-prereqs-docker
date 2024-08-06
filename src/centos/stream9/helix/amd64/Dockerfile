@@ -21,8 +21,7 @@ RUN curl -LO https://packages.microsoft.com/keys/microsoft.asc && \
         git-core \
         iputils \
         libicu \
-        # temporarilly fix msquic to 2.3.6 due to https://github.com/dotnet/runtime/issues/105788
-        libmsquic-2.3.6-1 \
+        libmsquic \
         libtool \
         llvm \
         make \

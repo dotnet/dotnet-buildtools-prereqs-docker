@@ -49,8 +49,7 @@ RUN curl -LO https://packages.microsoft.com/keys/microsoft.asc && \
     rm microsoft.asc && \
     apt-add-repository https://packages.microsoft.com/debian/11/prod && \
     apt-get update && \
-    # temporarilly fix msquic to 2.3.6 due to https://github.com/dotnet/runtime/issues/105788
-    apt-get install -y libmsquic=2.3.6 && \
+    apt-get install -y libmsquic && \
     rm -rf /var/lib/apt/lists/*
 
 # Create helixbot users and give rights to sudo without password
@@ -60,7 +59,7 @@ RUN /usr/sbin/adduser --disabled-password --gecos '' --uid 1001 --shell /bin/bas
     /usr/sbin/adduser --disabled-password --gecos '' --uid 1000 --shell /bin/bash --ingroup adm helixbot2 && \
     chmod 755 /root && \
     echo "helixbot ALL=(ALL)       NOPASSWD: ALL" > /etc/sudoers && \
-    echo "helixbot2 ALL=(ALL)       NOPASSWD: ALL" > /etc/sudoers
+    echo "helixbot2 ALL=(ALL)       NOPASSWD: ALL" > /etc/sudoers 
 
 USER helixbot
 
