@@ -56,7 +56,6 @@ readCodeOwnersFile() {
   
     path="^$path$"
 
-    # Use git check-ignore to determine if the path matches the patterns
     codeOwnerEntries["$path"]="$owner"
   done < "$codeOwnersFilePath"
 }
