@@ -3,7 +3,7 @@
 set -e
 
 if [ $# -eq 0 ]; then
-  echo "No function name provided. Usage: ./validate-codeowners.sh <ownersAreTeams|pathsAreUsed|dockerfilesHaveOwners>"
+  echo "No function name provided. Usage: ./validate-codeowners.sh <ownersAreTeams|ownersIncludeDockerReviewers|pathsAreUsed|dockerfilesHaveOwners>"
   exit 1
 fi
 
@@ -25,7 +25,7 @@ readCodeOwnersFile() {
     fi
 
     path=$(echo "$line" | awk '{print $1}' | awk '{$1=$1};1')
-    owner=$(echo "$line" | awk '{print $2}' | awk '{$1=$1};1')
+    owners=$(echo "$line" | cut -d' ' -f2- | awk '{$1=$1};1')
 
     # Escape periods
     path=$(echo "$path" | sed 's/\./\\./g')
@@ -56,17 +56,20 @@ readCodeOwnersFile() {
   
     path="^$path$"
 
-    codeOwnerEntries["$path"]="$owner"
+    codeOwnerEntries["$path"]="$owners"
   done < "$codeOwnersFilePath"
 }
 
 ownersAreTeams() {
   nonTeamOwners=()
 
-  for codeOwner in "${codeOwnerEntries[@]}"; do
-    if [[ "$codeOwner" != *"/"* ]]; then
-      nonTeamOwners+=("$codeOwner")
-    fi
+  for owners in "${codeOwnerEntries[@]}"; do
+    IFS=' ' read -r -a codeOwners <<< "$owners"
+    for owner in "${owners[@]}"; do
+      if [[ "$owner" != *"/"* ]]; then
+        nonTeamOwners+=("$owner")
+      fi
+    done
   done
 
   if [[ ${#nonTeamOwners[@]} -gt 0 ]]; then
@@ -74,6 +77,19 @@ ownersAreTeams() {
     printf "%s\n" "${nonTeamOwners[@]}"
     exit 1
   fi
+
+  exit 0
+}
+
+ownersIncludeDockerReviewers() {
+  dotnetDockerReviewersTeam=("@dotnet/dotnet-docker-reviewers")
+
+  for owners in "${codeOwnerEntries[@]}"; do
+    if [[ ! "$owners" =~ "$dotnetDockerReviewersTeam" ]]; then
+      echo "At least one owner for each path in the CODEOWNERS file should be the @dotnet/dotnet-docker-reviewers team."
+      exit 1
+    fi
+  done
 
   exit 0
 }

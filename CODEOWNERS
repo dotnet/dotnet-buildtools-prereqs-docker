@@ -2,49 +2,52 @@
 # See https://help.github.com/articles/about-code-owners/
 
 ### General infra ###
+# '*' is excluded from the CODEOWNERS validation that runs on PRs
 * @dotnet/dotnet-docker-reviewers
 
 ### Dockerfiles ###
 
-# common paths
-src/**/helix/ @dotnet/dnceng
-src/**/cross*/ @dotnet/runtime-infrastructure
-src/**/webassembly*/ @dotnet/runtime-infrastructure
-
 # almalinux
-src/almalinux/**/source-build/ @dotnet/source-build-internal
+src/almalinux/**/source-build/ @dotnet/source-build-internal @dotnet/dotnet-docker-reviewers
 
 # alpine
-src/alpine/**/amd64/ @dotnet/source-build-internal
+src/alpine/**/amd64/ @dotnet/source-build-internal @dotnet/dotnet-docker-reviewers
 
 # azurelinux
-src/azurelinux/**/android/ @dotnet/runtime-infrastructure
-src/azurelinux/**/fpm/ @dotnet/runtime-infrastructure
-src/azurelinux/**/opt/ @dotnet/runtime-infrastructure
+src/azurelinux/**/android/ @dotnet/runtime-infrastructure @dotnet/dotnet-docker-reviewers
+src/azurelinux/**/fpm/ @dotnet/runtime-infrastructure @dotnet/dotnet-docker-reviewers
+src/azurelinux/**/opt/ @dotnet/runtime-infrastructure @dotnet/dotnet-docker-reviewers
 
 # cbl-mariner
-src/cbl-mariner/**/android/ @dotnet/runtime-infrastructure
-src/cbl-mariner/**/fpm/ @dotnet/runtime-infrastructure
-src/cbl-mariner/**/opt/ @dotnet/runtime-infrastructure
-src/cbl-mariner/**/docker-testrunner/ @dotnet/dotnet-docker-reviewers
-src/cbl-mariner/2.0/amd64/ @dotnet/runtime-infrastructure
+src/cbl-mariner/**/android/ @dotnet/runtime-infrastructure @dotnet/dotnet-docker-reviewers
+src/cbl-mariner/**/fpm/ @dotnet/runtime-infrastructure @dotnet/dotnet-docker-reviewers
+src/cbl-mariner/**/opt/ @dotnet/runtime-infrastructure @dotnet/dotnet-docker-reviewers
+src/cbl-mariner/**/docker-testrunner/ @dotnet/dotnet-docker-reviewers @dotnet/dotnet-docker-reviewers
+src/cbl-mariner/2.0/amd64/ @dotnet/runtime-infrastructure @dotnet/dotnet-docker-reviewers
 
 # centos
-src/centos/stream9/amd64/ @dotnet/source-build-internal
+src/centos/stream9/amd64/ @dotnet/source-build-internal @dotnet/dotnet-docker-reviewers
 
 # debian
-src/debian/11/amd64/ @dotnet/source-build-internal
-src/debian/11/opt/arm64v8/ @dotnet/runtime-infrastructure
-src/debian/12/gcc14/amd64/ @dotnet/runtime-infrastructure
+src/debian/11/amd64/ @dotnet/source-build-internal @dotnet/dotnet-docker-reviewers
+src/debian/11/opt/arm64v8/ @dotnet/runtime-infrastructure @dotnet/dotnet-docker-reviewers
+src/debian/12/gcc14/amd64/ @dotnet/runtime-infrastructure @dotnet/dotnet-docker-reviewers
 
 # fedora
-src/fedora/**/amd64/ @dotnet/source-build-internal
+src/fedora/**/amd64/ @dotnet/source-build-internal @dotnet/dotnet-docker-reviewers
 
 # ubuntu
-src/ubuntu/**/debpkg/ @dotnet/runtime-infrastructure
-src/ubuntu/22.04/mlnet/ @dotnet/runtime-infrastructure
-src/ubuntu/22.04/opt/arm64v8/ @dotnet/runtime-infrastructure
-src/ubuntu/common/coredeps/ @dotnet/runtime-infrastructure
-src/ubuntu/20.04/Dockerfile @dotnet/source-build-internal
-src/ubuntu/22.04/Dockerfile @dotnet/source-build-internal
-src/ubuntu/24.04/Dockerfile @dotnet/source-build-internal
+src/ubuntu/**/debpkg/ @dotnet/runtime-infrastructure @dotnet/dotnet-docker-reviewers
+src/ubuntu/22.04/mlnet/ @dotnet/runtime-infrastructure @dotnet/dotnet-docker-reviewers
+src/ubuntu/22.04/opt/arm64v8/ @dotnet/runtime-infrastructure @dotnet/dotnet-docker-reviewers
+src/ubuntu/common/coredeps/ @dotnet/runtime-infrastructure @dotnet/dotnet-docker-reviewers
+src/ubuntu/20.04/Dockerfile @dotnet/source-build-internal @dotnet/dotnet-docker-reviewers
+src/ubuntu/22.04/Dockerfile @dotnet/source-build-internal @dotnet/dotnet-docker-reviewers
+src/ubuntu/24.04/Dockerfile @dotnet/source-build-internal @dotnet/dotnet-docker-reviewers
+
+# common paths
+# CODEOWNERS selects the last match as the owner so we list these paths last
+# Otherwise these paths will be owned by a different team(s) than the ones listed below
+src/**/helix/ @dotnet/dnceng @dotnet/dotnet-docker-reviewers
+src/**/cross*/ @dotnet/runtime-infrastructure @dotnet/dotnet-docker-reviewers
+src/**/webassembly*/ @dotnet/runtime-infrastructure @dotnet/dotnet-docker-reviewers
