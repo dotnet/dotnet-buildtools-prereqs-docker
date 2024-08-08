@@ -15,7 +15,6 @@ RUN tdnf update -y && \
         diffutils \
         icu \
         tar \
-        zlib-devel \
         # Crosscomponents build dependencies
         glibc-devel \
         kernel-headers \
