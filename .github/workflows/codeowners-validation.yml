@@ -16,6 +16,10 @@ jobs:
         if: always()
         run: ./eng/validate-codeowners.sh ownersAreTeams
 
+      - name: Ensure each path has @dotnet/dotnet-docker-reviewers as a CODEOWNER
+        if: always()
+        run: ./eng/validate-codeowners.sh ownersIncludeDockerReviewers
+
       - name: Check each Dockerfile for a CODEOWNER
         if: always()
         run: ./eng/validate-codeowners.sh dockerfilesHaveOwners

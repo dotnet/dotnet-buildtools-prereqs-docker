@@ -28,7 +28,7 @@ There will be a need for modifying existing Dockerfiles or creating new ones.  F
     - Add/Update the Dockerfile(s)
     - If new Dockerfile(s) were added:
         - Update the [manifest](#manifest)
-        - Update the [CODEOWNERS](./CODEOWNERS) with the respective team code owner(s) (not individual users) for the Dockerfile(s). A team code owner must be assigned to each Dockerfile for maintenance and issue assignment purposes. 
+        - Update the [CODEOWNERS](./CODEOWNERS) with the respective team code owner(s) (not individual users) for the Dockerfile(s) and list `@dotnet/dotnet-docker-reviewers` as a secondary owner. Team code owners must be assigned to each Dockerfile for maintenance and issue assignment purposes. 
 
 2. Validate the changes locally by running [build.ps1](./build.ps1).  It is strongly suggested to specify the `-DockerfilePath` option to avoid the overhead of building all the images.
 
