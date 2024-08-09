@@ -518,7 +518,7 @@
               "osVersion": "azurelinux3.0",
               "tags": {
                 "azurelinux-3.0-helix-amd64$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
-                "azurelinux-3.0-helix-amd64-$(FloatingTagSuffix)": {}
+                "azurelinux-3.0-helix-amd64$(FloatingTagSuffix)": {}
               }
             }
           ]
