@@ -6,6 +6,7 @@ ENV LANG=en_US.utf8
 # build MsQuic as we don't have packages
 RUN tdnf install --refresh -y \
         binutils \
+        build-essential \
         ca-certificates-microsoft \
         cmake \
         gcc-c++ \
@@ -41,6 +42,7 @@ RUN tdnf install --refresh -y \
     ca-certificates-microsoft \
     gcc \
     iputils \
+    python3 \
     python3-devel \
     python3-pip
 
@@ -58,6 +60,8 @@ RUN tdnf install --setopt tsflags=nodocs --refresh -y \
         icu \
         iputils \
         llvm \
+        python3 \
+        python3-pip \
         shadow-utils \
         tar \
         tzdata \
