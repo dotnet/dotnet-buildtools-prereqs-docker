@@ -5,6 +5,7 @@ ENV LANG=en_US.utf8
 
 # build MsQuic as we don't have packages
 RUN tdnf install --refresh -y \
+        binutils \
         ca-certificates-microsoft \
         cmake \
         gcc-c++ \
