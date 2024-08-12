@@ -35,7 +35,7 @@ RUN cmake -B build/linux/Release_openssl3 \
     cmake --build build/linux/Release_openssl3  --config Release && \
     cmake --install build/linux/Release_openssl3 --prefix /msquic
 
-FROM msquic as venv
+FROM mcr.microsoft.com/azurelinux/base/core:3.0 as venv
 
 RUN tdnf install --refresh -y \
     build-essential \
