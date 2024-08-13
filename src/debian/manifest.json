@@ -12,7 +12,7 @@
               "osVersion": "bullseye",
               "tags": {
                 "debian-11-amd64-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
-                "debian-11-amd64$(FloatingTagSuffix)": {}
+                "debian-11-amd64": {}
               }
             }
           ]
@@ -26,7 +26,7 @@
               "osVersion": "bullseye",
               "tags": {
                 "debian-11-helix-amd64-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
-                "debian-11-helix-amd64$(FloatingTagSuffix)": {}
+                "debian-11-helix-amd64": {}
               }
             }
           ]
@@ -40,7 +40,7 @@
               "osVersion": "bullseye",
               "tags": {
                 "debian-11-helix-arm64v8-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
-                "debian-11-helix-arm64v8$(FloatingTagSuffix)": {}
+                "debian-11-helix-arm64v8": {}
               },
               "variant": "v8"
             }
@@ -55,7 +55,7 @@
               "osVersion": "bullseye",
               "tags": {
                 "debian-11-opt-arm64v8-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
-                "debian-11-opt-arm64v8$(FloatingTagSuffix)": {}
+                "debian-11-opt-arm64v8": {}
               },
               "variant": "v8"
             }
@@ -70,7 +70,7 @@
               "osVersion": "bookworm",
               "tags": {
                 "debian-12-helix-amd64-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
-                "debian-12-helix-amd64$(FloatingTagSuffix)": {}
+                "debian-12-helix-amd64": {}
               }
             }
           ]
@@ -84,7 +84,7 @@
               "osVersion": "bookworm",
               "tags": {
                 "debian-12-helix-arm32v7-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
-                "debian-12-helix-arm32v7$(FloatingTagSuffix)": {}
+                "debian-12-helix-arm32v7": {}
               },
               "variant": "v7"
             }
@@ -99,7 +99,7 @@
               "osVersion": "bookworm",
               "tags": {
                 "debian-12-helix-arm64v8-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
-                "debian-12-helix-arm64v8$(FloatingTagSuffix)": {}
+                "debian-12-helix-arm64v8": {}
               },
               "variant": "v8"
             }
@@ -114,7 +114,7 @@
               "osVersion": "bookworm",
               "tags": {
                 "debian-12-gcc14-amd64-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
-                "debian-12-gcc14-amd64$(FloatingTagSuffix)": {}
+                "debian-12-gcc14-amd64": {}
               }
             }
           ]

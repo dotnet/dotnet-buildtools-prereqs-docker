@@ -15,14 +15,8 @@ variables:
   value: ''
 - name: publicGitRepoUri
   value: https://github.com/dotnet/dotnet-buildtools-prereqs-docker
-- ${{ if eq(variables['Build.SourceBranch'], 'refs/heads/main') }}:
-  - name: floatingTagSuffix
-    value: ""
-- ${{ else }}:
-  - name: floatingTagSuffix
-    value: $(Build.SourceBranchName)
 - name: manifestVariables
-  value: --var UniqueId=$(sourceBuildId) --var FloatingTagSuffix=$(floatingTagSuffix)
+  value: --var UniqueId=$(sourceBuildId)
 - name: publicSourceBranch
   value: main
 - name: ingestKustoImageInfo

@@ -11,7 +11,7 @@
               "osVersion": "almalinux8",
               "tags": {
                 "almalinux-8-source-build-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
-                "almalinux-8-source-build$(FloatingTagSuffix)": {}
+                "almalinux-8-source-build": {}
               }
             },
             {
@@ -20,7 +20,7 @@
               "osVersion": "almalinux8",
               "tags": {
                 "almalinux-8-helix-amd64-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
-                "almalinux-8-helix-amd64$(FloatingTagSuffix)": {}
+                "almalinux-8-helix-amd64": {}
               }
             }
           ]

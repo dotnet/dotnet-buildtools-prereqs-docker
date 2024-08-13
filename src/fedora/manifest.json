@@ -10,7 +10,7 @@
             "osVersion": "fedora39",
             "tags": {
               "fedora-39-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
-              "fedora-39$(FloatingTagSuffix)": {}
+              "fedora-39": {}
             }
           }]
         },
@@ -21,7 +21,7 @@
             "osVersion": "fedora40",
             "tags": {
               "fedora-40-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
-              "fedora-40$(FloatingTagSuffix)": {}
+              "fedora-40": {}
             }
           }]
         }
