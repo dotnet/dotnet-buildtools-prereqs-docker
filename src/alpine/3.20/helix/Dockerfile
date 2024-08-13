@@ -15,7 +15,7 @@ RUN apk add --upgrade --no-cache \
         openssl-dev \
         perl
 
-RUN git clone --depth 1 --single-branch --branch v2.4.1 --recursive https://github.com/microsoft/msquic /tmp/msquic
+RUN git clone --depth 1 --single-branch --branch v2.4.3 --recursive https://github.com/microsoft/msquic /tmp/msquic
 
 WORKDIR /tmp/msquic
 
