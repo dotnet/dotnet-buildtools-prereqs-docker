@@ -10,7 +10,6 @@
               "os": "linux",
               "osVersion": "centos-stream9",
               "tags": {
-                "centos-stream9-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
                 "centos-stream9": {}
               }
             }
@@ -23,7 +22,6 @@
               "os": "linux",
               "osVersion": "centos-stream9",
               "tags": {
-                "centos-stream9-helix-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
                 "centos-stream9-helix": {}
               }
             }
@@ -36,7 +34,6 @@
               "os": "linux",
               "osVersion": "centos-stream9",
               "tags": {
-                "centos-stream9-mlnet-helix-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
                 "centos-stream9-mlnet-helix": {}
               }
             }

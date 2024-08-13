@@ -10,7 +10,6 @@
               "os": "windows",
               "osVersion": "windowsservercore-ltsc2019",
               "tags": {
-                "windowsservercore-ltsc2019-helix-amd64-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
                 "windowsservercore-ltsc2019-helix-amd64": {},
                 "windowsservercore-ltsc2019-helix-amd64-local": {
                   "isLocal": true
@@ -26,7 +25,6 @@
               "os": "windows",
               "osVersion": "windowsservercore-ltsc2019",
               "tags": {
-                "windowsservercore-ltsc2019-webassembly-amd64-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
                 "windowsservercore-ltsc2019-webassembly-amd64": {}
               }
             }
@@ -39,7 +37,6 @@
               "os": "windows",
               "osVersion": "windowsservercore-ltsc2022",
               "tags": {
-                "windowsservercore-ltsc2022-helix-amd64-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
                 "windowsservercore-ltsc2022-helix-amd64": {},
                 "windowsservercore-ltsc2022-helix-amd64-local": {
                   "isLocal": true
@@ -55,7 +52,6 @@
               "os": "windows",
               "osVersion": "windowsservercore-ltsc2022",
               "tags": {
-                "windowsservercore-ltsc2022-helix-webassembly-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
                 "windowsservercore-ltsc2022-helix-webassembly": {}
               }
             }
@@ -68,7 +64,6 @@
               "os": "windows",
               "osVersion": "windowsservercore-ltsc2022",
               "tags": {
-                "windowsservercore-ltsc2022-helix-webassembly-net8-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
                 "windowsservercore-ltsc2022-helix-webassembly-net8": {}
               }
             }
