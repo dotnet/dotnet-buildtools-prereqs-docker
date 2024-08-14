@@ -60,6 +60,8 @@ RUN tdnf install --setopt tsflags=nodocs --refresh -y \
         icu \
         iputils \
         llvm \
+        libgcc-atomic \
+        libnuma \
         python3 \
         python3-pip \
         shadow-utils \
