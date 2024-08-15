@@ -63,6 +63,7 @@ RUN tdnf install --setopt tsflags=nodocs --refresh -y \
         python3 \
         python3-pip \
         shadow-utils \
+        sudo \
         tar \
         tzdata \
         which \
