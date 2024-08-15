@@ -68,13 +68,15 @@ It is strongly suggested to specify the `-DockerfilePath` option to avoid the ov
 The images from this repository get built and published whenever one of the following occurs:
 
 - The corresponding Dockerfile is modified.
-- The base image is updated (a new version of the image the [FROM](https://docs.docker.com/engine/reference/builder/#from) statement references published).
+- The base image is updated (a new version of the image referred to by the [`FROM`](https://docs.docker.com/engine/reference/builder/#from) statement).
 
 ## How to identify the image digest
 
 The images from this repo are being [rebuilt continuously](#when-do-images-get-built).
 As such, in order to diagnose issues/regressions, it is sometimes necessary to be able to identity the specific image used in CI/Helix test runs.
-The image digest will uniquely identify the image.
+This is useful when needing to examine a previously working version of the image.
+The image tag will always reference the latest image version.
+To examine an older image, you'll need to retrieve it via its digest which uniquely identifies that specific version of the image.
 To retrieve the digest, identify the logic that pulls the image and inspect the output.
 For example, to find the image digest of a containerized AzDO job, look at the output of the `Initialize containers` step.
 
@@ -100,7 +102,7 @@ mcr.microsoft.com/dotnet-buildtools/prereqs:cbl-mariner-2.0-fpm
 ...
 ```
 
-In this case the digest of the `mcr.microsoft.com/dotnet-buildtools/prereqs:cbl-mariner-2.0-fpm` image is `sha256:4dccac3bd646c9edd1f4645cc52828c8d24d66cfe7d8e8191e3c365d37a1c501`.
+In this case the digest of the `mcr.microsoft.com/dotnet-buildtools/prereqs:cbl-mariner-2.0-fpm` image at the time of this build run is `sha256:4dccac3bd646c9edd1f4645cc52828c8d24d66cfe7d8e8191e3c365d37a1c501`.
 You can pull this image by its digest via `docker pull mcr.microsoft.com/dotnet-buildtools/prereqs@sha256:4dccac3bd646c9edd1f4645cc52828c8d24d66cfe7d8e8191e3c365d37a1c501`.
 
 ### How to identity the Dockerfile an image was built from
