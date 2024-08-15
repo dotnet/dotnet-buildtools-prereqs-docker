@@ -11,7 +11,6 @@
               "os": "linux",
               "osVersion": "leap15.4",
               "tags": {
-                "opensuse-15.4-helix-amd64-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
                 "opensuse-15.4-helix-amd64": {}
               }
             }
