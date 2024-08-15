@@ -59,9 +59,9 @@ RUN tdnf install --setopt tsflags=nodocs --refresh -y \
         ca-certificates-microsoft \
         icu \
         iputils \
-        llvm \
         libgcc-atomic \
         libnuma \
+        llvm \
         python3 \
         python3-pip \
         shadow-utils \
