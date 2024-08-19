@@ -42,9 +42,6 @@ RUN /usr/sbin/useradd -c '' --uid 1000 --shell /bin/bash --groups adm helixbot &
 
 USER helixbot
 
-# Temporary fix for https://github.com/dotnet/runtime/issues/106489
-ENV OPENSSL_ENABLE_MD5_VERIFY=1
-
 # Install Helix Dependencies
 ENV VIRTUAL_ENV=/home/helixbot/.vsts-env
 RUN python3 -m venv $VIRTUAL_ENV
