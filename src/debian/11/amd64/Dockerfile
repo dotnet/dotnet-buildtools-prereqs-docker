@@ -6,6 +6,7 @@ RUN apt-get update \
     && apt-get install -y \
             autoconf \
             automake \
+            azure-cli \
             build-essential \
             clang \
             cmake \
@@ -47,3 +48,17 @@ RUN echo "locales locales/default_environment_locale select en_US.UTF-8" | debco
     && echo "locales locales/locales_to_be_generated multiselect en_US.UTF-8 UTF-8" | debconf-set-selections \
     && rm "/etc/locale.gen" \
     && dpkg-reconfigure --frontend noninteractive locales
+
+# Install powershell. This is in the debpkg/amd64 docker file as it may not be required in the arm64
+# images, and is not actually supported over there.
+RUN apt-get update && \
+    apt-get install -y \
+    apt-transport-https \
+    software-properties-common \
+    curl && \
+    curl -sL https://packages.microsoft.com/config/debian/11/packages-microsoft-prod.deb -o packages-microsoft-prod.deb && \
+    dpkg -i packages-microsoft-prod.deb && \
+    rm packages-microsoft-prod.deb && \
+    apt-get update && \
+    apt-get install -y powershell && \
+    rm -rf /var/lib/apt/lists/*
