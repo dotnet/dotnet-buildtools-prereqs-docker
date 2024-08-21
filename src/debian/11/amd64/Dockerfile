@@ -49,8 +49,7 @@ RUN echo "locales locales/default_environment_locale select en_US.UTF-8" | debco
     && rm "/etc/locale.gen" \
     && dpkg-reconfigure --frontend noninteractive locales
 
-# Install powershell. This is in the debpkg/amd64 docker file as it may not be required in the arm64
-# images, and is not actually supported over there.
+# Install powershell.
 RUN apt-get update && \
     apt-get install -y \
       apt-transport-https \
