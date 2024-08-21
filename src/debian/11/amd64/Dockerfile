@@ -53,9 +53,9 @@ RUN echo "locales locales/default_environment_locale select en_US.UTF-8" | debco
 # images, and is not actually supported over there.
 RUN apt-get update && \
     apt-get install -y \
-    apt-transport-https \
-    software-properties-common \
-    curl && \
+      apt-transport-https \
+      software-properties-common \
+      curl && \
     curl -sL https://packages.microsoft.com/config/debian/11/packages-microsoft-prod.deb -o packages-microsoft-prod.deb && \
     dpkg -i packages-microsoft-prod.deb && \
     rm packages-microsoft-prod.deb && \
