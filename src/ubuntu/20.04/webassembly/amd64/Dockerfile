@@ -14,9 +14,9 @@ RUN apt-get update \
     && rm -rf /var/lib/apt/lists/*
 
 ENV CMAKE_VERSION=3.17
-RUN wget https://cmake.org/files/v${CMAKE_VERSION}/cmake-${CMAKE_VERSION}.0-Linux-x86_64.tar.gz \
-    && tar -xf cmake-${CMAKE_VERSION}.0-Linux-x86_64.tar.gz --strip 1 -C /usr/local \
-    && rm cmake-${CMAKE_VERSION}.0-Linux-x86_64.tar.gz
+RUN curl -sSL https://cmake.org/files/v${CMAKE_VERSION}/cmake-${CMAKE_VERSION}.0-Linux-x86_64.tar.gz -o cmake.tar.gz \
+    && tar -xf cmake.tar.gz --strip 1 -C /usr/local \
+    && rm cmake.tar.gz
 
 # WebAssembly build needs working UTF-8 locale
 RUN locale-gen en_US.UTF-8

@@ -13,7 +13,8 @@ RUN rpm -Uvh https://packages.microsoft.com/config/centos/8/packages-microsoft-p
         # Required for asp.net core test runs
         sudo \
         libicu \
-        libmsquic
+        libmsquic && \
+    yum clean all
 
 RUN python3 -m pip download --no-deps helix-scripts --index-url https://dnceng.pkgs.visualstudio.com/public/_packaging/helix-client-prod/pypi/simple && \
     python3 -m pip install ./helix_scripts-*-py3-none-any.whl
