@@ -31,8 +31,7 @@ ENV LANG=en_US.utf8
 RUN ln -s $(command -v gcc) /usr/bin/gcc-14 && \
     ln -s $(command -v g++) /usr/bin/g++-14
 
-# Install powershell. This is in the debpkg/amd64 docker file as it may not be required in the arm64
-# images, and is not actually supported over there.
+# Install powershell. Specifically use deb 11 PMC because 12 doesn't have it yet.
 RUN apt-get update && \
     apt-get install -y \
       apt-transport-https \
