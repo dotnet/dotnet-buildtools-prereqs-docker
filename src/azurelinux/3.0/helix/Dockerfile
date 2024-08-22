@@ -1,40 +1,3 @@
-FROM mcr.microsoft.com/azurelinux/base/core:3.0 as msquic
-ARG TARGETARCH
-
-ENV LANG=en_US.utf8
-
-# build MsQuic as we don't have packages
-RUN tdnf install --refresh -y \
-        binutils \
-        build-essential \
-        ca-certificates-microsoft \
-        cmake \
-        gcc-c++ \
-        gcc \
-        git \
-        libnuma-devel \
-        kernel-headers \
-        lttng-ust-devel \
-        make \
-        openssl-devel \
-        perl
-
-RUN git clone --depth 1 --single-branch --branch v2.4.3 --recursive https://github.com/microsoft/msquic /tmp/msquic
-
-WORKDIR /tmp/msquic
-
-RUN cmake -B build/linux/Release_openssl3 \
-       -DCMAKE_BUILD_TYPE=Release \
-       -DCMAKE_TARGET_ARCHITECTURE=${TARGETARCH} \
-       -DQUIC_TLS=openssl3 \
-       -DQUIC_ENABLE_LOGGING=true \
-       -DQUIC_USE_SYSTEM_LIBCRYPTO=true \
-       -DQUIC_BUILD_TOOLS=off \
-       -DQUIC_BUILD_TEST=off \
-       -DQUIC_BUILD_PERF=off && \
-    cmake --build build/linux/Release_openssl3  --config Release && \
-    cmake --install build/linux/Release_openssl3 --prefix /msquic
-
 FROM mcr.microsoft.com/azurelinux/base/core:3.0 as venv
 
 RUN tdnf install --refresh -y \
@@ -60,20 +23,16 @@ RUN tdnf install --setopt tsflags=nodocs --refresh -y \
         icu \
         iputils \
         libgcc-atomic \
+        libmsquic \
         libnuma \
         llvm \
         python3 \
         python3-pip \
         shadow-utils \
-        sudo \
         tar \
         tzdata \
         which \
     && tdnf clean all
-
-
-# Copy msquic from the msquic image into our image that will run on Helix
-COPY --from=msquic /msquic /usr
 
 # create helixbot user and give rights to sudo without password
 RUN /usr/sbin/useradd -c '' --uid 1000 --shell /bin/bash --groups adm helixbot && \
@@ -82,9 +41,6 @@ RUN /usr/sbin/useradd -c '' --uid 1000 --shell /bin/bash --groups adm helixbot &
     mkdir /home/helixbot/ && chown -R helixbot /home/helixbot/
 
 USER helixbot
-
-# Temporary fix for https://github.com/dotnet/runtime/issues/106489
-ENV OPENSSL_ENABLE_MD5_VERIFY=1
 
 # Install Helix Dependencies
 ENV VIRTUAL_ENV=/home/helixbot/.vsts-env
