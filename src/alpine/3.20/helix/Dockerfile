@@ -1,36 +1,3 @@
-FROM library/alpine:3.20 AS msquic
-ARG TARGETARCH
-
-# build MsQuic as we don't have packages
-RUN apk add --upgrade --no-cache \
-        cmake \
-        g++ \
-        gcc \
-        git \
-        numactl-dev \
-        linux-headers \
-        lttng-ust-dev \
-        make \
-        musl-dev \
-        openssl-dev \
-        perl
-
-RUN git clone --depth 1 --single-branch --branch v2.4.3 --recursive https://github.com/microsoft/msquic /tmp/msquic
-
-WORKDIR /tmp/msquic
-
-RUN cmake -B build/linux/Release_openssl3 \
-       -DCMAKE_BUILD_TYPE=Release \
-       -DCMAKE_TARGET_ARCHITECTURE=${TARGETARCH} \
-       -DQUIC_TLS=openssl3 \
-       -DQUIC_ENABLE_LOGGING=true \
-       -DQUIC_USE_SYSTEM_LIBCRYPTO=true \
-       -DQUIC_BUILD_TOOLS=off \
-       -DQUIC_BUILD_TEST=off \
-       -DQUIC_BUILD_PERF=off && \
-    cmake --build build/linux/Release_openssl3  --config Release && \
-    cmake --install build/linux/Release_openssl3 --prefix /msquic
-
 FROM library/alpine:3.20 AS venv
 
 RUN apk add --upgrade --no-cache \
@@ -70,8 +37,8 @@ RUN apk add --upgrade --no-cache \
         sudo \
         tzdata
 
-# Copy msquic from the msquic image into our image that will run on Helix
-COPY --from=msquic /msquic /usr
+# Install libmsquic from testing repository
+RUN apk add --repository=http://dl-cdn.alpinelinux.org/alpine/edge/testing/ libmsquic
 
 # Needed for runtime tests to pass
 ENV LANG=en-US.UTF-8
