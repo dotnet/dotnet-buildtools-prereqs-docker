@@ -41,24 +41,38 @@ The following steps are a guideline for modifying/creating Dockerfiles.
         Team code owners must be assigned to each Dockerfile for maintenance and issue assignment purposes.
 
 2. Validate the changes locally by running [build.ps1](./build.ps1).
-It is strongly suggested to specify the `-DockerfilePath` option to avoid the overhead of building all the images.
+It is strongly suggested to specify the `-Paths` option to avoid the overhead of building all the images.
 
     For example, if editing the [Fedora 40 Dockerfile](./src/fedora/40/amd64/Dockerfile), then run the following command to build just that Dockerfile.
 
     ```powershell
-    .\build.ps1 -DockerfilePath "*fedora/40/amd64*"
+    .\build.ps1 -Paths "*fedora/40/amd64*"
     ```
 
     It is a good practice to use `--dry-run` option on the first attempt to verify what commands will get run.
 
     ```powershell
-    .\build.ps1 -DockerfilePath "*fedora/40/amd64*" -ImageBuilderCustomArgs "--dry-run"
+    .\build.ps1 -Paths "*fedora/40/amd64*" -OptionalImageBuilderArgs "--dry-run"
     ```
 
-    Partial paths and wildcards in the `-DockerfilePath` option are also supported.  The following example will build all the Fedora Dockerfiles.
+    Partial paths and wildcards in the `-Paths` option are also supported.  The following example will build all the Fedora Dockerfiles.
 
     ```powershell
-    .\build.ps1 -DockerfilePath "*fedora/*"
+    .\build.ps1 -Paths "*fedora/*"
+    ```
+
+    To build a dependency graph when there are [dependent images](#image-dependency), multiple paths can be specified.
+
+    ```powershell
+    .\build.ps1 -Paths "*alpine/3.20/amd64*","*alpine/3.20/withnode/amd64*"
+    ```
+
+     Alternatively, wildcards can by utilized to specify everything under a shared directory.
+     Using wildcards can sometimes cause extra images to be built outside of the dependency graph which may be undersirable.
+     In this case, it is recommended to utilize the multiple `paths` approach.
+
+    ```powershell
+    .\build.ps1 -Paths "*alpine/3.20*"
     ```
 
 3. Prepare a PR
