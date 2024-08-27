@@ -252,7 +252,7 @@ See [Responding to Build Breaks](#responding-to-build-breaks) for additional det
 - **Address CVEs** - When fixable CVEs are reported that require Dockerfiles changes, the code owner is responsible for mitigating the CVE.
 - **Remove EOL distros** - Remove or update Dockerfiles based on EOL distros.
 
-Whenever a Dockerfile change is required:
+Wheneven a Dockerfile change is required:
 
 - An issue will be opened and the CODEOWNER will be mentioned.
 - The CODEOWNER is responsible for implementing a fix in a timely fashion.
@@ -270,7 +270,7 @@ When a Dockerfile build break occurs the following steps are to be taken:
 
 1. Create a new issue detailing the break.  @mention the appropriate [CODEOWNER](./CODEOWNERS).
 2. If the break is blocking automatic rebuilds or blocking the development/release of new changes (judgement decision),
-then disable the Dockerfile from building by deleteing the [manifest entry](#manifest).
+then remove the Dockerfile from the build by deleting the [manifest entry](#manifest).
 Note the build disablement in the build break issue.
 
 ## Support
