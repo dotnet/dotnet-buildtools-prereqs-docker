@@ -252,7 +252,7 @@ See [Responding to Build Breaks](#responding-to-build-breaks) for additional det
 - **Address CVEs** - When fixable CVEs are reported that require Dockerfiles changes, the code owner is responsible for mitigating the CVE.
 - **Remove EOL distros** - Remove or update Dockerfiles based on EOL distros.
 
-Wheneven a Dockerfile change is required:
+Whenever a Dockerfile change is required:
 
 - An issue will be opened and the CODEOWNER will be mentioned.
 - The CODEOWNER is responsible for implementing a fix in a timely fashion.
