@@ -38,7 +38,8 @@ The following steps are a guideline for modifying/creating Dockerfiles.
         - Place each Dockerfile in the [appropriate src folder](#source-folder-structure)
         - Update the [manifest](#manifest)
         - Update the [CODEOWNERS](./CODEOWNERS) with the respective team code owner(s) (not individual users) for the Dockerfile(s) and list `@dotnet/dotnet-docker-reviewers` as a secondary owner.
-        Team code owners must be assigned to each Dockerfile for maintenance and issue assignment purposes.
+        Team code owners must be assigned to each Dockerfile.
+        To learn about the expectations of the code owners, see the [Code Owner Responsibilities](#code-owner-responsibilities).
 
 2. Validate the changes locally by running [build.ps1](./build.ps1).
 It is strongly suggested to specify the `-Paths` option to avoid the overhead of building all the images.
@@ -242,10 +243,35 @@ To support this scenario, the manifest entry for the base image must be defined 
 ]
 ```
 
+### Code Owner Responsibilities
+
+- **Code reviews** - Code review all changes made to the owned Dockerfiles.
+- **Respond to build breaks** - It is possible for a Dockerfile to regress and cause a build break.
+When this occurs, the code owner is responsible for addressing the break.
+See [Responding to Build Breaks](#responding-to-build-breaks) for additional details.
+- **Address CVEs** - When fixable CVEs are reported that require Dockerfiles changes, the code owner is responsible for mitigating the CVE.
+- **Remove EOL distros** - Remove or update Dockerfiles based on EOL distros.
+
+Whenever a Dockerfile change is required:
+
+- An issue will be opened and the CODEOWNER will be mentioned.
+- The CODEOWNER is responsible for implementing a fix in a timely fashion.
+
 ### Image-Builder
 
 The underlying tool used to build the Dockerfiles is called Image-Builder.
 Its source is located at [dotnet/docker-tools](https://github.com/dotnet/docker-tools)
+
+## Repo Maintainer Procedures
+
+### Responding to Build Breaks
+
+When a Dockerfile build break occurs the following steps are to be taken:
+
+1. Create a new issue detailing the break.  @mention the appropriate [CODEOWNER](./CODEOWNERS).
+2. If the break is blocking automatic rebuilds or blocking the development/release of new changes (judgement decision),
+then remove the Dockerfile from the build by deleting the [manifest entry](#manifest).
+Note the build disablement in the build break issue.
 
 ## Support
 
