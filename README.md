@@ -270,7 +270,7 @@ When a Dockerfile build break occurs the following steps are to be taken:
 
 1. Create a new issue detailing the break.  @mention the appropriate [CODEOWNER](./CODEOWNERS).
 2. If the break is blocking automatic rebuilds or blocking the development/release of new changes (judgement decision),
-then disable the Dockerfile from building by commenting out the [manifest entry](#manifest).
+then disable the Dockerfile from building by deleteing the [manifest entry](#manifest).
 Note the build disablement in the build break issue.
 
 ## Support
