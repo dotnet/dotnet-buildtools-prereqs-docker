@@ -24,7 +24,7 @@ RUN tdnf install -y \
         openssl-devel
 
 # dependencies which are installed from extended repo require additional setup
-RUN wget https://packages.microsoft.com/azurelinux/3.0/preview/extended/x86_64/config.repo -O /etc/yum.repos.d/azurelinux-extended.repo && \
+RUN wget https://packages.microsoft.com/azurelinux/3.0/prod/extended/x86_64/config.repo -O /etc/yum.repos.d/azurelinux-extended.repo && \
     tdnf makecache && \
     tdnf install -y \
         libbsd-devel
