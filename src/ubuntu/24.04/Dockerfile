@@ -41,6 +41,7 @@ RUN apt-get update \
         curl \
         gettext \
         jq \
+        libbrotli-dev \
         libgdiplus \
         libicu-dev \
         libkrb5-dev \
