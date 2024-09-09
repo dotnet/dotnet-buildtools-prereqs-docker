@@ -58,7 +58,10 @@ RUN dnf install --setopt tsflags=nodocs --refresh -y \
     && \
     dnf clean all
 
-RUN dnf install perl-FindBin --setopt tsflags=nodocs --refresh -y
+RUN dnf install --setopt tsflags=nodocs --refresh -y \
+        perl-FindBin \
+    && \
+    dnf clean all
 
 # Install openmp from llvm 3.9.1.
 RUN wget http://releases.llvm.org/3.9.1/openmp-3.9.1.src.tar.xz
