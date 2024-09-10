@@ -46,6 +46,7 @@ RUN LATEST_TAG=$(curl -L https://api.github.com/repos/powershell/powershell/rele
 RUN dnf --setopt=install_weak_deps=False install -y \
         autoconf \
         automake \
+        brotli-devel \
         glibc-locale-source \
         iputils \
         jq \
@@ -75,7 +76,7 @@ RUN dnf --setopt=install_weak_deps=False install -y \
     && dnf clean all
 
 # Dependencies for Aspnetcore
-RUN cd ~ && \ 
+RUN cd ~ && \
     curl -sL https://rpm.nodesource.com/setup_20.x
 RUN dnf install -y nodejs && dnf clean all
 ENV NO_UPDATE_NOTIFIER=true
