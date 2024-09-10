@@ -63,10 +63,9 @@ RUN apt-get update \
     && rm -rf /var/lib/apt/lists/*
 
 # Remove older version of node & install node 20
-RUN cd /etc/apt/sources.list.d  && \
-    rm -f nodesource.list && \
-    apt --fix-broken install && \
-    apt update && \
+RUN rm -f /etc/apt/sources.list.d/nodesource.list && \
+    apt-get --fix-broken install && \
+    apt-get update && \
     apt-get remove nodejs -y && \
     apt-get remove nodejs-doc -y && \
     apt-get remove libnode-dev -y
