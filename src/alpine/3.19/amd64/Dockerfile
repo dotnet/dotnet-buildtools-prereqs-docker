@@ -42,6 +42,7 @@ RUN apk add --upgrade --no-cache \
         openssl \
         openssl-dev \
         paxctl \
+        pigz \
         py3-lldb \
         python3-dev \
         shadow \

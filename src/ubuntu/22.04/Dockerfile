@@ -13,6 +13,7 @@ RUN apt-get update \
         llvm-14 \
         locales \
         make \
+        pigz \
         sudo
 
 # This link fixes the broken lldb python scripting that the diagnostics tests require

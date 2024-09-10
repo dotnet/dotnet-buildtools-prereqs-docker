@@ -13,6 +13,7 @@ RUN apt-get update \
         llvm-12 \
         locales \
         make \
+        pigz \
         sudo \
         wget
 
