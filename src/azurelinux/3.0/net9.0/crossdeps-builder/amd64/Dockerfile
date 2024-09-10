@@ -4,6 +4,7 @@ RUN tdnf install -y \
         # Common utilities
         ca-certificates \
         git \
+        pigz \
         tar \
         wget \
         # LLVM build dependencies

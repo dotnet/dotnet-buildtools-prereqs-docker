@@ -7,6 +7,7 @@ RUN apt-get update \
         ca-certificates \
         debootstrap \
         git \
+        pigz \
         qemu \
         qemu-user-static \
     && rm -rf /var/lib/apt/lists/*

@@ -5,6 +5,7 @@ RUN tdnf install -y \
         ca-certificates \
         git \
         icu \
+        pigz \
         rpm-build \
         ruby \
         # Provides useradd

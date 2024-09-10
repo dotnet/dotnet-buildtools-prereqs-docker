@@ -26,6 +26,7 @@ RUN zypper ref && \
         lldb-devel \
         llvm \
         lttng-ust-devel \
+        pigz \
         python3-devel \
         python3-pip \
         sudo \

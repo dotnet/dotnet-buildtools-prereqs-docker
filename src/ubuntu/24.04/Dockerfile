@@ -13,6 +13,7 @@ RUN apt-get update \
         llvm-14 \
         locales \
         make \
+        pigz \
         sudo \
     && rm -rf /var/lib/apt/lists/*
 

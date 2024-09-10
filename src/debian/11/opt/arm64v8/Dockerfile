@@ -25,6 +25,7 @@ RUN apt-get update \
             llvm-9 \
             locales \
             make \
+            pigz \
             sudo \
             tar \
             uuid-dev \

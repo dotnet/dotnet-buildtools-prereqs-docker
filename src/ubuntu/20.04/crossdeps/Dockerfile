@@ -28,6 +28,7 @@ RUN apt-get update \
         libxml2-utils \
         libz-dev \
         make \
+        pigz \
         qemu \
         qemu-user-static \
         rpm2cpio \
