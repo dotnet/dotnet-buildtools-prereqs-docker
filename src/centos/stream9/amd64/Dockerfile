@@ -12,6 +12,7 @@ RUN dnf install --setopt tsflags=nodocs --refresh -y \
         "perl(Time::HiRes)" \
         autoconf \
         automake \
+        brotli-devel \
         clang \
         cmake \
         curl-devel \

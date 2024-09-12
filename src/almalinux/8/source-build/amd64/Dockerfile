@@ -10,6 +10,7 @@ RUN dnf install -y \
         "perl(Time::HiRes)" \
         autoconf \
         automake \
+        brotli-devel \
         cmake \
         elfutils \
         file \

@@ -6,6 +6,7 @@ RUN apk add --upgrade --no-cache \
         automake \
         bash \
         build-base \
+        brotli-dev \
         ca-certificates \
         clang \
         clang-dev \
