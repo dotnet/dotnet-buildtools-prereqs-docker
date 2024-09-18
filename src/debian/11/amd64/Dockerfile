@@ -34,6 +34,7 @@ RUN apt-get update \
             llvm \
             locales \
             make \
+            pigz \
             python-lldb \
             sudo \
             tar \

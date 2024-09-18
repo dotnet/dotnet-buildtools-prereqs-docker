@@ -17,6 +17,7 @@ RUN apt-get update && \
         lttng-tools \
         locales \
         locales-all \
+        pigz \
         python3-dev \
         python3-pip \
         sudo \

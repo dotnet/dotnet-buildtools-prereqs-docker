@@ -13,6 +13,7 @@ RUN dnf --setopt=install_weak_deps=False install -y \
         lldb-devel \
         llvm-devel \
         make \
+        pigz \
         python \
         which \
     && dnf clean all

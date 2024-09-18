@@ -7,6 +7,7 @@ RUN tdnf update -y \
         which \
         nodejs \
         npm \
+        pigz \
         python3 \
         libxml2 \
         unzip

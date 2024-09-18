@@ -25,6 +25,7 @@ RUN apt-get update \
         gdb \
         make \
         nasm \
+        pigz \
         qemu \
         qemu-user-static \
         rpm2cpio \
