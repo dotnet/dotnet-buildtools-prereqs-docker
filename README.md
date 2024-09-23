@@ -62,7 +62,7 @@ It is strongly suggested to specify the `-Paths` option to avoid the overhead of
     .\build.ps1 -Paths "*fedora/*"
     ```
 
-    To build a dependency graph when there are [dependent images](#image-dependency), multiple paths can be specified.
+    To build a dependency graph when there are dependent images, multiple paths can be specified.
 
     ```powershell
     .\build.ps1 -Paths "*alpine/3.20/amd64*","*alpine/3.20/withnode/amd64*"
