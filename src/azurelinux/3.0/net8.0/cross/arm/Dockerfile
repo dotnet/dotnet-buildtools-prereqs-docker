@@ -1,6 +1,6 @@
 ARG ROOTFS_DIR=/crossrootfs/arm
 
-FROM mcr.microsoft.com/dotnet-buildtools/prereqs:azurelinux-3.0-net8.0-crossdeps-builder-local AS builder
+FROM mcr.microsoft.com/dotnet-buildtools/prereqs:azurelinux-3.0-net8.0-crossdeps-builder AS builder
 ARG ROOTFS_DIR
 
 RUN /scripts/eng/common/cross/build-rootfs.sh arm xenial --skipunmount
@@ -43,7 +43,7 @@ RUN LLVM_VERSION=16.0.0 LLVM_VERSION_MAJOR="${LLVM_VERSION%%.*}" SANITIZER_RUNTI
     cp compiler-rt_build/lib/linux/libclang_rt.*-armhf.a $SANITIZER_RUNTIMES_DIR
 
 
-FROM mcr.microsoft.com/dotnet-buildtools/prereqs:azurelinux-3.0-net8.0-crossdeps-llvm-local
+FROM mcr.microsoft.com/dotnet-buildtools/prereqs:azurelinux-3.0-net8.0-crossdeps-llvm
 ARG ROOTFS_DIR
 ARG LLVM_VERSION_MAJOR=16
 

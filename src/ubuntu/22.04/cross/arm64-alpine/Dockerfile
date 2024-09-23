@@ -1,6 +1,6 @@
 ARG ROOTFS_DIR=/crossrootfs/arm64
 
-FROM mcr.microsoft.com/dotnet-buildtools/prereqs:ubuntu-22.04-crossdeps-local as builder
+FROM mcr.microsoft.com/dotnet-buildtools/prereqs:ubuntu-22.04-crossdeps as builder
 
 ARG ROOTFS_DIR
 
@@ -11,7 +11,7 @@ RUN git config --global user.email builder@dotnet-buildtools-prereqs-docker && \
 # Build the rootfs
 RUN /scripts/eng/common/cross/build-rootfs.sh arm64 alpine --skipunmount
 
-FROM mcr.microsoft.com/dotnet-buildtools/prereqs:ubuntu-22.04-crossdeps-local
+FROM mcr.microsoft.com/dotnet-buildtools/prereqs:ubuntu-22.04-crossdeps
 
 ARG ROOTFS_DIR
 

@@ -10,10 +10,7 @@
               "os": "linux",
               "osVersion": "azurelinux3.0",
               "tags": {
-                "azurelinux-3.0-net8.0-crossdeps": {},
-                "azurelinux-3.0-net8.0-crossdeps-local": {
-                  "isLocal": true
-                }
+                "azurelinux-3.0-net8.0-crossdeps": {}
               }
             }
           ]
@@ -25,10 +22,7 @@
               "os": "linux",
               "osVersion": "azurelinux3.0",
               "tags": {
-                "azurelinux-3.0-net9.0-crossdeps": {},
-                "azurelinux-3.0-net9.0-crossdeps-local": {
-                  "isLocal": true
-                }
+                "azurelinux-3.0-net9.0-crossdeps": {}
               }
             }
           ]
@@ -40,10 +34,7 @@
               "os": "linux",
               "osVersion": "azurelinux3.0",
               "tags": {
-                "azurelinux-3.0-net8.0-crossdeps-builder": {},
-                "azurelinux-3.0-net8.0-crossdeps-builder-local": {
-                  "isLocal": true
-                }
+                "azurelinux-3.0-net8.0-crossdeps-builder": {}
               }
             }
           ]
@@ -55,10 +46,7 @@
               "os": "linux",
               "osVersion": "azurelinux3.0",
               "tags": {
-                "azurelinux-3.0-net8.0-crossdeps-llvm": {},
-                "azurelinux-3.0-net8.0-crossdeps-llvm-local": {
-                  "isLocal": true
-                }
+                "azurelinux-3.0-net8.0-crossdeps-llvm": {}
               }
             }
           ]
@@ -70,10 +58,7 @@
               "os": "linux",
               "osVersion": "azurelinux3.0",
               "tags": {
-                "azurelinux-3.0-net8.0-cross-amd64": {},
-                "azurelinux-3.0-net8.0-cross-amd64-local": {
-                  "isLocal": true
-                }
+                "azurelinux-3.0-net8.0-cross-amd64": {}
               }
             }
           ]
@@ -85,10 +70,7 @@
               "os": "linux",
               "osVersion": "azurelinux3.0",
               "tags": {
-                "azurelinux-3.0-net8.0-cross-amd64-alpine": {},
-                "azurelinux-3.0-net8.0-cross-amd64-alpine-local": {
-                  "isLocal": true
-                }
+                "azurelinux-3.0-net8.0-cross-amd64-alpine": {}
               }
             }
           ]
@@ -124,10 +106,7 @@
               "os": "linux",
               "osVersion": "azurelinux3.0",
               "tags": {
-                "azurelinux-3.0-net8.0-cross-arm64": {},
-                "azurelinux-3.0-net8.0-cross-arm64-local": {
-                  "isLocal": true
-                }
+                "azurelinux-3.0-net8.0-cross-arm64": {}
               }
             }
           ]
@@ -139,10 +118,7 @@
               "os": "linux",
               "osVersion": "azurelinux3.0",
               "tags": {
-                "azurelinux-3.0-net8.0-cross-arm64-alpine": {},
-                "azurelinux-3.0-net8.0-cross-arm64-alpine-local": {
-                  "isLocal": true
-                }
+                "azurelinux-3.0-net8.0-cross-arm64-alpine": {}
               }
             }
           ]
@@ -178,10 +154,7 @@
               "os": "linux",
               "osVersion": "azurelinux3.0",
               "tags": {
-                "azurelinux-3.0-net9.0-crossdeps-builder": {},
-                "azurelinux-3.0-net9.0-crossdeps-builder-local": {
-                  "isLocal": true
-                }
+                "azurelinux-3.0-net9.0-crossdeps-builder": {}
               }
             }
           ]
@@ -193,10 +166,7 @@
               "os": "linux",
               "osVersion": "azurelinux3.0",
               "tags": {
-                "azurelinux-3.0-net9.0-crossdeps-llvm": {},
-                "azurelinux-3.0-net9.0-crossdeps-llvm-local": {
-                  "isLocal": true
-                }
+                "azurelinux-3.0-net9.0-crossdeps-llvm": {}
               }
             }
           ]
@@ -231,10 +201,7 @@
               "os": "linux",
               "osVersion": "azurelinux3.0",
               "tags": {
-                "azurelinux-3.0-net9.0-cross-amd64": {},
-                "azurelinux-3.0-net9.0-cross-amd64-local": {
-                  "isLocal": true
-                }
+                "azurelinux-3.0-net9.0-cross-amd64": {}
               }
             }
           ]
@@ -246,10 +213,7 @@
               "os": "linux",
               "osVersion": "azurelinux3.0",
               "tags": {
-                "azurelinux-3.0-net9.0-cross-amd64-sanitizer": {},
-                "azurelinux-3.0-net9.0-cross-amd64-sanitizer-local": {
-                  "isLocal": true
-                }
+                "azurelinux-3.0-net9.0-cross-amd64-sanitizer": {}
               }
             }
           ]
@@ -261,10 +225,7 @@
               "os": "linux",
               "osVersion": "azurelinux3.0",
               "tags": {
-                "azurelinux-3.0-net9.0-cross-amd64-alpine": {},
-                "azurelinux-3.0-net9.0-cross-amd64-alpine-local": {
-                  "isLocal": true
-                }
+                "azurelinux-3.0-net9.0-cross-amd64-alpine": {}
               }
             }
           ]
@@ -300,10 +261,7 @@
               "os": "linux",
               "osVersion": "azurelinux3.0",
               "tags": {
-                "azurelinux-3.0-net9.0-cross-arm64": {},
-                "azurelinux-3.0-net9.0-cross-arm64-local": {
-                  "isLocal": true
-                }
+                "azurelinux-3.0-net9.0-cross-arm64": {}
               }
             }
           ]
@@ -315,10 +273,7 @@
               "os": "linux",
               "osVersion": "azurelinux3.0",
               "tags": {
-                "azurelinux-3.0-net9.0-cross-arm64-alpine": {},
-                "azurelinux-3.0-net9.0-cross-arm64-alpine-local": {
-                  "isLocal": true
-                }
+                "azurelinux-3.0-net9.0-cross-arm64-alpine": {}
               }
             }
           ]
@@ -354,11 +309,8 @@
               "os": "linux",
               "osVersion": "azurelinux3.0",
               "tags": {
-                "azurelinux-3.0-net9.0-android": {},
-                "azurelinux-3.0-net9.0-android-local": {
-                  "isLocal": true
-                    }
-                  }
+                "azurelinux-3.0-net9.0-android": {}
+              }
             }
           ]
         },
@@ -369,10 +321,7 @@
               "os": "linux",
               "osVersion": "azurelinux3.0",
               "tags": {
-                "azurelinux-3.0-net9.0-cross-android-amd64": {},
-                "azurelinux-3.0-net9.0-cross-android-amd64-local": {
-                  "isLocal": true
-                }
+                "azurelinux-3.0-net9.0-cross-android-amd64": {}
               }
             }
           ]

@@ -220,29 +220,6 @@ Each Dockerfile will have an entry that looks like the following.
 > [!Note]
 > The position in manifest determines the sequence in which the image will be built.
 
-### Image Dependency
-
-A precondition for building an image is to ensure that the base image specified in the [FROM](https://docs.docker.com/engine/reference/builder/#from) statement of the Dockerfile is available either locally or can be pulled from a container registry.
-Some of the Dockerfiles depend on images produced from other Dockerfiles (e.g. [src/ubuntu/22.04/debpkg/amd64/Dockerfile](./src/ubuntu/22.04/debpkg/amd64/Dockerfile)).
-In these cases, the `FROM` reference should be to a `local` tag (e.g. `mcr.microsoft.com/dotnet-buildtools/prereqs:ubuntu-22.04-local`).
-To support this scenario, the manifest entry for the base image must be defined to produce the `local` tag.
-
-```json
-"platforms": [
-  {
-    "dockerfile": "src/ubuntu/22.04",
-    "os": "linux",
-    "osVersion": "jammy",
-    "tags": {
-      "ubuntu-22.04": {},
-      "ubuntu-22.04-local": {
-        "isLocal": true
-      }
-    }
-  }
-]
-```
-
 ### Code Owner Responsibilities
 
 - **Code reviews** - Code review all changes made to the owned Dockerfiles.

@@ -59,10 +59,7 @@
               "os": "linux",
               "osVersion": "cbl-mariner2.0",
               "tags": {
-                "cbl-mariner-2.0-crossdeps": {},
-                "cbl-mariner-2.0-crossdeps-local": {
-                  "isLocal": true
-                }
+                "cbl-mariner-2.0-crossdeps": {}
               }
             }
           ]
@@ -74,10 +71,7 @@
               "os": "linux",
               "osVersion": "cbl-mariner2.0",
               "tags": {
-                "cbl-mariner-2.0-crossdeps-builder": {},
-                "cbl-mariner-2.0-crossdeps-builder-local": {
-                  "isLocal": true
-                }
+                "cbl-mariner-2.0-crossdeps-builder": {}
               }
             }
           ]
@@ -89,10 +83,7 @@
               "os": "linux",
               "osVersion": "cbl-mariner2.0",
               "tags": {
-                "cbl-mariner-2.0-crossdeps-llvm": {},
-                "cbl-mariner-2.0-crossdeps-llvm-local": {
-                  "isLocal": true
-                }
+                "cbl-mariner-2.0-crossdeps-llvm": {}
               }
             }
           ]
@@ -104,10 +95,7 @@
               "os": "linux",
               "osVersion": "cbl-mariner2.0",
               "tags": {
-                "cbl-mariner-2.0-cross-amd64": {},
-                "cbl-mariner-2.0-cross-amd64-local": {
-                  "isLocal": true
-                }
+                "cbl-mariner-2.0-cross-amd64": {}
               }
             }
           ]
@@ -119,10 +107,7 @@
               "os": "linux",
               "osVersion": "cbl-mariner2.0",
               "tags": {
-                "cbl-mariner-2.0-cross-amd64-alpine": {},
-                "cbl-mariner-2.0-cross-amd64-alpine-local": {
-                  "isLocal": true
-                }
+                "cbl-mariner-2.0-cross-amd64-alpine": {}
               }
             }
           ]
@@ -158,10 +143,7 @@
               "os": "linux",
               "osVersion": "cbl-mariner2.0",
               "tags": {
-                "cbl-mariner-2.0-cross-arm64": {},
-                "cbl-mariner-2.0-cross-arm64-local": {
-                  "isLocal": true
-                }
+                "cbl-mariner-2.0-cross-arm64": {}
               }
             }
           ]
@@ -173,10 +155,7 @@
               "os": "linux",
               "osVersion": "cbl-mariner2.0",
               "tags": {
-                "cbl-mariner-2.0-cross-arm64-alpine": {},
-                "cbl-mariner-2.0-cross-arm64-alpine-local": {
-                  "isLocal": true
-                }
+                "cbl-mariner-2.0-cross-arm64-alpine": {}
               }
             }
           ]
@@ -188,10 +167,7 @@
               "os": "linux",
               "osVersion": "cbl-mariner2.0",
               "tags": {
-                "cbl-mariner-2.0-cross-armv6": {},
-                "cbl-mariner-2.0-cross-armv6-local": {
-                  "isLocal": true
-                }
+                "cbl-mariner-2.0-cross-armv6": {}
               }
             }
           ]
@@ -324,10 +300,7 @@
               "os": "linux",
               "osVersion": "cbl-mariner2.0",
               "tags": {
-                "cbl-mariner-2.0-android": {},
-                "cbl-mariner-2.0-android-local": {
-                  "isLocal": true
-                }
+                "cbl-mariner-2.0-android": {}
               }
             }
           ]
