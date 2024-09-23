@@ -10,10 +10,7 @@
               "os": "linux",
               "osVersion": "focal",
               "tags": {
-                "ubuntu-20.04-coredeps": {},
-                "ubuntu-20.04-coredeps-local": {
-                  "isLocal": true
-                }
+                "ubuntu-20.04-coredeps": {}
               },
               "buildArgs": {
                 "POWERSHELL_TAG": "ubuntu-20.04"
@@ -28,10 +25,7 @@
               "os": "linux",
               "osVersion": "focal",
               "tags": {
-                "ubuntu-20.04-crossdeps": {},
-                "ubuntu-20.04-crossdeps-local": {
-                  "isLocal": true
-                }
+                "ubuntu-20.04-crossdeps": {}
               }
             }
           ]
@@ -56,10 +50,7 @@
               "os": "linux",
               "osVersion": "focal",
               "tags": {
-                "ubuntu-20.04-helix-amd64": {},
-                "ubuntu-20.04-helix-amd64-local": {
-                  "isLocal": true
-                }
+                "ubuntu-20.04-helix-amd64": {}
               }
             }
           ]
@@ -72,10 +63,7 @@
               "os": "linux",
               "osVersion": "focal",
               "tags": {
-                "ubuntu-20.04-helix-arm64v8": {},
-                "ubuntu-20.04-helix-arm64v8-local": {
-                  "isLocal": true
-                }
+                "ubuntu-20.04-helix-arm64v8": {}
               },
               "variant": "v8"
             }
@@ -114,10 +102,7 @@
               "os": "linux",
               "osVersion": "focal",
               "tags": {
-                "ubuntu-20.04": {},
-                "ubuntu-20.04-local": {
-                  "isLocal": true
-                }
+                "ubuntu-20.04": {}
               }
             }
           ]
@@ -167,10 +152,7 @@
               "os": "linux",
               "osVersion": "jammy",
               "tags": {
-                "ubuntu-22.04": {},
-                "ubuntu-22.04-local": {
-                  "isLocal": true
-                }
+                "ubuntu-22.04": {}
               }
             }
           ]
@@ -196,10 +178,7 @@
               "os": "linux",
               "osVersion": "jammy",
               "tags": {
-                "ubuntu-22.04-coredeps": {},
-                "ubuntu-22.04-coredeps-local": {
-                  "isLocal": true
-                }
+                "ubuntu-22.04-coredeps": {}
               },
               "buildArgs": {
                 "POWERSHELL_TAG": "ubuntu-22.04"
@@ -214,10 +193,7 @@
               "os": "linux",
               "osVersion": "jammy",
               "tags": {
-                "ubuntu-22.04-crossdeps": {},
-                "ubuntu-22.04-crossdeps-local": {
-                  "isLocal": true
-                }
+                "ubuntu-22.04-crossdeps": {}
               }
             }
           ]
@@ -350,10 +326,7 @@
               "os": "linux",
               "osVersion": "jammy",
               "tags": {
-                "ubuntu-22.04-helix-amd64": {},
-                "ubuntu-22.04-helix-amd64-local": {
-                  "isLocal": true
-                }
+                "ubuntu-22.04-helix-amd64": {}
               }
             }
           ]
@@ -404,10 +377,7 @@
               "os": "linux",
               "osVersion": "jammy",
               "tags": {
-                "ubuntu-22.04-mlnet": {},
-                "ubuntu-22.04-mlnet-local": {
-                  "isLocal": true
-                }
+                "ubuntu-22.04-mlnet": {}
               }
             }
           ]
@@ -472,10 +442,7 @@
               "os": "linux",
               "osVersion": "noble",
               "tags": {
-                "ubuntu-24.04-helix-amd64": {},
-                "ubuntu-24.04-helix-amd64-local": {
-                  "isLocal": true
-                }
+                "ubuntu-24.04-helix-amd64": {}
               }
             }
           ]
@@ -488,10 +455,7 @@
               "os": "linux",
               "osVersion": "noble",
               "tags": {
-                "ubuntu-24.04-helix-arm64v8": {},
-                "ubuntu-24.04-helix-arm64v8-local": {
-                  "isLocal": true
-                }
+                "ubuntu-24.04-helix-arm64v8": {}
               },
               "variant": "v8"
             }
@@ -505,10 +469,7 @@
               "os": "linux",
               "osVersion": "noble",
               "tags": {
-                "ubuntu-24.04-helix-arm32v7": {},
-                "ubuntu-24.04-helix-arm32v7-local": {
-                  "isLocal": true
-                }
+                "ubuntu-24.04-helix-arm32v7": {}
               },
               "variant": "v7"
             }

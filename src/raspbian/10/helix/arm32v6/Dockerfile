@@ -1,6 +1,6 @@
 ARG ROOTFS_DIR=/crossrootfs
 
-FROM mcr.microsoft.com/dotnet-buildtools/prereqs:raspbian-10-crossdeps-local as builder
+FROM mcr.microsoft.com/dotnet-buildtools/prereqs:raspbian-10-crossdeps as builder
 
 ARG ROOTFS_DIR
 

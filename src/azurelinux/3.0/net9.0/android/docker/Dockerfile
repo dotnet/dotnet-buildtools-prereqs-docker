@@ -1,4 +1,4 @@
-FROM mcr.microsoft.com/dotnet-buildtools/prereqs:azurelinux-3.0-net9.0-android-local
+FROM mcr.microsoft.com/dotnet-buildtools/prereqs:azurelinux-3.0-net9.0-android
 
 RUN tdnf update -y \
     && tdnf install -y \

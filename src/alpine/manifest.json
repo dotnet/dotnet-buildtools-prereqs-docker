@@ -10,10 +10,7 @@
               "os": "linux",
               "osVersion": "alpine3.17",
               "tags": {
-                "alpine-3.17": {},
-                "alpine-3.17-local": {
-                  "isLocal": true
-                }
+                "alpine-3.17": {}
               }
             }
           ]
@@ -107,10 +104,7 @@
               "os": "linux",
               "osVersion": "alpine3.18",
               "tags": {
-                "alpine-3.18": {},
-                "alpine-3.18-local": {
-                  "isLocal": true
-                }
+                "alpine-3.18": {}
               }
             }
           ]
@@ -134,10 +128,7 @@
               "os": "linux",
               "osVersion": "alpine3.19",
               "tags": {
-                "alpine-3.19": {},
-                "alpine-3.19-local": {
-                  "isLocal": true
-                }
+                "alpine-3.19": {}
               }
             }
           ]
@@ -202,10 +193,7 @@
               "os": "linux",
               "osVersion": "alpine3.20",
               "tags": {
-                "alpine-3.20": {},
-                "alpine-3.20-local": {
-                  "isLocal": true
-                }
+                "alpine-3.20": {}
               }
             }
           ]

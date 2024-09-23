@@ -1,4 +1,4 @@
-FROM mcr.microsoft.com/dotnet-buildtools/prereqs:ubuntu-22.04-local
+FROM mcr.microsoft.com/dotnet-buildtools/prereqs:ubuntu-22.04
 
 # Install openmp support
 RUN apt-get update \
