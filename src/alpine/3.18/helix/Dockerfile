@@ -35,7 +35,7 @@ RUN apk add --upgrade --no-cache \
         tzdata
 
 # Install libmsquic from testing repository
-RUN apk add --repository=http://dl-cdn.alpinelinux.org/alpine/edge/testing/ libmsquic
+RUN apk add --repository=http://dl-cdn.alpinelinux.org/alpine/edge/community/ libmsquic
 
 # Needed for runtime tests to pass
 ENV LANG=en-US.UTF-8
