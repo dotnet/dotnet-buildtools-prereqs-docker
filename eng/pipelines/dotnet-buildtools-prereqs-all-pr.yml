@@ -1,5 +1,11 @@
 trigger: none
-pr: none
+pr:
+  branches:
+    include:
+    - main
+  paths:
+    include:
+    - src/*
 
 resources:
   repositories:
@@ -16,7 +22,7 @@ stages:
   parameters:
     internalProjectName: ${{ variables.internalProjectName }}
     publicProjectName: ${{ variables.publicProjectName }}
-    linuxAmdBuildJobTimeout: 360
+    linuxAmdBuildJobTimeout: 480
     linuxArmBuildJobTimeout: 300
     linuxAmd64Pool:
       name: NetCore-Public-XL

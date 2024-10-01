@@ -1,4 +1,10 @@
-trigger: none
+trigger:
+  branches:
+    include:
+    - main
+  paths:
+    include:
+    - src/*
 pr: none
 
 resources:
