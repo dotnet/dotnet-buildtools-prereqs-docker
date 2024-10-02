@@ -58,7 +58,7 @@ RUN wget https://releases.llvm.org/release-keys.asc && \
 # 2. Download llvm sources and signature, and verify signature
     LLVM_VERSION=18.1.8 && \
     wget -O llvm-project.src.tar.xz.sig https://github.com/llvm/llvm-project/releases/download/llvmorg-${LLVM_VERSION}/llvm-project-${LLVM_VERSION}.src.tar.xz.sig && \
-    echo "85890dd268c32b97c23b03cffcca124a2ef592a1b12107e4c972ab3f5f9ae409 llvm-project.src.tar.xz.sig" | sha256sum -c && \
+    echo "f8875c5b5e01ce4a672ce48fd1559764cc91e037fa35203dbceaadeb5ad51978 llvm-project.src.tar.xz.sig" | sha256sum -c && \
     wget -O llvm-project.src.tar.xz https://github.com/llvm/llvm-project/releases/download/llvmorg-${LLVM_VERSION}/llvm-project-${LLVM_VERSION}.src.tar.xz && \
     echo "2c01b2fbb06819a12a92056a7fd4edcdc385837942b5e5260b9c2c0baff5116b llvm-project.src.tar.xz" | sha256sum -c && \
     gpg --verify llvm-project.src.tar.xz.sig && \
