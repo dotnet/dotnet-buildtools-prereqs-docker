@@ -60,7 +60,7 @@ RUN wget https://releases.llvm.org/release-keys.asc && \
     wget -O llvm-project.src.tar.xz.sig https://github.com/llvm/llvm-project/releases/download/llvmorg-${LLVM_VERSION}/llvm-project-${LLVM_VERSION}.src.tar.xz.sig && \
     echo "f8875c5b5e01ce4a672ce48fd1559764cc91e037fa35203dbceaadeb5ad51978 llvm-project.src.tar.xz.sig" | sha256sum -c && \
     wget -O llvm-project.src.tar.xz https://github.com/llvm/llvm-project/releases/download/llvmorg-${LLVM_VERSION}/llvm-project-${LLVM_VERSION}.src.tar.xz && \
-    echo "2c01b2fbb06819a12a92056a7fd4edcdc385837942b5e5260b9c2c0baff5116b llvm-project.src.tar.xz" | sha256sum -c && \
+    echo "0b58557a6d32ceee97c8d533a59b9212d87e0fc4d2833924eb6c611247db2f2a llvm-project.src.tar.xz" | sha256sum -c && \
     gpg --verify llvm-project.src.tar.xz.sig && \
     rm llvm-project.src.tar.xz.sig
 
