@@ -2,6 +2,9 @@ FROM mcr.microsoft.com/cbl-mariner/base/core:2.0
 
 RUN tdnf update -y && \
     tdnf install -y \
+        # Needed to install MicroBuild in Azure DevOps pipelines
+        sudo \
+        apt \
         # Provides 'su', required by Azure DevOps
         ca-certificates \
         git \

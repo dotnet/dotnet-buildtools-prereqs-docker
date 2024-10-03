@@ -17,5 +17,8 @@ RUN tdnf install -y \
         # Provides functionality for AzureCLI AzDO task
         powershell \
         azure-cli \
+        # Needed to install MicroBuild in Azure DevOps pipelines
+        sudo \
+        apt \
     && tdnf clean all \
     && gem install fpm

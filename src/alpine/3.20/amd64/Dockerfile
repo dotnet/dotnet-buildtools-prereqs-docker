@@ -2,6 +2,7 @@ FROM amd64/alpine:3.20
 
 # Install .NET and test dependencies
 RUN apk add --upgrade --no-cache \
+        apt \
         autoconf \
         automake \
         bash \
