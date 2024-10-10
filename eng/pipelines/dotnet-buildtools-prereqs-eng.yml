@@ -22,6 +22,10 @@ variables:
 - template: /eng/pipelines/variables/common.yml@self
 - name: imageBuilder.pathArgs
   value: --path '*'
+# Since this pipeline is intended to test the infra, we don't want to trim the cached images from the matrix.
+# This enables the entire pipeline to be exercised.
+- name: trimCachedImagesForMatrix
+  value: false
 
 stages:
 - template: /eng/pipelines/stages/build-test-publish-repo.yml@self

@@ -21,6 +21,8 @@ variables:
   value: false
 - name: testScriptPath
   value: ""
+- name: trimCachedImagesForMatrix
+  value: true
 - ${{ if eq(variables['System.TeamProject'], 'internal') }}:
   - name: build.imageBuilderDockerRunExtraOptions
     value: -e DOCKER_REPO=$(acr.server)/$(stagingRepoPrefix)dotnet-buildtools/prereqs
