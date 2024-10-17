@@ -19,10 +19,8 @@ RUN dnf --setopt=install_weak_deps=False install -y \
     && dnf clean all
 
 # Add MS package repo.
-COPY  microsoft.asc /tmp
-RUN dnf config-manager --add-repo https://packages.microsoft.com/fedora/40/prod/ && \
-    rpm --import /tmp/microsoft.asc && \
-    rm /tmp/microsoft.asc
+RUN dnf config-manager --add-repo https://packages.microsoft.com/fedora/40/prod/ \
+    && rpm --import https://packages.microsoft.com/keys/microsoft.asc
 
 # Install tools used by build automation.
 RUN dnf --setopt=install_weak_deps=False install -y \
@@ -77,7 +75,9 @@ RUN dnf --setopt=install_weak_deps=False install -y \
     && dnf clean all
 
 # Dependencies for Aspnetcore
-RUN cd ~ && \
-    curl -sL https://rpm.nodesource.com/setup_20.x
-RUN dnf install -y nodejs && dnf clean all
+RUN cd ~ \
+    && curl -sL https://rpm.nodesource.com/setup_20.x
+RUN dnf --setopt=install_weak_deps=False install -y \
+        nodejs \
+    && dnf clean all
 ENV NO_UPDATE_NOTIFIER=true

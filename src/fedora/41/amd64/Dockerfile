@@ -1,4 +1,4 @@
-FROM library/fedora:39
+FROM library/fedora:41
 
 # Install the base toolchain we need to build anything (clang, cmake, make and the like)
 # this does not include libraries that we need to compile different projects, we'd like
@@ -19,8 +19,7 @@ RUN dnf --setopt=install_weak_deps=False install -y \
     && dnf clean all
 
 # Add MS package repo.
-RUN dnf config-manager --add-repo https://packages.microsoft.com/fedora/39/prod/ \
-    && rpm --import https://packages.microsoft.com/keys/microsoft.asc
+RUN dnf config-manager addrepo --from-repofile=https://packages.microsoft.com/fedora/41/prod/config.repo
 
 # Install tools used by build automation.
 RUN dnf --setopt=install_weak_deps=False install -y \
@@ -45,6 +44,7 @@ RUN LATEST_TAG=$(curl -L https://api.github.com/repos/powershell/powershell/rele
 RUN dnf --setopt=install_weak_deps=False install -y \
         autoconf \
         automake \
+        brotli-devel \
         glibc-locale-source \
         iputils \
         jq \
