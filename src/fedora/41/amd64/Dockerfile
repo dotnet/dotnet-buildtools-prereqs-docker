@@ -19,13 +19,7 @@ RUN dnf --setopt=install_weak_deps=False install -y \
     && dnf clean all
 
 # Add MS package repo.
-RUN dnf5 config-manager addrepo \
-        --set=name=Microsoft \
-        --set=baseurl=https://packages.microsoft.com/fedora/41/prod/ \
-        --set=enabled=1 \
-        --set=gpgcheck=1 \
-        --set=gpgkey=https://packages.microsoft.com/keys/microsoft.asc \
-    && dnf makecache
+RUN dnf config-manager addrepo --from-repofile=https://packages.microsoft.com/fedora/41/prod/config.repo
 
 # Install tools used by build automation.
 RUN dnf --setopt=install_weak_deps=False install -y \
