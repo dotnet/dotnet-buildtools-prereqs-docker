@@ -8,10 +8,10 @@
 ### Dockerfiles ###
 
 # almalinux
-src/almalinux/**/source-build/ @dotnet/source-build-internal @dotnet/dotnet-docker-reviewers
+src/almalinux/**/source-build/ @dotnet/source-build @dotnet/dotnet-docker-reviewers
 
 # alpine
-src/alpine/**/amd64/ @dotnet/source-build-internal @dotnet/dotnet-docker-reviewers
+src/alpine/**/amd64/ @dotnet/source-build @dotnet/dotnet-docker-reviewers
 
 # azurelinux
 src/azurelinux/**/android/ @dotnet/runtime-infrastructure @dotnet/dotnet-docker-reviewers
@@ -26,24 +26,24 @@ src/cbl-mariner/**/docker-testrunner/ @dotnet/dotnet-docker-reviewers
 src/cbl-mariner/2.0/amd64/ @dotnet/runtime-infrastructure @dotnet/dotnet-docker-reviewers
 
 # centos
-src/centos/stream9/amd64/ @dotnet/source-build-internal @dotnet/dotnet-docker-reviewers
+src/centos/stream9/amd64/ @dotnet/source-build @dotnet/dotnet-docker-reviewers
 
 # debian
-src/debian/11/amd64/ @dotnet/source-build-internal @dotnet/dotnet-docker-reviewers
+src/debian/11/amd64/ @dotnet/source-build @dotnet/dotnet-docker-reviewers
 src/debian/11/opt/arm64v8/ @dotnet/runtime-infrastructure @dotnet/dotnet-docker-reviewers
 src/debian/12/gcc14/amd64/ @dotnet/runtime-infrastructure @dotnet/dotnet-docker-reviewers
 
 # fedora
-src/fedora/**/amd64/ @dotnet/source-build-internal @dotnet/dotnet-docker-reviewers
+src/fedora/**/amd64/ @dotnet/source-build @dotnet/dotnet-docker-reviewers
 
 # ubuntu
 src/ubuntu/**/debpkg/ @dotnet/runtime-infrastructure @dotnet/dotnet-docker-reviewers
 src/ubuntu/22.04/mlnet/ @dotnet/runtime-infrastructure @dotnet/dotnet-docker-reviewers
 src/ubuntu/22.04/opt/arm64v8/ @dotnet/runtime-infrastructure @dotnet/dotnet-docker-reviewers
 src/ubuntu/common/coredeps/ @dotnet/runtime-infrastructure @dotnet/dotnet-docker-reviewers
-src/ubuntu/20.04/Dockerfile @dotnet/source-build-internal @dotnet/dotnet-docker-reviewers
-src/ubuntu/22.04/Dockerfile @dotnet/source-build-internal @dotnet/dotnet-docker-reviewers
-src/ubuntu/24.04/Dockerfile @dotnet/source-build-internal @dotnet/dotnet-docker-reviewers
+src/ubuntu/20.04/Dockerfile @dotnet/source-build @dotnet/dotnet-docker-reviewers
+src/ubuntu/22.04/Dockerfile @dotnet/source-build @dotnet/dotnet-docker-reviewers
+src/ubuntu/24.04/Dockerfile @dotnet/source-build @dotnet/dotnet-docker-reviewers
 
 # common paths
 # CODEOWNERS selects the last match as the owner so we list these paths last
