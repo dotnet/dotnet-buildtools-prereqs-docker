@@ -25,7 +25,7 @@ RUN apk add --upgrade --no-cache \
         krb5-libs \
         lldb \
         llvm \
-        lttng-ust \
+        lttng-ust \ 
         musl-locales \
         numactl \
         openssl \
