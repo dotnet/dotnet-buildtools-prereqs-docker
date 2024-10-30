@@ -1,4 +1,4 @@
-FROM fedora:39
+FROM library/fedora:39
 
 RUN dnf upgrade --refresh -y \
     && dnf --setopt=install_weak_deps=False install -y \
