@@ -1,12 +1,13 @@
 FROM library/almalinux:8
 
 # Install dependencies
-RUN dnf install -y \
-     'dnf-command(config-manager)' \
-     epel-release && \
-     dnf config-manager --set-enabled powertools && \
-     dnf config-manager --set-enabled epel && \
-     dnf install -y \
+RUN dnf upgrade --refresh -y \
+    && dnf install -y \
+        'dnf-command(config-manager)' \
+        epel-release \
+    && dnf config-manager --set-enabled powertools \
+    && dnf config-manager --set-enabled epel \
+    && dnf install -y \
         "perl(Time::HiRes)" \
         autoconf \
         automake \
@@ -41,8 +42,6 @@ RUN dnf install -y \
         which \
         xz \
         zlib-devel \
-        && \
-    dnf module install -y \
+    && dnf module install -y \
         nodejs:20 \
-        && \
-    dnf clean all
+    && dnf clean all
