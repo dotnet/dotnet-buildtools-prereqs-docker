@@ -1,17 +1,18 @@
 FROM quay.io/centos/centos:stream9
 
 # Install dependencies
-
-RUN dnf install --setopt tsflags=nodocs --refresh -y \
+RUN dnf upgrade --refresh -y \
+    && dnf install --setopt tsflags=nodocs -y \
         dnf-plugins-core \
-    && \
-    dnf config-manager --set-enabled crb \
-    && \
-    dnf module install --setopt tsflags=nodocs -y nodejs:20/common && \
-    dnf install --setopt tsflags=nodocs -y \
+    && dnf config-manager --add-repo=https://packages.microsoft.com/rhel/9/prod/config.repo \
+    && dnf config-manager --set-enabled crb \
+    && dnf module install --setopt tsflags=nodocs -y \
+        nodejs:20/common \
+    && dnf install --setopt tsflags=nodocs -y \
         "perl(Time::HiRes)" \
         autoconf \
         automake \
+        azure-cli \
         brotli-devel \
         clang \
         cmake \
@@ -45,6 +46,7 @@ RUN dnf install --setopt tsflags=nodocs --refresh -y \
         numactl-devel \
         openssl-devel \
         pigz \
+        powershell \
         procps-ng \
         python3 \
         python3-devel \
@@ -56,18 +58,7 @@ RUN dnf install --setopt tsflags=nodocs --refresh -y \
         which \
         xz \
         zlib-devel \
-    && \
-    dnf clean all
-
-# Install powershell and the azure cli from the Microsoft repository
-RUN curl -sSL -O https://packages.microsoft.com/config/rhel/8/packages-microsoft-prod.rpm && \
-    rpm -i packages-microsoft-prod.rpm && \
-    rm -f packages-microsoft-prod.rpm && \
-    dnf update -y && \
-    dnf install -y --setopt tsflags=nodocs \
-        azure-cli \
-        powershell && \
-    dnf clean all
+    && dnf clean all
 
 ENV \
     NO_UPDATE_NOTIFIER=true \
