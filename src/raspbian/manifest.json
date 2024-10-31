@@ -25,8 +25,7 @@
               "os": "linux",
               "osVersion": "bookworm",
               "tags": {
-                "raspbian-12-helix-arm32v6-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
-                "raspbian-12-helix-arm32v6$(FloatingTagSuffix)": {}
+                "raspbian-12-helix-arm32v6": {}
               },
               "variant": "v6"
             }
