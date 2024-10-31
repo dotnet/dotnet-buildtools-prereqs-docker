@@ -1,6 +1,6 @@
 ARG ROOTFS_DIR=/crossrootfs/armel
 
-FROM mcr.microsoft.com/dotnet-buildtools/prereqs:ubuntu-22.04-crossdeps-local AS builder
+FROM mcr.microsoft.com/dotnet-buildtools/prereqs:ubuntu-22.04-crossdeps AS builder
 ARG ROOTFS_DIR
 
 # Obtain arcade scripts used to build rootfs
@@ -9,7 +9,7 @@ RUN git config --global user.email builder@dotnet-buildtools-prereqs-docker && \
 
 RUN /scripts/eng/common/cross/tizen-build-rootfs.sh armel
 
-FROM mcr.microsoft.com/dotnet-buildtools/prereqs:ubuntu-22.04-crossdeps-local
+FROM mcr.microsoft.com/dotnet-buildtools/prereqs:ubuntu-22.04-crossdeps
 ARG ROOTFS_DIR
 
 # Install binutils-arm-linux-gnueabi

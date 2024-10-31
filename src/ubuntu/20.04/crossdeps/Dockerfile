@@ -1,4 +1,4 @@
-FROM mcr.microsoft.com/dotnet-buildtools/prereqs:ubuntu-20.04-coredeps-local
+FROM mcr.microsoft.com/dotnet-buildtools/prereqs:ubuntu-20.04-coredeps
 
 # Install the base toolchain we need to build anything (clang, cmake, make and the like).
 RUN apt-get update \
@@ -28,6 +28,7 @@ RUN apt-get update \
         libxml2-utils \
         libz-dev \
         make \
+        pigz \
         qemu \
         qemu-user-static \
         rpm2cpio \

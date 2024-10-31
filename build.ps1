@@ -1,15 +1,17 @@
 [cmdletbinding()]
 param(
-    [string]$DockerfilePath = "*",
-    [string]$ImageBuilderCustomArgs
+    # Paths to the Dockerfiles to build
+    [string[]]$Paths,
+
+     # Additional args to pass to ImageBuilder
+    [string]$OptionalImageBuilderArgs
 )
 
 Set-StrictMode -Version Latest
 $ErrorActionPreference = 'Stop'
 pushd $PSScriptRoot
-$ImageBuilderCustomArgs = "$ImageBuilderCustomArgs --var UniqueId=$(Get-Date -Format yyyyMMddHHmmss) --var FloatingTagSuffix=local"
 try {
-    ./eng/common/Invoke-ImageBuilder.ps1 "build --path '$DockerfilePath' $ImageBuilderCustomArgs"
+    ./eng/common/build.ps1 -Paths $Paths -OptionalImageBuilderArgs $OptionalImageBuilderArgs
 }
 finally {
     popd

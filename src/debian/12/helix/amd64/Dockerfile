@@ -1,3 +1,18 @@
+FROM library/debian:bookworm AS venv
+
+RUN apt-get update && \
+    apt-get install -y \
+        coreutils \
+        python3-dev \
+        python3-pip \
+        python3-venv \
+    && rm -rf /var/lib/apt/lists/*
+
+RUN python3 -m venv /venv && \
+    . /venv/bin/activate && \
+    pip download --no-deps helix-scripts --index-url https://dnceng.pkgs.visualstudio.com/public/_packaging/helix-client-prod/pypi/simple && \
+    pip install ./helix_scripts-*-py3-none-any.whl
+
 FROM library/debian:bookworm
 
 # Install Helix Dependencies
@@ -34,10 +49,6 @@ RUN apt-get update && \
 
 ENV LANG=en_US.utf8
 
-RUN ln -sf /usr/bin/python3 /usr/bin/python && \
-    pip download --no-deps helix-scripts --index-url https://dnceng.pkgs.visualstudio.com/public/_packaging/helix-client-prod/pypi/simple && \
-    pip install ./helix_scripts-*-py3-none-any.whl --break-system-packages
-
 # Add MsQuic
 RUN curl -LO https://packages.microsoft.com/keys/microsoft.asc && \
     echo 2cfd20a306b2fa5e25522d78f2ef50a1f429d35fd30bd983e2ebffc2b80944fa microsoft.asc| sha256sum --check - && \
@@ -56,4 +67,9 @@ RUN /usr/sbin/adduser --disabled-password --gecos '' --uid 1000 --shell /bin/bas
 
 USER helixbot
 
-RUN python3 -m venv /home/helixbot/.vsts-env
+# Install Helix Dependencies
+
+ENV VIRTUAL_ENV=/home/helixbot/.vsts-env
+RUN python3 -m venv $VIRTUAL_ENV
+ENV PATH="$VIRTUAL_ENV/bin:$PATH"
+COPY --from=venv /venv $VIRTUAL_ENV

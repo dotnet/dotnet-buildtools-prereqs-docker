@@ -1,6 +1,29 @@
+FROM library/debian:bookworm AS venv
+
+RUN apt-get update && \
+    apt-get install -y \
+        curl \
+        pkg-config \
+        coreutils \
+        python3-dev \
+        python3-pip \
+        python3-venv \
+        libffi-dev \
+        libssl-dev \
+    && rm -rf /var/lib/apt/lists/*
+
+# Install latest version of rust because the package version provided by Debian is too old.
+# Need 1.65.0+ to install the Helix scripts due to cryptography-openssl dependency.
+RUN curl -sSf https://sh.rustup.rs | sh -s -- -y
+ENV PATH="/root/.cargo/bin:${PATH}"
+
+RUN python3 -m venv /venv && \
+    . /venv/bin/activate && \
+    pip download --no-deps helix-scripts --index-url https://dnceng.pkgs.visualstudio.com/public/_packaging/helix-client-prod/pypi/simple && \
+    pip install ./helix_scripts-*-py3-none-any.whl
+
 FROM library/debian:bookworm
 
-# Install Helix Dependencies
 RUN apt-get update && \
     apt-get install -y \
         autoconf \
@@ -27,7 +50,6 @@ RUN apt-get update && \
         python3-dev \
         python3-pip \
         python3-venv \
-        rustc \
         software-properties-common \
         sudo \
         tzdata \
@@ -36,10 +58,6 @@ RUN apt-get update && \
     && localedef -i en_US -c -f UTF-8 -A /usr/share/locale/locale.alias en_US.UTF-8
 
 ENV LANG=en_US.utf8
-
-RUN ln -sf /usr/bin/python3 /usr/bin/python && \
-    pip download --no-deps helix-scripts --index-url https://dnceng.pkgs.visualstudio.com/public/_packaging/helix-client-prod/pypi/simple && \
-    pip install ./helix_scripts-*-py3-none-any.whl --break-system-packages
 
 # Add MsQuic
 RUN curl -LO https://packages.microsoft.com/keys/microsoft.asc && \
@@ -57,13 +75,11 @@ RUN /usr/sbin/adduser --disabled-password --gecos '' --uid 1000 --shell /bin/bas
     chmod 755 /root && \
     echo "helixbot ALL=(ALL)       NOPASSWD: ALL" > /etc/sudoers
 
-# Debian 12 is set up with its python environment marked as externally managed
-# (https://packaging.python.org/en/latest/specifications/externally-managed-environments/).
-# This causes errors when helix setup (at runtime) does 'sudo pip install'.
-# Work around this by overriding the check for externally managed environments.
-RUN mkdir -p ~/.config/pip && \
-    echo "[global]\nbreak-system-packages = true" > ~/.config/pip/pip.conf
-
 USER helixbot
 
-RUN python3 -m venv /home/helixbot/.vsts-env
+# Install Helix Dependencies
+
+ENV VIRTUAL_ENV=/home/helixbot/.vsts-env
+RUN python3 -m venv $VIRTUAL_ENV
+ENV PATH="$VIRTUAL_ENV/bin:$PATH"
+COPY --from=venv /venv $VIRTUAL_ENV

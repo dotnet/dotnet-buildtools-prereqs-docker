@@ -1,10 +1,11 @@
-FROM azurelinuxpreview.azurecr.io/public/azurelinux/base/core:3.0
+FROM mcr.microsoft.com/azurelinux/base/core:3.0
 
 RUN tdnf update -y && \
     tdnf install -y \
         # Provides 'su', required by Azure DevOps
         ca-certificates \
         git \
+        pigz \
         util-linux \
         wget \
         # Common runtime build dependencies
@@ -15,7 +16,6 @@ RUN tdnf update -y && \
         diffutils \
         icu \
         tar \
-        zlib-devel \
         # Crosscomponents build dependencies
         glibc-devel \
         kernel-headers \

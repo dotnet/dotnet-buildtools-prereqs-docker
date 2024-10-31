@@ -1,4 +1,10 @@
-trigger: none
+trigger:
+  branches:
+    include:
+    - main
+  paths:
+    include:
+    - src/*
 pr: none
 
 resources:
@@ -10,6 +16,8 @@ resources:
 
 variables:
 - template: /eng/pipelines/variables/common.yml@self
+- name: publishEolAnnotations
+  value: true
 
 extends:
   template: /eng/common/templates/1es-official.yml@self

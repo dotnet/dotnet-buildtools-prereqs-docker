@@ -11,11 +11,7 @@
               "os": "linux",
               "osVersion": "jammy",
               "tags": {
-                "raspbian-12-crossdeps-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
-                "raspbian-12-crossdeps$(FloatingTagSuffix)": {},
-                "raspbian-12-crossdeps-local": {
-                  "isLocal": true
-                }
+                "raspbian-12-crossdeps": {}
               },
               "variant": "v7"
             }

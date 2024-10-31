@@ -10,8 +10,7 @@
               "os": "linux",
               "osVersion": "centos-stream9",
               "tags": {
-                "centos-stream9-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
-                "centos-stream9$(FloatingTagSuffix)": {}
+                "centos-stream9": {}
               }
             }
           ]
@@ -23,8 +22,19 @@
               "os": "linux",
               "osVersion": "centos-stream9",
               "tags": {
-                "centos-stream9-helix-$(System:TimeStamp)-$(System:DockerfileGitCommitSha)": {},
-                "centos-stream9-helix$(FloatingTagSuffix)": {}
+                "centos-stream9-helix": {}
+              }
+            }
+          ]
+        },
+        {
+          "platforms": [
+            {
+              "dockerfile": "src/centos/stream9/mlnet/helix",
+              "os": "linux",
+              "osVersion": "centos-stream9",
+              "tags": {
+                "centos-stream9-mlnet-helix": {}
               }
             }
           ]

@@ -15,20 +15,14 @@ variables:
   value: ''
 - name: publicGitRepoUri
   value: https://github.com/dotnet/dotnet-buildtools-prereqs-docker
-- ${{ if eq(variables['Build.SourceBranch'], 'refs/heads/main') }}:
-  - name: floatingTagSuffix
-    value: ""
-- ${{ else }}:
-  - name: floatingTagSuffix
-    value: $(Build.SourceBranchName)
-- name: manifestVariables
-  value: --var UniqueId=$(sourceBuildId) --var FloatingTagSuffix=$(floatingTagSuffix)
 - name: publicSourceBranch
   value: main
 - name: ingestKustoImageInfo
   value: false
 - name: testScriptPath
   value: ""
+- name: trimCachedImagesForMatrix
+  value: true
 - ${{ if eq(variables['System.TeamProject'], 'internal') }}:
   - name: build.imageBuilderDockerRunExtraOptions
     value: -e DOCKER_REPO=$(acr.server)/$(stagingRepoPrefix)dotnet-buildtools/prereqs

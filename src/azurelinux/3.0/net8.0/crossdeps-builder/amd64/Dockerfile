@@ -1,4 +1,4 @@
-FROM azurelinuxpreview.azurecr.io/public/azurelinux/base/core:3.0
+FROM mcr.microsoft.com/azurelinux/base/core:3.0
 
 RUN tdnf install -y \
         # Common utilities
@@ -24,7 +24,7 @@ RUN tdnf install -y \
         openssl-devel
 
 # dependencies which are installed from extended repo require additional setup
-RUN wget https://packages.microsoft.com/azurelinux/3.0/preview/extended/x86_64/config.repo -O /etc/yum.repos.d/azurelinux-extended.repo && \
+RUN wget https://packages.microsoft.com/azurelinux/3.0/prod/extended/x86_64/config.repo -O /etc/yum.repos.d/azurelinux-extended.repo && \
     tdnf makecache && \
     tdnf install -y \
         libbsd-devel
@@ -51,7 +51,7 @@ RUN gpg --import dimitri_john_ledkov.asc && \
 
 # 1. Obtain signing keys used to sign llvm sources
 RUN wget https://releases.llvm.org/release-keys.asc && \
-    echo "f181a90697e3ea4b7782f1ee48314a570aef058505b4f3a0ab0611094ec13241 release-keys.asc" | sha256sum -c && \
+    echo "972d9449ebf7de947a1dff7f25edf8eea7963e4f7501b20d29328df55162f3b8 release-keys.asc" | sha256sum -c && \
     gpg --import release-keys.asc && \
     rm release-keys.asc && \
 # 2. Download llvm sources and signature, and verify signature

@@ -1,6 +1,6 @@
 ARG ROOTFS_DIR=/crossrootfs/arm64
 
-FROM mcr.microsoft.com/dotnet-buildtools/prereqs:ubuntu-20.04-crossdeps-local AS binutils
+FROM mcr.microsoft.com/dotnet-buildtools/prereqs:ubuntu-20.04-crossdeps AS binutils
 
 # Install binutils-aarch64-linux-gnu
 RUN apt-get update \

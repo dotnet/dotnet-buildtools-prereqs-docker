@@ -23,8 +23,14 @@ parameters:
 - name: pool
   type: object
   default:
-    name: NetCore1ESPool-Internal
-    image: 1es-windows-2022
+    name: $(default1ESInternalPoolName)
+    image: $(default1ESInternalPoolImage)
+    os: linux
+- name: sourceAnalysisPool
+  type: object
+  default:
+    name: $(defaultSourceAnalysisPoolName)
+    image: $(defaultSourceAnalysisPoolImage)
     os: windows
 
 resources:
@@ -39,15 +45,20 @@ extends:
   parameters:
     pool: ${{ parameters.pool }}
     sdl:
-      enableAllTools: ${{ not(parameters.disableSDL) }}
       componentgovernance:
         ignoreDirectories: $(Build.SourcesDirectory)/versions
         whatIf: true
         showAlertLink: true
+      enableAllTools: ${{ not(parameters.disableSDL) }}
+      policheck:
+        enabled: true
       sbom:
         enabled: true
       sourceRepositoriesToScan:
         exclude:
         - repository: InternalVersionsRepo
         - repository: PublicVersionsRepo
+      sourceAnalysisPool: ${{ parameters.sourceAnalysisPool }}
+      tsa:
+        enabled: true
     stages: ${{ parameters.stages }}

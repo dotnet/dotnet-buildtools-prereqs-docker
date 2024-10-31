@@ -6,6 +6,7 @@ RUN apt-get update \
     && apt-get install -y \
             autoconf \
             automake \
+            azure-cli \
             build-essential \
             clang \
             cmake \
@@ -33,6 +34,7 @@ RUN apt-get update \
             llvm \
             locales \
             make \
+            pigz \
             python-lldb \
             sudo \
             tar \
@@ -47,3 +49,16 @@ RUN echo "locales locales/default_environment_locale select en_US.UTF-8" | debco
     && echo "locales locales/locales_to_be_generated multiselect en_US.UTF-8 UTF-8" | debconf-set-selections \
     && rm "/etc/locale.gen" \
     && dpkg-reconfigure --frontend noninteractive locales
+
+# Install powershell.
+RUN apt-get update && \
+    apt-get install -y \
+      apt-transport-https \
+      software-properties-common \
+      curl && \
+    curl -sL https://packages.microsoft.com/config/debian/11/packages-microsoft-prod.deb -o packages-microsoft-prod.deb && \
+    dpkg -i packages-microsoft-prod.deb && \
+    rm packages-microsoft-prod.deb && \
+    apt-get update && \
+    apt-get install -y powershell && \
+    rm -rf /var/lib/apt/lists/*

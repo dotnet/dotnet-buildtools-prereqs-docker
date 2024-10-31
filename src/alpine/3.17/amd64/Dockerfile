@@ -1,7 +1,6 @@
 FROM amd64/alpine:3.17
 
-RUN apk update && \
-    apk add --no-cache \
+RUN apk add --upgrade --no-cache \
         autoconf \
         automake \
         bash \
@@ -32,6 +31,7 @@ RUN apk update && \
         openssl \
         openssl-dev \
         paxctl \
+        pigz \
         py3-lldb \
         python3-dev \
         shadow \

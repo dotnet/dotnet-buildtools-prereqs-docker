@@ -1,7 +1,7 @@
 FROM amd64/alpine:3.18
 
 # Install .NET and test dependencies
-RUN apk update && apk add --no-cache \
+RUN apk add --upgrade --no-cache \
         autoconf \
         automake \
         bash \
@@ -32,6 +32,7 @@ RUN apk update && apk add --no-cache \
         openssl \
         openssl-dev \
         paxctl \
+        pigz \
         py3-lldb \
         python3-dev \
         shadow \

@@ -1,11 +1,12 @@
 FROM amd64/alpine:3.19
 
 # Install .NET and test dependencies
-RUN apk update && apk add --no-cache \
+RUN apk add --upgrade --no-cache \
         autoconf \
         automake \
         bash \
         build-base \
+        brotli-dev \
         ca-certificates \
         clang \
         clang-dev \
@@ -41,6 +42,7 @@ RUN apk update && apk add --no-cache \
         openssl \
         openssl-dev \
         paxctl \
+        pigz \
         py3-lldb \
         python3-dev \
         shadow \
@@ -54,13 +56,11 @@ RUN apk update && apk add --no-cache \
 # Install the latest non-preview powershell release.
 RUN apk -X https://dl-cdn.alpinelinux.org/alpine/edge/main add --no-cache lttng-ust \
     && LATEST_TAG=$(curl -L https://api.github.com/repos/powershell/powershell/releases/latest | jq -r '.tag_name') \
-    # Verify that it's a 7.x release
-    && [[ $LATEST_TAG == v7.* ]] \
     && curl -L https://github.com/PowerShell/PowerShell/releases/download/$LATEST_TAG/powershell-${LATEST_TAG#*v}-linux-musl-x64.tar.gz -o /tmp/powershell.tar.gz \
-    && mkdir -p /opt/microsoft/powershell/7 \
-    && tar zxf /tmp/powershell.tar.gz -C /opt/microsoft/powershell/7 \
-    && chmod +x /opt/microsoft/powershell/7/pwsh \
-    && ln -s /opt/microsoft/powershell/7/pwsh /usr/bin/pwsh \
+    && mkdir -p /opt/microsoft/powershell \
+    && tar zxf /tmp/powershell.tar.gz -C /opt/microsoft/powershell \
+    && chmod +x /opt/microsoft/powershell/pwsh \
+    && ln -s /opt/microsoft/powershell/pwsh /usr/bin/pwsh \
     && rm -f /tmp/powershell.tar.gz
 
 # Install azurecli from PIP

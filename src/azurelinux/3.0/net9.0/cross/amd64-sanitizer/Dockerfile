@@ -1,6 +1,6 @@
 ARG ROOTFS_DIR=/crossrootfs/x64
 
-FROM mcr.microsoft.com/dotnet-buildtools/prereqs:azurelinux-3.0-crossdeps-builder-net9.0-local AS builder
+FROM mcr.microsoft.com/dotnet-buildtools/prereqs:azurelinux-3.0-net9.0-crossdeps-builder AS builder
 ARG ROOTFS_DIR
 
 # Use Ubuntu Bionic as the base image for the rootfs
@@ -41,7 +41,7 @@ RUN TARGET_TRIPLE="x86_64-linux-gnu" && \
     cmake --build runtimes -j && \
     cmake --install runtimes --prefix "$ROOTFS_DIR/usr"
 
-FROM mcr.microsoft.com/dotnet-buildtools/prereqs:azurelinux-3.0-crossdeps-llvm-net9.0-local
+FROM mcr.microsoft.com/dotnet-buildtools/prereqs:azurelinux-3.0-net9.0-crossdeps-llvm
 ARG ROOTFS_DIR
 
 COPY --from=builder /usr/local/lib/clang /usr/local/lib/clang

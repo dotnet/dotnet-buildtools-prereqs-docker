@@ -10,6 +10,7 @@ RUN apt-get update && \
         build-essential \
         cmake \
         clang \
+        curl \
         gcc \
         gdb \
         git \
@@ -30,6 +31,7 @@ RUN apt-get update && \
         python3-dev \
         python3-pip \
         python3-venv \
+        software-properties-common \
         sudo \
         tzdata \
         unzip \
@@ -43,6 +45,16 @@ ENV LANG=en_US.utf8
 RUN ln -sf /usr/bin/python3 /usr/bin/python && \
     pip download --no-deps helix-scripts --index-url https://dnceng.pkgs.visualstudio.com/public/_packaging/helix-client-prod/pypi/simple && \
     pip install ./helix_scripts-*-py3-none-any.whl
+
+# Add MsQuic
+RUN curl -LO https://packages.microsoft.com/keys/microsoft.asc && \
+    echo 2cfd20a306b2fa5e25522d78f2ef50a1f429d35fd30bd983e2ebffc2b80944fa microsoft.asc| sha256sum --check - && \
+    apt-key add microsoft.asc && \
+    rm microsoft.asc && \
+    apt-add-repository https://packages.microsoft.com/ubuntu/20.04/prod && \
+    apt-get update && \
+    apt-get install -y libmsquic && \
+    rm -rf /var/lib/apt/lists/*
 
 # create helixbot user and give rights to sudo without password
 RUN /usr/sbin/adduser --disabled-password --gecos '' --uid 1000 --shell /bin/bash --ingroup adm helixbot && \

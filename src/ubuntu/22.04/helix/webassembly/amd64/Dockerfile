@@ -1,4 +1,4 @@
-FROM mcr.microsoft.com/dotnet-buildtools/prereqs:ubuntu-22.04-helix-amd64-local
+FROM mcr.microsoft.com/dotnet-buildtools/prereqs:ubuntu-22.04-helix-amd64
 
 USER root
 

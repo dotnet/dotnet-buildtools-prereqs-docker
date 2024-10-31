@@ -1,4 +1,4 @@
-FROM mcr.microsoft.com/dotnet-buildtools/prereqs:ubuntu-22.04-coredeps-local
+FROM mcr.microsoft.com/dotnet-buildtools/prereqs:ubuntu-22.04-coredeps
 
 # Install the base toolchain we need to build anything (clang, cmake, make and the like).
 RUN apt-get update \
@@ -25,6 +25,7 @@ RUN apt-get update \
         gdb \
         make \
         nasm \
+        pigz \
         qemu \
         qemu-user-static \
         rpm2cpio \
@@ -41,11 +42,8 @@ RUN apt-get update \
 
 # install llvm-toolchain using official script
 RUN wget -O- https://apt.llvm.org/llvm.sh | bash -s -- 18 \
-        clang \
-        clang-tools \
-        liblldb-dev \
-        lld \
-        lldb \
-        llvm \
-        python3-lldb \
+    && apt-get install -y \
+        clang-tools-18 \
+        liblldb-18-dev \
+        llvm-18 \
     && rm -rf /var/lib/apt/lists/*

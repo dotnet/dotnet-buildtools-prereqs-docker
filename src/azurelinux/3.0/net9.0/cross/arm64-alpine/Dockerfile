@@ -1,6 +1,6 @@
 ARG ROOTFS_DIR=/crossrootfs/arm64
 
-FROM mcr.microsoft.com/dotnet-buildtools/prereqs:azurelinux-3.0-crossdeps-builder-net9.0-local AS builder
+FROM mcr.microsoft.com/dotnet-buildtools/prereqs:azurelinux-3.0-net9.0-crossdeps-builder AS builder
 ARG ROOTFS_DIR
 
 RUN /scripts/eng/common/cross/build-rootfs.sh arm64 alpine3.13 --skipunmount
@@ -30,7 +30,7 @@ RUN TARGET_TRIPLE="aarch64-alpine-linux-musl" && \
     cmake --build runtimes -j $(getconf _NPROCESSORS_ONLN) && \
     cmake --install runtimes --prefix "$ROOTFS_DIR/usr"
 
-FROM mcr.microsoft.com/dotnet-buildtools/prereqs:azurelinux-3.0-crossdeps-llvm-net9.0-local
+FROM mcr.microsoft.com/dotnet-buildtools/prereqs:azurelinux-3.0-net9.0-crossdeps-llvm
 ARG ROOTFS_DIR
 
 COPY --from=builder $ROOTFS_DIR $ROOTFS_DIR
