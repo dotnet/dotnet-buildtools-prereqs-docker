@@ -5,9 +5,9 @@ RUN dnf upgrade --refresh -y \
     && dnf install -y \
         'dnf-command(config-manager)' \
         epel-release \
-     && dnf config-manager --set-enabled powertools \
-     && dnf config-manager --set-enabled epel \
-     && dnf install -y \
+    && dnf config-manager --set-enabled powertools \
+    && dnf config-manager --set-enabled epel \
+    && dnf install -y \
         "perl(Time::HiRes)" \
         autoconf \
         automake \
