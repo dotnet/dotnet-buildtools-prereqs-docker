@@ -2,34 +2,35 @@ FROM library/debian:bullseye
 
 # Dependencies for generic .NET Core optimization runs
 RUN apt-get update \
+    && apt-get upgrade -y \
     && apt-get install -y \
-            autoconf \
-            automake \
-            build-essential \
-            cmake \
-            curl \
-            g++ \
-            gettext \
-            gdb \
-            git \
-            gnupg \
-            jq \
-            libcurl4-openssl-dev \
-            libgdiplus \
-            libicu-dev \
-            libkrb5-dev \
-            liblttng-ust-dev \
-            libnuma-dev \
-            libtool \
-            libunwind8-dev \
-            llvm-9 \
-            locales \
-            make \
-            sudo \
-            tar \
-            uuid-dev \
-            zip \
-            zlib1g-dev \
+        autoconf \
+        automake \
+        build-essential \
+        cmake \
+        curl \
+        g++ \
+        gettext \
+        gdb \
+        git \
+        gnupg \
+        jq \
+        libcurl4-openssl-dev \
+        libgdiplus \
+        libicu-dev \
+        libkrb5-dev \
+        liblttng-ust-dev \
+        libnuma-dev \
+        libtool \
+        libunwind8-dev \
+        llvm-9 \
+        locales \
+        make \
+        sudo \
+        tar \
+        uuid-dev \
+        zip \
+        zlib1g-dev \
     && rm -rf /var/lib/apt/lists/*
 
 # Link llvm-profdata-9 to llvm-profdata
