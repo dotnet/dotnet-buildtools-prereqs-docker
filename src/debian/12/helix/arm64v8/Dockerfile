@@ -32,6 +32,7 @@ RUN apt-get update \
         automake \
         at \
         build-essential \
+        gcc \
         gdb \
         git \
         iputils-ping \
