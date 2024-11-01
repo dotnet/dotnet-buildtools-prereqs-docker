@@ -1,11 +1,13 @@
 FROM library/fedora:40
 
 RUN dnf upgrade --refresh -y \
-    && dnf --setopt=install_weak_deps=False install -y \
+    && dnf install --setopt tsflags=nodocs -y \
+        dnf-plugins-core \
+    && dnf config-manager --add-repo=https://packages.microsoft.com/fedora/40/prod/config.repo \
+    && dnf install --setopt=install_weak_deps=False --setopt tsflags=nodocs -y \
         # Base toolchain we need to build anything (clang, cmake, make and the like)
         clang \
         cmake \
-        dnf-plugins-core \
         findutils \
         gdb \
         glibc-langpack-en \
@@ -15,12 +17,6 @@ RUN dnf upgrade --refresh -y \
         pigz \
         python \
         which \
-    && dnf clean all
-
-# Add MS package repo.
-RUN dnf config-manager --add-repo=https://packages.microsoft.com/fedora/40/prod/config.repo
-
-RUN dnf --setopt=install_weak_deps=False install -y \
         # Tools used by build automation
         azure-cli \
         git \
