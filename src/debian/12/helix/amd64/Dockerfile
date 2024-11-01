@@ -32,7 +32,6 @@ RUN apt-get update \
         automake \
         at \
         build-essential \
-        curl \
         gcc \
         gdb \
         git \
@@ -51,7 +50,6 @@ RUN apt-get update \
         python3-dev \
         python3-pip \
         python3-venv \
-        software-properties-common \
         sudo \
         tzdata \
         unzip \
