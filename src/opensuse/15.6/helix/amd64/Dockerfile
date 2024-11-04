@@ -27,8 +27,8 @@ RUN zypper ref \
         lldb-devel \
         llvm \
         lttng-ust-devel \
-        python311-devel \
-        python311-pip \
+        python312-devel \
+        python312-pip \
         sudo \
         unzip \
         wget \
