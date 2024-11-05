@@ -10,6 +10,7 @@ RUN tdnf update -y && \
         wget \
         # Common runtime build dependencies
         awk \
+        cpio \
         gcc \
         make \
         cmake \
