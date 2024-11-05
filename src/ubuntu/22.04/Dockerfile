@@ -54,6 +54,7 @@ RUN apt-get update \
     && apt-get install -y \
         autoconf \
         automake \
+        cpio \
         curl \
         build-essential \
         gettext \
@@ -69,7 +70,6 @@ RUN apt-get update \
         libunwind8-dev \
         uuid-dev \
         zlib1g-dev \
-        cpio \
     && rm -rf /var/lib/apt/lists/*
 
 # Dependencies for VMR/source-build tests

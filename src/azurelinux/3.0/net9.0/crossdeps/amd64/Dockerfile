@@ -10,13 +10,13 @@ RUN tdnf update -y && \
         wget \
         # Common runtime build dependencies
         awk \
+        cpio \
         gcc \
         make \
         cmake \
         diffutils \
         icu \
         tar \
-        cpio \
         # Crosscomponents build dependencies
         glibc-devel \
         kernel-headers \
