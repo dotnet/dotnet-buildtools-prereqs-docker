@@ -46,7 +46,7 @@ RUN wget https://packages.microsoft.com/keys/microsoft.asc \
         libmsquic \
     && zypper clean -a
 
-RUN ln -sf /usr/bin/python3.11 /usr/bin/python \
+RUN ln -sf /usr/bin/python3.12 /usr/bin/python \
     && pip download --no-deps helix-scripts --index-url https://dnceng.pkgs.visualstudio.com/public/_packaging/helix-client-prod/pypi/simple \
     && pip install ./helix_scripts-*-py3-none-any.whl
 
