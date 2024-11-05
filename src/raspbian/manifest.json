@@ -7,13 +7,27 @@
           "platforms": [
             {
               "architecture": "arm",
-              "dockerfile": "src/raspbian/10/crossdeps/arm32v7",
+              "dockerfile": "src/raspbian/12/crossdeps/arm32v7",
               "os": "linux",
-              "osVersion": "buster",
+              "osVersion": "jammy",
               "tags": {
-                "raspbian-10-crossdeps": {}
+                "raspbian-12-crossdeps": {}
               },
               "variant": "v7"
+            }
+          ]
+        },
+        {
+          "platforms": [
+            {
+              "architecture": "arm",
+              "dockerfile": "src/raspbian/12/helix/arm32v6",
+              "os": "linux",
+              "osVersion": "bookworm",
+              "tags": {
+                "raspbian-12-helix-arm32v6": {}
+              },
+              "variant": "v6"
             }
           ]
         }

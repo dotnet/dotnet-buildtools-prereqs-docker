@@ -1,6 +1,6 @@
 ARG ROOTFS_DIR=/crossrootfs
 
-FROM mcr.microsoft.com/dotnet-buildtools/prereqs:raspbian-10-crossdeps as builder
+FROM --platform=linux/arm/v7 mcr.microsoft.com/dotnet-buildtools/prereqs:raspbian-12-crossdeps as builder
 
 ARG ROOTFS_DIR
 
@@ -9,7 +9,7 @@ RUN git config --global user.email builder@dotnet-buildtools-prereqs-docker && \
     git clone --depth 1 --single-branch https://github.com/dotnet/arcade /scripts
 
 # Build the rootfs
-RUN /scripts/eng/common/cross/build-rootfs.sh armv6 raspbian --skipunmount
+RUN /scripts/eng/common/cross/build-rootfs.sh armv6 bookworm lldb15 --skipunmount
 
 FROM scratch
 ARG ROOTFS_DIR
@@ -45,8 +45,10 @@ RUN apt-get update && \
         libunwind8 \
         locales \
         locales-all \
+        pkg-config \
         python3-dev \
         python3-pip \
+        rustc \
         sudo \
         tzdata \
         unzip \
@@ -60,7 +62,7 @@ ENV LANG=en_US.utf8
 RUN ln -sf /usr/bin/python3 /usr/bin/python && \
     pip download --no-deps helix-scripts --index-url https://dnceng.pkgs.visualstudio.com/public/_packaging/helix-client-prod/pypi/simple && \
     export CRYPTOGRAPHY_DONT_BUILD_RUST=1 && \
-    pip install ./helix_scripts-*-py3-none-any.whl
+    pip install ./helix_scripts-*-py3-none-any.whl --break-system-packages
 
 # Create helixbot user and give rights to sudo without password
 # (we use two users here to ensure volume mounting works with two possible UIDs of the host UID)
