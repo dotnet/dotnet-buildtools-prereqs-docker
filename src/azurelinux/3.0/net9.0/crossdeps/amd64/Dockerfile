@@ -16,6 +16,7 @@ RUN tdnf update -y && \
         diffutils \
         icu \
         tar \
+        cpio \
         # Crosscomponents build dependencies
         glibc-devel \
         kernel-headers \
