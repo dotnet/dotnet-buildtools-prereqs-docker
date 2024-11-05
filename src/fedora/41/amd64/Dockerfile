@@ -1,9 +1,8 @@
 FROM library/fedora:41
 
-# Add MS package repo.
-RUN dnf config-manager addrepo --from-repofile=https://packages.microsoft.com/fedora/41/prod/config.repo
-
-RUN dnf --setopt=install_weak_deps=False install -y \
+RUN dnf upgrade --refresh -y \
+    && dnf config-manager addrepo --from-repofile=https://packages.microsoft.com/fedora/41/prod/config.repo \
+    && dnf install --setopt=install_weak_deps=False --setopt tsflags=nodocs -y \
         # Base toolchain we need to build anything (clang, cmake, make and the like)
         clang \
         cmake \
