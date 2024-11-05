@@ -2,12 +2,12 @@ FROM library/almalinux:8
 
 # Install dependencies
 RUN dnf upgrade --refresh -y \
-    && dnf install -y \
+    && dnf install --setopt tsflags=nodocs -y \
         'dnf-command(config-manager)' \
         epel-release \
     && dnf config-manager --set-enabled powertools \
     && dnf config-manager --set-enabled epel \
-    && dnf install -y \
+    && dnf install --setopt tsflags=nodocs -y \
         "perl(Time::HiRes)" \
         autoconf \
         automake \
