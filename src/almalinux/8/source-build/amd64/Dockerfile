@@ -13,6 +13,7 @@ RUN dnf upgrade --refresh -y \
         automake \
         brotli-devel \
         cmake \
+        cpio \
         elfutils \
         file \
         gdb \
