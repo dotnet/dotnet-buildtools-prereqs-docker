@@ -12,6 +12,7 @@ RUN apk add --upgrade --no-cache \
         clang-dev \
         cmake \
         coreutils \
+        cpio \
         curl \
         elfutils \
         file \

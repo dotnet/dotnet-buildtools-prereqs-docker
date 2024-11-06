@@ -11,6 +11,7 @@ RUN tdnf update -y && \
         # Common runtime build dependencies
         awk \
         cpio \
+        file \
         gcc \
         make \
         cmake \

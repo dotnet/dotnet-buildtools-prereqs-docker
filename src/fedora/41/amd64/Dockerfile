@@ -27,6 +27,7 @@ RUN dnf upgrade --refresh -y \
         autoconf \
         automake \
         brotli-devel \
+        cpio \
         glibc-locale-source \
         iputils \
         jq \

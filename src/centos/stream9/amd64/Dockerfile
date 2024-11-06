@@ -16,6 +16,7 @@ RUN dnf upgrade --refresh -y \
         brotli-devel \
         clang \
         cmake \
+        cpio \
         curl-devel \
         doxygen \
         elfutils \
