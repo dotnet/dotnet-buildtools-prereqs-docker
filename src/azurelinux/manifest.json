@@ -345,7 +345,8 @@
               "os": "linux",
               "osVersion": "azurelinux3.0",
               "tags": {
-                "azurelinux-3.0-net9.0-android-openssl": {}
+                "azurelinux-3.0-net9.0-android-openssl": {},
+                "azurelinux-3.0-net9.0-cross-android-openssl": {}
               }
             }
           ]
