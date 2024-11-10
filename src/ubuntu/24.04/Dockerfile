@@ -39,6 +39,7 @@ RUN apt-get update \
         autoconf \
         automake \
         build-essential \
+        cpio \
         curl \
         gettext \
         jq \
