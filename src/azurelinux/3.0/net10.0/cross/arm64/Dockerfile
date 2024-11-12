@@ -3,7 +3,7 @@ ARG ROOTFS_DIR=/crossrootfs/arm64
 FROM mcr.microsoft.com/dotnet-buildtools/prereqs:azurelinux-3.0-net10.0-crossdeps-builder AS builder
 ARG ROOTFS_DIR
 
-RUN /scripts/eng/common/cross/build-rootfs.sh arm64 xenial --skipunmount
+RUN /scripts/eng/common/cross/build-rootfs.sh arm64 bionic --skipunmount
 
 RUN TARGET_TRIPLE="aarch64-linux-gnu" && \
     CLANG_MAJOR_VERSION=$(clang --version | grep -oP "(?<=version )\d+") && \
