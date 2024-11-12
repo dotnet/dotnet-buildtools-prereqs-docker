@@ -1,4 +1,4 @@
-FROM mcr.microsoft.com/dotnet-buildtools/prereqs:azurelinux-3.0-net9.0-cross-android-amd64
+FROM mcr.microsoft.com/dotnet-buildtools/prereqs:azurelinux-3.0-net10.0-cross-android-amd64
 
 # Copy the OpenSSL headers and libs from the x64 rootfs into the Anroid NDK so dotnet/runtime's
 # OpenSSL headers hack can find them for the linux-bionic build.
