@@ -37,6 +37,8 @@ RUN TARGET_TRIPLE="x86_64-linux-gnu" && \
         # so skip it here.
         -DCOMPILER_RT_BUILD_LIBFUZZER=OFF \
         -DCOMPILER_RT_DEFAULT_TARGET_ONLY=ON \
+        # Work around error building rtsan (this enables all sanitizers but rtsan)
+        -DCOMPILER_RT_SANITIZERS_TO_BUILD="asan;dfsan;msan;hwasan;tsan;safestack;cfi;scudo_standalone;ubsan_minimal;gwp_asan;nsan;asan_abi" \
         -DCOMPILER_RT_INSTALL_PATH="/usr/local/lib/clang/$CLANG_MAJOR_VERSION" && \
     cmake --build runtimes -j && \
     cmake --install runtimes --prefix "$ROOTFS_DIR/usr"
