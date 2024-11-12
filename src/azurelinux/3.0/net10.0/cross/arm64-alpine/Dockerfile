@@ -3,7 +3,7 @@ ARG ROOTFS_DIR=/crossrootfs/arm64
 FROM mcr.microsoft.com/dotnet-buildtools/prereqs:azurelinux-3.0-net10.0-crossdeps-builder AS builder
 ARG ROOTFS_DIR
 
-RUN /scripts/eng/common/cross/build-rootfs.sh arm64 alpine3.13 --skipunmount
+RUN /scripts/eng/common/cross/build-rootfs.sh arm64 alpine3.17 --skipunmount
 
 RUN TARGET_TRIPLE="aarch64-alpine-linux-musl" && \
     cmake -S llvm-project.src/runtimes -B runtimes \
