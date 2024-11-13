@@ -29,6 +29,7 @@ RUN dnf upgrade --refresh -y \
         libuuid-devel \
         libxml2-devel \
         llvm-toolset \
+        lld \
         # Requires powertools
         lttng-ust-devel \
         make \
