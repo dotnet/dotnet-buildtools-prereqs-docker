@@ -1,7 +1,7 @@
 FROM mcr.microsoft.com/dotnet-buildtools/prereqs:windowsservercore-ltsc2022-helix-amd64
 
 # Install 7zip
-ENV ZIP7_VERSION=1900
+ENV ZIP7_VERSION=2408
 
 RUN curl -SL --output %TEMP%\7zip-x64.exe https://www.7-zip.org/a/7z%ZIP7_VERSION%-x64.exe \
     && mkdir C:\7z \
@@ -15,13 +15,13 @@ COPY arial.ttf c:/windows/fonts
 ENV GIT_VERSION=2.34.1
 ENV GIT_INSTALLER=MinGit-${GIT_VERSION}-64-bit.zip
 
-RUN curl -SL --output %TEMP%\%GIT_INSTALLER% https://github.com/git-for-windows/git/releases/download/v2.34.1.windows.1/%GIT_INSTALLER% \
+RUN curl -SL --output %TEMP%\%GIT_INSTALLER% https://github.com/git-for-windows/git/releases/download/v%GIT_VERSION%.windows.1/%GIT_INSTALLER% \
     && mkdir C:\git \
     && tar -C C:\git -zxf %TEMP%\%GIT_INSTALLER% \
     && setx PATH "%PATH%;C:\git\cmd"
 
 # install Node JS
-ENV NODE_VERSION 18.17.1
+ENV NODE_VERSION 18.20.5
 
 RUN curl -SL --output %TEMP%\nodejs.msi https://nodejs.org/dist/v%NODE_VERSION%/node-v%NODE_VERSION%-x64.msi
 RUN msiexec /i %TEMP%\nodejs.msi /quiet /passive /qn /norestart
