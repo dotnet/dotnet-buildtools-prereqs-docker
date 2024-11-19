@@ -2,9 +2,9 @@ FROM mcr.microsoft.com/azurelinux/base/core:3.0
 
 RUN tdnf update -y && \
     tdnf install -y \
-        # Provides 'su', required by Azure DevOps
         ca-certificates \
         git \
+        # Provides 'su', required by Azure DevOps
         util-linux \
         wget \
         # Common runtime build dependencies
