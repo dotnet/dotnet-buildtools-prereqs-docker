@@ -46,6 +46,20 @@
         {
           "platforms": [
             {
+              "architecture": "arm",
+              "dockerfile": "src/debian/11/helix/arm32v7",
+              "os": "linux",
+              "osVersion": "bullseye",
+              "tags": {
+                "debian-11-helix-arm32v7": {}
+              },
+              "variant": "v7"
+            }
+          ]
+        },
+        {
+          "platforms": [
+            {
               "architecture": "arm64",
               "dockerfile": "src/debian/11/opt/arm64v8",
               "os": "linux",
