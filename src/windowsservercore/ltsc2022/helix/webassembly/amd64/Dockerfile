@@ -23,7 +23,7 @@ RUN curl -SL --output %TEMP%\%GIT_INSTALLER% https://github.com/git-for-windows/
     && setx PATH "%PATH%;C:\git\cmd"
 
 # Install latest 18.x Node JS
-ENV NODE_RELEASE 18
+ENV NODE_RELEASE=18
 
 RUN powershell -Command " `
         $ErrorActionPreference = 'Stop'; `
