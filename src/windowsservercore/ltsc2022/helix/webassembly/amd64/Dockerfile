@@ -23,12 +23,14 @@ RUN curl -SL --output %TEMP%\%GIT_INSTALLER% https://github.com/git-for-windows/
     && setx PATH "%PATH%;C:\git\cmd"
 
 # Install latest 18.x Node JS
+ENV NODE_RELEASE 18
+
 RUN powershell -Command " `
         $ErrorActionPreference = 'Stop'; `
         $ProgressPreference = 'SilentlyContinue'; `
         `
         $json = Invoke-RestMethod -Uri 'https://nodejs.org/dist/index.json'; `
-        $nodeVersion = ($json | ForEach-Object { if ($_.version -match '^v18\.') { $_ } } | Sort-Object -Property version -Descending | Select-Object -First 1).version.TrimStart('v'); `
+        $nodeVersion = ($json | ForEach-Object { if ($_.version.StartsWith(\"v$env:NODE_RELEASE.\")) { $_ } } | Sort-Object -Property version -Descending | Select-Object -First 1).version.TrimStart('v'); `
         Invoke-WebRequest -Uri https://nodejs.org/dist/v$nodeVersion/node-v$nodeVersion-x64.msi -OutFile $env:TEMP\nodejs.msi; `
         Start-Process msiexec.exe -ArgumentList '/i', $env:TEMP\nodejs.msi, '/quiet', '/passive', '/qn', '/norestart' -NoNewWindow -Wait"
 
