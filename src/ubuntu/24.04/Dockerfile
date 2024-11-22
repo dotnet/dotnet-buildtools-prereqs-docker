@@ -8,7 +8,6 @@ RUN apt-get update \
         clang-14 \
         cmake \
         gdb \
-        iproute2 \
         liblldb-14-dev \
         lldb-14 \
         llvm-14 \
@@ -27,6 +26,7 @@ RUN apt-get update \
     && apt-get install -y \
         curl \
         git \
+        iproute2 \
         npm \
         zip \
     && rm -rf /var/lib/apt/lists/*
