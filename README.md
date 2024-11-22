@@ -30,6 +30,11 @@ The cross-compilation images follow the format `mcr.microsoft.com/dotnet-buildto
 
 - `<target>` - Specifies the target for cross-compilation, including the targeted architecture and libc variant (glibc if not specified).
 
+Examples:
+
+- mcr.microsoft.com/dotnet-buildtools/prereqs:azurelinux-3.0-net8.0-cross-arm64
+- mcr.microsoft.com/dotnet-buildtools/prereqs:azurelinux-3.0-net9.0-cross-amd64-alpine
+
 ## How to modify or create a new image
 
 There will be a need for modifying existing Dockerfiles or creating new ones.
