@@ -8,6 +8,7 @@ RUN apt-get update \
         clang-14 \
         cmake \
         gdb \
+        iproute2 \
         liblldb-14-dev \
         lldb-14 \
         llvm-14 \

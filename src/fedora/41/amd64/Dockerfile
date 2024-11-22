@@ -7,6 +7,7 @@ RUN dnf upgrade --refresh -y \
         clang \
         cmake \
         dnf-plugins-core \
+        iproute2 \
         findutils \
         gdb \
         glibc-langpack-en \

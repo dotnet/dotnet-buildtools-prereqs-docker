@@ -22,6 +22,7 @@ RUN apk add --upgrade --no-cache \
         icu-data-full \
         icu-dev \
         icu-libs \
+        iproute2 \
         jq \
         krb5-dev \
         libtool \
