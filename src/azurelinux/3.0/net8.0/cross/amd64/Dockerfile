@@ -1,6 +1,6 @@
 ARG ROOTFS_DIR=/crossrootfs/x64
 
-FROM mcr.microsoft.com/dotnet-buildtools/prereqs:azurelinux-3.0-net8.0-crossdeps-builder AS builder
+FROM mcr.microsoft.com/dotnet-buildtools/prereqs:azurelinux-3.0-net8.0-crossdeps-builder-amd64 AS builder
 ARG ROOTFS_DIR
 
 RUN /scripts/eng/common/cross/build-rootfs.sh x64 xenial --skipunmount
@@ -43,7 +43,7 @@ RUN LLVM_VERSION=16.0.0 LLVM_VERSION_MAJOR="${LLVM_VERSION%%.*}" SANITIZER_RUNTI
     cp compiler-rt_build/lib/linux/libclang_rt.*-x86_64.a $SANITIZER_RUNTIMES_DIR
 
 
-FROM mcr.microsoft.com/dotnet-buildtools/prereqs:azurelinux-3.0-net8.0-crossdeps-llvm
+FROM mcr.microsoft.com/dotnet-buildtools/prereqs:azurelinux-3.0-net8.0-crossdeps-llvm-amd64
 ARG ROOTFS_DIR
 ARG LLVM_VERSION_MAJOR=16
 

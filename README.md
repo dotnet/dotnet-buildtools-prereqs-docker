@@ -12,19 +12,28 @@ The images produced from the Dockerfiles in this repository are published to the
 
 ## How to identify an image
 
-The tag format used by the images from this repository is `mcr.microsoft.com/dotnet-buildtools/prereqs:<os-name>-<os-version>-<variant>-<architecture>`
+There are two tag formats used by the images from this repository. Most of the images follow the format `mcr.microsoft.com/dotnet-buildtools/prereqs:<os-name>-<os-version>-<variant>-<architecture>`.
 
 - `<os-name>` - Name of the Linux distribution or Windows OS the image is based on
 - `<os-version>` - Version of the OS
 - `<variant>` - Name describing the specialization purpose of the image.
 Often special dependencies are needed for certain parts of the product.
 It can be beneficial to separate these dependencies into a separate Dockerfile/image.
-- `<architecture>` - Architecture of the OS (amd64 shall be implied if not specified).
+- `<architecture>` - Architecture of the OS.
 
 Examples:
 
-- mcr.microsoft.com/dotnet-buildtools/prereqs:alpine-3.20
+- mcr.microsoft.com/dotnet-buildtools/prereqs:alpine-3.20-amd64
 - mcr.microsoft.com/dotnet-buildtools/prereqs:azurelinux-3.0-helix-arm64v8
+
+The cross-compilation images follow the format `mcr.microsoft.com/dotnet-buildtools/prereqs:<os-name>-<os-version>-<variant>-cross-<target>`. These are all implicitly amd64 images.
+
+- `<target>` - Specifies the target for cross-compilation, including the targeted architecture and libc variant (glibc if not specified).
+
+Examples:
+
+- mcr.microsoft.com/dotnet-buildtools/prereqs:azurelinux-3.0-net8.0-cross-arm64
+- mcr.microsoft.com/dotnet-buildtools/prereqs:azurelinux-3.0-net9.0-cross-amd64-alpine
 
 ## How to modify or create a new image
 
@@ -165,8 +174,9 @@ From this commit of the `image-info.dotnet-dotnet-buildtools-prereqs-docker-main
 
 ### Source Folder Structure
 
-The folder structure used in [src](./src) aligns with the tagging convention - `<os-name>-<os-version>-<variant>-<architecture>`.
-For example, the Dockerfile used to produce the `mcr.microsoft.com/dotnet-buildtools/prereqs:alpine-3.20` image is stored in the [src/alpine/3.20/amd64](./src/alpine/3.20/amd64) folder.
+The folder structure used in [src](./src) aligns with the tagging convention - `<os-name>-<os-version>-<variant>-<architecture>` or `<os-name>-<os-version>-<variant>-cross-<target>`.
+For example, the Dockerfile used to produce the `mcr.microsoft.com/dotnet-buildtools/prereqs:alpine-3.20-amd64` image is stored in the [src/alpine/3.20/amd64](./src/alpine/3.20/amd64) folder.
+The Dockerfile used to produce the `mcr.microsoft.com/dotnet-buildtools/prereqs:azurelinux-3.0-net8.0-cross-arm64` image is stored in the [src/azurelinux/3.0/net8.0/cross/arm64](./src/azurelinux/3.0/net8.0/cross/arm64) folder.
 
 If a Dockerfile is shared across multiple architectures, then the `<architecture>` folder should be omitted.
 For example, the [src\alpine\3.20\helix\Dockerfile](./src/alpine/3.20/helix/Dockerfile) is built for all supported architectures (amd64, arm64 and arm) therefore there is no architecture folder in its path.
@@ -189,7 +199,7 @@ Each Dockerfile will have an entry that looks like the following.
       "os": "linux",
       "osVersion": "alpine3.20",
       "tags": {
-        "alpine-3.20": {}
+        "alpine-3.20-amd64": {}
       }
     }
   ]
