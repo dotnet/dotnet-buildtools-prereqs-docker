@@ -7,7 +7,6 @@ RUN dnf upgrade --refresh -y \
         clang \
         cmake \
         dnf-plugins-core \
-        iproute2 \
         findutils \
         gdb \
         glibc-langpack-en \
@@ -45,6 +44,7 @@ RUN dnf upgrade --refresh -y \
         uuid-devel \
         zlib-devel \
         # Dependencies for VMR/source-build tests
+        iproute \
         elfutils \
         file \
         # Dependencies to support globalization
