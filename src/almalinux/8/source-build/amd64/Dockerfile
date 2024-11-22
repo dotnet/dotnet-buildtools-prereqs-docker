@@ -19,6 +19,7 @@ RUN dnf upgrade --refresh -y \
         gdb \
         git \
         glibc-langpack-en \
+        iproute \
         jq \
         krb5-devel \
         libcurl-devel \

@@ -44,6 +44,7 @@ RUN dnf upgrade --refresh -y \
         uuid-devel \
         zlib-devel \
         # Dependencies for VMR/source-build tests
+        iproute \
         elfutils \
         file \
         # Dependencies to support globalization
