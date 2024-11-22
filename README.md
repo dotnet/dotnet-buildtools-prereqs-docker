@@ -12,7 +12,7 @@ The images produced from the Dockerfiles in this repository are published to the
 
 ## How to identify an image
 
-There are two tag formats used by the images from this repository. Most of the imagces follow the format `mcr.microsoft.com/dotnet-buildtools/prereqs:<os-name>-<os-version>-<variant>-<architecture>`.
+There are two tag formats used by the images from this repository. Most of the images follow the format `mcr.microsoft.com/dotnet-buildtools/prereqs:<os-name>-<os-version>-<variant>-<architecture>`.
 
 - `<os-name>` - Name of the Linux distribution or Windows OS the image is based on
 - `<os-version>` - Version of the OS
@@ -171,7 +171,7 @@ From this commit of the `image-info.dotnet-dotnet-buildtools-prereqs-docker-main
 
 The folder structure used in [src](./src) aligns with the tagging convention - `<os-name>-<os-version>-<variant>-<architecture>` or `<os-name>-<os-version>-<variant>-cross-<target>`.
 For example, the Dockerfile used to produce the `mcr.microsoft.com/dotnet-buildtools/prereqs:alpine-3.20-amd64` image is stored in the [src/alpine/3.20/amd64](./src/alpine/3.20/amd64) folder.
-The Dockerfile used to produce the `mcr.`microsoft.com/dotnet-buildtools/prereqs:azurelinux-3.0-net8.0-cross-arm64` image is stored in the [src/azurelinux/3.0/net8.0/cross/arm64](./src/azurelinux/3.0/net8.0/cross/arm64) folder.
+The Dockerfile used to produce the `mcr.microsoft.com/dotnet-buildtools/prereqs:azurelinux-3.0-net8.0-cross-arm64` image is stored in the [src/azurelinux/3.0/net8.0/cross/arm64](./src/azurelinux/3.0/net8.0/cross/arm64) folder.
 
 If a Dockerfile is shared across multiple architectures, then the `<architecture>` folder should be omitted.
 For example, the [src\alpine\3.20\helix\Dockerfile](./src/alpine/3.20/helix/Dockerfile) is built for all supported architectures (amd64, arm64 and arm) therefore there is no architecture folder in its path.
