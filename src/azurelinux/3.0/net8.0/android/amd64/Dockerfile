@@ -30,7 +30,7 @@ RUN /usr/local/cmdline-tools/cmdline-tools/bin/sdkmanager --sdk_root="${ANDROID_
 RUN rm -r ${ANDROID_NDK_ROOT}/toolchains/llvm/prebuilt/linux-x86_64/python3/lib/python3.9/site-packages/ \
     && rm -r ${ANDROID_NDK_ROOT}/toolchains/llvm/prebuilt/linux-x86_64/bin/clang-tidy
 
-FROM mcr.microsoft.com/dotnet-buildtools/prereqs:azurelinux-3.0-net8.0-crossdeps-llvm
+FROM mcr.microsoft.com/dotnet-buildtools/prereqs:azurelinux-3.0-net8.0-crossdeps-llvm-amd64
 
 # Install Microsoft OpenJDK from the Microsoft OpenJDK 17 Mariner image.
 ENV LANG=en_US.UTF-8

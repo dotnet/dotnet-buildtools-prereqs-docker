@@ -1,6 +1,6 @@
 ARG ROOTFS_DIR=/crossrootfs/riscv64
 
-FROM mcr.microsoft.com/dotnet-buildtools/prereqs:azurelinux-3.0-net8.0-crossdeps-builder AS builder
+FROM mcr.microsoft.com/dotnet-buildtools/prereqs:azurelinux-3.0-net8.0-crossdeps-builder-amd64 AS builder
 ARG ROOTFS_DIR
 
 # Install the latest debootstrap
@@ -47,7 +47,7 @@ RUN TARGET_TRIPLE="riscv64-linux-gnu" && \
     cmake --build runtimes -j $(getconf _NPROCESSORS_ONLN) && \
     cmake --install runtimes --prefix "$ROOTFS_DIR/usr"
 
-FROM mcr.microsoft.com/dotnet-buildtools/prereqs:azurelinux-3.0-net8.0-crossdeps-llvm
+FROM mcr.microsoft.com/dotnet-buildtools/prereqs:azurelinux-3.0-net8.0-crossdeps-llvm-amd64
 ARG ROOTFS_DIR
 
 COPY --from=builder /usr/local/lib/clang /usr/local/lib/clang/
