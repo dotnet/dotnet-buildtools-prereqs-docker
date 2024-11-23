@@ -10,7 +10,7 @@
               "os": "linux",
               "osVersion": "azurelinux3.0",
               "tags": {
-                "azurelinux-3.0-net8.0-crossdeps": {}
+                "azurelinux-3.0-net8.0-crossdeps-amd64": {}
               }
             }
           ]
@@ -22,7 +22,7 @@
               "os": "linux",
               "osVersion": "azurelinux3.0",
               "tags": {
-                "azurelinux-3.0-net9.0-crossdeps": {}
+                "azurelinux-3.0-net9.0-crossdeps-amd64": {}
               }
             }
           ]
@@ -46,7 +46,7 @@
               "os": "linux",
               "osVersion": "azurelinux3.0",
               "tags": {
-                "azurelinux-3.0-net8.0-crossdeps-builder": {}
+                "azurelinux-3.0-net8.0-crossdeps-builder-amd64": {}
               }
             }
           ]
@@ -58,7 +58,7 @@
               "os": "linux",
               "osVersion": "azurelinux3.0",
               "tags": {
-                "azurelinux-3.0-net8.0-crossdeps-llvm": {}
+                "azurelinux-3.0-net8.0-crossdeps-llvm-amd64": {}
               }
             }
           ]
@@ -154,7 +154,7 @@
               "os": "linux",
               "osVersion": "azurelinux3.0",
               "tags": {
-                "azurelinux-3.0-net9.0-fpm": {}
+                "azurelinux-3.0-net9.0-fpm-amd64": {}
               }
             }
           ]
@@ -166,7 +166,7 @@
               "os": "linux",
               "osVersion": "azurelinux3.0",
               "tags": {
-                "azurelinux-3.0-net9.0-crossdeps-builder": {}
+                "azurelinux-3.0-net9.0-crossdeps-builder-amd64": {}
               }
             }
           ]
@@ -178,7 +178,7 @@
               "os": "linux",
               "osVersion": "azurelinux3.0",
               "tags": {
-                "azurelinux-3.0-net9.0-crossdeps-llvm": {}
+                "azurelinux-3.0-net9.0-crossdeps-llvm-amd64": {}
               }
             }
           ]
@@ -317,11 +317,11 @@
         {
          "platforms": [
             {
-              "dockerfile": "src/azurelinux/3.0/net9.0/android",
+              "dockerfile": "src/azurelinux/3.0/net9.0/android/amd64",
               "os": "linux",
               "osVersion": "azurelinux3.0",
               "tags": {
-                "azurelinux-3.0-net9.0-android": {}
+                "azurelinux-3.0-net9.0-android-amd64": {}
               }
             }
           ]
@@ -341,11 +341,12 @@
         {
           "platforms": [
             {
-              "dockerfile": "src/azurelinux/3.0/net9.0/android/docker",
+              "dockerfile": "src/azurelinux/3.0/net9.0/android/docker/amd64",
               "os": "linux",
               "osVersion": "azurelinux3.0",
               "tags": {
-                "azurelinux-3.0-net9.0-android-docker": {}
+                "azurelinux-3.0-net9.0-android-docker": {},
+                "azurelinux-3.0-net9.0-android-docker-amd64": {}
               }
             }
           ]
@@ -358,7 +359,7 @@
               "osVersion": "azurelinux3.0",
               "tags": {
                 "azurelinux-3.0-net9.0-android-openssl": {},
-                "azurelinux-3.0-net9.0-cross-android-openssl": {}
+                "azurelinux-3.0-net9.0-cross-android-openssl-amd64": {}
               }
             }
           ]
@@ -370,7 +371,8 @@
               "os": "linux",
               "osVersion": "azurelinux3.0",
               "tags": {
-                "azurelinux-3.0-net9.0-cross-freebsd-13": {}
+                "azurelinux-3.0-net9.0-cross-freebsd-13": {},
+                "azurelinux-3.0-net9.0-cross-freebsd-13-amd64": {}
               }
             }
           ]

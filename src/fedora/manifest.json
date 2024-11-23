@@ -6,18 +6,6 @@
         {
           "platforms": [
             {
-              "dockerfile": "src/fedora/39/amd64",
-              "os": "linux",
-              "osVersion": "fedora39",
-              "tags": {
-                "fedora-39": {}
-              }
-            }
-          ]
-        },
-        {
-          "platforms": [
-            {
               "dockerfile": "src/fedora/40/amd64",
               "os": "linux",
               "osVersion": "fedora40",

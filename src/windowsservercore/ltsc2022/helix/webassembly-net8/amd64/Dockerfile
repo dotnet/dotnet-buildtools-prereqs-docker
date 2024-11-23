@@ -1,11 +1,13 @@
+# escape=`
+
 FROM mcr.microsoft.com/dotnet-buildtools/prereqs:windowsservercore-ltsc2022-helix-amd64
 
 # Install 7zip
-ENV ZIP7_VERSION=1900
+ENV ZIP7_VERSION=2408
 
-RUN curl -SL --output %TEMP%\7zip-x64.exe https://www.7-zip.org/a/7z%ZIP7_VERSION%-x64.exe \
-    && mkdir C:\7z \
-    && %TEMP%\7zip-x64.exe /S /D="C:\7z" \
+RUN curl -SL --output %TEMP%\7zip-x64.exe https://www.7-zip.org/a/7z%ZIP7_VERSION%-x64.exe `
+    && mkdir C:\7z `
+    && %TEMP%\7zip-x64.exe /S /D="C:\7z" `
     && setx PATH "%PATH%;C:\7z"
 
 # Install arial font for chrome
@@ -15,36 +17,43 @@ COPY arial.ttf c:/windows/fonts
 ENV GIT_VERSION=2.34.1
 ENV GIT_INSTALLER=MinGit-${GIT_VERSION}-64-bit.zip
 
-RUN curl -SL --output %TEMP%\%GIT_INSTALLER% https://github.com/git-for-windows/git/releases/download/v2.34.1.windows.1/%GIT_INSTALLER% \
-    && mkdir C:\git \
-    && tar -C C:\git -zxf %TEMP%\%GIT_INSTALLER% \
+RUN curl -SL --output %TEMP%\%GIT_INSTALLER% https://github.com/git-for-windows/git/releases/download/v%GIT_VERSION%.windows.1/%GIT_INSTALLER% `
+    && mkdir C:\git `
+    && tar -C C:\git -zxf %TEMP%\%GIT_INSTALLER% `
     && setx PATH "%PATH%;C:\git\cmd"
 
 # fix certificates for python to be able to download emscripten files
 RUN certutil -generateSSTFromWU roots.sst && certutil -addstore -f root roots.sst && del roots.sst
 
 # Install Emscripten toolchain
-ENV EMSCRIPTEN_VERSION=3.1.34
-ENV EMSCRIPTEN_PATH="C:\emscripten"
-ENV EMSDK_PATH="C:\emscripten\emsdk"
+ENV `
+    EMSCRIPTEN_VERSION=3.1.34 `
+    EMSCRIPTEN_PATH="C:\emscripten" `
+    EMSDK_PATH="C:\emscripten\emsdk"
 
-RUN mkdir %EMSCRIPTEN_PATH% \
-    && cd %EMSCRIPTEN_PATH% \
-    && git clone https://github.com/emscripten-core/emsdk.git %EMSDK_PATH%
-RUN cd %EMSDK_PATH% \
-    && git checkout %EMSCRIPTEN_VERSION% \
-    && .\emsdk install %EMSCRIPTEN_VERSION%-upstream  \
-    && .\emsdk activate %EMSCRIPTEN_VERSION%-upstream \
+RUN mkdir %EMSCRIPTEN_PATH% `
+    && cd %EMSCRIPTEN_PATH% `
+    && git clone https://github.com/emscripten-core/emsdk.git %EMSDK_PATH% `
+    && cd %EMSDK_PATH% `
+    && git checkout %EMSCRIPTEN_VERSION% `
+    && .\emsdk install %EMSCRIPTEN_VERSION%-upstream  `
+    && .\emsdk activate %EMSCRIPTEN_VERSION%-upstream `
     && .\upstream\emscripten\embuilder.bat build MINIMAL
 
-# install Node JS
-ENV NODE_VERSION 17.3.1
+# Install latest 18.x Node JS
+ENV NODE_RELEASE=18
 
-RUN curl -SL --output %TEMP%\nodejs.msi https://nodejs.org/dist/v%NODE_VERSION%/node-v%NODE_VERSION%-x64.msi
-RUN msiexec /i %TEMP%\nodejs.msi /quiet /passive /qn /norestart
+RUN powershell -Command " `
+        $ErrorActionPreference = 'Stop'; `
+        $ProgressPreference = 'SilentlyContinue'; `
+        `
+        $json = Invoke-RestMethod -Uri 'https://nodejs.org/dist/index.json'; `
+        $nodeVersion = ($json | ForEach-Object { if ($_.version.StartsWith(\"v$env:NODE_RELEASE.\")) { $_ } } | Sort-Object -Property version -Descending | Select-Object -First 1).version.TrimStart('v'); `
+        Invoke-WebRequest -Uri https://nodejs.org/dist/v$nodeVersion/node-v$nodeVersion-x64.msi -OutFile $env:TEMP\nodejs.msi; `
+        Start-Process msiexec.exe -ArgumentList '/i', $env:TEMP\nodejs.msi, '/quiet', '/passive', '/qn', '/norestart' -NoNewWindow -Wait"
 
 # install latest jsvu and v8 engine
-RUN npm install jsvu -g
-RUN npm exec -c "jsvu --os=win64 --engines=v8"
-RUN setx PATH "%PATH%;%USERPROFILE%\.jsvu\bin"
+RUN npm install jsvu -g `
+    && npm exec -c "jsvu --os=win64 --engines=v8" `
+    && setx PATH "%PATH%;%USERPROFILE%\.jsvu\bin"
 RUN v8 -e "console.log(version());quit();"

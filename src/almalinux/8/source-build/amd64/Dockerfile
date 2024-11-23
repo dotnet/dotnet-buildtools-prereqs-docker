@@ -19,6 +19,7 @@ RUN dnf upgrade --refresh -y \
         gdb \
         git \
         glibc-langpack-en \
+        iproute \
         jq \
         krb5-devel \
         libcurl-devel \
@@ -29,6 +30,7 @@ RUN dnf upgrade --refresh -y \
         libuuid-devel \
         libxml2-devel \
         llvm-toolset \
+        lld \
         # Requires powertools
         lttng-ust-devel \
         make \
