@@ -6,7 +6,7 @@ ARG ANDROID_SDK_ROOT
 ARG ANDROID_NDK_VERSION
 ARG ANDROID_NDK_ROOT
 
-# Dependencies for Android build
+# Dependencies for Android SDK install
 RUN tdnf update -y \
     && tdnf install -y \
         # Android dependencies

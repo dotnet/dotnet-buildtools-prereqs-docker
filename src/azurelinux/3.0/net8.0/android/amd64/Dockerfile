@@ -30,38 +30,28 @@ RUN /usr/local/cmdline-tools/cmdline-tools/bin/sdkmanager --sdk_root="${ANDROID_
 RUN rm -r ${ANDROID_NDK_ROOT}/toolchains/llvm/prebuilt/linux-x86_64/python3/lib/python3.9/site-packages/ \
     && rm -r ${ANDROID_NDK_ROOT}/toolchains/llvm/prebuilt/linux-x86_64/bin/clang-tidy
 
-FROM mcr.microsoft.com/openjdk/jdk:17-mariner
+FROM mcr.microsoft.com/dotnet-buildtools/prereqs:azurelinux-3.0-net8.0-crossdeps-llvm-amd64
+
+# Install Microsoft OpenJDK from the Microsoft OpenJDK 17 Mariner image.
+ENV LANG=en_US.UTF-8
+ENV JAVA_HOME=/usr/lib/jvm/msopenjdk-17
+ENV PATH=$JAVA_HOME/bin:$PATH
+COPY --from=mcr.microsoft.com/openjdk/jdk:17-mariner $JAVA_HOME $JAVA_HOME
 ARG ANDROID_SDK_ROOT
 ARG ANDROID_NDK_VERSION
 ARG ANDROID_NDK_ROOT
 
+
 # Dependencies for Android build
 RUN tdnf update -y \
     && tdnf install -y \
-        # Provides 'su', required by Azure DevOps
-        util-linux \
         # Common dependencies
-        ca-certificates \
         binutils \
-        cmake \
-        clang16 \
-        diffutils \
-        git \
-        tar \
-        util-linux \
-        wget \
-        # Crosscomponents build dependencies
-        glibc-devel \
-        kernel-headers \
-        # Runtime dependencies
-        icu \
         # Android dependencies
         zip \
         unzip \
         # linux-bionic build dependencies
-        openssl-devel \
-        # ICU dependencies
-        awk
+        openssl-devel
 
 ENV ANDROID_SDK_ROOT=${ANDROID_SDK_ROOT}
 ENV ANDROID_NDK_ROOT=${ANDROID_NDK_ROOT}
