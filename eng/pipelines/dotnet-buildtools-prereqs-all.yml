@@ -9,7 +9,7 @@ pr: none
 
 schedules:
 - cron: "0 5 15 * *"
-  displayName: Nightly run
+  displayName: Monthly run
   branches:
     include:
     - main
