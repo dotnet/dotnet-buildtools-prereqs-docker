@@ -28,12 +28,12 @@ Examples:
 
 The cross-compilation images follow the format `mcr.microsoft.com/dotnet-buildtools/prereqs:<os-name>-<os-version>-<variant>-cross-<target>`. These are all implicitly amd64 images.
 
-- `<target>` - Specifies the target for cross-compilation, including the targeted architecture and libc variant (glibc if not specified).
+- `<target>` - Specifies the target for cross-compilation, including the targeted architecture and libc variant (glibc if not specified, or musl).
 
 Examples:
 
 - mcr.microsoft.com/dotnet-buildtools/prereqs:azurelinux-3.0-net8.0-cross-arm64
-- mcr.microsoft.com/dotnet-buildtools/prereqs:azurelinux-3.0-net9.0-cross-amd64-alpine
+- mcr.microsoft.com/dotnet-buildtools/prereqs:azurelinux-3.0-net9.0-cross-amd64-musl
 
 ## How to modify or create a new image
 
