@@ -9,7 +9,7 @@ pr: none
 
 schedules:
 - cron: "0 5 15 * *"
-  displayName: Monthly run
+  displayName: Monthly rebuild of all images
   branches:
     include:
     - main
