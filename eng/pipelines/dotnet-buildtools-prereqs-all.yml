@@ -7,6 +7,14 @@ trigger:
     - src/*
 pr: none
 
+schedules:
+- cron: "0 5 15 * *"
+  displayName: Monthly rebuild of all images
+  branches:
+    include:
+    - main
+  always: true
+
 resources:
   repositories:
   - repository: InternalVersionsRepo
@@ -48,3 +56,7 @@ extends:
               variableName: imageBuilderBuildArgs
               dockerfileOs: (centos|debian)
               baseOverrideRegistry: $(overrideRegistry) # Comes from DotNet-Docker-Common variable group
+        # Force all images to be rebuilt when triggered by the schedule
+        # See https://github.com/dotnet/dotnet-buildtools-prereqs-docker/issues/1224
+        ${{ if eq(variables['Build.Reason'], 'Schedule') }}:
+          noCache: true
