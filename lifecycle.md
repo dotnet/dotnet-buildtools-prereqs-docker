@@ -54,10 +54,10 @@ At times, it may be necessary to use a [fixed image reference](https://github.co
 
 The following locations are examples of infra that gets updated when new images are available.
 
-- https://github.com/dotnet/runtime/blob/main/eng/pipelines/libraries/helix-queues-setup.yml
-- https://github.com/dotnet/runtime/blob/main/eng/pipelines/coreclr/templates/helix-queues-setup.yml
-- https://github.com/dotnet/arcade/tree/main/eng/common/templates-official/
-- https://github.com/dotnet/aspnetcore/tree/main/.azure/pipelines
+- [dotnet/arcade](https://github.com/dotnet/arcade/tree/main/eng/common/templates-official/)
+- [dotnet/aspnetcore](https://github.com/dotnet/aspnetcore/tree/main/.azure/pipelines)
+- [dotnet/runtime (libraries)](https://github.com/dotnet/runtime/blob/main/eng/pipelines/libraries/helix-queues-setup.yml)
+- [dotnet/runtime (coreclr)](https://github.com/dotnet/runtime/blob/main/eng/pipelines/coreclr/templates/helix-queues-setup.yml)
 
 ## Community images
 
