@@ -22,7 +22,7 @@ Examples:
 
 ## Test images
 
-Test images are produced for the supported Linux distros listed in [Supported OS Versions](https://github.com/dotnet/core/blob/main/os-lifecycle-policy.md) files. In some cases, a [compatible derivative](https://github.com/dotnet/core/blob/main/support.md#compatible-derivatives) will be used. Images are typically built for just `x64` or for all of `Arm32`, `Arm64`, and `x64`. They are shared across .NET versions.
+Test images are produced for the supported Linux distros listed in [Supported OS Versions](https://github.com/dotnet/core/blob/main/os-lifecycle-policy.md) files. In some cases, a [compatible derivative](https://github.com/dotnet/core/blob/main/support.md#compatible-derivatives) will be used. Images are built for a variety of architectures based on need. They are shared across .NET versions.
 
 Test images should be deleted after:
 
