@@ -51,7 +51,7 @@ Build and test images are referenced in repo infra files, across a variety of `m
 
 We use version specific references in infra to ensure that our CI builds are reliable. One can imagine using floating OS tags (such as `debian-oldest` and `debian-latest`), however such an approach would be guaranteed to break our build. We know that since we often see build and test breaks that need addressing in PRs where we update build and test images.
 
-At times, it may be neccessary to use a [fixed image reference](https://github.com/dotnet/runtime/pull/110199#discussion_r1859075989) for build reliability. If this is ever done, a tracking issue should be created (before the PR is merged) so that we remember to resolve the underlying issue and update the image reference.
+At times, it may be necessary to use a [fixed image reference](https://github.com/dotnet/runtime/pull/110199#discussion_r1859075989) for build reliability. If this is ever done, a tracking issue should be created (before the PR is merged) so that we remember to resolve the underlying issue and update the image reference.
 
 The following locations are examples of infra that gets updated when new images are available.
 
