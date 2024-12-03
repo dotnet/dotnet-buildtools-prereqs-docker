@@ -6,7 +6,7 @@ The images are a mix of Microsoft- and community-supported images.
 
 ## Build images
 
-The build images are exclusively built with Azure Linux, supporting both `glibc` and `musl` build flavors. They are built for x64 only, per [Linux build methodology](https://github.com/dotnet/runtime/blob/main/docs/project/linux-build-methodology.md). Microsoft designates the set of images it used for its official build per [The Official Runtime Docker Images](https://github.com/dotnet/runtime/blob/main/docs/workflow/using-docker.md#the-official-runtime-docker-images).
+The build images are primarily built with Azure Linux, supporting both `glibc` and `musl` build flavors. They are built for x64 only, per [Linux build methodology](https://github.com/dotnet/runtime/blob/main/docs/project/linux-build-methodology.md). Microsoft designates the set of images it used for its official build per [The Official Runtime Docker Images](https://github.com/dotnet/runtime/blob/main/docs/workflow/using-docker.md#the-official-runtime-docker-images).
 
 Build images are uniquely created for each new .NET version with the latest Azure Linux available at that time. The image tags include both the given .NET and Azure Linux versions. The tag may also contain a target OS and architecture.
 
