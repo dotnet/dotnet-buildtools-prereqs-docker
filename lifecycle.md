@@ -4,7 +4,7 @@ The container images in this repository are provided for building .NET source an
 
 The images are a mix of Microsoft- and community-supported images.
 
-## Build images
+## Microsoft build images
 
 The build images are primarily built with Azure Linux, supporting both `glibc` and `musl` build flavors. They are built for x64 only, per [Linux build methodology](https://github.com/dotnet/runtime/blob/main/docs/project/linux-build-methodology.md). Microsoft designates the set of images it used for its official build per [The Official Runtime Docker Images](https://github.com/dotnet/runtime/blob/main/docs/workflow/using-docker.md#the-official-runtime-docker-images).
 
@@ -12,15 +12,14 @@ Build images are uniquely created for each new .NET version with the latest Azur
 
 The Azure Linux lifecycle is shorter than the .NET LTS lifecycle. It is expected that build images will need to be (initially) created with Azure Linux n and then replaced with Azure Linux n+1 mid-way through the .NET version lifecycle. They may also need to be updated if the target OS is EOL.
 
-Official build images are deleted after a .NET version is no longer supported. It is possible that images will be required for a while after the published EOL date.
+Build images are deleted after a .NET version is no longer supported. It is possible that images will be required for a while after the published EOL date.
 
 Examples:
 
 - [dotnet-buildtools-prereqs-docker #1263](https://github.com/dotnet/dotnet-buildtools-prereqs-docker/pull/1263)
 - [dotnet/runtime #110198](https://github.com/dotnet/runtime/pull/110198)
-- [dotnet-buildtools-prereqs-docker #1272](https://github.com/dotnet/dotnet-buildtools-prereqs-docker/pull/1272)
 
-## Test images
+## Microsoft test images
 
 Test images are produced for the supported Linux distros listed in [Supported OS Versions](https://github.com/dotnet/core/blob/main/os-lifecycle-policy.md) files. In some cases, a [compatible derivative](https://github.com/dotnet/core/blob/main/support.md#compatible-derivatives) will be used. Images are built for a variety of architectures based on need. They are shared across .NET versions.
 
@@ -35,7 +34,7 @@ Examples:
 - [dotnet-buildtools-prereqs-docker #1227](https://github.com/dotnet/dotnet-buildtools-prereqs-docker/pull/1227)
 - [dotnet-buildtools-prereqs-docker #1260](https://github.com/dotnet/dotnet-buildtools-prereqs-docker/issues/1260)
 
-## Test image construction
+### Test image construction
 
 Test images should be be built according to established patterns:
 
@@ -59,3 +58,7 @@ The following locations are examples of infra that gets updated when new images 
 - https://github.com/dotnet/runtime/blob/main/eng/pipelines/coreclr/templates/helix-queues-setup.yml
 - https://github.com/dotnet/arcade/tree/main/eng/common/templates-official/
 - https://github.com/dotnet/aspnetcore/tree/main/.azure/pipelines
+
+## Community images
+
+Community images are constructed per the needs of the given community.
