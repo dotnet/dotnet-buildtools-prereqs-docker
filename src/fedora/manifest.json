@@ -18,11 +18,11 @@
         {
           "platforms": [
             {
-              "dockerfile": "src/fedora/40/helix",
+              "dockerfile": "src/fedora/41/amd64",
               "os": "linux",
-              "osVersion": "fedora40",
+              "osVersion": "fedora41",
               "tags": {
-                "fedora-40-helix": {}
+                "fedora-41": {}
               }
             }
           ]
@@ -30,11 +30,11 @@
         {
           "platforms": [
             {
-              "dockerfile": "src/fedora/41/amd64",
+              "dockerfile": "src/fedora/41/helix",
               "os": "linux",
               "osVersion": "fedora41",
               "tags": {
-                "fedora-41": {}
+                "fedora-41-helix": {}
               }
             }
           ]

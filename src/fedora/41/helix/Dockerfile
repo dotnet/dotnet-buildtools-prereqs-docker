@@ -1,4 +1,4 @@
-FROM library/fedora:40 AS venv
+FROM library/fedora:41 AS venv
 
 RUN dnf upgrade --refresh -y && \
     dnf install --setopt tsflags=nodocs -y \
@@ -17,14 +17,13 @@ RUN python3 -m venv /venv && \
     pip download --no-deps helix-scripts --index-url https://dnceng.pkgs.visualstudio.com/public/_packaging/helix-client-prod/pypi/simple && \
     pip install ./helix_scripts-*-py3-none-any.whl
 
-FROM library/fedora:40
+FROM library/fedora:41
 
-# Install Helix Dependencies
+# Install Dependencies
 
 RUN dnf upgrade --refresh -y \
     && dnf install --setopt tsflags=nodocs -y \
         dnf-plugins-core \
-    && dnf config-manager --add-repo=https://packages.microsoft.com/fedora/40/prod/config.repo \
     && dnf install --setopt=install_weak_deps=False --setopt tsflags=nodocs -y \
         # Helix dependencies
         python3 \
@@ -43,12 +42,17 @@ RUN dnf upgrade --refresh -y \
         iputils \
         krb5-libs \
         libatomic \
-        libmsquic \
         libunwind \
         lttng-ust \
         openssl \
         sudo && \
     dnf clean all
+
+# Install MSQuic. Fedora 41 does not have it in the repositories, so use the Fedora 40 package
+
+RUN dnf config-manager addrepo --from-repofile=https://packages.microsoft.com/fedora/40/prod/config.repo && \
+    dnf install --setopt=install_weak_deps=False --setopt tsflags=nodocs -y \
+        libmsquic
 
 # Needed for .NET libraries tests to pass
 ENV LANG=en-US.UTF-8
