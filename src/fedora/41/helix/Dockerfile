@@ -1,16 +1,16 @@
 FROM library/fedora:41 AS venv
 
-RUN dnf upgrade --refresh -y && \
-    dnf install --setopt tsflags=nodocs -y \
-        dnf-plugins-core && \
-    dnf install --setopt=install_weak_deps=False --setopt tsflags=nodocs -y \
+RUN dnf upgrade --refresh -y \
+    && dnf install --setopt tsflags=nodocs -y \
+        dnf-plugins-core \
+    && dnf install --setopt=install_weak_deps=False --setopt tsflags=nodocs -y \
         openssl \
         python3-devel \
         python3-pip \
         gcc \
         libatomic \
-        redhat-rpm-config && \
-    dnf clean all
+        redhat-rpm-config \
+    && dnf clean all
 
 RUN python3 -m venv /venv && \
     source /venv/bin/activate && \
