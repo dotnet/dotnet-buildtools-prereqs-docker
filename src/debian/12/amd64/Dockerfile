@@ -35,7 +35,7 @@ RUN apt-get update \
         liblttng-ust-dev \
         libnuma-dev \
         libssl-dev \
-        libssl1.1 \
+        libssl3 \
         libtool \
         libunwind8-dev \
         lldb \
@@ -44,7 +44,7 @@ RUN apt-get update \
         make \
         pigz \
         powershell \
-        python-lldb \
+        python3-lldb \
         sudo \
         tar \
         uuid-dev \
