@@ -26,6 +26,18 @@
               }
             }
           ]
+        },
+        {
+          "platforms": [
+            {
+              "dockerfile": "src/fedora/41/helix",
+              "os": "linux",
+              "osVersion": "fedora41",
+              "tags": {
+                "fedora-41-helix": {}
+              }
+            }
+          ]
         }
       ]
     }
