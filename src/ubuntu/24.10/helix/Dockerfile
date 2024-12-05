@@ -65,9 +65,7 @@ RUN LIBCURL=libcurl4 && \
 ENV LANG=en_US.utf8
 
 # Add MsQuic
-RUN if [ "$TARGETARCH" = "arm" ]; then \
-        TARGETARCH="armhf"; fi && \ 
-    curl -O https://packages.microsoft.com/ubuntu/24.04/prod/pool/main/libm/libmsquic/libmsquic_2.4.1_$TARGETARCH.deb && \
+RUN curl -O https://packages.microsoft.com/ubuntu/24.04/prod/pool/main/libm/libmsquic/libmsquic_2.4.1_$TARGETARCH.deb && \
     dpkg -i libmsquic* && \
     rm libmsquic*
 

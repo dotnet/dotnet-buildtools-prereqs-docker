@@ -489,20 +489,6 @@
               "variant": "v8"
             }
           ]
-        },
-        {
-          "platforms": [
-            {
-              "architecture": "arm",
-              "dockerfile": "src/ubuntu/24.10/helix",
-              "os": "linux",
-              "osVersion": "oracular",
-              "tags": {
-                "ubuntu-24.10-helix-arm32v7": {}
-              },
-              "variant": "v7"
-            }
-          ]
         }
       ]
     }
