@@ -462,6 +462,33 @@
               "variant": "v7"
             }
           ]
+        },
+        {
+          "platforms": [
+            {
+              "architecture": "amd64",
+              "dockerfile": "src/ubuntu/24.10/helix",
+              "os": "linux",
+              "osVersion": "oracular",
+              "tags": {
+                "ubuntu-24.10-helix-amd64": {}
+              }
+            }
+          ]
+        },
+        {
+          "platforms": [
+            {
+              "architecture": "arm64",
+              "dockerfile": "src/ubuntu/24.10/helix",
+              "os": "linux",
+              "osVersion": "oracular",
+              "tags": {
+                "ubuntu-24.10-helix-arm64v8": {}
+              },
+              "variant": "v8"
+            }
+          ]
         }
       ]
     }
