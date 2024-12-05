@@ -15,7 +15,7 @@ RUN tdnf update -y \
 RUN npm i -g typescript
 
 # Install Emscripten toolchain
-ENV EMSCRIPTEN_VERSION=3.1.34
+ENV EMSCRIPTEN_VERSION=3.1.72
 ENV EMSCRIPTEN_PATH=/usr/local/emscripten
 ENV EMSDK_PATH=/usr/local/emscripten/emsdk
 
