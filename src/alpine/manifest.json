@@ -257,6 +257,18 @@
               "variant": "v8"
             }
           ]
+        },
+        {
+          "platforms": [
+            {
+              "dockerfile": "src/alpine/3.21/withnode/amd64",
+              "os": "linux",
+              "osVersion": "alpine3.21",
+              "tags": {
+                "alpine-3.21-withnode-amd64": {}
+              }
+            }
+          ]
         }
       ]
     }
