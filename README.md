@@ -3,6 +3,8 @@
 The Dockerfiles in this repository are used for building and testing the .NET product.
 As such there are Dockerfiles for the various supported Linux distributions which setup the necessary prerequisites to build and test the .NET product.
 
+The images are provided and removed according to [Prereq container image lifecycle](./lifecycle.md).
+
 ## Where are the published images
 
 The images produced from the Dockerfiles in this repository are published to the `mcr.microsoft.com/dotnet-buildtools/prereqs` container repository.
