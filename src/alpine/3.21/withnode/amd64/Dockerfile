@@ -67,11 +67,11 @@ RUN apk -X https://dl-cdn.alpinelinux.org/alpine/edge/main add --no-cache lttng-
     && rm -f /tmp/powershell.tar.gz
 
 # Install azurecli from PIP
-RUN azureEnv="/usr/local/share/azure-cli-env" && \
-    python3 -m venv "$azureEnv" && \
-    "$azureEnv/bin/python" -m pip install --upgrade setuptools && \
-    "$azureEnv/bin/python" -m pip install azure-cli && \
-    ln -s "$azureEnv/bin/az" /usr/local/bin/az
+RUN azureEnv="/usr/local/share/azure-cli-env" \
+    && python3 -m venv "$azureEnv" \
+    && "$azureEnv/bin/python" -m pip install --upgrade setuptools \
+    && "$azureEnv/bin/python" -m pip install azure-cli \
+    && ln -s "$azureEnv/bin/az" /usr/local/bin/az
 
 # Add label for bring your own node in azure devops
 LABEL "com.azure.dev.pipelines.agent.handler.node.path"="/usr/bin/node"
