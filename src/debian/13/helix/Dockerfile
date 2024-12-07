@@ -17,7 +17,10 @@ RUN python3 -m venv /venv \
 FROM library/debian:trixie
 
 # Install Helix Dependencies
-RUN apt-get update \
+RUN LIBCURL=libcurl4 && \
+if [ "$TARGETARCH" = "arm" ]; then \
+    LIBCURL="libcurl4t64"; fi && \ 
+    apt-get update \
     && apt-get upgrade -y \
     && apt-get install -y \
         apt-transport-https \
@@ -35,7 +38,7 @@ RUN apt-get update \
         gdb \
         git \
         iputils-ping \
-        libcurl4 \
+        $LIBCURL \
         libffi-dev \
         libgdiplus \
         libicu-dev \
