@@ -59,7 +59,6 @@ RUN apt-get update \
         build-essential \
         gettext \
         jq \
-        libgdiplus \
         libicu-dev \
         libkrb5-dev \
         liblttng-ust-dev \

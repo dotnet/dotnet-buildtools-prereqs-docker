@@ -21,7 +21,6 @@ RUN apt-get update \
         gettext \
         jq \
         libcurl4-openssl-dev \
-        libgdiplus \
         libicu-dev \
         libkrb5-dev \
         liblttng-ust-dev \
