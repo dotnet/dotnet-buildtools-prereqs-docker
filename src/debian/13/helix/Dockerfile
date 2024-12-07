@@ -1,8 +1,10 @@
-FROM library/debian:trixie AS venv
+FROM library/debian:trixie AS base
 
-RUN apt-get update \
-    && apt-get upgrade -y \
-    && apt-get install -y \
+RUN apt-get update
+
+FROM base AS venv
+
+RUN apt-get install -y \
         coreutils \
         python3-dev \
         python3-pip \
@@ -14,15 +16,11 @@ RUN python3 -m venv /venv \
     && pip download --no-deps helix-scripts --index-url https://dnceng.pkgs.visualstudio.com/public/_packaging/helix-client-prod/pypi/simple \
     && pip install ./helix_scripts-*-py3-none-any.whl
 
-FROM library/debian:trixie
+FROM base
+ARG TARGETARCH
 
 # Install Helix Dependencies
-RUN LIBCURL=libcurl4 && \
-if [ "$TARGETARCH" = "arm" ]; then \
-    LIBCURL="libcurl4t64"; fi && \ 
-    apt-get update \
-    && apt-get upgrade -y \
-    && apt-get install -y \
+RUN apt-get install -y \
         apt-transport-https \
         curl \
     && curl -sOL https://packages.microsoft.com/config/debian/12/packages-microsoft-prod.deb \
@@ -38,7 +36,7 @@ if [ "$TARGETARCH" = "arm" ]; then \
         gdb \
         git \
         iputils-ping \
-        $LIBCURL \
+        libcurl4 \
         libffi-dev \
         libgdiplus \
         libicu-dev \
