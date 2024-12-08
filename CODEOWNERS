@@ -29,7 +29,7 @@ src/cbl-mariner/2.0/amd64/ @dotnet/runtime-infrastructure @dotnet/dotnet-docker-
 src/centos/stream9/amd64/ @dotnet/source-build @dotnet/dotnet-docker-reviewers
 
 # debian
-src/debian/11/amd64/ @dotnet/source-build @dotnet/dotnet-docker-reviewers
+src/debian/**/amd64/ @dotnet/source-build @dotnet/dotnet-docker-reviewers
 src/debian/11/opt/arm64v8/ @dotnet/runtime-infrastructure @dotnet/dotnet-docker-reviewers
 src/debian/12/gcc14/amd64/ @dotnet/runtime-infrastructure @dotnet/dotnet-docker-reviewers
 

@@ -61,6 +61,19 @@
           "platforms": [
             {
               "architecture": "amd64",
+              "dockerfile": "src/debian/12/amd64",
+              "os": "linux",
+              "osVersion": "bookworm",
+              "tags": {
+                "debian-12-amd64": {}
+              }
+            }
+          ]
+        },
+        {
+          "platforms": [
+            {
+              "architecture": "amd64",
               "dockerfile": "src/debian/12/helix/amd64",
               "os": "linux",
               "osVersion": "bookworm",
