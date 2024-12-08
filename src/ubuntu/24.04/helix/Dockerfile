@@ -40,7 +40,6 @@ RUN LIBCURL=libcurl4 && \
         iputils-ping \
         $LIBCURL \
         libffi-dev \
-        libgdiplus \
         libicu-dev \
         libnuma1 \
         libssl-dev \

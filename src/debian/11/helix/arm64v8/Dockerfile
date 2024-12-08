@@ -24,7 +24,6 @@ RUN apt-get update \
         iputils-ping \
         libcurl4 \
         libffi-dev \
-        libgdiplus \
         libicu-dev \
         libmsquic \
         libssl-dev \
