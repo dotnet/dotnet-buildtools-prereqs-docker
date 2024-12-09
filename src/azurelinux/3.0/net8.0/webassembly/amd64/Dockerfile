@@ -9,7 +9,9 @@ RUN tdnf update -y \
         npm \
         python3 \
         libxml2 \
-        unzip
+        unzip \
+        # dependency for npm package modification
+        jq
 
 # WebAssembly build needs typescript
 RUN npm i -g typescript
@@ -18,15 +20,30 @@ RUN npm i -g typescript
 ENV EMSCRIPTEN_VERSION=3.1.34
 ENV EMSCRIPTEN_PATH=/usr/local/emscripten
 ENV EMSDK_PATH=/usr/local/emscripten/emsdk
+ENV NODE_VERSION_IN_EMSDK=15.14.0_64bit
 
 RUN mkdir ${EMSCRIPTEN_PATH} \
     && cd ${EMSCRIPTEN_PATH} \
     && git clone https://github.com/emscripten-core/emsdk.git ${EMSDK_PATH} \
     && cd ${EMSDK_PATH} \
     && git checkout ${EMSCRIPTEN_VERSION} \
+    # patch node version in emsdk_manifest.json
+    && sed -i 's/14\.18\.2/15\.14\.0/g' emsdk_manifest.json \
     && ./emsdk install ${EMSCRIPTEN_VERSION}-upstream \
     && ./emsdk activate ${EMSCRIPTEN_VERSION}-upstream \
-    && chmod -R 777 ${EMSCRIPTEN_PATH}
+    && chmod -R 777 ${EMSCRIPTEN_PATH} \
+    # update packages to non-vulnerable versions
+    && export PATH=$PATH:${EMSDK_PATH}/node/${NODE_VERSION_IN_EMSDK}/bin \
+    && cd ${EMSDK_PATH}/node/${NODE_VERSION_IN_EMSDK}/lib \
+    && npm install npm@latest \
+    && npm prune --production \
+    && cd ${EMSDK_PATH}/upstream/emscripten \
+    && jq 'del(.devDependencies)' package.json > package.json.tmp && mv package.json.tmp package.json \
+    && npm audit fix \
+    && npm prune --production \
+    && rm -rf ${EMSDK_PATH}/upstream/emscripten/node_modules/google-closure-compiler \
+    && rm -rf ${EMSDK_PATH}/upstream/emscripten/node_modules/google-closure-compiler-java \
+    && rm -rf ${EMSDK_PATH}/upstream/emscripten/node_modules/google-closure-compiler-linux
 
 # Install V8 Engine
 SHELL ["/bin/bash", "-c"]
