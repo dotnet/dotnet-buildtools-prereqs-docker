@@ -9,7 +9,7 @@
           },
           "platforms": [
             {
-              "dockerfile": "src/cbl-mariner/2.0/docker-testrunner",
+              "dockerfile": "src/azurelinux/3.0/docker-testrunner",
               "os": "linux",
               "osVersion": "azurelinux3.0",
               "tags": {
@@ -18,7 +18,7 @@
             },
             {
               "architecture": "arm64",
-              "dockerfile": "src/cbl-mariner/2.0/docker-testrunner",
+              "dockerfile": "src/azurelinux/3.0/docker-testrunner",
               "os": "linux",
               "osVersion": "azurelinux3.0",
               "tags": {
