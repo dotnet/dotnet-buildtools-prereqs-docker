@@ -25,6 +25,7 @@ RUN apk add --upgrade --no-cache \
         icu-libs \
         iputils \
         krb5-libs \
+        libmsquic \
         lldb \
         llvm \
         lttng-ust \
@@ -36,9 +37,6 @@ RUN apk add --upgrade --no-cache \
         py3-pip \
         sudo \
         tzdata
-
-# Install libmsquic from testing repository
-RUN apk add --repository=http://dl-cdn.alpinelinux.org/alpine/edge/community/ libmsquic
 
 # Needed for runtime tests to pass
 ENV LANG=en-US.UTF-8
