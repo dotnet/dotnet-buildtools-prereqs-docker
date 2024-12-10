@@ -1,27 +1,27 @@
-FROM library/debian:trixie AS base
+FROM library/debian:trixie AS venv
 
-RUN apt-get update
-
-FROM base AS venv
-
-RUN apt-get install -y \
+RUN apt-get update \
+    && apt-get install -y \
         coreutils \
         python3-dev \
         python3-pip \
-        python3-venv
+        python3-venv \
+        && rm -rf /var/lib/apt/lists/*
 
 RUN python3 -m venv /venv \
     && . /venv/bin/activate \
     && pip download --no-deps helix-scripts --index-url https://dnceng.pkgs.visualstudio.com/public/_packaging/helix-client-prod/pypi/simple \
     && pip install ./helix_scripts-*-py3-none-any.whl
 
-FROM base
+FROM library/debian:trixie
 ARG TARGETARCH
 
 # Install Helix Dependencies
 RUN LIBCURL=libcurl4 \
     && if [ "$TARGETARCH" = "arm" ]; then \
-           LIBCURL="libcurl4t64"; fi \ 
+          LIBCURL="libcurl4t64"; fi \
+    && apt-get update \
+    && apt-get upgrade -y \
     && apt-get install -y \
         apt-transport-https \
         curl \
@@ -36,7 +36,6 @@ RUN LIBCURL=libcurl4 \
         libcurl4 \
         libffi-dev \
         libicu-dev \
-        libnuma1 \
         libssl-dev \
         libtool \
         libunwind8 \
@@ -50,6 +49,13 @@ RUN LIBCURL=libcurl4 \
         sudo \
         tzdata \
         unzip \
+        # libmsquic dependencies
+        libbpf1 \
+        libelf1t64 \
+        libnl-3-200 \
+        libnl-route-3-200 \
+        libnuma1 \
+        libxdp1 \
     && rm -rf /var/lib/apt/lists/* \
     && localedef -i en_US -c -f UTF-8 -A /usr/share/locale/locale.alias en_US.UTF-8
 
