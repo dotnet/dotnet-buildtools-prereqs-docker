@@ -8,8 +8,7 @@ RUN apt-get install -y \
         coreutils \
         python3-dev \
         python3-pip \
-        python3-venv \
-    && rm -rf /var/lib/apt/lists/*
+        python3-venv
 
 RUN python3 -m venv /venv \
     && . /venv/bin/activate \
@@ -20,14 +19,12 @@ FROM base
 ARG TARGETARCH
 
 # Install Helix Dependencies
-RUN apt-get install -y \
+RUN LIBCURL=libcurl4 \
+    && if [ "$TARGETARCH" = "arm" ]; then \
+           LIBCURL="libcurl4t64"; fi \ 
+    && apt-get install -y \
         apt-transport-https \
         curl \
-    && curl -sOL https://packages.microsoft.com/config/debian/12/packages-microsoft-prod.deb \
-    && dpkg -i packages-microsoft-prod.deb \
-    && rm packages-microsoft-prod.deb \
-    && apt-get update \
-    && apt-get install -y \
         autoconf \
         automake \
         at \
@@ -38,9 +35,8 @@ RUN apt-get install -y \
         iputils-ping \
         libcurl4 \
         libffi-dev \
-        libgdiplus \
         libicu-dev \
-        libmsquic \
+        libnuma1 \
         libssl-dev \
         libtool \
         libunwind8 \
@@ -56,6 +52,10 @@ RUN apt-get install -y \
         unzip \
     && rm -rf /var/lib/apt/lists/* \
     && localedef -i en_US -c -f UTF-8 -A /usr/share/locale/locale.alias en_US.UTF-8
+
+RUN curl -O https://packages.microsoft.com/ubuntu/24.04/prod/pool/main/libm/libmsquic/libmsquic_2.4.7_$TARGETARCH.deb \
+    && dpkg -i libmsquic* \
+    && rm libmsquic*
 
 ENV LANG=en_US.utf8
 
