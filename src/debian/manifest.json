@@ -127,8 +127,22 @@
         {
           "platforms": [
             {
+              "architecture": "arm",
+              "dockerfile": "src/debian/13/helix/arm32v7",
+              "os": "linux",
+              "osVersion": "trixie",
+              "tags": {
+                "debian-13-helix-arm32v7": {}
+              },
+              "variant": "v7"
+            }
+          ]
+        },
+        {
+          "platforms": [
+            {
               "architecture": "arm64",
-              "dockerfile": "src/debian/12/helix/",
+              "dockerfile": "src/debian/13/helix/",
               "os": "linux",
               "osVersion": "trixie",
               "tags": {
@@ -137,7 +151,7 @@
               "variant": "v8"
             }
           ]
-        },
+        }
       ]
     }
   ]
