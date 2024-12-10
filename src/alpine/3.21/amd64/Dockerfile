@@ -25,12 +25,12 @@ RUN apk add --upgrade --no-cache \
         iproute2 \
         jq \
         krb5-dev \
-        libtool \
         less \
         libgcc \
         libintl \
         libssl3 \
         libstdc++ \
+        libtool \
         libunwind-dev \
         linux-headers \
         lld \
@@ -39,8 +39,6 @@ RUN apk add --upgrade --no-cache \
         lttng-ust-dev \
         ncurses-terminfo-base \
         make \
-        nodejs \
-        npm \
         numactl-dev \
         openssl \
         openssl-dev \
@@ -72,11 +70,3 @@ RUN azureEnv="/usr/local/share/azure-cli-env" \
     && "$azureEnv/bin/python" -m pip install --upgrade setuptools \
     && "$azureEnv/bin/python" -m pip install azure-cli \
     && ln -s "$azureEnv/bin/az" /usr/local/bin/az
-
-# Add label for bring your own node in azure devops
-LABEL "com.azure.dev.pipelines.agent.handler.node.path"="/usr/bin/node"
-
-ENV NO_UPDATE_NOTIFIER=true
-
-# Set node as a default command
-CMD [ "node" ]
