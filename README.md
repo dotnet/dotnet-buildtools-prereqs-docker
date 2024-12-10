@@ -95,6 +95,7 @@ The images from this repository get built and published whenever one of the foll
 
 - The corresponding Dockerfile is modified.
 - The base image is updated (a new version of the image referred to by the [`FROM`](https://docs.docker.com/engine/reference/builder/#from) statement).
+- Once a month per the schedule defined in the [pipeline](eng/pipelines/dotnet-buildtools-prereqs-all.yml).
 
 ## How to identify the image digest
 
