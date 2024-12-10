@@ -28,7 +28,6 @@ RUN apt-get update \
         gnupg \
         jq \
         libcurl4-openssl-dev \
-        libgdiplus \
         libicu-dev \
         libkrb5-dev \
         liblldb-dev \
