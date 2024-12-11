@@ -54,7 +54,8 @@ Several types of tag styles are provided:
   * latest: References the latest validated version of the distro. Example: `alpine-latest-helix-amd64`
   * oldest: References the oldest supported version of the distro. Example: `alpine-oldest-helix-amd64`
 
-FLoating tags are beneficial for repos that are not susceptible to breaking changes that occur from new distro versions because the source that references the tag doesn't need to be updated in order to make use of the new version. Conversely, some repos may be susceptible to distro breaking changes in which case the version-specific tags should be used ([dotnet/runtime](https://github.com/dotnet/runtime) is an example of such a repo).
+FLoating tags are beneficial for repos that are not susceptible to breaking changes that occur from new distro versions because the source that references the tag doesn't need to be updated in order to make use of the new version.
+Conversely, some repos may be susceptible to distro breaking changes in which case the version-specific tags should be used ([dotnet/runtime](https://github.com/dotnet/runtime) is an example of such a repo).
 
 There is a vetting process before a `latest` floating tag gets moved to a newer distro version:
 
@@ -62,7 +63,9 @@ There is a vetting process before a `latest` floating tag gets moved to a newer 
 1. The [dotnet/runtime](https://github.com/dotnet/runtime) repo is updated to reference the new version-specific tags.
 1. Once runtime has successfully taken a dependency on the new version, the `latest` floating tag is updated to reference that version.
 
-At times, it may be necessary to use a [fixed image reference](https://github.com/dotnet/runtime/pull/110199#discussion_r1859075989) for build reliability. This is done by referencing the digest of the specific image that is needed (e.g. `mcr.microsoft.com/dotnet-buildtools/prereqs@sha256:56feee03d202e008a98f3c92784f79f3f0b3a512074f7f8ee2b1ba4ca4c08c6e`). If this is ever done, a tracking issue should be created (before the PR is merged) so that we remember to resolve the underlying issue and update the image reference.
+At times, it may be necessary to use a [fixed image reference](https://github.com/dotnet/runtime/pull/110199#discussion_r1859075989) for build reliability.
+This is done by referencing the digest of the specific image that is needed (e.g. `mcr.microsoft.com/dotnet-buildtools/prereqs@sha256:56feee03d202e008a98f3c92784f79f3f0b3a512074f7f8ee2b1ba4ca4c08c6e`).
+If this is ever done, a tracking issue should be created (before the PR is merged) so that we remember to resolve the underlying issue and update the image reference.
 
 The following locations are examples of infra that gets updated when new images are available.
 
