@@ -1,7 +1,7 @@
 FROM amd64/alpine:3.21
 
-# Install .NET and test dependencies
 RUN apk add --upgrade --no-cache \
+        # Install .NET and test dependencies
         autoconf \
         automake \
         bash \
@@ -52,7 +52,10 @@ RUN apk add --upgrade --no-cache \
         userspace-rcu \
         util-linux-dev \
         which \
-        zlib-dev
+        zlib-dev \
+        \
+        # Azure DevOps container job requirements
+        nodejs
 
 # Install the latest non-preview powershell release.
 RUN apk -X https://dl-cdn.alpinelinux.org/alpine/edge/main add --no-cache lttng-ust \
@@ -70,3 +73,6 @@ RUN azureEnv="/usr/local/share/azure-cli-env" \
     && "$azureEnv/bin/python" -m pip install --upgrade setuptools \
     && "$azureEnv/bin/python" -m pip install azure-cli \
     && ln -s "$azureEnv/bin/az" /usr/local/bin/az
+
+# Add label for bring your own node in azure devops
+LABEL "com.azure.dev.pipelines.agent.handler.node.path"="/usr/bin/node"
