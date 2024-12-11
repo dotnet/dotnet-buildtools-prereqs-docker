@@ -110,6 +110,47 @@
               }
             }
           ]
+        },
+        {
+          "platforms": [
+            {
+              "architecture": "amd64",
+              "dockerfile": "src/debian/13/helix/",
+              "os": "linux",
+              "osVersion": "trixie",
+              "tags": {
+                "debian-13-helix-amd64": {}
+              }
+            }
+          ]
+        },
+        {
+          "platforms": [
+            {
+              "architecture": "arm64",
+              "dockerfile": "src/debian/13/helix/",
+              "os": "linux",
+              "osVersion": "trixie",
+              "tags": {
+                "debian-13-helix-arm64v8": {}
+              },
+              "variant": "v8"
+            }
+          ]
+        },
+        {
+          "platforms": [
+            {
+              "architecture": "arm",
+              "dockerfile": "src/debian/13/helix/",
+              "os": "linux",
+              "osVersion": "trixie",
+              "tags": {
+                "debian-13-helix-arm32v7": {}
+              },
+              "variant": "v7"
+            }
+          ]
         }
       ]
     }
