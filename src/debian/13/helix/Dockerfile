@@ -2,7 +2,11 @@ FROM library/debian:trixie AS venv
 
 RUN apt-get update \
     && apt-get install -y \
+        cargo \
         coreutils \
+        libffi-dev \
+        libssl-dev \
+        pkg-config \
         python3-dev \
         python3-pip \
         python3-venv \
@@ -77,7 +81,6 @@ RUN /usr/sbin/adduser --disabled-password --gecos '' --uid 1000 --shell /bin/bas
 USER helixbot
 
 # Install Helix Dependencies
-
 ENV VIRTUAL_ENV=/home/helixbot/.vsts-env
 RUN python3 -m venv $VIRTUAL_ENV
 ENV PATH="$VIRTUAL_ENV/bin:$PATH"
