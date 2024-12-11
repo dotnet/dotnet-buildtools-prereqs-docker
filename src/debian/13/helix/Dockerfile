@@ -19,7 +19,7 @@ ARG TARGETARCH
 # Install Helix Dependencies
 RUN LIBCURL=libcurl4 \
     && if [ "$TARGETARCH" = "arm" ]; then \
-          LIBCURL="libcurl4t64"; fi \
+        LIBCURL="libcurl4t64"; fi \
     && apt-get update \
     && apt-get upgrade -y \
     && apt-get install -y \
@@ -33,7 +33,7 @@ RUN LIBCURL=libcurl4 \
         gdb \
         git \
         iputils-ping \
-        libcurl4 \
+        $LIBCURL \
         libffi-dev \
         libicu-dev \
         libssl-dev \
