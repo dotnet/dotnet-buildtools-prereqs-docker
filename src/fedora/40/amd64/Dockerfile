@@ -33,7 +33,6 @@ RUN dnf upgrade --refresh -y \
         jq \
         krb5-devel \
         libcurl-devel \
-        libgdiplus \
         libicu-devel \
         libomp-devel \
         libtool \

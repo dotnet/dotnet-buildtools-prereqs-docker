@@ -247,6 +247,18 @@
         {
           "platforms": [
             {
+              "dockerfile": "src/alpine/3.21/amd64",
+              "os": "linux",
+              "osVersion": "alpine3.21",
+              "tags": {
+                "alpine-3.21-amd64": {}
+              }
+            }
+          ]
+        },
+        {
+          "platforms": [
+            {
               "architecture": "arm64",
               "dockerfile": "src/alpine/3.21/helix",
               "os": "linux",

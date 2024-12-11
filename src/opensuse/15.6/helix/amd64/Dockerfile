@@ -19,7 +19,6 @@ RUN zypper ref \
         krb5-devel \
         lato-fonts \
         libffi-devel \
-        libgdiplus-devel \
         libicu-devel \
         libopenssl-devel \
         libtool \
