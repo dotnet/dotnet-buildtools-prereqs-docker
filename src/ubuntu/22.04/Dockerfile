@@ -14,7 +14,8 @@ RUN apt-get update \
         locales \
         make \
         pigz \
-        sudo
+        sudo \
+        && rm -rf /var/lib/apt/lists/*
 
 # This link fixes the broken lldb python scripting that the diagnostics tests require
 RUN mkdir -p /usr/lib/local/lib/python3.10/dist-packages/lldb \
@@ -27,7 +28,9 @@ RUN apt-get update \
         npm \
         zip \
         curl \
-    && rm -rf /var/lib/apt/lists/*
+    && rm -rf /var/lib/apt/lists/* \
+    # npm installs a vulnerable node-ip pkg. Upgrading the node-ip pkg requires Ubuntu PRO subscription. Workaround by using NPM.
+    && npm install -g ip@latest
 
 # .NET SDK MSBuild requires US.UTF-8 locale to execute tasks
 RUN locale-gen en_US.UTF-8
