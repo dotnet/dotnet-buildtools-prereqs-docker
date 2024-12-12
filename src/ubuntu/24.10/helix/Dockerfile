@@ -84,7 +84,6 @@ RUN /usr/sbin/adduser --disabled-password --gecos '' --uid 1001 --shell /bin/bas
 USER helixbot
 
 # Install Helix Dependencies
-
 ENV VIRTUAL_ENV=/home/helixbot/.vsts-env
 RUN python3 -m venv $VIRTUAL_ENV
 ENV PATH="$VIRTUAL_ENV/bin:$PATH"

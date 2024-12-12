@@ -38,6 +38,33 @@
               }
             }
           ]
+        },
+        {
+          "platforms": [
+            {
+              "architecture": "amd64",
+              "dockerfile": "src/centos-stream/10.0/helix/",
+              "os": "linux",
+              "osVersion": "centos-stream10",
+              "tags": {
+                "centos-stream9-helix": {}
+              }
+            }
+          ]
+        },
+        {
+          "platforms": [
+            {
+              "architecture": "arm64",
+              "dockerfile": "src/centos-stream/10.0/helix/",
+              "os": "linux",
+              "osVersion": "centos-stream10",
+              "tags": {
+                "centos-stream9-helix": {}
+              },
+              "variant": "v8"
+            }
+          ]
         }
       ]
     }

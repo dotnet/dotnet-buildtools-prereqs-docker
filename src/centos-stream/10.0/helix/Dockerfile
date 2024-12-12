@@ -1,4 +1,4 @@
-FROM quay.io/centos/centos:stream10 as venv
+FROM quay.io/centos/centos:stream10 AS venv
 
 RUN dnf upgrade --refresh -y \
     && dnf install --setopt tsflags=nodocs -y \
@@ -25,9 +25,6 @@ RUN dnf upgrade --refresh -y \
         automake \
         curl \
         file \
-        gcc \
-        gcc-c++ \
-        gdb \
         git-core \
         iputils \
         libicu \
@@ -48,10 +45,6 @@ RUN dnf upgrade --refresh -y \
         which \
     && dnf clean all
 
-# RUN ln -sf /usr/bin/python3 /usr/bin/python \
-#     && pip download --no-deps helix-scripts --index-url https://dnceng.pkgs.visualstudio.com/public/_packaging/helix-client-prod/pypi/simple \
-#     && pip install ./helix_scripts-*-py3-none-any.whl
-
 ENV LANG=en_US.utf8
 
 # create helixbot user and give rights to sudo without password
@@ -61,6 +54,7 @@ RUN /usr/sbin/adduser --uid 1000 --shell /bin/bash --gid adm helixbot \
 
 USER helixbot
 
+# Install Helix Dependencies
 ENV VIRTUAL_ENV=/home/helixbot/.vsts-env
 RUN python3 -m venv $VIRTUAL_ENV
 ENV PATH="$VIRTUAL_ENV/bin:$PATH"
