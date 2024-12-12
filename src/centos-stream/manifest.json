@@ -50,7 +50,7 @@
               "os": "linux",
               "osVersion": "centos-stream10",
               "tags": {
-                "centos-stream-10-helix": {}
+                "centos-stream-10-helix-amd64": {}
               }
             }
           ]
@@ -63,7 +63,7 @@
               "os": "linux",
               "osVersion": "centos-stream10",
               "tags": {
-                "centos-stream-10-helix": {}
+                "centos-stream-10-helix-arm64v8": {}
               },
               "variant": "v8"
             }
