@@ -27,8 +27,9 @@ RUN curl -sSL https://netcorenativeassets.blob.core.windows.net/resource-package
 
 # Install Wasi toolchain
 ENV WASI_SDK_VERSION=25.0
+ENV WASI_SDK_MAJOR_VERSION=25
 ENV WASI_SDK_PATH=/usr/local/wasi-sdk
-ENV WASI_SDK_URL=https://github.com/WebAssembly/wasi-sdk/releases/download/wasi-sdk-${WASI_SDK_VERSION}/wasi-sdk-${WASI_SDK_VERSION}-linux.tar.gz
+ENV WASI_SDK_URL=https://github.com/WebAssembly/wasi-sdk/releases/download/wasi-sdk-${WASI_SDK_MAJOR_VERSION}/wasi-sdk-${WASI_SDK_VERSION}-linux.tar.gz
 
 RUN mkdir -p ${WASI_SDK_PATH} \
     && cd /tmp \
