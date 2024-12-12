@@ -10,7 +10,8 @@
               "os": "linux",
               "osVersion": "centos-stream9",
               "tags": {
-                "centos-stream9": {}
+                "centos-stream9": {},
+                "centos-stream-9": {}
               }
             }
           ]
@@ -22,7 +23,8 @@
               "os": "linux",
               "osVersion": "centos-stream9",
               "tags": {
-                "centos-stream9-helix": {}
+                "centos-stream9-helix": {},
+                "centos-stream-9-helix": {}
               }
             }
           ]
@@ -34,7 +36,8 @@
               "os": "linux",
               "osVersion": "centos-stream9",
               "tags": {
-                "centos-stream9-mlnet-helix": {}
+                "centos-stream9-mlnet-helix": {},
+                "centos-stream-9-mlnet-helix" : {}
               }
             }
           ]
@@ -60,7 +63,7 @@
               "os": "linux",
               "osVersion": "centos-stream10",
               "tags": {
-                "centos-stream9-helix": {}
+                "centos-stream-10-helix": {}
               },
               "variant": "v8"
             }
