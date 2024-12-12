@@ -50,7 +50,7 @@
               "os": "linux",
               "osVersion": "centos-stream10",
               "tags": {
-                "centos-stream9-helix": {}
+                "centos-stream-10-helix": {}
               }
             }
           ]
