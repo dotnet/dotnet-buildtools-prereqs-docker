@@ -6,7 +6,7 @@
         {
           "platforms": [
             {
-              "dockerfile": "src/centos/stream9/amd64",
+              "dockerfile": "src/centos-stream/9.0/amd64",
               "os": "linux",
               "osVersion": "centos-stream9",
               "tags": {
@@ -18,7 +18,7 @@
         {
           "platforms": [
             {
-              "dockerfile": "src/centos/stream9/helix/amd64",
+              "dockerfile": "src/centos-stream/9.0/helix/amd64",
               "os": "linux",
               "osVersion": "centos-stream9",
               "tags": {
@@ -30,7 +30,7 @@
         {
           "platforms": [
             {
-              "dockerfile": "src/centos/stream9/mlnet/helix",
+              "dockerfile": "src/centos-stream/9.0/mlnet/helix",
               "os": "linux",
               "osVersion": "centos-stream9",
               "tags": {

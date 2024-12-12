@@ -5,7 +5,7 @@
     "src/alpine/manifest.json",
     "src/azurelinux/manifest.json",
     "src/cbl-mariner/manifest.json",
-    "src/centos/manifest.json",
+    "src/centos-stream/manifest.json",
     "src/debian/manifest.json",
     "src/fedora/manifest.json",
     "src/nanoserver/manifest.json",
