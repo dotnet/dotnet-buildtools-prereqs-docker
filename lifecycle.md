@@ -48,20 +48,18 @@ Note: this content should be moved to another location as it is not lifecycle re
 
 Build and test images are referenced in repo infra files, across a variety of `main` and `release/*` branches. Updating these references is a multi-step detail-oriented task. It is a pain, but necessary.
 
-Several types of tag styles are provided:
+Two types of tag styles are available:
 * version-specific: The tag name includes the distro's version. Example: `alpine-3.21-helix-amd64`
-* floating: The tag name has no version. Instead it is routinely updated to reference a new version as the distro's lifecycle progresses. There are two sub-types of floating tags:
+* floating (optional): The tag name has no version. Instead it is routinely updated to reference a new version as the distro's lifecycle progresses. There are two sub-types of floating tags:
   * latest: References the latest validated version of the distro. Example: `alpine-latest-helix-amd64`
   * oldest: References the oldest supported version of the distro. Example: `alpine-oldest-helix-amd64`
 
-FLoating tags are beneficial for repos that are not susceptible to breaking changes that occur from new distro versions because the source that references the tag doesn't need to be updated in order to make use of the new version.
+FLoating tags are provided on an as-needed basis. They are beneficial for repos that are not susceptible to breaking changes that occur from new distro versions because the source that references the tag doesn't need to be updated in order to make use of the new version.
 Conversely, some repos may be susceptible to distro breaking changes in which case the version-specific tags should be used ([dotnet/runtime](https://github.com/dotnet/runtime) is an example of such a repo).
 
-There is a vetting process before a `latest` floating tag gets moved to a newer distro version:
-
-1. Version-specific tags for the new distro version are provided.
-1. The [dotnet/runtime](https://github.com/dotnet/runtime) repo is updated to reference the new version-specific tags.
-1. Once runtime has successfully taken a dependency on the new version, the `latest` floating tag is updated to reference that version.
+There is an evaluation period before a `latest` floating tag gets moved to a newer distro version.
+First, version-specific tags for the new distro version are provided.
+After a one month evaluation period, the `latest` floating tag is updated to reference the new version, assuming there are no issues found.
 
 At times, it may be necessary to use a [fixed image reference](https://github.com/dotnet/runtime/pull/110199#discussion_r1859075989) for build reliability.
 This is done by referencing the digest of the specific image that is needed (e.g. `mcr.microsoft.com/dotnet-buildtools/prereqs@sha256:56feee03d202e008a98f3c92784f79f3f0b3a512074f7f8ee2b1ba4ca4c08c6e`).
