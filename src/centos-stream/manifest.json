@@ -1,0 +1,75 @@
+{
+  "repos": [
+    {
+      "name": "dotnet-buildtools/prereqs",
+      "images": [
+        {
+          "platforms": [
+            {
+              "dockerfile": "src/centos-stream/9.0/amd64",
+              "os": "linux",
+              "osVersion": "centos-stream9",
+              "tags": {
+                "centos-stream9": {},
+                "centos-stream-9": {}
+              }
+            }
+          ]
+        },
+        {
+          "platforms": [
+            {
+              "dockerfile": "src/centos-stream/9.0/helix/amd64",
+              "os": "linux",
+              "osVersion": "centos-stream9",
+              "tags": {
+                "centos-stream9-helix": {},
+                "centos-stream-9-helix": {}
+              }
+            }
+          ]
+        },
+        {
+          "platforms": [
+            {
+              "dockerfile": "src/centos-stream/9.0/mlnet/helix",
+              "os": "linux",
+              "osVersion": "centos-stream9",
+              "tags": {
+                "centos-stream9-mlnet-helix": {},
+                "centos-stream-9-mlnet-helix" : {}
+              }
+            }
+          ]
+        },
+        {
+          "platforms": [
+            {
+              "architecture": "amd64",
+              "dockerfile": "src/centos-stream/10.0/helix/",
+              "os": "linux",
+              "osVersion": "centos-stream10",
+              "tags": {
+                "centos-stream-10-helix-amd64": {}
+              }
+            }
+          ]
+        },
+        {
+          "platforms": [
+            {
+              "architecture": "arm64",
+              "dockerfile": "src/centos-stream/10.0/helix/",
+              "os": "linux",
+              "osVersion": "centos-stream10",
+              "tags": {
+                "centos-stream-10-helix-arm64v8": {}
+              },
+              "variant": "v8"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

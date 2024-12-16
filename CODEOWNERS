@@ -27,7 +27,7 @@ src/cbl-mariner/**/docker-testrunner/ @dotnet/dotnet-docker-reviewers
 src/cbl-mariner/2.0/amd64/ @dotnet/runtime-infrastructure @dotnet/dotnet-docker-reviewers
 
 # centos
-src/centos/stream9/amd64/ @dotnet/source-build @dotnet/dotnet-docker-reviewers
+src/centos-stream/**/amd64/ @dotnet/source-build @dotnet/dotnet-docker-reviewers
 
 # debian
 src/debian/11/amd64/ @dotnet/source-build @dotnet/dotnet-docker-reviewers
