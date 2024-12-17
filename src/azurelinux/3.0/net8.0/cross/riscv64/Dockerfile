@@ -5,8 +5,8 @@ ARG ROOTFS_DIR
 
 # Install the latest debootstrap
 RUN tdnf remove -y debootstrap && \
-    curl -fsL -o debootstrap.tar.gz https://deb.debian.org/debian/pool/main/d/debootstrap/debootstrap_1.0.137.tar.gz && \
-    echo "666927457ee4b0b3e68e55a0efbf3fb69189610b7abbd534017d7032cb3ae833 debootstrap.tar.gz" | sha256sum -c - && \
+    curl -fsL -o debootstrap.tar.gz https://deb.debian.org/debian/pool/main/d/debootstrap/debootstrap_1.0.138.tar.gz && \
+    echo "e8e8b72388b6e5ced65d1b5e69ce0b9e13f4813da0c328a52add57ee5f79430a debootstrap.tar.gz" | sha256sum -c - && \
     tar xzf debootstrap.tar.gz -C / && \
     ln -s /debootstrap/debootstrap -t /usr/local/bin && \
     rm -f debootstrap.tar.gz
