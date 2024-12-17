@@ -17,5 +17,7 @@ RUN tdnf install -y \
         # Provides functionality for AzureCLI AzDO task
         powershell \
         azure-cli \
+        # Provides functionality for MicroBuild install task
+        python3-pip \
     && tdnf clean all \
     && gem install fpm
