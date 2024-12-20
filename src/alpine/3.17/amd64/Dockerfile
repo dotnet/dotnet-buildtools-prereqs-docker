@@ -33,6 +33,7 @@ RUN apk add --upgrade --no-cache \
         paxctl \
         pigz \
         py3-lldb \
+        py3-pip \
         python3-dev \
         shadow \
         sudo \
