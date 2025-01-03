@@ -26,7 +26,7 @@ RUN TARGET_TRIPLE="loongarch64-alpine-linux-musl" && \
         -DLIBCXX_ENABLE_SHARED=OFF \
         -DLIBCXX_HAS_MUSL_LIBC=ON \
         -DLIBCXX_CXX_ABI=libstdc++ \
-        -DLIBCXX_CXX_ABI_INCLUDE_PATHS="$ROOTFS_DIR/usr/include/c++/14.2.0/;$ROOTFS_DIR/usr/include/c++/14.2.0/$TARGET_TRIPLE;$ROOTFS_DIR/usr/include/$TARGET_TRIPLE/c++/14" && \
+        -DLIBCXX_CXX_ABI_INCLUDE_PATHS="$ROOTFS_DIR/usr/include/c++/14.2.0/;$ROOTFS_DIR/usr/include/c++/14.2.0/$TARGET_TRIPLE" && \
     cmake --build runtimes -j $(getconf _NPROCESSORS_ONLN) && \
     cmake --install runtimes --prefix "$ROOTFS_DIR/usr"
 
