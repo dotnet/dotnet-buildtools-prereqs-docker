@@ -68,8 +68,7 @@ RUN /usr/sbin/adduser --uid 1000 --shell /bin/bash --group adm helixbot \
 USER helixbot
 
 # Install Helix Dependencies
-
 ENV VIRTUAL_ENV=/home/helixbot/.vsts-env
 RUN python3 -m venv $VIRTUAL_ENV
 ENV PATH="$VIRTUAL_ENV/bin:$PATH"
-COPY --from=venv /venv $VIRTUAL_ENV
+COPY --from=venv --chown=helixbot /venv $VIRTUAL_ENV
