@@ -1,7 +1,5 @@
 ARG ROOTFS_DIR=/crossrootfs/loongarch64
 
-# dummy change to retrigger build
-
 FROM mcr.microsoft.com/dotnet-buildtools/prereqs:azurelinux-3.0-net10.0-crossdeps-builder-amd64 AS builder
 ARG ROOTFS_DIR
 
