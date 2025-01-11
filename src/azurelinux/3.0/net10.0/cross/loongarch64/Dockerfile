@@ -3,9 +3,6 @@ ARG ROOTFS_DIR=/crossrootfs/loongarch64
 FROM mcr.microsoft.com/dotnet-buildtools/prereqs:azurelinux-3.0-net10.0-crossdeps-builder-amd64 AS builder
 ARG ROOTFS_DIR
 
-# temporarily bypass cache to fetch the latest arcade version with recent fixes
-RUN rm -rf /scripts && git clone --depth 1 --single-branch https://github.com/dotnet/arcade /scripts
-
 RUN rootfsEnv="/usr/local/share/rootfs" && \
     python3 -m venv "$rootfsEnv" && \
     "$rootfsEnv/bin/python" -m pip install aiohttp zstandard && \
