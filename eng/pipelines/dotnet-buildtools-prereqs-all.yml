@@ -8,7 +8,7 @@ trigger:
 pr: none
 
 schedules:
-- cron: "0 5 15 * *"
+- cron: "0 5 1,15 * *"
   displayName: Monthly rebuild of all images
   branches:
     include:
