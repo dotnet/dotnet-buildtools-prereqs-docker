@@ -5,21 +5,17 @@ FROM ubuntu.azurecr.io/ubuntu:24.04
 # them in a different layer.
 RUN apt-get update \
     && apt-get install -y \
-        clang-14 \
+        clang-18 \
         cmake \
         gdb \
-        liblldb-14-dev \
-        lldb-14 \
-        llvm-14 \
+        liblldb-18-dev \
+        lldb-18 \
+        llvm-18 \
         locales \
         make \
         pigz \
         sudo \
     && rm -rf /var/lib/apt/lists/*
-
-# This link fixes the broken lldb python scripting that the diagnostics tests require
-RUN mkdir -p /usr/lib/local/lib/python3.10/dist-packages/lldb \
-    && ln -s /usr/lib/llvm-14/lib/python3.10/dist-packages/lldb/* /usr/lib/local/lib/python3.10/dist-packages/lldb
 
 # Install tools used by the VSO build automation.
 RUN apt-get update \
