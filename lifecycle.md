@@ -48,22 +48,44 @@ Note: this content should be moved to another location as it is not lifecycle re
 
 Build and test images are referenced in repo infra files, across a variety of `main` and `release/*` branches. Updating these references is a multi-step detail-oriented task. It is a pain, but necessary.
 
-Two types of tag styles are available:
-* version-specific: The tag name includes the distro's version. Example: `alpine-3.21-helix-amd64`
-* floating (optional): The tag name has no version. Instead it is routinely updated to reference a new version as the distro's lifecycle progresses. There are two sub-types of floating tags:
-  * latest: References the latest validated version of the distro. Example: `alpine-latest-helix-amd64`
-  * oldest: References the oldest supported version of the distro. Example: `alpine-oldest-helix-amd64`
+Two types of tag styles are available: [distro version-specific](#distro-version-specific-tags) and [floating](#floating-tags).
 
-FLoating tags are provided on an as-needed basis. They are beneficial for repos that are not susceptible to breaking changes that occur from new distro versions because the source that references the tag doesn't need to be updated in order to make use of the new version.
-Conversely, some repos may be susceptible to distro breaking changes in which case the version-specific tags should be used ([dotnet/runtime](https://github.com/dotnet/runtime) is an example of such a repo).
+### Distro Version-Specific Tags
 
-There is an evaluation period before a `latest` floating tag gets moved to a newer distro version.
-First, version-specific tags for the new distro version are provided.
-After a one month evaluation period, the `latest` floating tag is updated to reference the new version, assuming there are no issues found.
+Distro version-specific tags include the distro's version (e.g. `alpine-3.21-helix-amd64`).
+Repos that are susceptible to breaking changes in the distro should use these tags.
+[dotnet/runtime](https://github.com/dotnet/runtime) is an example of such a repo.
 
-At times, it may be necessary to use a [fixed image reference](https://github.com/dotnet/runtime/pull/110199#discussion_r1859075989) for build reliability.
-This is done by referencing the digest of the specific image that is needed (e.g. `mcr.microsoft.com/dotnet-buildtools/prereqs@sha256:56feee03d202e008a98f3c92784f79f3f0b3a512074f7f8ee2b1ba4ca4c08c6e`).
-If this is ever done, a tracking issue should be created (before the PR is merged) so that we remember to resolve the underlying issue and update the image reference.
+### Floating Tags
+
+Floating tags have no distro version indicated in the name and are scoped to a .NET version (e.g. `alpine-net9.0-helix-amd64`).
+It is routinely updated to reference a new version as the distro's and .NET's lifecycles progress.
+
+Floating tags are provided on an as-needed basis.
+They are beneficial for repos that are not susceptible to breaking changes that occur from new distro versions because the source that references the tag doesn't need to be updated in order to make use of the new version.
+
+#### Moving the Floating Tag
+
+There is a workflow that is following before a floating tag gets moved to a newer distro version:
+1. First, version-specific tags for the new distro version are provided.
+1. After a one month evaluation period, the floating tag is ready to reference the new version, assuming there are no issues found.
+1. The floating tag is moved to reference the new version on a C week (week containing the 3rd Tuesday of the month).
+
+#### Stability Period
+
+Floating tags are scoped to a specific .NET version.
+This ensures they are stable as the release moves to maintenance phase, not getting bumped to a newer distro version during that phase.
+This time period starts 6 months before the EOL date of the .NET version.
+In other words, for the last 6 months of servicing for that .NET version, the floating tag is guaranteed to not be moved to a new distro version.
+Repos consuming these tags should reference the .NET version associated with the release branch (e.g. sources in the `release/9.0` branch should reference the `net9.0` tag).
+
+### Image Pinning
+
+At times, it may be necessary to use a [pinned image reference](https://github.com/dotnet/runtime/pull/110199#discussion_r1859075989) for build reliability.
+This is done by appending the digest of the specific image that is needed (e.g. `mcr.microsoft.com/dotnet-buildtools/prereqs:<tag-name>@sha256:56feee03d202e008a98f3c92784f79f3f0b3a512074f7f8ee2b1ba4ca4c08c6e`).
+If the reference was pinned in response to a break that occurred, a tracking issue should be created (before the PR is merged) so that we remember to resolve the underlying issue and update the image reference back to the original value.
+
+### Example References
 
 The following locations are examples of infra that gets updated when new images are available.
 
