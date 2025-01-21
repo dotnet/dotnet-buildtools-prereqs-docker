@@ -56,20 +56,25 @@ Distro version-specific tags include the distro's version (e.g. `alpine-3.21-hel
 Repos that are susceptible to breaking changes in the distro should use these tags.
 [dotnet/runtime](https://github.com/dotnet/runtime) is an example of such a repo.
 
+> [!NOTE]  
+> There are plans to automate the creation of PRs to update image references to new distro versions as they become available: https://github.com/dotnet/dotnet-buildtools-prereqs-docker/issues/1321.
+
 ### Floating Tags
 
 Floating tags have no distro version indicated in the name and are scoped to a .NET version (e.g. `alpine-net9.0-helix-amd64`).
 It is routinely updated to reference a new version as the distro's and .NET's lifecycles progress.
 
-Floating tags are provided on an as-needed basis.
-They are beneficial for repos that are not susceptible to breaking changes that occur from new distro versions because the source that references the tag doesn't need to be updated in order to make use of the new version.
+Floating tags are beneficial for repos that are not susceptible to breaking changes that occur from new distro versions because the source that references the tag doesn't need to be updated in order to make use of the new version.
+These tags are provided on an as-needed basis.
+If a new floating tag is desired, log an issue requesting it.
 
 #### Moving the Floating Tag
 
-There is a workflow that is following before a floating tag gets moved to a newer distro version:
+The maintainers of this repo follow a workflow before a floating tag gets moved to a newer distro version:
 1. First, version-specific tags for the new distro version are provided.
-1. After a one month evaluation period, the floating tag is ready to reference the new version, assuming there are no issues found.
-1. The floating tag is moved to reference the new version on a C week (week containing the 3rd Tuesday of the month).
+1. After a one month evaluation period, the new distro version is ready to be rolled out to floating tags according to the schedule, assuming there are no issues found.
+  1. For the .NET version currently in development, the floating tag is moved to reference the new distro version as soon as the evaluation period has been met.
+  1. For servicing versions of .NET, the floating tag is moved to reference the new distro version one month after the in-development .NET version has been updated. This is done as soon as the branch is open for a servicing release.
 
 #### Stability Period
 
@@ -78,6 +83,7 @@ This ensures they are stable as the release moves to maintenance phase, not gett
 This time period starts 6 months before the EOL date of the .NET version.
 In other words, for the last 6 months of servicing for that .NET version, the floating tag is guaranteed to not be moved to a new distro version.
 Repos consuming these tags should reference the .NET version associated with the release branch (e.g. sources in the `release/9.0` branch should reference the `net9.0` tag).
+Once the .NET version is EOL, the floating tag associated with that .NET version is no longer maintained.
 
 ### Image Pinning
 
