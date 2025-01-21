@@ -57,7 +57,7 @@ Repos that are susceptible to breaking changes in the distro should use these ta
 [dotnet/runtime](https://github.com/dotnet/runtime) is an example of such a repo.
 
 > [!NOTE]  
-> There are plans to automate the creation of PRs to update image references to new distro versions as they become available: https://github.com/dotnet/dotnet-buildtools-prereqs-docker/issues/1321.
+> There are plans to [automate the creation of PRs to update image references](https://github.com/dotnet/dotnet-buildtools-prereqs-docker/issues/1321) to new distro versions as they become available.
 
 ### Floating Tags
 
@@ -73,8 +73,8 @@ If a new floating tag is desired, log an issue requesting it.
 The maintainers of this repo follow a workflow before a floating tag gets moved to a newer distro version:
 1. First, version-specific tags for the new distro version are provided.
 1. After a one month evaluation period, the new distro version is ready to be rolled out to floating tags according to the schedule, assuming there are no issues found.
-  1. For the .NET version currently in development, the floating tag is moved to reference the new distro version as soon as the evaluation period has been met.
-  1. For servicing versions of .NET, the floating tag is moved to reference the new distro version one month after the in-development .NET version has been updated. This is done as soon as the branch is open for a servicing release.
+   1. For the .NET version currently in development, the floating tag is moved to reference the new distro version as soon as the evaluation period has been met.
+   1. For servicing versions of .NET, the floating tag is moved to reference the new distro version one month after the in-development .NET version has been updated. This is done as soon as the branch is open for a servicing release.
 
 #### Stability Period
 
