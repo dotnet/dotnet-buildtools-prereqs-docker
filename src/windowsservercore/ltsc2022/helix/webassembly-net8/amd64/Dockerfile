@@ -48,8 +48,13 @@ RUN powershell -Command " `
         $ProgressPreference = 'SilentlyContinue'; `
         `
         $json = Invoke-RestMethod -Uri 'https://nodejs.org/dist/index.json'; `
-        $nodeVersion = ($json | ForEach-Object { if ($_.version.StartsWith(\"v$env:NODE_RELEASE.\")) { $_ } } | Sort-Object -Property version -Descending | Select-Object -First 1).version.TrimStart('v'); `
-        Invoke-WebRequest -Uri https://nodejs.org/dist/v$nodeVersion/node-v$nodeVersion-x64.msi -OutFile $env:TEMP\nodejs.msi; `
+        $nodeVersionUrl = \"https://nodejs.org/dist/latest-v$env:NODE_RELEASE.x/SHASUMS256.txt\"; `
+        $versionInfo = Invoke-WebRequest -Uri $nodeVersionUrl -UseBasicParsing; `
+        $versionInfo.Content -match \"node-v$env:NODE_RELEASE\.\d+\.\d+-x64\.msi\" | Out-Null; `
+        $latestVersion = $matches[0]; `
+        $nodeUrl = \"https://nodejs.org/dist/latest-v$env:NODE_RELEASE.x/$latestVersion\"; `
+        Write-Host \"Installing Node from $nodeUrl\"; `
+        Invoke-WebRequest -Uri $nodeUrl -OutFile $env:TEMP\nodejs.msi; `
         Start-Process msiexec.exe -ArgumentList '/i', $env:TEMP\nodejs.msi, '/quiet', '/passive', '/qn', '/norestart' -NoNewWindow -Wait"
 
 # install latest jsvu and v8 engine
