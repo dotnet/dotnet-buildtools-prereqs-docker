@@ -22,6 +22,9 @@ RUN curl -SL --output %TEMP%\%GIT_INSTALLER% https://github.com/git-for-windows/
     && tar -C C:\git -zxf %TEMP%\%GIT_INSTALLER% `
     && setx PATH "%PATH%;C:\git\cmd"
 
+# Enable long paths
+RUN reg add HKLM\SYSTEM\CurrentControlSet\Control\FileSystem /v LongPathsEnabled /t REG_DWORD /d 1 /f
+
 # Install latest 18.x Node JS
 ENV NODE_RELEASE=18
 
