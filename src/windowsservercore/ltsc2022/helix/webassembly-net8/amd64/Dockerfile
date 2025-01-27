@@ -3,7 +3,7 @@
 FROM mcr.microsoft.com/dotnet-buildtools/prereqs:windowsservercore-ltsc2022-helix-amd64
 
 # Install 7zip
-ENV ZIP7_VERSION=2408
+ENV ZIP7_VERSION=2409
 
 RUN curl -SL --output %TEMP%\7zip-x64.exe https://www.7-zip.org/a/7z%ZIP7_VERSION%-x64.exe `
     && mkdir C:\7z `
