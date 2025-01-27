@@ -65,8 +65,6 @@ RUN /usr/sbin/adduser --uid 1000 --shell /bin/bash --group adm helixbot \
     && echo "helixbot ALL=(ALL)       NOPASSWD: ALL" > /etc/sudoers \
     && chmod +s /usr/bin/ping
 
-USER helixbot
-
 # Install Helix Dependencies
 ENV VIRTUAL_ENV=/home/helixbot/.vsts-env
 RUN python3 -m venv $VIRTUAL_ENV
