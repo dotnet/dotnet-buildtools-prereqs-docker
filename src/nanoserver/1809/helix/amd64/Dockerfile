@@ -32,8 +32,6 @@ ENV PATH="$PATH;C:\Program Files\PowerShell\;C:\Python;C:\python\scripts"
 RUN md c:\\helixtmp && pushd c:\\helixtmp &&`
     python -m pip install --upgrade pip==20.2 && `
     python -m pip install virtualenv==16.6.0 && `
-    pip download --no-deps helix-scripts --index-url https://dnceng.pkgs.visualstudio.com/public/_packaging/helix-client-prod/pypi/simple && `
-    for %f in (.\helix_scripts-*-py3-none-any.whl) do (pip install %f) && `
     popd && rd /s /q c:\\helixtmp && `
     pwsh -Command `
         New-Item -Path 'HKLM:\SOFTWARE\Microsoft\Windows\Windows Error Reporting\LocalDumps\' -Name 'dotnet.exe' -Force -ErrorAction SilentlyContinue ; `

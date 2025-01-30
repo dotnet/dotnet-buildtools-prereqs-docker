@@ -1,23 +1,3 @@
-FROM library/fedora:41 AS venv
-
-RUN dnf upgrade --refresh -y \
-    && dnf install --setopt tsflags=nodocs -y \
-        dnf-plugins-core \
-    && dnf install --setopt=install_weak_deps=False --setopt tsflags=nodocs -y \
-        openssl \
-        python3-devel \
-        python3-pip \
-        gcc \
-        libatomic \
-        redhat-rpm-config \
-    && dnf clean all
-
-RUN python3 -m venv /venv \
-    && source /venv/bin/activate \
-    pip download --no-deps helix-scripts --index-url https://dnceng.pkgs.visualstudio.com/public/_packaging/helix-client-prod/pypi/simple \
-    && pip download --no-deps helix-scripts --index-url https://dnceng.pkgs.visualstudio.com/public/_packaging/helix-client-prod/pypi/simple \
-    && pip install ./helix_scripts-*-py3-none-any.whl
-
 FROM library/fedora:41
 
 # Install Dependencies
@@ -64,9 +44,3 @@ RUN /usr/sbin/adduser --uid 1000 --shell /bin/bash --group adm helixbot \
     && chmod 755 /root \
     && echo "helixbot ALL=(ALL)       NOPASSWD: ALL" > /etc/sudoers \
     && chmod +s /usr/bin/ping
-
-# Install Helix Dependencies
-ENV VIRTUAL_ENV=/home/helixbot/.vsts-env
-RUN python3 -m venv $VIRTUAL_ENV
-ENV PATH="$VIRTUAL_ENV/bin:$PATH"
-COPY --from=venv --chown=helixbot /venv $VIRTUAL_ENV
