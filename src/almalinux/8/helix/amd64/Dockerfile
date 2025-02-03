@@ -31,3 +31,8 @@ ENV LANG=en-US.UTF-8
 RUN adduser --uid 1000 --shell /bin/bash --gid adm helixbot \
     && chmod 755 /root \
     && echo "helixbot ALL=(ALL)       NOPASSWD: ALL" > /etc/sudoers
+
+# Setup helix virtual environment
+ENV VIRTUAL_ENV=/home/helixbot/.vsts-env
+RUN python3 -m venv $VIRTUAL_ENV
+ENV PATH="$VIRTUAL_ENV/bin:$PATH"
