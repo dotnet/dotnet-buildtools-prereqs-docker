@@ -13,19 +13,28 @@ RUN $apiUrl = 'https://api.github.com/repos/PowerShell/PowerShell/releases/lates
 
 FROM mcr.microsoft.com/windows/nanoserver:1809
 
-SHELL ["cmd", "/S", "/C"]
 USER ContainerAdministrator
 ENTRYPOINT C:\Windows\System32\cmd.exe
 
 COPY --from=installer [ "C:\\powershell\\", "C:\\Program Files\\PowerShell\\" ]
 
-RUN curl -SL --output %TEMP%\python.zip https://www.nuget.org/api/v2/package/python/3.13.1 `
-    && md C:\Python C:\PythonTemp `
-    && tar -zxf %TEMP%\python.zip -C C:\PythonTemp `
-    && xcopy /s c:\PythonTemp\tools C:\Python `
-    && rd /s /q c:\PythonTemp `
-    && del /q %TEMP%\python.zip `
-    && setx /M PYTHONPATH "C:\Python\Lib;C:\Python\DLLs;"
+SHELL ["powershell", "-Command", "$ErrorActionPreference = 'Stop'; $ProgressPreference = 'SilentlyContinue';"]
+
+# Install latest stable version of Python
+RUN $apiUrl = "https://api.nuget.org/v3-flatcontainer/python/index.json"; `
+    $response = Invoke-RestMethod -Uri $apiUrl; `
+    $versions = $response.versions | Where-Object { $_ -notmatch '-' } | Sort-Object { [version]$_ } -Descending; `
+    $latestVersion = $versions[0]; `
+    curl -SL --output $env:TEMP\python.zip https://www.nuget.org/api/v2/package/python/$latestVersion; `
+    md C:\Python; `
+    md C:\PythonTemp; `
+    tar -zxf  $env:TEMP\python.zip -C C:\PythonTemp; `
+    xcopy /s c:\PythonTemp\tools C:\Python; `
+    Remove-Item -Recurse -Force C:\PythonTemp; `
+    Remove-Item -Force $env:TEMP\python.zip; `
+    setx /M PYTHONPATH "C:\Python\Lib;C:\Python\DLLs;"
+
+SHELL ["cmd", "/S", "/C"]
 
 ENV PATH="$PATH;C:\Program Files\PowerShell\;C:\Python;C:\python\scripts"
 
