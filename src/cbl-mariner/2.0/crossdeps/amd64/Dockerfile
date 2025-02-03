@@ -22,9 +22,9 @@ RUN tdnf update -y && \
         python3-pip \
         # diagnostics build dependency
         lldb-devel \
-        # Provdies azure cli and powershell, used for common AzureCLI AzDO tasks
-        powershell \
-        azure-cli
+        # Provides functionality for AzureCLI AzDO task
+        azure-cli \
+        powershell
 
 # Validate checksums with keyring after https://github.com/microsoft/azurelinux/issues/3142 is resolved
 ENV NODE_VERSION=20.11.1
