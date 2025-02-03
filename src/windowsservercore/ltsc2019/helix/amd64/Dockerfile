@@ -4,7 +4,7 @@ FROM mcr.microsoft.com/windows/servercore:ltsc2019
 SHELL ["cmd", "/S", "/C"]
 USER ContainerAdministrator
 
-RUN curl -SL --output %TEMP%\python.zip https://www.nuget.org/api/v2/package/python/3.7.3 `
+RUN curl -SL --output %TEMP%\python.zip https://www.nuget.org/api/v2/package/python/3.13.1 `
     && md C:\Python C:\PythonTemp `
     && tar -zxf %TEMP%\python.zip -C C:\PythonTemp `
     && xcopy /s c:\PythonTemp\tools C:\Python `
@@ -13,8 +13,8 @@ RUN curl -SL --output %TEMP%\python.zip https://www.nuget.org/api/v2/package/pyt
     && setx /M PYTHONPATH "C:\Python\Lib;C:\Python\DLLs;"
 
 RUN md c:\\helixtmp && pushd c:\\helixtmp &&`
-    C:\Python\python.exe -m pip install --upgrade pip==20.2 --no-warn-script-location && `
-    C:\Python\python.exe -m pip install virtualenv==16.6.0 --no-warn-script-location && `
+    C:\Python\python.exe -m pip install --upgrade pip --no-warn-script-location && `
+    C:\Python\python.exe -m pip install virtualenv --no-warn-script-location && `
     popd && rd /s /q c:\\helixtmp && `
     powershell -Command `
         New-Item -Path 'HKLM:\SOFTWARE\Microsoft\Windows\Windows Error Reporting\LocalDumps\' -Name 'dotnet.exe' -Force -ErrorAction SilentlyContinue ; `
@@ -28,4 +28,3 @@ RUN md c:\\helixtmp && pushd c:\\helixtmp &&`
    setx /M PATH "%PATH%;C:\Python;C:\python\scripts"    
 
 WORKDIR C:\\Work
-

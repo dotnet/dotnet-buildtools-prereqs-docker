@@ -19,7 +19,7 @@ ENTRYPOINT C:\Windows\System32\cmd.exe
 
 COPY --from=installer [ "C:\\powershell\\", "C:\\Program Files\\PowerShell\\" ]
 
-RUN curl -SL --output %TEMP%\python.zip https://www.nuget.org/api/v2/package/python/3.7.3 `
+RUN curl -SL --output %TEMP%\python.zip https://www.nuget.org/api/v2/package/python/3.13.1 `
     && md C:\Python C:\PythonTemp `
     && tar -zxf %TEMP%\python.zip -C C:\PythonTemp `
     && xcopy /s c:\PythonTemp\tools C:\Python `
@@ -29,9 +29,9 @@ RUN curl -SL --output %TEMP%\python.zip https://www.nuget.org/api/v2/package/pyt
 
 ENV PATH="$PATH;C:\Program Files\PowerShell\;C:\Python;C:\python\scripts"
 
-RUN md c:\\helixtmp && pushd c:\\helixtmp &&`
-    python -m pip install --upgrade pip==20.2 && `
-    python -m pip install virtualenv==16.6.0 && `
+RUN md c:\\helixtmp && pushd c:\\helixtmp && `
+    python -m pip install --upgrade pip && `
+    python -m pip install virtualenv && `
     popd && rd /s /q c:\\helixtmp && `
     pwsh -Command `
         New-Item -Path 'HKLM:\SOFTWARE\Microsoft\Windows\Windows Error Reporting\LocalDumps\' -Name 'dotnet.exe' -Force -ErrorAction SilentlyContinue ; `
@@ -44,4 +44,3 @@ RUN md c:\\helixtmp && pushd c:\\helixtmp &&`
         Set-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\Windows\Windows Error Reporting\LocalDumps\corerun.exe' -Value 2 -Name DumpCount -Force
 
 WORKDIR C:\\Work
-
