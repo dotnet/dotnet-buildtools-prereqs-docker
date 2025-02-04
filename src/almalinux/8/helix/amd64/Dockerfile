@@ -8,9 +8,7 @@ RUN dnf upgrade --refresh -y \
     #  libmsquic except in the 8.1-specific packages feed.)
     && dnf config-manager --add-repo=https://packages.microsoft.com/centos/8/prod/config.repo \
     && dnf install --setopt tsflags=nodocs -y \
-        # Get recent python3 This is needed to get a pip recent enough
-        # not to fail the build when installing cryptography library as
-        # a dependency of the helix scripts.
+        # Install supported version of Python (default for python3 is 3.6 which is unsupported)
         python39 \
         # Required for asp.net core test runs
         sudo \
