@@ -31,7 +31,6 @@ src/centos-stream/**/amd64/ @dotnet/source-build @dotnet/dotnet-docker-reviewers
 
 # debian
 src/debian/11/amd64/ @dotnet/source-build @dotnet/dotnet-docker-reviewers
-src/debian/11/opt/arm64v8/ @dotnet/runtime-infrastructure @dotnet/dotnet-docker-reviewers
 src/debian/12/gcc14/amd64/ @dotnet/runtime-infrastructure @dotnet/dotnet-docker-reviewers
 
 # fedora
