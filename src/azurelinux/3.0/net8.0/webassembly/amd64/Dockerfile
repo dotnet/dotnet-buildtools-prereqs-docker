@@ -35,7 +35,7 @@ RUN mkdir ${EMSCRIPTEN_PATH} \
     # update packages to non-vulnerable versions
     && export PATH=$PATH:${EMSDK_PATH}/node/${NODE_VERSION_IN_EMSDK}/bin \
     && cd ${EMSDK_PATH}/node/${NODE_VERSION_IN_EMSDK}/lib \
-    && npm install npm@latest \
+    && npm install npm@9 \
     && npm prune --production \
     && cd ${EMSDK_PATH}/upstream/emscripten \
     && jq 'del(.devDependencies)' package.json > package.json.tmp && mv package.json.tmp package.json \
