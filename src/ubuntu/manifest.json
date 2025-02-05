@@ -21,30 +21,6 @@
         {
           "platforms": [
             {
-              "dockerfile": "src/ubuntu/20.04/crossdeps",
-              "os": "linux",
-              "osVersion": "focal",
-              "tags": {
-                "ubuntu-20.04-crossdeps": {}
-              }
-            }
-          ]
-        },
-        {
-          "platforms": [
-            {
-              "dockerfile": "src/ubuntu/20.04/cross/arm64",
-              "os": "linux",
-              "osVersion": "focal",
-              "tags": {
-                "ubuntu-20.04-cross-arm64": {}
-              }
-            }
-          ]
-        },
-        {
-          "platforms": [
-            {
               "architecture": "amd64",
               "dockerfile": "src/ubuntu/20.04/helix",
               "os": "linux",
@@ -110,52 +86,12 @@
         {
           "platforms": [
             {
-              "architecture": "arm64",
-              "dockerfile": "src/ubuntu/20.04",
-              "os": "linux",
-              "osVersion": "focal",
-              "tags": {
-                "ubuntu-20.04-arm64": {}
-              },
-              "variant": "v8"
-            }
-          ]
-        },
-        {
-          "platforms": [
-            {
-              "dockerfile": "src/ubuntu/20.04/webassembly/amd64",
-              "os": "linux",
-              "osVersion": "focal",
-              "tags": {
-                "ubuntu-20.04-webassembly": {}
-              }
-            }
-          ]
-        },
-        {
-          "platforms": [
-            {
               "dockerfile": "src/ubuntu/22.04",
               "os": "linux",
               "osVersion": "jammy",
               "tags": {
                 "ubuntu-22.04": {}
               }
-            }
-          ]
-        },
-        {
-          "platforms": [
-            {
-              "architecture": "arm64",
-              "dockerfile": "src/ubuntu/22.04",
-              "os": "linux",
-              "osVersion": "jammy",
-              "tags": {
-                "ubuntu-22.04-arm64": {}
-              },
-              "variant": "v8"
             }
           ]
         },
@@ -189,119 +125,11 @@
         {
           "platforms": [
             {
-              "dockerfile": "src/ubuntu/22.04/cross/arm",
-              "os": "linux",
-              "osVersion": "jammy",
-              "tags": {
-                "ubuntu-22.04-cross-arm": {}
-              }
-            }
-          ]
-        },
-        {
-          "platforms": [
-            {
-              "dockerfile": "src/ubuntu/22.04/cross/arm-alpine",
-              "os": "linux",
-              "osVersion": "jammy",
-              "tags": {
-                "ubuntu-22.04-cross-arm-alpine": {}
-              }
-            }
-          ]
-        },
-        {
-          "platforms": [
-            {
               "dockerfile": "src/ubuntu/22.04/cross/armel-tizen",
               "os": "linux",
               "osVersion": "bionic",
               "tags": {
                 "ubuntu-22.04-cross-armel-tizen": {}
-              }
-            }
-          ]
-        },
-        {
-          "platforms": [
-            {
-              "dockerfile": "src/ubuntu/22.04/cross/arm64",
-              "os": "linux",
-              "osVersion": "jammy",
-              "tags": {
-                "ubuntu-22.04-cross-arm64": {}
-              }
-            }
-          ]
-        },
-        {
-          "platforms": [
-            {
-              "dockerfile": "src/ubuntu/22.04/cross/arm64-alpine",
-              "os": "linux",
-              "osVersion": "jammy",
-              "tags": {
-                "ubuntu-22.04-cross-arm64-alpine": {}
-              }
-            }
-          ]
-        },
-        {
-          "platforms": [
-            {
-              "dockerfile": "src/ubuntu/22.04/cross/ppc64le-alpine",
-              "os": "linux",
-              "osVersion": "jammy",
-              "tags": {
-                "ubuntu-22.04-cross-ppc64le-alpine": {}
-              }
-            }
-          ]
-        },
-        {
-          "platforms": [
-            {
-              "dockerfile": "src/ubuntu/22.04/cross/s390x-alpine",
-              "os": "linux",
-              "osVersion": "jammy",
-              "tags": {
-                "ubuntu-22.04-cross-s390x-alpine": {}
-              }
-            }
-          ]
-        },
-        {
-          "platforms": [
-            {
-              "dockerfile": "src/ubuntu/22.04/cross/x86-alpine",
-              "os": "linux",
-              "osVersion": "jammy",
-              "tags": {
-                "ubuntu-22.04-cross-x86-alpine": {}
-              }
-            }
-          ]
-        },
-        {
-          "platforms": [
-            {
-              "dockerfile": "src/ubuntu/22.04/cross/haiku",
-              "os": "linux",
-              "osVersion": "jammy",
-              "tags": {
-                "ubuntu-22.04-cross-haiku": {}
-              }
-            }
-          ]
-        },
-        {
-          "platforms": [
-            {
-              "dockerfile": "src/ubuntu/22.04/cross/illumos",
-              "os": "linux",
-              "osVersion": "jammy",
-              "tags": {
-                "ubuntu-22.04-cross-illumos": {}
               }
             }
           ]
@@ -379,20 +207,6 @@
               "tags": {
                 "ubuntu-22.04-mlnet-helix": {}
               }
-            }
-          ]
-        },
-        {
-          "platforms": [
-            {
-              "architecture": "arm64",
-              "dockerfile": "src/ubuntu/22.04/opt/arm64v8",
-              "os": "linux",
-              "osVersion": "jammy",
-              "tags": {
-                "ubuntu-22.04-opt-arm64v8": {}
-              },
-              "variant": "v8"
             }
           ]
         },
