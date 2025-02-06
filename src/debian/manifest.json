@@ -46,20 +46,6 @@
         {
           "platforms": [
             {
-              "architecture": "arm64",
-              "dockerfile": "src/debian/11/opt/arm64v8",
-              "os": "linux",
-              "osVersion": "bullseye",
-              "tags": {
-                "debian-11-opt-arm64v8": {}
-              },
-              "variant": "v8"
-            }
-          ]
-        },
-        {
-          "platforms": [
-            {
               "architecture": "amd64",
               "dockerfile": "src/debian/12/helix/amd64",
               "os": "linux",
