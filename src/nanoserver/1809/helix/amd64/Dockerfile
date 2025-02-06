@@ -10,33 +10,26 @@ RUN $apiUrl = 'https://api.github.com/repos/PowerShell/PowerShell/releases/lates
     Expand-Archive -Path C:\powershell.zip -DestinationPath C:\powershell; `
     Remove-Item -Path C:\powershell.zip
 
+# Download latest stable version of Python
+RUN $apiUrl = 'https://api.nuget.org/v3-flatcontainer/python/index.json'; `
+    $response = Invoke-RestMethod -Uri $apiUrl; `
+    $versions = $response.versions | Where-Object { $_ -notmatch '-' } | Sort-Object { [version]$_ } -Descending; `
+    $latestVersion = $versions[0]; `
+    Invoke-WebRequest -Uri https://www.nuget.org/api/v2/package/python/$latestVersion -OutFile $env:TEMP\python.zip; `
+    md C:\PythonTemp; `
+    tar -zxf  $env:TEMP\python.zip -C C:\PythonTemp;
+
 
 FROM mcr.microsoft.com/windows/nanoserver:1809
 
 USER ContainerAdministrator
-ENTRYPOINT C:\Windows\System32\cmd.exe
 
 COPY --from=installer [ "C:\\powershell\\", "C:\\Program Files\\PowerShell\\" ]
 
-SHELL ["powershell", "-Command", "$ErrorActionPreference = 'Stop'; $ProgressPreference = 'SilentlyContinue';"]
+COPY --from=installer [ "C:\\PythonTemp\\tools", "C:\\Python\\" ]
 
-# Install latest stable version of Python
-RUN $apiUrl = "https://api.nuget.org/v3-flatcontainer/python/index.json"; `
-    $response = Invoke-RestMethod -Uri $apiUrl; `
-    $versions = $response.versions | Where-Object { $_ -notmatch '-' } | Sort-Object { [version]$_ } -Descending; `
-    $latestVersion = $versions[0]; `
-    curl -SL --output $env:TEMP\python.zip https://www.nuget.org/api/v2/package/python/$latestVersion; `
-    md C:\Python; `
-    md C:\PythonTemp; `
-    tar -zxf  $env:TEMP\python.zip -C C:\PythonTemp; `
-    xcopy /s c:\PythonTemp\tools C:\Python; `
-    Remove-Item -Recurse -Force C:\PythonTemp; `
-    Remove-Item -Force $env:TEMP\python.zip; `
-    setx /M PYTHONPATH "C:\Python\Lib;C:\Python\DLLs;"
-
-SHELL ["cmd", "/S", "/C"]
-
-ENV PATH="$PATH;C:\Program Files\PowerShell\;C:\Python;C:\python\scripts"
+ENV PATH="$PATH;C:\Program Files\PowerShell\;C:\Python;C:\python\scripts" `
+    PYTHONPATH="C:\Python\Lib;C:\Python\DLLs;"
 
 RUN md c:\\helixtmp && pushd c:\\helixtmp && `
     python -m pip install --upgrade pip && `
