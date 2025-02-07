@@ -15,6 +15,7 @@ src/alpine/**/amd64/ @dotnet/source-build @dotnet/dotnet-docker-reviewers
 
 # azurelinux
 src/azurelinux/**/android/ @dotnet/runtime-infrastructure @dotnet/dotnet-docker-reviewers
+src/azurelinux/**/build/ @dotnet/aspnet-build @dotnet/dotnet-docker-reviewers
 src/azurelinux/**/docker-testrunner/ @dotnet/dotnet-docker-reviewers
 src/azurelinux/**/fpm/ @dotnet/runtime-infrastructure @dotnet/dotnet-docker-reviewers
 src/azurelinux/**/opt/ @dotnet/runtime-infrastructure @dotnet/dotnet-docker-reviewers
