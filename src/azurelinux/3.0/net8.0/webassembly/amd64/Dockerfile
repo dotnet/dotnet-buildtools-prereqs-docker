@@ -43,7 +43,8 @@ RUN mkdir ${EMSCRIPTEN_PATH} \
     && npm prune --production \
     && rm -rf ${EMSDK_PATH}/upstream/emscripten/node_modules/google-closure-compiler \
     && rm -rf ${EMSDK_PATH}/upstream/emscripten/node_modules/google-closure-compiler-java \
-    && rm -rf ${EMSDK_PATH}/upstream/emscripten/node_modules/google-closure-compiler-linux
+    && rm -rf ${EMSDK_PATH}/upstream/emscripten/node_modules/google-closure-compiler-linux \
+    && find ${EMSCRIPTEN_PATH} -xtype l -delete
 
 # Install V8 Engine
 SHELL ["/bin/bash", "-c"]
