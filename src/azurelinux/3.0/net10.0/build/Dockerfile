@@ -2,6 +2,7 @@
 FROM mcr.microsoft.com/dotnet/nightly/runtime-deps:10.0-preview-azurelinux3.0
 
 RUN tdnf install -y \
+        awk \
         nodejs \
         # provides 'useradd', required by Azure DevOps
         shadow-utils \
