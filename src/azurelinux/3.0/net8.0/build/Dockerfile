@@ -1,8 +1,8 @@
 FROM mcr.microsoft.com/dotnet/runtime-deps:8.0-azurelinux3.0
 
 RUN tdnf install -y \
-        azure-cli \
         awk \
+        azure-cli \
         # added to ensure latest patches over the base image
         curl \
         git \
