@@ -3,9 +3,12 @@ FROM mcr.microsoft.com/dotnet/nightly/runtime-deps:10.0-preview-azurelinux3.0
 
 RUN tdnf install -y \
         awk \
+        azure-cli \
         # added to ensure latest patches over the base image
         curl \
+        git \
         nodejs \
+        powershell \
         # provides 'useradd', required by Azure DevOps
         shadow-utils \
         tar \
