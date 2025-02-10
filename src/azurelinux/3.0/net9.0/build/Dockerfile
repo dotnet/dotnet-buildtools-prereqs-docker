@@ -7,7 +7,7 @@ RUN tdnf install -y \
         curl \
         git \
         nodejs \
-        pwsh \
+        powershell \
         # provides 'useradd', required by Azure DevOps
         shadow-utils \
         tar \
