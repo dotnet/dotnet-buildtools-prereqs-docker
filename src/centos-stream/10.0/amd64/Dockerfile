@@ -51,6 +51,7 @@ RUN dnf upgrade --refresh -y \
         python3 \
         python3-devel \
         readline-devel \
+        sudo \
         swig \
         tar \
         wget \
@@ -58,5 +59,3 @@ RUN dnf upgrade --refresh -y \
         xz \
         zlib-devel \
     && dnf clean all
-
-ENV NO_UPDATE_NOTIFIER=true

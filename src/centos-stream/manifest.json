@@ -49,7 +49,7 @@
               "os": "linux",
               "osVersion": "centos-stream10",
               "tags": {
-                "centos-stream-10": {}
+                "centos-stream-10-amd64": {}
               }
             }
           ]
