@@ -18,9 +18,9 @@ RUN powershell -Command "`
         Remove-Item -Recurse -Force C:\PythonTemp; `
         Remove-Item -Force $env:TEMP\python.zip;"
 
-ENV PATH="$PATH;C:\Python;C:\python\scripts" `
-    PYTHONPATH="C:\Python\Lib;C:\Python\DLLs;" `
-    VIRTUAL_ENV="C:\Python-env"
+RUN setx /M PATH "%PATH%;C:\Python;C:\python\scripts" && `
+    setx /M PYTHONPATH "C:\Python\Lib;C:\Python\DLLs;" && `
+    setx /M VIRTUAL_ENV "C:\Python-env"
 
 RUN python -m pip install --upgrade pip && `
     python -m pip install virtualenv && `
