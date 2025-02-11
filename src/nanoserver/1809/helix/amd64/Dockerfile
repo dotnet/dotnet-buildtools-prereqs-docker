@@ -29,12 +29,12 @@ COPY --from=installer [ "C:\\powershell\\", "C:\\Program Files\\PowerShell\\" ]
 COPY --from=installer [ "C:\\PythonTemp\\tools", "C:\\Python\\" ]
 
 ENV PATH="$PATH;C:\Program Files\PowerShell\;C:\Python;C:\python\scripts" `
-    PYTHONPATH="C:\Python\Lib;C:\Python\DLLs;"
+    PYTHONPATH="C:\Python\Lib;C:\Python\DLLs;" `
+    VIRTUAL_ENV="C:\Python-env"
 
-RUN md c:\\helixtmp && pushd c:\\helixtmp && `
-    python -m pip install --upgrade pip && `
+RUN python -m pip install --upgrade pip && `
     python -m pip install virtualenv && `
-    popd && rd /s /q c:\\helixtmp && `
+    python -m venv %VIRTUAL_ENV% && `
     pwsh -Command `
         New-Item -Path 'HKLM:\SOFTWARE\Microsoft\Windows\Windows Error Reporting\LocalDumps\' -Name 'dotnet.exe' -Force -ErrorAction SilentlyContinue ; `
         Set-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\Windows\Windows Error Reporting\LocalDumps\dotnet.exe' -Value 2 -Name DumpType -Force ; `
@@ -45,4 +45,4 @@ RUN md c:\\helixtmp && pushd c:\\helixtmp && `
         Set-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\Windows\Windows Error Reporting\LocalDumps\corerun.exe' -Value 'C:\cores' -Name DumpFolder -Force ; `
         Set-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\Windows\Windows Error Reporting\LocalDumps\corerun.exe' -Value 2 -Name DumpCount -Force
 
-WORKDIR C:\\Work
+WORKDIR C:\Work
