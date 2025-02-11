@@ -47,5 +47,7 @@ RUN /usr/sbin/adduser --uid 1000 --shell /bin/bash --group adm helixbot \
 
 # Setup helix virtual environment
 ENV VIRTUAL_ENV=/home/helixbot/.vsts-env
+USER helixbot
 RUN python3 -m venv $VIRTUAL_ENV
+USER root
 ENV PATH="$VIRTUAL_ENV/bin:$PATH"
