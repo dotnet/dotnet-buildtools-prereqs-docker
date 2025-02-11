@@ -45,6 +45,18 @@
         {
           "platforms": [
             {
+              "dockerfile": "src/centos-stream/10.0/amd64",
+              "os": "linux",
+              "osVersion": "centos-stream10",
+              "tags": {
+                "centos-stream-10-amd64": {}
+              }
+            }
+          ]
+        },
+        {
+          "platforms": [
+            {
               "architecture": "amd64",
               "dockerfile": "src/centos-stream/10.0/helix/",
               "os": "linux",
