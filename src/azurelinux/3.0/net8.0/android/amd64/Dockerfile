@@ -1,5 +1,5 @@
 ARG ANDROID_SDK_ROOT=/usr/local/android-sdk
-ARG ANDROID_NDK_VERSION=23.2.8568313
+ARG ANDROID_NDK_VERSION=27.2.12479018
 ARG ANDROID_NDK_ROOT=$ANDROID_SDK_ROOT/ndk/$ANDROID_NDK_VERSION
 FROM mcr.microsoft.com/openjdk/jdk:17-mariner AS android-sdk-download
 ARG ANDROID_SDK_ROOT
@@ -25,10 +25,8 @@ RUN wget https://dl.google.com/android/repository/commandlinetools-linux-1107670
 RUN yes | /usr/local/cmdline-tools/cmdline-tools/bin/sdkmanager --licenses
 RUN /usr/local/cmdline-tools/cmdline-tools/bin/sdkmanager --sdk_root="${ANDROID_SDK_ROOT}" --install "build-tools;33.0.0" "platforms;android-33" "ndk;${ANDROID_NDK_VERSION}"
 
-# We can't upgrade the NDK version as the runtime repo requires tooling that only exists up to NDK 23
-# Remove all components of NDK 23 that are flagged by security scanners
-RUN rm -r ${ANDROID_NDK_ROOT}/toolchains/llvm/prebuilt/linux-x86_64/python3/lib/python3.9/site-packages/ \
-    && rm -r ${ANDROID_NDK_ROOT}/toolchains/llvm/prebuilt/linux-x86_64/bin/clang-tidy
+# Remove all components of NDK 27 that are flagged by security scanners
+RUN rm -r ${ANDROID_NDK_ROOT}/toolchains/llvm/prebuilt/linux-x86_64/python3/lib/python3.11/site-packages/
 
 FROM mcr.microsoft.com/dotnet-buildtools/prereqs:azurelinux-3.0-net8.0-crossdeps-llvm-amd64
 
