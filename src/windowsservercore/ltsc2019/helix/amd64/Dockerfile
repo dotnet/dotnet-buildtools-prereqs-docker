@@ -23,7 +23,7 @@ RUN setx /M PATH "%PATH%;C:\Python;C:\python\scripts" && `
     setx /M VIRTUAL_ENV "C:\Python-env"
 
 RUN python -m pip install --upgrade pip && `
-    python -m pip install virtualenv && `
+    python -m pip install venv && `
     python -m venv %VIRTUAL_ENV% && `
     powershell -Command `
         New-Item -Path 'HKLM:\SOFTWARE\Microsoft\Windows\Windows Error Reporting\LocalDumps\' -Name 'dotnet.exe' -Force -ErrorAction SilentlyContinue ; `

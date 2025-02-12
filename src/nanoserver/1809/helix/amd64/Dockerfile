@@ -15,6 +15,7 @@ RUN $apiUrl = 'https://api.nuget.org/v3-flatcontainer/python/index.json'; `
     $response = Invoke-RestMethod -Uri $apiUrl; `
     $versions = $response.versions | Where-Object { $_ -notmatch '-' } | Sort-Object { [version]$_ } -Descending; `
     $latestVersion = $versions[0]; `
+    echo \"Downloading Python $latestVersion\"; `
     Invoke-WebRequest -Uri https://www.nuget.org/api/v2/package/python/$latestVersion -OutFile $env:TEMP\python.zip; `
     md C:\PythonTemp; `
     tar -zxf  $env:TEMP\python.zip -C C:\PythonTemp;
@@ -33,7 +34,6 @@ RUN setx /M PATH "%PATH%;C:\Program Files\PowerShell\;C:\Python;C:\python\script
     setx /M VIRTUAL_ENV "C:\Python-env"
 
 RUN python -m pip install --upgrade pip && `
-    python -m pip install virtualenv && `
     python -m venv %VIRTUAL_ENV% && `
     pwsh -Command `
         New-Item -Path 'HKLM:\SOFTWARE\Microsoft\Windows\Windows Error Reporting\LocalDumps\' -Name 'dotnet.exe' -Force -ErrorAction SilentlyContinue ; `
