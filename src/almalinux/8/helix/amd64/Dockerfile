@@ -8,9 +8,7 @@ RUN dnf upgrade --refresh -y \
     #  libmsquic except in the 8.1-specific packages feed.)
     && dnf config-manager --add-repo=https://packages.microsoft.com/centos/8/prod/config.repo \
     && dnf install --setopt tsflags=nodocs -y \
-        # Get recent python3 This is needed to get a pip recent enough
-        # not to fail the build when installing cryptography library as
-        # a dependency of the helix scripts.
+        # Install supported version of Python (default for python3 is 3.6 which is unsupported)
         python39 \
         # Required for asp.net core test runs
         sudo \
@@ -20,9 +18,6 @@ RUN dnf upgrade --refresh -y \
         cpio \
         file \
     && dnf clean all
-
-RUN python3 -m pip download --no-deps helix-scripts --index-url https://dnceng.pkgs.visualstudio.com/public/_packaging/helix-client-prod/pypi/simple \
-    && python3 -m pip install ./helix_scripts-*-py3-none-any.whl
 
 # Aspnetcore test runs expect python to be available without version suffix
 RUN alternatives --set python /usr/bin/python3 \
@@ -35,6 +30,9 @@ RUN adduser --uid 1000 --shell /bin/bash --gid adm helixbot \
     && chmod 755 /root \
     && echo "helixbot ALL=(ALL)       NOPASSWD: ALL" > /etc/sudoers
 
+# Setup helix virtual environment
+ENV VIRTUAL_ENV=/home/helixbot/.vsts-env
 USER helixbot
-
-RUN python3 -m venv /home/helixbot/.vsts-env
+RUN python3 -m venv $VIRTUAL_ENV
+USER root
+ENV PATH="$VIRTUAL_ENV/bin:$PATH"
