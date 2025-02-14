@@ -30,7 +30,7 @@ $DotnetInstallDir = "$PSScriptRoot/.dotnet"
 
 Push-Location "$PSScriptRoot\tests\Microsoft.DotNet.BuildTools.Prereqs.Docker.Tests"
 try {
-    Exec "$DotnetInstallDir/dotnet test $OptionalTestArgs --logger:trx --results-directory $PSScriptRoot/artifacts/TestResults"
+    Exec "$DotnetInstallDir/dotnet test $OptionalTestArgs --results-directory $PSScriptRoot/artifacts/TestResults"
 }
 finally {
     Pop-Location
