@@ -46,7 +46,8 @@ public class ManifestTests
                     var lastFolder = Path.GetFileName(dockerfilePath);
                     if (!crossArchPrefixes.Any(prefix => lastFolder.StartsWith(prefix)))
                     {
-                        invalidDockerfilePaths.Add($"Cross Dockerfile path '{dockerfilePath}' does not end with a valid architecture prefixed folder.");
+                        invalidDockerfilePaths.Add(
+                            $"Cross Dockerfile path '{dockerfilePath}' does not end with a valid architecture prefixed folder.");
                     }
                 }
                 else
