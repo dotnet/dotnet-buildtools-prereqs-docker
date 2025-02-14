@@ -4,11 +4,11 @@ using System.Text.Json;
 using Xunit;
 using Xunit.Abstractions;
 
-namespace dotnet.buildtools.prereqs.docker.tests;
+namespace DotNet.BuildToolsPrereqs.Docker.Tests;
 
 public class ManifestTests
 {
-    private const string DefaultArchitecture = "amd64";
+    private const string DefaultArch = "amd64";
 
     public ITestOutputHelper OutputHelper { get; set; }
 
@@ -39,11 +39,10 @@ public class ManifestTests
             foreach (var platform in platforms)
             {
                 string dockerfilePath = platform.GetProperty("dockerfile").GetString() ?? string.Empty;
-                string architecture = platform.TryGetProperty("architecture", out var archProp) ? archProp.GetString()! : DefaultArchitecture;
+                string arch = GetArchitecture(platform);
 
                 if (dockerfilePath.Contains("/cross/"))
                 {
-                    // Check that all "cross" dockerfiles end with a folder that starts with an architecture
                     var lastFolder = Path.GetFileName(dockerfilePath);
                     if (!crossArchPrefixes.Any(prefix => lastFolder.StartsWith(prefix)))
                     {
@@ -52,20 +51,18 @@ public class ManifestTests
                 }
                 else
                 {
-                    // If there are multiple platform elements that reference the same Dockerfile,
-                    // then the path must not end with an architecture folder
                     var matchingPlatforms = platforms.Where(p => p.GetProperty("dockerfile").GetString() == dockerfilePath);
                     if (matchingPlatforms.Count() > 1)
                     {
-                        if (dockerfilePath.EndsWith(architecture))
+                        if (dockerfilePath.EndsWith(arch))
                         {
                             invalidDockerfilePaths.Add(
-                                $"Dockerfile path '{dockerfilePath}' should not end with '{architecture}' because it is built for multiple platforms.");
+                                $"Dockerfile path '{dockerfilePath}' should not end with '{arch}' because it is built for multiple platforms.");
                         }
                     }
-                    else if (!dockerfilePath.EndsWith(architecture))
+                    else if (!dockerfilePath.EndsWith(arch))
                     {
-                        invalidDockerfilePaths.Add($"Dockerfile path '{dockerfilePath}' should end with an architecture folder '{architecture}'.");
+                        invalidDockerfilePaths.Add($"Dockerfile path '{dockerfilePath}' should end with an architecture folder '{arch}'.");
                     }
                 }
             }
@@ -75,5 +72,18 @@ public class ManifestTests
         {
             Assert.Fail($"Invalid Dockerfile paths:\n{string.Join("\n", invalidDockerfilePaths)}");
         }
+    }
+
+    private string GetArchitecture(JsonElement platform)
+    {
+        string variant = platform.TryGetProperty("variant", out var variantProp) ? variantProp.GetString()! : string.Empty;
+        string arch = platform.TryGetProperty("architecture", out var archProp) ? archProp.GetString()! : DefaultArch;
+
+        if (arch == "arm")
+        {
+            arch += "32";
+        }
+
+        return arch + variant;
     }
 }
