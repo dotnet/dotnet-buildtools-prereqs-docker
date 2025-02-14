@@ -33,7 +33,7 @@
           "platforms": [
             {
               "architecture": "arm64",
-              "dockerfile": "src/debian/11/helix/arm64v8",
+              "dockerfile": "src/debian/11/helix/arm64",
               "os": "linux",
               "osVersion": "bullseye",
               "tags": {
@@ -60,7 +60,7 @@
           "platforms": [
             {
               "architecture": "arm",
-              "dockerfile": "src/debian/12/helix/arm32v7",
+              "dockerfile": "src/debian/12/helix/arm32",
               "os": "linux",
               "osVersion": "bookworm",
               "tags": {
@@ -74,7 +74,7 @@
           "platforms": [
             {
               "architecture": "arm64",
-              "dockerfile": "src/debian/12/helix/arm64v8",
+              "dockerfile": "src/debian/12/helix/arm64",
               "os": "linux",
               "osVersion": "bookworm",
               "tags": {

@@ -30,7 +30,7 @@
         {
           "platforms": [
             {
-              "dockerfile": "src/fedora/41/helix",
+              "dockerfile": "src/fedora/41/helix/amd64",
               "os": "linux",
               "osVersion": "fedora41",
               "tags": {

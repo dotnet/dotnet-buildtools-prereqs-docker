@@ -959,7 +959,7 @@
           "platforms": [
             {
               "architecture": "amd64",
-              "dockerfile": "src/azurelinux/3.0/net8.0/build",
+              "dockerfile": "src/azurelinux/3.0/net8.0/build/amd64",
               "os": "linux",
               "osVersion": "azurelinux3.0",
               "tags": {
@@ -972,7 +972,7 @@
           "platforms": [
             {
               "architecture": "amd64",
-              "dockerfile": "src/azurelinux/3.0/net9.0/build",
+              "dockerfile": "src/azurelinux/3.0/net9.0/build/amd64",
               "os": "linux",
               "osVersion": "azurelinux3.0",
               "tags": {
@@ -985,7 +985,7 @@
           "platforms": [
             {
               "architecture": "amd64",
-              "dockerfile": "src/azurelinux/3.0/net10.0/build",
+              "dockerfile": "src/azurelinux/3.0/net10.0/build/amd64",
               "os": "linux",
               "osVersion": "azurelinux3.0",
               "tags": {
