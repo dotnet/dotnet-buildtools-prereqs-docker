@@ -72,7 +72,7 @@ public class ManifestTests
 
         if (invalidDockerfilePaths.Any())
         {
-            Assert.Fail($"Invalid Dockerfile paths:\n{string.Join("\n", invalidDockerfilePaths)}");
+            Assert.Fail($"Invalid Dockerfile paths:{Environment.NewLine}{string.Join(Environment.NewLine, invalidDockerfilePaths)}");
         }
     }
 
