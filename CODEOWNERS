@@ -41,8 +41,8 @@ src/ubuntu/**/debpkg/ @dotnet/runtime-infrastructure @dotnet/dotnet-docker-revie
 src/ubuntu/22.04/mlnet/ @dotnet/runtime-infrastructure @dotnet/dotnet-docker-reviewers
 src/ubuntu/22.04/opt/arm64v8/ @dotnet/runtime-infrastructure @dotnet/dotnet-docker-reviewers
 src/ubuntu/common/coredeps/ @dotnet/runtime-infrastructure @dotnet/dotnet-docker-reviewers
-src/ubuntu/20.04/Dockerfile @dotnet/source-build @dotnet/dotnet-docker-reviewers
-src/ubuntu/22.04/Dockerfile @dotnet/source-build @dotnet/dotnet-docker-reviewers
+src/ubuntu/20.04/amd64/ @dotnet/source-build @dotnet/dotnet-docker-reviewers
+src/ubuntu/22.04/amd64/ @dotnet/source-build @dotnet/dotnet-docker-reviewers
 src/ubuntu/24.04/Dockerfile @dotnet/source-build @dotnet/dotnet-docker-reviewers
 
 # common paths
