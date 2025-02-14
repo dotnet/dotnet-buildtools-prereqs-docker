@@ -1,9 +1,13 @@
+// Licensed to the .NET Foundation under one or more agreements.
+// The .NET Foundation licenses this file to you under the MIT license.
+// See the LICENSE file in the project root for more information.
+
 using System.IO;
 using System.Linq;
 using System.Text.Json;
 using Xunit;
 
-namespace DotNet.BuildToolsPrereqs.Docker.Tests;
+namespace Microsoft.DotNet.BuildToolsPrereqs.Docker.Tests;
 
 public class ManifestTests
 {
@@ -21,9 +25,7 @@ public class ManifestTests
     {
         var crossArchPrefixes = new HashSet<string> { "amd64", "arm", "loongarch64", "ppc64le", "riscv64", "s390x", "x86" };
         var invalidDockerfilePaths = new List<string>();
-        //TODO: The repo root should be a runtime config value
-        string srcPath = Path.Combine(Directory.GetCurrentDirectory(), "../../../../../src");
-        var manifestFiles = Directory.GetFiles(srcPath, "manifest.json", SearchOption.AllDirectories);
+        var manifestFiles = Directory.GetFiles(Config.SrcDirectory, "manifest.json", SearchOption.AllDirectories);
 
         foreach (var manifestFile in manifestFiles)
         {

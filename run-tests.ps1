@@ -28,9 +28,9 @@ $EngCommonDir = "$PSScriptRoot/eng/common"
 $DotnetInstallDir = "$PSScriptRoot/.dotnet"
 & $EngCommonDir/Install-DotNetSdk.ps1 -InstallPath $DotnetInstallDir
 
-Push-Location "$PSScriptRoot\tests\dotnet.buildtools.prereqs.docker.tests"
+Push-Location "$PSScriptRoot\tests\Microsoft.DotNet.BuildTools.Prereqs.Docker.Tests"
 try {
-    Exec "$DotnetInstallDir/dotnet test $OptionalTestArgs --logger:trx"
+    Exec "$DotnetInstallDir/dotnet test $OptionalTestArgs --logger:trx --results-directory $PSScriptRoot/artifacts/TestResults"
 }
 finally {
     Pop-Location

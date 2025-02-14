@@ -17,4 +17,11 @@
     <Using Include="Xunit" />
   </ItemGroup>
 
+  <ItemGroup>
+    <!-- Required values -->
+    <RuntimeHostConfigurationOption Include="$(MSBuildProjectName).SrcDirectory">
+      <Value>$(SrcDirectory)</Value>
+    </RuntimeHostConfigurationOption>
+  </ItemGroup>
+
 </Project>

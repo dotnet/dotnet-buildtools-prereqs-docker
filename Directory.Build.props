@@ -1,5 +1,7 @@
 <Project>
   <PropertyGroup>
     <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
+    <OutputPath>$(MSBuildThisFileDirectory)artifacts\bin\$(Configuration)\$(MSBuildProjectName)\</OutputPath>
+    <SrcDirectory>$(MSBuildThisFileDirectory)src</SrcDirectory>
   </PropertyGroup>
 </Project>
