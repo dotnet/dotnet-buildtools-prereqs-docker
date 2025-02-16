@@ -8,7 +8,7 @@ USER root
 
 RUN apt-get clean && \
     mv /etc/apt/sources.list /etc/apt/sources.list1 && apt-get update && \
-    mv /etc/apt/sources.list1 /etc/apt/sources.list &&  apt-get update && \
+    mv /etc/apt/sources.list1 /etc/apt/sources.list && apt-get update && \
     apt-get install -qq -y \
         libnode-dev \
         curl \
@@ -16,7 +16,6 @@ RUN apt-get clean && \
      && rm -rf /var/lib/apt/lists/* \
      \
      && localedef -i en_US -c -f UTF-8 -A /usr/share/locale/locale.alias en_US.UTF-8
-
 
 # update node, which is required for newer npm, jsvu and v8
 COPY ./setup-node-23.x.sh /tmp

@@ -21,10 +21,7 @@ RUN dnf upgrade --refresh -y \
         file \
     && dnf clean all
 
-RUN python3 -m pip download --no-deps helix-scripts --index-url https://dnceng.pkgs.visualstudio.com/public/_packaging/helix-client-prod/pypi/simple \
-    && python3 -m pip install ./helix_scripts-*-py3-none-any.whl
-
-# Aspnetcore test runs expect python to be available without version suffix
+# Test runs expect python to be available without version suffix
 RUN alternatives --set python /usr/bin/python3 \
     && ln -sf /usr/bin/pip3 /usr/bin/pip
 
@@ -33,8 +30,14 @@ ENV LANG=en-US.UTF-8
 # create helixbot user and give rights to sudo without password
 RUN adduser --uid 1000 --shell /bin/bash --gid adm helixbot \
     && chmod 755 /root \
-    && echo "helixbot ALL=(ALL)       NOPASSWD: ALL" > /etc/sudoers
+    && echo "helixbot ALL=(ALL)       NOPASSWD: ALL" > /etc/sudoers.d/helixbot
 
 USER helixbot
+WORKDIR /home/helixbot
+ENV VIRTUAL_ENV=/home/helixbot/.vsts-env
 
-RUN python3 -m venv /home/helixbot/.vsts-env
+RUN python -m venv $VIRTUAL_ENV && \
+    ${VIRTUAL_ENV}/bin/pip download --no-deps helix-scripts --index-url https://dnceng.pkgs.visualstudio.com/public/_packaging/helix-client-prod/pypi/simple && \
+    ${VIRTUAL_ENV}/bin/pip install ./helix_scripts-*-py3-none-any.whl && \
+    rm ./helix_scripts-*-py3-none-any.whl
+ENV PATH="${VIRTUAL_ENV}/bin:${PATH}"
