@@ -74,7 +74,7 @@
         {
           "platforms": [
             {
-              "dockerfile": "src/ubuntu/20.04",
+              "dockerfile": "src/ubuntu/20.04/amd64",
               "os": "linux",
               "osVersion": "focal",
               "tags": {
@@ -86,7 +86,7 @@
         {
           "platforms": [
             {
-              "dockerfile": "src/ubuntu/22.04",
+              "dockerfile": "src/ubuntu/22.04/amd64",
               "os": "linux",
               "osVersion": "jammy",
               "tags": {
@@ -113,7 +113,7 @@
         {
           "platforms": [
             {
-              "dockerfile": "src/ubuntu/22.04/crossdeps",
+              "dockerfile": "src/ubuntu/22.04/crossdeps/amd64",
               "os": "linux",
               "osVersion": "jammy",
               "tags": {
@@ -189,7 +189,7 @@
         {
           "platforms": [
             {
-              "dockerfile": "src/ubuntu/22.04/mlnet",
+              "dockerfile": "src/ubuntu/22.04/mlnet/amd64",
               "os": "linux",
               "osVersion": "jammy",
               "tags": {
@@ -201,7 +201,7 @@
         {
           "platforms": [
             {
-              "dockerfile": "src/ubuntu/22.04/mlnet/helix",
+              "dockerfile": "src/ubuntu/22.04/mlnet/helix/amd64",
               "os": "linux",
               "osVersion": "jammy",
               "tags": {

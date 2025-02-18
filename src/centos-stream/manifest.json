@@ -32,7 +32,7 @@
         {
           "platforms": [
             {
-              "dockerfile": "src/centos-stream/9.0/mlnet/helix",
+              "dockerfile": "src/centos-stream/9.0/mlnet/helix/amd64",
               "os": "linux",
               "osVersion": "centos-stream9",
               "tags": {

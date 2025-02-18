@@ -186,7 +186,7 @@
         {
           "platforms": [
             {
-              "dockerfile": "src/cbl-mariner/2.0/android",
+              "dockerfile": "src/cbl-mariner/2.0/android/amd64",
               "os": "linux",
               "osVersion": "cbl-mariner2.0",
               "tags": {
