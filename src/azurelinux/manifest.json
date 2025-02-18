@@ -13,7 +13,8 @@
               "os": "linux",
               "osVersion": "azurelinux3.0",
               "tags": {
-                "azurelinux3.0-docker-testrunner-amd64": {}
+                "azurelinux3.0-docker-testrunner-amd64": {},
+                "azurelinux-3.0-docker-testrunner-amd64": {}
               }
             },
             {
@@ -22,7 +23,8 @@
               "os": "linux",
               "osVersion": "azurelinux3.0",
               "tags": {
-                "azurelinux3.0-docker-testrunner-arm64v8": {}
+                "azurelinux3.0-docker-testrunner-arm64v8": {},
+                "azurelinux-3.0-docker-testrunner-arm64v8": {}
               },
               "variant": "v8"
             }

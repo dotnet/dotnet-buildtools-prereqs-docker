@@ -22,7 +22,8 @@
               "os": "linux",
               "osVersion": "cbl-mariner2.0",
               "tags": {
-                "cbl-mariner-2.0": {}
+                "cbl-mariner-2.0": {},
+                "cbl-mariner-2.0-amd64": {}
               }
             }
           ]
@@ -34,7 +35,8 @@
               "os": "linux",
               "osVersion": "cbl-mariner2.0",
               "tags": {
-                "cbl-mariner-2.0-crossdeps": {}
+                "cbl-mariner-2.0-crossdeps": {},
+                "cbl-mariner-2.0-crossdeps-amd64": {}
               }
             }
           ]
@@ -46,7 +48,8 @@
               "os": "linux",
               "osVersion": "cbl-mariner2.0",
               "tags": {
-                "cbl-mariner-2.0-crossdeps-builder": {}
+                "cbl-mariner-2.0-crossdeps-builder": {},
+                "cbl-mariner-2.0-crossdeps-builder-amd64": {}
               }
             }
           ]
@@ -58,7 +61,8 @@
               "os": "linux",
               "osVersion": "cbl-mariner2.0",
               "tags": {
-                "cbl-mariner-2.0-crossdeps-llvm": {}
+                "cbl-mariner-2.0-crossdeps-llvm": {},
+                "cbl-mariner-2.0-crossdeps-llvm-amd64": {}
               }
             }
           ]
@@ -142,7 +146,8 @@
               "os": "linux",
               "osVersion": "cbl-mariner2.0",
               "tags": {
-                "cbl-mariner-2.0-fpm": {}
+                "cbl-mariner-2.0-fpm": {},
+                "cbl-mariner-2.0-fpm-amd64": {}
               }
             }
           ]
@@ -150,7 +155,7 @@
         {
           "platforms": [
             {
-              "dockerfile": "src/cbl-mariner/2.0/cross/bionic/arm",
+              "dockerfile": "src/cbl-mariner/2.0/cross/ubuntu/18.04/arm",
               "os": "linux",
               "osVersion": "cbl-mariner2.0",
               "tags": {
@@ -162,7 +167,7 @@
         {
           "platforms": [
             {
-              "dockerfile": "src/cbl-mariner/2.0/cross/bionic/arm64",
+              "dockerfile": "src/cbl-mariner/2.0/cross/ubuntu/18.04/arm64",
               "os": "linux",
               "osVersion": "cbl-mariner2.0",
               "tags": {
@@ -174,7 +179,7 @@
         {
           "platforms": [
             {
-              "dockerfile": "src/cbl-mariner/2.0/cross/bionic/amd64",
+              "dockerfile": "src/cbl-mariner/2.0/cross/ubuntu/18.04/amd64",
               "os": "linux",
               "osVersion": "cbl-mariner2.0",
               "tags": {
@@ -190,7 +195,8 @@
               "os": "linux",
               "osVersion": "cbl-mariner2.0",
               "tags": {
-                "cbl-mariner-2.0-android": {}
+                "cbl-mariner-2.0-android": {},
+                "cbl-mariner-2.0-android-amd64": {}
               }
             }
           ]

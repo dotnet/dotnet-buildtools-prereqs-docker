@@ -10,7 +10,8 @@
               "os": "linux",
               "osVersion": "focal",
               "tags": {
-                "ubuntu-20.04-coredeps": {}
+                "ubuntu-20.04-coredeps": {},
+                "ubuntu-20.04-coredeps-amd64": {}
               },
               "buildArgs": {
                 "POWERSHELL_TAG": "ubuntu-20.04"
@@ -78,7 +79,8 @@
               "os": "linux",
               "osVersion": "focal",
               "tags": {
-                "ubuntu-20.04": {}
+                "ubuntu-20.04": {},
+                "ubuntu-20.04-amd64": {}
               }
             }
           ]
@@ -90,7 +92,8 @@
               "os": "linux",
               "osVersion": "jammy",
               "tags": {
-                "ubuntu-22.04": {}
+                "ubuntu-22.04": {},
+                "ubuntu-22.04-amd64": {}
               }
             }
           ]
@@ -102,7 +105,9 @@
               "os": "linux",
               "osVersion": "jammy",
               "tags": {
-                "ubuntu-22.04-coredeps": {}
+                "ubuntu-22.04-coredeps": {},
+                "ubuntu-22.04-coredeps-amd64": {}
+
               },
               "buildArgs": {
                 "POWERSHELL_TAG": "ubuntu-22.04"
@@ -117,7 +122,8 @@
               "os": "linux",
               "osVersion": "jammy",
               "tags": {
-                "ubuntu-22.04-crossdeps": {}
+                "ubuntu-22.04-crossdeps": {},
+                "ubuntu-22.04-crossdeps-amd64": {}
               }
             }
           ]
@@ -168,7 +174,8 @@
               "os": "linux",
               "osVersion": "jammy",
               "tags": {
-                "ubuntu-22.04-debpkg": {}
+                "ubuntu-22.04-debpkg": {},
+                "ubuntu-22.04-debpkg-amd64": {}
               }
             }
           ]
@@ -181,7 +188,8 @@
               "os": "linux",
               "osVersion": "jammy",
               "tags": {
-                "ubuntu-22.04-helix-webassembly": {}
+                "ubuntu-22.04-helix-webassembly": {},
+                "ubuntu-22.04-helix-webassembly-amd64": {}
               }
             }
           ]
@@ -193,7 +201,8 @@
               "os": "linux",
               "osVersion": "jammy",
               "tags": {
-                "ubuntu-22.04-mlnet": {}
+                "ubuntu-22.04-mlnet": {},
+                "ubuntu-22.04-mlnet-amd64": {}
               }
             }
           ]
@@ -205,7 +214,8 @@
               "os": "linux",
               "osVersion": "jammy",
               "tags": {
-                "ubuntu-22.04-mlnet-helix": {}
+                "ubuntu-22.04-mlnet-helix": {},
+                "ubuntu-22.04-mlnet-helix-amd64": {}
               }
             }
           ]
@@ -217,7 +227,8 @@
               "os": "linux",
               "osVersion": "noble",
               "tags": {
-                "ubuntu-24.04": {}
+                "ubuntu-24.04": {},
+                "ubuntu-24.04-amd64": {}
               }
             }
           ]
@@ -230,7 +241,8 @@
               "os": "linux",
               "osVersion": "noble",
               "tags": {
-                "ubuntu-24.04-arm64": {}
+                "ubuntu-24.04-arm64": {},
+                "ubuntu-24.04-arm64v8": {}
               },
               "variant": "v8"
             }
