@@ -25,6 +25,9 @@
 
   <ItemGroup>
     <!-- Required values -->
+    <RuntimeHostConfigurationOption Include="$(MSBuildProjectName).RepoDirectory">
+      <Value>$(RepoDirectory)</Value>
+    </RuntimeHostConfigurationOption>
     <RuntimeHostConfigurationOption Include="$(MSBuildProjectName).SrcDirectory">
       <Value>$(SrcDirectory)</Value>
     </RuntimeHostConfigurationOption>
