@@ -3,10 +3,9 @@
   <PropertyGroup>
     <ImplicitUsings>enable</ImplicitUsings>
     <IsPackable>false</IsPackable>
-    <Nullable>enable</Nullable>
     <OutputType>Exe</OutputType>
     <TargetFramework>net9.0</TargetFramework>
-    <TestingPlatformDotnetTestSupport>true</TestingPlatformDotnetTestSupport>
+    <UseMicrosoftTestingPlatformRunner>true</UseMicrosoftTestingPlatformRunner>
   </PropertyGroup>
 
   <ItemGroup>

@@ -1,7 +1,7 @@
 [cmdletbinding()]
 param(
-     # Additional args to pass to dotnet test
-    [string]$OptionalTestArgs
+     # Additional args to pass to dotnet run
+    [string]$OptionalArgs
 )
 
 Set-StrictMode -Version Latest
@@ -30,7 +30,7 @@ $DotnetInstallDir = "$PSScriptRoot/.dotnet"
 
 Push-Location "$PSScriptRoot\tests\Microsoft.DotNet.BuildTools.Prereqs.Docker.Tests"
 try {
-    Exec "$DotnetInstallDir/dotnet test $OptionalTestArgs --results-directory $PSScriptRoot/artifacts/TestResults"
+    Exec "$DotnetInstallDir/dotnet run --project Microsoft.DotNet.BuildTools.Prereqs.Docker.Tests.csproj --report-xunit-trx --results-directory $PSScriptRoot/artifacts/TestResults $OptionalArgs"
 }
 finally {
     Pop-Location

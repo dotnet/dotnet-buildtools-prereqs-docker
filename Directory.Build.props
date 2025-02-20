@@ -1,6 +1,8 @@
 <Project>
   <PropertyGroup>
+    <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
     <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
+    <Nullable>enable</Nullable>
     <OutputPath>$(MSBuildThisFileDirectory)artifacts\bin\$(Configuration)\$(MSBuildProjectName)\</OutputPath>
     <RepoDirectory>$(MSBuildThisFileDirectory)</RepoDirectory>
     <SrcDirectory>$(RepoDirectory)src</SrcDirectory>

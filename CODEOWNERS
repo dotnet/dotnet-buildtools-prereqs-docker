@@ -8,7 +8,7 @@
 ### Dockerfiles ###
 
 # almalinux
-src/almalinux/**/source-build/ @dotnet/source-build @dotnet/dotnet-docker-reviewers
+# src/almalinux/**/source-build/ @dotnet/source-build @dotnet/dotnet-docker-reviewers
 
 # alpine
 src/alpine/**/amd64/ @dotnet/source-build @dotnet/dotnet-docker-reviewers
