@@ -10,7 +10,7 @@ RUN wget http://raspbian.raspberrypi.org/raspbian/pool/main/r/raspbian-archive-k
     mv raspbian-archive-keyring-20120528.2/keyrings/raspbian-archive-keyring.gpg /usr/share/keyrings/ && \
     rm -r raspbian-archive-keyring_20120528.2.tar.gz raspbian-archive-keyring-20120528.2
 
-RUN /scripts/eng/common/cross/build-rootfs.sh armv6 bookworm lldb13
+RUN /scripts/eng/common/cross/build-rootfs.sh armv6 bookworm no-lldb
 
 FROM mcr.microsoft.com/dotnet-buildtools/prereqs:azurelinux-3.0-net10.0-crossdeps-llvm-amd64
 ARG ROOTFS_DIR

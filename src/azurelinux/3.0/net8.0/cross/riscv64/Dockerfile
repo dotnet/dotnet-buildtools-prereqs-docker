@@ -3,15 +3,10 @@ ARG ROOTFS_DIR=/crossrootfs/riscv64
 FROM mcr.microsoft.com/dotnet-buildtools/prereqs:azurelinux-3.0-net8.0-crossdeps-builder-amd64 AS builder
 ARG ROOTFS_DIR
 
-# Install the latest debootstrap
-RUN tdnf remove -y debootstrap && \
-    curl -fsL -o debootstrap.tar.gz https://deb.debian.org/debian/pool/main/d/debootstrap/debootstrap_1.0.137.tar.gz && \
-    echo "666927457ee4b0b3e68e55a0efbf3fb69189610b7abbd534017d7032cb3ae833 debootstrap.tar.gz" | sha256sum -c - && \
-    tar xzf debootstrap.tar.gz -C / && \
-    ln -s /debootstrap/debootstrap -t /usr/local/bin && \
-    rm -f debootstrap.tar.gz
-
-RUN /scripts/eng/common/cross/build-rootfs.sh riscv64 noble --skipunmount
+RUN rootfsEnv="/usr/local/share/rootfs" && \
+    python3 -m venv "$rootfsEnv" && \
+    "$rootfsEnv/bin/python" -m pip install aiohttp zstandard && \
+    PYTHON_EXECUTABLE="$rootfsEnv/bin/python" /scripts/eng/common/cross/build-rootfs.sh riscv64 noble --skipunmount --skipemulation
 
 RUN TARGET_TRIPLE="riscv64-linux-gnu" && \
     CLANG_MAJOR_VERSION=$(clang --version | grep -oP "(?<=version )\d+") && \

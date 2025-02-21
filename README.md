@@ -1,9 +1,12 @@
 # Dockerfiles for Building and Testing the .NET Product
 
-The Dockerfiles in this repository are used for building and testing the .NET product.
-As such there are Dockerfiles for the various supported Linux distributions which setup the necessary prerequisites to build and test the .NET product.
+The Dockerfiles in this repository are used for building and testing the .NET product. They are intended for the use of the .NET engineering team and not supported. Feel free to use or contribute to these Dockerfiles if they are useful to you.
+
+The Dockerfiles establish build and test environments for supported Linux and Windows distributions. Teams reference these images from their build and test pipelines.
 
 The images are provided and removed according to [Prereq container image lifecycle](./lifecycle.md).
+
+For any questions, please feel free to open an [issue](https://github.com/dotnet/dotnet-buildtools-prereqs-docker/issues) and mention [@dotnet/dotnet-docker-reviewers](https://github.com/orgs/dotnet/teams/dotnet-docker-reviewers).
 
 ## Where are the published images
 
@@ -265,4 +268,4 @@ Note the build disablement in the build break issue.
 
 ## Support
 
-For any questions, please feel free to open an [issue](https://github.com/dotnet/dotnet-buildtools-prereqs-docker/issues) and mention [@dotnet/dotnet-docker-reviewers](https://github.com/orgs/dotnet/teams/dotnet-docker-reviewers).
+This repo is unsupported.

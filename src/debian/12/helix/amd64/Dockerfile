@@ -32,6 +32,7 @@ RUN apt-get update \
         automake \
         at \
         build-essential \
+        cpio \
         gcc \
         gdb \
         git \
@@ -66,8 +67,7 @@ RUN /usr/sbin/adduser --disabled-password --gecos '' --uid 1000 --shell /bin/bas
 USER helixbot
 
 # Install Helix Dependencies
-
 ENV VIRTUAL_ENV=/home/helixbot/.vsts-env
 RUN python3 -m venv $VIRTUAL_ENV
 ENV PATH="$VIRTUAL_ENV/bin:$PATH"
-COPY --from=venv /venv $VIRTUAL_ENV
+COPY --from=venv --chown=helixbot /venv $VIRTUAL_ENV

@@ -16,6 +16,9 @@ RUN dnf upgrade --refresh -y \
         sudo \
         libicu \
         libmsquic \
+        # Required for arcade test runs
+        cpio \
+        file \
     && dnf clean all
 
 RUN python3 -m pip download --no-deps helix-scripts --index-url https://dnceng.pkgs.visualstudio.com/public/_packaging/helix-client-prod/pypi/simple \

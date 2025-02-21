@@ -13,7 +13,8 @@
               "os": "linux",
               "osVersion": "azurelinux3.0",
               "tags": {
-                "azurelinux3.0-docker-testrunner-amd64": {}
+                "azurelinux3.0-docker-testrunner-amd64": {},
+                "azurelinux-3.0-docker-testrunner-amd64": {}
               }
             },
             {
@@ -22,7 +23,8 @@
               "os": "linux",
               "osVersion": "azurelinux3.0",
               "tags": {
-                "azurelinux3.0-docker-testrunner-arm64v8": {}
+                "azurelinux3.0-docker-testrunner-arm64v8": {},
+                "azurelinux-3.0-docker-testrunner-arm64v8": {}
               },
               "variant": "v8"
             }
@@ -422,6 +424,19 @@
         {
           "platforms": [
             {
+              "dockerfile": "src/azurelinux/3.0/net8.0/cross/android/openssl/amd64",
+              "os": "linux",
+              "osVersion": "azurelinux3.0",
+              "tags": {
+                "azurelinux-3.0-net8.0-android-openssl": {},
+                "azurelinux-3.0-net8.0-cross-android-openssl-amd64": {}
+              }
+            }
+          ]
+        },
+        {
+          "platforms": [
+            {
               "dockerfile": "src/azurelinux/3.0/net9.0/android/amd64",
               "os": "linux",
               "osVersion": "azurelinux3.0",
@@ -590,7 +605,6 @@
             }
           ]
         },
-
         {
           "platforms": [
             {
@@ -638,7 +652,8 @@
               }
             }
           ]
-        },        {
+        },
+        {
           "platforms": [
             {
               "dockerfile": "src/azurelinux/3.0/net10.0/cross/riscv64-musl",
@@ -646,6 +661,30 @@
               "osVersion": "azurelinux3.0",
               "tags": {
                 "azurelinux-3.0-net10.0-cross-riscv64-musl": {}
+              }
+            }
+          ]
+        },
+        {
+          "platforms": [
+            {
+              "dockerfile": "src/azurelinux/3.0/net10.0/cross/loongarch64",
+              "os": "linux",
+              "osVersion": "azurelinux3.0",
+              "tags": {
+                "azurelinux-3.0-net10.0-cross-loongarch64": {}
+              }
+            }
+          ]
+        },
+        {
+          "platforms": [
+            {
+              "dockerfile": "src/azurelinux/3.0/net10.0/cross/loongarch64-musl",
+              "os": "linux",
+              "osVersion": "azurelinux3.0",
+              "tags": {
+                "azurelinux-3.0-net10.0-cross-loongarch64-musl": {}
               }
             }
           ]
@@ -759,7 +798,7 @@
           ]
         },
         {
-         "platforms": [
+          "platforms": [
             {
               "dockerfile": "src/azurelinux/3.0/net10.0/android/amd64",
               "os": "linux",
@@ -891,7 +930,6 @@
             }
           ]
         },
-
         {
           "platforms": [
             {
@@ -916,6 +954,45 @@
                 "azurelinux-3.0-helix-arm64v8": {}
               },
               "variant": "v8"
+            }
+          ]
+        },
+        {
+          "platforms": [
+            {
+              "architecture": "amd64",
+              "dockerfile": "src/azurelinux/3.0/net8.0/build/amd64",
+              "os": "linux",
+              "osVersion": "azurelinux3.0",
+              "tags": {
+                "azurelinux-3.0-net8.0-build-amd64": {}
+              }
+            }
+          ]
+        },
+        {
+          "platforms": [
+            {
+              "architecture": "amd64",
+              "dockerfile": "src/azurelinux/3.0/net9.0/build/amd64",
+              "os": "linux",
+              "osVersion": "azurelinux3.0",
+              "tags": {
+                "azurelinux-3.0-net9.0-build-amd64": {}
+              }
+            }
+          ]
+        },
+        {
+          "platforms": [
+            {
+              "architecture": "amd64",
+              "dockerfile": "src/azurelinux/3.0/net10.0/build/amd64",
+              "os": "linux",
+              "osVersion": "azurelinux3.0",
+              "tags": {
+                "azurelinux-3.0-net10.0-build-amd64": {}
+              }
             }
           ]
         }

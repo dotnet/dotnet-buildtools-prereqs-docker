@@ -48,9 +48,50 @@ Note: this content should be moved to another location as it is not lifecycle re
 
 Build and test images are referenced in repo infra files, across a variety of `main` and `release/*` branches. Updating these references is a multi-step detail-oriented task. It is a pain, but necessary.
 
-We use version specific references in infra to ensure that our CI builds are reliable. One can imagine using floating OS tags (such as `debian-oldest` and `debian-latest`), however such an approach would be guaranteed to break our build. We know that since we often see build and test breaks that need addressing in PRs where we update build and test images.
+Two types of tag styles are available: [distro version-specific](#distro-version-specific-tags) and [floating](#floating-tags).
 
-At times, it may be necessary to use a [fixed image reference](https://github.com/dotnet/runtime/pull/110199#discussion_r1859075989) for build reliability. If this is ever done, a tracking issue should be created (before the PR is merged) so that we remember to resolve the underlying issue and update the image reference.
+### Distro Version-Specific Tags
+
+Distro version-specific tags include the distro's version (e.g. `alpine-3.21-helix-amd64`).
+Repos that are susceptible to breaking changes in the distro should use these tags.
+[dotnet/runtime](https://github.com/dotnet/runtime) is an example of such a repo.
+
+> [!NOTE]  
+> There are plans to [automate the creation of PRs to update image references](https://github.com/dotnet/dotnet-buildtools-prereqs-docker/issues/1321) to new distro versions as they become available.
+
+### Floating Tags
+
+Floating tags have no distro version indicated in the name and are scoped to a .NET version (e.g. `alpine-net9.0-helix-amd64`).
+It is routinely updated to reference a new version as the distro's and .NET's lifecycles progress.
+
+Floating tags are beneficial for repos that are not susceptible to breaking changes that occur from new distro versions because the source that references the tag doesn't need to be updated in order to make use of the new version.
+These tags are provided on an as-needed basis.
+If a new floating tag is desired, log an issue requesting it.
+
+#### Moving the Floating Tag
+
+The maintainers of this repo follow a workflow before a floating tag gets moved to a newer distro version:
+1. First, version-specific tags for the new distro version are provided.
+1. After a one month evaluation period, the new distro version is ready to be rolled out to floating tags according to the schedule, assuming there are no issues found.
+   1. For the .NET version currently in development, the floating tag is moved to reference the new distro version as soon as the evaluation period has been met.
+   1. For servicing versions of .NET, the floating tag is moved to reference the new distro version one month after the in-development .NET version has been updated. This is done as soon as the branch is open for a servicing release.
+
+#### Stability Period
+
+Floating tags are scoped to a specific .NET version.
+This ensures they are stable as the release moves to maintenance phase, not getting bumped to a newer distro version during that phase.
+This time period starts 6 months before the EOL date of the .NET version.
+In other words, for the last 6 months of servicing for that .NET version, the floating tag is guaranteed to not be moved to a new distro version.
+Repos consuming these tags should reference the .NET version associated with the release branch (e.g. sources in the `release/9.0` branch should reference the `net9.0` tag).
+Once the .NET version is EOL, the floating tag associated with that .NET version is no longer maintained.
+
+### Image Pinning
+
+At times, it may be necessary to use a [pinned image reference](https://github.com/dotnet/runtime/pull/110199#discussion_r1859075989) for build reliability.
+This is done by appending the digest of the specific image that is needed (e.g. `mcr.microsoft.com/dotnet-buildtools/prereqs:<tag-name>@sha256:56feee03d202e008a98f3c92784f79f3f0b3a512074f7f8ee2b1ba4ca4c08c6e`).
+If the reference was pinned in response to a break that occurred, a tracking issue should be created (before the PR is merged) so that we remember to resolve the underlying issue and update the image reference back to the original value.
+
+### Example References
 
 The following locations are examples of infra that gets updated when new images are available.
 

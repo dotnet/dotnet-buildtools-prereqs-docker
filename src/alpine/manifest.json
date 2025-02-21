@@ -6,60 +6,6 @@
         {
           "platforms": [
             {
-              "dockerfile": "src/alpine/3.17/amd64",
-              "os": "linux",
-              "osVersion": "alpine3.17",
-              "tags": {
-                "alpine-3.17": {},
-                "alpine-3.17-amd64": {}
-              }
-            }
-          ]
-        },
-        {
-          "platforms": [
-            {
-              "architecture": "amd64",
-              "dockerfile": "src/alpine/3.17/helix",
-              "os": "linux",
-              "osVersion": "alpine3.17",
-              "tags": {
-                "alpine-3.17-helix-amd64": {}
-              }
-            }
-          ]
-        },
-        {
-          "platforms": [
-            {
-              "architecture": "arm",
-              "dockerfile": "src/alpine/3.17/helix",
-              "os": "linux",
-              "osVersion": "alpine3.17",
-              "tags": {
-                "alpine-3.17-helix-arm32v7": {}
-              },
-              "variant": "v7"
-            }
-          ]
-        },
-        {
-          "platforms": [
-            {
-              "architecture": "arm64",
-              "dockerfile": "src/alpine/3.17/helix",
-              "os": "linux",
-              "osVersion": "alpine3.17",
-              "tags": {
-                "alpine-3.17-helix-arm64v8": {}
-              },
-              "variant": "v8"
-            }
-          ]
-        },
-        {
-          "platforms": [
-            {
               "architecture": "amd64",
               "dockerfile": "src/alpine/3.18/helix",
               "os": "linux",
@@ -95,32 +41,6 @@
                 "alpine-3.18-helix-arm64v8": {}
               },
               "variant": "v8"
-            }
-          ]
-        },
-        {
-          "platforms": [
-            {
-              "dockerfile": "src/alpine/3.18/amd64",
-              "os": "linux",
-              "osVersion": "alpine3.18",
-              "tags": {
-                "alpine-3.18": {},
-                "alpine-3.18-amd64": {}
-              }
-            }
-          ]
-        },
-        {
-          "platforms": [
-            {
-              "dockerfile": "src/alpine/3.18/WithNode/amd64",
-              "os": "linux",
-              "osVersion": "alpine3.18",
-              "tags": {
-                "alpine-3.18-WithNode": {},
-                "alpine-3.18-WithNode-amd64": {}
-              }
             }
           ]
         },
@@ -166,20 +86,6 @@
         {
           "platforms": [
             {
-              "architecture": "arm",
-              "dockerfile": "src/alpine/3.20/helix",
-              "os": "linux",
-              "osVersion": "alpine3.20",
-              "tags": {
-                "alpine-3.20-helix-arm32v7": {}
-              },
-              "variant": "v7"
-            }
-          ]
-        },
-        {
-          "platforms": [
-            {
               "architecture": "arm64",
               "dockerfile": "src/alpine/3.20/helix",
               "os": "linux",
@@ -188,32 +94,6 @@
                 "alpine-3.20-helix-arm64v8": {}
               },
               "variant": "v8"
-            }
-          ]
-        },
-        {
-          "platforms": [
-            {
-              "dockerfile": "src/alpine/3.20/amd64",
-              "os": "linux",
-              "osVersion": "alpine3.20",
-              "tags": {
-                "alpine-3.20": {},
-                "alpine-3.20-amd64": {}
-              }
-            }
-          ]
-        },
-        {
-          "platforms": [
-            {
-              "dockerfile": "src/alpine/3.20/withnode/amd64",
-              "os": "linux",
-              "osVersion": "alpine3.20",
-              "tags": {
-                "alpine-3.20-withnode": {},
-                "alpine-3.20-withnode-amd64": {}
-              }
             }
           ]
         },

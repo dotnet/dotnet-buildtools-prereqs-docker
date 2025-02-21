@@ -34,7 +34,8 @@
               "os": "windows",
               "osVersion": "windowsservercore-ltsc2022",
               "tags": {
-                "windowsservercore-ltsc2022-helix-webassembly": {}
+                "windowsservercore-ltsc2022-helix-webassembly": {},
+                "windowsservercore-ltsc2022-helix-webassembly-amd64": {}
               }
             }
           ]
@@ -46,7 +47,44 @@
               "os": "windows",
               "osVersion": "windowsservercore-ltsc2022",
               "tags": {
-                "windowsservercore-ltsc2022-helix-webassembly-net8": {}
+                "windowsservercore-ltsc2022-helix-webassembly-net8": {},
+                "windowsservercore-ltsc2022-helix-webassembly-net8-amd64": {}
+              }
+            }
+          ]
+        },
+        {
+          "platforms": [
+            {
+              "dockerfile": "src/windowsservercore/ltsc2025/helix/amd64",
+              "os": "windows",
+              "osVersion": "windowsservercore-ltsc2025",
+              "tags": {
+                "windowsservercore-ltsc2025-helix-amd64": {}
+              }
+            }
+          ]
+        },
+        {
+          "platforms": [
+            {
+              "dockerfile": "src/windowsservercore/ltsc2025/helix/webassembly/amd64",
+              "os": "windows",
+              "osVersion": "windowsservercore-ltsc2025",
+              "tags": {
+                "windowsservercore-ltsc2025-helix-webassembly-amd64": {}
+              }
+            }
+          ]
+        },
+        {
+          "platforms": [
+            {
+              "dockerfile": "src/windowsservercore/ltsc2025/helix/webassembly-net8/amd64",
+              "os": "windows",
+              "osVersion": "windowsservercore-ltsc2025",
+              "tags": {
+                "windowsservercore-ltsc2025-helix-webassembly-net8-amd64": {}
               }
             }
           ]
