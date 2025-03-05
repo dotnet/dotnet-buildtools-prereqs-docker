@@ -14,9 +14,9 @@ RUN dnf upgrade --refresh -y \
 
 RUN python3 -m venv /venv \
     && source /venv/bin/activate \
-    pip download --no-deps helix-scripts --index-url https://dnceng.pkgs.visualstudio.com/public/_packaging/helix-client-prod/pypi/simple \
     && pip download --no-deps helix-scripts --index-url https://dnceng.pkgs.visualstudio.com/public/_packaging/helix-client-prod/pypi/simple \
-    && pip install ./helix_scripts-*-py3-none-any.whl
+    && pip install ./helix_scripts-*-py3-none-any.whl \
+    && rm ./helix_scripts-*-py3-none-any.whl
 
 FROM library/fedora:41
 
@@ -62,11 +62,13 @@ ENV LANG=en-US.UTF-8
 # Fedora does not have all options as other Linux systems
 RUN /usr/sbin/adduser --uid 1000 --shell /bin/bash --group adm helixbot \
     && chmod 755 /root \
-    && echo "helixbot ALL=(ALL)       NOPASSWD: ALL" > /etc/sudoers \
+    && echo "helixbot ALL=(ALL)       NOPASSWD: ALL" > /etc/sudoers.d/helixbot \
     && chmod +s /usr/bin/ping
 
-# Install Helix Dependencies
+USER helixbot
 ENV VIRTUAL_ENV=/home/helixbot/.vsts-env
+
+# Install Helix Dependencies
 RUN python3 -m venv $VIRTUAL_ENV
-ENV PATH="$VIRTUAL_ENV/bin:$PATH"
+ENV PATH="${VIRTUAL_ENV}/bin:${PATH}"
 COPY --from=venv --chown=helixbot /venv $VIRTUAL_ENV
