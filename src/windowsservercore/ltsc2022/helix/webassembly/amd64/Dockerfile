@@ -45,8 +45,9 @@ RUN powershell -Command " `
 # install latest jsvu and v8 engine
 RUN npm install jsvu -g `
     && npm exec -c "jsvu --os=win64 --engines=v8" `
-    && setx PATH "%PATH%;%USERPROFILE%\.jsvu\bin"
-RUN v8 -e "console.log(version());quit();"
+    && setx PATH "%PATH%;%USERPROFILE%\.jsvu\bin" `
+    && v8 -e "console.log(version());quit();" `
+    && npm uninstall jsvu -g
 
 # install vc redistributable for llvm 19
 ENV VC_REDIST_VERSION 17
