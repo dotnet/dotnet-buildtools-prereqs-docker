@@ -23,8 +23,6 @@ RUN /tmp/setup-node-23.x.sh && apt-get -y install nodejs
 
 RUN npm install -g npm
 
-USER helixbot
-
 # Install latest V8 engine
 ENV PATH="/home/helixbot/.jsvu/bin:${PATH}"
 RUN npm install jsvu -g \
