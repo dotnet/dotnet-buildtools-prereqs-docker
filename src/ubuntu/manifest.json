@@ -170,6 +170,20 @@
         {
           "platforms": [
             {
+              "architecture": "arm",
+              "dockerfile": "src/ubuntu/22.04/helix",
+              "os": "linux",
+              "osVersion": "jammy",
+              "tags": {
+                "ubuntu-22.04-helix-arm32v7": {}
+              },
+              "variant": "v7"
+            }
+          ]
+        },
+        {
+          "platforms": [
+            {
               "dockerfile": "src/ubuntu/22.04/debpkg/amd64",
               "os": "linux",
               "osVersion": "jammy",
