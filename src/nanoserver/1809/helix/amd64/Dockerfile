@@ -27,7 +27,6 @@ RUN curl -SL --output %TEMP%\python.zip https://www.nuget.org/api/v2/package/pyt
     && del /q %TEMP%\python.zip `
     && setx /M PYTHONPATH "C:\Python\Lib;C:\Python\DLLs;"
 
-
 RUN setx /M PATH "%PATH%;C:\Program Files\PowerShell\;C:\Python;C:\python\scripts"
 
 RUN md c:\\helixtmp && pushd c:\\helixtmp &&`
