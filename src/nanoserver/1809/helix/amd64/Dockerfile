@@ -27,7 +27,7 @@ RUN curl -SL --output %TEMP%\python.zip https://www.nuget.org/api/v2/package/pyt
     && del /q %TEMP%\python.zip `
     && setx /M PYTHONPATH "C:\Python\Lib;C:\Python\DLLs;"
 
-ENV PATH="$PATH;C:\Program Files\PowerShell\;C:\Python;C:\python\scripts"
+RUN setx /M PATH "%PATH%;C:\Program Files\PowerShell\;C:\Python;C:\python\scripts"
 
 RUN md c:\\helixtmp && pushd c:\\helixtmp &&`
     python -m pip install --upgrade pip==20.2 && `
