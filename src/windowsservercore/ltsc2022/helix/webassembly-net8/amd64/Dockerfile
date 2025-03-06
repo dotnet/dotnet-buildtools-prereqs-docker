@@ -61,5 +61,5 @@ RUN powershell -Command " `
 RUN npm install jsvu -g `
     && npm exec -c "jsvu --os=win64 --engines=v8" `
     && setx PATH "%PATH%;%USERPROFILE%\.jsvu\bin" `
-    && v8 -e "console.log(version());quit();" `
+    && %USERPROFILE%\.jsvu\bin\v8 -e "console.log(version());quit();" `
     && npm uninstall jsvu -g
