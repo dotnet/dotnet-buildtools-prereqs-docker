@@ -41,11 +41,12 @@ COPY ./setup-node-23.x.sh /tmp
 RUN /tmp/setup-node-23.x.sh && apt-get -y install nodejs
 
 RUN npm install -g npm
-RUN npm install jsvu -g
 
 USER helixbot
 
 # Install latest V8 engine
-RUN jsvu --os=linux64 --engines=v8
 ENV PATH="/home/helixbot/.jsvu/bin:${PATH}"
-RUN v8 -e "console.log(version());quit();"
+RUN sudo npm install jsvu -g \
+    && jsvu --os=linux64 --engines=v8 \
+    && v8 -e "console.log(version());quit();" \
+    && sudo npm uninstall jsvu -g
