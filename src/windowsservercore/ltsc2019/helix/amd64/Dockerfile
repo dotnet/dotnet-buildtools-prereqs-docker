@@ -1,41 +1,74 @@
 # escape=`
 FROM mcr.microsoft.com/windows/servercore:ltsc2019
 
+RUN setx /M PATH "%PATH%;C:\Python;C:\python\scripts" && `
+    setx /M PYTHONPATH "C:\Python\Lib;C:\Python\DLLs;" && `
+    setx /M VIRTUAL_ENV "C:\Python-env"
+
 # Install latest stable version of Python
-RUN powershell -Command "`
-        $ErrorActionPreference = 'Stop'; `
-        $ProgressPreference = 'SilentlyContinue'; `
+RUN powershell -Command " `
         $apiUrl = 'https://api.nuget.org/v3-flatcontainer/python/index.json'; `
         $response = Invoke-RestMethod -Uri $apiUrl; `
         $versions = $response.versions | Where-Object { $_ -notmatch '-' } | Sort-Object { [version]$_ } -Descending; `
         $latestVersion = $versions[0]; `
         echo \"Downloading Python $latestVersion\"; `
-        Invoke-WebRequest -Uri https://www.nuget.org/api/v2/package/python/$latestVersion -OutFile $env:TEMP\python.zip; `
-        md C:\Python; `
-        md C:\PythonTemp; `
-        tar -zxf  $env:TEMP\python.zip -C C:\PythonTemp; `
-        xcopy /s c:\PythonTemp\tools C:\Python; `
-        Remove-Item -Recurse -Force C:\PythonTemp; `
-        Remove-Item -Force $env:TEMP\python.zip;"
+        $pythonZip = \"$env:TEMP\python.zip\"; `
+        Invoke-WebRequest -Uri https://www.nuget.org/api/v2/package/python/$latestVersion -OutFile $pythonZip; `
+        $pythonTemp = 'C:\PythonTemp'; `
+        md $pythonTemp; `
+        tar -zxf $pythonZip -C $pythonTemp; `
+        if ($LASTEXITCODE -ne 0) { `
+            echo 'Failed to extract Python'; `
+            exit 1; `
+        } `
+        xcopy /s /i c:\PythonTemp\tools C:\Python; `
+        if ($LASTEXITCODE -ne 0) { `
+            echo 'Failed to copy Python'; `
+            exit 1; `
+        } `
+        Remove-Item -Recurse -Force $pythonTemp; `
+        Remove-Item -Force $pythonZip;"
 
-RUN setx /M PATH "%PATH%;C:\Python;C:\python\scripts" && `
-    setx /M PYTHONPATH "C:\Python\Lib;C:\Python\DLLs;" && `
-    setx /M VIRTUAL_ENV "C:\Python-env"
+# Install Helix
+RUN powershell -Command " `
+        $helixTemp = 'C:\helixtmp'; `
+        md $helixTemp; `
+        pushd $helixTemp; `
+        python -m venv $env:VIRTUAL_ENV; `
+        if ($LASTEXITCODE -ne 0) { `
+            echo \"Failed to create Python virtual environment\"; `
+            exit 1; `
+        } `
+        python -m pip install --upgrade pip; `
+        if ($LASTEXITCODE -ne 0) { `
+            echo \"Failed to install pip\"; `
+            exit 1; `
+        } `
+        pip download --no-deps helix-scripts --index-url https://dnceng.pkgs.visualstudio.com/public/_packaging/helix-client-prod/pypi/simple; `
+        if ($LASTEXITCODE -ne 0) { `
+            echo \"Failed to download Helix scripts\"; `
+            exit 1; `
+        } `
+        Get-ChildItem -Path $helixTemp -Filter 'helix_scripts-*-py3-none-any.whl' | `
+            ForEach-Object { `
+                pip install $_.FullName --no-cache-dir; `
+                if ($LASTEXITCODE -ne 0) { `
+                    echo \"Failed to install Helix script: $($_.Name)\"; `
+                    exit 1; `
+                } `
+            }; `
+        popd; `
+        Remove-Item -Recurse -Force $helixTemp;"
 
-RUN md c:\\helixtmp && pushd c:\\helixtmp && `
-    python -m pip install --upgrade pip && `
-    python -m venv %VIRTUAL_ENV% && `
-    python -m pip download --no-deps helix-scripts --index-url https://dnceng.pkgs.visualstudio.com/public/_packaging/helix-client-prod/pypi/simple && `
-    for %f in (.\helix_scripts-*-py3-none-any.whl) do (python -m pip install %f  --no-warn-script-location) && `
-    popd && rd /s /q c:\\helixtmp && `
-    powershell -Command `
-        New-Item -Path 'HKLM:\SOFTWARE\Microsoft\Windows\Windows Error Reporting\LocalDumps\' -Name 'dotnet.exe' -Force -ErrorAction SilentlyContinue ; `
-        Set-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\Windows\Windows Error Reporting\LocalDumps\dotnet.exe' -Value 2 -Name DumpType -Force ; `
-        Set-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\Windows\Windows Error Reporting\LocalDumps\dotnet.exe' -Value 'C:\cores' -Name DumpFolder -Force ; `
-        Set-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\Windows\Windows Error Reporting\LocalDumps\dotnet.exe' -Value 2 -Name DumpCount -Force ; `
-        New-Item -Path 'HKLM:\SOFTWARE\Microsoft\Windows\Windows Error Reporting\LocalDumps\' -Name 'corerun.exe' -Force -ErrorAction SilentlyContinue ; `
-        Set-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\Windows\Windows Error Reporting\LocalDumps\corerun.exe' -Value 2 -Name DumpType -Force ; `
-        Set-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\Windows\Windows Error Reporting\LocalDumps\corerun.exe' -Value 'C:\cores' -Name DumpFolder -Force ; `
-        Set-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\Windows\Windows Error Reporting\LocalDumps\corerun.exe' -Value 2 -Name DumpCount -Force
+# Configure crash dumps for dotnet.exe and corerun.exe
+RUN powershell -Command " `
+        New-Item -Path 'HKLM:\SOFTWARE\Microsoft\Windows\Windows Error Reporting\LocalDumps\' -Name 'dotnet.exe' -Force -ErrorAction SilentlyContinue; `
+        Set-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\Windows\Windows Error Reporting\LocalDumps\dotnet.exe' -Value 2 -Name DumpType -Force; `
+        Set-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\Windows\Windows Error Reporting\LocalDumps\dotnet.exe' -Value 'C:\cores' -Name DumpFolder -Force; `
+        Set-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\Windows\Windows Error Reporting\LocalDumps\dotnet.exe' -Value 2 -Name DumpCount -Force; `
+        New-Item -Path 'HKLM:\SOFTWARE\Microsoft\Windows\Windows Error Reporting\LocalDumps\' -Name 'corerun.exe' -Force -ErrorAction SilentlyContinue; `
+        Set-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\Windows\Windows Error Reporting\LocalDumps\corerun.exe' -Value 2 -Name DumpType -Force; `
+        Set-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\Windows\Windows Error Reporting\LocalDumps\corerun.exe' -Value 'C:\cores' -Name DumpFolder -Force; `
+        Set-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\Windows\Windows Error Reporting\LocalDumps\corerun.exe' -Value 2 -Name DumpCount -Force"
 
 WORKDIR C:\\Work
