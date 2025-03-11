@@ -72,10 +72,9 @@ ENV LANG=en_US.utf8
 
 # Add MsQuic
 RUN ARCH=$TARGETARCH \
-    VERSION=$LIBMSQUIC_VERSION \
     && if [ "$TARGETARCH" = "arm" ]; then \
         ARCH="armhf"; fi \
-    && curl -LO "https://packages.microsoft.com/ubuntu/24.04/prod/pool/main/libm/libmsquic/libmsquic_${VERSION}_$ARCH.deb" \
+    && curl -LO "https://packages.microsoft.com/ubuntu/24.04/prod/pool/main/libm/libmsquic/libmsquic_${LIBMSQUIC_VERSION}_$ARCH.deb" \
     && dpkg -i libmsquic* \
     && rm libmsquic*
 
