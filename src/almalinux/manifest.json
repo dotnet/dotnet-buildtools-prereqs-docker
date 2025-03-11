@@ -10,7 +10,8 @@
               "os": "linux",
               "osVersion": "almalinux8",
               "tags": {
-                "almalinux-8-source-build": {}
+                "almalinux-8-source-build": {},
+                "almalinux-8-source-build-amd64": {}
               }
             },
             {

@@ -10,7 +10,8 @@
               "os": "linux",
               "osVersion": "fedora40",
               "tags": {
-                "fedora-40": {}
+                "fedora-40": {},
+                "fedora-40-amd64": {}
               }
             }
           ]
@@ -22,7 +23,8 @@
               "os": "linux",
               "osVersion": "fedora41",
               "tags": {
-                "fedora-41": {}
+                "fedora-41": {},
+                "fedora-41-amd64": {}
               }
             }
           ]
@@ -30,11 +32,12 @@
         {
           "platforms": [
             {
-              "dockerfile": "src/fedora/41/helix",
+              "dockerfile": "src/fedora/41/helix/amd64",
               "os": "linux",
               "osVersion": "fedora41",
               "tags": {
-                "fedora-41-helix": {}
+                "fedora-41-helix": {},
+                "fedora-41-helix-amd64": {}
               }
             }
           ]

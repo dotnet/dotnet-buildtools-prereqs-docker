@@ -12,7 +12,8 @@ RUN apt-get update \
 RUN python3 -m venv /venv \
     && . /venv/bin/activate \
     && pip download --no-deps helix-scripts --index-url https://dnceng.pkgs.visualstudio.com/public/_packaging/helix-client-prod/pypi/simple \
-    && pip install ./helix_scripts-*-py3-none-any.whl
+    && pip install ./helix_scripts-*-py3-none-any.whl \
+    && rm ./helix_scripts-*-py3-none-any.whl
 
 FROM library/debian:bookworm
 
@@ -59,15 +60,14 @@ RUN apt-get update \
 ENV LANG=en_US.utf8
 
 # Create helixbot user and give rights to sudo without password
-# additionally, preinstall the virtualenv packages used for VSTS reporting to save time
 RUN /usr/sbin/adduser --disabled-password --gecos '' --uid 1000 --shell /bin/bash --ingroup adm helixbot \
     && chmod 755 /root \
-    && echo "helixbot ALL=(ALL)       NOPASSWD: ALL" > /etc/sudoers
+    && echo "helixbot ALL=(ALL)       NOPASSWD: ALL" > /etc/sudoers.d/helixbot
 
 USER helixbot
 
 # Install Helix Dependencies
 ENV VIRTUAL_ENV=/home/helixbot/.vsts-env
 RUN python3 -m venv $VIRTUAL_ENV
-ENV PATH="$VIRTUAL_ENV/bin:$PATH"
+ENV PATH="${VIRTUAL_ENV}/bin:${PATH}"
 COPY --from=venv --chown=helixbot /venv $VIRTUAL_ENV

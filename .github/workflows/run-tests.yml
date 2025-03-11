@@ -1,0 +1,24 @@
+name: Run Tests
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  run-tests:
+    name: Run Tests
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v4
+
+      - name: Run Tests
+        shell: pwsh
+        run: ./run-tests.ps1
+
+      - name: Upload test results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-results
+          path: ./artifacts/**/TestResults/*
