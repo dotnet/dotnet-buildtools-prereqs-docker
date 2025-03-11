@@ -1,4 +1,4 @@
-FROM ubuntu.azurecr.io/ubuntu:oracular AS venv
+FROM ubuntu.azurecr.io/ubuntu:plucky AS venv
 ENV DEBIAN_FRONTEND=noninteractive
 
 RUN apt-get update \
@@ -19,8 +19,9 @@ RUN python3 -m venv /venv \
     && pip install ./helix_scripts-*-py3-none-any.whl \
     && rm ./helix_scripts-*-py3-none-any.whl
 
-FROM ubuntu.azurecr.io/ubuntu:oracular
+FROM ubuntu.azurecr.io/ubuntu:plucky
 ARG TARGETARCH
+ARG LIBMSQUIC_VERSION=2.4.8
 ENV DEBIAN_FRONTEND=noninteractive
 
 RUN LIBCURL=libcurl4 \
@@ -71,9 +72,10 @@ ENV LANG=en_US.utf8
 
 # Add MsQuic
 RUN ARCH=$TARGETARCH \
+    VERSION=$LIBMSQUIC_VERSION \
     && if [ "$TARGETARCH" = "arm" ]; then \
         ARCH="armhf"; fi \
-    && curl -LO https://packages.microsoft.com/ubuntu/24.04/prod/pool/main/libm/libmsquic/libmsquic_2.4.7_$ARCH.deb \
+    && curl -LO "https://packages.microsoft.com/ubuntu/24.04/prod/pool/main/libm/libmsquic/libmsquic_${VERSION}_$ARCH.deb" \
     && dpkg -i libmsquic* \
     && rm libmsquic*
 
