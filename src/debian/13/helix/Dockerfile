@@ -20,6 +20,7 @@ RUN python3 -m venv /venv \
 
 FROM library/debian:trixie
 ARG TARGETARCH
+ARG LIBMSQUIC_VERSION=2.4.8
 
 # Install Helix Dependencies
 RUN LIBCURL=libcurl4 \
@@ -64,10 +65,11 @@ RUN LIBCURL=libcurl4 \
     && rm -rf /var/lib/apt/lists/* \
     && localedef -i en_US -c -f UTF-8 -A /usr/share/locale/locale.alias en_US.UTF-8
 
+# Add MsQuic
 RUN ARCH=$TARGETARCH \
     && if [ "$TARGETARCH" = "arm" ]; then \
         ARCH="armhf"; fi \
-    && curl -LO https://packages.microsoft.com/ubuntu/24.04/prod/pool/main/libm/libmsquic/libmsquic_2.4.7_$ARCH.deb \
+    && curl -LO "https://packages.microsoft.com/ubuntu/24.04/prod/pool/main/libm/libmsquic/libmsquic_${LIBMSQUIC_VERSION}_$ARCH.deb" \
     && dpkg -i libmsquic* \
     && rm libmsquic*
 
