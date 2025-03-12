@@ -9,8 +9,9 @@ RUN rootfsEnv="/usr/local/share/rootfs" && \
     PYTHON_EXECUTABLE="$rootfsEnv/bin/python" /scripts/eng/common/cross/build-rootfs.sh riscv64 noble --skipunmount --skipemulation
 
 RUN TARGET_TRIPLE="riscv64-linux-gnu" && \
-    CPP_INCLUDES=$(find "$ROOTFS_DIR/usr/include/c++/" -mindepth 1 -maxdepth 1 -type d | sort -V | head -n1) && \
-    TRIPLET_INCLUDES=$([ -e "$CPP_INCLUDES/$TARGET_TRIPLE" ] && echo "$CPP_INCLUDES/$TARGET_TRIPLE" || realpath "$CPP_INCLUDES/../../$TARGET_TRIPLE") && \
+    GCC_VER=$(basename "$(find "$ROOTFS_DIR/usr/include/c++/" -mindepth 1 -maxdepth 1 -type d | sort -V | head -n1)") && \
+    CPP_INCLUDES="$ROOTFS_DIR/usr/include/c++/$GCC_VER" && \
+    TRIPLET_INCLUDES=$([ -e "$CPP_INCLUDES/$TARGET_TRIPLE" ] && echo "$CPP_INCLUDES/$TARGET_TRIPLE" || echo "$(realpath "$CPP_INCLUDES/../../$TARGET_TRIPLE");$(realpath "$CPP_INCLUDES/../../$TARGET_TRIPLE/c++/$GCC_VER")") && \
     echo "Using C++ includes $CPP_INCLUDES and $TRIPLET_INCLUDES to build for $TARGET_TRIPLE" && \
     CLANG_MAJOR_VERSION=$(clang --version | grep -oP "(?<=version )\d+") && \
     cmake -S llvm-project.src/runtimes -B runtimes \

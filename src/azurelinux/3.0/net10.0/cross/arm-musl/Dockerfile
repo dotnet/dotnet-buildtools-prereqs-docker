@@ -6,8 +6,9 @@ ARG ROOTFS_DIR
 RUN /scripts/eng/common/cross/build-rootfs.sh arm alpine3.17 --skipunmount
 
 RUN TARGET_TRIPLE="armv7-alpine-linux-musleabihf" && \
-    CPP_INCLUDES=$(find "$ROOTFS_DIR/usr/include/c++/" -mindepth 1 -maxdepth 1 -type d | sort -V | head -n1) && \
-    TRIPLET_INCLUDES=$([ -e "$CPP_INCLUDES/$TARGET_TRIPLE" ] && echo "$CPP_INCLUDES/$TARGET_TRIPLE" || realpath "$CPP_INCLUDES/../../$TARGET_TRIPLE") && \
+    GCC_VER=$(basename "$(find "$ROOTFS_DIR/usr/include/c++/" -mindepth 1 -maxdepth 1 -type d | sort -V | head -n1)") && \
+    CPP_INCLUDES="$ROOTFS_DIR/usr/include/c++/$GCC_VER" && \
+    TRIPLET_INCLUDES=$([ -e "$CPP_INCLUDES/$TARGET_TRIPLE" ] && echo "$CPP_INCLUDES/$TARGET_TRIPLE" || echo "$(realpath "$CPP_INCLUDES/../../$TARGET_TRIPLE");$(realpath "$CPP_INCLUDES/../../$TARGET_TRIPLE/c++/$GCC_VER")") && \
     echo "Using C++ includes $CPP_INCLUDES and $TRIPLET_INCLUDES to build for $TARGET_TRIPLE" && \
     cmake -S llvm-project.src/runtimes -B runtimes \
         -DCMAKE_BUILD_TYPE=Release \
