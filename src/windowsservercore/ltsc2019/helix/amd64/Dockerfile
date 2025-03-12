@@ -39,19 +39,14 @@ RUN powershell -Command " `
             echo \"Failed to create Python virtual environment\"; `
             exit 1; `
         } `
-        python -m pip install --upgrade pip; `
-        if ($LASTEXITCODE -ne 0) { `
-            echo \"Failed to install pip\"; `
-            exit 1; `
-        } `
-        pip download --no-deps helix-scripts --index-url https://dnceng.pkgs.visualstudio.com/public/_packaging/helix-client-prod/pypi/simple; `
+        & $env:VIRTUAL_ENV\Scripts\pip download --no-deps helix-scripts --index-url https://dnceng.pkgs.visualstudio.com/public/_packaging/helix-client-prod/pypi/simple; `
         if ($LASTEXITCODE -ne 0) { `
             echo \"Failed to download Helix scripts\"; `
             exit 1; `
         } `
         Get-ChildItem -Path $helixTemp -Filter 'helix_scripts-*-py3-none-any.whl' | `
             ForEach-Object { `
-                pip install $_.FullName --no-cache-dir; `
+                & $env:VIRTUAL_ENV\Scripts\pip install $_.FullName --no-cache-dir; `
                 if ($LASTEXITCODE -ne 0) { `
                     echo \"Failed to install Helix script: $($_.Name)\"; `
                     exit 1; `
