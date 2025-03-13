@@ -17,9 +17,9 @@ USER ContainerAdministrator
 
 COPY --from=installer [ "C:\\powershell\\", "C:\\Program Files\\PowerShell\\" ]
 
-RUN setx /M PATH "%PATH%;C:\Program Files\PowerShell\;C:\Python;C:\python\scripts" && `
-    setx /M PYTHONPATH "C:\Python\Lib;C:\Python\DLLs;" && `
-    setx /M VIRTUAL_ENV "C:\Python-env"
+RUN setx /M VIRTUAL_ENV "C:\Python-env" && `
+    setx /M PATH "%PATH%;C:\Program Files\PowerShell\;C:\Python;C:\python\scripts;%VIRTUAL_ENV%\Scripts" && `
+    setx /M PYTHONPATH "C:\Python\Lib;C:\Python\DLLs;"
 
 # Install latest stable version of Python
 RUN pwsh -Command " `
@@ -55,14 +55,14 @@ RUN pwsh -Command " `
             echo \"Failed to create Python virtual environment\"; `
             exit 1; `
         } `
-        & $env:VIRTUAL_ENV\Scripts\pip download --no-deps helix-scripts --index-url https://dnceng.pkgs.visualstudio.com/public/_packaging/helix-client-prod/pypi/simple; `
+        & pip download --no-deps helix-scripts --index-url https://dnceng.pkgs.visualstudio.com/public/_packaging/helix-client-prod/pypi/simple; `
         if ($LASTEXITCODE -ne 0) { `
             echo \"Failed to download Helix scripts\"; `
             exit 1; `
         } `
         Get-ChildItem -Path $helixTemp -Filter 'helix_scripts-*-py3-none-any.whl' | `
             ForEach-Object { `
-                & $env:VIRTUAL_ENV\Scripts\pip install $_.FullName --no-cache-dir; `
+                & pip install $_.FullName --no-cache-dir; `
                 if ($LASTEXITCODE -ne 0) { `
                     echo \"Failed to install Helix script: $($_.Name)\"; `
                     exit 1; `
