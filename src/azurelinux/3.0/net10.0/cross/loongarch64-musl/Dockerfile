@@ -6,6 +6,10 @@ ARG ROOTFS_DIR
 RUN /scripts/eng/common/cross/build-rootfs.sh loongarch64 alpineedge --skipemulation
 
 RUN TARGET_TRIPLE="loongarch64-alpine-linux-musl" && \
+    GCC_VER=$(basename "$(find "$ROOTFS_DIR/usr/include/c++/" -mindepth 1 -maxdepth 1 -type d | sort -V | head -n1)") && \
+    CPP_INCLUDES="$ROOTFS_DIR/usr/include/c++/$GCC_VER" && \
+    TRIPLET_INCLUDES=$([ -e "$CPP_INCLUDES/$TARGET_TRIPLE" ] && echo "$CPP_INCLUDES/$TARGET_TRIPLE" || echo "$(realpath "$CPP_INCLUDES/../../$TARGET_TRIPLE");$(realpath "$CPP_INCLUDES/../../$TARGET_TRIPLE/c++/$GCC_VER")") && \
+    echo "Using C++ includes $CPP_INCLUDES and $TRIPLET_INCLUDES to build for $TARGET_TRIPLE" && \
     cmake -S llvm-project.src/runtimes -B runtimes \
         -DCMAKE_BUILD_TYPE=Release \
         -DCMAKE_ASM_COMPILER=clang \
@@ -26,7 +30,7 @@ RUN TARGET_TRIPLE="loongarch64-alpine-linux-musl" && \
         -DLIBCXX_ENABLE_SHARED=OFF \
         -DLIBCXX_HAS_MUSL_LIBC=ON \
         -DLIBCXX_CXX_ABI=libstdc++ \
-        -DLIBCXX_CXX_ABI_INCLUDE_PATHS="$ROOTFS_DIR/usr/include/c++/14.2.0/;$ROOTFS_DIR/usr/include/c++/14.2.0/$TARGET_TRIPLE" && \
+        -DLIBCXX_CXX_ABI_INCLUDE_PATHS="$CPP_INCLUDES;$TRIPLET_INCLUDES" && \
     cmake --build runtimes -j $(getconf _NPROCESSORS_ONLN) && \
     cmake --install runtimes --prefix "$ROOTFS_DIR/usr"
 

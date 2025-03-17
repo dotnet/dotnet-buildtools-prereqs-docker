@@ -55,8 +55,11 @@ RUN dnf config-manager addrepo --from-repofile=https://packages.microsoft.com/fe
     && dnf install --setopt=install_weak_deps=False --setopt tsflags=nodocs -y \
         libmsquic
 
-# Needed for .NET libraries tests to pass
-ENV LANG=en-US.UTF-8
+ENV \
+    # Needed for .NET libraries tests to pass
+    LANG=en-US.UTF-8 \
+    # Needed for WCF tests to pass (https://github.com/dotnet/wcf/pull/5744#issuecomment-2702201438)
+    OPENSSL_ENABLE_SHA1_SIGNATURES=1
 
 # create helixbot user and give rights to sudo without password
 # Fedora does not have all options as other Linux systems
