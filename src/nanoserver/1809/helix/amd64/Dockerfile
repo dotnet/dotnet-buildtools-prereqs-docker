@@ -18,7 +18,7 @@ USER ContainerAdministrator
 COPY --from=installer [ "C:\\powershell\\", "C:\\Program Files\\PowerShell\\" ]
 
 RUN setx /M VIRTUAL_ENV "C:\Python-env" && `
-    setx /M PATH "%PATH%;C:\Program Files\PowerShell\;C:\Python;C:\python\scripts;%VIRTUAL_ENV%\Scripts" && `
+    setx /M PATH "%PATH%;C:\Program Files\PowerShell\;%VIRTUAL_ENV%\Scripts;C:\Python;C:\python\scripts" && `
     setx /M PYTHONPATH "C:\Python\Lib;C:\Python\DLLs;"
 
 # Install latest stable version of Python
