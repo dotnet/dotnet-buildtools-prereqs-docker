@@ -1,4 +1,4 @@
-FROM mcr.microsoft.com/azurelinux/base/core:3.0
+FROM mcr.microsoft.com/azurelinux/base/core:3.0 AS builder
 
 RUN tdnf update -y && \
     tdnf install -y \
@@ -8,8 +8,6 @@ RUN tdnf update -y && \
         tar \
         util-linux \
         wget \
-        # Runtime dependencies
-        icu \
         # LLVM Build tools
         binutils \
         clang \
@@ -50,3 +48,20 @@ RUN mkdir llvm-project.src && \
         -Wno-dev && \
     make -j $(getconf _NPROCESSORS_ONLN) && \
     make install
+
+
+FROM mcr.microsoft.com/azurelinux/base/core:3.0
+
+RUN tdnf update -y && \
+    tdnf install -y \
+        # Common dependencies
+        ca-certificates \
+        git \
+        tar \
+        util-linux \
+        wget \
+        # Runtime dependencies
+        icu
+
+# Install LLVM that we built from source
+COPY --from=builder /usr/local /usr/local
