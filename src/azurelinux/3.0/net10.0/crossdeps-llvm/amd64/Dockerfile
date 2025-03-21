@@ -5,4 +5,4 @@ FROM mcr.microsoft.com/dotnet-buildtools/prereqs:azurelinux-3.0-net10.0-crossdep
 # dummy change to trigger cross/ images build after llvm update
 
 # Install LLVM that we built from source
-COPY --from=builder /usr/local /usr/local
+COPY --from=builder /opt/llvm /usr/local

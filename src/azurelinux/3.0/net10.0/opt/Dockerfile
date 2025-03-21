@@ -41,6 +41,7 @@ RUN mkdir llvm-project.src && \
     rm llvm-project.src.tar.xz && \
     mkdir build && cd build && \
     cmake ../llvm-project.src/llvm \
+        -DCMAKE_INSTALL_PREFIX=/opt/llvm \
         -DCMAKE_BUILD_TYPE=Release \
         -DCMAKE_C_COMPILER=clang \
         -DCMAKE_CXX_COMPILER=clang++ \
@@ -64,4 +65,4 @@ RUN tdnf update -y && \
         icu
 
 # Install LLVM that we built from source
-COPY --from=builder /usr/local /usr/local
+COPY --from=builder /opt/llvm /usr/local
