@@ -67,6 +67,7 @@ RUN mkdir llvm-project.src && \
     rm llvm-project.src.tar.xz && \
     mkdir build && cd build && \
     cmake ../llvm-project.src/llvm \
+        -DCMAKE_INSTALL_PREFIX=/opt/llvm \
         -DCMAKE_BUILD_TYPE=Release \
         -DCMAKE_C_COMPILER=clang \
         -DCMAKE_CXX_COMPILER=clang++ \
