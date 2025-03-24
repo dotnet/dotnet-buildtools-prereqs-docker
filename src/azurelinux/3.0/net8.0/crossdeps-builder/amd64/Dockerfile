@@ -80,6 +80,8 @@ RUN mkdir llvm-project.src && \
     make -j $(getconf _NPROCESSORS_ONLN) && \
     make install
 
+ENV PATH="/opt/llvm/bin:$PATH"
+
 # Obtain arcade scripts used to build rootfs
 RUN git config --global user.email builder@dotnet-buildtools-prereqs-docker && \
     git clone --depth 1 --single-branch https://github.com/dotnet/arcade /scripts
