@@ -3,4 +3,4 @@ FROM mcr.microsoft.com/dotnet-buildtools/prereqs:azurelinux-3.0-net9.0-crossdeps
 FROM mcr.microsoft.com/dotnet-buildtools/prereqs:azurelinux-3.0-net9.0-crossdeps-amd64
 
 # Install LLVM that we built from source
-COPY --from=builder /usr/local /usr/local
+COPY --from=builder /opt/llvm /usr/local
