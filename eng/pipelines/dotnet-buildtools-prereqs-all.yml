@@ -7,6 +7,12 @@ trigger:
     - src/*
 pr: none
 
+parameters:
+- name: disableMatrixTrimming
+  displayName: Disable matrix trimming
+  type: boolean
+  default: false
+
 schedules:
 - cron: "0 5 1,15 * *"
   displayName: Monthly rebuild of all images
@@ -24,6 +30,8 @@ resources:
 
 variables:
 - template: /eng/pipelines/variables/common.yml@self
+  parameters: 
+    disableMatrixTrimming: ${{ parameters.disableMatrixTrimming }}
 - name: publishEolAnnotations
   value: true
 

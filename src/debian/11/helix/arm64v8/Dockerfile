@@ -43,20 +43,20 @@ RUN apt-get update \
 
 ENV LANG=en_US.utf8
 
-RUN ln -sf /usr/bin/python3 /usr/bin/python \
-    && pip download --no-deps helix-scripts --index-url https://dnceng.pkgs.visualstudio.com/public/_packaging/helix-client-prod/pypi/simple \
-    && export CRYPTOGRAPHY_DONT_BUILD_RUST=1 \
-    && pip install ./helix_scripts-*-py3-none-any.whl
+RUN ln -sf /usr/bin/python3 /usr/bin/python
 
-# Create helixbot users and give rights to sudo without password
-# (we use two users here to ensure volume mounting works with two possible UIDs of the host UID)
-# additionally, preinstall the virtualenv packages used for VSTS reporting to save time
-RUN /usr/sbin/adduser --disabled-password --gecos '' --uid 1001 --shell /bin/bash --ingroup adm helixbot \
-    && /usr/sbin/adduser --disabled-password --gecos '' --uid 1000 --shell /bin/bash --ingroup adm helixbot2 \
+# Create helixbot user and give rights to sudo without password
+RUN /usr/sbin/adduser --disabled-password --gecos '' --uid 1000 --shell /bin/bash --ingroup adm helixbot \
     && chmod 755 /root \
-    && echo "helixbot ALL=(ALL)       NOPASSWD: ALL" > /etc/sudoers \
-    && echo "helixbot2 ALL=(ALL)       NOPASSWD: ALL" > /etc/sudoers 
+    && echo "helixbot ALL=(ALL)       NOPASSWD: ALL" > /etc/sudoers.d/helixbot
 
 USER helixbot
+WORKDIR /home/helixbot
+ENV VIRTUAL_ENV=/home/helixbot/.vsts-env
 
-RUN python -m venv /home/helixbot/.vsts-env
+RUN python -m venv $VIRTUAL_ENV && \
+    ${VIRTUAL_ENV}/bin/pip download --no-deps helix-scripts --index-url https://dnceng.pkgs.visualstudio.com/public/_packaging/helix-client-prod/pypi/simple && \
+    ${VIRTUAL_ENV}/bin/pip install --upgrade pip && \
+    ${VIRTUAL_ENV}/bin/pip install ./helix_scripts-*-py3-none-any.whl && \
+    rm ./helix_scripts-*-py3-none-any.whl
+ENV PATH="${VIRTUAL_ENV}/bin:${PATH}"

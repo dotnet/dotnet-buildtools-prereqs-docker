@@ -15,10 +15,12 @@ RUN apt-get update \
 RUN python3 -m venv /venv \
     && . /venv/bin/activate \
     && pip download --no-deps helix-scripts --index-url https://dnceng.pkgs.visualstudio.com/public/_packaging/helix-client-prod/pypi/simple \
-    && pip install ./helix_scripts-*-py3-none-any.whl
+    && pip install ./helix_scripts-*-py3-none-any.whl \
+    && rm ./helix_scripts-*-py3-none-any.whl
 
 FROM library/debian:trixie
 ARG TARGETARCH
+ARG LIBMSQUIC_VERSION=2.4.8
 
 # Install Helix Dependencies
 RUN LIBCURL=libcurl4 \
@@ -63,25 +65,25 @@ RUN LIBCURL=libcurl4 \
     && rm -rf /var/lib/apt/lists/* \
     && localedef -i en_US -c -f UTF-8 -A /usr/share/locale/locale.alias en_US.UTF-8
 
+# Add MsQuic
 RUN ARCH=$TARGETARCH \
     && if [ "$TARGETARCH" = "arm" ]; then \
         ARCH="armhf"; fi \
-    && curl -LO https://packages.microsoft.com/ubuntu/24.04/prod/pool/main/libm/libmsquic/libmsquic_2.4.7_$ARCH.deb \
+    && curl -LO "https://packages.microsoft.com/ubuntu/24.04/prod/pool/main/libm/libmsquic/libmsquic_${LIBMSQUIC_VERSION}_$ARCH.deb" \
     && dpkg -i libmsquic* \
     && rm libmsquic*
 
 ENV LANG=en_US.utf8
 
 # Create helixbot user and give rights to sudo without password
-# additionally, preinstall the virtualenv packages used for VSTS reporting to save time
 RUN /usr/sbin/adduser --disabled-password --gecos '' --uid 1000 --shell /bin/bash --ingroup adm helixbot \
     && chmod 755 /root \
-    && echo "helixbot ALL=(ALL)       NOPASSWD: ALL" > /etc/sudoers
+    && echo "helixbot ALL=(ALL)       NOPASSWD: ALL" > /etc/sudoers.d/helixbot
 
 USER helixbot
 
 # Install Helix Dependencies
 ENV VIRTUAL_ENV=/home/helixbot/.vsts-env
 RUN python3 -m venv $VIRTUAL_ENV
-ENV PATH="$VIRTUAL_ENV/bin:$PATH"
+ENV PATH="${VIRTUAL_ENV}/bin:${PATH}"
 COPY --from=venv --chown=helixbot /venv $VIRTUAL_ENV

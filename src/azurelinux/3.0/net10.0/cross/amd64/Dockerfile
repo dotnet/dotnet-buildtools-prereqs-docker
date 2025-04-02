@@ -6,6 +6,9 @@ ARG ROOTFS_DIR
 RUN /scripts/eng/common/cross/build-rootfs.sh x64 bionic --skipunmount
 
 RUN TARGET_TRIPLE="x86_64-linux-gnu" && \
+    GCC_VER=$(basename "$(find "$ROOTFS_DIR/usr/include/c++/" -mindepth 1 -maxdepth 1 -type d | sort -V | head -n1)") && \
+    CPP_INCLUDES="$ROOTFS_DIR/usr/include/c++/$GCC_VER" && \
+    TRIPLET_INCLUDES=$([ -e "$CPP_INCLUDES/$TARGET_TRIPLE" ] && echo "$CPP_INCLUDES/$TARGET_TRIPLE" || echo "$(realpath "$CPP_INCLUDES/../../$TARGET_TRIPLE");$(realpath "$CPP_INCLUDES/../../$TARGET_TRIPLE/c++/$GCC_VER")") && \
     CLANG_MAJOR_VERSION=$(clang --version | grep -oP "(?<=version )\d+") && \
     cmake -S llvm-project.src/runtimes -B runtimes \
         -DCMAKE_BUILD_TYPE=Release \
@@ -26,7 +29,7 @@ RUN TARGET_TRIPLE="x86_64-linux-gnu" && \
         -DLLVM_ENABLE_RUNTIMES="libcxx;compiler-rt" \
         -DLIBCXX_ENABLE_SHARED=OFF \
         -DLIBCXX_CXX_ABI=libstdc++ \
-        -DLIBCXX_CXX_ABI_INCLUDE_PATHS="$ROOTFS_DIR/usr/include/c++/7.5.0/;$ROOTFS_DIR/usr/include/$TARGET_TRIPLE" \
+        -DLIBCXX_CXX_ABI_INCLUDE_PATHS="$CPP_INCLUDES;$TRIPLET_INCLUDES" \
         -DCOMPILER_RT_CXX_LIBRARY="libcxx" \
         -DCOMPILER_RT_STATIC_CXX_LIBRARY=ON \
         -DCOMPILER_RT_BUILD_SANITIZERS=OFF \ 

@@ -1,4 +1,4 @@
-FROM ubuntu.azurecr.io/ubuntu:oracular AS venv
+FROM ubuntu.azurecr.io/ubuntu:plucky AS venv
 ENV DEBIAN_FRONTEND=noninteractive
 
 RUN apt-get update \
@@ -16,15 +16,17 @@ RUN apt-get update \
 RUN python3 -m venv /venv \
     && . /venv/bin/activate \
     && pip download --no-deps helix-scripts --index-url https://dnceng.pkgs.visualstudio.com/public/_packaging/helix-client-prod/pypi/simple \
-    && pip install ./helix_scripts-*-py3-none-any.whl
+    && pip install ./helix_scripts-*-py3-none-any.whl \
+    && rm ./helix_scripts-*-py3-none-any.whl
 
-FROM ubuntu.azurecr.io/ubuntu:oracular
+FROM ubuntu.azurecr.io/ubuntu:plucky
 ARG TARGETARCH
+ARG LIBMSQUIC_VERSION=2.4.8
 ENV DEBIAN_FRONTEND=noninteractive
 
 RUN LIBCURL=libcurl4 \
     && if [ "$TARGETARCH" = "arm" ]; then \
-         LIBCURL="libcurl4t64"; fi \ 
+         LIBCURL="libcurl4t64"; fi \
     && apt-get update \
     && apt-get install -qq -y \
         autoconf \
@@ -72,19 +74,23 @@ ENV LANG=en_US.utf8
 RUN ARCH=$TARGETARCH \
     && if [ "$TARGETARCH" = "arm" ]; then \
         ARCH="armhf"; fi \
-    && curl -LO https://packages.microsoft.com/ubuntu/24.04/prod/pool/main/libm/libmsquic/libmsquic_2.4.7_$ARCH.deb \
+    && curl -LO "https://packages.microsoft.com/ubuntu/24.04/prod/pool/main/libm/libmsquic/libmsquic_${LIBMSQUIC_VERSION}_$ARCH.deb" \
     && dpkg -i libmsquic* \
     && rm libmsquic*
 
+# Remove user (probably ubuntu) with UID 1000 to UID 2000 to avoid conflict with helixbot
+RUN user_id=$(id -un 1000) && \
+    /usr/sbin/userdel --force --remove $user_id
+
 # create helixbot user and give rights to sudo without password
-RUN /usr/sbin/adduser --disabled-password --gecos '' --uid 1001 --shell /bin/bash --ingroup adm helixbot \
+RUN /usr/sbin/adduser --disabled-password --gecos '' --uid 1000 --shell /bin/bash --ingroup adm helixbot \
     && chmod 755 /root \
-    && echo "helixbot ALL=(ALL)       NOPASSWD: ALL" > /etc/sudoers
+    && echo "helixbot ALL=(ALL)       NOPASSWD: ALL" > /etc/sudoers.d/helixbot
 
 USER helixbot
 
 # Install Helix Dependencies
 ENV VIRTUAL_ENV=/home/helixbot/.vsts-env
 RUN python3 -m venv $VIRTUAL_ENV
-ENV PATH="$VIRTUAL_ENV/bin:$PATH"
+ENV PATH="${VIRTUAL_ENV}/bin:${PATH}"
 COPY --from=venv --chown=helixbot /venv $VIRTUAL_ENV

@@ -107,7 +107,6 @@
               "tags": {
                 "ubuntu-22.04-coredeps": {},
                 "ubuntu-22.04-coredeps-amd64": {}
-
               },
               "buildArgs": {
                 "POWERSHELL_TAG": "ubuntu-22.04"
@@ -164,6 +163,20 @@
                 "ubuntu-22.04-helix-arm64v8": {}
               },
               "variant": "v8"
+            }
+          ]
+        },
+        {
+          "platforms": [
+            {
+              "architecture": "arm",
+              "dockerfile": "src/ubuntu/22.04/helix",
+              "os": "linux",
+              "osVersion": "jammy",
+              "tags": {
+                "ubuntu-22.04-helix-arm32v7": {}
+              },
+              "variant": "v7"
             }
           ]
         },
@@ -293,11 +306,11 @@
           "platforms": [
             {
               "architecture": "amd64",
-              "dockerfile": "src/ubuntu/24.10/helix",
+              "dockerfile": "src/ubuntu/25.04/helix",
               "os": "linux",
-              "osVersion": "oracular",
+              "osVersion": "plucky",
               "tags": {
-                "ubuntu-24.10-helix-amd64": {}
+                "ubuntu-25.04-helix-amd64": {}
               }
             }
           ]
@@ -306,11 +319,11 @@
           "platforms": [
             {
               "architecture": "arm64",
-              "dockerfile": "src/ubuntu/24.10/helix",
+              "dockerfile": "src/ubuntu/25.04/helix",
               "os": "linux",
-              "osVersion": "oracular",
+              "osVersion": "plucky",
               "tags": {
-                "ubuntu-24.10-helix-arm64v8": {}
+                "ubuntu-25.04-helix-arm64v8": {}
               },
               "variant": "v8"
             }
@@ -320,11 +333,11 @@
           "platforms": [
             {
               "architecture": "arm",
-              "dockerfile": "src/ubuntu/24.10/helix",
+              "dockerfile": "src/ubuntu/25.04/helix",
               "os": "linux",
-              "osVersion": "oracular",
+              "osVersion": "plucky",
               "tags": {
-                "ubuntu-24.10-helix-arm32v7": {}
+                "ubuntu-25.04-helix-arm32v7": {}
               },
               "variant": "v7"
             }
