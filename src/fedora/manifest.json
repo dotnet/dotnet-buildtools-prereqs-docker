@@ -41,6 +41,18 @@
               }
             }
           ]
+        },
+        {
+          "platforms": [
+            {
+              "dockerfile": "src/fedora/42/helix/amd64",
+              "os": "linux",
+              "osVersion": "fedora42",
+              "tags": {
+                "fedora-42-helix-amd64": {}
+              }
+            }
+          ]
         }
       ]
     }
