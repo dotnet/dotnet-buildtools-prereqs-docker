@@ -49,7 +49,6 @@
               "os": "linux",
               "osVersion": "fedora42",
               "tags": {
-                "fedora-42-helix": {},
                 "fedora-42-helix-amd64": {}
               }
             }
