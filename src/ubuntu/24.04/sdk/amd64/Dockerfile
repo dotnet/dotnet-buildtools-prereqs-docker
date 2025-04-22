@@ -53,5 +53,6 @@ RUN apt-get update  \
         python3 \
         python3-venv \
     && rm -rf /var/lib/apt/lists/*
+
 COPY ./install-scancode.sh /tmp
 RUN /tmp/install-scancode.sh && rm -rf /tmp/install-scancode.sh
