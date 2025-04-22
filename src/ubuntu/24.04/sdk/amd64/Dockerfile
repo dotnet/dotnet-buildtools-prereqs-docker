@@ -52,7 +52,10 @@ RUN apt-get update  \
     && apt-get install -y \
         python3 \
         python3-venv \
+        dos2unix \
     && rm -rf /var/lib/apt/lists/*
-
 COPY ./install-scancode.sh /tmp
-RUN /tmp/install-scancode.sh && rm -rf /tmp/install-scancode.sh
+RUN dos2unix /tmp/install-scancode.sh && \
+    chmod +x /tmp/install-scancode.sh && \
+    /tmp/install-scancode.sh && \
+    rm -rf /tmp/install-scancode.sh
