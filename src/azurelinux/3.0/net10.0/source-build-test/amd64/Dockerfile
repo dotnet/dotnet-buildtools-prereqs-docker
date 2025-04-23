@@ -13,13 +13,13 @@ RUN SCANCODE_VERSION="32.3.3" && \
     deactivate
 
 # Setup a script which executes scancode in the virtual environment
-RUN cat <<EOF > /usr/local/bin/scancode
+RUN bash -c 'cat <<EOF > /usr/local/bin/scancode
 #!/bin/bash
 set -euo pipefail
 source $venv/bin/activate
 scancode "\$@"
 deactivate
-EOF
+EOF'
 RUN chmod +x /usr/local/bin/scancode
 
 # Install necessary dependencies
