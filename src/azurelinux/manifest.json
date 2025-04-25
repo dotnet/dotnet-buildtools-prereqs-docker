@@ -995,6 +995,19 @@
               }
             }
           ]
+        },
+        {
+          "platforms": [
+            {
+              "architecture": "amd64",
+              "dockerfile": "src/azurelinux/3.0/net10.0/source-build-test/amd64",
+              "os": "linux",
+              "osVersion": "azurelinux3.0",
+              "tags": {
+                "azurelinux-3.0-net10.0-source-build-test-amd64": {}
+              }
+            }
+          ]
         }
       ]
     }
