@@ -23,6 +23,26 @@
               }
             }
           ]
+        },
+        {
+          "platforms": [
+            {
+              "dockerfile": "src/almalinux/9/source-build/amd64",
+              "os": "linux",
+              "osVersion": "almalinux9",
+              "tags": {
+                "almalinux-9-source-build-amd64": {}
+              }
+            },
+            {
+              "dockerfile": "src/almalinux/9/helix/amd64",
+              "os": "linux",
+              "osVersion": "almalinux9",
+              "tags": {
+                "almalinux-9-helix-amd64": {}
+              }
+            }
+          ]
         }
       ]
     }

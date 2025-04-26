@@ -5,7 +5,7 @@ RUN dnf upgrade --refresh -y \
     && dnf install --setopt tsflags=nodocs -y \
         'dnf-command(config-manager)' \
         epel-release \
-    && dnf config-manager --set-enabled powertools \
+    && dnf config-manager --set-enabled crb \
     && dnf config-manager --set-enabled epel \
     && dnf install --setopt tsflags=nodocs -y \
         "perl(Time::HiRes)" \
@@ -38,7 +38,7 @@ RUN dnf upgrade --refresh -y \
         numactl-devel \
         openssl-devel \
         readline-devel \
-        python3 \
+        python3.12 \
         sudo \
         swig \
         wget \
@@ -46,5 +46,5 @@ RUN dnf upgrade --refresh -y \
         xz \
         zlib-devel \
     && dnf module install -y \
-        nodejs:20 \
+        nodejs:22 \
     && dnf clean all

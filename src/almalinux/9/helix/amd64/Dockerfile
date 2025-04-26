@@ -50,9 +50,9 @@ RUN dnf upgrade --refresh -y \
 ENV LANG=en_US.utf8
 
 # create helixbot user and give rights to sudo without password
-RUN /usr/sbin/adduser helixbot --uid 1000 --shell /bin/bash --gid adm \
-&& chmod 755 /root \
-&& echo "helixbot ALL=(ALL)       NOPASSWD: ALL" > /etc/sudoers.d/helixbot
+RUN adduser --uid 1000 --shell /bin/bash --gid adm helixbot \
+    && chmod 755 /root \
+    && echo "helixbot ALL=(ALL)       NOPASSWD: ALL" > /etc/sudoers.d/helixbot
 
 USER helixbot
 ENV VIRTUAL_ENV=/home/helixbot/.vsts-env
