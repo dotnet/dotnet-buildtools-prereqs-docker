@@ -23,28 +23,12 @@ RUN dnf upgrade --refresh -y \
         dnf-plugins-core \
     && dnf config-manager --add-repo=https://packages.microsoft.com/rhel/9/prod/config.repo \
     && dnf install --setopt tsflags=nodocs -y --allowerasing \
-        autoconf \
-        automake \
-        curl \
+        cpio \
         file \
-        git-core \
-        iputils \
         libicu \
         libmsquic \
-        libtool \
-        lldb \
-        llvm \
-        make \
-        openssl \
-        openssl-devel \
-        perl \
         python3.12 \
-        python3.12-devel \
-        python3.12-pip \
         sudo \
-        tar \
-        wget \
-        which \
     && dnf clean all
 
 ENV LANG=en_US.utf8
