@@ -1,4 +1,3 @@
-# syntax=docker/dockerfile:1
 FROM mcr.microsoft.com/dotnet/sdk:10.0-preview-azurelinux3.0-amd64 AS installer
 
 # Install scancode
@@ -21,4 +20,5 @@ RUN tdnf update -y \
     && tdnf clean all
 
 # Setup a script which executes scancode in the virtual environment
-COPY --chmod=755 ./run-scancode.sh /usr/local/bin/scancode
+COPY ./run-scancode.sh /usr/local/bin/scancode
+RUN chmod +x /usr/local/bin/scancode
