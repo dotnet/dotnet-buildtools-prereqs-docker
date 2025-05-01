@@ -38,6 +38,7 @@ RUN LIBCURL=libcurl4 \
         gcc \
         gdb \
         git \
+        gpg \
         iputils-ping \
         $LIBCURL \
         libffi-dev \
