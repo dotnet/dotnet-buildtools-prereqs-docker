@@ -37,8 +37,8 @@ RUN LIBCURL=libcurl4 \
         build-essential \
         gcc \
         gdb \
-        gpg \
         git \
+        gpg \
         iputils-ping \
         $LIBCURL \
         libffi-dev \
