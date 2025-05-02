@@ -35,6 +35,7 @@ RUN LIBCURL=libcurl4 \
         automake \
         at \
         build-essential \
+        cpio \
         gcc \
         gdb \
         git \
