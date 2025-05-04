@@ -1,0 +1,117 @@
+name: Check for New LLVM Tag
+
+on:
+  schedule:
+    - cron: '0 13 * * 0'  # Run every Sunday at 13:00 UTC
+  workflow_dispatch:
+
+jobs:
+  check-for-new-tag:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Get latest llvm-project tag
+        id: get_tag
+        run: |
+          STABLE_TAG=$(curl --silent https://api.github.com/repos/llvm/llvm-project/tags | jq -r '.[].name' | grep -E '^llvmorg-[0-9]+\.[0-9]+\.[0-9]+$' | sort --version-sort | tail -n 1 | sed 's/^llvmorg-//')
+          RC_TAG=$(curl --silent https://api.github.com/repos/llvm/llvm-project/tags | jq -r '.[].name' | grep -E '^llvmorg-[0-9]+\.[0-9]+\.[0-9]+-rc[0-9]+$' | sort --version-sort | tail -n 1 | sed 's/^llvmorg-//')
+          echo "Latest stable tag: $STABLE_TAG"
+          echo "Latest RC tag: $RC_TAG"
+          echo "latest_stable_tag=$STABLE_TAG" >> $GITHUB_OUTPUT
+          echo "latest_rc_tag=$RC_TAG" >> $GITHUB_OUTPUT
+
+      - name: Compare current version with latest tag
+        id: compare_versions
+        run: |
+          git status
+          cat src/azurelinux/3.0/net10.0/crossdeps-builder/amd64/Dockerfile
+          current_version=$(grep -oP 'LLVM_VERSION=\K[^ ]+' src/azurelinux/3.0/net10.0/crossdeps-builder/amd64/Dockerfile)
+          stable_tag=${{ steps.get_tag.outputs.latest_stable_tag }}
+          rc_tag=${{ steps.get_tag.outputs.latest_rc_tag }}
+
+          # Determine the latest tag to use: stable version or RC version
+          if [ -n "$stable_tag" ]; then
+            latest_tag=$stable_tag
+          else
+            latest_tag=$rc_tag
+          fi
+
+          echo "Current version: $current_version"
+          echo "Selected latest tag: $latest_tag"
+          
+          # Check if update is needed
+          if [[ "$current_version" != "$latest_tag" ]]; then
+            echo "New version available: $latest_tag"
+            echo "current_version=$current_version" >> $GITHUB_OUTPUT
+            echo "latest_tag=$latest_tag" >> $GITHUB_OUTPUT
+            echo "update_needed=true" >> $GITHUB_OUTPUT
+          else
+            echo "No update needed"
+            echo "update_needed=false" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Download and calculate SHA256 checksum for llvm-project
+        id: download_and_sha
+        if: steps.compare_versions.outputs.update_needed == 'true'  # Run this only if an update is needed
+        run: |
+          latest_tag=${{ steps.compare_versions.outputs.latest_tag }}
+
+          # Set the download URLs
+          file_url="https://github.com/llvm/llvm-project/releases/download/llvmorg-${latest_tag}/llvm-project-${latest_tag}.src.tar.xz"
+          sig_url="https://github.com/llvm/llvm-project/releases/download/llvmorg-${latest_tag}/llvm-project-${latest_tag}.src.tar.xz.sig"
+          output_file="llvm-project-${latest_tag}.src.tar.xz"
+
+          # Download the files
+          wget $file_url -O $output_file
+          wget $sig_url -O llvm-project-${latest_tag}.src.tar.xz.sig
+
+          # Calculate the SHA256 checksums
+          sha256sum $output_file > checksum.txt
+          sha256sum llvm-project-${latest_tag}.src.tar.xz.sig > sig_checksum.txt
+          sha256=$(awk '{ print $1 }' checksum.txt)
+          sig_sha256=$(awk '{ print $1 }' sig_checksum.txt)
+
+          echo "SHA256 checksum: $sha256"
+          echo "Signature SHA256 checksum: $sig_sha256"
+          echo "sha256_checksum=$sha256" >> $GITHUB_OUTPUT
+          echo "sha256_checksum_sig=$sig_sha256" >> $GITHUB_OUTPUT
+
+      - name: Create a new branch and update Dockerfiles
+        if: steps.compare_versions.outputs.update_needed == 'true'
+        run: |
+          latest_tag=${{ steps.compare_versions.outputs.latest_tag }}
+          current_version=${{ steps.compare_versions.outputs.current_version }}
+          sha256_checksum=${{ steps.download_and_sha.outputs.sha256_checksum }}
+          sha256_checksum_sig=${{ steps.download_and_sha.outputs.sha256_checksum_sig }}
+
+          for file in \
+            src/azurelinux/3.0/net10.0/crossdeps-builder/amd64/Dockerfile \
+            src/azurelinux/3.0/net10.0/opt/Dockerfile
+          do
+            sed -i "s/LLVM_VERSION=[^ ]*/LLVM_VERSION=${latest_tag}/g" "$file"
+            sed -i "s/\([a-f0-9]\{64\}\) llvm-project.src.tar.xz/${sha256_checksum} llvm-project.src.tar.xz/g" "$file"
+            sed -i "s/\([a-f0-9]\{64\}\) llvm-project.src.tar.xz.sig/${sha256_checksum_sig} llvm-project.src.tar.xz.sig/g" "$file"
+          done
+
+          git config --global user.email "action@github.com"
+          git config --global user.name "GitHub Action"
+          git checkout -b update/llvm-version-${latest_tag}
+          git add src/azurelinux/3.0/net10.0/crossdeps-builder/amd64/Dockerfile
+          git add src/azurelinux/3.0/net10.0/opt/Dockerfile
+          git commit -m "Update llvm from version $current_version to version $latest_tag"
+          git push origin update/llvm-version-${latest_tag}
+
+      - name: Create a Pull Request
+        if: steps.compare_versions.outputs.update_needed == 'true'
+        run: |
+          latest_tag=${{ steps.compare_versions.outputs.latest_tag }}
+          current_version=${{ steps.compare_versions.outputs.current_version }}
+          
+          gh pr create --title "Update llvm from version $current_version to version $latest_tag" \
+                       --body "This PR updates llvm from version $current_version to $latest_tag.<br/><br/>cc sbomer, mthalman" \
+                       --base main \
+                       --head update/llvm-version-${latest_tag}
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
