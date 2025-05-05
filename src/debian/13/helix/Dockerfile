@@ -35,9 +35,11 @@ RUN LIBCURL=libcurl4 \
         automake \
         at \
         build-essential \
+        cpio \
         gcc \
         gdb \
         git \
+        gpg \
         iputils-ping \
         $LIBCURL \
         libffi-dev \
