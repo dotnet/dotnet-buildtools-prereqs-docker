@@ -40,8 +40,8 @@ RUN mkdir %EMSCRIPTEN_PATH% `
     && .\emsdk activate %EMSCRIPTEN_VERSION%-upstream `
     && .\upstream\emscripten\embuilder.bat build MINIMAL
 
-# Install latest 18.x Node JS
-ENV NODE_RELEASE=18
+# Install latest 22.x Node JS
+ENV NODE_RELEASE=22
 
 RUN powershell -Command " `
         $ErrorActionPreference = 'Stop'; `

@@ -25,8 +25,8 @@ RUN curl -SL --output %TEMP%\%GIT_INSTALLER% https://github.com/git-for-windows/
 # Enable long paths
 RUN reg add HKLM\SYSTEM\CurrentControlSet\Control\FileSystem /v LongPathsEnabled /t REG_DWORD /d 1 /f
 
-# Install latest 18.x Node JS
-ENV NODE_RELEASE=18
+# Install latest 22.x Node JS
+ENV NODE_RELEASE=22
 
 RUN powershell -Command " `
         $ErrorActionPreference = 'Stop'; `
