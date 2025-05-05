@@ -36,7 +36,7 @@ RUN mkdir compiler-rt_build && cd compiler-rt_build && \
         -DCMAKE_CXX_FLAGS="${BUILD_FLAGS}" && \
     make -j $(getconf _NPROCESSORS_ONLN)
 
-RUN LLVM_VERSION=16.0.0 LLVM_VERSION_MAJOR="${LLVM_VERSION%%.*}" SANITIZER_RUNTIMES_DIR=/sanitizer-runtimes && \
+RUN LLVM_VERSION=16.0.6 LLVM_VERSION_MAJOR="${LLVM_VERSION%%.*}" SANITIZER_RUNTIMES_DIR=/sanitizer-runtimes && \
     mkdir -p $ROOTFS_DIR/usr/lib/llvm-${LLVM_VERSION_MAJOR}/lib/clang/${LLVM_VERSION}/lib/linux/ && \
     cp compiler-rt_build/lib/linux/libclang_rt.profile-i386.a $ROOTFS_DIR/usr/lib/llvm-${LLVM_VERSION_MAJOR}/lib/clang/${LLVM_VERSION}/lib/linux/ && \
     mkdir ${SANITIZER_RUNTIMES_DIR} && \
