@@ -43,11 +43,6 @@ RUN /usr/sbin/useradd -c '' --uid 1000 --shell /bin/bash --groups adm helixbot &
 
 USER helixbot
 
-# Set environment variables
-ENV LANG en_US.UTF-8
-ENV LANGUAGE en_US:en
-ENV LC_ALL en_US.UTF-8
-
 # Install Helix Dependencies
 ENV VIRTUAL_ENV=/home/helixbot/.vsts-env
 RUN python3 -m venv $VIRTUAL_ENV
