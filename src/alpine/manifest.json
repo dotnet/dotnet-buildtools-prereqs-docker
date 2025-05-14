@@ -100,6 +100,18 @@
         {
           "platforms": [
             {
+              "dockerfile": "src/alpine/3.21/amd64",
+              "os": "linux",
+              "osVersion": "alpine3.21",
+              "tags": {
+                "alpine-3.21-amd64": {}
+              }
+            }
+          ]
+        },
+        {
+          "platforms": [
+            {
               "architecture": "amd64",
               "dockerfile": "src/alpine/3.21/helix",
               "os": "linux",
@@ -127,11 +139,26 @@
         {
           "platforms": [
             {
-              "dockerfile": "src/alpine/3.21/amd64",
+              "architecture": "arm64",
+              "dockerfile": "src/alpine/3.21/helix",
               "os": "linux",
               "osVersion": "alpine3.21",
               "tags": {
-                "alpine-3.21-amd64": {}
+                "alpine-3.21-helix-arm64v8": {}
+              },
+              "variant": "v8"
+            }
+          ]
+        },
+        {
+          "platforms": [
+            {
+              "architecture": "amd64",
+              "dockerfile": "src/alpine/edge/helix",
+              "os": "linux",
+              "osVersion": "alpine-edge",
+              "tags": {
+                "alpine-edge-helix-amd64": {}
               }
             }
           ]
@@ -139,12 +166,26 @@
         {
           "platforms": [
             {
-              "architecture": "arm64",
-              "dockerfile": "src/alpine/3.21/helix",
+              "architecture": "arm",
+              "dockerfile": "src/alpine/edge/helix",
               "os": "linux",
-              "osVersion": "alpine3.21",
+              "osVersion": "alpine-edge",
               "tags": {
-                "alpine-3.21-helix-arm64v8": {}
+                "alpine-edge-helix-arm32v7": {}
+              },
+              "variant": "v7"
+            }
+          ]
+        },
+        {
+          "platforms": [
+            {
+              "architecture": "arm64",
+              "dockerfile": "src/alpine/edge/helix",
+              "os": "linux",
+              "osVersion": "alpine-edge",
+              "tags": {
+                "alpine-edge-helix-arm64v8": {}
               },
               "variant": "v8"
             }
