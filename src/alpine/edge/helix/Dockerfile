@@ -39,10 +39,6 @@ RUN apk add --upgrade --no-cache \
         sudo \
         tzdata
 
-# Needed for runtime tests to pass
-ENV LANG=en-US.UTF-8
-RUN echo export LANG=${LANG}  >> /etc/profile.d/locale.sh
-
 # create helixbot user and give rights to sudo without password
 # Alpine does not support long options
 RUN /usr/sbin/adduser -D -g '' -G adm -s /bin/bash -u 1000 helixbot && \
