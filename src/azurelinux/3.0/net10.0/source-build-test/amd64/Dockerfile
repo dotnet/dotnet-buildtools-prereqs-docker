@@ -6,7 +6,8 @@ FROM mcr.microsoft.com/dotnet/sdk:10.0-preview-azurelinux3.0-amd64 AS installer
 RUN SCANCODE_VERSION="32.3.3" \
     && python3 -m venv /venv \
     && source /venv/bin/activate \
-    && pip install scancode-toolkit==$SCANCODE_VERSION
+    && pip install scancode-toolkit==$SCANCODE_VERSION \
+    && pip install click==8.1.8
 
 FROM mcr.microsoft.com/dotnet/sdk:10.0-preview-azurelinux3.0-amd64
 
