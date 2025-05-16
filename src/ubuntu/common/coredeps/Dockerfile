@@ -3,6 +3,7 @@ FROM mcr.microsoft.com/powershell:$POWERSHELL_TAG
 
 # Install tools used by the AzDO build automation.
 RUN apt-get update \
+    && apt-get upgrade -y \
     && apt-get install -y \
         git \
         nodejs \
@@ -14,6 +15,7 @@ RUN apt-get update \
 
 # Runtime dependencies
 RUN apt-get update \
+    && apt-get upgrade -y \
     && apt-get install -y \
         autoconf \
         automake \
