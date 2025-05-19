@@ -2,6 +2,7 @@ FROM mcr.microsoft.com/dotnet-buildtools/prereqs:ubuntu-22.04-coredeps
 
 # Install the base toolchain we need to build anything (clang, cmake, make and the like).
 RUN apt-get update \
+    && apt-get upgrade -y \
     && apt-get install -y \
         apt-transport-https \
         ca-certificates \
