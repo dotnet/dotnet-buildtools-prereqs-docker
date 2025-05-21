@@ -342,6 +342,47 @@
               "variant": "v7"
             }
           ]
+        },
+        {
+          "platforms": [
+            {
+              "architecture": "amd64",
+              "dockerfile": "src/ubuntu/25.10/helix",
+              "os": "linux",
+              "osVersion": "questing",
+              "tags": {
+                "ubuntu-25.10-helix-amd64": {}
+              }
+            }
+          ]
+        },
+        {
+          "platforms": [
+            {
+              "architecture": "arm64",
+              "dockerfile": "src/ubuntu/25.10/helix",
+              "os": "linux",
+              "osVersion": "questing",
+              "tags": {
+                "ubuntu-25.10-helix-arm64v8": {}
+              },
+              "variant": "v8"
+            }
+          ]
+        },
+        {
+          "platforms": [
+            {
+              "architecture": "arm",
+              "dockerfile": "src/ubuntu/25.10/helix",
+              "os": "linux",
+              "osVersion": "questing",
+              "tags": {
+                "ubuntu-25.10-helix-arm32v7": {}
+              },
+              "variant": "v7"
+            }
+          ]
         }
       ]
     }
