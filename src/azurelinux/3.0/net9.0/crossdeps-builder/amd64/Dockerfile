@@ -4,6 +4,7 @@ RUN tdnf install -y \
         # Common utilities
         ca-certificates \
         git \
+        shadow-utils \
         tar \
         wget \
         # LLVM build dependencies
@@ -84,4 +85,4 @@ ENV PATH="/opt/llvm/bin:$PATH"
 
 # Obtain arcade scripts used to build rootfs
 RUN git config --global user.email builder@dotnet-buildtools-prereqs-docker && \
-    git clone --depth 1 --single-branch https://github.com/dotnet/arcade /scripts 
+    git clone --depth 1 --single-branch https://github.com/dotnet/arcade /scripts
