@@ -6,6 +6,7 @@ RUN tdnf update -y && \
         ca-certificates \
         git \
         pigz \
+        shadow-utils \
         util-linux \
         wget \
         # Common runtime build dependencies
