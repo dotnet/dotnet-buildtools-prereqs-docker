@@ -2,6 +2,8 @@ FROM quay.io/centos/centos:stream9
 
 # Install dependencies
 RUN dnf upgrade --refresh -y \
+    # Required to install libunwind from the EPEL repo  
+    && dnf install -y epel-release \
     && dnf install --setopt tsflags=nodocs -y \
         dnf-plugins-core \
     && dnf config-manager --add-repo=https://packages.microsoft.com/rhel/9/prod/config.repo \
@@ -30,6 +32,9 @@ RUN dnf upgrade --refresh -y \
         tar \
         wget \
         which \
+        # NativeAOT and runtime dependencies
+        zlib-devel \
+        libunwind \
     && dnf clean all
 
 RUN ln -sf /usr/bin/python3 /usr/bin/python
