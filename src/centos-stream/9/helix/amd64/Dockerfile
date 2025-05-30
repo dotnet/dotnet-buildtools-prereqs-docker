@@ -2,6 +2,7 @@ FROM quay.io/centos/centos:stream9
 
 # Install dependencies
 RUN dnf upgrade --refresh -y \
+    # Required to install libunwind from the EPEL repo  
     && dnf install -y epel-release \
     && dnf install --setopt tsflags=nodocs -y \
         dnf-plugins-core \
