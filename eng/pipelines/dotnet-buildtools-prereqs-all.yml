@@ -30,7 +30,7 @@ resources:
 
 variables:
 - template: /eng/pipelines/variables/common.yml@self
-  parameters: 
+  parameters:
     disableMatrixTrimming: ${{ parameters.disableMatrixTrimming }}
 - name: publishEolAnnotations
   value: true
@@ -38,6 +38,11 @@ variables:
 extends:
   template: /eng/common/templates/1es-official.yml@self
   parameters:
+    serviceConnections:
+    - name: $(internal-mirror.serviceConnectionName)
+    - name: $(build.serviceConnectionName)
+    - name: $(publish.serviceConnectionName)
+    - name: $(marStatus.serviceConnectionName)
     stages:
     - template: /eng/pipelines/stages/build-test-publish-repo.yml@self
       parameters:
