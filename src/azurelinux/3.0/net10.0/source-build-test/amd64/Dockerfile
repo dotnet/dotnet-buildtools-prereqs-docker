@@ -17,6 +17,7 @@ COPY --from=installer /venv /venv
 RUN tdnf update -y \
     && tdnf install -y \
         libgomp \
+        shadow-utils \
         util-linux \
     && tdnf clean all
 
