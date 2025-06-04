@@ -51,25 +51,27 @@ RUN gpg --import dimitri_john_ledkov.asc && \
     popd && \
     rm -r ubuntu-keyring
 
-# 1. Obtain signing keys used to sign llvm sources
+# Obtain signing keys used to sign llvm sources
 RUN wget https://releases.llvm.org/release-keys.asc && \
     echo "972d9449ebf7de947a1dff7f25edf8eea7963e4f7501b20d29328df55162f3b8 release-keys.asc" | sha256sum -c && \
     gpg --import release-keys.asc && \
-    rm release-keys.asc && \
-# 2. Download llvm sources and signature, and verify signature
+    rm release-keys.asc
+
+RUN \
+    # Download llvm sources and signature, and verify signature
     LLVM_VERSION=18.1.8 && \
     wget -O llvm-project.src.tar.xz.sig https://github.com/llvm/llvm-project/releases/download/llvmorg-${LLVM_VERSION}/llvm-project-${LLVM_VERSION}.src.tar.xz.sig && \
     echo "f8875c5b5e01ce4a672ce48fd1559764cc91e037fa35203dbceaadeb5ad51978 llvm-project.src.tar.xz.sig" | sha256sum -c && \
     wget -O llvm-project.src.tar.xz https://github.com/llvm/llvm-project/releases/download/llvmorg-${LLVM_VERSION}/llvm-project-${LLVM_VERSION}.src.tar.xz && \
     echo "0b58557a6d32ceee97c8d533a59b9212d87e0fc4d2833924eb6c611247db2f2a llvm-project.src.tar.xz" | sha256sum -c && \
     gpg --verify llvm-project.src.tar.xz.sig && \
-    rm llvm-project.src.tar.xz.sig
-
-# Build LLVM cross-toolchain (with support for targeting x86/x64, arm64, arm, s390x and ppc64le architectures)
-RUN mkdir llvm-project.src && \
+    rm llvm-project.src.tar.xz.sig && \
+    # Build LLVM cross-toolchain (with support for targeting x86/x64, arm64, arm, s390x and ppc64le architectures)
+    mkdir llvm-project.src && \
     tar -xf llvm-project.src.tar.xz --directory llvm-project.src --strip-components=1 && \
     rm llvm-project.src.tar.xz && \
-    mkdir build && cd build && \
+    mkdir build && \
+    pushd build && \
     cmake ../llvm-project.src/llvm \
         -DCMAKE_INSTALL_PREFIX=/opt/llvm \
         -DCMAKE_BUILD_TYPE=Release \
@@ -79,7 +81,10 @@ RUN mkdir llvm-project.src && \
         -Wno-dev \
         -DLLVM_ENABLE_PROJECTS="clang;lld;clang-tools-extra" && \
     make -j $(getconf _NPROCESSORS_ONLN) && \
-    make install
+    make install && \
+    popd && \
+    # Cleanup
+    rm -rf llvm-project.src build
 
 ENV PATH="/opt/llvm/bin:$PATH"
 
