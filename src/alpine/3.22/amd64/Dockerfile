@@ -25,6 +25,7 @@ RUN apk add --upgrade --no-cache \
         iproute2 \
         jq \
         krb5-dev \
+        krb5-libs \
         less \
         libgcc \
         libintl \
