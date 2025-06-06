@@ -24,7 +24,6 @@ parameters:
   linuxArmTestJobTimeout: 60
   windowsAmdTestJobTimeout: 60
   customTestInitSteps: []
-  sourceBuildPipelineRunId: ""
 
   # Publish parameters
   customPublishInitSteps: []
@@ -51,7 +50,6 @@ stages:
     windowsAmdBuildJobTimeout: ${{ parameters.windowsAmdBuildJobTimeout }}
     customBuildInitSteps: ${{ parameters.customBuildInitSteps }}
     # Test
-    sourceBuildPipelineRunId: ${{ parameters.sourceBuildPipelineRunId }}
     testMatrixType: ${{ parameters.testMatrixType }}
     testMatrixCustomBuildLegGroupArgs: ${{ parameters.testMatrixCustomBuildLegGroupArgs }}
     linuxAmdTestJobTimeout: ${{ parameters.linuxAmdTestJobTimeout }}
@@ -69,4 +67,3 @@ stages:
     customPublishInitSteps: ${{ parameters.customPublishInitSteps }}
     internalProjectName: ${{ parameters.internalProjectName }}
     publicProjectName: ${{ parameters.publicProjectName }}
-    sourceBuildPipelineRunId: ${{ parameters.sourceBuildPipelineRunId }}
