@@ -25,7 +25,6 @@ parameters:
   linuxArmTestJobTimeout: 60
   windowsAmdTestJobTimeout: 60
   customTestInitSteps: []
-  sourceBuildPipelineRunId: ""
 
   internalProjectName: null
   publicProjectName: null
@@ -49,7 +48,6 @@ stages:
     linuxArmBuildJobTimeout: ${{ parameters.linuxArmBuildJobTimeout }}
     buildMatrixType: ${{ parameters.buildMatrixType }}
     testMatrixType: ${{ parameters.testMatrixType }}
-    sourceBuildPipelineRunId: ${{ parameters.sourceBuildPipelineRunId }}
 
     internalVersionsRepoRef: InternalVersionsRepo
     publicVersionsRepoRef: PublicVersionsRepo
