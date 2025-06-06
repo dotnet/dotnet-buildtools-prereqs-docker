@@ -19,7 +19,7 @@
         {
           "platforms": [
             {
-              "dockerfile": "src/ubuntu/22.04/coredeps",
+              "dockerfile": "src/ubuntu/22.04/coredeps/amd64",
               "os": "linux",
               "osVersion": "jammy",
               "tags": {
