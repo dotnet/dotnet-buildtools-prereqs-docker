@@ -19,15 +19,12 @@
         {
           "platforms": [
             {
-              "dockerfile": "src/ubuntu/common/coredeps",
+              "dockerfile": "src/ubuntu/22.04/coredeps",
               "os": "linux",
               "osVersion": "jammy",
               "tags": {
                 "ubuntu-22.04-coredeps": {},
                 "ubuntu-22.04-coredeps-amd64": {}
-              },
-              "buildArgs": {
-                "POWERSHELL_TAG": "ubuntu-22.04"
               }
             }
           ]

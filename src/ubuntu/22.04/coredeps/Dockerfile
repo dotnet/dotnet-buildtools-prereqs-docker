@@ -1,5 +1,4 @@
-ARG POWERSHELL_TAG
-FROM mcr.microsoft.com/powershell:$POWERSHELL_TAG
+FROM mcr.microsoft.com/powershell:ubuntu-22.04
 
 # Install tools used by the AzDO build automation.
 RUN apt-get update \
