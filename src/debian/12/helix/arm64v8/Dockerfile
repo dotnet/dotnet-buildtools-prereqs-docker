@@ -11,6 +11,7 @@ RUN apt-get update \
 
 RUN python3 -m venv /venv \
     && . /venv/bin/activate \
+    && pip install --upgrade pip setuptools \
     && pip download --no-deps helix-scripts --index-url https://dnceng.pkgs.visualstudio.com/public/_packaging/helix-client-prod/pypi/simple \
     && pip install ./helix_scripts-*-py3-none-any.whl \
     && rm ./helix_scripts-*-py3-none-any.whl
