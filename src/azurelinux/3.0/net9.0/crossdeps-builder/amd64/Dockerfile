@@ -84,7 +84,8 @@ RUN \
     make install && \
     popd && \
     # Cleanup
-    rm -rf llvm-project.src build
+    # Don't clean llvm-project.src since it is used by derived images
+    rm -rf build
 
 ENV PATH="/opt/llvm/bin:$PATH"
 
