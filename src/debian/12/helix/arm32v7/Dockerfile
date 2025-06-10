@@ -20,6 +20,7 @@ ENV PATH="/root/.cargo/bin:${PATH}"
 
 RUN python3 -m venv /venv \
     && . /venv/bin/activate \
+    && pip install --upgrade pip setuptools \
     && pip download --no-deps helix-scripts --index-url https://dnceng.pkgs.visualstudio.com/public/_packaging/helix-client-prod/pypi/simple \
     && pip install ./helix_scripts-*-py3-none-any.whl \
     && rm ./helix_scripts-*-py3-none-any.whl
@@ -77,7 +78,6 @@ USER helixbot
 
 # Install Helix Dependencies
 ENV VIRTUAL_ENV=/home/helixbot/.vsts-env
-RUN python3 -m venv $VIRTUAL_ENV && \
-    ${VIRTUAL_ENV}/bin/pip install --upgrade pip setuptools
+RUN python3 -m venv $VIRTUAL_ENV
 ENV PATH="${VIRTUAL_ENV}/bin:${PATH}"
 COPY --from=venv --chown=helixbot /venv $VIRTUAL_ENV
