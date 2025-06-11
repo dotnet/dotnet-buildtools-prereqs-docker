@@ -125,6 +125,20 @@
         {
           "platforms": [
             {
+              "architecture": "amd64",
+              "dockerfile": "src/ubuntu/22.04/helix/sqlserver/amd64",
+              "os": "linux",
+              "osVersion": "jammy",
+              "tags": {
+                "ubuntu-22.04-helix-sqlserver": {},
+                "ubuntu-22.04-helix-sqlserver-amd64": {}
+              }
+            }
+          ]
+        },
+        {
+          "platforms": [
+            {
               "dockerfile": "src/ubuntu/22.04/mlnet/amd64",
               "os": "linux",
               "osVersion": "jammy",
@@ -227,20 +241,6 @@
               "tags": {
                 "ubuntu-24.04-helix-webassembly": {},
                 "ubuntu-24.04-helix-webassembly-amd64": {}
-              }
-            }
-          ]
-        },
-        {
-          "platforms": [
-            {
-              "architecture": "amd64",
-              "dockerfile": "src/ubuntu/24.04/helix/sqlserver/amd64",
-              "os": "linux",
-              "osVersion": "noble",
-              "tags": {
-                "ubuntu-24.04-helix-sqlserver": {},
-                "ubuntu-24.04-helix-sqlserver-amd64": {}
               }
             }
           ]
