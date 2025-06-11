@@ -1,4 +1,4 @@
-FROM mcr.microsoft.com/dotnet-buildtools/prereqs:ubuntu-24.04-helix-amd64
+FROM mcr.microsoft.com/dotnet-buildtools/prereqs:ubuntu-22.04-helix-amd64
 
 USER root
 
@@ -22,6 +22,6 @@ RUN groupadd -g 1000 sqlserver_users \
     && chgrp -R sqlserver_users /var/opt/mssql \
     && chmod -R 770 /var/opt/mssql
 
-CMD ["/opt/mssql/bin/sqlservr"]
+CMD ["/opt/mssql/bin/sqlservr", "--accept-eula"]
 
 USER helixbot
