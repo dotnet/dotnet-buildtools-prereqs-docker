@@ -27,7 +27,7 @@ RUN tdnf update -y && \
         powershell
 
 # Validate checksums with keyring after https://github.com/microsoft/azurelinux/issues/3142 is resolved
-ENV NODE_VERSION=20.11.1
+ENV NODE_VERSION=23.11.0
 RUN mkdir /usr/share/node && \
     curl -O https://nodejs.org/dist/v${NODE_VERSION}/SHASUMS256.txt && \
     curl -O -sSL https://nodejs.org/dist/v${NODE_VERSION}/node-v${NODE_VERSION}-linux-x64.tar.xz && \
