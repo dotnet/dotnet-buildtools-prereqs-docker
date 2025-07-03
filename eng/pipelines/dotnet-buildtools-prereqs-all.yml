@@ -52,7 +52,6 @@ extends:
     - name: $(internal-mirror.serviceConnectionName)
     - name: $(build.serviceConnectionName)
     - name: $(publish.serviceConnectionName)
-    - name: $(kusto.serviceConnectionName)
     - name: $(marStatus.serviceConnectionName)
     stages:
     - template: /eng/pipelines/stages/build-test-publish-repo.yml@self
