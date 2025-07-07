@@ -1,7 +1,7 @@
 ARG ANDROID_SDK_ROOT=/usr/local/android-sdk
 ARG ANDROID_NDK_VERSION=23.2.8568313
 ARG ANDROID_NDK_ROOT=$ANDROID_SDK_ROOT/ndk/$ANDROID_NDK_VERSION
-FROM mcr.microsoft.com/openjdk/jdk:17-mariner AS android-sdk-download
+FROM mcr.microsoft.com/openjdk/jdk:17-mariner-cm2 AS android-sdk-download
 ARG ANDROID_SDK_ROOT
 ARG ANDROID_NDK_VERSION
 ARG ANDROID_NDK_ROOT
@@ -30,7 +30,7 @@ RUN /usr/local/cmdline-tools/cmdline-tools/bin/sdkmanager --sdk_root="${ANDROID_
 RUN rm -r ${ANDROID_NDK_ROOT}/toolchains/llvm/prebuilt/linux-x86_64/python3/lib/python3.9/site-packages/ \
     && rm -r ${ANDROID_NDK_ROOT}/toolchains/llvm/prebuilt/linux-x86_64/bin/clang-tidy
 
-FROM mcr.microsoft.com/openjdk/jdk:17-mariner
+FROM mcr.microsoft.com/openjdk/jdk:17-mariner-cm2
 ARG ANDROID_SDK_ROOT
 ARG ANDROID_NDK_VERSION
 ARG ANDROID_NDK_ROOT
