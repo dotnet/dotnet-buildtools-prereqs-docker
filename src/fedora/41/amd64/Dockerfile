@@ -40,6 +40,7 @@ RUN dnf upgrade --refresh -y \
         libuuid-devel \
         lttng-ust-devel \
         openssl-devel \
+        rapidjson-devel \
         uuid-devel \
         zlib-devel \
         # Dependencies for VMR/source-build tests
