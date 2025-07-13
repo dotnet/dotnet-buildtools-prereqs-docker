@@ -5,6 +5,7 @@ RUN tdnf update -y && \
         # Common dependencies
         ca-certificates \
         git \
+        shadow-utils \
         tar \
         util-linux \
         wget \

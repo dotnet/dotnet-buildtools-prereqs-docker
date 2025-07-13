@@ -44,7 +44,6 @@ RUN ln -sf /usr/bin/python3 /usr/bin/python
 
 # Add MsQuic
 RUN curl -LO https://packages.microsoft.com/keys/microsoft.asc && \
-    echo 2cfd20a306b2fa5e25522d78f2ef50a1f429d35fd30bd983e2ebffc2b80944fa microsoft.asc| sha256sum --check - && \
     apt-key add microsoft.asc && \
     rm microsoft.asc && \
     apt-add-repository https://packages.microsoft.com/ubuntu/22.04/prod && \
@@ -62,6 +61,7 @@ WORKDIR /home/helixbot
 ENV VIRTUAL_ENV=/home/helixbot/.vsts-env
 
 RUN python -m venv /home/helixbot/.vsts-env && \
+    ${VIRTUAL_ENV}/bin/pip install --upgrade pip setuptools && \
     ${VIRTUAL_ENV}/bin/pip download --no-deps helix-scripts --index-url https://dnceng.pkgs.visualstudio.com/public/_packaging/helix-client-prod/pypi/simple && \
     ${VIRTUAL_ENV}/bin/pip install ./helix_scripts-*-py3-none-any.whl && \
     rm ./helix_scripts-*-py3-none-any.whl

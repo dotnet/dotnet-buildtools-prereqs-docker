@@ -4,6 +4,7 @@ RUN tdnf update -y && \
     tdnf install -y \
         ca-certificates \
         git \
+        shadow-utils \
         # Provides 'su', required by Azure DevOps
         util-linux \
         wget \

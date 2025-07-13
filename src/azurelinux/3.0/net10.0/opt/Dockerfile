@@ -61,6 +61,7 @@ RUN tdnf update -y && \
         tar \
         util-linux \
         wget \
+        shadow-utils \
         # Runtime dependencies
         icu
 

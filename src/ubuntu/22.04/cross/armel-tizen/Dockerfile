@@ -14,6 +14,7 @@ ARG ROOTFS_DIR
 
 # Install binutils-arm-linux-gnueabi
 RUN apt-get update \
+    && apt-get upgrade -y \
     && apt-get install -y \
         binutils-arm-linux-gnueabi \
     && rm -rf /var/lib/apt/lists/*

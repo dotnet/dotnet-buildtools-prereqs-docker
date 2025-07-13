@@ -43,6 +43,26 @@
               }
             }
           ]
+        },
+        {
+          "platforms": [
+            {
+              "dockerfile": "src/almalinux/10/source-build/amd64",
+              "os": "linux",
+              "osVersion": "almalinux10",
+              "tags": {
+                "almalinux-10-source-build-amd64": {}
+              }
+            },
+            {
+              "dockerfile": "src/almalinux/10/helix/amd64",
+              "os": "linux",
+              "osVersion": "almalinux10",
+              "tags": {
+                "almalinux-10-helix-amd64": {}
+              }
+            }
+          ]
         }
       ]
     }

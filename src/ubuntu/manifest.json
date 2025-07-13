@@ -6,88 +6,6 @@
         {
           "platforms": [
             {
-              "dockerfile": "src/ubuntu/common/coredeps",
-              "os": "linux",
-              "osVersion": "focal",
-              "tags": {
-                "ubuntu-20.04-coredeps": {},
-                "ubuntu-20.04-coredeps-amd64": {}
-              },
-              "buildArgs": {
-                "POWERSHELL_TAG": "ubuntu-20.04"
-              }
-            }
-          ]
-        },
-        {
-          "platforms": [
-            {
-              "architecture": "amd64",
-              "dockerfile": "src/ubuntu/20.04/helix",
-              "os": "linux",
-              "osVersion": "focal",
-              "tags": {
-                "ubuntu-20.04-helix-amd64": {}
-              }
-            }
-          ]
-        },
-        {
-          "platforms": [
-            {
-              "architecture": "arm64",
-              "dockerfile": "src/ubuntu/20.04/helix",
-              "os": "linux",
-              "osVersion": "focal",
-              "tags": {
-                "ubuntu-20.04-helix-arm64v8": {}
-              },
-              "variant": "v8"
-            }
-          ]
-        },
-        {
-          "platforms": [
-            {
-              "architecture": "amd64",
-              "dockerfile": "src/ubuntu/20.04/helix/wasm/amd64",
-              "os": "linux",
-              "osVersion": "focal",
-              "tags": {
-                "ubuntu-20.04-helix-wasm-amd64": {}
-              }
-            }
-          ]
-        },
-        {
-          "platforms": [
-            {
-              "architecture": "amd64",
-              "dockerfile": "src/ubuntu/20.04/helix/sqlserver/amd64",
-              "os": "linux",
-              "osVersion": "focal",
-              "tags": {
-                "ubuntu-20.04-helix-sqlserver-amd64": {}
-              }
-            }
-          ]
-        },
-        {
-          "platforms": [
-            {
-              "dockerfile": "src/ubuntu/20.04/amd64",
-              "os": "linux",
-              "osVersion": "focal",
-              "tags": {
-                "ubuntu-20.04": {},
-                "ubuntu-20.04-amd64": {}
-              }
-            }
-          ]
-        },
-        {
-          "platforms": [
-            {
               "dockerfile": "src/ubuntu/22.04/amd64",
               "os": "linux",
               "osVersion": "jammy",
@@ -101,15 +19,12 @@
         {
           "platforms": [
             {
-              "dockerfile": "src/ubuntu/common/coredeps",
+              "dockerfile": "src/ubuntu/22.04/coredeps/amd64",
               "os": "linux",
               "osVersion": "jammy",
               "tags": {
                 "ubuntu-22.04-coredeps": {},
                 "ubuntu-22.04-coredeps-amd64": {}
-              },
-              "buildArgs": {
-                "POWERSHELL_TAG": "ubuntu-22.04"
               }
             }
           ]
@@ -203,6 +118,20 @@
               "tags": {
                 "ubuntu-22.04-helix-webassembly": {},
                 "ubuntu-22.04-helix-webassembly-amd64": {}
+              }
+            }
+          ]
+        },
+        {
+          "platforms": [
+            {
+              "architecture": "amd64",
+              "dockerfile": "src/ubuntu/22.04/helix/sqlserver/amd64",
+              "os": "linux",
+              "osVersion": "jammy",
+              "tags": {
+                "ubuntu-22.04-helix-sqlserver": {},
+                "ubuntu-22.04-helix-sqlserver-amd64": {}
               }
             }
           ]
@@ -306,6 +235,20 @@
           "platforms": [
             {
               "architecture": "amd64",
+              "dockerfile": "src/ubuntu/24.04/helix/webassembly/amd64",
+              "os": "linux",
+              "osVersion": "noble",
+              "tags": {
+                "ubuntu-24.04-helix-webassembly": {},
+                "ubuntu-24.04-helix-webassembly-amd64": {}
+              }
+            }
+          ]
+        },
+        {
+          "platforms": [
+            {
+              "architecture": "amd64",
               "dockerfile": "src/ubuntu/25.04/helix",
               "os": "linux",
               "osVersion": "plucky",
@@ -338,6 +281,47 @@
               "osVersion": "plucky",
               "tags": {
                 "ubuntu-25.04-helix-arm32v7": {}
+              },
+              "variant": "v7"
+            }
+          ]
+        },
+        {
+          "platforms": [
+            {
+              "architecture": "amd64",
+              "dockerfile": "src/ubuntu/25.10/helix",
+              "os": "linux",
+              "osVersion": "questing",
+              "tags": {
+                "ubuntu-25.10-helix-amd64": {}
+              }
+            }
+          ]
+        },
+        {
+          "platforms": [
+            {
+              "architecture": "arm64",
+              "dockerfile": "src/ubuntu/25.10/helix",
+              "os": "linux",
+              "osVersion": "questing",
+              "tags": {
+                "ubuntu-25.10-helix-arm64v8": {}
+              },
+              "variant": "v8"
+            }
+          ]
+        },
+        {
+          "platforms": [
+            {
+              "architecture": "arm",
+              "dockerfile": "src/ubuntu/25.10/helix",
+              "os": "linux",
+              "osVersion": "questing",
+              "tags": {
+                "ubuntu-25.10-helix-arm32v7": {}
               },
               "variant": "v7"
             }

@@ -13,4 +13,5 @@ RUN tdnf install -y \
         azure-cli \
         git \
         powershell \
+        shadow-utils \
     && tdnf clean all
