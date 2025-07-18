@@ -2,7 +2,7 @@ FROM quay.io/centos/centos:stream9
 
 # Install dependencies
 RUN dnf upgrade --refresh -y \
-    dnf install --setopt tsflags=nodocs -y \
+    && dnf install --setopt tsflags=nodocs -y \
         dnf-plugins-core \
     && dnf config-manager --set-enabled crb \
     && dnf module install --setopt tsflags=nodocs -y \
