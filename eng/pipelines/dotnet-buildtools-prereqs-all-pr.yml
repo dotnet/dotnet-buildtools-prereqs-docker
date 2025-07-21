@@ -7,6 +7,9 @@ pr:
     include:
     - src/*
 
+variables:
+- template: variables/common.yml
+
 resources:
   repositories:
   - repository: VersionsRepo
@@ -14,9 +17,6 @@ resources:
     endpoint: public
     name: dotnet/versions
     ref: ${{ variables['gitHubVersionsRepoInfo.branch'] }}
-
-variables:
-- template: variables/common.yml
 
 stages:
 - template: stages/build-test-publish-repo.yml

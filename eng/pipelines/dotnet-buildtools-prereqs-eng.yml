@@ -11,14 +11,6 @@ pr:
     - CODEOWNERS
     - LICENSE
 
-resources:
-  repositories:
-  - repository: VersionsRepo
-    type: github
-    endpoint: public
-    name: dotnet/versions
-    ref: ${{ variables['gitHubVersionsRepoInfo.branch'] }}
-
 variables:
 - template: /eng/pipelines/variables/common.yml@self
 - name: imageBuilder.pathArgs
@@ -27,6 +19,14 @@ variables:
 # This enables the entire pipeline to be exercised.
 - name: trimCachedImagesForMatrix
   value: false
+
+resources:
+  repositories:
+  - repository: VersionsRepo
+    type: github
+    endpoint: public
+    name: dotnet/versions
+    ref: ${{ variables['gitHubVersionsRepoInfo.branch'] }}
 
 stages:
 - template: /eng/pipelines/stages/build-test-publish-repo.yml@self

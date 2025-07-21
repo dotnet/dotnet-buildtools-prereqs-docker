@@ -30,14 +30,6 @@ schedules:
     - main
   always: true
 
-resources:
-  repositories:
-  - repository: VersionsRepo
-    type: github
-    endpoint: public
-    name: dotnet/versions
-    ref: ${{ variables['gitHubVersionsRepoInfo.branch'] }}
-
 variables:
 - template: /eng/pipelines/variables/common.yml@self
   parameters: 
@@ -45,6 +37,14 @@ variables:
     sourceBuildPipelineRunId: ${{ parameters.sourceBuildPipelineRunId }}
 - name: publishEolAnnotations
   value: true
+
+resources:
+  repositories:
+  - repository: VersionsRepo
+    type: github
+    endpoint: public
+    name: dotnet/versions
+    ref: ${{ variables['gitHubVersionsRepoInfo.branch'] }}
 
 extends:
   template: /eng/common/templates/1es-official.yml@self
