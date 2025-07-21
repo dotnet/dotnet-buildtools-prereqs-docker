@@ -14,13 +14,18 @@ parameters:
   sourceBuildPipelineDefinitionId: ''
   sourceBuildPipelineRunId: ''
 
+  versionsRepoRef: null
+  versionsRepoPath: "versions"
+
 ################################################################################
 # Publish Images
 ################################################################################
 stages:
 - ${{ if eq(parameters.isInternalServicingValidation, 'false') }}:
   - stage: Publish
-    ${{ if not(parameters.isStandalonePublish) }}:
+    ${{ if eq(parameters.isStandalonePublish, true) }}:
+      dependsOn: []
+    ${{ else }}:
       ${{ if and(eq(variables['System.TeamProject'], parameters.internalProjectName), ne(variables['Build.Reason'], 'PullRequest')) }}:
         dependsOn: Test
       ${{ else }}:
@@ -63,3 +68,5 @@ stages:
         customInitSteps: ${{ parameters.customPublishInitSteps }}
         sourceBuildPipelineDefinitionId: ${{ parameters.sourceBuildPipelineDefinitionId }}
         sourceBuildPipelineRunId: ${{ parameters.sourceBuildPipelineRunId }}
+        versionsRepoRef: ${{ parameters.versionsRepoRef }}
+        versionsRepoPath: ${{ parameters.versionsRepoPath }}
