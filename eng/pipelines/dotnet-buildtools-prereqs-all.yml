@@ -32,10 +32,11 @@ schedules:
 
 resources:
   repositories:
-  - repository: InternalVersionsRepo
+  - repository: VersionsRepo
     type: github
-    endpoint: dotnet
+    endpoint: public
     name: dotnet/versions
+    ref: ${{ variables['gitHubVersionsRepoInfo.branch'] }}
 
 variables:
 - template: /eng/pipelines/variables/common.yml@self
@@ -58,6 +59,7 @@ extends:
       parameters:
         internalProjectName: ${{ variables.internalProjectName }}
         publicProjectName: ${{ variables.publicProjectName }}
+        versionsRepoRef: VersionsRepo
         linuxAmdBuildJobTimeout: 480
         linuxArmBuildJobTimeout: 300
         linuxAmd64Pool:
