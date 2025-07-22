@@ -7,6 +7,7 @@ parameters:
   customBuildInitSteps: []
   customCopyBaseImagesInitSteps: []
   linuxAmd64Pool: ''
+  versionsRepoRef: null
 
 stages:
 - template: /eng/common/templates/stages/dotnet/build-test-publish-repo.yml@self
@@ -14,6 +15,7 @@ stages:
     noCache: ${{ parameters.noCache }}
     internalProjectName: ${{ parameters.internalProjectName }}
     publicProjectName: ${{ parameters.publicProjectName }}
+    versionsRepoRef: ${{ parameters.versionsRepoRef }}
 
     ${{ if and(eq(variables['System.TeamProject'], parameters.publicProjectName), eq(parameters.linuxAmd64Pool, ''))}}:
       linuxAmd64Pool:

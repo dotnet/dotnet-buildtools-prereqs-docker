@@ -7,21 +7,23 @@ pr:
     include:
     - src/*
 
+variables:
+- template: variables/common.yml
+
 resources:
   repositories:
-  - repository: PublicVersionsRepo
+  - repository: VersionsRepo
     type: github
     endpoint: public
     name: dotnet/versions
-
-variables:
-- template: variables/common.yml
+    ref: ${{ variables['gitHubVersionsRepoInfo.branch'] }}
 
 stages:
 - template: stages/build-test-publish-repo.yml
   parameters:
     internalProjectName: ${{ variables.internalProjectName }}
     publicProjectName: ${{ variables.publicProjectName }}
+    versionsRepoRef: VersionsRepo
     linuxAmdBuildJobTimeout: 480
     linuxArmBuildJobTimeout: 300
     linuxAmd64Pool:
