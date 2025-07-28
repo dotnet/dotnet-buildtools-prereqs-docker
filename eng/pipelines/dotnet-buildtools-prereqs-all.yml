@@ -42,7 +42,7 @@ resources:
   repositories:
   - repository: VersionsRepo
     type: github
-    endpoint: public
+    endpoint: dotnet
     name: dotnet/versions
     ref: ${{ variables['gitHubVersionsRepoInfo.branch'] }}
 
