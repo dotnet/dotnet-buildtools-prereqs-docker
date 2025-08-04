@@ -15,11 +15,10 @@ RUN ln -sf /usr/lib/libicuuc.so.72 /usr/lib/libicuuc.so \
 # Install scancode
 # Install instructions: https://scancode-toolkit.readthedocs.io/en/latest/getting-started/install.html#installation-as-a-library-via-pip
 # See latest release at https://github.com/nexB/scancode-toolkit/releases
-# Try to install pyicu from wheel to avoid building from source
 RUN SCANCODE_VERSION="32.4.0" \
     && python3 -m venv /venv \
     && source /venv/bin/activate \
-    && pip install --trusted-host pypi.org --trusted-host pypi.python.org --trusted-host files.pythonhosted.org --only-binary=pyicu scancode-toolkit==$SCANCODE_VERSION
+    && pip install --trusted-host pypi.org --trusted-host pypi.python.org --trusted-host files.pythonhosted.org scancode-toolkit==$SCANCODE_VERSION
 
 FROM mcr.microsoft.com/dotnet/sdk:10.0-preview-azurelinux3.0-amd64
 
