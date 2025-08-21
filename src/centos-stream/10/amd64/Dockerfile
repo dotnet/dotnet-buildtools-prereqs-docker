@@ -44,6 +44,7 @@ RUN dnf upgrade --refresh -y \
         make \
         ncurses-devel \
         numactl-devel \
+        openssl \
         openssl-devel \
         pigz \
         powershell \
