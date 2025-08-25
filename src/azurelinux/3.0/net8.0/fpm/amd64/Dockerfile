@@ -14,5 +14,8 @@ RUN tdnf install -y \
         util-linux \
         # Provides sudo
         sudo \
+        # Provides functionality for AzureCLI AzDO task
+        azure-cli \
+        powershell \
     && tdnf clean all \
     && gem install fpm
