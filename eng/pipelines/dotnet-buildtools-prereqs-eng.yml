@@ -29,12 +29,12 @@ resources:
     ref: ${{ variables['gitHubVersionsRepoInfo.branch'] }}
 
 stages:
-- template: /eng/pipelines/stages/build-test-publish-repo.yml@self
+- template: /eng/common/templates/stages/dotnet/publish-config-nonprod.yml@self
   parameters:
-    internalProjectName: ${{ variables.internalProjectName }}
-    publicProjectName: ${{ variables.publicProjectName }}
-    versionsRepoRef: VersionsRepo
-    linuxAmdBuildJobTimeout: 360
-    linuxArmBuildJobTimeout: 300
-    customBuildInitSteps:
-    - template: /eng/pipelines/steps/install-cross-build-prereqs.yml
+    stagesTemplate: /eng/pipelines/stages/build-test-publish-repo.yml@self
+    stagesTemplateParameters:
+      versionsRepoRef: VersionsRepo
+      linuxAmdBuildJobTimeout: 360
+      linuxArmBuildJobTimeout: 300
+      customBuildInitSteps:
+      - template: /eng/pipelines/steps/install-cross-build-prereqs.yml
