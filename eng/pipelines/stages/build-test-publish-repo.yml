@@ -1,4 +1,5 @@
 parameters:
+  publishConfig: null
   noCache: false
   internalProjectName: null
   publicProjectName: null
@@ -8,10 +9,22 @@ parameters:
   customCopyBaseImagesInitSteps: []
   linuxAmd64Pool: ''
   versionsRepoRef: null
+  additionalServiceConnections: []
 
 stages:
+- ${{ if ne(variables['Build.Reason'], 'PullRequest') }}:
+  - template: /eng/common/templates/stages/setup-service-connections.yml@self
+    parameters:
+      serviceConnections:
+      - name: ${{ parameters.publishConfig.internalMirrorAcr.serviceConnection.name }}
+      - name: ${{ parameters.publishConfig.buildAcr.serviceConnection.name }}
+      - name: ${{ parameters.publishConfig.publishAcr.serviceConnection.name }}
+      - ${{ each serviceConnection in parameters.additionalServiceConnections }}:
+        - name: ${{ serviceConnection.name }}
+
 - template: /eng/common/templates/stages/dotnet/build-test-publish-repo.yml@self
   parameters:
+    publishConfig: ${{ parameters.publishConfig }}
     noCache: ${{ parameters.noCache }}
     internalProjectName: ${{ parameters.internalProjectName }}
     publicProjectName: ${{ parameters.publicProjectName }}

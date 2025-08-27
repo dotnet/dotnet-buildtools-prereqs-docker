@@ -32,7 +32,7 @@ schedules:
 
 variables:
 - template: /eng/pipelines/variables/common.yml@self
-  parameters: 
+  parameters:
     disableMatrixTrimming: ${{ parameters.disableMatrixTrimming }}
     sourceBuildPipelineRunId: ${{ parameters.sourceBuildPipelineRunId }}
 - template: /eng/common/templates/variables/dotnet/secrets.yml@self
@@ -48,41 +48,41 @@ resources:
     ref: ${{ variables['gitHubVersionsRepoInfo.branch'] }}
 
 extends:
-  template: /eng/common/templates/1es-official.yml@self
+  template: /eng/common/templates/1es.yml@self
   parameters:
-    serviceConnections:
-    - name: $(internal-mirror.serviceConnectionName)
-    - name: $(build.serviceConnectionName)
-    - name: $(publish.serviceConnectionName)
-    - name: $(marStatus.serviceConnectionName)
+    reposToExcludeFromScanning:
+    - VersionsRepo
     stages:
-    - template: /eng/pipelines/stages/build-test-publish-repo.yml@self
+    - template: /eng/common/templates/stages/dotnet/publish-config-prod.yml@self
       parameters:
-        internalProjectName: ${{ variables.internalProjectName }}
-        publicProjectName: ${{ variables.publicProjectName }}
-        versionsRepoRef: VersionsRepo
-        linuxAmdBuildJobTimeout: 480
-        linuxArmBuildJobTimeout: 300
-        linuxAmd64Pool:
-          name: NetCore1ESPool-Internal-XL
-          image: 1es-ubuntu-2204
-          os: linux
-        ${{ if eq(variables['System.TeamProject'], 'internal') }}:
-          customCopyBaseImagesInitSteps:
-          - template: /eng/pipelines/steps/set-base-image-override-options.yml@self
-            parameters:
-              variableName: customCopyBaseImagesArgs
-              dockerfileOs: (centos|debian)
-              baseOverrideRegistry: $(overrideRegistry) # Comes from DotNet-Docker-Common variable group
-        customBuildInitSteps:
-        - template: /eng/pipelines/steps/install-cross-build-prereqs.yml@self
-        - ${{ if eq(variables['System.TeamProject'], 'internal') }}:
-          - template: /eng/pipelines/steps/set-base-image-override-options.yml@self
-            parameters:
-              variableName: imageBuilderBuildArgs
-              dockerfileOs: (centos|debian)
-              baseOverrideRegistry: $(overrideRegistry) # Comes from DotNet-Docker-Common variable group
-        # Force all images to be rebuilt when triggered by the schedule
-        # See https://github.com/dotnet/dotnet-buildtools-prereqs-docker/issues/1224
-        ${{ if eq(variables['Build.Reason'], 'Schedule') }}:
-          noCache: true
+        sourceBuildPipelineRunId: ${{ parameters.sourceBuildPipelineRunId }}
+        stagesTemplate: /eng/pipelines/stages/build-test-publish-repo.yml@self
+        stagesTemplateParameters:
+          versionsRepoRef: VersionsRepo
+          linuxAmdBuildJobTimeout: 480
+          linuxArmBuildJobTimeout: 300
+          linuxAmd64Pool:
+            name: NetCore1ESPool-Internal-XL
+            image: 1es-ubuntu-2204
+            os: linux
+          ${{ if eq(variables['System.TeamProject'], 'internal') }}:
+            customCopyBaseImagesInitSteps:
+            - template: /eng/pipelines/steps/set-base-image-override-options.yml@self
+              parameters:
+                variableName: customCopyBaseImagesArgs
+                dockerfileOs: (centos|debian)
+                baseOverrideRegistry: $(overrideRegistry) # Comes from DotNet-Docker-Common variable group
+          customBuildInitSteps:
+          - template: /eng/pipelines/steps/install-cross-build-prereqs.yml@self
+          - ${{ if eq(variables['System.TeamProject'], 'internal') }}:
+            - template: /eng/pipelines/steps/set-base-image-override-options.yml@self
+              parameters:
+                variableName: imageBuilderBuildArgs
+                dockerfileOs: (centos|debian)
+                baseOverrideRegistry: $(overrideRegistry) # Comes from DotNet-Docker-Common variable group
+          # Force all images to be rebuilt when triggered by the schedule
+          # See https://github.com/dotnet/dotnet-buildtools-prereqs-docker/issues/1224
+          ${{ if eq(variables['Build.Reason'], 'Schedule') }}:
+            noCache: true
+          additionalServiceConnections:
+          - name: $(marStatus.serviceConnectionName)
