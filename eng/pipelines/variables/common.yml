@@ -36,6 +36,3 @@ variables:
 - ${{ if not(parameters.disableMatrixTrimming) }}:
   - name: trimCachedImagesForMatrix
     value: true
-- ${{ if eq(variables['System.TeamProject'], 'internal') }}:
-  - name: build.imageBuilderDockerRunExtraOptions
-    value: -e DOCKER_REPO=$(acr.server)/$(stagingRepoPrefix)dotnet-buildtools/prereqs
