@@ -36,3 +36,5 @@ variables:
 - ${{ if not(parameters.disableMatrixTrimming) }}:
   - name: trimCachedImagesForMatrix
     value: true
+- name: gitHubNotificationsRepoInfo.repo
+  value: dotnet-buildtools-prereqs-docker-internal
