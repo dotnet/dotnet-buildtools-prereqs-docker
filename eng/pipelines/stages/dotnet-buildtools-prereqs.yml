@@ -35,5 +35,6 @@ stages:
       # See https://github.com/dotnet/dotnet-buildtools-prereqs-docker/issues/1224
       ${{ if eq(variables['Build.Reason'], 'Schedule') }}:
         noCache: true
-      additionalServiceConnections:
-      - name: $(marStatus.serviceConnectionName)
+      ${{ if contains(variables['Build.DefinitionName'], '-official') }}:
+        additionalServiceConnections:
+        - name: $(marStatus.serviceConnectionName)
