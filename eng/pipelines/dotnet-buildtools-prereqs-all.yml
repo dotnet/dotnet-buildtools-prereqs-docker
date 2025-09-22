@@ -40,6 +40,7 @@ variables:
   value: true
 - name: Codeql.ExcludePathPatterns
   value: tests
+  readonly: true
 
 resources:
   repositories:
