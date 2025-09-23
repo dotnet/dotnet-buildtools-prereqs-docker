@@ -3,8 +3,11 @@ parameters:
   type: string
   default: $(Build.BuildId)
 
+- name: publishConfigTemplatePath
+  type: string
+
 stages:
-- template: /eng/common/templates/stages/dotnet/publish-config-nonprod.yml@self
+- template: ${{ parameters.publishConfigTemplatePath }}
   parameters:
     sourceBuildPipelineRunId: ${{ parameters.sourceBuildPipelineRunId }}
     stagesTemplate: /eng/pipelines/stages/build-test-publish-repo.yml@self
