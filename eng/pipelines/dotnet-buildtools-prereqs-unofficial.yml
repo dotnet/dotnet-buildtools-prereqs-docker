@@ -42,3 +42,4 @@ extends:
     - template: /eng/pipelines/stages/dotnet-buildtools-prereqs.yml@self
       parameters:
         sourceBuildPipelineRunId: ${{ parameters.sourceBuildPipelineRunId }}
+        publishConfigTemplatePath: /eng/common/templates/stages/dotnet/publish-config-nonprod.yml@self
