@@ -38,6 +38,9 @@ variables:
 - template: /eng/common/templates/variables/dotnet/secrets.yml@self
 - name: publishEolAnnotations
   value: true
+- name: Codeql.ExcludePathPatterns
+  value: tests
+  readonly: true
 
 resources:
   repositories:
