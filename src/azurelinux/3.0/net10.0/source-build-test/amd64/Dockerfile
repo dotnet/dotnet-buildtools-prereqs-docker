@@ -1,4 +1,5 @@
-FROM mcr.microsoft.com/dotnet/sdk:10.0-azurelinux3.0-amd64 AS installer
+ARG DOTNET_VERSION
+FROM mcr.microsoft.com/dotnet/sdk:${DOTNET_VERSION}-azurelinux3.0-amd64 AS installer
 
 # Install dependencies for building pyicu wheel from source (dependency of scancode-toolkit)
 RUN tdnf update -y \
@@ -20,7 +21,7 @@ RUN SCANCODE_VERSION="32.4.1" \
     && pip install scancode-toolkit==$SCANCODE_VERSION
 
 
-FROM mcr.microsoft.com/dotnet/sdk:10.0-azurelinux3.0-amd64
+FROM mcr.microsoft.com/dotnet/sdk:${DOTNET_VERSION}-azurelinux3.0-amd64
 
 COPY --from=installer /venv /venv
 
