@@ -17,7 +17,8 @@ RUN tdnf update -y \
 RUN SCANCODE_VERSION="32.4.1" \
     && python3 -m venv /venv \
     && source /venv/bin/activate \
-    && pip install scancode-toolkit==$SCANCODE_VERSION
+    && pip install scancode-toolkit==$SCANCODE_VERSION \
+    && pip install click==8.2.2
 
 
 FROM mcr.microsoft.com/dotnet/sdk:10.0-azurelinux3.0-amd64
