@@ -1,0 +1,43 @@
+parameters:
+- name: sourceBuildPipelineRunId
+  type: string
+  default: $(Build.BuildId)
+
+- name: publishConfigTemplatePath
+  type: string
+
+stages:
+- template: ${{ parameters.publishConfigTemplatePath }}
+  parameters:
+    sourceBuildPipelineRunId: ${{ parameters.sourceBuildPipelineRunId }}
+    stagesTemplate: /eng/pipelines/stages/build-test-publish-repo.yml@self
+    stagesTemplateParameters:
+      versionsRepoRef: VersionsRepo
+      linuxAmdBuildJobTimeout: 480
+      linuxArmBuildJobTimeout: 300
+      linuxAmd64Pool:
+        name: NetCore1ESPool-Internal-XL
+        image: 1es-ubuntu-2204
+        os: linux
+      ${{ if eq(variables['System.TeamProject'], 'internal') }}:
+        customCopyBaseImagesInitSteps:
+        - template: /eng/pipelines/steps/set-base-image-override-options.yml@self
+          parameters:
+            variableName: customCopyBaseImagesArgs
+            dockerfileOs: (centos|debian)
+            baseOverrideRegistry: $(overrideRegistry) # Comes from DotNet-Docker-Common variable group
+      customBuildInitSteps:
+      - template: /eng/pipelines/steps/install-cross-build-prereqs.yml@self
+      - ${{ if eq(variables['System.TeamProject'], 'internal') }}:
+        - template: /eng/pipelines/steps/set-base-image-override-options.yml@self
+          parameters:
+            variableName: imageBuilderBuildArgs
+            dockerfileOs: (centos|debian)
+            baseOverrideRegistry: $(overrideRegistry) # Comes from DotNet-Docker-Common variable group
+      # Force all images to be rebuilt when triggered by the schedule
+      # See https://github.com/dotnet/dotnet-buildtools-prereqs-docker/issues/1224
+      ${{ if eq(variables['Build.Reason'], 'Schedule') }}:
+        noCache: true
+      ${{ if contains(variables['Build.DefinitionName'], '-official') }}:
+        additionalServiceConnections:
+        - name: $(marStatus.serviceConnectionName)

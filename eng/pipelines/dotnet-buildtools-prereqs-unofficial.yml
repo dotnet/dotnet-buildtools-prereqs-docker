@@ -1,0 +1,45 @@
+trigger: none
+pr: none
+
+parameters:
+- name: disableMatrixTrimming
+  displayName: Disable matrix trimming
+  type: boolean
+  default: false
+
+- name: sourceBuildPipelineRunId
+  displayName: >
+    Source build pipeline run ID. This refers to runs of *this pipeline*.
+    Override this parameter in combination with disabling the `Build` stage to
+    test or publish images that were built in a different pipeline run. When
+    building new images, leave this value alone.
+  type: string
+  default: $(Build.BuildId)
+
+variables:
+- template: /eng/pipelines/variables/common.yml@self
+  parameters:
+    disableMatrixTrimming: ${{ parameters.disableMatrixTrimming }}
+    sourceBuildPipelineRunId: ${{ parameters.sourceBuildPipelineRunId }}
+- template: /eng/common/templates/variables/dotnet/secrets-unofficial.yml@self
+- name: publishEolAnnotations
+  value: true
+
+resources:
+  repositories:
+  - repository: VersionsRepo
+    type: github
+    endpoint: dotnet
+    name: dotnet/versions
+    ref: ${{ variables['gitHubVersionsRepoInfo.branch'] }}
+
+extends:
+  template: /eng/common/templates/1es.yml@self
+  parameters:
+    reposToExcludeFromScanning:
+    - VersionsRepo
+    stages:
+    - template: /eng/pipelines/stages/dotnet-buildtools-prereqs.yml@self
+      parameters:
+        sourceBuildPipelineRunId: ${{ parameters.sourceBuildPipelineRunId }}
+        publishConfigTemplatePath: /eng/common/templates/stages/dotnet/publish-config-nonprod.yml@self
