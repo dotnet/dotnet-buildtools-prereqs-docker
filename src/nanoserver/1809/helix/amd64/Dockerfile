@@ -23,6 +23,7 @@ RUN setx /M VIRTUAL_ENV "C:\Python-env" && `
 
 # Install latest stable version of Python
 RUN pwsh -Command " `
+        [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12; `
         $apiUrl = 'https://api.nuget.org/v3-flatcontainer/python/index.json'; `
         $response = Invoke-RestMethod -Uri $apiUrl; `
         $versions = $response.versions | Where-Object { $_ -notmatch '-' } | Sort-Object { [version]$_ } -Descending; `
