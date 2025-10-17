@@ -39,13 +39,14 @@ public class ManifestTests
                 }
                 else
                 {
-                    var matchingPlatforms = platforms.Where(p => GetDockerfilePath(p) == dockerfilePath);
+                    var matchingPlatforms = platforms.Where(p => GetDockerfilePath(p) == dockerfilePath).ToList();
                     if (matchingPlatforms.Count() > 1)
                     {
-                        if (dockerfilePath.EndsWith(arch))
+                        var distinctArchs = matchingPlatforms.Select(p => GetArchitecture(p)).Distinct().ToList();
+                        if (distinctArchs.Count > 1 && dockerfilePath.EndsWith(arch))
                         {
                             invalidDockerfilePaths.Add(
-                                $"Dockerfile path '{dockerfilePath}' should not end with '{arch}' because it is built for multiple platforms.");
+                                $"Dockerfile path '{dockerfilePath}' should not end with '{arch}' because it is built for multiple platforms with different architectures.");
                         }
                     }
                     else if (!dockerfilePath.EndsWith(arch))
