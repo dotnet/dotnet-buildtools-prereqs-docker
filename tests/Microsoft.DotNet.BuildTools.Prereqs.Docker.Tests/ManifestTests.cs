@@ -81,7 +81,7 @@ public class ManifestTests
 
                 // Skip validation if this dockerfile is shared across multiple platforms
                 // as there is no easy way to validate the tag structure from the Dockerfile path.
-                var matchingPlatforms = platforms.Where(p => GetDockerfilePath(p) == dockerfilePath).ToList();
+                var matchingPlatforms = platforms.Where(p => GetDockerfilePath(p) == dockerfilePath);
                 if (matchingPlatforms.Count > 1)
                 {
                     return;
