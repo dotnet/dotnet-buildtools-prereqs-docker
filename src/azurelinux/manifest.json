@@ -1405,7 +1405,8 @@
                 "azurelinux-3.0-net11.0-source-build-test-amd64": {}
               },
               "buildArgs": {
-                "DOTNET_VERSION": "11.0"
+                // TODO: Update to 11 once images are available
+                "DOTNET_VERSION": "10.0"
               }
             }
           ]
