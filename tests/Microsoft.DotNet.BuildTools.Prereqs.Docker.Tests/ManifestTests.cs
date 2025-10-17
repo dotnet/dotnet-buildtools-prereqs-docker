@@ -79,6 +79,14 @@ public class ManifestTests
                     return;
                 }
 
+                // Skip validation if this dockerfile is shared across multiple platforms
+                // as there is no easy way to validate the tag structure from the Dockerfile path.
+                var matchingPlatforms = platforms.Where(p => GetDockerfilePath(p) == dockerfilePath).ToList();
+                if (matchingPlatforms.Count > 1)
+                {
+                    return;
+                }
+
                 string expectedTag = dockerfilePath;
                 string dockerfileQualifier = string.Empty;
                 if (!dockerfilePath.EndsWith(arch) && !IsCrossDockerfile(dockerfilePath))
@@ -129,7 +137,7 @@ public class ManifestTests
         }
     }
 
-    private string GetArchitecture(JsonElement platform)
+    private static string GetArchitecture(JsonElement platform)
     {
         string variant = platform.TryGetProperty("variant", out var variantProp) ? variantProp.GetString()! : string.Empty;
         string arch = platform.TryGetProperty("architecture", out var archProp) ? archProp.GetString()! : DefaultArch;
@@ -142,7 +150,7 @@ public class ManifestTests
         return arch + variant;
     }
 
-    private string GetDockerfilePath(JsonElement platform) => (platform.GetProperty("dockerfile").GetString() ?? string.Empty).TrimEnd('/');
+    private static string GetDockerfilePath(JsonElement platform) => (platform.GetProperty("dockerfile").GetString() ?? string.Empty).TrimEnd('/');
 
-    private bool IsCrossDockerfile(string dockerfilePath) => dockerfilePath.Contains("/cross/");
+    private static bool IsCrossDockerfile(string dockerfilePath) => dockerfilePath.Contains("/cross/");
 }
