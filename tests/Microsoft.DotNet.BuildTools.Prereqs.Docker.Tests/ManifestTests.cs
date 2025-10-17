@@ -42,8 +42,8 @@ public class ManifestTests
                     var matchingPlatforms = platforms.Where(p => GetDockerfilePath(p) == dockerfilePath).ToList();
                     if (matchingPlatforms.Count() > 1)
                     {
-                        var distinctArchs = matchingPlatforms.Select(p => GetArchitecture(p)).Distinct().ToList();
-                        if (distinctArchs.Count > 1 && dockerfilePath.EndsWith(arch))
+                        var distinctArchs = matchingPlatforms.Select(p => GetArchitecture(p)).Distinct();
+                        if (distinctArchs.Count() > 1 && dockerfilePath.EndsWith(arch))
                         {
                             invalidDockerfilePaths.Add(
                                 $"Dockerfile path '{dockerfilePath}' should not end with '{arch}' because it is built for multiple platforms with different architectures.");
@@ -116,11 +116,15 @@ public class ManifestTests
     private void EnumerateManifests(Action<JsonElement[], JsonElement, string, string> action)
     {
         var manifestFiles = Directory.GetFiles(Config.SrcDirectory, "manifest.json", SearchOption.AllDirectories);
+        var jsonOptions = new JsonDocumentOptions
+        {
+            CommentHandling = JsonCommentHandling.Skip,
+        };
 
         foreach (var manifestFile in manifestFiles)
         {
             OutputHelper.WriteLine($"Processing manifest file: {manifestFile}");
-            var manifestJson = JsonDocument.Parse(File.ReadAllText(manifestFile)).RootElement;
+            var manifestJson = JsonDocument.Parse(File.ReadAllText(manifestFile), jsonOptions).RootElement;
             var platforms = manifestJson.GetProperty("repos")
                 .EnumerateArray()
                 .SelectMany(repo => repo.GetProperty("images").EnumerateArray())
