@@ -22,6 +22,15 @@ parameters:
   type: string
   default: $(Build.BuildId)
 
+- name: noCache
+  displayName: >
+    Run build with no cache. When this is unchecked, the build will use the
+    info in the dotnet/versions repo to build only the images which have had
+    Dockerfile changes or base images updates. When this is checked, all images
+    will be built regardless of caching status.
+  type: boolean
+  default: false
+
 schedules:
 - cron: "0 5 1,15 * *"
   displayName: Monthly rebuild of all images
@@ -60,3 +69,4 @@ extends:
       parameters:
         sourceBuildPipelineRunId: ${{ parameters.sourceBuildPipelineRunId }}
         publishConfigTemplatePath: /eng/common/templates/stages/dotnet/publish-config-prod.yml@self
+        noCache: ${{ parameters.noCache }}

@@ -20,18 +20,18 @@ RUN tdnf update -y && \
         texinfo \
         zlib-devel
 
-# Steps copied (mostly, changed target archs) from crossdeps Dockerfile: https://github.com/dotnet/dotnet-buildtools-prereqs-docker/blob/main/src/azurelinux/3.0/net10.0/crossdeps-builder/amd64/Dockerfile
+# Steps copied (mostly, changed target archs) from crossdeps Dockerfile: https://github.com/dotnet/dotnet-buildtools-prereqs-docker/blob/main/src/azurelinux/3.0/net11.0/crossdeps-builder/amd64/Dockerfile
 # 1. Obtain signing keys used to sign llvm sources
 RUN wget https://releases.llvm.org/release-keys.asc && \
     echo "f38bd19b7f2d22cafa755841e6ce9375b9a2e6d41f7b974e4953d6b084839001 release-keys.asc" | sha256sum -c && \
     gpg --import release-keys.asc && \
     rm release-keys.asc && \
 # 2. Download llvm sources and signature, and verify signature
-    LLVM_VERSION=20.1.8 && \
+    LLVM_VERSION=21.1.3 && \
     wget -O llvm-project.src.tar.xz.sig https://github.com/llvm/llvm-project/releases/download/llvmorg-${LLVM_VERSION}/llvm-project-${LLVM_VERSION}.src.tar.xz.sig && \
-    echo "ceb97d827cfd2e517b7d486381cb6e3183d8aee71947e7022c389259bb260696 llvm-project.src.tar.xz.sig" | sha256sum -c && \
+    echo "99b9ed52670759982f04613e85bf603ffa464fbf7a2d36eb25a45e1f6bffb6c8 llvm-project.src.tar.xz.sig" | sha256sum -c && \
     wget -O llvm-project.src.tar.xz https://github.com/llvm/llvm-project/releases/download/llvmorg-${LLVM_VERSION}/llvm-project-${LLVM_VERSION}.src.tar.xz && \
-    echo "6898f963c8e938981e6c4a302e83ec5beb4630147c7311183cf61069af16333d llvm-project.src.tar.xz" | sha256sum -c && \
+    echo "9c9db50d8046f668156d83f6b594631b4ca79a0d96e4f19bed9dc019b022e58f llvm-project.src.tar.xz" | sha256sum -c && \
     gpg --verify llvm-project.src.tar.xz.sig && \
     rm llvm-project.src.tar.xz.sig
 

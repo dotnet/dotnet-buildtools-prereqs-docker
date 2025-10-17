@@ -49,7 +49,7 @@ RUN gpg --output dimitri_john_ledkov.gpg --dearmor dimitri_john_ledkov.asc && \
 
 # 1. Obtain signing keys used to sign llvm sources
 RUN wget https://releases.llvm.org/release-keys.asc && \
-    echo "972d9449ebf7de947a1dff7f25edf8eea7963e4f7501b20d29328df55162f3b8 release-keys.asc" | sha256sum -c && \
+    echo "f38bd19b7f2d22cafa755841e6ce9375b9a2e6d41f7b974e4953d6b084839001 release-keys.asc" | sha256sum -c && \
     gpg --output release-keys.gpg --dearmor release-keys.asc && \
     rm release-keys.asc && \
 # 2. Download llvm sources and signature, and verify signature

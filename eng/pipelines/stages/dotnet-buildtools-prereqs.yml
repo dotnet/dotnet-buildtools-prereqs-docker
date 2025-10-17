@@ -3,6 +3,10 @@ parameters:
   type: string
   default: $(Build.BuildId)
 
+- name: noCache
+  type: boolean
+  default: false
+
 - name: publishConfigTemplatePath
   type: string
 
@@ -38,6 +42,8 @@ stages:
       # See https://github.com/dotnet/dotnet-buildtools-prereqs-docker/issues/1224
       ${{ if eq(variables['Build.Reason'], 'Schedule') }}:
         noCache: true
+      ${{ else }}:
+        noCache: ${{ parameters.noCache }}
       ${{ if contains(variables['Build.DefinitionName'], '-official') }}:
         additionalServiceConnections:
         - name: $(marStatus.serviceConnectionName)

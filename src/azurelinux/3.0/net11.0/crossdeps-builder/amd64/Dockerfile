@@ -59,11 +59,11 @@ RUN wget https://releases.llvm.org/release-keys.asc && \
 
 RUN \
     # Download llvm sources and signature, and verify signature
-    LLVM_VERSION=16.0.6 && \
+    LLVM_VERSION=21.1.3 && \
     wget -O llvm-project.src.tar.xz.sig https://github.com/llvm/llvm-project/releases/download/llvmorg-${LLVM_VERSION}/llvm-project-${LLVM_VERSION}.src.tar.xz.sig && \
-    echo "345018988b25cccfa40d03d4280794e915a2d9fabe12305365394625fb9c6836 llvm-project.src.tar.xz.sig" | sha256sum -c && \
+    echo "99b9ed52670759982f04613e85bf603ffa464fbf7a2d36eb25a45e1f6bffb6c8 llvm-project.src.tar.xz.sig" | sha256sum -c && \
     wget -O llvm-project.src.tar.xz https://github.com/llvm/llvm-project/releases/download/llvmorg-${LLVM_VERSION}/llvm-project-${LLVM_VERSION}.src.tar.xz && \
-    echo "ce5e71081d17ce9e86d7cbcfa28c4b04b9300f8fb7e78422b1feb6bc52c3028e llvm-project.src.tar.xz" | sha256sum -c && \
+    echo "9c9db50d8046f668156d83f6b594631b4ca79a0d96e4f19bed9dc019b022e58f llvm-project.src.tar.xz" | sha256sum -c && \
     gpg --verify llvm-project.src.tar.xz.sig && \
     rm llvm-project.src.tar.xz.sig && \
     # Build LLVM cross-toolchain (with support for targeting x86/x64, arm64, arm, s390x and ppc64le architectures)
@@ -77,7 +77,7 @@ RUN \
         -DCMAKE_BUILD_TYPE=Release \
         -DCMAKE_C_COMPILER=clang \
         -DCMAKE_CXX_COMPILER=clang++ \
-        -DLLVM_TARGETS_TO_BUILD="X86;AArch64;ARM;PowerPC;RISCV;SystemZ" \
+        -DLLVM_TARGETS_TO_BUILD="X86;AArch64;ARM;PowerPC;RISCV;SystemZ;LoongArch" \
         -Wno-dev \
         -DLLVM_ENABLE_PROJECTS="clang;lld;clang-tools-extra" && \
     make -j $(getconf _NPROCESSORS_ONLN) && \
