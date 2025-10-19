@@ -36,7 +36,6 @@ RUN dnf upgrade --refresh -y \
         make \
         ncurses-devel \
         nodejs \
-        numactl-devel \
         openssl-devel \
         readline-devel \
         python3.12 \
