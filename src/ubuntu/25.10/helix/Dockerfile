@@ -63,6 +63,7 @@ RUN LIBCURL=libcurl4 \
         libelf1t64 \
         libnl-3-200 \
         libnl-route-3-200 \
+        libnuma1 \
         libxdp1 \
     && rm -rf /var/lib/apt/lists/* \
     && localedef -i en_US -c -f UTF-8 en_US.UTF-8
