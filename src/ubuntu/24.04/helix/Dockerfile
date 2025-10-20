@@ -42,7 +42,6 @@ RUN LIBCURL=libcurl4 && \
         $LIBCURL \
         libffi-dev \
         libicu-dev \
-        libnuma1 \
         libssl-dev \
         libtool \
         libunwind8 \

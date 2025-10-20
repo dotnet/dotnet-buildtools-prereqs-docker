@@ -31,7 +31,6 @@ RUN apk add --upgrade --no-cache \
         llvm \
         lttng-ust \
         musl-locales \
-        numactl \
         openssl \
         python3 \
         python3-dev \

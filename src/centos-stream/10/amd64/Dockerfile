@@ -43,7 +43,6 @@ RUN dnf upgrade --refresh -y \
         lzma \
         make \
         ncurses-devel \
-        numactl-devel \
         openssl \
         openssl-devel \
         pigz \

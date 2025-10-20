@@ -35,7 +35,6 @@ RUN dnf upgrade --refresh -y \
         lttng-ust-devel \
         make \
         ncurses-devel \
-        numactl-devel \
         openssl-devel \
         readline-devel \
         python3 \

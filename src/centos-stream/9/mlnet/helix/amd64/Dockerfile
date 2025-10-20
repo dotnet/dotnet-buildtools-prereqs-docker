@@ -40,7 +40,6 @@ RUN dnf upgrade --refresh -y \
         lzma \
         make \
         ncurses-devel \
-        numactl-devel \
         openssl-devel \
         perl-FindBin \
         procps-ng \

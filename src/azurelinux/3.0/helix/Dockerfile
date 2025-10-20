@@ -24,7 +24,6 @@ RUN tdnf install --setopt tsflags=nodocs --refresh -y \
         iputils \
         libgcc-atomic \
         libmsquic \
-        libnuma \
         llvm \
         python3 \
         python3-pip \
