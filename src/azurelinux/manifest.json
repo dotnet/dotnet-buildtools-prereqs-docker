@@ -1370,7 +1370,7 @@
               "os": "linux",
               "osVersion": "azurelinux3.0",
               "tags": {
-                "azurelinux-3.0-9.0-source-build-test-amd64": {}
+                "azurelinux-3.0-net9.0-source-build-test-amd64": {}
               },
               "buildArgs": {
                 "DOTNET_VERSION": "9.0"
