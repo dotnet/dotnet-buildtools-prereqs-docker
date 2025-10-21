@@ -1347,6 +1347,7 @@
           ]
         },
         {
+          "productVersion": "8.0",
           "platforms": [
             {
               "architecture": "amd64",
@@ -1363,6 +1364,7 @@
           ]
         },
         {
+          "productVersion": "9.0",
           "platforms": [
             {
               "architecture": "amd64",
@@ -1379,6 +1381,7 @@
           ]
         },
         {
+          "productVersion": "10.0",
           "platforms": [
             {
               "architecture": "amd64",
@@ -1395,6 +1398,7 @@
           ]
         },
         {
+          "productVersion": "11.0",
           "platforms": [
             {
               "architecture": "amd64",
