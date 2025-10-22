@@ -6,8 +6,7 @@ RUN apt-get update \
     && apt-get install -y \
         apt-transport-https \
         curl \
-        software-properties-common \
-    && curl -sL https://packages.microsoft.com/config/debian/12/packages-microsoft-prod.deb -o packages-microsoft-prod.deb \
+    && curl -sL https://packages.microsoft.com/config/debian/13/packages-microsoft-prod.deb -o packages-microsoft-prod.deb \
     && dpkg -i packages-microsoft-prod.deb \
     && rm packages-microsoft-prod.deb \
     && apt-get update \
@@ -26,7 +25,6 @@ RUN apt-get update \
         locales \
         locales-all \
         pigz \
-        powershell \
         python3-dev \
         python3-pip \
         sudo \
