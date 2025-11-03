@@ -40,13 +40,14 @@ jobs:
   - powershell: echo "##vso[task.setvariable variable=imageBuilderBuildArgs]"
     condition: eq(variables.imageBuilderBuildArgs, '')
     displayName: Initialize Image Builder Build Args
-  # Add authenticated pip feed
-  - task: PipAuthenticate@1
-    displayName: 'Pip Authenticate'
-    inputs:
-      artifactFeeds: public/dotnet-public-pypi
-      onlyAddExtraIndex: false
-    condition: always()
+  - ${{ if eq(variables['System.TeamProject'], parameters.internalProjectName) }}:
+    # Add authenticated pip feed
+    - task: PipAuthenticate@1
+      displayName: 'Pip Authenticate'
+      inputs:
+        artifactFeeds: public/dotnet-public-pypi
+        onlyAddExtraIndex: false
+      condition: always()
   - powershell: |
       New-Item -Path $(imageInfoHostDir) -ItemType Directory -Force
 
@@ -66,10 +67,8 @@ jobs:
         $imageBuilderBuildArgs = "$imageBuilderBuildArgs --image-info-source-path $(versionsBasePath)$(imageInfoVersionsPath)"
       }
 
-      $imageBuilderBuildArgs = "$imageBuilderBuildArgs --build-arg PIP_INDEX_URL=$env:PIP_INDEX_URL"
-
       if ($env:SYSTEM_TEAMPROJECT -eq "${{ parameters.internalProjectName }}") {
-      $imageBuilderBuildArgs = "$imageBuilderBuildArgs --build-arg NPM_TOKEN=$(System.AccessToken)"
+        $imageBuilderBuildArgs = "$imageBuilderBuildArgs --build-arg PIP_INDEX_URL=$env:PIP_INDEX_URL --build-arg NPM_TOKEN=$(System.AccessToken)"
       }
 
       echo "imageBuilderBuildArgs: $imageBuilderBuildArgs"
