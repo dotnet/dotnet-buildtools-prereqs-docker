@@ -11,6 +11,7 @@ RUN dnf upgrade --refresh -y \
         "perl(Time::HiRes)" \
         autoconf \
         automake \
+        azure-cli \
         brotli-devel \
         clang \
         cmake \
