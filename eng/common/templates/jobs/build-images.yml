@@ -40,6 +40,13 @@ jobs:
   - powershell: echo "##vso[task.setvariable variable=imageBuilderBuildArgs]"
     condition: eq(variables.imageBuilderBuildArgs, '')
     displayName: Initialize Image Builder Build Args
+  - ${{ if eq(variables['System.TeamProject'], parameters.internalProjectName) }}:
+    # Add authenticated pip feed
+    - task: PipAuthenticate@1
+      displayName: 'Pip Authenticate'
+      inputs:
+        artifactFeeds: public/dotnet-public-pypi
+        onlyAddExtraIndex: false
   - powershell: |
       New-Item -Path $(imageInfoHostDir) -ItemType Directory -Force
 
@@ -57,6 +64,10 @@ jobs:
       # If the pipeline isn't configured to disable the cache and a build variable hasn't been set to disable the cache
       if ("$(pipelineDisabledCache)" -ne "true" -and "${{ parameters.noCache }}" -ne "true") {
         $imageBuilderBuildArgs = "$imageBuilderBuildArgs --image-info-source-path $(versionsBasePath)$(imageInfoVersionsPath)"
+      }
+
+      if ($env:SYSTEM_TEAMPROJECT -eq "${{ parameters.internalProjectName }}") {
+        $imageBuilderBuildArgs = "$imageBuilderBuildArgs --build-arg PIP_INDEX_URL=$env:PIP_INDEX_URL --build-arg NPM_TOKEN=$(System.AccessToken)"
       }
 
       echo "imageBuilderBuildArgs: $imageBuilderBuildArgs"
