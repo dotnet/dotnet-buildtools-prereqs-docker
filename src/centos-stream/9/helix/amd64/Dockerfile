@@ -21,7 +21,6 @@ RUN dnf upgrade --refresh -y \
         libmsquic \
         libtool \
         llvm \
-        lttng-ust \
         make \
         openssl \
         openssl-devel \

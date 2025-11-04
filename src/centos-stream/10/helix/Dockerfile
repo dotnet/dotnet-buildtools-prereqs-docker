@@ -33,7 +33,6 @@ RUN dnf upgrade --refresh -y \
         libtool \
         lldb \
         llvm \
-        lttng-ust \
         make \
         openssl \
         openssl-devel \
