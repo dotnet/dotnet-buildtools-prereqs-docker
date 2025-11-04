@@ -47,7 +47,6 @@ jobs:
       inputs:
         artifactFeeds: public/dotnet-public-pypi
         onlyAddExtraIndex: false
-      condition: always()
   - powershell: |
       New-Item -Path $(imageInfoHostDir) -ItemType Directory -Force
 
