@@ -69,6 +69,7 @@ RUN powershell -Command " `
 
 ARG NPM_TOKEN
 
+# hadolint ignore=SC1072
 RUN if defined NPM_TOKEN ( `
         npm config set registry https://pkgs.dev.azure.com/dnceng/public/_packaging/dotnet-public-npm/npm/registry/ `
         && npm config set "//pkgs.dev.azure.com/dnceng/public/_packaging/dotnet-public-npm/npm/registry/:_authToken" %NPM_TOKEN% `
