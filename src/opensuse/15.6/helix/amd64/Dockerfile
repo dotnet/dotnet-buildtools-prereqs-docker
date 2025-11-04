@@ -35,16 +35,17 @@ RUN zypper ref \
 
 ENV LANG=en_US.utf8
 
-# Temporarily disable MsQuic installation due to dependency issues
-# See https://github.com/dotnet/dotnet-buildtools-prereqs-docker/issues/1529#issuecomment-3486499831
-# libmsquic requires libxdp >= 1.4.0, but openSUSE Leap 15.6 only has libxdp1 1.3.1
-# RUN wget https://packages.microsoft.com/keys/microsoft.asc \
-#     && rpm --import microsoft.asc \
-#     && rm microsoft.asc \
-#     && zypper addrepo https://packages.microsoft.com/opensuse/15/prod/ "MS Packages" \
-#     && zypper install -y \
-#         libmsquic \
-#     && zypper clean -a
+# Install MsQuic from official GitHub releases
+# Note: libmsquic requires libxdp >= 1.4.0, but openSUSE Leap 15.6 only has libxdp1 1.3.1
+# We install a newer libxdp from Tumbleweed and download libmsquic RPM directly to bypass dependency check
+RUN zypper addrepo --no-gpgcheck https://download.opensuse.org/tumbleweed/repo/oss/ tumbleweed-oss \
+    && zypper install -y --allow-vendor-change \
+        libxdp1 \
+    && zypper removerepo tumbleweed-oss \
+    && wget https://packages.microsoft.com/opensuse/15/prod/Packages/l/libmsquic-2.4.16-1.x86_64.rpm \
+    && rpm -ivh --nodeps libmsquic-2.4.16-1.x86_64.rpm \
+    && rm libmsquic-2.4.16-1.x86_64.rpm \
+    && zypper clean -a
 
 RUN ln -sf /usr/bin/python3.12 /usr/bin/python
 
