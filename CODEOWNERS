@@ -3,7 +3,7 @@
 
 ### General infra ###
 # '*' is excluded from the CODEOWNERS validation that runs on PRs
-* @dotnet/dotnet-docker-reviewers
+* @dotnet/dotnet-docker-reviewers @dotnet/prodconsvcs
 
 ### Dockerfiles ###
 
@@ -51,3 +51,4 @@ src/ubuntu/24.04/Dockerfile @dotnet/source-build @dotnet/dotnet-docker-reviewers
 src/**/helix/ @dotnet/dnceng @dotnet/dotnet-docker-reviewers
 src/**/cross*/ @dotnet/runtime-infrastructure @dotnet/dotnet-docker-reviewers
 src/**/webassembly*/ @dotnet/runtime-infrastructure @dotnet/dotnet-docker-reviewers
+
