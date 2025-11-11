@@ -46,6 +46,7 @@ RUN dnf upgrade --refresh -y \
         which \
         xz \
         zlib-devel \
+        powershell \
     && dnf module install -y \
         nodejs:20 \
     && dnf clean all
