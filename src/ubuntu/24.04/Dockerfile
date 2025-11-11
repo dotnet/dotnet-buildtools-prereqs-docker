@@ -84,6 +84,19 @@ RUN rm -f /etc/apt/sources.list.d/nodesource.list && \
     apt-get remove nodejs-doc -y && \
     apt-get remove libnode-dev -y
 
+# Install powershell.
+RUN apt-get update && \
+    apt-get install -y \
+    apt-transport-https \
+    software-properties-common \
+    curl && \
+    curl -sL https://packages.microsoft.com/config/ubuntu/24.04/packages-microsoft-prod.deb -o packages-microsoft-prod.deb && \
+    dpkg -i packages-microsoft-prod.deb && \
+    rm packages-microsoft-prod.deb && \
+    apt-get update && \
+    apt-get install -y powershell && \
+    rm -rf /var/lib/apt/lists/*
+
 RUN cd ~ && \
     curl -sL https://deb.nodesource.com/setup_20.x -o nodesource_setup.sh && \
     bash nodesource_setup.sh && \
