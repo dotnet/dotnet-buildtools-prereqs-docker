@@ -87,9 +87,9 @@ RUN rm -f /etc/apt/sources.list.d/nodesource.list && \
 # Install powershell.
 RUN apt-get update && \
     apt-get install -y \
-    apt-transport-https \
-    software-properties-common \
-    curl && \
+      apt-transport-https \
+      software-properties-common \
+      curl && \
     curl -sL https://packages.microsoft.com/config/ubuntu/24.04/packages-microsoft-prod.deb -o packages-microsoft-prod.deb && \
     dpkg -i packages-microsoft-prod.deb && \
     rm packages-microsoft-prod.deb && \
