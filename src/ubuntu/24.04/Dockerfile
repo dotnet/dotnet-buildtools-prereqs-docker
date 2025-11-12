@@ -40,7 +40,7 @@ RUN apt-get update \
         lsb-release \
         gnupg \
     && mkdir -p /etc/apt/keyrings \
-    && curl -sLS https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor | tee /etc/apt/keyrings/microsoft.gpg > /dev/null \ 
+    && curl -sLS https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor | tee /etc/apt/keyrings/microsoft.gpg > /dev/null \
     && chmod go+r /etc/apt/keyrings/microsoft.gpg \
     && echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/microsoft.gpg] https://packages.microsoft.com/repos/azure-cli/ $(lsb_release -cs) main" | tee /etc/apt/sources.list.d/azure-cli.list \
     && apt-get update \
@@ -85,8 +85,14 @@ RUN rm -f /etc/apt/sources.list.d/nodesource.list && \
     apt-get remove libnode-dev -y
 
 # Install the latest non-preview powershell release.
-RUN LATEST_TAG=$(curl -L https://api.github.com/repos/powershell/powershell/releases/latest | jq -r '.tag_name') \
-    && curl -L https://github.com/PowerShell/PowerShell/releases/download/$LATEST_TAG/powershell-${LATEST_TAG#*v}-linux-x64.tar.gz -o /tmp/powershell.tar.gz \
+RUN ARCH=$(dpkg --print-architecture) \
+    && LATEST_TAG=$(curl -sL https://api.github.com/repos/PowerShell/PowerShell/releases/latest | jq -r '.tag_name') \
+    && case "$ARCH" in \
+        amd64) TAR_URL="https://github.com/PowerShell/PowerShell/releases/download/$LATEST_TAG/powershell-${LATEST_TAG#*v}-linux-x64.tar.gz" ;; \
+        arm64) TAR_URL="https://github.com/PowerShell/PowerShell/releases/download/$LATEST_TAG/powershell-${LATEST_TAG#*v}-linux-arm64.tar.gz" ;; \
+        *) echo "Unsupported architecture: $ARCH" && exit 1 ;; \
+    esac \
+    && curl -L "$TAR_URL" -o /tmp/powershell.tar.gz \
     && mkdir -p /opt/microsoft/powershell \
     && tar zxf /tmp/powershell.tar.gz -C /opt/microsoft/powershell \
     && chmod +x /opt/microsoft/powershell/pwsh \
