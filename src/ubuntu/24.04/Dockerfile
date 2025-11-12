@@ -88,11 +88,11 @@ RUN rm -f /etc/apt/sources.list.d/nodesource.list && \
 RUN ARCH=$(dpkg --print-architecture) \
     && LATEST_TAG=$(curl -sL https://api.github.com/repos/PowerShell/PowerShell/releases/latest | jq -r '.tag_name') \
     && case "$ARCH" in \
-        amd64) TAR_URL="https://github.com/PowerShell/PowerShell/releases/download/$LATEST_TAG/powershell-${LATEST_TAG#*v}-linux-x64.tar.gz" ;; \
-        arm64) TAR_URL="https://github.com/PowerShell/PowerShell/releases/download/$LATEST_TAG/powershell-${LATEST_TAG#*v}-linux-arm64.tar.gz" ;; \
+        amd64) ARCH="x64" ;; \
+        arm64) ARCH="arm64" ;; \
         *) echo "Unsupported architecture: $ARCH" && exit 1 ;; \
     esac \
-    && curl -L "$TAR_URL" -o /tmp/powershell.tar.gz \
+    && curl -L "https://github.com/PowerShell/PowerShell/releases/download/$LATEST_TAG/powershell-${LATEST_TAG#*v}-linux-${ARCH}.tar.gz" -o /tmp/powershell.tar.gz \
     && mkdir -p /opt/microsoft/powershell \
     && tar zxf /tmp/powershell.tar.gz -C /opt/microsoft/powershell \
     && chmod +x /opt/microsoft/powershell/pwsh \
