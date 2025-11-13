@@ -253,7 +253,6 @@
               "os": "linux",
               "osVersion": "noble",
               "tags": {
-                "ubuntu-24.04-helix-android": {},
                 "ubuntu-24.04-helix-android-amd64": {}
               }
             }
