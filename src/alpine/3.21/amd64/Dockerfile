@@ -39,7 +39,6 @@ RUN apk add --upgrade --no-cache \
         lttng-ust-dev \
         ncurses-terminfo-base \
         make \
-        numactl-dev \
         openssl \
         openssl-dev \
         paxctl \

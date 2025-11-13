@@ -39,13 +39,14 @@ public class ManifestTests
                 }
                 else
                 {
-                    var matchingPlatforms = platforms.Where(p => GetDockerfilePath(p) == dockerfilePath);
+                    var matchingPlatforms = platforms.Where(p => GetDockerfilePath(p) == dockerfilePath).ToList();
                     if (matchingPlatforms.Count() > 1)
                     {
-                        if (dockerfilePath.EndsWith(arch))
+                        var distinctArchs = matchingPlatforms.Select(p => GetArchitecture(p)).Distinct();
+                        if (distinctArchs.Count() > 1 && dockerfilePath.EndsWith(arch))
                         {
                             invalidDockerfilePaths.Add(
-                                $"Dockerfile path '{dockerfilePath}' should not end with '{arch}' because it is built for multiple platforms.");
+                                $"Dockerfile path '{dockerfilePath}' should not end with '{arch}' because it is built for multiple platforms with different architectures.");
                         }
                     }
                     else if (!dockerfilePath.EndsWith(arch))
@@ -74,6 +75,14 @@ public class ManifestTests
         EnumerateManifests((platforms, platform, dockerfilePath, arch) =>
             {
                 if (excludedDockerfilePaths.Contains(dockerfilePath))
+                {
+                    return;
+                }
+
+                // Skip validation if this dockerfile is shared across multiple platforms
+                // as there is no easy way to validate the tag structure from the Dockerfile path.
+                var matchingPlatforms = platforms.Where(p => GetDockerfilePath(p) == dockerfilePath);
+                if (matchingPlatforms.Count() > 1)
                 {
                     return;
                 }
@@ -107,11 +116,15 @@ public class ManifestTests
     private void EnumerateManifests(Action<JsonElement[], JsonElement, string, string> action)
     {
         var manifestFiles = Directory.GetFiles(Config.SrcDirectory, "manifest.json", SearchOption.AllDirectories);
+        var jsonOptions = new JsonDocumentOptions
+        {
+            CommentHandling = JsonCommentHandling.Skip,
+        };
 
         foreach (var manifestFile in manifestFiles)
         {
             OutputHelper.WriteLine($"Processing manifest file: {manifestFile}");
-            var manifestJson = JsonDocument.Parse(File.ReadAllText(manifestFile)).RootElement;
+            var manifestJson = JsonDocument.Parse(File.ReadAllText(manifestFile), jsonOptions).RootElement;
             var platforms = manifestJson.GetProperty("repos")
                 .EnumerateArray()
                 .SelectMany(repo => repo.GetProperty("images").EnumerateArray())
@@ -128,7 +141,7 @@ public class ManifestTests
         }
     }
 
-    private string GetArchitecture(JsonElement platform)
+    private static string GetArchitecture(JsonElement platform)
     {
         string variant = platform.TryGetProperty("variant", out var variantProp) ? variantProp.GetString()! : string.Empty;
         string arch = platform.TryGetProperty("architecture", out var archProp) ? archProp.GetString()! : DefaultArch;
@@ -141,7 +154,7 @@ public class ManifestTests
         return arch + variant;
     }
 
-    private string GetDockerfilePath(JsonElement platform) => (platform.GetProperty("dockerfile").GetString() ?? string.Empty).TrimEnd('/');
+    private static string GetDockerfilePath(JsonElement platform) => (platform.GetProperty("dockerfile").GetString() ?? string.Empty).TrimEnd('/');
 
-    private bool IsCrossDockerfile(string dockerfilePath) => dockerfilePath.Contains("/cross/");
+    private static bool IsCrossDockerfile(string dockerfilePath) => dockerfilePath.Contains("/cross/");
 }

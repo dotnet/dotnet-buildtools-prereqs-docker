@@ -5,15 +5,6 @@
       "images": [
         {
           "platforms": [
-            {
-              "architecture": "amd64",
-              "dockerfile": "src/opensuse/15.6/helix/amd64",
-              "os": "linux",
-              "osVersion": "leap15.6",
-              "tags": {
-                "opensuse-15.6-helix-amd64": {}
-              }
-            }
           ]
         }
       ]

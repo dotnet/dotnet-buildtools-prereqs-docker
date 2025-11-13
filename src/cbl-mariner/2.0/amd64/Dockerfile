@@ -26,7 +26,6 @@ RUN tdnf install -y \
         lzma \
         make \
         ncurses-devel \
-        numactl-devel \
         openssl-devel \
         pkgconf \
         python3 \

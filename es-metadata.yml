@@ -1,0 +1,8 @@
+schemaVersion: 0.0.1
+isProduction: true
+accountableOwners:
+  service: cde49a97-92f8-4189-a584-465adc2a23f2
+routing:
+  defaultAreaPath:
+    org: dnceng
+    path: internal\.NET Product Construction Services

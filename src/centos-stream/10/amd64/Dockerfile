@@ -11,6 +11,7 @@ RUN dnf upgrade --refresh -y \
         "perl(Time::HiRes)" \
         autoconf \
         automake \
+        azure-cli \
         brotli-devel \
         clang \
         cmake \
@@ -43,7 +44,7 @@ RUN dnf upgrade --refresh -y \
         lzma \
         make \
         ncurses-devel \
-        numactl-devel \
+        openssl \
         openssl-devel \
         pigz \
         powershell \

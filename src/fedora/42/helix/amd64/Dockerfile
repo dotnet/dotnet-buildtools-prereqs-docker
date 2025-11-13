@@ -57,9 +57,7 @@ RUN dnf upgrade --refresh -y \
 
 ENV \
     # Needed for .NET libraries tests to pass
-    LANG=en-US.UTF-8 \
-    # Needed for WCF tests to pass (https://github.com/dotnet/wcf/pull/5744#issuecomment-2702201438)
-    OPENSSL_ENABLE_SHA1_SIGNATURES=1
+    LANG=en-US.UTF-8
 
 # create helixbot user and give rights to sudo without password
 # Fedora does not have all options as other Linux systems

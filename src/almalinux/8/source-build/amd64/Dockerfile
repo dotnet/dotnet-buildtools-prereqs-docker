@@ -7,10 +7,12 @@ RUN dnf upgrade --refresh -y \
         epel-release \
     && dnf config-manager --set-enabled powertools \
     && dnf config-manager --set-enabled epel \
+    && dnf config-manager --add-repo=https://packages.microsoft.com/rhel/8/prod/config.repo \
     && dnf install --setopt tsflags=nodocs -y \
         "perl(Time::HiRes)" \
         autoconf \
         automake \
+        azure-cli \
         brotli-devel \
         cmake \
         cpio \
@@ -35,7 +37,6 @@ RUN dnf upgrade --refresh -y \
         lttng-ust-devel \
         make \
         ncurses-devel \
-        numactl-devel \
         openssl-devel \
         readline-devel \
         python3 \
@@ -45,6 +46,7 @@ RUN dnf upgrade --refresh -y \
         which \
         xz \
         zlib-devel \
+        powershell \
     && dnf module install -y \
         nodejs:20 \
     && dnf clean all

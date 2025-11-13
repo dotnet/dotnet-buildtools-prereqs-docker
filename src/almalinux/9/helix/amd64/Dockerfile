@@ -43,6 +43,7 @@ USER helixbot
 ENV VIRTUAL_ENV=/home/helixbot/.vsts-env
 
 # Install Helix Dependencies
-RUN python3 -m venv $VIRTUAL_ENV
+RUN python3 -m venv $VIRTUAL_ENV \
+    && ${VIRTUAL_ENV}/bin/pip install --upgrade pip setuptools
 ENV PATH="${VIRTUAL_ENV}/bin:${PATH}"
 COPY --from=venv --chown=helixbot /venv $VIRTUAL_ENV

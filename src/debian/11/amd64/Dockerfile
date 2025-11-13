@@ -32,7 +32,6 @@ RUN apt-get update \
         libkrb5-dev \
         liblldb-dev \
         liblttng-ust-dev \
-        libnuma-dev \
         libssl-dev \
         libssl1.1 \
         libtool \
