@@ -249,6 +249,19 @@
           "platforms": [
             {
               "architecture": "amd64",
+              "dockerfile": "src/ubuntu/24.04/helix/android/amd64",
+              "os": "linux",
+              "osVersion": "noble",
+              "tags": {
+                "ubuntu-24.04-helix-android-amd64": {}
+              }
+            }
+          ]
+        },
+        {
+          "platforms": [
+            {
+              "architecture": "amd64",
               "dockerfile": "src/ubuntu/25.04/helix",
               "os": "linux",
               "osVersion": "plucky",
