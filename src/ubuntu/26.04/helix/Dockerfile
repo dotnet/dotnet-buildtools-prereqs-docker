@@ -1,4 +1,4 @@
-FROM ubuntu.azurecr.io/ubuntu:plucky AS venv
+FROM ubuntu.azurecr.io/ubuntu:resolute AS venv
 ENV DEBIAN_FRONTEND=noninteractive
 
 RUN apt-get update \
@@ -19,7 +19,7 @@ RUN python3 -m venv /venv \
     && pip install ./helix_scripts-*-py3-none-any.whl \
     && rm ./helix_scripts-*-py3-none-any.whl
 
-FROM ubuntu.azurecr.io/ubuntu:plucky
+FROM ubuntu.azurecr.io/ubuntu:resolute
 ARG TARGETARCH
 ARG LIBMSQUIC_VERSION=2.4.8
 ENV DEBIAN_FRONTEND=noninteractive
@@ -66,7 +66,7 @@ RUN LIBCURL=libcurl4 \
         libnuma1 \
         libxdp1 \
     && rm -rf /var/lib/apt/lists/* \
-    && localedef -i en_US -c -f UTF-8 -A /usr/share/locale/locale.alias en_US.UTF-8
+    && localedef -i en_US -c -f UTF-8 en_US.UTF-8
 
 ENV LANG=en_US.utf8
 

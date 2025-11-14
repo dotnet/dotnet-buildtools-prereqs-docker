@@ -262,11 +262,11 @@
           "platforms": [
             {
               "architecture": "amd64",
-              "dockerfile": "src/ubuntu/25.04/helix",
+              "dockerfile": "src/ubuntu/26.04/helix",
               "os": "linux",
-              "osVersion": "plucky",
+              "osVersion": "resolute",
               "tags": {
-                "ubuntu-25.04-helix-amd64": {}
+                "ubuntu-26.04-helix-amd64": {}
               }
             }
           ]
@@ -275,11 +275,11 @@
           "platforms": [
             {
               "architecture": "arm64",
-              "dockerfile": "src/ubuntu/25.04/helix",
+              "dockerfile": "src/ubuntu/26.04/helix",
               "os": "linux",
-              "osVersion": "plucky",
+              "osVersion": "resolute",
               "tags": {
-                "ubuntu-25.04-helix-arm64v8": {}
+                "ubuntu-26.04-helix-arm64v8": {}
               },
               "variant": "v8"
             }
@@ -289,52 +289,11 @@
           "platforms": [
             {
               "architecture": "arm",
-              "dockerfile": "src/ubuntu/25.04/helix",
+              "dockerfile": "src/ubuntu/26.04/helix",
               "os": "linux",
-              "osVersion": "plucky",
+              "osVersion": "resolute",
               "tags": {
-                "ubuntu-25.04-helix-arm32v7": {}
-              },
-              "variant": "v7"
-            }
-          ]
-        },
-        {
-          "platforms": [
-            {
-              "architecture": "amd64",
-              "dockerfile": "src/ubuntu/25.10/helix",
-              "os": "linux",
-              "osVersion": "questing",
-              "tags": {
-                "ubuntu-25.10-helix-amd64": {}
-              }
-            }
-          ]
-        },
-        {
-          "platforms": [
-            {
-              "architecture": "arm64",
-              "dockerfile": "src/ubuntu/25.10/helix",
-              "os": "linux",
-              "osVersion": "questing",
-              "tags": {
-                "ubuntu-25.10-helix-arm64v8": {}
-              },
-              "variant": "v8"
-            }
-          ]
-        },
-        {
-          "platforms": [
-            {
-              "architecture": "arm",
-              "dockerfile": "src/ubuntu/25.10/helix",
-              "os": "linux",
-              "osVersion": "questing",
-              "tags": {
-                "ubuntu-25.10-helix-arm32v7": {}
+                "ubuntu-26.04-helix-arm32v7": {}
               },
               "variant": "v7"
             }
