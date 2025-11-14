@@ -69,6 +69,12 @@ RUN curl "https://netcorenativeassets.blob.core.windows.net/resource-packages/ex
        "platforms;android-31" \
        "platform-tools" \
        "emulator" && \
+    echo no | /usr/local/android-sdk/cmdline-tools/cmdline-tools/bin/avdmanager \
+       --verbose \
+       create avd \
+       --force \
+       --name android_emu_86_64 \
+       --package 'system-images;android-31;default;x86_64' && \
     /usr/local/android-sdk/emulator/mksdcard -l "sdcard64" "3072M" /home/helixbot/.android/avd/android_emu_86_64.avd/sdcard.img
 
 
