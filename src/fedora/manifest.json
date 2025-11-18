@@ -53,6 +53,18 @@
               }
             }
           ]
+        },
+        {
+          "platforms": [
+            {
+              "dockerfile": "src/fedora/43/helix/amd64",
+              "os": "linux",
+              "osVersion": "fedora43",
+              "tags": {
+                "fedora-43-helix-amd64": {}
+              }
+            }
+          ]
         }
       ]
     }
