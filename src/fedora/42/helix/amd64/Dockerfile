@@ -20,9 +20,9 @@ RUN python3 -m venv /venv \
 
 FROM library/fedora:42
 
-# Install MSQuic. Fedora 42 does not have it in the repositories, so use the Fedora 40 package
+# Install MSQuic
 
-RUN dnf config-manager addrepo --from-repofile=https://packages.microsoft.com/fedora/40/prod/config.repo \
+RUN dnf config-manager addrepo --from-repofile=https://packages.microsoft.com/fedora/42/prod/config.repo \
     && dnf install --setopt=install_weak_deps=False --setopt tsflags=nodocs -y \
         libmsquic
 
