@@ -20,17 +20,12 @@ RUN python3 -m venv /venv \
 
 FROM library/fedora:42
 
-# Install MSQuic
-
-RUN dnf config-manager addrepo --from-repofile=https://packages.microsoft.com/fedora/42/prod/config.repo \
-    && dnf install --setopt=install_weak_deps=False --setopt tsflags=nodocs -y \
-        libmsquic
-
 # Install Dependencies
 
 RUN dnf upgrade --refresh -y \
     && dnf install --setopt tsflags=nodocs -y \
         dnf-plugins-core \
+    && dnf config-manager addrepo --from-repofile=https://packages.microsoft.com/fedora/42/prod/config.repo \
     && dnf install --setopt=install_weak_deps=False --setopt tsflags=nodocs -y \
         # Helix dependencies
         python3 \
@@ -53,6 +48,8 @@ RUN dnf upgrade --refresh -y \
         lttng-ust \
         openssl \
         sudo \
+        # MSQuic from Microsoft repository
+        libmsquic \
     && dnf clean all
 
 ENV \
