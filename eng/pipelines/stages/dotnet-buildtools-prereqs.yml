@@ -39,7 +39,6 @@ stages:
             variableName: imageBuilderBuildArgs
             dockerfileOs: (centos|debian)
             baseOverrideRegistry: $(overrideRegistry) # Comes from DotNet-Docker-Common variable group
-        - template: /eng/pipelines/steps/set-pip-npm-build-args.yml@self
       # Force all images to be rebuilt when triggered by the schedule
       # See https://github.com/dotnet/dotnet-buildtools-prereqs-docker/issues/1224
       ${{ if eq(variables['Build.Reason'], 'Schedule') }}:
