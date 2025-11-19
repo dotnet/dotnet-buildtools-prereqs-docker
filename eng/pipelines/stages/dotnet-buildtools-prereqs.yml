@@ -33,6 +33,7 @@ stages:
       customBuildInitSteps:
       - template: /eng/pipelines/steps/install-cross-build-prereqs.yml@self
       - ${{ if eq(variables['System.TeamProject'], 'internal') }}:
+        - template: /eng/pipelines/steps/pip-authenticate.yml@self
         - template: /eng/pipelines/steps/set-base-image-override-options.yml@self
           parameters:
             variableName: imageBuilderBuildArgs
