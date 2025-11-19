@@ -1,4 +1,4 @@
-FROM library/fedora:41 AS venv
+FROM library/fedora:43 AS venv
 
 RUN dnf upgrade --refresh -y \
     && dnf install --setopt tsflags=nodocs -y \
@@ -18,11 +18,11 @@ RUN python3 -m venv /venv \
     && pip install ./helix_scripts-*-py3-none-any.whl \
     && rm ./helix_scripts-*-py3-none-any.whl
 
-FROM library/fedora:41
+FROM library/fedora:43
 
-# Install MSQuic. Fedora 41 does not have it in the repositories, so use the Fedora 40 package
+# Install MSQuic. Fedora 43 does not have it in the repositories, so use the Fedora 42 package
 
-RUN dnf config-manager addrepo --from-repofile=https://packages.microsoft.com/fedora/40/prod/config.repo \
+RUN dnf config-manager addrepo --from-repofile=https://packages.microsoft.com/fedora/42/prod/config.repo \
     && dnf install --setopt=install_weak_deps=False --setopt tsflags=nodocs -y \
         libmsquic
 
