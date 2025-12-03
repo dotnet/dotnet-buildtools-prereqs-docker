@@ -143,7 +143,6 @@
               "os": "linux",
               "osVersion": "alpine3.23",
               "tags": {
-                "alpine-3.23": {},
                 "alpine-3.23-amd64": {}
               }
             }
