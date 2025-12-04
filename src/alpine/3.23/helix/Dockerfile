@@ -1,4 +1,4 @@
-FROM library/alpine:3.20 AS venv
+FROM library/alpine:3.23 AS venv
 
 RUN apk add --upgrade --no-cache \
         cargo \
@@ -15,7 +15,7 @@ RUN python3 -m venv /venv && \
         pip install ./helix_scripts-*-py3-none-any.whl && \
         rm ./helix_scripts-*-py3-none-any.whl
 
-FROM library/alpine:3.20
+FROM library/alpine:3.23
 
 # Install .NET and test dependencies
 RUN apk add --upgrade --no-cache \
@@ -26,6 +26,7 @@ RUN apk add --upgrade --no-cache \
         icu-libs \
         iputils \
         krb5-libs \
+        libmsquic \
         lldb \
         llvm \
         lttng-ust \
@@ -36,13 +37,6 @@ RUN apk add --upgrade --no-cache \
         py3-pip \
         sudo \
         tzdata
-
-# Install libmsquic from testing repository
-RUN apk add --repository=http://dl-cdn.alpinelinux.org/alpine/edge/community/ libmsquic
-
-# Needed for runtime tests to pass
-ENV LANG=en-US.UTF-8
-RUN echo export LANG=${LANG}  >> /etc/profile.d/locale.sh
 
 # create helixbot user and give rights to sudo without password
 # Alpine does not support long options

@@ -1,7 +1,7 @@
-FROM amd64/alpine:3.19
+FROM amd64/alpine:3.23
 
-# Install .NET and test dependencies
 RUN apk add --upgrade --no-cache \
+        # Install .NET and test dependencies
         autoconf \
         automake \
         bash \
@@ -25,21 +25,20 @@ RUN apk add --upgrade --no-cache \
         iproute2 \
         jq \
         krb5-dev \
-        krb5-libs \
-        libtool \
         less \
         libgcc \
         libintl \
         libssl3 \
         libstdc++ \
+        libtool \
         libunwind-dev \
         linux-headers \
         lld \
         lldb-dev \
         llvm \
         lttng-ust-dev \
-        make \
         ncurses-terminfo-base \
+        make \
         openssl \
         openssl-dev \
         paxctl \
@@ -53,7 +52,10 @@ RUN apk add --upgrade --no-cache \
         userspace-rcu \
         util-linux-dev \
         which \
-        zlib-dev
+        zlib-dev \
+        \
+        # Azure DevOps container job requirements
+        nodejs
 
 # Install the latest non-preview powershell release.
 RUN apk -X https://dl-cdn.alpinelinux.org/alpine/edge/main add --no-cache lttng-ust \
@@ -66,8 +68,11 @@ RUN apk -X https://dl-cdn.alpinelinux.org/alpine/edge/main add --no-cache lttng-
     && rm -f /tmp/powershell.tar.gz
 
 # Install azurecli from PIP
-RUN azureEnv="/usr/local/share/azure-cli-env" && \
-    python3 -m venv "$azureEnv" && \
-    "$azureEnv/bin/python" -m pip install --upgrade setuptools && \
-    "$azureEnv/bin/python" -m pip install azure-cli && \
-    ln -s "$azureEnv/bin/az" /usr/local/bin/az
+RUN azureEnv="/usr/local/share/azure-cli-env" \
+    && python3 -m venv "$azureEnv" \
+    && "$azureEnv/bin/python" -m pip install --upgrade setuptools \
+    && "$azureEnv/bin/python" -m pip install azure-cli \
+    && ln -s "$azureEnv/bin/az" /usr/local/bin/az
+
+# Add label for bring your own node in azure devops
+LABEL "com.azure.dev.pipelines.agent.handler.node.path"="/usr/bin/node"
