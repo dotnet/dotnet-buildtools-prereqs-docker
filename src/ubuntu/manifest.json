@@ -278,7 +278,6 @@
               "os": "linux",
               "osVersion": "resolute",
               "tags": {
-                "ubuntu-26.04-arm64": {},
                 "ubuntu-26.04-arm64v8": {}
               },
               "variant": "v8"
