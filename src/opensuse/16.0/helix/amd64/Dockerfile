@@ -35,7 +35,7 @@ RUN zypper ref \
     && zypper clean -a
 
 # Add openSUSE 15.6 repo for OpenSSL 1.1 compatibility library needed by libmsquic
-RUN zypper ar -f http://download.opensuse.org/distribution/leap/15.6/repo/oss/ leap156-oss \
+RUN zypper ar -f https://download.opensuse.org/distribution/leap/15.6/repo/oss/ leap156-oss \
     && zypper --gpg-auto-import-keys ref \
     && zypper install -y --from leap156-oss libopenssl1_1 \
     && zypper clean -a
