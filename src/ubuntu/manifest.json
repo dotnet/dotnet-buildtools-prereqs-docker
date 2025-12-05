@@ -265,7 +265,6 @@
               "os": "linux",
               "osVersion": "resolute",
               "tags": {
-                "ubuntu-26.04": {},
                 "ubuntu-26.04-amd64": {}
               }
             }
