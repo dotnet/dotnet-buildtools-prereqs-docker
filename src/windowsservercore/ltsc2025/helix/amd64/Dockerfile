@@ -1,5 +1,5 @@
 # escape=`
-FROM mcr.microsoft.com/windows/servercore:ltsc2025
+FROM mcr.microsoft.com/windows/servercore:ltsc2025 AS helixsetup
 
 RUN setx /M VIRTUAL_ENV "C:\Python-env" && `
     setx /M PATH "%PATH%;C:\Program Files\PowerShell\;%VIRTUAL_ENV%\Scripts;C:\Python;C:\python\scripts" && `
@@ -8,13 +8,13 @@ RUN setx /M VIRTUAL_ENV "C:\Python-env" && `
 # Install latest stable version of Python
 RUN powershell -Command " `
         [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12; `
-        $apiUrl = 'https://api.nuget.org/v3-flatcontainer/python/index.json'; `
+        $apiUrl = 'https://pkgs.dev.azure.com/dnceng/public/_packaging/dotnet-public/nuget/v3/flat2/python/index.json'; `
         $response = Invoke-RestMethod -Uri $apiUrl; `
-        $versions = $response.versions | Where-Object { $_ -notmatch '-' } | Sort-Object { [version]$_ } -Descending; `
+        $versions = @($response.versions | Where-Object { $_ -notmatch '-' } | Sort-Object { [version]$_ } -Descending); `
         $latestVersion = $versions[0]; `
         echo \"Downloading Python $latestVersion\"; `
         $pythonZip = \"$env:TEMP\python.zip\"; `
-        Invoke-WebRequest -Uri https://www.nuget.org/api/v2/package/python/$latestVersion -OutFile $pythonZip; `
+        Invoke-WebRequest -Uri https://pkgs.dev.azure.com/dnceng/public/_packaging/dotnet-public/nuget/v3/flat2/python/$latestVersion/python.$latestVersion.nupkg -OutFile $pythonZip; `
         $pythonTemp = 'C:\PythonTemp'; `
         md $pythonTemp; `
         tar -zxf $pythonZip -C $pythonTemp; `
@@ -29,6 +29,8 @@ RUN powershell -Command " `
         } `
         Remove-Item -Recurse -Force $pythonTemp; `
         Remove-Item -Force $pythonZip;"
+
+ARG PIP_INDEX_URL=https://pypi.org/simple
 
 # Install Helix
 RUN powershell -Command " `
@@ -55,6 +57,17 @@ RUN powershell -Command " `
             }; `
         popd; `
         Remove-Item -Recurse -Force $helixTemp;"
+
+FROM mcr.microsoft.com/windows/servercore:ltsc2025
+
+USER ContainerAdministrator
+
+COPY --from=helixsetup [ "C:\\Python\\", "C:\\Python\\" ]
+COPY --from=helixsetup [ "C:\\Python-env\\", "C:\\Python-env\\" ]
+
+RUN setx /M VIRTUAL_ENV "C:\Python-env" && `
+    setx /M PATH "%PATH%;C:\Program Files\PowerShell\;%VIRTUAL_ENV%\Scripts;C:\Python;C:\python\scripts" && `
+    setx /M PYTHONPATH "C:\Python\Lib;C:\Python\DLLs;"
 
 # Configure crash dumps for dotnet.exe and corerun.exe
 RUN powershell -Command " `

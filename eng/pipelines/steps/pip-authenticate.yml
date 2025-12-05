@@ -1,0 +1,11 @@
+steps:
+- task: PipAuthenticate@1
+  displayName: 'Pip Authenticate'
+  inputs:
+    artifactFeeds: public/dotnet-public-pypi
+    onlyAddExtraIndex: false
+- powershell: |
+    $options = "$(imageBuilderBuildArgs)"
+    $options += " --build-arg PIP_INDEX_URL=$env:PIP_INDEX_URL --build-arg NPM_TOKEN=$(System.AccessToken)"
+    echo "##vso[task.setvariable variable=imageBuilderBuildArgs]$options"
+  displayName: Set PIP and NPM Build Args

@@ -23,10 +23,10 @@ function Exec {
     }
 }
 
-$EngCommonDir = "$PSScriptRoot/eng/common"
+$EngDockerToolsDir = "$PSScriptRoot/eng/docker-tools"
 
 $DotnetInstallDir = "$PSScriptRoot/.dotnet"
-& $EngCommonDir/Install-DotNetSdk.ps1 -InstallPath $DotnetInstallDir
+& $EngDockerToolsDir/Install-DotNetSdk.ps1 -InstallPath $DotnetInstallDir
 
 Push-Location "$PSScriptRoot\tests\Microsoft.DotNet.BuildTools.Prereqs.Docker.Tests"
 try {

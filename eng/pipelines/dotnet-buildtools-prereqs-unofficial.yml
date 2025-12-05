@@ -30,7 +30,7 @@ variables:
   parameters:
     disableMatrixTrimming: ${{ parameters.disableMatrixTrimming }}
     sourceBuildPipelineRunId: ${{ parameters.sourceBuildPipelineRunId }}
-- template: /eng/common/templates/variables/dotnet/secrets-unofficial.yml@self
+- template: /eng/docker-tools/templates/variables/dotnet/secrets-unofficial.yml@self
 - name: publishEolAnnotations
   value: true
 
@@ -43,7 +43,7 @@ resources:
     ref: ${{ variables['gitHubVersionsRepoInfo.branch'] }}
 
 extends:
-  template: /eng/common/templates/1es.yml@self
+  template: /eng/docker-tools/templates/1es.yml@self
   parameters:
     reposToExcludeFromScanning:
     - VersionsRepo
@@ -51,5 +51,5 @@ extends:
     - template: /eng/pipelines/stages/dotnet-buildtools-prereqs.yml@self
       parameters:
         sourceBuildPipelineRunId: ${{ parameters.sourceBuildPipelineRunId }}
-        publishConfigTemplatePath: /eng/common/templates/stages/dotnet/publish-config-nonprod.yml@self
+        publishConfigTemplatePath: /eng/docker-tools/templates/stages/dotnet/publish-config-nonprod.yml@self
         noCache: ${{ parameters.noCache }}
