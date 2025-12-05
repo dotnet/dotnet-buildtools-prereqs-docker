@@ -43,7 +43,7 @@ src/ubuntu/22.04/mlnet/ @dotnet/runtime-infrastructure @dotnet/dotnet-docker-rev
 src/ubuntu/22.04/opt/arm64v8/ @dotnet/runtime-infrastructure @dotnet/dotnet-docker-reviewers
 src/ubuntu/22.04/coredeps/amd64/ @dotnet/runtime-infrastructure @dotnet/dotnet-docker-reviewers
 src/ubuntu/22.04/amd64/ @dotnet/source-build @dotnet/dotnet-docker-reviewers
-src/ubuntu/24.04/Dockerfile @dotnet/source-build @dotnet/dotnet-docker-reviewers
+src/ubuntu/*/Dockerfile @dotnet/source-build @dotnet/dotnet-docker-reviewers
 
 # common paths
 # CODEOWNERS selects the last match as the owner so we list these paths last

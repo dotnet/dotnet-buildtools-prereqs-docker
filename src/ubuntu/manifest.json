@@ -261,6 +261,32 @@
         {
           "platforms": [
             {
+              "dockerfile": "src/ubuntu/26.04",
+              "os": "linux",
+              "osVersion": "resolute",
+              "tags": {
+                "ubuntu-26.04-amd64": {}
+              }
+            }
+          ]
+        },
+        {
+          "platforms": [
+            {
+              "architecture": "arm64",
+              "dockerfile": "src/ubuntu/26.04",
+              "os": "linux",
+              "osVersion": "resolute",
+              "tags": {
+                "ubuntu-26.04-arm64v8": {}
+              },
+              "variant": "v8"
+            }
+          ]
+        },
+        {
+          "platforms": [
+            {
               "architecture": "amd64",
               "dockerfile": "src/ubuntu/26.04/helix",
               "os": "linux",
