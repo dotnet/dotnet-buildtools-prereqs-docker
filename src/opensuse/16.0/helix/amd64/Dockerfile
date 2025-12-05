@@ -1,4 +1,5 @@
 FROM opensuse/leap:16.0
+ARG LIBMSQUIC_VERSION=2.4.8
 
 # Install Helix Dependencies
 RUN zypper ref \
@@ -39,10 +40,9 @@ ENV LANG=en_US.utf8
 RUN wget https://packages.microsoft.com/keys/microsoft.asc \
     && rpm --import microsoft.asc \
     && rm microsoft.asc \
-    && zypper addrepo https://packages.microsoft.com/opensuse/15/prod/ "MS Packages" \
-    && zypper install -y \
-        libmsquic \
-    && zypper clean -a
+    && wget "https://packages.microsoft.com/opensuse/15/prod/libmsquic-${LIBMSQUIC_VERSION}-x86_64.rpm" \
+    && rpm -i libmsquic-${LIBMSQUIC_VERSION}-x86_64.rpm \
+    && rm libmsquic-${LIBMSQUIC_VERSION}-x86_64.rpm
 
 RUN ln -sf /usr/bin/python3.13 /usr/bin/python
 
