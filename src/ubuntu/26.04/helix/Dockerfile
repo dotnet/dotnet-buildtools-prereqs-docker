@@ -1,4 +1,4 @@
-FROM ubuntu.azurecr.io/ubuntu:resolute AS venv
+FROM ubuntu.azurecr.io/ubuntu:26.04 AS venv
 ENV DEBIAN_FRONTEND=noninteractive
 
 RUN apt-get update \
@@ -19,7 +19,7 @@ RUN python3 -m venv /venv \
     && pip install ./helix_scripts-*-py3-none-any.whl \
     && rm ./helix_scripts-*-py3-none-any.whl
 
-FROM ubuntu.azurecr.io/ubuntu:resolute
+FROM ubuntu.azurecr.io/ubuntu:26.04
 ARG TARGETARCH
 ARG LIBMSQUIC_VERSION=2.4.8
 ENV DEBIAN_FRONTEND=noninteractive
