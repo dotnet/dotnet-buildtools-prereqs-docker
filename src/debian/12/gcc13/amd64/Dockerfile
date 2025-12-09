@@ -36,5 +36,5 @@ ENV LANG=en_US.utf8
 
 # These symlinks are required to provide gcc-13 and g++-13 in PATH.
 # In the runtime repo, we (by design) give precedence to suffixed compilers before selecting unsuffixed one in PATH.
-RUN ln -s $(command -v gcc) /usr/bin/gcc-13 \
-    && ln -s $(command -v g++) /usr/bin/g++-13
+RUN test -e /usr/bin/gcc-13 || ln -s $(command -v gcc) /usr/bin/gcc-13 \
+    && test -e /usr/bin/g++-13 || ln -s $(command -v g++) /usr/bin/g++-13

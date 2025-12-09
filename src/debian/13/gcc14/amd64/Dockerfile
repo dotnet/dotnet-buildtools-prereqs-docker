@@ -33,8 +33,3 @@ RUN apt-get update \
     && localedef -i en_US -c -f UTF-8 -A /usr/share/locale/locale.alias en_US.UTF-8
 
 ENV LANG=en_US.utf8
-
-# These symlinks are required to provide gcc-14 and g++-14 in PATH.
-# In the runtime repo, we (by design) give precedence to suffixed compilers before selecting unsuffixed one in PATH.
-RUN ln -s $(command -v gcc) /usr/bin/gcc-14 \
-    && ln -s $(command -v g++) /usr/bin/g++-14
