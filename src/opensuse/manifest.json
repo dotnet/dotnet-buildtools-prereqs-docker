@@ -6,6 +6,19 @@
         {
           "platforms": [
           ]
+        },
+        {
+          "platforms": [
+            {
+              "architecture": "amd64",
+              "dockerfile": "src/opensuse/16.0/helix/amd64",
+              "os": "linux",
+              "osVersion": "leap16.0",
+              "tags": {
+                "opensuse-16.0-helix-amd64": {}
+              }
+            }
+          ]
         }
       ]
     }
