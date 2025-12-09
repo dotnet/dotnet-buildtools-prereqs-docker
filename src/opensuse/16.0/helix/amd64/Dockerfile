@@ -1,5 +1,5 @@
 FROM opensuse/leap:16.0
-ARG LIBMSQUIC_VERSION=2.4.8
+ARG LIBMSQUIC_VERSION=2.4.17~rc2
 
 # Install Helix Dependencies
 RUN zypper ref \
@@ -40,7 +40,7 @@ ENV LANG=en_US.utf8
 RUN wget https://packages.microsoft.com/keys/microsoft.asc \
     && rpm --import microsoft.asc \
     && rm microsoft.asc \
-    && wget "https://packages.microsoft.com/opensuse/15/prod/Packages/l/libmsquic-${LIBMSQUIC_VERSION}-1.x86_64.rpm" \
+    && wget "https://packages.microsoft.com/yumrepos/microsoft-opensuse15-testing-prod/Packages/l/libmsquic-${LIBMSQUIC_VERSION}-1.x86_64.rpm" \
     && rpm -i libmsquic-${LIBMSQUIC_VERSION}-1.x86_64.rpm \
     && rm libmsquic-${LIBMSQUIC_VERSION}-1.x86_64.rpm
 
