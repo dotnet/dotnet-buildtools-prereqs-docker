@@ -34,7 +34,7 @@ RUN apt-get update \
 
 ENV LANG=en_US.utf8
 
-# These symlinks are required because this docker has gcc-13 suffixed with version in some paths.
+# These symlinks are required to provide gcc-13 and g++-13 in PATH.
 # In the runtime repo, we (by design) give precedence to suffixed compilers before selecting unsuffixed one in PATH.
 RUN ln -s $(command -v gcc) /usr/bin/gcc-13 \
     && ln -s $(command -v g++) /usr/bin/g++-13
