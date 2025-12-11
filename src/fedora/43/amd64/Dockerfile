@@ -30,7 +30,6 @@ RUN dnf upgrade --refresh -y \
         cpio \
         glibc-locale-source \
         iputils \
-        jq \
         krb5-devel \
         libcurl-devel \
         libicu-devel \
