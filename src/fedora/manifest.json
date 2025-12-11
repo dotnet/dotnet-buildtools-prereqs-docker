@@ -22,7 +22,6 @@
               "os": "linux",
               "osVersion": "fedora43",
               "tags": {
-                "fedora-43": {},
                 "fedora-43-amd64": {}
               }
             }
