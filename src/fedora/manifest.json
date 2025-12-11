@@ -18,13 +18,18 @@
         {
           "platforms": [
             {
-              "dockerfile": "src/fedora/43/source-build/amd64",
+              "dockerfile": "src/fedora/43/amd64",
               "os": "linux",
               "osVersion": "fedora43",
               "tags": {
-                "fedora-43-source-build-amd64": {}
+                "fedora-43": {},
+                "fedora-43-amd64": {}
               }
-            },
+            }
+          ]
+        },
+        {
+          "platforms": [
             {
               "dockerfile": "src/fedora/43/helix/amd64",
               "os": "linux",
