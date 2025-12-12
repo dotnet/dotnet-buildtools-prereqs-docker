@@ -1,4 +1,7 @@
 FROM opensuse/leap:15.6
+# Using RC version from testing feed as it has correct dependencies (libcrypto.so.3)
+# The production feed versions depend on libcrypto.so.1.1 which is incompatible
+ARG LIBMSQUIC_VERSION=2.4.17~rc2
 
 # Install Helix Dependencies
 RUN zypper ref \
@@ -36,13 +39,14 @@ RUN zypper ref \
 ENV LANG=en_US.utf8
 
 # Install MsQuic from official GitHub releases
+# Using opensuse15 testing feed as it's compatible with openSUSE 15.6
+# See: https://github.com/microsoft/msquic/issues/5567#issuecomment-3618761370
 RUN wget https://packages.microsoft.com/keys/microsoft.asc \
     && rpm --import microsoft.asc \
     && rm microsoft.asc \
-    && zypper addrepo https://packages.microsoft.com/opensuse/15/prod/ "MS Packages" \
-    && zypper install -y \
-        libmsquic \
-    && zypper clean -a
+    && wget "https://packages.microsoft.com/yumrepos/microsoft-opensuse15-testing-prod/Packages/l/libmsquic-${LIBMSQUIC_VERSION}-1.x86_64.rpm" \
+    && rpm -i libmsquic-${LIBMSQUIC_VERSION}-1.x86_64.rpm \
+    && rm libmsquic-${LIBMSQUIC_VERSION}-1.x86_64.rpm
 
 RUN ln -sf /usr/bin/python3.12 /usr/bin/python
 
