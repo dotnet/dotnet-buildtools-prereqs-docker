@@ -2,7 +2,7 @@
 
 ARG ZIP7_VERSION=2501
 ARG GIT_VERSION=2.34.1
-ARG EMSCRIPTEN_VERSION=3.1.34
+ARG EMSCRIPTEN_VERSION=3.1.74
 ARG NODE_RELEASE=22
 
 FROM mcr.microsoft.com/dotnet-buildtools/prereqs:windowsservercore-ltsc2022-helix-amd64 as installer
