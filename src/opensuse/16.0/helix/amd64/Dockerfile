@@ -39,7 +39,9 @@ ENV LANG=en_US.utf8
 RUN wget https://packages.microsoft.com/keys/microsoft.asc \
     && rpm --import microsoft.asc \
     && rm microsoft.asc \
-    && zypper ar -G https://packages.microsoft.com/yumrepos/microsoft-opensuse-16-prod microsoft-opensuse-16-prod \
+    && wget https://packages.microsoft.com/config/opensuse/16/prod.repo \
+    && mv prod.repo /etc/zypp/repos.d/microsoft-prod.repo \
+    && chown root:root /etc/zypp/repos.d/microsoft-prod.repo \
     && zypper refresh \
     && zypper install -y libmsquic \
     && zypper clean -a
