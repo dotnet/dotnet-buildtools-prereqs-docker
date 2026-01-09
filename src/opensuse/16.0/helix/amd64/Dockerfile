@@ -42,7 +42,7 @@ RUN wget https://packages.microsoft.com/keys/microsoft.asc \
     && wget https://packages.microsoft.com/config/opensuse/16/prod.repo \
     && mv prod.repo /etc/zypp/repos.d/microsoft-prod.repo \
     && chown root:root /etc/zypp/repos.d/microsoft-prod.repo \
-    && zypper refresh \
+    && zypper --gpg-auto-import-keys refresh \
     && zypper install -y libmsquic \
     && zypper clean -a
 
