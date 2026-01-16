@@ -32,6 +32,7 @@ RUN tdnf install --setopt tsflags=nodocs --refresh -y \
         tar \
         tzdata \
         which \
+    && tdnf downgrade -y SymCrypt-OpenSSL-1.9.3 \
     && tdnf clean all
 
 # create helixbot user and give rights to sudo without password
