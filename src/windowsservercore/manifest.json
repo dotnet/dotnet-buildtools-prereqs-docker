@@ -56,6 +56,18 @@
         {
           "platforms": [
             {
+              "dockerfile": "src/windowsservercore/ltsc2022/net11.0/build/amd64",
+              "os": "windows",
+              "osVersion": "windowsservercore-ltsc2022",
+              "tags": {
+                "windowsservercore-ltsc2022-net11.0-build-amd64": {}
+              }
+            }
+          ]
+        },
+        {
+          "platforms": [
+            {
               "dockerfile": "src/windowsservercore/ltsc2025/helix/amd64",
               "os": "windows",
               "osVersion": "windowsservercore-ltsc2025",

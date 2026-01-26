@@ -45,6 +45,9 @@ src/ubuntu/22.04/coredeps/amd64/ @dotnet/runtime-infrastructure @dotnet/dotnet-d
 src/ubuntu/22.04/amd64/ @dotnet/source-build @dotnet/dotnet-docker-reviewers
 src/ubuntu/*/Dockerfile @dotnet/source-build @dotnet/dotnet-docker-reviewers
 
+# windowsservercore
+src/windowsservercore/**/build/ @dotnet/prodconsvcs @dotnet/dotnet-docker-reviewers
+
 # common paths
 # CODEOWNERS selects the last match as the owner so we list these paths last
 # Otherwise these paths will be owned by a different team(s) than the ones listed below
