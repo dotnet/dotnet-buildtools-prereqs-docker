@@ -52,11 +52,16 @@ RUN [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tl
     '--norestart', `
     '--nocache', `
     '--installPath', 'C:\BuildTools', `
+    '--includeRecommended', `
     '--add', 'Microsoft.VisualStudio.Workload.ManagedDesktopBuildTools', `
     '--add', 'Microsoft.VisualStudio.Workload.VCTools', `
+    '--add', 'Microsoft.VisualStudio.Workload.NativeDesktop', `
+    '--add', 'Microsoft.VisualStudio.Component.VC.Tools.x86.x64', `
     '--add', 'Microsoft.VisualStudio.Component.VC.Tools.ARM64', `
     '--add', 'Microsoft.VisualStudio.Component.VC.Tools.ARM64EC', `
-    '--add', 'Microsoft.VisualStudio.Component.VC.CLI.Support'; `
+    '--add', 'Microsoft.VisualStudio.Component.VC.CLI.Support', `
+    '--add', 'Microsoft.VisualStudio.Component.VC.CMake.Project', `
+    '--add', 'Microsoft.VisualStudio.Component.Windows10SDK.20348'; `
     `
     # VS installer returns 3010 for success with reboot required, which is acceptable in Docker
     if (($LASTEXITCODE -ne 0) -and ($LASTEXITCODE -ne 3010)) { `
