@@ -3,6 +3,12 @@ FROM opensuse/leap:15.6
 # Install Helix Dependencies
 RUN zypper ref \
     && zypper update -y \
+    && zypper install -y \
+        wget \
+    && wget https://packages.microsoft.com/config/opensuse/15/prod.repo \
+    && mv prod.repo /etc/zypp/repos.d/microsoft-prod.repo \
+    && chown root:root /etc/zypp/repos.d/microsoft-prod.repo \
+    && zypper --gpg-auto-import-keys refresh \
     && zypper install -y -t pattern \
         devel_C_C++ \
     && zypper install -y \
@@ -20,6 +26,7 @@ RUN zypper ref \
         lato-fonts \
         libffi-devel \
         libicu-devel \
+        libmsquic \
         libopenssl-devel \
         libtool \
         libunwind \
@@ -30,19 +37,9 @@ RUN zypper ref \
         python312-pip \
         sudo \
         unzip \
-        wget \
     && zypper clean -a
 
 ENV LANG=en_US.utf8
-
-# Install MsQuic from official GitHub releases
-RUN wget https://packages.microsoft.com/keys/microsoft.asc \
-    && rpm --import microsoft.asc \
-    && rm microsoft.asc \
-    && zypper addrepo https://packages.microsoft.com/opensuse/15/prod/ "MS Packages" \
-    && zypper install -y \
-        libmsquic \
-    && zypper clean -a
 
 RUN ln -sf /usr/bin/python3.12 /usr/bin/python
 
