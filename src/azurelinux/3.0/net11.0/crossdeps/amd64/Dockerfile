@@ -18,6 +18,7 @@ RUN tdnf update -y && \
         cmake \
         diffutils \
         icu \
+        ninja-build \
         tar \
         # Crosscomponents build dependencies
         glibc-devel \
