@@ -26,6 +26,7 @@ RUN apt-get update \
         gdb \
         make \
         nasm \
+        ninja-build \
         pigz \
         qemu \
         qemu-user-static \
