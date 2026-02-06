@@ -24,6 +24,7 @@ RUN apt-get update \
         lttng-tools \
         locales \
         locales-all \
+        ninja-build \
         pigz \
         python3-dev \
         python3-pip \
