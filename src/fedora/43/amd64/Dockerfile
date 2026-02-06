@@ -13,6 +13,7 @@ RUN dnf upgrade --refresh -y \
         lldb-devel \
         llvm-devel \
         make \
+        ninja-build \
         pigz \
         python \
         which \

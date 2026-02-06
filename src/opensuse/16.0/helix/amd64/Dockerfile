@@ -33,6 +33,7 @@ RUN zypper ref \
         lldb-devel \
         llvm \
         lttng-ust-devel \
+        ninja \
         python313-devel \
         python313-pip \
         sudo \

@@ -35,6 +35,7 @@ RUN dnf upgrade --refresh -y \
         lttng-ust-devel \
         make \
         ncurses-devel \
+        ninja-build \
         nodejs \
         openssl-devel \
         readline-devel \

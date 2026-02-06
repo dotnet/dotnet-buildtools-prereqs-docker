@@ -13,6 +13,7 @@ RUN apt-get update \
         llvm-18 \
         locales \
         make \
+        ninja-build \
         pigz \
         sudo \
     && rm -rf /var/lib/apt/lists/*

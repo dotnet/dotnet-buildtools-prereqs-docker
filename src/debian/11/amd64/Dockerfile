@@ -40,6 +40,7 @@ RUN apt-get update \
         llvm \
         locales \
         make \
+        ninja-build \
         pigz \
         powershell \
         python-lldb \
