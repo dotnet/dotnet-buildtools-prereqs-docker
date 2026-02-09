@@ -44,6 +44,7 @@ RUN dnf upgrade --refresh -y \
         lzma \
         make \
         ncurses-devel \
+        ninja-build \
         openssl \
         openssl-devel \
         pigz \
