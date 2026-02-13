@@ -31,4 +31,17 @@ RUN tdnf update -y && \
         npm \
         # Provides functionality for AzureCLI AzDO task
         azure-cli \
-        powershell
+        powershell \
+        # vcpkg/openssl build dependencies        
+        curl \
+        unzip \
+        zip \
+        binutils \
+        pkg-config \
+        perl \
+        perl-IPC-Cmd \
+        glibc-static 
+
+        
+
+
