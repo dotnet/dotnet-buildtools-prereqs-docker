@@ -4,7 +4,8 @@ FROM mcr.microsoft.com/dotnet-buildtools/prereqs:azurelinux-3.0-net10.0-crossdep
 ARG ROOTFS_DIR
 
 # Install packages needed by the FreeBSD bootstrap scripts
-RUN tdnf install -y \
+RUN tdnf makecache && \
+    tdnf install -y \
     awk \
     m4 && \
     # The xz package in Azure Linux 3.0 doesn't provide liblzma.so, so we need to create a symlink to liblzma.so.5
