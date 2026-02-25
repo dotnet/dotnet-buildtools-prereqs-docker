@@ -28,9 +28,7 @@ RUN apt-get update \
         npm \
         zip \
         curl \
-    && rm -rf /var/lib/apt/lists/* \
-    # npm installs a vulnerable node-ip pkg. Upgrading the node-ip pkg requires Ubuntu PRO subscription. Workaround by using NPM.
-    && npm install -g ip@latest
+    && rm -rf /var/lib/apt/lists/*
 
 # .NET SDK MSBuild requires US.UTF-8 locale to execute tasks
 RUN locale-gen en_US.UTF-8
@@ -94,6 +92,8 @@ RUN cd ~ && \
     bash nodesource_setup.sh && \
     apt-get install nodejs -y && \
     rm -rf /var/lib/apt/lists/* && \
-    rm -f nodesource_setup.sh
+    rm -f nodesource_setup.sh \
+    # npm installs a vulnerable node-ip pkg. Upgrading the node-ip pkg requires Ubuntu PRO subscription. Workaround by using NPM.
+    && npm install -g ip@latest
 
 ENV NO_UPDATE_NOTIFIER=true
