@@ -1,14 +1,14 @@
 # escape=`
 
 ARG ZIP7_VERSION=2501
-ARG GIT_VERSION=2.34.1
+ARG GIT_WINDOWS_VERSION=2.34.1
 ARG EMSCRIPTEN_VERSION=3.1.34
 ARG NODE_RELEASE=22
 
 FROM mcr.microsoft.com/dotnet-buildtools/prereqs:windowsservercore-ltsc2022-helix-amd64 as installer
 
 ARG ZIP7_VERSION
-ARG GIT_VERSION
+ARG GIT_WINDOWS_VERSION
 ARG EMSCRIPTEN_VERSION
 ARG NODE_RELEASE
 
@@ -24,10 +24,10 @@ RUN curl -SL --output %TEMP%\7zip-x64.exe https://www.7-zip.org/a/7z%ZIP7_VERSIO
 COPY arial.ttf c:/windows/fonts
 
 # Install git
-ENV GIT_VERSION=${GIT_VERSION}
-ENV GIT_INSTALLER=MinGit-${GIT_VERSION}-64-bit.zip
+ENV GIT_WINDOWS_VERSION=${GIT_WINDOWS_VERSION}
+ENV GIT_INSTALLER=MinGit-${GIT_WINDOWS_VERSION}-64-bit.zip
 
-RUN curl -SL --output %TEMP%\%GIT_INSTALLER% https://github.com/git-for-windows/git/releases/download/v%GIT_VERSION%.windows.1/%GIT_INSTALLER% `
+RUN curl -SL --output %TEMP%\%GIT_INSTALLER% https://github.com/git-for-windows/git/releases/download/v%GIT_WINDOWS_VERSION%.windows.1/%GIT_INSTALLER% `
     && mkdir C:\git `
     && tar -C C:\git -zxf %TEMP%\%GIT_INSTALLER% `
     && setx PATH "%PATH%;C:\git\cmd"
@@ -85,7 +85,7 @@ RUN npm install jsvu -g `
 FROM mcr.microsoft.com/dotnet-buildtools/prereqs:windowsservercore-ltsc2022-helix-amd64
 
 ARG ZIP7_VERSION
-ARG GIT_VERSION
+ARG GIT_WINDOWS_VERSION
 ARG EMSCRIPTEN_VERSION
 ARG NODE_RELEASE
 
@@ -99,8 +99,8 @@ COPY --from=installer [ "C:\\Windows\\fonts\\arial.ttf", "C:\\Windows\\fonts\\ar
 
 ENV `
     ZIP7_VERSION=${ZIP7_VERSION} `
-    GIT_VERSION=${GIT_VERSION} `
-    GIT_INSTALLER=MinGit-${GIT_VERSION}-64-bit.zip `
+    GIT_WINDOWS_VERSION=${GIT_WINDOWS_VERSION} `
+    GIT_INSTALLER=MinGit-${GIT_WINDOWS_VERSION}-64-bit.zip `
     EMSCRIPTEN_VERSION=${EMSCRIPTEN_VERSION} `
     EMSCRIPTEN_PATH="C:\emscripten" `
     EMSDK_PATH="C:\emscripten\emsdk" `

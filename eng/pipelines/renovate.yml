@@ -28,10 +28,9 @@ variables:
 resources:
   repositories:
   - repository: arcade
-    type: github
-    endpoint: dotnet
-    name: dotnet/arcade
-    ref: refs/heads/main
+    type: git
+    name: internal/dotnet-arcade
+    ref: refs/heads/dev/mthalman/renovate
 
 extends:
   template: /eng/common/core-templates/stages/renovate.yml@arcade
@@ -39,3 +38,8 @@ extends:
     dryRun: ${{ parameters.dryRun }}
     forceRecreatePR: ${{ parameters.forceRecreatePR }}
     gitHubRepo: ${{ variables.gitHubRepo }}
+    arcadeRepoResource: arcade
+    selfRepoName: dotnet-dotnet-buildtools-prereqs-docker
+    arcadeRepoName: dotnet-arcade
+    baseBranches:
+    - dev/mthalman/renovate

@@ -3,12 +3,15 @@
   "enabledManagers": [
     "custom.regex"
   ],
+  "vulnerabilityAlerts": {
+    "enabled": false
+  },
   "customManagers": [
     {
       "description": "Updates PowerShell version in Dockerfiles",
       "customType": "regex",
-      "fileMatch": [
-        "(^|/)Dockerfile$"
+      "managerFilePatterns": [
+        "/(^|/)Dockerfile$/"
       ],
       "matchStrings": [
         "ENV POWERSHELL_VERSION=(?<currentValue>\\d+\\.\\d+\\.\\d+)"
@@ -19,8 +22,8 @@
     {
       "description": "Updates LLVM version and checksums (via postUpgradeTasks) in Dockerfiles",
       "customType": "regex",
-      "fileMatch": [
-        "(^|/)Dockerfile$"
+      "managerFilePatterns": [
+        "/(^|/)Dockerfile$/"
       ],
       "matchStrings": [
         "LLVM_VERSION=(?<currentValue>\\d+\\.\\d+\\.\\d+)"
@@ -32,8 +35,8 @@
     {
       "description": "Updates scancode-toolkit version in Dockerfiles",
       "customType": "regex",
-      "fileMatch": [
-        "(^|/)Dockerfile$"
+      "managerFilePatterns": [
+        "/(^|/)Dockerfile$/"
       ],
       "matchStrings": [
         "ENV SCANCODE_VERSION=(?<currentValue>\\d+\\.\\d+\\.\\d+)"
@@ -44,8 +47,8 @@
     {
       "description": "Updates Python version from Azure Artifacts NuGet feed",
       "customType": "regex",
-      "fileMatch": [
-        "(^|/)(nanoserver|windowsservercore)/.+/Dockerfile$"
+      "managerFilePatterns": [
+        "/(^|/)(nanoserver|windowsservercore)/.+/Dockerfile$/"
       ],
       "matchStrings": [
         "ENV PYTHON_VERSION=(?<currentValue>\\d+\\.\\d+\\.\\d+)"
@@ -57,8 +60,8 @@
     {
       "description": "Updates Git for Windows version in Dockerfiles",
       "customType": "regex",
-      "fileMatch": [
-        "(^|/)Dockerfile$"
+      "managerFilePatterns": [
+        "/(^|/)Dockerfile$/"
       ],
       "matchStrings": [
         "ARG GIT_WINDOWS_VERSION=(?<currentValue>\\d+\\.\\d+\\.\\d+)"
@@ -70,32 +73,46 @@
     {
       "description": "Updates Renovate version in manifest.json based on npm package version",
       "customType": "regex",
-      "fileMatch": [
-        "(^|/)manifest\\.json$"
+      "managerFilePatterns": [
+        "/(^|/)manifest\\.json$/"
       ],
       "matchStrings": [
         "\"renovateVersion\":\\s*\"(?<currentValue>\\d+)\""
       ],
       "depNameTemplate": "renovate",
       "datasourceTemplate": "npm",
-      "extractVersionTemplate": "^(?<version>\\d+)"
+      "extractVersionTemplate": "^(?<version>\\d+)",
+      "versioningTemplate": "loose"
     }
   ],
   "packageRules": [
     {
       "description": "Only allow minor/patch updates for LLVM to stay on the respective major version",
-      "matchDepNames": ["llvm/llvm-project"],
-      "matchUpdateTypes": ["major"],
+      "matchDepNames": [
+        "llvm/llvm-project"
+      ],
+      "matchUpdateTypes": [
+        "major"
+      ],
       "enabled": false
+    },
+    {
+      "description": "Allow major LLVM updates in net11.0 directories",
+      "matchDepNames": [
+        "llvm/llvm-project"
+      ],
+      "matchUpdateTypes": [
+        "major"
+      ],
+      "matchFileNames": [
+        "**/net11.0/**"
+      ],
+      "enabled": true
     }
   ],
   "postUpgradeTasks": {
-    "commands": [
-      "bash eng/update-llvm-checksums.sh"
-    ],
-    "fileFilters": [
-      "src/**/Dockerfile"
-    ],
+    "commands": ["bash eng/update-llvm-checksums.sh"],
+    "fileFilters": ["src/**/Dockerfile"],
     "executionMode": "update"
   }
 }

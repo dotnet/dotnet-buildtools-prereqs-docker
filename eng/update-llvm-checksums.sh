@@ -22,9 +22,9 @@ grep -rl 'LLVM_VERSION=' --include='Dockerfile' src/ | while read -r dockerfile;
     echo "Updating checksums in $dockerfile for LLVM $version"
 
     # Download and compute checksum for the .sig file
-    sig_checksum=$(curl -sL "${base_url}/llvm-project-${version}.src.tar.xz.sig" | sha256sum | awk '{print $1}')
+    sig_checksum=$(curl -sL "${base_url}/llvm-project-${version}.src.tar.xz.sig" | sha256sum | cut -d ' ' -f 1)
     # Download and compute checksum for the .tar.xz file
-    tar_checksum=$(curl -sL "${base_url}/llvm-project-${version}.src.tar.xz" | sha256sum | awk '{print $1}')
+    tar_checksum=$(curl -sL "${base_url}/llvm-project-${version}.src.tar.xz" | sha256sum | cut -d ' ' -f 1)
 
     echo "  sig checksum: $sig_checksum"
     echo "  tar checksum: $tar_checksum"
