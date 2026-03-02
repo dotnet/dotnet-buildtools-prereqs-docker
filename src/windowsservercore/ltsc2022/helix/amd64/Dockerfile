@@ -1,20 +1,18 @@
 # escape=`
 FROM mcr.microsoft.com/windows/servercore:ltsc2022 AS helixsetup
 
+ENV PYTHON_VERSION=3.14.3
+
 RUN setx /M VIRTUAL_ENV "C:\Python-env" && `
     setx /M PATH "%PATH%;C:\Program Files\PowerShell\;%VIRTUAL_ENV%\Scripts;C:\Python;C:\python\scripts" && `
     setx /M PYTHONPATH "C:\Python\Lib;C:\Python\DLLs;"
 
-# Install latest stable version of Python
+# Install Python
 RUN powershell -Command " `
         [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12; `
-        $apiUrl = 'https://pkgs.dev.azure.com/dnceng/public/_packaging/dotnet-public/nuget/v3/flat2/python/index.json'; `
-        $response = Invoke-RestMethod -Uri $apiUrl; `
-        $versions = @($response.versions | Where-Object { $_ -notmatch '-' } | Sort-Object { [version]$_ } -Descending); `
-        $latestVersion = $versions[0]; `
-        echo \"Downloading Python $latestVersion\"; `
+        echo \"Downloading Python $env:PYTHON_VERSION\"; `
         $pythonZip = \"$env:TEMP\python.zip\"; `
-        Invoke-WebRequest -Uri https://pkgs.dev.azure.com/dnceng/public/_packaging/dotnet-public/nuget/v3/flat2/python/$latestVersion/python.$latestVersion.nupkg -OutFile $pythonZip; `
+        Invoke-WebRequest -Uri https://pkgs.dev.azure.com/dnceng/public/_packaging/dotnet-public/nuget/v3/flat2/python/$env:PYTHON_VERSION/python.$env:PYTHON_VERSION.nupkg -OutFile $pythonZip; `
         $pythonTemp = 'C:\PythonTemp'; `
         md $pythonTemp; `
         tar -zxf $pythonZip -C $pythonTemp; `

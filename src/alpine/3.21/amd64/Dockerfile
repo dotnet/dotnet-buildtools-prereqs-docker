@@ -1,5 +1,7 @@
 FROM amd64/alpine:3.21
 
+ENV POWERSHELL_VERSION=7.5.4
+
 RUN apk add --upgrade --no-cache \
         # Install .NET and test dependencies
         autoconf \
@@ -57,10 +59,9 @@ RUN apk add --upgrade --no-cache \
         # Azure DevOps container job requirements
         nodejs
 
-# Install the latest non-preview powershell release.
+# Install PowerShell
 RUN apk -X https://dl-cdn.alpinelinux.org/alpine/edge/main add --no-cache lttng-ust \
-    && LATEST_TAG=$(curl -L https://api.github.com/repos/powershell/powershell/releases/latest | jq -r '.tag_name') \
-    && curl -L https://github.com/PowerShell/PowerShell/releases/download/$LATEST_TAG/powershell-${LATEST_TAG#*v}-linux-musl-x64.tar.gz -o /tmp/powershell.tar.gz \
+    && curl -L https://github.com/PowerShell/PowerShell/releases/download/v${POWERSHELL_VERSION}/powershell-${POWERSHELL_VERSION}-linux-musl-x64.tar.gz -o /tmp/powershell.tar.gz \
     && mkdir -p /opt/microsoft/powershell \
     && tar zxf /tmp/powershell.tar.gz -C /opt/microsoft/powershell \
     && chmod +x /opt/microsoft/powershell/pwsh \
