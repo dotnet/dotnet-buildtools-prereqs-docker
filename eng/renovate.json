@@ -1,0 +1,101 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "enabledManagers": [
+    "custom.regex"
+  ],
+  "customManagers": [
+    {
+      "description": "Updates PowerShell version in Dockerfiles",
+      "customType": "regex",
+      "fileMatch": [
+        "(^|/)Dockerfile$"
+      ],
+      "matchStrings": [
+        "ENV POWERSHELL_VERSION=(?<currentValue>\\d+\\.\\d+\\.\\d+)"
+      ],
+      "depNameTemplate": "PowerShell/PowerShell",
+      "datasourceTemplate": "github-releases"
+    },
+    {
+      "description": "Updates LLVM version and checksums (via postUpgradeTasks) in Dockerfiles",
+      "customType": "regex",
+      "fileMatch": [
+        "(^|/)Dockerfile$"
+      ],
+      "matchStrings": [
+        "LLVM_VERSION=(?<currentValue>\\d+\\.\\d+\\.\\d+)"
+      ],
+      "depNameTemplate": "llvm/llvm-project",
+      "datasourceTemplate": "github-releases",
+      "extractVersionTemplate": "^llvmorg-(?<version>.*)$"
+    },
+    {
+      "description": "Updates scancode-toolkit version in Dockerfiles",
+      "customType": "regex",
+      "fileMatch": [
+        "(^|/)Dockerfile$"
+      ],
+      "matchStrings": [
+        "ENV SCANCODE_VERSION=(?<currentValue>\\d+\\.\\d+\\.\\d+)"
+      ],
+      "depNameTemplate": "nexB/scancode-toolkit",
+      "datasourceTemplate": "github-releases"
+    },
+    {
+      "description": "Updates Python version from Azure Artifacts NuGet feed",
+      "customType": "regex",
+      "fileMatch": [
+        "(^|/)(nanoserver|windowsservercore)/.+/Dockerfile$"
+      ],
+      "matchStrings": [
+        "ENV PYTHON_VERSION=(?<currentValue>\\d+\\.\\d+\\.\\d+)"
+      ],
+      "depNameTemplate": "python",
+      "datasourceTemplate": "nuget",
+      "registryUrlTemplate": "https://pkgs.dev.azure.com/dnceng/public/_packaging/dotnet-public/nuget/v3/index.json"
+    },
+    {
+      "description": "Updates Git for Windows version in Dockerfiles",
+      "customType": "regex",
+      "fileMatch": [
+        "(^|/)Dockerfile$"
+      ],
+      "matchStrings": [
+        "ARG GIT_WINDOWS_VERSION=(?<currentValue>\\d+\\.\\d+\\.\\d+)"
+      ],
+      "depNameTemplate": "git-for-windows/git",
+      "datasourceTemplate": "github-releases",
+      "extractVersionTemplate": "^v(?<version>\\d+\\.\\d+\\.\\d+)\\.windows\\.\\d+$"
+    },
+    {
+      "description": "Updates Renovate version in manifest.json based on npm package version",
+      "customType": "regex",
+      "fileMatch": [
+        "(^|/)manifest\\.json$"
+      ],
+      "matchStrings": [
+        "\"renovateVersion\":\\s*\"(?<currentValue>\\d+)\""
+      ],
+      "depNameTemplate": "renovate",
+      "datasourceTemplate": "npm",
+      "extractVersionTemplate": "^(?<version>\\d+)"
+    }
+  ],
+  "packageRules": [
+    {
+      "description": "Only allow minor/patch updates for LLVM to stay on the respective major version",
+      "matchDepNames": ["llvm/llvm-project"],
+      "matchUpdateTypes": ["major"],
+      "enabled": false
+    }
+  ],
+  "postUpgradeTasks": {
+    "commands": [
+      "bash eng/update-llvm-checksums.sh"
+    ],
+    "fileFilters": [
+      "src/**/Dockerfile"
+    ],
+    "executionMode": "update"
+  }
+}
