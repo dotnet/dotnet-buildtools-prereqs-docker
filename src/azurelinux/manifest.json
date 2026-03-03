@@ -1,4 +1,7 @@
 {
+  "variables": {
+    "renovateVersion": "43"
+  },
   "repos": [
     {
       "name": "dotnet-buildtools/prereqs",
@@ -1291,6 +1294,23 @@
                 "azurelinux-3.0-helix-arm64v8": {}
               },
               "variant": "v8"
+            }
+          ]
+        },
+        {
+          "platforms": [
+            {
+              "architecture": "amd64",
+              "dockerfile": "src/azurelinux/3.0/renovate/amd64",
+              "os": "linux",
+              "osVersion": "azurelinux3.0",
+              "tags": {
+                "azurelinux-3.0-renovate-amd64": {},
+                "azurelinux-3.0-renovate-$(renovateVersion)-amd64": {}
+              },
+              "buildArgs": {
+                "RENOVATE_VERSION": "$(renovateVersion)"
+              }
             }
           ]
         },
