@@ -33,6 +33,8 @@ variables:
   value: false
 - name: testScriptPath
   value: ""
+- name: preBuildTestScriptPath
+  value: ""
 - ${{ if not(parameters.disableMatrixTrimming) }}:
   - name: trimCachedImagesForMatrix
     value: true
