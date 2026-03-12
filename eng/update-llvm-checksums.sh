@@ -4,6 +4,8 @@
 
 set -euo pipefail
 
+if ; then
+
 # Find all Dockerfiles that contain LLVM_VERSION
 grep -rl 'LLVM_VERSION=' --include='Dockerfile' src/ | while read -r dockerfile; do
     # Extract the LLVM version from the file
