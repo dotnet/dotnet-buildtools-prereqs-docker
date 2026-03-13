@@ -5,6 +5,7 @@ ARG RENOVATE_VERSION
 RUN tdnf install -y \
         ca-certificates \
         git \
+        jq \
         nodejs24 \
         nodejs24-npm \
         \
