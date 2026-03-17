@@ -38,6 +38,30 @@
               }
             }
           ]
+        },
+        {
+          "platforms": [
+            {
+              "dockerfile": "src/fedora/44/amd64",
+              "os": "linux",
+              "osVersion": "fedora44",
+              "tags": {
+                "fedora-44-amd64": {}
+              }
+            }
+          ]
+        },
+        {
+          "platforms": [
+            {
+              "dockerfile": "src/fedora/44/helix/amd64",
+              "os": "linux",
+              "osVersion": "fedora44",
+              "tags": {
+                "fedora-44-helix-amd64": {}
+              }
+            }
+          ]
         }
       ]
     }
