@@ -112,7 +112,7 @@
   ],
   "postUpgradeTasks": {
     "commands": ["bash eng/update-llvm-checksums.sh"],
-    "fileFilters": ["src/**/Dockerfile"],
-    "executionMode": "update"
+    "dataFileTemplate": "{{{depName}}}\n{{{packageFile}}}\n{{{newVersion}}}",
+    "fileFilters": ["src/**/Dockerfile"]
   }
 }
