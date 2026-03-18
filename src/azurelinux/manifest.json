@@ -1422,7 +1422,7 @@
           "platforms": [
             {
               "architecture": "amd64",
-              "dockerfile": "src/azurelinux/3.0/net11.0/source-build-test/amd64",
+              "dockerfile": "src/azurelinux/3.0/net8.0/source-build-test/amd64",
               "os": "linux",
               "osVersion": "azurelinux3.0",
               "tags": {
