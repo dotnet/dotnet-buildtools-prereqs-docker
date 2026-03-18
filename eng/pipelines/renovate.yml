@@ -30,7 +30,7 @@ resources:
   - repository: arcade
     type: git
     name: internal/dotnet-arcade
-    ref: refs/heads/dev/mthalman/renovate
+    ref: refs/heads/main
 
 extends:
   template: /eng/common/core-templates/stages/renovate.yml@arcade
