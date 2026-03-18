@@ -43,6 +43,8 @@ extends:
     baseTemplate: v1/1ES.Official.PipelineTemplate.yml@1ESPipelineTemplates
     templateParameters:
       pool: ${{ parameters.pool }}
+      settings:
+        networkIsolationPolicy: Permissive,CFSClean,CFSClean2
       sdl:
         binskim:
           enabled: true

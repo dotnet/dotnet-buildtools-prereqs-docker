@@ -47,7 +47,7 @@ parameters:
 # https://eng.ms/docs/coreai/devdiv/one-engineering-system-1es/1es-build/cloudbuild/security/1espt-network-isolation
 - name: networkIsolationPolicy
   type: string
-  default: Permissive,CFSClean
+  default: Permissive,CFSClean,CFSClean2
 
 resources:
   repositories:
