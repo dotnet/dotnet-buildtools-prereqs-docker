@@ -36,7 +36,7 @@
       "description": "Updates scancode-toolkit version in Dockerfiles",
       "customType": "regex",
       "managerFilePatterns": [
-        "/(^|/)Dockerfile$/"
+        "src/azurelinux/**/Dockerfile"
       ],
       "matchStrings": [
         "ENV SCANCODE_VERSION=(?<currentValue>\\d+\\.\\d+\\.\\d+)"
@@ -74,7 +74,7 @@
       "description": "Updates Renovate version in manifest.json based on npm package version",
       "customType": "regex",
       "managerFilePatterns": [
-        "/(^|/)manifest\\.json$/"
+        "src/azurelinux/manifest.json"
       ],
       "matchStrings": [
         "\"renovateVersion\":\\s*\"(?<currentValue>\\d+)\""
