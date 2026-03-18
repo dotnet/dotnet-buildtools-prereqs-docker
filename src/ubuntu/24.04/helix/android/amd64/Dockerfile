@@ -57,7 +57,7 @@ RUN apt-get update && \
     \
     && localedef -i en_US -c -f UTF-8 -A /usr/share/locale/locale.alias en_US.UTF-8
 
-ENV LANG=en_US.utf8
+ENV LANG=en_US.utf-8
 
 RUN curl "https://netcorenativeassets.blob.core.windows.net/resource-packages/external/linux/android-sdk/commandlinetools-linux-13114758_latest.zip" -o /tmp/commandlinetools.zip && \
     mkdir -p /usr/local/android-sdk/cmdline-tools /home/helixbot/.android/avd/android_emu_86_64.avd && \

@@ -2,7 +2,7 @@ FROM quay.io/centos/centos:stream9
 
 # Install dependencies
 RUN dnf upgrade --refresh -y \
-    # Required to install libunwind from the EPEL repo  
+    # Required to install libunwind from the EPEL repo
     && dnf install -y epel-release \
     && dnf install --setopt tsflags=nodocs -y \
         dnf-plugins-core \
@@ -39,7 +39,7 @@ RUN dnf upgrade --refresh -y \
 
 RUN ln -sf /usr/bin/python3 /usr/bin/python
 
-ENV LANG=en_US.utf8
+ENV LANG=en_US.utf-8
 
 # create helixbot user and give rights to sudo without password
 RUN /usr/sbin/adduser --uid 1000 --shell /bin/bash --gid adm helixbot \

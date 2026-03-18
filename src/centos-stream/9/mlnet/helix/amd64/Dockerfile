@@ -84,7 +84,7 @@ ENV LD_LIBRARY_PATH=/usr/local/lib:/usr/local/lib64
 
 RUN ln -sf /usr/bin/python3 /usr/bin/python
 
-ENV LANG=en_US.utf8
+ENV LANG=en_US.utf-8
 
 # create helixbot user and give rights to sudo without password
 RUN /usr/sbin/adduser --uid 1000 --shell /bin/bash --gid adm helixbot \

@@ -58,7 +58,7 @@ RUN apt-get update \
     && rm -rf /var/lib/apt/lists/* \
     && localedef -i en_US -c -f UTF-8 -A /usr/share/locale/locale.alias en_US.UTF-8
 
-ENV LANG=en_US.utf8
+ENV LANG=en_US.utf-8
 
 # Create helixbot user and give rights to sudo without password
 RUN /usr/sbin/adduser --disabled-password --gecos '' --uid 1000 --shell /bin/bash --ingroup adm helixbot \
@@ -70,6 +70,6 @@ USER helixbot
 # Install Helix Dependencies
 ENV VIRTUAL_ENV=/home/helixbot/.vsts-env
 RUN python3 -m venv $VIRTUAL_ENV \
-    && ${VIRTUAL_ENV}/bin/pip install --upgrade pip setuptools 
+    && ${VIRTUAL_ENV}/bin/pip install --upgrade pip setuptools
 ENV PATH="${VIRTUAL_ENV}/bin:${PATH}"
 COPY --from=venv --chown=helixbot /venv $VIRTUAL_ENV

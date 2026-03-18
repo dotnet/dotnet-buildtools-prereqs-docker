@@ -40,7 +40,7 @@ RUN zypper ref \
         unzip \
     && zypper clean -a
 
-ENV LANG=en_US.utf8
+ENV LANG=en_US.utf-8
 
 RUN ln -sf /usr/bin/python3.13 /usr/bin/python
 
