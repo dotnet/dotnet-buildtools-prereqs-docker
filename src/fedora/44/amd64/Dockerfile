@@ -1,7 +1,7 @@
 FROM library/fedora:44
 
 RUN dnf upgrade --refresh -y \
-    && dnf config-manager addrepo --from-repofile=https://packages.microsoft.com/fedora/44/prod/config.repo \
+    && dnf config-manager addrepo --from-repofile=https://packages.microsoft.com/fedora/43/prod/config.repo \
     && dnf install --setopt=install_weak_deps=False --setopt tsflags=nodocs -y \
         # Base toolchain we need to build anything (clang, cmake, make and the like)
         clang \
