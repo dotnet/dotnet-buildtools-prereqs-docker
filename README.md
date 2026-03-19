@@ -112,28 +112,19 @@ For example, to find the image digest of a containerized AzDO job, look at the o
 
 ```bash
 ...
-/usr/bin/docker pull mcr.microsoft.com/dotnet-buildtools/prereqs:ubuntu-22.04-fpm
-ubuntu-22.04-fpm: Pulling from dotnet-buildtools/prereqs
-63567fa8bd47: Pulling fs layer
-a0bbb2e1d432: Pulling fs layer
-a8b51056c91c: Pulling fs layer
-a0bbb2e1d432: Verifying Checksum
-a0bbb2e1d432: Download complete
-63567fa8bd47: Verifying Checksum
-63567fa8bd47: Download complete
-63567fa8bd47: Pull complete
-a8b51056c91c: Verifying Checksum
-a8b51056c91c: Download complete
-a0bbb2e1d432: Pull complete
-a8b51056c91c: Pull complete
-Digest: sha256:4dccac3bd646c9edd1f4645cc52828c8d24d66cfe7d8e8191e3c365d37a1c501
-Status: Downloaded newer image for mcr.microsoft.com/dotnet-buildtools/prereqs:ubuntu-22.04-fpm
-mcr.microsoft.com/dotnet-buildtools/prereqs:ubuntu-22.04-fpm
+/usr/bin/docker pull mcr.microsoft.com/dotnet-buildtools/prereqs:azurelinux-3.0-net11.0-build-amd64
+azurelinux-3.0-net11.0-build-amd64: Pulling from dotnet-buildtools/prereqs
+6bb2b594c3c6: Pull complete
+364a0c9b36d5: Pull complete
+4db1ccf8e98b: Pull complete
+Digest: sha256:65adf9bd14c9e8411aa3617cd90c99b64527677c0beec839b80bc1e144a2c72f
+Status: Downloaded newer image for mcr.microsoft.com/dotnet-buildtools/prereqs:azurelinux-3.0-net11.0-build-amd64
+mcr.microsoft.com/dotnet-buildtools/prereqs:azurelinux-3.0-net11.0-build-amd64
 ...
 ```
 
-In this case the digest of the `mcr.microsoft.com/dotnet-buildtools/prereqs:ubuntu-22.04-fpm` image at the time of this build run is `sha256:4dccac3bd646c9edd1f4645cc52828c8d24d66cfe7d8e8191e3c365d37a1c501`.
-You can pull this image by its digest via `docker pull mcr.microsoft.com/dotnet-buildtools/prereqs@sha256:4dccac3bd646c9edd1f4645cc52828c8d24d66cfe7d8e8191e3c365d37a1c501`.
+In this case the digest of the `mcr.microsoft.com/dotnet-buildtools/prereqs:azurelinux-3.0-net11.0-build-amd64` image at the time of this build run is `sha256:65adf9bd14c9e8411aa3617cd90c99b64527677c0beec839b80bc1e144a2c72f`.
+You can pull this image by its digest via `docker pull mcr.microsoft.com/dotnet-buildtools/prereqs@sha256:65adf9bd14c9e8411aa3617cd90c99b64527677c0beec839b80bc1e144a2c72f`.
 
 ### How to identity the Dockerfile an image was built from
 
@@ -141,10 +132,10 @@ The Dockerfile that an image was built from can be found given the [image digest
 This is possible by searching [version info](https://github.com/dotnet/versions/blob/main/build-info/docker/image-info.dotnet-dotnet-buildtools-prereqs-docker-main.json) for this repository.
 
 ```bash
-$ git log -S"mcr.microsoft.com/dotnet-buildtools/prereqs@sha256:4dccac3bd646c9edd1f4645cc52828c8d24d66cfe7d8e8191e3c365d37a1c501" -- .\build-info\docker\image-info.dotnet-dotnet-buildtools-prereqs-docker-main.json
-commit 199e0e1206404362c3aac6ba1bef15fa7cc290cc
+$ git log -S"mcr.microsoft.com/dotnet-buildtools/prereqs@sha256:65adf9bd14c9e8411aa3617cd90c99b64527677c0beec839b80bc1e144a2c72f" -- .\build-info\docker\image-info.dotnet-dotnet-buildtools-prereqs-docker-main.json
+commit d72c479822817c415e180e6171a413caad930413
 Author: dotnet-docker-bot <dotnet-docker-bot@microsoft.com>
-Date:   Mon Aug 5 21:43:41 2024 +0000
+Date:   Tue Mar 10 21:45:47 2026 +0000
 
     Merging Docker image info updates from build
 ```
@@ -152,28 +143,37 @@ Date:   Mon Aug 5 21:43:41 2024 +0000
 From this commit of the `image-info.dotnet-dotnet-buildtools-prereqs-docker-main.json`, you can retrieve the Dockerfile's `commitUrl`.
 
 ``` json
-"platforms": [
-  {
-    "dockerfile": "src/ubuntu/22.04/fpm/amd64/Dockerfile",
-    "simpleTags": [
-      "ubuntu-22.04-fpm",
-      "ubuntu-22.04-fpm-20240805132320-2525e15"
-    ],
-    "digest": "mcr.microsoft.com/dotnet-buildtools/prereqs@sha256:4dccac3bd646c9edd1f4645cc52828c8d24d66cfe7d8e8191e3c365d37a1c501",
-    "baseImageDigest": "mcr.microsoft.com/dotnet-buildtools/prereqs/ubuntu@sha256:a490e0b0869dc570ae29782c2bc17643aaaad1be102aca83ce0b96e0d0d2d328",
-    "osType": "Linux",
-    "osVersion": "ubuntu22.04",
-    "architecture": "amd64",
-    "created": "2024-08-05T13:25:28.1215548Z",
-    "commitUrl": "https://github.com/dotnet/dotnet-buildtools-prereqs-docker/blob/2525e157e2c2abdd6aab2f0e5b511eb959a2b583/src/ubuntu/22.04/fpm/amd64/Dockerfile",
-    "layers": [
-      "sha256:a8b51056c91ca838379088fa3521b54d111c800dbe9870f2b4ad7ef57a70ce99",
-      "sha256:a0bbb2e1d432eb6e6dd939d2108dd21f4ed4ee27bd60c1c7e3d0edc1fc7ca833",
-      "sha256:63567fa8bd47def3e649849841c5f3be407237a44d8c9b6019ecb21cb0009348"
-    ]
-  }
-]
-
+{
+  "dockerfile": "src/azurelinux/3.0/net11.0/build/amd64/Dockerfile",
+  "simpleTags": [
+    "azurelinux-3.0-net11.0-build-amd64"
+  ],
+  "digest": "mcr.microsoft.com/dotnet-buildtools/prereqs@sha256:65adf9bd14c9e8411aa3617cd90c99b64527677c0beec839b80bc1e144a2c72f",
+  "baseImageDigest": "mcr.microsoft.com/dotnet/runtime-deps@sha256:e444e14ff43039ef0bfdd99e45914187fdbc61f23b6c6eaea488ad2cc99d53f0",
+  "osType": "Linux",
+  "osVersion": "azurelinux3.0",
+  "architecture": "amd64",
+  "created": "2026-03-10T20:26:41.9577696Z",
+  "commitUrl": "https://github.com/dotnet/dotnet-buildtools-prereqs-docker/blob/bb84b157841c4df1d27afbac42a3ddc896649106/src/azurelinux/3.0/net11.0/build/amd64/Dockerfile",
+  "layers": [
+    {
+      "digest": "sha256:6bb2b594c3c67efca32a199afa9fef91057a9d655039b8c89e7a4598cb0572fc",
+      "size": 249076366
+    },
+    {
+      "digest": "sha256:4db1ccf8e98bd29db5facba640134f0a3aeeaeff565a029c640e14f3af57efc9",
+      "size": 748187
+    },
+    {
+      "digest": "sha256:364a0c9b36d5576e4c41b93a114e80b9ed1dccd5f51ecf3b5abce305835fae87",
+      "size": 18191845
+    },
+    {
+      "digest": "sha256:22bac6e7d2dcb0365754de2cc651c153d2ecb6a9d7aeaabb3f107163638d4968",
+      "size": 31717213
+    }
+  ]
+}
 ```
 
 ## Additional Info
@@ -181,11 +181,11 @@ From this commit of the `image-info.dotnet-dotnet-buildtools-prereqs-docker-main
 ### Source Folder Structure
 
 The folder structure used in [src](./src) aligns with the tagging convention - `<os-name>-<os-version>-<variant>-<architecture>` or `<os-name>-<os-version>-<variant>-cross-<target>`.
-For example, the Dockerfile used to produce the `mcr.microsoft.com/dotnet-buildtools/prereqs:alpine-3.20-amd64` image is stored in the [src/alpine/3.20/amd64](./src/alpine/3.20/amd64) folder.
+For example, the Dockerfile used to produce the `mcr.microsoft.com/dotnet-buildtools/prereqs:alpine-3.23-amd64` image is stored in the [src/alpine/3.23/amd64](./src/alpine/3.20/amd64) folder.
 The Dockerfile used to produce the `mcr.microsoft.com/dotnet-buildtools/prereqs:azurelinux-3.0-net8.0-cross-arm64` image is stored in the [src/azurelinux/3.0/net8.0/cross/arm64](./src/azurelinux/3.0/net8.0/cross/arm64) folder.
 
 If a Dockerfile is shared across multiple architectures, then the `<architecture>` folder should be omitted.
-For example, the [src\alpine\3.20\helix\Dockerfile](./src/alpine/3.20/helix/Dockerfile) is built for all supported architectures (amd64, arm64 and arm) therefore there is no architecture folder in its path.
+For example, the [src\alpine\3.23\helix\Dockerfile](./src/alpine/3.23/helix/Dockerfile) is built for all supported architectures (amd64, arm64 and arm) therefore there is no architecture folder in its path.
 
 ### Manifest
 
@@ -201,11 +201,11 @@ Each Dockerfile will have an entry that looks like the following.
 {
   "platforms": [
     {
-      "dockerfile": "src/alpine/3.20/amd64",
+      "dockerfile": "src/alpine/3.23/amd64",
       "os": "linux",
-      "osVersion": "alpine3.20",
+      "osVersion": "alpine3.23",
       "tags": {
-        "alpine-3.20-amd64": {}
+        "alpine-3.23-amd64": {}
       }
     }
   ]
@@ -213,14 +213,13 @@ Each Dockerfile will have an entry that looks like the following.
 {
   "platforms": [
     {
-      "architecture": "arm64",
-      "dockerfile": "src/debian/12/helix/arm64v8",
+      "architecture": "amd64",
+      "dockerfile": "src/alpine/3.23/helix",
       "os": "linux",
-      "osVersion": "bookworm",
+      "osVersion": "alpine3.23",
       "tags": {
-        "debian-12-helix-arm64v8": {}
-      },
-      "variant": "v8"
+        "alpine-3.23-helix-amd64": {}
+      }
     }
   ]
 },
