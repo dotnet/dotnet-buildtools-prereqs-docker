@@ -24,7 +24,7 @@ RUN tdnf update -y && \
         lldb-devel \
         # Provides functionality for AzureCLI AzDO task
         azure-cli \
-        powershell
+        powershell-7.5.0
 
 # Validate checksums with keyring after https://github.com/microsoft/azurelinux/issues/3142 is resolved
 ENV NODE_VERSION=22.16.0
