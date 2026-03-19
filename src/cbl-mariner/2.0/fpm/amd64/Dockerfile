@@ -2,7 +2,7 @@ FROM mcr.microsoft.com/cbl-mariner/base/core:2.0
 RUN tdnf install -y \
         awk \
         build-essential \
-        ca-certificates \
+        ca-certificates-microsoft \
         git \
         icu \
         rpm-build \

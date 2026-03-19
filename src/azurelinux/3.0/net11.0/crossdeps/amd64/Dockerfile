@@ -3,7 +3,7 @@ FROM mcr.microsoft.com/azurelinux/base/core:3.0
 RUN tdnf update -y && \
     tdnf install -y \
         # Provides 'su', required by Azure DevOps
-        ca-certificates \
+        ca-certificates-microsoft \
         git \
         pigz \
         shadow-utils \
