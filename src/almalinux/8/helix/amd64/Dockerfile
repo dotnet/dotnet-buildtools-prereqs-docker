@@ -3,10 +3,7 @@ FROM library/almalinux:8
 RUN dnf upgrade --refresh -y \
     && dnf install --setopt tsflags=nodocs -y  \
         'dnf-command(config-manager)' \
-    # Add microsoft centos/8 repo for libmsquic.
-    # (Use centos/8 rather than rhel/8 because the latter doesn't have
-    #  libmsquic except in the 8.1-specific packages feed.)
-    && dnf config-manager --add-repo=https://packages.microsoft.com/centos/8/prod/config.repo \
+    && dnf config-manager --add-repo=https://packages.microsoft.com/rhel/8/prod/config.repo \
     && dnf install --setopt tsflags=nodocs -y \
         # Get recent python3 This is needed to get a pip recent enough
         # not to fail the build when installing cryptography library as
