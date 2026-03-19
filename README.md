@@ -112,8 +112,8 @@ For example, to find the image digest of a containerized AzDO job, look at the o
 
 ```bash
 ...
-/usr/bin/docker pull mcr.microsoft.com/dotnet-buildtools/prereqs:cbl-mariner-2.0-fpm
-cbl-mariner-2.0-fpm: Pulling from dotnet-buildtools/prereqs
+/usr/bin/docker pull mcr.microsoft.com/dotnet-buildtools/prereqs:ubuntu-22.04-fpm
+ubuntu-22.04-fpm: Pulling from dotnet-buildtools/prereqs
 63567fa8bd47: Pulling fs layer
 a0bbb2e1d432: Pulling fs layer
 a8b51056c91c: Pulling fs layer
@@ -127,12 +127,12 @@ a8b51056c91c: Download complete
 a0bbb2e1d432: Pull complete
 a8b51056c91c: Pull complete
 Digest: sha256:4dccac3bd646c9edd1f4645cc52828c8d24d66cfe7d8e8191e3c365d37a1c501
-Status: Downloaded newer image for mcr.microsoft.com/dotnet-buildtools/prereqs:cbl-mariner-2.0-fpm
-mcr.microsoft.com/dotnet-buildtools/prereqs:cbl-mariner-2.0-fpm
+Status: Downloaded newer image for mcr.microsoft.com/dotnet-buildtools/prereqs:ubuntu-22.04-fpm
+mcr.microsoft.com/dotnet-buildtools/prereqs:ubuntu-22.04-fpm
 ...
 ```
 
-In this case the digest of the `mcr.microsoft.com/dotnet-buildtools/prereqs:cbl-mariner-2.0-fpm` image at the time of this build run is `sha256:4dccac3bd646c9edd1f4645cc52828c8d24d66cfe7d8e8191e3c365d37a1c501`.
+In this case the digest of the `mcr.microsoft.com/dotnet-buildtools/prereqs:ubuntu-22.04-fpm` image at the time of this build run is `sha256:4dccac3bd646c9edd1f4645cc52828c8d24d66cfe7d8e8191e3c365d37a1c501`.
 You can pull this image by its digest via `docker pull mcr.microsoft.com/dotnet-buildtools/prereqs@sha256:4dccac3bd646c9edd1f4645cc52828c8d24d66cfe7d8e8191e3c365d37a1c501`.
 
 ### How to identity the Dockerfile an image was built from
@@ -154,18 +154,18 @@ From this commit of the `image-info.dotnet-dotnet-buildtools-prereqs-docker-main
 ``` json
 "platforms": [
   {
-    "dockerfile": "src/cbl-mariner/2.0/fpm/amd64/Dockerfile",
+    "dockerfile": "src/ubuntu/22.04/fpm/amd64/Dockerfile",
     "simpleTags": [
-      "cbl-mariner-2.0-fpm",
-      "cbl-mariner-2.0-fpm-20240805132320-2525e15"
+      "ubuntu-22.04-fpm",
+      "ubuntu-22.04-fpm-20240805132320-2525e15"
     ],
     "digest": "mcr.microsoft.com/dotnet-buildtools/prereqs@sha256:4dccac3bd646c9edd1f4645cc52828c8d24d66cfe7d8e8191e3c365d37a1c501",
-    "baseImageDigest": "mcr.microsoft.com/cbl-mariner/base/core@sha256:a490e0b0869dc570ae29782c2bc17643aaaad1be102aca83ce0b96e0d0d2d328",
+    "baseImageDigest": "mcr.microsoft.com/dotnet-buildtools/prereqs/ubuntu@sha256:a490e0b0869dc570ae29782c2bc17643aaaad1be102aca83ce0b96e0d0d2d328",
     "osType": "Linux",
-    "osVersion": "cbl-mariner2.0",
+    "osVersion": "ubuntu22.04",
     "architecture": "amd64",
     "created": "2024-08-05T13:25:28.1215548Z",
-    "commitUrl": "https://github.com/dotnet/dotnet-buildtools-prereqs-docker/blob/2525e157e2c2abdd6aab2f0e5b511eb959a2b583/src/cbl-mariner/2.0/fpm/amd64/Dockerfile",
+    "commitUrl": "https://github.com/dotnet/dotnet-buildtools-prereqs-docker/blob/2525e157e2c2abdd6aab2f0e5b511eb959a2b583/src/ubuntu/22.04/fpm/amd64/Dockerfile",
     "layers": [
       "sha256:a8b51056c91ca838379088fa3521b54d111c800dbe9870f2b4ad7ef57a70ce99",
       "sha256:a0bbb2e1d432eb6e6dd939d2108dd21f4ed4ee27bd60c1c7e3d0edc1fc7ca833",
