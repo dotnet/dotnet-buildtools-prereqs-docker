@@ -32,7 +32,6 @@ src/cbl-mariner/2.0/amd64/ @dotnet/runtime-infrastructure @dotnet/dotnet-docker-
 src/centos-stream/**/amd64/ @dotnet/source-build @dotnet/dotnet-docker-reviewers
 
 # debian
-src/debian/11/amd64/ @dotnet/source-build @dotnet/dotnet-docker-reviewers
 src/debian/*/gcc*/amd64/ @dotnet/runtime-infrastructure @dotnet/dotnet-docker-reviewers
 
 # fedora
