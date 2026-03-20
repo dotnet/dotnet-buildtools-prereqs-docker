@@ -1,12 +1,11 @@
 # escape=`
 FROM mcr.microsoft.com/windows/servercore:ltsc2019 AS installer
 
+ENV POWERSHELL_VERSION=7.5.4
+
 SHELL ["powershell", "-Command", "$ErrorActionPreference = 'Stop'; $ProgressPreference = 'SilentlyContinue';"]
 
-RUN $apiUrl = 'https://api.github.com/repos/PowerShell/PowerShell/releases/latest'; `
-    $response = Invoke-RestMethod -Uri $apiUrl; `
-    $url = $response.assets | Where-Object { $_.browser_download_url -match 'win-x64.zip' } | Select-Object -ExpandProperty browser_download_url; `
-    Invoke-WebRequest -Uri $url -OutFile C:\powershell.zip; `
+RUN Invoke-WebRequest -Uri "https://github.com/PowerShell/PowerShell/releases/download/v${env:POWERSHELL_VERSION}/PowerShell-${env:POWERSHELL_VERSION}-win-x64.zip" -OutFile C:\powershell.zip; `
     Expand-Archive -Path C:\powershell.zip -DestinationPath C:\powershell; `
     Remove-Item -Path C:\powershell.zip
 
@@ -17,20 +16,18 @@ USER ContainerAdministrator
 
 COPY --from=installer [ "C:\\powershell\\", "C:\\Program Files\\PowerShell\\" ]
 
+ENV PYTHON_VERSION=3.14.3
+
 RUN setx /M VIRTUAL_ENV "C:\Python-env" && `
     setx /M PATH "%PATH%;C:\Program Files\PowerShell\;%VIRTUAL_ENV%\Scripts;C:\Python;C:\python\scripts" && `
     setx /M PYTHONPATH "C:\Python\Lib;C:\Python\DLLs;"
 
-# Install latest stable version of Python
+# Install Python
 RUN pwsh -Command " `
         [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12; `
-        $apiUrl = 'https://pkgs.dev.azure.com/dnceng/public/_packaging/dotnet-public/nuget/v3/flat2/python/index.json'; `
-        $response = Invoke-RestMethod -Uri $apiUrl; `
-        $versions = @($response.versions | Where-Object { $_ -notmatch '-' } | Sort-Object { [version]$_ } -Descending); `
-        $latestVersion = $versions[0]; `
-        echo \"Downloading Python $latestVersion\"; `
+        echo \"Downloading Python ${env:PYTHON_VERSION}\"; `
         $pythonZip = \"$env:TEMP\python.zip\"; `
-        Invoke-WebRequest -Uri https://pkgs.dev.azure.com/dnceng/public/_packaging/dotnet-public/nuget/v3/flat2/python/$latestVersion/python.$latestVersion.nupkg -OutFile $pythonZip; `
+        Invoke-WebRequest -Uri https://pkgs.dev.azure.com/dnceng/public/_packaging/dotnet-public/nuget/v3/flat2/python/${env:PYTHON_VERSION}/python.${env:PYTHON_VERSION}.nupkg -OutFile $pythonZip; `
         $pythonTemp = 'C:\PythonTemp'; `
         md $pythonTemp; `
         tar -zxf $pythonZip -C $pythonTemp; `

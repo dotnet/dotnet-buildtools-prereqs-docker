@@ -8,6 +8,7 @@ RUN tdnf install -y \
         jq \
         nodejs24 \
         nodejs24-npm \
+        powershell \
         \
         # Requirements for Azure DevOps container jobs
         shadow-utils \

@@ -1,4 +1,4 @@
-FROM library/fedora:43
+FROM library/fedora:rawhide
 
 ENV POWERSHELL_VERSION=7.5.4
 

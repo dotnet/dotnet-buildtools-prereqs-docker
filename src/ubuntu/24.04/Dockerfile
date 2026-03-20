@@ -1,5 +1,7 @@
 FROM ubuntu.azurecr.io/ubuntu:24.04
 
+ENV POWERSHELL_VERSION=7.5.4
+
 # Install the base toolchain we need to build anything (clang, cmake, make and the like)
 # this does not include libraries that we need to compile different projects, we'd like
 # them in a different layer.
@@ -85,15 +87,14 @@ RUN rm -f /etc/apt/sources.list.d/nodesource.list && \
     apt-get remove nodejs-doc -y && \
     apt-get remove libnode-dev -y
 
-# Install the latest non-preview powershell release.
+# Install PowerShell
 RUN ARCH=$(dpkg --print-architecture) \
-    && LATEST_TAG=$(curl -sL https://api.github.com/repos/PowerShell/PowerShell/releases/latest | jq -r '.tag_name') \
     && case "$ARCH" in \
         amd64) ARCH="x64" ;; \
         arm64) ARCH="arm64" ;; \
         *) echo "Unsupported architecture: $ARCH" && exit 1 ;; \
     esac \
-    && curl -L "https://github.com/PowerShell/PowerShell/releases/download/$LATEST_TAG/powershell-${LATEST_TAG#*v}-linux-${ARCH}.tar.gz" -o /tmp/powershell.tar.gz \
+    && curl -L "https://github.com/PowerShell/PowerShell/releases/download/v${POWERSHELL_VERSION}/powershell-${POWERSHELL_VERSION}-linux-${ARCH}.tar.gz" -o /tmp/powershell.tar.gz \
     && mkdir -p /opt/microsoft/powershell \
     && tar zxf /tmp/powershell.tar.gz -C /opt/microsoft/powershell \
     && chmod +x /opt/microsoft/powershell/pwsh \

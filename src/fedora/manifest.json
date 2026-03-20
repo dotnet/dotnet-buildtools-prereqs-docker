@@ -38,6 +38,78 @@
               }
             }
           ]
+        },
+        {
+          "platforms": [
+            {
+              "dockerfile": "src/fedora/44/amd64",
+              "os": "linux",
+              "osVersion": "fedora44",
+              "tags": {
+                "fedora-44-amd64": {}
+              }
+            }
+          ]
+        },
+        {
+          "platforms": [
+            {
+              "dockerfile": "src/fedora/44/helix/amd64",
+              "os": "linux",
+              "osVersion": "fedora44",
+              "tags": {
+                "fedora-44-helix-amd64": {}
+              }
+            }
+          ]
+        },
+        {
+          "platforms": [
+            {
+              "dockerfile": "src/fedora/45/amd64",
+              "os": "linux",
+              "osVersion": "fedora45",
+              "tags": {
+                "fedora-45-amd64": {}
+              }
+            }
+          ]
+        },
+        {
+          "platforms": [
+            {
+              "dockerfile": "src/fedora/45/helix/amd64",
+              "os": "linux",
+              "osVersion": "fedora45",
+              "tags": {
+                "fedora-45-helix-amd64": {}
+              }
+            }
+          ]
+        },
+        {
+          "platforms": [
+            {
+              "dockerfile": "src/fedora/rawhide/amd64",
+              "os": "linux",
+              "osVersion": "fedora-rawhide",
+              "tags": {
+                "fedora-rawhide-amd64": {}
+              }
+            }
+          ]
+        },
+        {
+          "platforms": [
+            {
+              "dockerfile": "src/fedora/rawhide/helix/amd64",
+              "os": "linux",
+              "osVersion": "fedora-rawhide",
+              "tags": {
+                "fedora-rawhide-helix-amd64": {}
+              }
+            }
+          ]
         }
       ]
     }
