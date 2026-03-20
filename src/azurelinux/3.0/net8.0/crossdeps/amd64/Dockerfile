@@ -2,7 +2,7 @@ FROM mcr.microsoft.com/azurelinux/base/core:3.0
 
 RUN tdnf update -y && \
     tdnf install -y \
-        ca-certificates \
+        ca-certificates-microsoft \
         curl \
         git \
         shadow-utils \

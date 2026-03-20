@@ -2,7 +2,7 @@ FROM mcr.microsoft.com/cbl-mariner/base/core:2.0
 
 RUN tdnf update -y && \
     tdnf install -y \
-        ca-certificates \
+        ca-certificates-microsoft \
         git \
         # Provides 'su', required by Azure DevOps
         util-linux \
