@@ -2,7 +2,7 @@ FROM mcr.microsoft.com/cbl-mariner/base/core:2.0
 RUN tdnf install -y \
         awk \
         build-essential \
-        ca-certificates \
+        ca-certificates-microsoft \
         git \
         icu \
         rpm-build \
@@ -16,6 +16,6 @@ RUN tdnf install -y \
         sudo \
         # Provides functionality for AzureCLI AzDO task
         azure-cli \
-        powershell \
+        powershell-7.5.5 \
     && tdnf clean all \
     && gem install fpm

@@ -2,7 +2,7 @@ FROM mcr.microsoft.com/azurelinux/base/core:3.0
 RUN tdnf install -y \
         awk \
         build-essential \
-        ca-certificates \
+        ca-certificates-microsoft \
         git \
         icu \
         rpm-build \

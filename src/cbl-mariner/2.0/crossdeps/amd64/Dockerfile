@@ -2,7 +2,7 @@ FROM mcr.microsoft.com/cbl-mariner/base/core:2.0
 
 RUN tdnf update -y && \
     tdnf install -y \
-        ca-certificates \
+        ca-certificates-microsoft \
         git \
         # Provides 'su', required by Azure DevOps
         util-linux \
@@ -24,7 +24,7 @@ RUN tdnf update -y && \
         lldb-devel \
         # Provides functionality for AzureCLI AzDO task
         azure-cli \
-        powershell
+        powershell-7.5.5
 
 # Validate checksums with keyring after https://github.com/microsoft/azurelinux/issues/3142 is resolved
 ENV NODE_VERSION=22.16.0
