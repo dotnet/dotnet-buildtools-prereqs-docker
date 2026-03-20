@@ -3,7 +3,7 @@ ARG ROOTFS_DIR=/crossrootfs/riscv64
 FROM mcr.microsoft.com/dotnet-buildtools/prereqs:azurelinux-3.0-net10.0-crossdeps-builder-amd64 AS builder
 ARG ROOTFS_DIR
 
-RUN /scripts/eng/common/cross/build-rootfs.sh riscv64 alpine3.20 --skipunmount
+RUN /scripts/eng/common/cross/build-rootfs.sh riscv64 alpine3.20 --skipunmount --skipemulation
 
 RUN TARGET_TRIPLE="riscv64-alpine-linux-musl" && \
     GCC_VER=$(basename "$(find "$ROOTFS_DIR/usr/include/c++/" -mindepth 1 -maxdepth 1 -type d | sort -V | head -n1)") && \
