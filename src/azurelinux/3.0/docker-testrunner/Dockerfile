@@ -4,7 +4,7 @@
 FROM mcr.microsoft.com/azurelinux/base/core:3.0
 
 RUN tdnf install -y \
-        ca-certificates \
+        ca-certificates-microsoft \
         # Install Docker
         moby-engine \
         docker-buildx \

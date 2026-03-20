@@ -3,7 +3,7 @@ FROM mcr.microsoft.com/azurelinux/base/core:3.0
 ARG RENOVATE_VERSION
 
 RUN tdnf install -y \
-        ca-certificates \
+        ca-certificates-microsoft \
         git \
         jq \
         nodejs24 \
