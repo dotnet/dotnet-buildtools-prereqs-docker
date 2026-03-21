@@ -1,6 +1,6 @@
 FROM amd64/alpine:3.23
 
-ENV POWERSHELL_VERSION=7.5.4
+ENV POWERSHELL_VERSION=7.6.0
 
 RUN apk add --upgrade --no-cache \
         # Install .NET and test dependencies
