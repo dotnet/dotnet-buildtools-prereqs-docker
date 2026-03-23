@@ -68,7 +68,7 @@ RUN LIBCURL=libcurl4 \
     && rm -rf /var/lib/apt/lists/* \
     && localedef -i en_US -c -f UTF-8 en_US.UTF-8
 
-ENV LANG=en_US.utf-8
+ENV LANG=en_US.UTF-8
 
 # Add MsQuic
 RUN ARCH=$TARGETARCH \

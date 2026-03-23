@@ -39,7 +39,7 @@ RUN dnf upgrade --refresh -y \
 
 RUN ln -sf /usr/bin/python3 /usr/bin/python
 
-ENV LANG=en_US.utf-8
+ENV LANG=en_US.UTF-8
 
 # create helixbot user and give rights to sudo without password
 RUN /usr/sbin/adduser --uid 1000 --shell /bin/bash --gid adm helixbot \

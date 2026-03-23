@@ -2,7 +2,7 @@ FROM mcr.microsoft.com/cbl-mariner/base/core:2.0
 
 # Install Helix Dependencies
 
-ENV LANG=en_US.utf-8
+ENV LANG=en_US.UTF-8
 
 RUN tdnf install --setopt tsflags=nodocs --refresh -y \
          ca-certificates-microsoft \

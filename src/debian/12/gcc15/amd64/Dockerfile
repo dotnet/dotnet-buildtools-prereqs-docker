@@ -34,7 +34,7 @@ RUN apt-get update \
     && rm -rf /var/lib/apt/lists/* \
     && localedef -i en_US -c -f UTF-8 -A /usr/share/locale/locale.alias en_US.UTF-8
 
-ENV LANG=en_US.utf-8
+ENV LANG=en_US.UTF-8
 
 # These symlinks are required because this docker has gcc-12 suffixed with version and gcc-15 unsuffixed in PATH.
 # In the runtime repo, we (by design) give precedence to suffixed compilers before selecting unsuffixed one in PATH.
