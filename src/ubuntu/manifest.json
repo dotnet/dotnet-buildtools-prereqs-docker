@@ -324,6 +324,20 @@
               "variant": "v7"
             }
           ]
+        },
+        {
+          "platforms": [
+            {
+              "architecture": "amd64",
+              "dockerfile": "src/ubuntu/26.04/helix/webassembly/amd64",
+              "os": "linux",
+              "osVersion": "resolute",
+              "tags": {
+                "ubuntu-26.04-helix-webassembly": {},
+                "ubuntu-26.04-helix-webassembly-amd64": {}
+              }
+            }
+          ]
         }
       ]
     }
