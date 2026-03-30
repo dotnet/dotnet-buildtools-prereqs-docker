@@ -82,9 +82,7 @@ stages:
     parameters:
       name: CopyBaseImages
       publishConfig: ${{ parameters.publishConfig }}
-      pool:
-        name: NetCore1ESPool-Internal
-        demands: ImageOverride -equals build.azurelinux.3.amd64
+      pool: ${{ parameters.linuxAmd64Pool }}
       additionalOptions: "--manifest '$(manifest)' $(imageBuilder.pathArgs) $(manifestVariables)"
       customInitSteps: ${{ parameters.customInitSteps }}
       customCopyBaseImagesInitSteps: ${{ parameters.customCopyBaseImagesInitSteps }}
@@ -94,9 +92,7 @@ stages:
     parameters:
       matrixType: ${{ parameters.buildMatrixType }}
       name: GenerateBuildMatrix
-      pool:
-        name: NetCore1ESPool-Internal
-        demands: ImageOverride -equals build.azurelinux.3.amd64
+      pool: ${{ parameters.linuxAmd64Pool }}
       customBuildLegGroupArgs: ${{ parameters.buildMatrixCustomBuildLegGroupArgs }}
       internalProjectName: ${{ parameters.internalProjectName }}
       noCache: ${{ parameters.noCache }}
