@@ -72,6 +72,8 @@ steps:
     fetchDepth: 1
     condition: succeeded()
 
+# Temporarily installs Azure CLI on Ubuntu (while DNCEng work on putting it back, it was removed mistakenly)
+# https://github.com/dotnet/dotnet-buildtools-prereqs-docker/issues/1621
 - ${{ if eq(parameters.dockerClientOS, 'linux') }}:
   - script: |
       if command -v apt-get &> /dev/null; then
