@@ -48,13 +48,6 @@ jobs:
       publishConfig: ${{ parameters.publishConfig }}
       usesRegistries:
         - ${{ parameters.acr.server }}
-  - ${{ parameters.customCopyBaseImagesInitSteps }}
-  - template: /eng/docker-tools/templates/steps/copy-base-images.yml@self
-    parameters:
-      acr: ${{ parameters.acr }}
-      additionalOptions: ${{ parameters.additionalOptions }}
-      continueOnError: ${{ parameters.continueOnError }}
-      forceDryRun: ${{ parameters.forceDryRun }}
   - script: >-
       docker build
       -t test-crossrootfs-x64
@@ -66,7 +59,10 @@ jobs:
 
       ARG ROOTFS_DIR
 
-      RUN /scripts/eng/common/cross/build-rootfs.sh x64 bionic --skipunmount
+      RUN git config --global user.email builder@dotnet-buildtools-prereqs-docker && \
+          git clone --depth 1 --single-branch https://github.com/dotnet/arcade /scripts2
+
+      RUN /scripts2/eng/common/cross/build-rootfs.sh x64 bionic --skipunmount
 
       EOF
     displayName: Build crossrootfs x64 bionic Dockerfile
