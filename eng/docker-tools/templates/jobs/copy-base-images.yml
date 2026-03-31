@@ -55,3 +55,20 @@ jobs:
       additionalOptions: ${{ parameters.additionalOptions }}
       continueOnError: ${{ parameters.continueOnError }}
       forceDryRun: ${{ parameters.forceDryRun }}
+  - script: >-
+      docker build
+      -t test-crossrootfs-x64
+      -f - . <<EOF
+
+      ARG ROOTFS_DIR=/crossrootfs/x64
+
+      FROM mcr.microsoft.com/dotnet-buildtools/prereqs:azurelinux-3.0-net11.0-crossdeps-builder-amd64 AS builder
+
+      ARG ROOTFS_DIR
+
+      RUN /scripts/eng/common/cross/build-rootfs.sh x64 bionic --skipunmount
+
+      EOF
+    displayName: Build crossrootfs x64 bionic Dockerfile
+
+
