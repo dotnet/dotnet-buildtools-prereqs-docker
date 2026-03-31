@@ -42,7 +42,7 @@ RUN curl -L https://github.com/PowerShell/PowerShell/releases/download/v${POWERS
     && apt-get install -f -y \
     && rm -rf /tmp/powershell.deb /var/lib/apt/lists/*
 
-ENV LANG=en_US.utf8
+ENV LANG=en_US.UTF-8
 
 # These symlinks are required because this docker has gcc-12 suffixed with version and gcc-15 unsuffixed in PATH.
 # In the runtime repo, we (by design) give precedence to suffixed compilers before selecting unsuffixed one in PATH.
