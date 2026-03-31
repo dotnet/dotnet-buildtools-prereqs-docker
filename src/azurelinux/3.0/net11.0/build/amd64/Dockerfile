@@ -7,7 +7,7 @@ RUN tdnf install -y \
         # added to ensure latest patches over the base image
         curl \
         git \
-        nodejs \
+        nodejs24 \
         powershell \
         # provides 'useradd', required by Azure DevOps
         shadow-utils \

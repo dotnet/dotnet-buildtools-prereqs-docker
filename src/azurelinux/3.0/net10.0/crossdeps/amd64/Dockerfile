@@ -27,8 +27,8 @@ RUN tdnf update -y && \
         # Jit rolling build dependency
         python3-pip \
         # aspnetcore build dependencies
-        nodejs \
-        npm \
+        nodejs24 \
+        nodejs24-npm \
         # Provides functionality for AzureCLI AzDO task
         azure-cli \
         powershell \
