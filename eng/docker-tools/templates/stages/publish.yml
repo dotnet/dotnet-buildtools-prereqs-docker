@@ -37,13 +37,7 @@ stages:
   ${{ if eq(parameters.isStandalonePublish, true) }}:
     dependsOn: []
   ${{ else }}:
-    dependsOn:
-    - ${{ if eq(parameters.publishConfig.Signing.Enabled, true) }}:
-      - Sign
-    - ${{ if and(eq(variables['System.TeamProject'], parameters.internalProjectName), ne(variables['Build.Reason'], 'PullRequest')) }}:
-      - Test
-    - ${{ else }}:
-      - Post_Build
+    dependsOn: []
   # Run when all of the following are true:
   # 1. The pipeline has not been canceled.
   # 2. The stages variable includes 'publish'.
