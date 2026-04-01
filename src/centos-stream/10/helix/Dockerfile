@@ -46,7 +46,7 @@ RUN dnf upgrade --refresh -y \
         which \
     && dnf clean all
 
-ENV LANG=en_US.utf8
+ENV LANG=en_US.UTF-8
 
 # create helixbot user and give rights to sudo without password
 RUN /usr/sbin/adduser --uid 1000 --shell /bin/bash --gid adm helixbot \

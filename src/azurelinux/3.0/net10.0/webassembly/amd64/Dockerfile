@@ -5,8 +5,8 @@ RUN tdnf update -y \
     && tdnf install -y \
         # WebAssembly build dependencies
         which \
-        nodejs \
-        npm \
+        nodejs24 \
+        nodejs24-npm \
         pigz \
         python3 \
         libxml2 \

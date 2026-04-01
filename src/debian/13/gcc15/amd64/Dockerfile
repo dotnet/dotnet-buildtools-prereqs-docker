@@ -1,5 +1,7 @@
 FROM library/gcc:15-trixie
 
+ENV POWERSHELL_VERSION=7.6.0
+
 # Dependencies for dotnet/runtime native components.
 RUN apt-get update \
     && apt-get upgrade -y \
@@ -33,7 +35,14 @@ RUN apt-get update \
     && rm -rf /var/lib/apt/lists/* \
     && localedef -i en_US -c -f UTF-8 -A /usr/share/locale/locale.alias en_US.UTF-8
 
-ENV LANG=en_US.utf8
+# Install PowerShell
+RUN curl -L https://github.com/PowerShell/PowerShell/releases/download/v${POWERSHELL_VERSION}/powershell_${POWERSHELL_VERSION}-1.deb_amd64.deb -o /tmp/powershell.deb \
+    && dpkg -i /tmp/powershell.deb || true \
+    && apt-get update \
+    && apt-get install -f -y \
+    && rm -rf /tmp/powershell.deb /var/lib/apt/lists/*
+
+ENV LANG=en_US.UTF-8
 
 # These symlinks are required because this docker has gcc-12 suffixed with version and gcc-15 unsuffixed in PATH.
 # In the runtime repo, we (by design) give precedence to suffixed compilers before selecting unsuffixed one in PATH.
