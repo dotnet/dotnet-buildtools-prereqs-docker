@@ -3,7 +3,7 @@ FROM mcr.microsoft.com/azurelinux/base/core:3.0
 RUN tdnf update -y && \
     tdnf install -y \
         # Provides 'su', required by Azure DevOps
-        ca-certificates \
+        ca-certificates-microsoft \
         git \
         pigz \
         shadow-utils \
@@ -27,8 +27,8 @@ RUN tdnf update -y && \
         # Jit rolling build dependency
         python3-pip \
         # aspnetcore build dependencies
-        nodejs \
-        npm \
+        nodejs24 \
+        nodejs24-npm \
         # Provides functionality for AzureCLI AzDO task
         azure-cli \
         powershell

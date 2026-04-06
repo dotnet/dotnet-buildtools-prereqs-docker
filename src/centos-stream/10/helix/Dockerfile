@@ -20,7 +20,7 @@ FROM quay.io/centos/centos:stream10
 RUN dnf upgrade --refresh -y \
     && dnf install --setopt tsflags=nodocs -y \
         dnf-plugins-core \
-    && dnf config-manager --add-repo=https://packages.microsoft.com/rhel/9/prod/config.repo \
+    && dnf config-manager --add-repo=https://packages.microsoft.com/rhel/10/prod/config.repo \
     && dnf install --setopt tsflags=nodocs -y --allowerasing \
         autoconf \
         automake \
@@ -46,7 +46,7 @@ RUN dnf upgrade --refresh -y \
         which \
     && dnf clean all
 
-ENV LANG=en_US.utf8
+ENV LANG=en_US.UTF-8
 
 # create helixbot user and give rights to sudo without password
 RUN /usr/sbin/adduser --uid 1000 --shell /bin/bash --gid adm helixbot \

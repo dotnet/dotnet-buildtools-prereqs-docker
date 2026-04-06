@@ -21,7 +21,7 @@ RUN python3 -m venv /venv \
 
 FROM ubuntu.azurecr.io/ubuntu:26.04
 ARG TARGETARCH
-ARG LIBMSQUIC_VERSION=2.4.8
+ARG LIBMSQUIC_VERSION=2.5.6
 ENV DEBIAN_FRONTEND=noninteractive
 
 RUN LIBCURL=libcurl4 \
@@ -68,7 +68,7 @@ RUN LIBCURL=libcurl4 \
     && rm -rf /var/lib/apt/lists/* \
     && localedef -i en_US -c -f UTF-8 en_US.UTF-8
 
-ENV LANG=en_US.utf8
+ENV LANG=en_US.UTF-8
 
 # Add MsQuic
 RUN ARCH=$TARGETARCH \
