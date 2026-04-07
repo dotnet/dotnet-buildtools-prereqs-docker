@@ -8,6 +8,7 @@ RUN tdnf install -y \
         curl \
         git \
         nodejs24 \
+        nodejs24-npm \
         powershell \
         # provides 'useradd', required by Azure DevOps
         shadow-utils \
