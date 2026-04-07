@@ -26,7 +26,6 @@ RUN apt-get update \
         curl \
         git \
         iproute2 \
-        npm \
         zip \
     && rm -rf /var/lib/apt/lists/*
 
@@ -80,14 +79,6 @@ RUN apt-get update \
         file \
     && rm -rf /var/lib/apt/lists/*
 
-# Remove older version of node & install node 20
-RUN rm -f /etc/apt/sources.list.d/nodesource.list && \
-    apt-get --fix-broken install && \
-    apt-get update && \
-    apt-get remove nodejs -y && \
-    apt-get remove nodejs-doc -y && \
-    apt-get remove libnode-dev -y
-
 # Install PowerShell
 RUN ARCH=$(dpkg --print-architecture) \
     && case "$ARCH" in \
@@ -102,11 +93,14 @@ RUN ARCH=$(dpkg --print-architecture) \
     && ln -s /opt/microsoft/powershell/pwsh /usr/bin/pwsh \
     && rm -f /tmp/powershell.tar.gz
 
-RUN cd ~ && \
+# Install node 20 and use its bundled npm so we don't pull in distro npm dependencies unnecessarily.
+RUN rm -f /etc/apt/sources.list.d/nodesource.list && \
+    cd ~ && \
     curl -sL https://deb.nodesource.com/setup_20.x -o nodesource_setup.sh && \
     bash nodesource_setup.sh && \
     apt-get install nodejs -y && \
     rm -rf /var/lib/apt/lists/* && \
-    rm -f nodesource_setup.sh
+    rm -f nodesource_setup.sh && \
+    npm install -g ip@latest
 
 ENV NO_UPDATE_NOTIFIER=true
