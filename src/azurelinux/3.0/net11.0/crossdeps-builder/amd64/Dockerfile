@@ -4,8 +4,10 @@ RUN tdnf install -y \
         # Common utilities
         ca-certificates \
         git \
+        jq \
         shadow-utils \
         tar \
+        unzip \
         wget \
         # LLVM build dependencies
         binutils \
