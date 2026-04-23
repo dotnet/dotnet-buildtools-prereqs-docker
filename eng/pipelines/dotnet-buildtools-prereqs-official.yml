@@ -62,7 +62,9 @@ resources:
 extends:
   template: /eng/docker-tools/templates/1es.yml@self
   parameters:
-    networkIsolationPolicy: Permissive,CFSClean,CFSClean2
+    # Temporarily set to Permissive only to unblock builds while investigate and fix issues with CFSClean and CFSClean2
+    #networkIsolationPolicy: Permissive,CFSClean,CFSClean2
+    networkIsolationPolicy: Permissive
     reposToExcludeFromScanning:
     - VersionsRepo
     stages:
