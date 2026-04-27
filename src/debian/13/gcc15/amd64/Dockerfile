@@ -1,6 +1,6 @@
 FROM library/gcc:15-trixie
 
-ENV POWERSHELL_VERSION=7.6.0
+ENV POWERSHELL_VERSION=7.6.1
 
 # Dependencies for dotnet/runtime native components.
 RUN apt-get update \
