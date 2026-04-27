@@ -1,6 +1,6 @@
 FROM library/fedora:45
 
-ENV POWERSHELL_VERSION=7.6.0
+ENV POWERSHELL_VERSION=7.6.1
 
 RUN dnf upgrade --refresh -y \
     && dnf config-manager addrepo --from-repofile=https://packages.microsoft.com/fedora/43/prod/config.repo \
