@@ -61,11 +61,11 @@ RUN wget https://releases.llvm.org/release-keys.asc && \
 
 RUN \
     # Download llvm sources and signature, and verify signature
-    LLVM_VERSION=22.1.3 && \
+    LLVM_VERSION=22.1.4 && \
     wget -O llvm-project.src.tar.xz.sig https://github.com/llvm/llvm-project/releases/download/llvmorg-${LLVM_VERSION}/llvm-project-${LLVM_VERSION}.src.tar.xz.sig && \
-    echo "55fb4ab262751342340ce0bcc9ba6d63b421e9a93020f637982e5dcb8e89bbb7 llvm-project.src.tar.xz.sig" | sha256sum -c && \
+    echo "84fa5eeabc39f91e4e8271d4fbbef46fd349911a3921b153f15448f9bf581eeb llvm-project.src.tar.xz.sig" | sha256sum -c && \
     wget -O llvm-project.src.tar.xz https://github.com/llvm/llvm-project/releases/download/llvmorg-${LLVM_VERSION}/llvm-project-${LLVM_VERSION}.src.tar.xz && \
-    echo "2488c33a959eafba1c44f253e5bbe7ac958eb53fa626298a3a5f4b87373767cd llvm-project.src.tar.xz" | sha256sum -c && \
+    echo "3e68c90dda630c27d41d201e37b8bbf5222e39b273dec5ca880709c69e0a07d4 llvm-project.src.tar.xz" | sha256sum -c && \
     gpg --verify llvm-project.src.tar.xz.sig && \
     rm llvm-project.src.tar.xz.sig && \
     # Build LLVM cross-toolchain (with support for targeting x86/x64, arm64, arm, s390x and ppc64le architectures)
