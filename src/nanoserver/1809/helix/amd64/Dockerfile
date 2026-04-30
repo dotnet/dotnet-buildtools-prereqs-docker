@@ -1,7 +1,7 @@
 # escape=`
 FROM mcr.microsoft.com/windows/servercore:ltsc2019 AS installer
 
-ENV POWERSHELL_VERSION=7.6.0
+ENV POWERSHELL_VERSION=7.6.1
 
 SHELL ["powershell", "-Command", "$ErrorActionPreference = 'Stop'; $ProgressPreference = 'SilentlyContinue';"]
 
@@ -16,7 +16,7 @@ USER ContainerAdministrator
 
 COPY --from=installer [ "C:\\powershell\\", "C:\\Program Files\\PowerShell\\" ]
 
-ENV PYTHON_VERSION=3.14.3
+ENV PYTHON_VERSION=3.14.4
 
 RUN setx /M VIRTUAL_ENV "C:\Python-env" && `
     setx /M PATH "%PATH%;C:\Program Files\PowerShell\;%VIRTUAL_ENV%\Scripts;C:\Python;C:\python\scripts" && `

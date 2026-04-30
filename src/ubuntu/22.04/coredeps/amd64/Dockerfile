@@ -5,8 +5,6 @@ RUN apt-get update \
     && apt-get upgrade -y \
     && apt-get install -y \
         git \
-        nodejs \
-        npm \
         tar \
         zip \
     && curl -sL https://aka.ms/InstallAzureCLIDeb | bash \
@@ -33,3 +31,14 @@ RUN apt-get update \
         python3-pip \
         uuid-dev \
     && rm -rf /var/lib/apt/lists/*
+
+# Install Node 20 from NodeSource and use the patched npm ip module.
+RUN cd /etc/apt/sources.list.d && \
+    rm -f nodesource.list && \
+    cd ~ && \
+    curl -sL https://deb.nodesource.com/setup_20.x -o nodesource_setup.sh && \
+    bash nodesource_setup.sh && \
+    apt-get install nodejs -y && \
+    rm -rf /var/lib/apt/lists/* && \
+    rm -f nodesource_setup.sh && \
+    npm install -g ip@latest

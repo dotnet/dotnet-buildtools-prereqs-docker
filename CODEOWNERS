@@ -22,12 +22,6 @@ src/azurelinux/**/opt/ @dotnet/runtime-infrastructure @dotnet/dotnet-docker-revi
 src/azurelinux/**/renovate/ @dotnet/dnceng @dotnet/dotnet-docker-reviewers
 src/azurelinux/**/source-build-test/ @dotnet/source-build @dotnet/dotnet-docker-reviewers
 
-# cbl-mariner
-src/cbl-mariner/**/android/ @dotnet/runtime-infrastructure @dotnet/dotnet-docker-reviewers
-src/cbl-mariner/**/fpm/ @dotnet/runtime-infrastructure @dotnet/dotnet-docker-reviewers
-src/cbl-mariner/**/opt/ @dotnet/runtime-infrastructure @dotnet/dotnet-docker-reviewers
-src/cbl-mariner/2.0/amd64/ @dotnet/runtime-infrastructure @dotnet/dotnet-docker-reviewers
-
 # centos
 src/centos-stream/**/amd64/ @dotnet/source-build @dotnet/dotnet-docker-reviewers
 

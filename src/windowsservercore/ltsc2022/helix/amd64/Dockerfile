@@ -1,7 +1,7 @@
 # escape=`
 FROM mcr.microsoft.com/windows/servercore:ltsc2022 AS helixsetup
 
-ENV PYTHON_VERSION=3.14.3
+ENV PYTHON_VERSION=3.14.4
 
 RUN setx /M VIRTUAL_ENV "C:\Python-env" && `
     setx /M PATH "%PATH%;C:\Program Files\PowerShell\;%VIRTUAL_ENV%\Scripts;C:\Python;C:\python\scripts" && `
