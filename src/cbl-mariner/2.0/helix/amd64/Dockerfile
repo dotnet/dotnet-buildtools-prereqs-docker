@@ -29,12 +29,3 @@ RUN /usr/sbin/useradd -c '' --uid 1000 --shell /bin/bash --groups adm helixbot &
 
 USER helixbot
 WORKDIR /home/helixbot
-ENV VIRTUAL_ENV=/home/helixbot/.vsts-env
-
-RUN python -m venv $VIRTUAL_ENV && \
-    ${VIRTUAL_ENV}/bin/pip install --upgrade pip setuptools && \
-    ${VIRTUAL_ENV}/bin/pip download --no-deps helix-scripts --index-url https://dnceng.pkgs.visualstudio.com/public/_packaging/helix-client-prod/pypi/simple && \
-    ${VIRTUAL_ENV}/bin/pip install --upgrade pip && \
-    ${VIRTUAL_ENV}/bin/pip install ./helix_scripts-*-py3-none-any.whl && \
-    rm ./helix_scripts-*-py3-none-any.whl
-ENV PATH="${VIRTUAL_ENV}/bin:${PATH}"

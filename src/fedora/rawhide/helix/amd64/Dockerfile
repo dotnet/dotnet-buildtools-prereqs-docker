@@ -1,23 +1,3 @@
-FROM library/fedora:rawhide AS venv
-
-RUN dnf upgrade --refresh -y \
-    && dnf install --setopt tsflags=nodocs -y \
-        dnf-plugins-core \
-    && dnf install --setopt=install_weak_deps=False --setopt tsflags=nodocs -y \
-        openssl \
-        python3-devel \
-        python3-pip \
-        gcc \
-        libatomic \
-        redhat-rpm-config \
-    && dnf clean all
-
-RUN python3 -m venv /venv \
-    && source /venv/bin/activate \
-    && pip download --no-deps helix-scripts --index-url https://dnceng.pkgs.visualstudio.com/public/_packaging/helix-client-prod/pypi/simple \
-    && pip install ./helix_scripts-*-py3-none-any.whl \
-    && rm ./helix_scripts-*-py3-none-any.whl
-
 FROM library/fedora:rawhide
 
 # Install MSQuic. Fedora rawhide does not have it in the repositories, so use the Fedora 43 package
@@ -67,9 +47,5 @@ RUN /usr/sbin/adduser --uid 1000 --shell /bin/bash --group adm helixbot \
     && chmod +s /usr/bin/ping
 
 USER helixbot
-ENV VIRTUAL_ENV=/home/helixbot/.vsts-env
 
 # Install Helix Dependencies
-RUN python3 -m venv $VIRTUAL_ENV
-ENV PATH="${VIRTUAL_ENV}/bin:${PATH}"
-COPY --from=venv --chown=helixbot /venv $VIRTUAL_ENV
