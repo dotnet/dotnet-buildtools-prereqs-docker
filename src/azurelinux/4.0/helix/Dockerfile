@@ -1,6 +1,6 @@
 FROM azlpubstagingacroxz2o4gw.azurecr.io/azurelinux/base/core:4.0 AS venv
 
-RUN tdnf install --refresh -y \
+RUN dnf install --refresh -y \
     ca-certificates \
     iputils \
     python3 \
@@ -16,7 +16,7 @@ RUN python3 -m venv /venv && \
 FROM azlpubstagingacroxz2o4gw.azurecr.io/azurelinux/base/core:4.0
 
 # Install .NET and test dependencies
-RUN tdnf install --setopt tsflags=nodocs --refresh -y \
+RUN dnf install --setopt tsflags=nodocs --refresh -y \
         ca-certificates \
         icu \
         iputils \
@@ -29,7 +29,7 @@ RUN tdnf install --setopt tsflags=nodocs --refresh -y \
         tar \
         tzdata \
         which \
-    && tdnf clean all
+    && dnf clean all
 
 # create helixbot user and give rights to sudo without password
 RUN /usr/sbin/useradd -c '' --uid 1000 --shell /bin/bash --groups adm helixbot && \
