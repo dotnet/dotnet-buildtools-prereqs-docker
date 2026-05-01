@@ -32,9 +32,9 @@ RUN dnf install --setopt tsflags=nodocs --refresh -y \
     && dnf clean all
 
 # Install msquic from previous AZL realese until azurelinux-official-ms-oss is available
-RUN dnf install numactl-libs libxdp libnl3 --setopt tsflags=nodocs --refresh -y \
+RUN tdnf install numactl-libs libxdp libnl3 --setopt tsflags=nodocs --refresh -y \
     && tdnf --repoid azl3 '--repofrompath=azl3,https://packages.microsoft.com/azurelinux/3.0/prod/ms-oss/$basearch' install -y libmsquic \
-    && dnf clean all
+    && tdnf clean all
 
 # create helixbot user and give rights to sudo without password
 RUN /usr/sbin/useradd -c '' --uid 1000 --shell /bin/bash --groups adm helixbot && \
