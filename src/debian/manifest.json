@@ -128,11 +128,11 @@
           "platforms": [
             {
               "architecture": "amd64",
-              "dockerfile": "src/debian/13/gcc15/amd64",
+              "dockerfile": "src/debian/13/gcc16/amd64",
               "os": "linux",
               "osVersion": "trixie",
               "tags": {
-                "debian-13-gcc15-amd64": {}
+                "debian-13-gcc16-amd64": {}
               }
             }
           ]

@@ -1,4 +1,4 @@
-FROM library/gcc:15-trixie
+FROM library/gcc:16-trixie
 
 ENV POWERSHELL_VERSION=7.6.1
 
@@ -44,7 +44,7 @@ RUN curl -L https://github.com/PowerShell/PowerShell/releases/download/v${POWERS
 
 ENV LANG=en_US.UTF-8
 
-# These symlinks are required because this docker has gcc-12 suffixed with version and gcc-15 unsuffixed in PATH.
+# These symlinks are required because this docker has gcc-14 suffixed with version and gcc-16 unsuffixed in PATH.
 # In the runtime repo, we (by design) give precedence to suffixed compilers before selecting unsuffixed one in PATH.
-RUN ln -s $(command -v gcc) /usr/bin/gcc-15 \
-    && ln -s $(command -v g++) /usr/bin/g++-15
+RUN ln -s $(command -v gcc) /usr/bin/gcc-16 \
+    && ln -s $(command -v g++) /usr/bin/g++-16
