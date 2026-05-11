@@ -2,7 +2,8 @@ FROM mcr.microsoft.com/azurelinux/base/core:3.0
 
 ARG RENOVATE_VERSION
 
-RUN tdnf install -y \
+RUN tdnf update -y && \
+    tdnf install -y \
         ca-certificates-microsoft \
         git \
         jq \
