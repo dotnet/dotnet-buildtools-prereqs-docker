@@ -1,6 +1,7 @@
 FROM mcr.microsoft.com/dotnet/runtime-deps:8.0-azurelinux3.0
 
-RUN tdnf install -y \
+RUN tdnf update -y && \
+    tdnf install -y \
         awk \
         azure-cli \
         ca-certificates-microsoft \

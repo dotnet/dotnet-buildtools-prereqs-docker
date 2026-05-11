@@ -18,7 +18,8 @@ RUN python3 -m venv /venv && \
 FROM mcr.microsoft.com/azurelinux/base/core:3.0
 
 # Install .NET and test dependencies
-RUN tdnf install --setopt tsflags=nodocs --refresh -y \
+RUN tdnf update -y && \
+    tdnf install --setopt tsflags=nodocs --refresh -y \
         ca-certificates-microsoft \
         icu \
         iputils \

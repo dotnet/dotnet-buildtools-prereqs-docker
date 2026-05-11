@@ -1,6 +1,7 @@
 FROM mcr.microsoft.com/azurelinux/base/core:3.0
 
-RUN tdnf install -y \
+RUN tdnf update -y && \
+    tdnf install -y \
         # Common utilities
         ca-certificates \
         git \

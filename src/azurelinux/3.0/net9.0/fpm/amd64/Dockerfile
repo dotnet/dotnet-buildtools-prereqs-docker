@@ -1,5 +1,6 @@
 FROM mcr.microsoft.com/azurelinux/base/core:3.0
-RUN tdnf install -y \
+RUN tdnf update -y && \
+    tdnf install -y \
         awk \
         build-essential \
         ca-certificates-microsoft \
