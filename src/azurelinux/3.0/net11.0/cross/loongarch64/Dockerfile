@@ -3,6 +3,18 @@ ARG ROOTFS_DIR=/crossrootfs/loongarch64
 FROM mcr.microsoft.com/dotnet-buildtools/prereqs:azurelinux-3.0-net11.0-crossdeps-builder-amd64 AS builder
 ARG ROOTFS_DIR
 
+# Obtain debian-ports package signing key (for use by install-debs.py)
+RUN wget https://ftp.debian.org/debian/pool/main/d/debian-ports-archive-keyring/debian-ports-archive-keyring_2026.02.04.tar.xz && \
+    echo "519f049703e99817a7c6c2ed94cabb024f979abd8424be38d6100542fb8febe4 debian-ports-archive-keyring_2026.02.04.tar.xz" | sha256sum -c && \
+    tar xf debian-ports-archive-keyring_2026.02.04.tar.xz && \
+    rm debian-ports-archive-keyring_2026.02.04.tar.xz && \
+    mkdir -p /usr/share/keyrings && \
+    gpg --no-options --no-default-keyring --no-auto-check-trustdb \
+        --no-keyring --import-options import-export \
+        --import debian-ports-archive-keyring/active-keys/* \
+        > /usr/share/keyrings/debian-ports-archive-keyring.gpg && \
+    rm -r debian-ports-archive-keyring
+
 RUN rootfsEnv="/usr/local/share/rootfs" && \
     python3 -m venv "$rootfsEnv" && \
     "$rootfsEnv/bin/python" -m pip install aiohttp zstandard && \
