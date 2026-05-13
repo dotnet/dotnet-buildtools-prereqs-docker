@@ -1,30 +1,3 @@
-FROM library/debian:bookworm AS venv
-
-RUN apt-get update \
-    && apt-get upgrade -y \
-    && apt-get install -y \
-        curl \
-        pkg-config \
-        coreutils \
-        python3-dev \
-        python3-pip \
-        python3-venv \
-        libffi-dev \
-        libssl-dev \
-    && rm -rf /var/lib/apt/lists/*
-
-# Install latest version of rust because the package version provided by Debian is too old.
-# Need 1.65.0+ to install the Helix scripts due to cryptography-openssl dependency.
-RUN curl -sSf https://sh.rustup.rs | sh -s -- -y
-ENV PATH="/root/.cargo/bin:${PATH}"
-
-RUN python3 -m venv /venv \
-    && . /venv/bin/activate \
-    && pip install --upgrade pip setuptools \
-    && pip download --no-deps helix-scripts --index-url https://dnceng.pkgs.visualstudio.com/public/_packaging/helix-client-prod/pypi/simple \
-    && pip install ./helix_scripts-*-py3-none-any.whl \
-    && rm ./helix_scripts-*-py3-none-any.whl
-
 FROM library/debian:bookworm
 
 RUN apt-get update \
@@ -75,10 +48,3 @@ RUN /usr/sbin/adduser --disabled-password --gecos '' --uid 1000 --shell /bin/bas
     && echo "helixbot ALL=(ALL)       NOPASSWD: ALL" > /etc/sudoers.d/helixbot
 
 USER helixbot
-
-# Install Helix Dependencies
-ENV VIRTUAL_ENV=/home/helixbot/.vsts-env
-RUN python3 -m venv $VIRTUAL_ENV \
-    && ${VIRTUAL_ENV}/bin/pip install --upgrade pip setuptools
-ENV PATH="${VIRTUAL_ENV}/bin:${PATH}"
-COPY --from=venv --chown=helixbot /venv $VIRTUAL_ENV

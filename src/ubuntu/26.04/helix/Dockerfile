@@ -1,24 +1,3 @@
-FROM ubuntu.azurecr.io/ubuntu:26.04 AS venv
-ENV DEBIAN_FRONTEND=noninteractive
-
-RUN apt-get update \
-    && apt-get install -y \
-        cargo \
-        coreutils \
-        libffi-dev \
-        libssl-dev \
-        pkg-config \
-        python3-dev \
-        python3-pip \
-        python3-venv \
-    && rm -rf /var/lib/apt/lists/*
-
-RUN python3 -m venv /venv \
-    && . /venv/bin/activate \
-    && pip download --no-deps helix-scripts --index-url https://dnceng.pkgs.visualstudio.com/public/_packaging/helix-client-prod/pypi/simple \
-    && pip install ./helix_scripts-*-py3-none-any.whl \
-    && rm ./helix_scripts-*-py3-none-any.whl
-
 FROM ubuntu.azurecr.io/ubuntu:26.04
 ARG TARGETARCH
 ARG LIBMSQUIC_VERSION=2.5.6
@@ -90,7 +69,3 @@ RUN /usr/sbin/adduser --disabled-password --gecos '' --uid 1000 --shell /bin/bas
 USER helixbot
 
 # Install Helix Dependencies
-ENV VIRTUAL_ENV=/home/helixbot/.vsts-env
-RUN python3 -m venv $VIRTUAL_ENV
-ENV PATH="${VIRTUAL_ENV}/bin:${PATH}"
-COPY --from=venv --chown=helixbot /venv $VIRTUAL_ENV
