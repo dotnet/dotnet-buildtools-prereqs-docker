@@ -15,6 +15,9 @@ RUN wget https://ftp.debian.org/debian/pool/main/d/debian-ports-archive-keyring/
         > /usr/share/keyrings/debian-ports-archive-keyring.gpg && \
     rm -r debian-ports-archive-keyring
 
+# temp, will be reverted
+RUN rm -rf /scripts && git clone https://github.com/dotnet/arcade --single-branch --depth 1 -b akoeplinger-patch-1 /scripts
+
 RUN rootfsEnv="/usr/local/share/rootfs" && \
     python3 -m venv "$rootfsEnv" && \
     "$rootfsEnv/bin/python" -m pip install aiohttp zstandard && \
