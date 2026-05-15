@@ -49,7 +49,10 @@ RUN gpg --import dimitri_john_ledkov.asc && \
 # 4. Install the needed keyring and delete the rest
     mkdir -p /usr/share/keyrings && \
     mv keyrings/ubuntu-archive-keyring.gpg /usr/share/keyrings && \
-    wget -qO- "http://keyserver.ubuntu.com/pks/lookup?op=get&search=0x871920D1991BC93C" | gpg --dearmor > /usr/share/keyrings/ubuntu-archive-removed-keys.gpg && \
+# 5. Append the 2012 DSA archive key (used to co-sign older Ubuntu releases like xenial)
+#    that was dropped from the modern ubuntu-keyring tarball.
+    wget -qO- "https://keyserver.ubuntu.com/pks/lookup?op=get&search=0x40976EAF437D05B5" | gpg --dearmor >> /usr/share/keyrings/ubuntu-archive-keyring.gpg && \
+    wget -qO- "https://keyserver.ubuntu.com/pks/lookup?op=get&search=0x871920D1991BC93C" | gpg --dearmor > /usr/share/keyrings/ubuntu-archive-removed-keys.gpg && \
     popd && \
     rm -r ubuntu-keyring
 
