@@ -5,7 +5,10 @@ ARG ROOTFS_DIR
 
 # Use Ubuntu Bionic as the base image for the rootfs
 # to get a new enough libstdc++ for the sanitizer runtimes and instrumentation.
-RUN /scripts/eng/common/cross/build-rootfs.sh x64 bionic --skipunmount
+RUN rootfsEnv="/usr/local/share/rootfs" && \
+    python3 -m venv "$rootfsEnv" && \
+    "$rootfsEnv/bin/python" -m pip install aiohttp zstandard && \
+    PYTHON_EXECUTABLE="$rootfsEnv/bin/python" /scripts/eng/common/cross/build-rootfs.sh x64 bionic --skipunmount --skipemulation
 
 RUN TARGET_TRIPLE="x86_64-linux-gnu" && \
     GCC_VER=$(basename "$(find "$ROOTFS_DIR/usr/include/c++/" -mindepth 1 -maxdepth 1 -type d | sort -V | head -n1)") && \

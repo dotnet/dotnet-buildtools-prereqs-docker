@@ -30,5 +30,3 @@ stages:
         name: NetCore-Public-XL
         demands: ImageOverride -equals build.ubuntu.2204.amd64.open
         os: linux
-      customBuildInitSteps:
-      - template: /eng/pipelines/steps/install-cross-build-prereqs.yml

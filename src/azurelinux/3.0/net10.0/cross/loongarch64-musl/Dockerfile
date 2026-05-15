@@ -3,7 +3,7 @@ ARG ROOTFS_DIR=/crossrootfs/loongarch64
 FROM mcr.microsoft.com/dotnet-buildtools/prereqs:azurelinux-3.0-net10.0-crossdeps-builder-amd64 AS builder
 ARG ROOTFS_DIR
 
-RUN /scripts/eng/common/cross/build-rootfs.sh loongarch64 alpineedge --skipemulation
+RUN /scripts/eng/common/cross/build-rootfs.sh loongarch64 alpineedge --skipunmount --skipemulation
 
 RUN TARGET_TRIPLE="loongarch64-alpine-linux-musl" && \
     GCC_VER=$(basename "$(find "$ROOTFS_DIR/usr/include/c++/" -mindepth 1 -maxdepth 1 -type d | sort -V | head -n1)") && \

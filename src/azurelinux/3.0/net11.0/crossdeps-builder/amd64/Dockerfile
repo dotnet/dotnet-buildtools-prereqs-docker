@@ -25,7 +25,8 @@ RUN tdnf update -y && \
         bzip2-devel \
         debootstrap \
         libarchive-devel \
-        openssl-devel
+        openssl-devel \
+        python3
 
 # dependencies which are installed from extended repo require additional setup
 RUN wget https://packages.microsoft.com/azurelinux/3.0/prod/extended/x86_64/config.repo -O /etc/yum.repos.d/azurelinux-extended.repo && \

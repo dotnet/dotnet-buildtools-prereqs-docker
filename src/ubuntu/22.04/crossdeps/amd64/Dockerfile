@@ -13,7 +13,6 @@ RUN apt-get update \
     && apt-add-repository 'deb https://apt.kitware.com/ubuntu/ jammy main' \
     && apt-get update \
     && apt-get install -y \
-        binfmt-support \
         binutils-arm-linux-gnueabihf \
         bison \
         bisonc++ \
@@ -28,8 +27,6 @@ RUN apt-get update \
         nasm \
         ninja-build \
         pigz \
-        qemu \
-        qemu-user-static \
         rpm2cpio \
         texinfo \
         libbz2-dev \
