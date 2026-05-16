@@ -3,7 +3,7 @@ ARG ROOTFS_DIR=/crossrootfs/arm64
 FROM mcr.microsoft.com/dotnet-buildtools/prereqs:azurelinux-3.0-net9.0-crossdeps-builder-amd64 AS builder
 ARG ROOTFS_DIR
 
-RUN /scripts/eng/common/cross/build-rootfs.sh arm64 alpine3.13 --skipunmount --skipemulation
+RUN SSL_CERT_FILE=/etc/pki/tls/certs/ca-bundle.crt /scripts/eng/common/cross/build-rootfs.sh arm64 alpine3.13 --skipunmount --skipemulation
 
 RUN TARGET_TRIPLE="aarch64-alpine-linux-musl" && \
     GCC_VER=$(basename "$(find "$ROOTFS_DIR/usr/include/c++/" -mindepth 1 -maxdepth 1 -type d | sort -V | head -n1)") && \
