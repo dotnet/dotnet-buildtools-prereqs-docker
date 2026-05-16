@@ -21,7 +21,6 @@ RUN tdnf update -y && \
         zlib-devel \
         # Rootfs build dependencies
         bzip2-devel \
-        debootstrap \
         libarchive-devel \
         openssl-devel \
         python3
@@ -32,7 +31,7 @@ RUN wget https://packages.microsoft.com/azurelinux/3.0/prod/extended/x86_64/conf
     tdnf install -y \
         libbsd-devel
 
-# Obtain ubuntu package signing key (for use by debootstrap)
+# Obtain ubuntu package signing key (to obtain target arch .deb files)
 # 1. Add public key used to sign the ubuntu keyring
 COPY dimitri_john_ledkov.asc .
 RUN gpg --import dimitri_john_ledkov.asc && \
