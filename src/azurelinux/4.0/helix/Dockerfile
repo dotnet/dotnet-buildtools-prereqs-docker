@@ -1,4 +1,4 @@
-FROM azlpubstagingacroxz2o4gw.azurecr.io/azurelinux/base/core:4.0 AS venv
+FROM mcr.microsoft.com/azurelinux-beta/base/core:4.0 AS venv
 
 RUN dnf install --refresh -y \
     ca-certificates \
@@ -13,7 +13,7 @@ RUN python3 -m venv /venv && \
         pip install ./helix_scripts-*-py3-none-any.whl && \
         rm ./helix_scripts-*-py3-none-any.whl
 
-FROM azlpubstagingacroxz2o4gw.azurecr.io/azurelinux/base/core:4.0
+FROM mcr.microsoft.com/azurelinux-beta/base/core:4.0
 
 # Install .NET and test dependencies
 RUN dnf install --setopt tsflags=nodocs --refresh -y \
