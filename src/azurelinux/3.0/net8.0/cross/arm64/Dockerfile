@@ -3,10 +3,7 @@ ARG ROOTFS_DIR=/crossrootfs/arm64
 FROM mcr.microsoft.com/dotnet-buildtools/prereqs:azurelinux-3.0-net8.0-crossdeps-builder-amd64 AS builder
 ARG ROOTFS_DIR
 
-RUN rootfsEnv="/usr/local/share/rootfs" && \
-    python3 -m venv "$rootfsEnv" && \
-    "$rootfsEnv/bin/python" -m pip install aiohttp zstandard && \
-    PYTHON_EXECUTABLE="$rootfsEnv/bin/python" /scripts/eng/common/cross/build-rootfs.sh arm64 xenial --skipunmount --skipemulation
+RUN PYTHON_EXECUTABLE="$ROOTFS_PIP_HOME/bin/python" /scripts/eng/common/cross/build-rootfs.sh arm64 xenial --skipunmount --skipemulation
 
 # Build compiler-rt profile library for PGO instrumentation
 RUN mkdir compiler-rt_build && cd compiler-rt_build && \

@@ -27,6 +27,26 @@ RUN tdnf update -y && \
         openssl-devel \
         python3
 
+ENV ROOTFS_PIP_HOME=/usr/local/share/rootfs
+
+COPY <<ROOTFS_PIP_REQUIREMENTS /tmp/rootfs-pip-requirements.txt
+aiohappyeyeballs==2.6.2 --hash=sha256:4708045e2d7a6c6bdf8aafa8ed39649eaf926a4543b54560659129e3365953c4
+aiohttp==3.13.5 --hash=sha256:b18f31b80d5a33661e08c89e202edabf1986e9b49c42b4504371daeaa11b47c1
+aiosignal==1.4.0 --hash=sha256:053243f8b92b990551949e63930a839ff0cf0b0ebbe0597b0f3fb19e1a0fe82e
+attrs==26.1.0 --hash=sha256:c647aa4a12dfbad9333ca4e71fe62ddc36f4e63b2d260a37a8b83d2f043ac309
+frozenlist==1.8.0 --hash=sha256:0c18a16eab41e82c295618a77502e17b195883241c563b00f0aa5106fc4eaa0d
+idna==3.15 --hash=sha256:048adeaf8c2d788c40fee287673ccaa74c24ffd8dcf09ffa555a2fbb59f10ac8
+multidict==6.7.1 --hash=sha256:bfde23ef6ed9db7eaee6c37dcec08524cb43903c60b285b172b6c094711b3961
+propcache==0.5.2 --hash=sha256:6f328175a2cde1f0ff2c4ed8ce968b9dcfb55f3a7153f39e2957ed994da13476
+typing-extensions==4.15.0 --hash=sha256:f0fa19c6845758ab08074a0cfa8b7aecb71c999ca73d62883bc25cc018c4e548
+yarl==1.24.2 --hash=sha256:7e7ebcdef69dec6c6451e616f32b622a6d4a2e92b445c992f7c8e5274a6bbc4c
+zstandard==0.25.0 --hash=sha256:5a56ba0db2d244117ed744dfa8f6f5b366e14148e00de44723413b2f3938a902
+ROOTFS_PIP_REQUIREMENTS
+
+RUN python3 -m venv "$ROOTFS_PIP_HOME" && \
+    "$ROOTFS_PIP_HOME/bin/python" -m pip install --disable-pip-version-check --no-cache-dir --only-binary=:all: --require-hashes --no-deps -r /tmp/rootfs-pip-requirements.txt && \
+    rm /tmp/rootfs-pip-requirements.txt
+
 # dependencies which are installed from extended repo require additional setup
 RUN wget https://packages.microsoft.com/azurelinux/3.0/prod/extended/x86_64/config.repo -O /etc/yum.repos.d/azurelinux-extended.repo && \
     tdnf makecache && \
@@ -97,4 +117,4 @@ ENV PATH="/opt/llvm/bin:$PATH"
 
 # Obtain arcade scripts used to build rootfs
 RUN git config --global user.email builder@dotnet-buildtools-prereqs-docker && \
-     git clone --depth 1 --single-branch https://github.com/dotnet/arcade /scripts
+    git clone --depth 1 --single-branch https://github.com/dotnet/arcade /scripts
