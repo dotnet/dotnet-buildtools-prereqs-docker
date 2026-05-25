@@ -3,7 +3,7 @@ ARG ROOTFS_DIR=/crossrootfs/s390x
 FROM mcr.microsoft.com/dotnet-buildtools/prereqs:azurelinux-3.0-net8.0-crossdeps-builder-amd64 AS builder
 ARG ROOTFS_DIR
 
-RUN /scripts/eng/common/cross/build-rootfs.sh bionic s390x
+RUN PYTHON_EXECUTABLE="$ROOTFS_PIP_HOME/bin/python" /scripts/eng/common/cross/build-rootfs.sh bionic s390x --skipunmount --skipemulation
 
 # build ld from binutils since llvm's lld only supports s390x since 18.0 but we're using 16.0
 # this can be removed once crossdeps-builder switches to llvm 18.0

@@ -36,5 +36,3 @@ stages:
       versionsRepoRef: VersionsRepo
       linuxAmdBuildJobTimeout: 360
       linuxArmBuildJobTimeout: 300
-      customBuildInitSteps:
-      - template: /eng/pipelines/steps/install-cross-build-prereqs.yml

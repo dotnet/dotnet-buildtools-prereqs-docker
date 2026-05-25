@@ -5,7 +5,7 @@ ARG ROOTFS_DIR
 
 # We don't ship linux-x86 binaries, so we don't need to make a custom libc++ build for servicing concerns.
 # We don't sanitize or instrument the linux-x64 build (as we don't ship it), so we don't need to build those runtime support libraries either.
-RUN /scripts/eng/common/cross/build-rootfs.sh x86 xenial --skipunmount
+RUN PYTHON_EXECUTABLE="$ROOTFS_PIP_HOME/bin/python" /scripts/eng/common/cross/build-rootfs.sh x86 xenial --skipunmount --skipemulation
 
 FROM mcr.microsoft.com/dotnet-buildtools/prereqs:azurelinux-3.0-net9.0-crossdeps-llvm-amd64
 ARG ROOTFS_DIR

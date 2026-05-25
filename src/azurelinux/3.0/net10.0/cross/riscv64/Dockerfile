@@ -3,10 +3,7 @@ ARG ROOTFS_DIR=/crossrootfs/riscv64
 FROM mcr.microsoft.com/dotnet-buildtools/prereqs:azurelinux-3.0-net10.0-crossdeps-builder-amd64 AS builder
 ARG ROOTFS_DIR
 
-RUN rootfsEnv="/usr/local/share/rootfs" && \
-    python3 -m venv "$rootfsEnv" && \
-    "$rootfsEnv/bin/python" -m pip install aiohttp zstandard && \
-    PYTHON_EXECUTABLE="$rootfsEnv/bin/python" /scripts/eng/common/cross/build-rootfs.sh riscv64 noble --skipunmount --skipemulation
+RUN PYTHON_EXECUTABLE="$ROOTFS_PIP_HOME/bin/python" /scripts/eng/common/cross/build-rootfs.sh riscv64 noble --skipunmount --skipemulation
 
 RUN TARGET_TRIPLE="riscv64-linux-gnu" && \
     GCC_VER=$(basename "$(find "$ROOTFS_DIR/usr/include/c++/" -mindepth 1 -maxdepth 1 -type d | sort -V | head -n1)") && \

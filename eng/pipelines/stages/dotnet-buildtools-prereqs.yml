@@ -30,9 +30,7 @@ stages:
             variableName: customCopyBaseImagesArgs
             dockerfileOs: (centos|debian)
             baseOverrideRegistry: $(overrideRegistry) # Comes from DotNet-Docker-Common variable group
-      customBuildInitSteps:
-      - template: /eng/pipelines/steps/install-cross-build-prereqs.yml@self
-      - ${{ if eq(variables['System.TeamProject'], 'internal') }}:
+        customBuildInitSteps:
         - template: /eng/pipelines/steps/pip-authenticate.yml@self
         - template: /eng/pipelines/steps/set-base-image-override-options.yml@self
           parameters:
