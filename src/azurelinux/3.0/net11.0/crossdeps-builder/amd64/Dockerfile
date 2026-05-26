@@ -47,12 +47,6 @@ RUN python3 -m venv "$ROOTFS_PIP_HOME" && \
     "$ROOTFS_PIP_HOME/bin/python" -m pip install --disable-pip-version-check --no-cache-dir --only-binary=:all: --require-hashes --no-deps -r /tmp/rootfs-pip-requirements.txt && \
     rm /tmp/rootfs-pip-requirements.txt
 
-# dependencies which are installed from extended repo require additional setup
-RUN wget https://packages.microsoft.com/azurelinux/3.0/prod/extended/x86_64/config.repo -O /etc/yum.repos.d/azurelinux-extended.repo && \
-    tdnf makecache && \
-    tdnf install -y \
-        libbsd-devel
-
 # Obtain ubuntu package signing key (to obtain target arch .deb files)
 # 1. Add public key used to sign the ubuntu keyring
 COPY dimitri_john_ledkov.asc .
