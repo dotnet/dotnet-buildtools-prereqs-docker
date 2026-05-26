@@ -45,8 +45,11 @@ variables:
     disableMatrixTrimming: ${{ parameters.disableMatrixTrimming }}
     sourceBuildPipelineRunId: ${{ parameters.sourceBuildPipelineRunId }}
 - template: /eng/docker-tools/templates/variables/dotnet/secrets.yml@self
+# Temporarily disable EOL annotation generation due to
+# https://github.com/dotnet/docker-tools/issues/2066
+# as well as https://github.com/dotnet/docker-tools/issues/2056
 - name: publishEolAnnotations
-  value: true
+  value: false
 - name: Codeql.ExcludePathPatterns
   value: tests
   readonly: true
