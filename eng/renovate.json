@@ -83,6 +83,19 @@
       "datasourceTemplate": "npm",
       "extractVersionTemplate": "^(?<version>\\d+)",
       "versioningTemplate": "loose"
+    },
+    {
+      "description": "Updates Microsoft.AITools.BinlogMcp tool version in binlog-mcp Dockerfiles",
+      "customType": "regex",
+      "managerFilePatterns": [
+        "src/azurelinux/**/binlog-mcp/**/Dockerfile"
+      ],
+      "matchStrings": [
+        "ARG BINLOG_MCP_VERSION=(?<currentValue>\\S+)"
+      ],
+      "depNameTemplate": "Microsoft.AITools.BinlogMcp",
+      "datasourceTemplate": "nuget",
+      "registryUrlTemplate": "https://pkgs.dev.azure.com/dnceng/public/_packaging/dotnet-tools/nuget/v3/index.json"
     }
   ],
   "packageRules": [
@@ -108,6 +121,13 @@
         "**/net11.0/**"
       ],
       "enabled": true
+    },
+    {
+      "description": "Allow pre-release updates for Microsoft.AITools.BinlogMcp (only preview versions are currently published)",
+      "matchDepNames": [
+        "Microsoft.AITools.BinlogMcp"
+      ],
+      "ignoreUnstable": false
     }
   ],
   "postUpgradeTasks": {
