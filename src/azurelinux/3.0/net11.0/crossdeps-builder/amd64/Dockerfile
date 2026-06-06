@@ -6,6 +6,7 @@ RUN tdnf update -y && \
         ca-certificates \
         git \
         jq \
+        gzip \
         shadow-utils \
         tar \
         unzip \
