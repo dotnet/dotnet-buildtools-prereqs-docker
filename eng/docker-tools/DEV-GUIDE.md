@@ -370,12 +370,21 @@ To force a rebuild regardless of cache state, set the `noCache` parameter to `tr
 
 ### Pattern: Adding Build Arguments
 
-Pass additional arguments to Docker builds via ImageBuilder:
+Pass Dockerfile `ARG` values via ImageBuilder:
 
 ```yaml
 customBuildInitSteps:
 - powershell: |
     $args = "--build-arg MY_VAR=value"
+    echo "##vso[task.setvariable variable=imageBuilderBuildArgs]$args"
+```
+
+To pass raw options directly to `docker build`, use `--build-option`. Quote values that contain spaces:
+
+```yaml
+customBuildInitSteps:
+- powershell: |
+    $args = '--build-option "--ulimit nofile=65536:65536"'
     echo "##vso[task.setvariable variable=imageBuilderBuildArgs]$args"
 ```
 
@@ -417,6 +426,8 @@ When you queue a new run, you can override these as runtime parameters:
 2. Set `sourceBuildPipelineRunId` to the run ID containing the artifacts you need (find the build ID in the URL when viewing a pipeline run, e.g., `buildId=123456`)
 
 This avoids the multi-hour rebuild cycle when you just need to retry a failed operation.
+
+When signing is enabled, use `"publish"` by itself only if the images from `sourceBuildPipelineRunId` were already signed and the current run is not building new images. Use `"sign,publish"` when the current run still needs to sign them before publishing.
 
 ---
 
