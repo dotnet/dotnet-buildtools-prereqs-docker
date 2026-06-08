@@ -26,7 +26,7 @@ RUN curl -sSL https://netcorenativeassets.blob.core.windows.net/resource-package
     && chmod +x /usr/local/bin/v8
 
 # Install Wasi toolchain
-ENV WASI_SDK_MAJOR_VERSION=25
+ENV WASI_SDK_MAJOR_VERSION=33
 ENV WASI_SDK_VERSION=${WASI_SDK_MAJOR_VERSION}.0
 ENV WASI_SDK_PATH=/usr/local/wasi-sdk
 ENV WASI_SDK_URL=https://github.com/WebAssembly/wasi-sdk/releases/download/wasi-sdk-${WASI_SDK_MAJOR_VERSION}/wasi-sdk-${WASI_SDK_VERSION}-x86_64-linux.tar.gz
@@ -39,7 +39,7 @@ RUN mkdir -p ${WASI_SDK_PATH} \
     && echo ${WASI_SDK_VERSION} > ${WASI_SDK_PATH}/WASI-SDK-VERSION-${WASI_SDK_VERSION} \
     && rm /tmp/wasi-sdk.tar.gz
 
-ENV WASMTIME_VERSION=27.0.0
+ENV WASMTIME_VERSION=45.0.0
 ENV WASMTIME_PATH=/usr/local/wasmtime
 ENV WASMTIME_URL=https://github.com/bytecodealliance/wasmtime/releases/download/v${WASMTIME_VERSION}/wasmtime-v${WASMTIME_VERSION}-x86_64-linux.tar.xz
 
