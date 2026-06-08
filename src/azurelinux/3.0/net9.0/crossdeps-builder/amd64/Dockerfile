@@ -57,7 +57,7 @@ COPY dimitri_john_ledkov.asc .
 RUN gpg --import dimitri_john_ledkov.asc && \
     rm dimitri_john_ledkov.asc && \
 # 2. Download the ubuntu keyrings
-    wget https://mirrors.edge.kernel.org/ubuntu/pool/main/u/ubuntu-keyring/ubuntu-keyring_2023.11.28.1.tar.xz && \
+    wget http://archive.ubuntu.com/ubuntu/pool/main/u/ubuntu-keyring/ubuntu-keyring_2023.11.28.1.tar.xz && \
     echo "aecd455ae15561371d6e454f121f079f0641d5e1b579a5563a2bc363fc74aa2e ubuntu-keyring_2023.11.28.1.tar.xz" | sha256sum -c && \
     tar xf ubuntu-keyring_2023.11.28.1.tar.xz && \
     rm ubuntu-keyring_2023.11.28.1.tar.xz && \
@@ -65,13 +65,12 @@ RUN gpg --import dimitri_john_ledkov.asc && \
     pushd ubuntu-keyring && \
     gpg --output SHA512SUMS.txt --decrypt SHA512SUMS.txt.asc && \
     sha512sum -c SHA512SUMS.txt && \
-# 4. Install the needed keyring and delete the rest
+# 4. Install the needed keyrings and delete the rest
     mkdir -p /usr/share/keyrings && \
-    mv keyrings/ubuntu-archive-keyring.gpg /usr/share/keyrings && \
-# 5. Append the 2012 DSA archive key (used to co-sign older Ubuntu releases like xenial)
-#    that was dropped from the modern ubuntu-keyring tarball.
-    wget -qO- "https://keyserver.ubuntu.com/pks/lookup?op=get&search=0x40976EAF437D05B5" | gpg --dearmor >> /usr/share/keyrings/ubuntu-archive-keyring.gpg && \
-    wget -qO- "https://keyserver.ubuntu.com/pks/lookup?op=get&search=0x871920D1991BC93C" | gpg --dearmor > /usr/share/keyrings/ubuntu-archive-removed-keys.gpg && \
+    mv keyrings/ubuntu-archive-keyring.gpg /usr/share/keyrings/ubuntu-archive-keyring.gpg && \
+    cp keyrings/ubuntu-archive-removed-keys.gpg /usr/share/keyrings/ubuntu-archive-removed-keys.gpg && \
+# 5. Include removed archive keys for older Ubuntu release signatures (for example, xenial).
+    cat /usr/share/keyrings/ubuntu-archive-removed-keys.gpg >> /usr/share/keyrings/ubuntu-archive-keyring.gpg && \
     popd && \
     rm -r ubuntu-keyring
 
