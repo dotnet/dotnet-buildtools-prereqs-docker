@@ -43,7 +43,7 @@ RUN pwsh -Command " `
         Remove-Item -Recurse -Force $pythonTemp; `
         Remove-Item -Force $pythonZip;"
 
-ARG PIP_INDEX_URL=https://dnceng.pkgs.visualstudio.com/public/_packaging/helix-client-prod/pypi/simple
+ENV PIP_INDEX_URL=https://dnceng.pkgs.visualstudio.com/public/_packaging/helix-client-prod/pypi/simple
 
 # Install Helix
 RUN pwsh -Command " `
@@ -55,14 +55,14 @@ RUN pwsh -Command " `
             echo \"Failed to create Python virtual environment\"; `
             exit 1; `
         } `
-        & pip download --no-deps helix-scripts --index-url https://dnceng.pkgs.visualstudio.com/public/_packaging/helix-client-prod/pypi/simple; `
+        & pip download --no-deps helix-scripts; `
         if ($LASTEXITCODE -ne 0) { `
             echo \"Failed to download Helix scripts\"; `
             exit 1; `
         } `
         Get-ChildItem -Path $helixTemp -Filter 'helix_scripts-*-py3-none-any.whl' | `
             ForEach-Object { `
-                & pip install $_.FullName --no-cache-dir --index-url $env:PIP_INDEX_URL; `
+                & pip install $_.FullName --no-cache-dir; `
                 if ($LASTEXITCODE -ne 0) { `
                     echo \"Failed to install Helix script: $($_.Name)\"; `
                     exit 1; `
@@ -72,6 +72,8 @@ RUN pwsh -Command " `
         Remove-Item -Recurse -Force $helixTemp;"
 
 FROM mcr.microsoft.com/windows/nanoserver:1809
+
+ENV PIP_INDEX_URL=https://dnceng.pkgs.visualstudio.com/public/_packaging/helix-client-prod/pypi/simple
 
 USER ContainerAdministrator
 

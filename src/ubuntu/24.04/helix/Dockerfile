@@ -1,5 +1,6 @@
 FROM ubuntu.azurecr.io/ubuntu:noble AS venv
 ENV DEBIAN_FRONTEND=noninteractive
+ENV PIP_INDEX_URL=https://dnceng.pkgs.visualstudio.com/public/_packaging/helix-client-prod/pypi/simple
 
 RUN apt-get update && \
     apt-get install -y \
@@ -15,11 +16,13 @@ RUN apt-get update && \
 
 RUN python3 -m venv /venv && \
     . /venv/bin/activate && \
-    pip download --no-deps helix-scripts --index-url https://dnceng.pkgs.visualstudio.com/public/_packaging/helix-client-prod/pypi/simple && \
-    pip install ./helix_scripts-*-py3-none-any.whl --index-url https://dnceng.pkgs.visualstudio.com/public/_packaging/helix-client-prod/pypi/simple && \
+    pip download --no-deps helix-scripts && \
+    pip install ./helix_scripts-*-py3-none-any.whl && \
     rm ./helix_scripts-*-py3-none-any.whl
 
 FROM ubuntu.azurecr.io/ubuntu:noble
+
+ENV PIP_INDEX_URL=https://dnceng.pkgs.visualstudio.com/public/_packaging/helix-client-prod/pypi/simple
 ARG TARGETARCH
 ENV DEBIAN_FRONTEND=noninteractive
 
