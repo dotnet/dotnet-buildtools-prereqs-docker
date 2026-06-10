@@ -1,25 +1,12 @@
 # escape=`
 
-# When this is updated, you will need to download the new 7zip from
-# https://www.7-zip.org/a/7z%ZIP7_VERSION%-x64.exe
-# And upload it to https://netcorenativeassets.blob.core.windows.net/resource-packages/external/windows/7zip/7z%ZIP7_VERSION%-x64.exe
-ARG ZIP7_VERSION=2501
 ARG GIT_VERSION=2.34.1
 ARG NODE_RELEASE=22
 
 FROM mcr.microsoft.com/dotnet-buildtools/prereqs:windowsservercore-ltsc2022-helix-amd64 as installer
 
-ARG ZIP7_VERSION
 ARG GIT_VERSION
 ARG NODE_RELEASE
-
-# Install 7zip
-ENV ZIP7_VERSION=${ZIP7_VERSION}
-
-RUN curl -SL --output %TEMP%\7zip-x64.exe https://netcorenativeassets.blob.core.windows.net/resource-packages/external/windows/7zip/7z%ZIP7_VERSION%-x64.exe `
-    && mkdir C:\7z `
-    && %TEMP%\7zip-x64.exe /S /D="C:\7z" `
-    && setx PATH "%PATH%;C:\7z"
 
 # Install arial font for chrome
 COPY arial.ttf c:/windows/fonts
@@ -70,11 +57,9 @@ RUN npm install jsvu -g `
 
 FROM mcr.microsoft.com/dotnet-buildtools/prereqs:windowsservercore-ltsc2022-helix-amd64
 
-ARG ZIP7_VERSION
 ARG GIT_VERSION
 ARG NODE_RELEASE
 
-COPY --from=installer [ "C:\\7z\\", "C:\\7z\\" ]
 COPY --from=installer [ "C:\\git\\", "C:\\git\\" ]
 COPY --from=installer [ "C:\\Users\\ContainerAdministrator\\.config\\", "C:\\Users\\ContainerAdministrator\\.config\\" ]
 COPY --from=installer [ "C:\\Users\\ContainerAdministrator\\.jsvu\\", "C:\\Users\\ContainerAdministrator\\.jsvu\\" ]
@@ -82,12 +67,11 @@ COPY --from=installer [ "C:\\Program Files\\nodejs\\", "C:\\Program Files\\nodej
 COPY --from=installer [ "C:\\Windows\\fonts\\arial.ttf", "C:\\Windows\\fonts\\arial.ttf" ]
 
 ENV `
-    ZIP7_VERSION=${ZIP7_VERSION} `
     GIT_VERSION=${GIT_VERSION} `
     GIT_INSTALLER=MinGit-${GIT_VERSION}-64-bit.zip `
     NODE_RELEASE=${NODE_RELEASE}
 
-RUN setx /M PATH "%PATH%;C:\Program Files\nodejs\;C:\7z;C:\git\cmd;%USERPROFILE%\AppData\Roaming\npm;%USERPROFILE%\.jsvu\bin"
+RUN setx /M PATH "%PATH%;C:\Program Files\nodejs\;C:\git\cmd;%USERPROFILE%\AppData\Roaming\npm;%USERPROFILE%\.jsvu\bin"
 
 # Enable long paths
 RUN reg add HKLM\SYSTEM\CurrentControlSet\Control\FileSystem /v LongPathsEnabled /t REG_DWORD /d 1 /f
