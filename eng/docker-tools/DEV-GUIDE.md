@@ -458,7 +458,7 @@ If the Dockerfile is in the manifest but you don't see a build job for it, the b
 ```yaml
 windowsLtsc2025Amd64:
   src-windowsservercore-ltsc2025-helix-graph:
-    imageBuilderPaths: --path src/windowsservercore/ltsc2025/helix/amd64 --path src/windowsservercore/ltsc2025/helix/webassembly-net8/amd64 --path src/windowsservercore/ltsc2025/helix/webassembly/amd64
+    imageBuilderPaths: --path src/windowsservercore/ltsc2025/helix/amd64 --path src/windowsservercore/ltsc2025/helix/webassembly/amd64
     legName: windows-ltsc2025amd64src-windowsservercore-ltsc2025-helix-graph
     osType: windows
     architecture: amd64
