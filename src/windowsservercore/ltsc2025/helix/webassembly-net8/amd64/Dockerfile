@@ -1,6 +1,9 @@
 # escape=`
 
-ARG ZIP7_VERSION=2409
+# When this is updated, you will need to download the new 7zip from
+# https://www.7-zip.org/a/7z%ZIP7_VERSION%-x64.exe
+# And upload it to https://netcorenativeassets.blob.core.windows.net/resource-packages/external/windows/7zip/7z%ZIP7_VERSION%-x64.exe
+ARG ZIP7_VERSION=2501
 ARG GIT_WINDOWS_VERSION=2.54.0
 ARG EMSCRIPTEN_VERSION=3.1.34
 ARG NODE_RELEASE=22
@@ -15,7 +18,7 @@ ARG NODE_RELEASE
 # Install 7zip
 ENV ZIP7_VERSION=${ZIP7_VERSION}
 
-RUN curl -SL --output %TEMP%\7zip-x64.exe https://www.7-zip.org/a/7z%ZIP7_VERSION%-x64.exe `
+RUN curl -SL --output %TEMP%\7zip-x64.exe https://netcorenativeassets.blob.core.windows.net/resource-packages/external/windows/7zip/7z%ZIP7_VERSION%-x64.exe `
     && mkdir C:\7z `
     && %TEMP%\7zip-x64.exe /S /D="C:\7z" `
     && setx PATH "%PATH%;C:\7z"
