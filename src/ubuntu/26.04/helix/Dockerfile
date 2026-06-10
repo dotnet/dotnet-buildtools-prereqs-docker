@@ -16,7 +16,7 @@ RUN apt-get update \
 RUN python3 -m venv /venv \
     && . /venv/bin/activate \
     && pip download --no-deps helix-scripts --index-url https://dnceng.pkgs.visualstudio.com/public/_packaging/helix-client-prod/pypi/simple \
-    && pip install ./helix_scripts-*-py3-none-any.whl \
+    && pip install ./helix_scripts-*-py3-none-any.whl --index-url https://dnceng.pkgs.visualstudio.com/public/_packaging/helix-client-prod/pypi/simple \
     && rm ./helix_scripts-*-py3-none-any.whl
 
 FROM ubuntu.azurecr.io/ubuntu:26.04

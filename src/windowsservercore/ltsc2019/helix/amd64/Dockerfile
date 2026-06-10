@@ -28,7 +28,7 @@ RUN powershell -Command " `
         Remove-Item -Recurse -Force $pythonTemp; `
         Remove-Item -Force $pythonZip;"
 
-ARG PIP_INDEX_URL=https://pypi.org/simple
+ARG PIP_INDEX_URL=https://dnceng.pkgs.visualstudio.com/public/_packaging/helix-client-prod/pypi/simple
 
 # Install Helix
 RUN powershell -Command " `
@@ -47,7 +47,7 @@ RUN powershell -Command " `
         } `
         Get-ChildItem -Path $helixTemp -Filter 'helix_scripts-*-py3-none-any.whl' | `
             ForEach-Object { `
-                & pip install $_.FullName --no-cache-dir; `
+                & pip install $_.FullName --no-cache-dir --index-url $env:PIP_INDEX_URL; `
                 if ($LASTEXITCODE -ne 0) { `
                     echo \"Failed to install Helix script: $($_.Name)\"; `
                     exit 1; `

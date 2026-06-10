@@ -15,7 +15,7 @@ RUN dnf upgrade --refresh -y \
 RUN python3 -m venv /venv \
     && source /venv/bin/activate \
     && pip download --no-deps helix-scripts --index-url https://dnceng.pkgs.visualstudio.com/public/_packaging/helix-client-prod/pypi/simple \
-    && pip install ./helix_scripts-*-py3-none-any.whl \
+    && pip install ./helix_scripts-*-py3-none-any.whl --index-url https://dnceng.pkgs.visualstudio.com/public/_packaging/helix-client-prod/pypi/simple \
     && rm ./helix_scripts-*-py3-none-any.whl
 
 FROM library/fedora:44

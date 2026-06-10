@@ -63,6 +63,6 @@ ENV VIRTUAL_ENV=/home/helixbot/.vsts-env
 RUN python -m venv /home/helixbot/.vsts-env && \
     ${VIRTUAL_ENV}/bin/pip install --upgrade pip setuptools && \
     ${VIRTUAL_ENV}/bin/pip download --no-deps helix-scripts --index-url https://dnceng.pkgs.visualstudio.com/public/_packaging/helix-client-prod/pypi/simple && \
-    ${VIRTUAL_ENV}/bin/pip install ./helix_scripts-*-py3-none-any.whl && \
+    ${VIRTUAL_ENV}/bin/pip install ./helix_scripts-*-py3-none-any.whl --index-url https://dnceng.pkgs.visualstudio.com/public/_packaging/helix-client-prod/pypi/simple && \
     rm ./helix_scripts-*-py3-none-any.whl
 ENV PATH="${VIRTUAL_ENV}/bin:${PATH}"
