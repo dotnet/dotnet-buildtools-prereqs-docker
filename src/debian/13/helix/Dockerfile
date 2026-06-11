@@ -1,5 +1,8 @@
 FROM library/debian:trixie AS venv
 
+ARG PIP_INDEX_URL
+ENV PIP_INDEX_URL=${PIP_INDEX_URL}
+
 RUN apt-get update \
     && apt-get install -y \
         cargo \
@@ -14,11 +17,14 @@ RUN apt-get update \
 
 RUN python3 -m venv /venv \
     && . /venv/bin/activate \
-    && pip download --no-deps helix-scripts --index-url https://dnceng.pkgs.visualstudio.com/public/_packaging/helix-client-prod/pypi/simple \
+    && pip download --no-deps helix-scripts \
     && pip install ./helix_scripts-*-py3-none-any.whl \
     && rm ./helix_scripts-*-py3-none-any.whl
 
 FROM library/debian:trixie
+
+ARG PIP_INDEX_URL
+ENV PIP_INDEX_URL=${PIP_INDEX_URL}
 ARG TARGETARCH
 
 # Install Helix Dependencies

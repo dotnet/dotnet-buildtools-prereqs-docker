@@ -1,7 +1,4 @@
-FROM library/alpine:3.23 AS venv
-
-ARG PIP_INDEX_URL
-ENV PIP_INDEX_URL=${PIP_INDEX_URL}
+FROM library/alpine:3.24 AS venv
 
 RUN apk add --upgrade --no-cache \
         cargo \
@@ -14,14 +11,11 @@ RUN apk add --upgrade --no-cache \
 
 RUN python3 -m venv /venv && \
         source /venv/bin/activate && \
-        pip download --no-deps helix-scripts && \
+        pip download --no-deps helix-scripts --index-url https://dnceng.pkgs.visualstudio.com/public/_packaging/helix-client-prod/pypi/simple && \
         pip install ./helix_scripts-*-py3-none-any.whl && \
         rm ./helix_scripts-*-py3-none-any.whl
 
-FROM library/alpine:3.23
-
-ARG PIP_INDEX_URL
-ENV PIP_INDEX_URL=${PIP_INDEX_URL}
+FROM library/alpine:3.24
 
 # Install .NET and test dependencies
 RUN apk add --upgrade --no-cache \

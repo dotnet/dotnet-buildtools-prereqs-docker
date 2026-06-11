@@ -1,5 +1,8 @@
 FROM library/fedora:44 AS venv
 
+ARG PIP_INDEX_URL
+ENV PIP_INDEX_URL=${PIP_INDEX_URL}
+
 RUN dnf upgrade --refresh -y \
     && dnf install --setopt tsflags=nodocs -y \
         dnf-plugins-core \
@@ -14,11 +17,14 @@ RUN dnf upgrade --refresh -y \
 
 RUN python3 -m venv /venv \
     && source /venv/bin/activate \
-    && pip download --no-deps helix-scripts --index-url https://dnceng.pkgs.visualstudio.com/public/_packaging/helix-client-prod/pypi/simple \
+    && pip download --no-deps helix-scripts \
     && pip install ./helix_scripts-*-py3-none-any.whl \
     && rm ./helix_scripts-*-py3-none-any.whl
 
 FROM library/fedora:44
+
+ARG PIP_INDEX_URL
+ENV PIP_INDEX_URL=${PIP_INDEX_URL}
 
 # Install MSQuic. Fedora 44 does not have it in the repositories, so use the Fedora 43 package
 
