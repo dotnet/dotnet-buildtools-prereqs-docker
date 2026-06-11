@@ -1,9 +1,11 @@
-# The pip index used to install helix-scripts is hardcoded as `ENV PIP_INDEX_URL=...` inside each
-# helix Dockerfile (pointing at the public, unauthenticated `helix-client-prod` Azure Artifacts feed).
-# This step only forwards the NPM token consumed by the WebAssembly Dockerfiles.
 steps:
+- task: PipAuthenticate@1
+  displayName: 'Pip Authenticate'
+  inputs:
+    artifactFeeds: public/dotnet-public-pypi
+    onlyAddExtraIndex: false
 - powershell: |
     $options = "$(imageBuilderBuildArgs)"
-    $options += " --build-arg NPM_TOKEN=$(System.AccessToken)"
+    $options += " --build-arg PIP_INDEX_URL=$env:PIP_INDEX_URL --build-arg NPM_TOKEN=$(System.AccessToken)"
     echo "##vso[task.setvariable variable=imageBuilderBuildArgs]$options"
-  displayName: Set NPM Build Arg
+  displayName: Set PIP and NPM Build Args
