@@ -1,5 +1,8 @@
 FROM amd64/alpine:3.23
 
+ARG PIP_INDEX_URL
+ENV PIP_INDEX_URL=${PIP_INDEX_URL}
+
 ENV POWERSHELL_VERSION=7.6.1
 
 RUN apk add --upgrade --no-cache \

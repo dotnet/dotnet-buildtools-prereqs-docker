@@ -1,5 +1,9 @@
 ARG DOTNET_VERSION
 FROM mcr.microsoft.com/dotnet/sdk:$DOTNET_VERSION-azurelinux3.0-amd64 AS installer
+
+ARG PIP_INDEX_URL
+ENV PIP_INDEX_URL=${PIP_INDEX_URL}
+
 ENV SCANCODE_VERSION=32.5.0
 
 # Install dependencies for building pyicu wheel from source (dependency of scancode-toolkit)

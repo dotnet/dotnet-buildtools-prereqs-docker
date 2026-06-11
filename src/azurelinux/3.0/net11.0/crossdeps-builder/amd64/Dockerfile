@@ -1,5 +1,8 @@
 FROM mcr.microsoft.com/azurelinux/base/core:3.0
 
+ARG PIP_INDEX_URL
+ENV PIP_INDEX_URL=${PIP_INDEX_URL}
+
 RUN tdnf update -y && \
     tdnf install -y \
         # Common utilities
