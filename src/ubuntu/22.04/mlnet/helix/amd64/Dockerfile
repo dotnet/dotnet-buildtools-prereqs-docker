@@ -1,6 +1,7 @@
 FROM mcr.microsoft.com/dotnet-buildtools/prereqs:ubuntu-22.04-mlnet
 
-ENV PIP_INDEX_URL=https://dnceng.pkgs.visualstudio.com/public/_packaging/helix-client-prod/pypi/simple
+ARG PIP_INDEX_URL
+ENV PIP_INDEX_URL=${PIP_INDEX_URL}
 
 # Install Helix Dependencies
 RUN apt-get update \

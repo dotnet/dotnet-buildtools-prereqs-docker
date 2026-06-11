@@ -1,6 +1,7 @@
 FROM library/debian:trixie AS venv
 
-ENV PIP_INDEX_URL=https://dnceng.pkgs.visualstudio.com/public/_packaging/helix-client-prod/pypi/simple
+ARG PIP_INDEX_URL
+ENV PIP_INDEX_URL=${PIP_INDEX_URL}
 
 RUN apt-get update \
     && apt-get install -y \
@@ -22,7 +23,8 @@ RUN python3 -m venv /venv \
 
 FROM library/debian:trixie
 
-ENV PIP_INDEX_URL=https://dnceng.pkgs.visualstudio.com/public/_packaging/helix-client-prod/pypi/simple
+ARG PIP_INDEX_URL
+ENV PIP_INDEX_URL=${PIP_INDEX_URL}
 ARG TARGETARCH
 
 # Install Helix Dependencies

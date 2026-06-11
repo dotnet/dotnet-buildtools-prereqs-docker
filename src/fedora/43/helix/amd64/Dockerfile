@@ -1,6 +1,7 @@
 FROM library/fedora:43 AS venv
 
-ENV PIP_INDEX_URL=https://dnceng.pkgs.visualstudio.com/public/_packaging/helix-client-prod/pypi/simple
+ARG PIP_INDEX_URL
+ENV PIP_INDEX_URL=${PIP_INDEX_URL}
 
 RUN dnf upgrade --refresh -y \
     && dnf install --setopt tsflags=nodocs -y \
@@ -22,7 +23,8 @@ RUN python3 -m venv /venv \
 
 FROM library/fedora:43
 
-ENV PIP_INDEX_URL=https://dnceng.pkgs.visualstudio.com/public/_packaging/helix-client-prod/pypi/simple
+ARG PIP_INDEX_URL
+ENV PIP_INDEX_URL=${PIP_INDEX_URL}
 
 # Install MSQuic
 

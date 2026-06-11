@@ -9,3 +9,5 @@ steps:
     $options += " --build-arg PIP_INDEX_URL=$env:PIP_INDEX_URL --build-arg NPM_TOKEN=$(System.AccessToken)"
     echo "##vso[task.setvariable variable=imageBuilderBuildArgs]$options"
   displayName: Set PIP and NPM Build Args
+  env:
+    PIP_INDEX_URL: https://dnceng.pkgs.visualstudio.com/public/_packaging/helix-client-prod/pypi/simple

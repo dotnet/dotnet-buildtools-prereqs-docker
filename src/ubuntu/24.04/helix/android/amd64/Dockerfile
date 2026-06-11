@@ -1,6 +1,7 @@
 FROM ubuntu.azurecr.io/ubuntu:noble AS venv
 ENV DEBIAN_FRONTEND=noninteractive
-ENV PIP_INDEX_URL=https://dnceng.pkgs.visualstudio.com/public/_packaging/helix-client-prod/pypi/simple
+ARG PIP_INDEX_URL
+ENV PIP_INDEX_URL=${PIP_INDEX_URL}
 
 RUN apt-get update && \
     apt-get install -y \
@@ -23,7 +24,8 @@ RUN python3 -m venv /venv && \
 FROM ubuntu.azurecr.io/ubuntu:noble
 ARG TARGETARCH
 ENV DEBIAN_FRONTEND=noninteractive
-ENV PIP_INDEX_URL=https://dnceng.pkgs.visualstudio.com/public/_packaging/helix-client-prod/pypi/simple
+ARG PIP_INDEX_URL
+ENV PIP_INDEX_URL=${PIP_INDEX_URL}
 
 RUN apt-get update && \
     apt-get install -qq -y \

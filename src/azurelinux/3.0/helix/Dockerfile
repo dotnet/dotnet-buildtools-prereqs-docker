@@ -1,6 +1,7 @@
 FROM mcr.microsoft.com/azurelinux/base/core:3.0 as venv
 
-ENV PIP_INDEX_URL=https://dnceng.pkgs.visualstudio.com/public/_packaging/helix-client-prod/pypi/simple
+ARG PIP_INDEX_URL
+ENV PIP_INDEX_URL=${PIP_INDEX_URL}
 
 RUN tdnf install --refresh -y \
     build-essential \
@@ -19,7 +20,8 @@ RUN python3 -m venv /venv && \
 
 FROM mcr.microsoft.com/azurelinux/base/core:3.0
 
-ENV PIP_INDEX_URL=https://dnceng.pkgs.visualstudio.com/public/_packaging/helix-client-prod/pypi/simple
+ARG PIP_INDEX_URL
+ENV PIP_INDEX_URL=${PIP_INDEX_URL}
 
 # Install .NET and test dependencies
 RUN tdnf update -y && \

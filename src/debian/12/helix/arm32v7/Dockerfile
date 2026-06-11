@@ -1,6 +1,7 @@
 FROM library/debian:bookworm AS venv
 
-ENV PIP_INDEX_URL=https://dnceng.pkgs.visualstudio.com/public/_packaging/helix-client-prod/pypi/simple
+ARG PIP_INDEX_URL
+ENV PIP_INDEX_URL=${PIP_INDEX_URL}
 
 RUN apt-get update \
     && apt-get upgrade -y \
@@ -29,7 +30,8 @@ RUN python3 -m venv /venv \
 
 FROM library/debian:bookworm
 
-ENV PIP_INDEX_URL=https://dnceng.pkgs.visualstudio.com/public/_packaging/helix-client-prod/pypi/simple
+ARG PIP_INDEX_URL
+ENV PIP_INDEX_URL=${PIP_INDEX_URL}
 
 RUN apt-get update \
     && apt-get upgrade -y \

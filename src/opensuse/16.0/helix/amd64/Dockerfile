@@ -1,6 +1,7 @@
 FROM opensuse/leap:16.0
 
-ENV PIP_INDEX_URL=https://dnceng.pkgs.visualstudio.com/public/_packaging/helix-client-prod/pypi/simple
+ARG PIP_INDEX_URL
+ENV PIP_INDEX_URL=${PIP_INDEX_URL}
 
 # Install Helix Dependencies
 RUN zypper ref \

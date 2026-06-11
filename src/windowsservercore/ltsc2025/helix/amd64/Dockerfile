@@ -28,7 +28,8 @@ RUN powershell -Command " `
         Remove-Item -Recurse -Force $pythonTemp; `
         Remove-Item -Force $pythonZip;"
 
-ENV PIP_INDEX_URL=https://dnceng.pkgs.visualstudio.com/public/_packaging/helix-client-prod/pypi/simple
+ARG PIP_INDEX_URL
+ENV PIP_INDEX_URL=${PIP_INDEX_URL}
 
 # Install Helix
 RUN powershell -Command " `
@@ -58,7 +59,8 @@ RUN powershell -Command " `
 
 FROM mcr.microsoft.com/windows/servercore:ltsc2025
 
-ENV PIP_INDEX_URL=https://dnceng.pkgs.visualstudio.com/public/_packaging/helix-client-prod/pypi/simple
+ARG PIP_INDEX_URL
+ENV PIP_INDEX_URL=${PIP_INDEX_URL}
 
 USER ContainerAdministrator
 

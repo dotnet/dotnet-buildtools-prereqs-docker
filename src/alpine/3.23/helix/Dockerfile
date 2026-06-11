@@ -1,6 +1,7 @@
 FROM library/alpine:3.23 AS venv
 
-ENV PIP_INDEX_URL=https://dnceng.pkgs.visualstudio.com/public/_packaging/helix-client-prod/pypi/simple
+ARG PIP_INDEX_URL
+ENV PIP_INDEX_URL=${PIP_INDEX_URL}
 
 RUN apk add --upgrade --no-cache \
         cargo \
@@ -19,7 +20,8 @@ RUN python3 -m venv /venv && \
 
 FROM library/alpine:3.23
 
-ENV PIP_INDEX_URL=https://dnceng.pkgs.visualstudio.com/public/_packaging/helix-client-prod/pypi/simple
+ARG PIP_INDEX_URL
+ENV PIP_INDEX_URL=${PIP_INDEX_URL}
 
 # Install .NET and test dependencies
 RUN apk add --upgrade --no-cache \

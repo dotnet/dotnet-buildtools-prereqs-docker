@@ -43,7 +43,8 @@ RUN pwsh -Command " `
         Remove-Item -Recurse -Force $pythonTemp; `
         Remove-Item -Force $pythonZip;"
 
-ENV PIP_INDEX_URL=https://dnceng.pkgs.visualstudio.com/public/_packaging/helix-client-prod/pypi/simple
+ARG PIP_INDEX_URL
+ENV PIP_INDEX_URL=${PIP_INDEX_URL}
 
 # Install Helix
 RUN pwsh -Command " `
@@ -73,7 +74,8 @@ RUN pwsh -Command " `
 
 FROM mcr.microsoft.com/windows/nanoserver:1809
 
-ENV PIP_INDEX_URL=https://dnceng.pkgs.visualstudio.com/public/_packaging/helix-client-prod/pypi/simple
+ARG PIP_INDEX_URL
+ENV PIP_INDEX_URL=${PIP_INDEX_URL}
 
 USER ContainerAdministrator
 
