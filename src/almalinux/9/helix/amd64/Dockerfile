@@ -1,5 +1,8 @@
 FROM library/almalinux:9 AS venv
 
+ARG PIP_INDEX_URL
+ENV PIP_INDEX_URL=${PIP_INDEX_URL}
+
 RUN dnf upgrade --refresh -y \
     && dnf install --setopt tsflags=nodocs -y \
         gcc \
@@ -11,12 +14,15 @@ RUN dnf upgrade --refresh -y \
 RUN python3 -m venv /venv \
     && . /venv/bin/activate \
     && pip install --upgrade pip setuptools \
-    && pip download --no-deps helix-scripts --index-url https://dnceng.pkgs.visualstudio.com/public/_packaging/helix-client-prod/pypi/simple \
+    && pip download --no-deps helix-scripts \
     && pip install ./helix_scripts-*-py3-none-any.whl \
     && rm ./helix_scripts-*-py3-none-any.whl
 
 
 FROM library/almalinux:9
+
+ARG PIP_INDEX_URL
+ENV PIP_INDEX_URL=${PIP_INDEX_URL}
 
 # Install dependencies
 RUN dnf upgrade --refresh -y \

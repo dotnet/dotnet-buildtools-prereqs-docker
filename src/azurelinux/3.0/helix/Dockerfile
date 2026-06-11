@@ -1,5 +1,8 @@
 FROM mcr.microsoft.com/azurelinux/base/core:3.0 as venv
 
+ARG PIP_INDEX_URL
+ENV PIP_INDEX_URL=${PIP_INDEX_URL}
+
 RUN tdnf install --refresh -y \
     build-essential \
     ca-certificates-microsoft \
@@ -11,11 +14,14 @@ RUN tdnf install --refresh -y \
 
 RUN python3 -m venv /venv && \
         source /venv/bin/activate && \
-        pip download --no-deps helix-scripts --index-url https://dnceng.pkgs.visualstudio.com/public/_packaging/helix-client-prod/pypi/simple && \
+        pip download --no-deps helix-scripts && \
         pip install ./helix_scripts-*-py3-none-any.whl && \
         rm ./helix_scripts-*-py3-none-any.whl
 
 FROM mcr.microsoft.com/azurelinux/base/core:3.0
+
+ARG PIP_INDEX_URL
+ENV PIP_INDEX_URL=${PIP_INDEX_URL}
 
 # Install .NET and test dependencies
 RUN tdnf update -y && \
