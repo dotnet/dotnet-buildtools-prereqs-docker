@@ -7,7 +7,7 @@ steps:
     # wheels override the index per-command to point at helix-client-prod and
     # use this value as --extra-index-url so transitive deps fall back to the
     # full mirror when the curated Helix feed lacks a matching wheel.
-    artifactFeeds: public/dotnet-public-pypi
+    artifactFeeds: public/dotnet-public-pypi,public/helix-client-prod
     onlyAddExtraIndex: false
 - powershell: |
     $options = "$(imageBuilderBuildArgs)"

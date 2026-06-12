@@ -19,7 +19,7 @@ RUN python3 -m venv /venv \
     && source /venv/bin/activate \
     && HELIX_FEED=https://dnceng.pkgs.visualstudio.com/public/_packaging/helix-client-prod/pypi/simple \
     && pip download --no-deps --index-url $HELIX_FEED --extra-index-url $PIP_INDEX_URL helix-scripts \
-    && pip install --index-url $HELIX_FEED --extra-index-url $PIP_INDEX_URL ./helix_scripts-*-py3-none-any.whl \
+    && pip install --index-url $PIP_INDEX_URL ./helix_scripts-*-py3-none-any.whl \
     && rm ./helix_scripts-*-py3-none-any.whl
 
 FROM library/fedora:44

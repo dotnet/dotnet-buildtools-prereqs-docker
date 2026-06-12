@@ -49,7 +49,7 @@ RUN powershell -Command " `
         } `
         Get-ChildItem -Path $helixTemp -Filter 'helix_scripts-*-py3-none-any.whl' | `
             ForEach-Object { `
-                & pip install --index-url $helixFeed --extra-index-url $env:PIP_INDEX_URL --no-cache-dir $_.FullName; `
+                & pip install --index-url $env:PIP_INDEX_URL --no-cache-dir $_.FullName; `
                 if ($LASTEXITCODE -ne 0) { `
                     echo \"Failed to install Helix script: $($_.Name)\"; `
                     exit 1; `
