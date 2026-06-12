@@ -49,6 +49,7 @@ ENV PIP_INDEX_URL=${PIP_INDEX_URL}
 # Install Helix
 RUN pwsh -Command " `
         $helixTemp = 'C:\helixtmp'; `
+        $helixFeed = 'https://dnceng.pkgs.visualstudio.com/public/_packaging/helix-client-prod/pypi/simple'; `
         md $helixTemp; `
         pushd $helixTemp; `
         python -m venv $env:VIRTUAL_ENV; `
@@ -56,14 +57,14 @@ RUN pwsh -Command " `
             echo \"Failed to create Python virtual environment\"; `
             exit 1; `
         } `
-        & pip download --no-deps helix-scripts; `
+        & pip download --no-deps --index-url $helixFeed --extra-index-url $env:PIP_INDEX_URL helix-scripts; `
         if ($LASTEXITCODE -ne 0) { `
             echo \"Failed to download Helix scripts\"; `
             exit 1; `
         } `
         Get-ChildItem -Path $helixTemp -Filter 'helix_scripts-*-py3-none-any.whl' | `
             ForEach-Object { `
-                & pip install $_.FullName --no-cache-dir; `
+                & pip install --index-url $helixFeed --extra-index-url $env:PIP_INDEX_URL --no-cache-dir $_.FullName; `
                 if ($LASTEXITCODE -ne 0) { `
                     echo \"Failed to install Helix script: $($_.Name)\"; `
                     exit 1; `
