@@ -12,9 +12,6 @@ RUN tdnf update -y \
         libxml2 \
         unzip
 
-# WebAssembly build needs typescript
-RUN npm i -g typescript
-
 # Install V8 Engine
 SHELL ["/bin/bash", "-c"]
 
