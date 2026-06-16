@@ -57,7 +57,7 @@ COPY dimitri_john_ledkov.asc .
 RUN gpg --import dimitri_john_ledkov.asc && \
     rm dimitri_john_ledkov.asc && \
 # 2. Download the ubuntu keyrings
-    wget http://archive.ubuntu.com/ubuntu/pool/main/u/ubuntu-keyring/ubuntu-keyring_2023.11.28.1.tar.xz && \
+    wget https://mirrors.edge.kernel.org/ubuntu/pool/main/u/ubuntu-keyring/ubuntu-keyring_2023.11.28.1.tar.xz && \
     echo "aecd455ae15561371d6e454f121f079f0641d5e1b579a5563a2bc363fc74aa2e ubuntu-keyring_2023.11.28.1.tar.xz" | sha256sum -c && \
     tar xf ubuntu-keyring_2023.11.28.1.tar.xz && \
     rm ubuntu-keyring_2023.11.28.1.tar.xz && \

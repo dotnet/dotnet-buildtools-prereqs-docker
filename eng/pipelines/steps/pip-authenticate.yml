@@ -2,12 +2,15 @@ steps:
 - task: PipAuthenticate@1
   displayName: 'Pip Authenticate'
   inputs:
-    artifactFeeds: public/dotnet-public-pypi
+    # Authenticates the dotnet-public-pypi feed (a full pypi mirror) and sets
+    # PIP_INDEX_URL to the authenticated URL. Dockerfiles that install Helix
+    # wheels override the index per-command to point at helix-client-prod and
+    # use this value as --extra-index-url so transitive deps fall back to the
+    # full mirror when the curated Helix feed lacks a matching wheel.
+    artifactFeeds: public/dotnet-public-pypi,public/helix-client-prod
     onlyAddExtraIndex: false
 - powershell: |
     $options = "$(imageBuilderBuildArgs)"
     $options += " --build-arg PIP_INDEX_URL=$env:PIP_INDEX_URL --build-arg NPM_TOKEN=$(System.AccessToken)"
     echo "##vso[task.setvariable variable=imageBuilderBuildArgs]$options"
   displayName: Set PIP and NPM Build Args
-  env:
-    PIP_INDEX_URL: https://dnceng.pkgs.visualstudio.com/public/_packaging/helix-client-prod/pypi/simple
