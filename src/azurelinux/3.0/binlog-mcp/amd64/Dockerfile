@@ -6,8 +6,7 @@
 # Usage:  docker run --rm -i -v /path/to/binlogs:/binlogs \
 #             mcr.microsoft.com/dotnet-buildtools/prereqs:azurelinux-3.0-binlog-mcp-amd64
 
-ARG BINLOG_MCP_VERSION=1.0.0-preview.26304.3
-ARG DOTNET_TOOLS_FEED=https://pkgs.dev.azure.com/dnceng/public/_packaging/dotnet-tools/nuget/v3/index.json
+ARG BINLOG_MCP_VERSION=1.0.0
 
 # Stage 1: Use the .NET SDK to install the tool. The SDK is required because
 # `dotnet tool install` is not available in distroless runtime images.
@@ -16,13 +15,11 @@ ARG DOTNET_TOOLS_FEED=https://pkgs.dev.azure.com/dnceng/public/_packaging/dotnet
 FROM mcr.microsoft.com/dotnet/sdk:10.0-azurelinux3.0 AS builder
 
 ARG BINLOG_MCP_VERSION
-ARG DOTNET_TOOLS_FEED
 
 RUN dotnet tool install \
         --tool-path /tools \
         Microsoft.AITools.BinlogMcp \
-        --version ${BINLOG_MCP_VERSION} \
-        --add-source ${DOTNET_TOOLS_FEED}
+        --version ${BINLOG_MCP_VERSION}
 
 # Stage 2: Copy the installed tool into a distroless runtime image to minimise
 # attack surface (no shell, no package manager). Per maintainer guidance on #1659.
