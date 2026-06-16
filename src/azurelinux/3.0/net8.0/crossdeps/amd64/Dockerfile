@@ -17,6 +17,7 @@ RUN tdnf update -y && \
         gcc \
         make \
         cmake \
+        ninja-build \
         pkg-config \
         diffutils \
         icu \
