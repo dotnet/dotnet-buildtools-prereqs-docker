@@ -18,9 +18,10 @@ RUN dnf upgrade --refresh -y \
         ninja-build \
         pigz \
         python \
+        # Python 3.14 hosts azure-cli (installed via pip below)
+        python3.14 \
         which \
         # Tools used by build automation
-        azure-cli \
         git \
         jq \
         tar \
@@ -52,6 +53,16 @@ RUN dnf upgrade --refresh -y \
         # Dependencies to support globalization
         icu \
     && dnf clean all
+
+# Install azure-cli from pip into a dedicated Python 3.14 virtual environment.
+# Fedora rawhide's default Python is 3.15 (beta), for which the distro azure-cli
+# RPM won't resolve and azure-cli's native deps have no prebuilt wheels. Python
+# 3.14 has wheels for those deps, so install there and symlink az.
+RUN azureEnv="/usr/local/share/azure-cli-env" \
+    && python3.14 -m venv "$azureEnv" \
+    && "$azureEnv/bin/python" -m pip install --upgrade pip setuptools \
+    && "$azureEnv/bin/python" -m pip install azure-cli \
+    && ln -s "$azureEnv/bin/az" /usr/local/bin/az
 
 # Install PowerShell
 RUN curl -L https://github.com/PowerShell/PowerShell/releases/download/v${POWERSHELL_VERSION}/powershell-${POWERSHELL_VERSION}-linux-x64.tar.gz -o /tmp/powershell.tar.gz \
