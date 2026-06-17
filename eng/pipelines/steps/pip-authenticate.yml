@@ -10,7 +10,12 @@ steps:
     artifactFeeds: public/dotnet-public-pypi,public/helix-client-prod
     onlyAddExtraIndex: false
 - powershell: |
+    # common.yml seeds imageBuilderBuildArgs with the anonymous PIP_INDEX_URL so
+    # public pipelines can build. On internal builds, replace that default with
+    # the authenticated URL produced by PipAuthenticate above (it embeds a PAT),
+    # rather than appending a duplicate --build-arg.
     $options = "$(imageBuilderBuildArgs)"
-    $options += " --build-arg PIP_INDEX_URL=$env:PIP_INDEX_URL --build-arg NPM_TOKEN=$(System.AccessToken)"
+    $options = $options -replace '--build-arg PIP_INDEX_URL=\S+', "--build-arg PIP_INDEX_URL=$env:PIP_INDEX_URL"
+    $options += " --build-arg NPM_TOKEN=$(System.AccessToken)"
     echo "##vso[task.setvariable variable=imageBuilderBuildArgs]$options"
   displayName: Set PIP and NPM Build Args
