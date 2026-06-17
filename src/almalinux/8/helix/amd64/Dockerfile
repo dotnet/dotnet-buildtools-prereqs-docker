@@ -2,6 +2,7 @@ FROM library/almalinux:8
 
 ARG PIP_INDEX_URL
 ENV PIP_INDEX_URL=${PIP_INDEX_URL}
+ARG HELIX_FEED
 
 RUN dnf upgrade --refresh -y \
     && dnf install --setopt tsflags=nodocs -y  \
@@ -38,7 +39,6 @@ ENV VIRTUAL_ENV=/home/helixbot/.vsts-env
 
 RUN python -m venv $VIRTUAL_ENV && \
     ${VIRTUAL_ENV}/bin/pip install --upgrade pip setuptools && \
-    HELIX_FEED=https://dnceng.pkgs.visualstudio.com/public/_packaging/helix-client-prod/pypi/simple && \
     ${VIRTUAL_ENV}/bin/pip download --no-deps --index-url $HELIX_FEED --extra-index-url $PIP_INDEX_URL helix-scripts && \
     ${VIRTUAL_ENV}/bin/pip install --index-url $PIP_INDEX_URL ./helix_scripts-*-py3-none-any.whl && \
     rm ./helix_scripts-*-py3-none-any.whl

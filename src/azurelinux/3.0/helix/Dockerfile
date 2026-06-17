@@ -2,6 +2,7 @@ FROM mcr.microsoft.com/azurelinux/base/core:3.0 as venv
 
 ARG PIP_INDEX_URL
 ENV PIP_INDEX_URL=${PIP_INDEX_URL}
+ARG HELIX_FEED
 
 RUN tdnf install --refresh -y \
     build-essential \
@@ -14,7 +15,6 @@ RUN tdnf install --refresh -y \
 
 RUN python3 -m venv /venv && \
         source /venv/bin/activate && \
-        HELIX_FEED=https://dnceng.pkgs.visualstudio.com/public/_packaging/helix-client-prod/pypi/simple && \
         pip download --no-deps --index-url $HELIX_FEED --extra-index-url $PIP_INDEX_URL helix-scripts && \
         pip install --index-url $PIP_INDEX_URL ./helix_scripts-*-py3-none-any.whl && \
         rm ./helix_scripts-*-py3-none-any.whl
