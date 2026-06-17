@@ -24,7 +24,10 @@ variables:
 - name: publishReadme
   value: false
 - name: imageBuilderBuildArgs
-  value: ''
+  # Default build args. PIP_INDEX_URL defaults to the public PyPI (anonymous and
+  # unthrottled, unlike the Azure Artifacts mirror) and is overwritten with an
+  # authenticated mirror URL by pip-authenticate.yml in internal pipelines.
+  value: '--build-arg PIP_INDEX_URL=https://pypi.org/simple/ --build-arg HELIX_FEED=https://dnceng.pkgs.visualstudio.com/public/_packaging/helix-client-prod/pypi/simple'
 - name: publicGitRepoUri
   value: https://github.com/dotnet/dotnet-buildtools-prereqs-docker
 - name: publicSourceBranch
