@@ -2,6 +2,7 @@ FROM opensuse/leap:16.0
 
 ARG PIP_INDEX_URL
 ENV PIP_INDEX_URL=${PIP_INDEX_URL}
+ARG HELIX_FEED
 
 # Install Helix Dependencies
 RUN zypper ref \
@@ -57,7 +58,6 @@ WORKDIR /home/helixbot
 ENV VIRTUAL_ENV=/home/helixbot/.vsts-env
 
 RUN python -m venv $VIRTUAL_ENV && \
-    HELIX_FEED=https://dnceng.pkgs.visualstudio.com/public/_packaging/helix-client-prod/pypi/simple && \
     ${VIRTUAL_ENV}/bin/pip download --no-deps --index-url $HELIX_FEED --extra-index-url $PIP_INDEX_URL helix-scripts && \
     ${VIRTUAL_ENV}/bin/pip install --index-url $PIP_INDEX_URL ./helix_scripts-*-py3-none-any.whl && \
     rm ./helix_scripts-*-py3-none-any.whl
