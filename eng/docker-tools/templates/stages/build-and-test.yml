@@ -54,7 +54,7 @@ parameters:
 ################################################################################
 stages:
 - stage: Build
-  condition: and(succeeded(), contains(variables['stages'], 'build'))
+  condition: and(succeededOrFailed(), contains(variables['stages'], 'build'))
   dependsOn: []
   jobs:
 
