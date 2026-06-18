@@ -93,7 +93,12 @@ RUN ARCH=$(dpkg --print-architecture) \
     && ln -s /opt/microsoft/powershell/pwsh /usr/bin/pwsh \
     && rm -f /tmp/powershell.tar.gz
 
+# Token used to authenticate to the dotnet-public-npm Azure Artifacts feed.
+ARG NPM_TOKEN
+
 # Install node 20 and use its bundled npm so we don't pull in distro npm dependencies unnecessarily.
+# When NPM_TOKEN is provided (internal builds) use the dotnet-public-npm Azure Artifacts feed;
+# otherwise fall back to the default public registry (public builds have no token).
 RUN rm -f /etc/apt/sources.list.d/nodesource.list && \
     cd ~ && \
     curl -sL https://deb.nodesource.com/setup_20.x -o nodesource_setup.sh && \
@@ -101,6 +106,10 @@ RUN rm -f /etc/apt/sources.list.d/nodesource.list && \
     apt-get install nodejs -y && \
     rm -rf /var/lib/apt/lists/* && \
     rm -f nodesource_setup.sh && \
+    if [ -n "$NPM_TOKEN" ]; then \
+        npm config set registry https://pkgs.dev.azure.com/dnceng/public/_packaging/dotnet-public-npm/npm/registry/ && \
+        npm config set "//pkgs.dev.azure.com/dnceng/public/_packaging/dotnet-public-npm/npm/registry/:_authToken" "$NPM_TOKEN"; \
+    fi && \
     npm install -g ip@latest
 
 ENV NO_UPDATE_NOTIFIER=true
