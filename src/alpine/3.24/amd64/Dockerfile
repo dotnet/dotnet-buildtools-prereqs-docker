@@ -3,7 +3,7 @@ FROM amd64/alpine:3.24
 ARG PIP_INDEX_URL
 ENV PIP_INDEX_URL=${PIP_INDEX_URL}
 
-ENV POWERSHELL_VERSION=7.6.1
+ENV POWERSHELL_VERSION=7.6.3
 
 RUN apk add --upgrade --no-cache \
         # Install .NET and test dependencies
