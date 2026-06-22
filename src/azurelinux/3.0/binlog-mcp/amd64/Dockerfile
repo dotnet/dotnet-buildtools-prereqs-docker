@@ -18,11 +18,16 @@ FROM mcr.microsoft.com/dotnet/sdk:10.0-azurelinux3.0 AS builder
 ARG BINLOG_MCP_VERSION
 ARG DOTNET_TOOLS_FEED
 
+# The SDK image ships a default NuGet.Config whose only source is nuget.org,
+# which is unreachable from the network-isolated build environment. Replace it
+# with the dnceng dotnet-public feed (a nuget.org mirror) before restoring.
+RUN dotnet nuget remove source nuget.org && \
+    dotnet nuget add source ${DOTNET_TOOLS_FEED} --name dotnet-public
+
 RUN dotnet tool install \
         --tool-path /tools \
         Microsoft.AITools.BinlogMcp \
-        --version ${BINLOG_MCP_VERSION} \
-        --add-source ${DOTNET_TOOLS_FEED}
+        --version ${BINLOG_MCP_VERSION}
 
 # Stage 2: Copy the installed tool into a distroless runtime image to minimise
 # attack surface (no shell, no package manager). Per maintainer guidance on #1659.
