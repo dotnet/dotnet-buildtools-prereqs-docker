@@ -6,27 +6,6 @@
         {
           "platforms": [
             {
-              "dockerfile": "src/almalinux/8/source-build/amd64",
-              "os": "linux",
-              "osVersion": "almalinux8",
-              "tags": {
-                "almalinux-8-source-build": {},
-                "almalinux-8-source-build-amd64": {}
-              }
-            },
-            {
-              "dockerfile": "src/almalinux/8/helix/amd64",
-              "os": "linux",
-              "osVersion": "almalinux8",
-              "tags": {
-                "almalinux-8-helix-amd64": {}
-              }
-            }
-          ]
-        },
-        {
-          "platforms": [
-            {
               "dockerfile": "src/almalinux/9/source-build/amd64",
               "os": "linux",
               "osVersion": "almalinux9",
