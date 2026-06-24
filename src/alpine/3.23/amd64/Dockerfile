@@ -81,3 +81,6 @@ RUN azureEnv="/usr/local/share/azure-cli-env" \
 
 # Add label for bring your own node in azure devops
 LABEL "com.azure.dev.pipelines.agent.handler.node.path"="/usr/bin/node"
+
+# Clear PIP_INDEX_URL since it contains a short-lived token that should not persist in the final image
+ENV PIP_INDEX_URL=

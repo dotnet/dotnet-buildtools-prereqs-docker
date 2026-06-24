@@ -69,3 +69,6 @@ RUN python -m venv /home/helixbot/.vsts-env && \
     ${VIRTUAL_ENV}/bin/pip install --index-url $PIP_INDEX_URL ./helix_scripts-*-py3-none-any.whl && \
     rm ./helix_scripts-*-py3-none-any.whl
 ENV PATH="${VIRTUAL_ENV}/bin:${PATH}"
+
+# Clear PIP_INDEX_URL since it contains a short-lived token that should not persist in the final image
+ENV PIP_INDEX_URL=

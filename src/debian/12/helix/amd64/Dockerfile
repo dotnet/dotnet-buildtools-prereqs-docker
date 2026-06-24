@@ -80,3 +80,6 @@ RUN python3 -m venv $VIRTUAL_ENV \
     && ${VIRTUAL_ENV}/bin/pip install --upgrade pip setuptools
 ENV PATH="${VIRTUAL_ENV}/bin:${PATH}"
 COPY --from=venv --chown=helixbot /venv $VIRTUAL_ENV
+
+# Clear PIP_INDEX_URL since it contains a short-lived token that should not persist in the final image
+ENV PIP_INDEX_URL=
