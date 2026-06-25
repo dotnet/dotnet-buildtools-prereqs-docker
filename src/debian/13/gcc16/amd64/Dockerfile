@@ -1,8 +1,5 @@
 FROM library/gcc:16-trixie
 
-# Use the approved Debian archive mirror (per Network Isolation team guidance).
-RUN find /etc/apt -type f \( -name '*.sources' -o -name '*.list' \) -exec sed -i 's|//deb\.debian\.org|//debian-archive.trafficmanager.net|g' {} +
-
 ENV POWERSHELL_VERSION=7.6.3
 
 # Dependencies for dotnet/runtime native components.
