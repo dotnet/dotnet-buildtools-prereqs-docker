@@ -117,5 +117,4 @@ ENV PATH="/opt/llvm/bin:$PATH"
 
 # Obtain arcade scripts used to build rootfs
 RUN git config --global user.email builder@dotnet-buildtools-prereqs-docker && \
-    git clone --depth 1 --single-branch https://github.com/dotnet/arcade /scripts && \
-    /scripts/eng/common/cross/install-debs.py
+    git clone --depth 1 --single-branch https://github.com/dotnet/arcade /scripts
