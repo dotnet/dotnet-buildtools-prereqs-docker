@@ -1,5 +1,8 @@
 FROM library/debian:trixie AS venv
 
+# Use the approved Debian archive mirror (per Network Isolation team guidance).
+RUN find /etc/apt -type f \( -name '*.sources' -o -name '*.list' \) -exec sed -i 's|//deb\.debian\.org|//debian-archive.trafficmanager.net|g' {} +
+
 ARG PIP_INDEX_URL
 ENV PIP_INDEX_URL=${PIP_INDEX_URL}
 ARG HELIX_FEED
@@ -23,6 +26,9 @@ RUN python3 -m venv /venv \
     && rm ./helix_scripts-*-py3-none-any.whl
 
 FROM library/debian:trixie
+
+# Use the approved Debian archive mirror (per Network Isolation team guidance).
+RUN find /etc/apt -type f \( -name '*.sources' -o -name '*.list' \) -exec sed -i 's|//deb\.debian\.org|//debian-archive.trafficmanager.net|g' {} +
 
 ARG PIP_INDEX_URL
 ENV PIP_INDEX_URL=${PIP_INDEX_URL}

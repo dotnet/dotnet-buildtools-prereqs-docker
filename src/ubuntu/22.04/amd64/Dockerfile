@@ -1,5 +1,8 @@
 FROM ubuntu.azurecr.io/ubuntu:22.04
 
+# Use the approved Azure-hosted Ubuntu mirror (per Network Isolation team guidance).
+RUN find /etc/apt -type f \( -name '*.sources' -o -name '*.list' \) -exec sed -i 's|//archive\.ubuntu\.com|//azure.archive.ubuntu.com|g' {} +
+
 # Install the base toolchain we need to build anything (clang, cmake, make and the like)
 # this does not include libraries that we need to compile different projects, we'd like
 # them in a different layer.

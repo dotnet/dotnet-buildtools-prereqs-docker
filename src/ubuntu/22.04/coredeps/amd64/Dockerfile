@@ -1,5 +1,8 @@
 FROM mcr.microsoft.com/powershell:ubuntu-22.04
 
+# Use the approved Azure-hosted Ubuntu mirror (per Network Isolation team guidance).
+RUN find /etc/apt -type f \( -name '*.sources' -o -name '*.list' \) -exec sed -i 's|//archive\.ubuntu\.com|//azure.archive.ubuntu.com|g' {} +
+
 # Install tools used by the AzDO build automation.
 RUN apt-get update \
     && apt-get upgrade -y \

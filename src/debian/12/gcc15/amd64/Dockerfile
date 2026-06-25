@@ -1,5 +1,8 @@
 FROM library/gcc:15-bookworm
 
+# Use the approved Debian archive mirror (per Network Isolation team guidance).
+RUN find /etc/apt -type f \( -name '*.sources' -o -name '*.list' \) -exec sed -i 's|//deb\.debian\.org|//debian-archive.trafficmanager.net|g' {} +
+
 # Dependencies for dotnet/runtime native components.
 RUN apt-get update \
     && apt-get upgrade -y \
