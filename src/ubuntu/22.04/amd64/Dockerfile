@@ -3,6 +3,8 @@ FROM ubuntu.azurecr.io/ubuntu:22.04
 # Use the approved Azure-hosted Ubuntu mirror (per Network Isolation team guidance).
 RUN find /etc/apt -type f \( -name '*.sources' -o -name '*.list' \) -exec sed -i 's|//archive\.ubuntu\.com|//azure.archive.ubuntu.com|g' {} +
 
+ENV POWERSHELL_VERSION=7.6.1
+
 # Install the base toolchain we need to build anything (clang, cmake, make and the like)
 # this does not include libraries that we need to compile different projects, we'd like
 # them in a different layer.
@@ -79,6 +81,20 @@ RUN apt-get update \
         elfutils \
         file \
     && rm -rf /var/lib/apt/lists/*
+
+# Install PowerShell
+RUN ARCH=$(dpkg --print-architecture) \
+    && case "$ARCH" in \
+        amd64) ARCH="x64" ;; \
+        arm64) ARCH="arm64" ;; \
+        *) echo "Unsupported architecture: $ARCH" && exit 1 ;; \
+    esac \
+    && curl -L "https://github.com/PowerShell/PowerShell/releases/download/v${POWERSHELL_VERSION}/powershell-${POWERSHELL_VERSION}-linux-${ARCH}.tar.gz" -o /tmp/powershell.tar.gz \
+    && mkdir -p /opt/microsoft/powershell \
+    && tar zxf /tmp/powershell.tar.gz -C /opt/microsoft/powershell \
+    && chmod +x /opt/microsoft/powershell/pwsh \
+    && ln -s /opt/microsoft/powershell/pwsh /usr/bin/pwsh \
+    && rm -f /tmp/powershell.tar.gz
 
 # Token used to authenticate to the dotnet-public-npm Azure Artifacts feed.
 ARG NPM_TOKEN
