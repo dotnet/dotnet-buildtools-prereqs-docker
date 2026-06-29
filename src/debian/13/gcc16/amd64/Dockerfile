@@ -2,6 +2,9 @@ FROM library/gcc:16-trixie
 
 ENV POWERSHELL_VERSION=7.6.3
 
+# Use Azure-hosted Debian mirror (required in network-restricted Azure build environments)
+RUN sed -i 's|http://deb.debian.org/debian|http://debian-archive.trafficmanager.net/debian|g' /etc/apt/sources.list.d/debian.sources
+
 # Dependencies for dotnet/runtime native components.
 RUN apt-get update \
     && apt-get upgrade -y \

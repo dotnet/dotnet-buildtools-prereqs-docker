@@ -1,5 +1,8 @@
 FROM library/gcc:14-trixie
 
+# Use Azure-hosted Debian mirror (required in network-restricted Azure build environments)
+RUN sed -i 's|http://deb.debian.org/debian|http://debian-archive.trafficmanager.net/debian|g' /etc/apt/sources.list.d/debian.sources
+
 # Dependencies for dotnet/runtime native components.
 RUN apt-get update \
     && apt-get upgrade -y \
