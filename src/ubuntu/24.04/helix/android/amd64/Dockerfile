@@ -1,5 +1,7 @@
 FROM ubuntu.azurecr.io/ubuntu:noble AS venv
 ENV DEBIAN_FRONTEND=noninteractive
+# Use the approved Azure-hosted Ubuntu mirror (per Network Isolation team guidance).
+RUN find /etc/apt -type f \( -name '*.sources' -o -name '*.list' \) -exec sed -i 's|//archive\.ubuntu\.com|//azure.archive.ubuntu.com|g' {} +
 ARG PIP_INDEX_URL
 ENV PIP_INDEX_URL=${PIP_INDEX_URL}
 ARG HELIX_FEED
@@ -25,6 +27,8 @@ RUN python3 -m venv /venv && \
 FROM ubuntu.azurecr.io/ubuntu:noble
 ARG TARGETARCH
 ENV DEBIAN_FRONTEND=noninteractive
+# Use the approved Azure-hosted Ubuntu mirror (per Network Isolation team guidance).
+RUN find /etc/apt -type f \( -name '*.sources' -o -name '*.list' \) -exec sed -i 's|//archive\.ubuntu\.com|//azure.archive.ubuntu.com|g' {} +
 ARG PIP_INDEX_URL
 ENV PIP_INDEX_URL=${PIP_INDEX_URL}
 
