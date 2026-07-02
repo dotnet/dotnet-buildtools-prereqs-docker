@@ -4,7 +4,7 @@ FROM mcr.microsoft.com/dotnet-buildtools/prereqs:azurelinux-3.0-net11.0-crossdep
 ARG ROOTFS_DIR
 
 # Obtain debian-ports package signing key (for use by install-debs.py)
-RUN wget https://ftp.debian.org/debian/pool/main/d/debian-ports-archive-keyring/debian-ports-archive-keyring_2026.02.04.tar.xz && \
+RUN wget https://netcorenativeassets.blob.core.windows.net/resource-packages/external/debian/debian-ports-archive-keyring_2026.02.04.tar.xz && \
     echo "519f049703e99817a7c6c2ed94cabb024f979abd8424be38d6100542fb8febe4 debian-ports-archive-keyring_2026.02.04.tar.xz" | sha256sum -c && \
     tar xf debian-ports-archive-keyring_2026.02.04.tar.xz && \
     rm debian-ports-archive-keyring_2026.02.04.tar.xz && \
