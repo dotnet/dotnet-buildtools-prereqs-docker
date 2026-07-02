@@ -2,6 +2,9 @@ FROM library/fedora:rawhide
 
 ENV POWERSHELL_VERSION=7.6.3
 
+ARG PIP_INDEX_URL
+ENV PIP_INDEX_URL=${PIP_INDEX_URL}
+
 RUN dnf upgrade --refresh -y \
     && dnf config-manager addrepo --from-repofile=https://packages.microsoft.com/fedora/43/prod/config.repo \
     && dnf install --setopt=install_weak_deps=False --setopt tsflags=nodocs -y \
@@ -71,3 +74,6 @@ RUN curl -L https://github.com/PowerShell/PowerShell/releases/download/v${POWERS
     && chmod +x /opt/microsoft/powershell/pwsh \
     && ln -s /opt/microsoft/powershell/pwsh /usr/bin/pwsh \
     && rm -f /tmp/powershell.tar.gz
+
+# Clear PIP_INDEX_URL since it contains a short-lived token that should not persist in the final image
+ENV PIP_INDEX_URL=
