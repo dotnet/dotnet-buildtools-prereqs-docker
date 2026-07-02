@@ -5,7 +5,8 @@ ENV PIP_INDEX_URL=${PIP_INDEX_URL}
 ARG HELIX_FEED
 
 # Use Azure-hosted Debian mirror (required in network-restricted Azure build environments)
-RUN sed -i 's|http://deb.debian.org/debian|http://debian-archive.trafficmanager.net/debian|g' /etc/apt/sources.list.d/debian.sources
+RUN find /etc/apt -maxdepth 2 \( -name "*.list" -o -name "*.sources" \) \
+    -exec sed -i 's|http://deb.debian.org/debian|http://debian-archive.trafficmanager.net/debian|g' {} \;
 
 RUN apt-get update \
     && apt-get install -y \
@@ -32,7 +33,8 @@ ENV PIP_INDEX_URL=${PIP_INDEX_URL}
 ARG TARGETARCH
 
 # Use Azure-hosted Debian mirror (required in network-restricted Azure build environments)
-RUN sed -i 's|http://deb.debian.org/debian|http://debian-archive.trafficmanager.net/debian|g' /etc/apt/sources.list.d/debian.sources
+RUN find /etc/apt -maxdepth 2 \( -name "*.list" -o -name "*.sources" \) \
+    -exec sed -i 's|http://deb.debian.org/debian|http://debian-archive.trafficmanager.net/debian|g' {} \;
 
 # Install Helix Dependencies
 RUN LIBCURL=libcurl4 \
