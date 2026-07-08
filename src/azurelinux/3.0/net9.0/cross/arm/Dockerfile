@@ -5,7 +5,7 @@ ARG ROOTFS_DIR
 
 # The arm rootfs targets Ubuntu 22.04, which is the first version with a
 # glibc that supports 64-bit time_t. See https://github.com/dotnet/core/discussions/9285.
-RUN PYTHON_EXECUTABLE="$ROOTFS_PIP_HOME/bin/python" /scripts/eng/common/cross/build-rootfs.sh arm jammy no-lldb --skipunmount --skipemulation
+RUN PYTHON_EXECUTABLE="$ROOTFS_PIP_HOME/bin/python" /scripts/eng/common/cross/build-rootfs.sh arm jammy no-lldb --skipunmount --skipemulation --ubuntu-repo "https://azure.archive.ubuntu.com/ubuntu/"
 
 RUN TARGET_TRIPLE="arm-linux-gnueabihf" && \
     GCC_VER=$(basename "$(find "$ROOTFS_DIR/usr/include/c++/" -mindepth 1 -maxdepth 1 -type d | sort -V | head -n1)") && \

@@ -32,7 +32,7 @@ RUN cd /tmp && wget -O libbsd-0.12.2.tar.xz "https://libbsd.freedesktop.org/rele
 
 RUN echo "/usr/local/lib" > /etc/ld.so.conf.d/usr-local.conf && ldconfig
 
-RUN /scripts/eng/common/cross/build-rootfs.sh freebsd14 x64
+RUN /scripts/eng/common/cross/build-rootfs.sh freebsd14 x64 --ubuntu-repo "https://azure.archive.ubuntu.com/ubuntu/"
 
 FROM mcr.microsoft.com/dotnet-buildtools/prereqs:azurelinux-3.0-net11.0-crossdeps-llvm-amd64
 ARG ROOTFS_DIR

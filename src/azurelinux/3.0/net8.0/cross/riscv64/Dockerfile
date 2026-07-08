@@ -3,7 +3,7 @@ ARG ROOTFS_DIR=/crossrootfs/riscv64
 FROM mcr.microsoft.com/dotnet-buildtools/prereqs:azurelinux-3.0-net8.0-crossdeps-builder-amd64 AS builder
 ARG ROOTFS_DIR
 
-RUN PYTHON_EXECUTABLE="$ROOTFS_PIP_HOME/bin/python" /scripts/eng/common/cross/build-rootfs.sh riscv64 noble --skipunmount --skipemulation
+RUN PYTHON_EXECUTABLE="$ROOTFS_PIP_HOME/bin/python" /scripts/eng/common/cross/build-rootfs.sh riscv64 noble --skipunmount --skipemulation --ubuntu-repo "https://azure.archive.ubuntu.com/ubuntu/"
 
 RUN TARGET_TRIPLE="riscv64-linux-gnu" && \
     GCC_VER=$(basename "$(find "$ROOTFS_DIR/usr/include/c++/" -mindepth 1 -maxdepth 1 -type d | sort -V | head -n1)") && \
