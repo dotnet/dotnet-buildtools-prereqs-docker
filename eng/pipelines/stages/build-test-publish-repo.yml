@@ -1,6 +1,7 @@
 parameters:
   publishConfig: null
   noCache: false
+  runPostBuildOnFailure: false
   internalProjectName: null
   publicProjectName: null
   linuxAmdBuildJobTimeout: 60
@@ -16,6 +17,7 @@ stages:
   parameters:
     publishConfig: ${{ parameters.publishConfig }}
     noCache: ${{ parameters.noCache }}
+    runPostBuildOnFailure: ${{ parameters.runPostBuildOnFailure }}
     internalProjectName: ${{ parameters.internalProjectName }}
     publicProjectName: ${{ parameters.publicProjectName }}
     versionsRepoRef: ${{ parameters.versionsRepoRef }}
