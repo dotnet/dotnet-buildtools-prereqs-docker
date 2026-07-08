@@ -40,7 +40,16 @@ RUN locale-gen en_US.UTF-8
 COPY ./setup-node-23.x.sh /tmp
 RUN /tmp/setup-node-23.x.sh && apt-get -y install nodejs
 
-RUN npm install -g npm
+# Token used to authenticate to the dotnet-public-npm Azure Artifacts feed.
+ARG NPM_TOKEN
+
+# When NPM_TOKEN is provided (internal builds) use the dotnet-public-npm Azure Artifacts feed;
+# otherwise fall back to the default public registry (public builds have no token).
+RUN if [ -n "$NPM_TOKEN" ]; then \
+        npm config set registry https://pkgs.dev.azure.com/dnceng/public/_packaging/dotnet-public-npm/npm/registry/ && \
+        npm config set "//pkgs.dev.azure.com/dnceng/public/_packaging/dotnet-public-npm/npm/registry/:_authToken" "$NPM_TOKEN"; \
+    fi && \
+    npm install -g npm
 
 # Install latest V8 engine
 ENV PATH="/home/helixbot/.jsvu/bin:${PATH}"
