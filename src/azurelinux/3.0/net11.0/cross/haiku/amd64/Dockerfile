@@ -3,7 +3,7 @@ ARG ROOTFS_DIR=/crossrootfs/x64
 FROM mcr.microsoft.com/dotnet-buildtools/prereqs:azurelinux-3.0-net11.0-crossdeps-builder-amd64 AS builder
 ARG ROOTFS_DIR
 
-RUN /scripts/eng/common/cross/build-rootfs.sh haiku x64 --ubuntu-repo "https://azure.archive.ubuntu.com/ubuntu/"
+RUN /scripts/eng/common/cross/build-rootfs.sh haiku x64 --ubuntu-repo "http://azure.archive.ubuntu.com/ubuntu/"
 
 FROM mcr.microsoft.com/dotnet-buildtools/prereqs:azurelinux-3.0-net11.0-crossdeps-llvm-amd64
 ARG ROOTFS_DIR

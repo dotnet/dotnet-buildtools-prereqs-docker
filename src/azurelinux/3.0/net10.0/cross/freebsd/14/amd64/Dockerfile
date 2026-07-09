@@ -12,7 +12,7 @@ RUN tdnf makecache && \
     # so the FreeBSD bootstrap can find it. See https://github.com/microsoft/azurelinux/issues/9217
     ln -s /usr/lib/liblzma.so.5 /usr/lib/liblzma.so
 
-RUN /scripts/eng/common/cross/build-rootfs.sh freebsd14 x64 --ubuntu-repo "https://azure.archive.ubuntu.com/ubuntu/"
+RUN /scripts/eng/common/cross/build-rootfs.sh freebsd14 x64 --ubuntu-repo "http://azure.archive.ubuntu.com/ubuntu/"
 
 FROM mcr.microsoft.com/dotnet-buildtools/prereqs:azurelinux-3.0-net10.0-crossdeps-llvm-amd64
 ARG ROOTFS_DIR
