@@ -43,3 +43,5 @@ variables:
     value: true
 - name: gitHubNotificationsRepoInfo.repo
   value: dotnet-buildtools-prereqs-docker-internal
+- name: imageBuilder.pathArgs
+  value: "--path 'src/azurelinux/3.0/net11.0'"
