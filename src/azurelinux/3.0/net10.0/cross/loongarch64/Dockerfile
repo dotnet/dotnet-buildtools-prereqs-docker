@@ -47,6 +47,11 @@ RUN TARGET_TRIPLE="loongarch64-linux-gnu" && \
         -DCOMPILER_RT_STATIC_CXX_LIBRARY=ON \
         -DCOMPILER_RT_BUILD_SANITIZERS=OFF \ 
         -DCOMPILER_RT_BUILD_MEMPROF=OFF \
+        # LLVM 20's sanitizer_common includes <linux/scc.h>, which the debian sid loong64
+        # sysroot no longer ships. We only need builtins, so also disable XRAY and CTX_PROFILE
+        # (the remaining things that would pull sanitizer_common into the build).
+        -DCOMPILER_RT_BUILD_XRAY=OFF \
+        -DCOMPILER_RT_BUILD_CTX_PROFILE=OFF \
         # The libfuzzer build in LLVM doesn't correctly forward the required CMake properties to the "fuzzed libc++" build
         # so skip it here.
         -DCOMPILER_RT_BUILD_LIBFUZZER=OFF \
