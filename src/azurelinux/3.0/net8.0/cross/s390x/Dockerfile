@@ -8,7 +8,7 @@ RUN PYTHON_EXECUTABLE="$ROOTFS_PIP_HOME/bin/python" /scripts/eng/common/cross/bu
 # build ld from binutils since llvm's lld only supports s390x since 18.0 but we're using 16.0
 # this can be removed once crossdeps-builder switches to llvm 18.0
 RUN tdnf install -y awk && \
-    wget https://sourceware.org/pub/binutils/snapshots/binutils-2.41.90.tar.xz -O binutils.tar.xz && \
+    wget https://netcorenativeassets.blob.core.windows.net/resource-packages/external/azurelinux/binutils-2.41.90.tar.xz -O binutils.tar.xz && \
     echo "6e990c6e40000acedb9928fa6b6a32a164f3119740a95c40e7a85c6461dbdda5 binutils.tar.xz" | sha256sum -c && \
     mkdir binutils.src && \
     tar -xf binutils.tar.xz --directory=binutils.src --strip-components=1 && \
