@@ -7,13 +7,14 @@ ARG HELIX_FEED
 RUN apk add --upgrade --no-cache \
         cargo \
         python3-dev \
+        py3-cryptography \
         build-base \
         libffi-dev \
         openssl-dev \
         gcc \
         linux-headers
 
-RUN python3 -m venv /venv && \
+RUN python3 -m venv --system-site-packages /venv && \
         source /venv/bin/activate && \
         pip download --no-deps --index-url $HELIX_FEED helix-scripts && \
         pip install --index-url $PIP_INDEX_URL ./helix_scripts-*-py3-none-any.whl && \
@@ -41,6 +42,7 @@ RUN apk add --upgrade --no-cache \
         openssl \
         python3 \
         python3-dev \
+        py3-cryptography \
         py3-pip \
         sudo \
         tzdata
