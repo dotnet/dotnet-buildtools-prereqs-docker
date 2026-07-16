@@ -5,12 +5,16 @@ ENV PIP_INDEX_URL=${PIP_INDEX_URL}
 ARG HELIX_FEED
 ARG TARGETARCH
 
-# Use Azure-hosted Debian mirror (required in network-restricted Azure build environments)
-# Skipped for arm builds: debian-archive.trafficmanager.net does not serve armhf packages
-RUN if [ "$TARGETARCH" != "arm" ]; then \
-        find /etc/apt -maxdepth 2 \( -name "*.list" -o -name "*.sources" \) \
-        -exec sed -i 's|http://deb.debian.org/debian|http://debian-archive.trafficmanager.net/debian|g' {} \;; \
-    fi
+# Use a network-allowed Debian mirror (deb.debian.org is blocked in network-restricted Azure build environments).
+# amd64/arm64 use the Azure-hosted mirror; arm (armhf) uses the Debian Fastly CDN because
+# debian-archive.trafficmanager.net does not serve armhf packages.
+RUN if [ "$TARGETARCH" = "arm" ]; then \
+        MIRROR="http://cdn-fastly.deb.debian.org/debian"; \
+    else \
+        MIRROR="http://debian-archive.trafficmanager.net/debian"; \
+    fi \
+    && find /etc/apt -maxdepth 2 \( -name "*.list" -o -name "*.sources" \) \
+        -exec sed -i "s|http://deb.debian.org/debian|$MIRROR|g" {} \;
 
 RUN apt-get update \
     && apt-get install -y \
@@ -36,12 +40,16 @@ ARG PIP_INDEX_URL
 ENV PIP_INDEX_URL=${PIP_INDEX_URL}
 ARG TARGETARCH
 
-# Use Azure-hosted Debian mirror (required in network-restricted Azure build environments)
-# Skipped for arm builds: debian-archive.trafficmanager.net does not serve armhf packages
-RUN if [ "$TARGETARCH" != "arm" ]; then \
-        find /etc/apt -maxdepth 2 \( -name "*.list" -o -name "*.sources" \) \
-        -exec sed -i 's|http://deb.debian.org/debian|http://debian-archive.trafficmanager.net/debian|g' {} \;; \
-    fi
+# Use a network-allowed Debian mirror (deb.debian.org is blocked in network-restricted Azure build environments).
+# amd64/arm64 use the Azure-hosted mirror; arm (armhf) uses the Debian Fastly CDN because
+# debian-archive.trafficmanager.net does not serve armhf packages.
+RUN if [ "$TARGETARCH" = "arm" ]; then \
+        MIRROR="http://cdn-fastly.deb.debian.org/debian"; \
+    else \
+        MIRROR="http://debian-archive.trafficmanager.net/debian"; \
+    fi \
+    && find /etc/apt -maxdepth 2 \( -name "*.list" -o -name "*.sources" \) \
+        -exec sed -i "s|http://deb.debian.org/debian|$MIRROR|g" {} \;
 
 # Install Helix Dependencies
 RUN LIBCURL=libcurl4 \
