@@ -7,16 +7,22 @@ ARG HELIX_FEED
 RUN apk add --upgrade --no-cache \
         cargo \
         python3-dev \
+        py3-cryptography \
         build-base \
         libffi-dev \
         openssl-dev \
         gcc \
         linux-headers
 
-RUN python3 -m venv /venv && \
+# cryptography has no prebuilt musl wheel for arm, so pip would build it from source (via cargo/crates.io,
+# which is unreachable in the isolated build network). Instead we install Alpine's prebuilt py3-cryptography,
+# expose it to the venv with --system-site-packages, and pin cryptography to that version so pip won't try
+# to upgrade to a newer, source-built release.
+RUN python3 -m venv --system-site-packages /venv && \
         source /venv/bin/activate && \
+        python3 -c "import cryptography; open('/tmp/constraints.txt', 'w').write('cryptography==%s\n' % cryptography.__version__)" && \
         pip download --no-deps --index-url $HELIX_FEED helix-scripts && \
-        pip install --index-url $PIP_INDEX_URL ./helix_scripts-*-py3-none-any.whl && \
+        pip install --constraint /tmp/constraints.txt --index-url $PIP_INDEX_URL ./helix_scripts-*-py3-none-any.whl && \
         rm ./helix_scripts-*-py3-none-any.whl
 
 FROM library/alpine:edge
@@ -41,6 +47,7 @@ RUN apk add --upgrade --no-cache \
         openssl \
         python3 \
         python3-dev \
+        py3-cryptography \
         py3-pip \
         sudo \
         tzdata
