@@ -13,6 +13,8 @@ parameters:
   # Build parameters
   noCache: false
   publishConfig: null
+  # When true, the Post-Build stage runs even if the Build stage failed.
+  runPostBuildOnFailure: false
   buildMatrixType: platformDependencyGraph
   buildMatrixCustomBuildLegGroupArgs: ""
   linuxAmdBuildJobTimeout: 60
@@ -31,10 +33,6 @@ parameters:
 
   # Publish parameters
   customPublishInitSteps: []
-
-  # When true, the merged image info is published as an OCI artifact to the publish
-  # registry instead of being committed to the GitHub versions repo.
-  useOciArtifactForImageInfo: false
 
   # Additional service connections not in publishConfig.RegistryAuthentication
   # that need OIDC token access (e.g., kusto, marStatus). Shape: [{ name: string }]
@@ -55,6 +53,7 @@ stages:
     # Build
     noCache: ${{ parameters.noCache }}
     publishConfig: ${{ parameters.publishConfig }}
+    runPostBuildOnFailure: ${{ parameters.runPostBuildOnFailure }}
     buildMatrixType: ${{ parameters.buildMatrixType }}
     buildMatrixCustomBuildLegGroupArgs: ${{ parameters.buildMatrixCustomBuildLegGroupArgs }}
     linuxAmdBuildJobTimeout: ${{ parameters.linuxAmdBuildJobTimeout }}
@@ -86,4 +85,3 @@ stages:
     additionalServiceConnections: ${{ parameters.additionalServiceConnections }}
     sourceBuildPipelineRunId: ${{ parameters.sourceBuildPipelineRunId }}
     versionsRepoRef: ${{ parameters.versionsRepoRef }}
-    useOciArtifactForImageInfo: ${{ parameters.useOciArtifactForImageInfo }}
