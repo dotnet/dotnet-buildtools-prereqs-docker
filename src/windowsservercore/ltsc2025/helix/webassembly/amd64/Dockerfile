@@ -1,6 +1,6 @@
 # escape=`
 
-ARG GIT_WINDOWS_VERSION=2.54.0
+ARG GIT_WINDOWS_VERSION=2.55.0
 ARG NODE_RELEASE=22
 
 FROM mcr.microsoft.com/dotnet-buildtools/prereqs:windowsservercore-ltsc2025-helix-amd64 as installer
