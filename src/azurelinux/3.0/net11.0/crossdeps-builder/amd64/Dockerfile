@@ -112,6 +112,8 @@ RUN \
 
 ENV PATH="/opt/llvm/bin:$PATH"
 
+# dummy change so it reclones..
+
 # Obtain arcade scripts used to build rootfs
 RUN git config --global user.email builder@dotnet-buildtools-prereqs-docker && \
     git clone --depth 1 --single-branch https://github.com/dotnet/arcade /scripts
