@@ -74,9 +74,21 @@ RUN gpg --import dimitri_john_ledkov.asc && \
     popd && \
     rm -r ubuntu-keyring
 
+# Obtain debian package signing key (for use by install-debs.py)
+RUN wget https://netcorenativeassets.blob.core.windows.net/resource-packages/external/debian/debian-archive-keyring_2025.1.tar.xz && \
+    echo "2d019c3fa19c42da4d37571e473c296286dad0214cb3bd5cafd99f04a8bf5471 debian-archive-keyring_2025.1.tar.xz" | sha256sum -c && \
+    tar xf debian-archive-keyring_2025.1.tar.xz && \
+    rm debian-archive-keyring_2025.1.tar.xzz && \
+    mkdir -p /usr/share/keyrings && \
+    gpg --no-options --no-default-keyring --no-auto-check-trustdb \
+        --no-keyring --import-options import-export \
+        --import debian-archive-keyring/active-keys/* \
+        > /usr/share/keyrings/debian-archive-keyring.gpg && \
+    rm -r debian-archive-keyring
+
 # Obtain Debian keyrings
-# 1. Download the debain keyrings
-wget https://netcorenativeassets.blob.core.windows.net/resource-packages/external/debian/debian-archive-keyring_2025.1.tar.xz && \
+# 1. Download the debian keyrings
+RUN wget https://netcorenativeassets.blob.core.windows.net/resource-packages/external/debian/debian-archive-keyring_2025.1.tar.xz && \
     echo "7fe6a901070d2fb24f897cfe768060d4a51341f936c83e6bdb0fd0282774de4a debian-archive-keyring_2025.1.tar.xz" | sha256sum -c && \
     tar xf debian-archive-keyring_2025.1.tar.xz && \
     rm debian-archive-keyring_2025.1.tar.xz && \
