@@ -1,5 +1,7 @@
 FROM ubuntu.azurecr.io/ubuntu:noble AS venv
 ENV DEBIAN_FRONTEND=noninteractive
+# Use the approved Azure-hosted Ubuntu mirror (per Network Isolation team guidance).
+RUN find /etc/apt -type f \( -name '*.sources' -o -name '*.list' \) -exec sed -i 's|//archive\.ubuntu\.com|//azure.archive.ubuntu.com|g' {} +
 ARG PIP_INDEX_URL
 ENV PIP_INDEX_URL=${PIP_INDEX_URL}
 ARG HELIX_FEED
@@ -18,11 +20,14 @@ RUN apt-get update && \
 
 RUN python3 -m venv /venv && \
     . /venv/bin/activate && \
-    pip download --no-deps --index-url $HELIX_FEED --extra-index-url $PIP_INDEX_URL helix-scripts && \
+    pip download --no-deps --index-url $HELIX_FEED helix-scripts && \
     pip install --index-url $PIP_INDEX_URL ./helix_scripts-*-py3-none-any.whl && \
     rm ./helix_scripts-*-py3-none-any.whl
 
 FROM ubuntu.azurecr.io/ubuntu:noble
+
+# Use the approved Azure-hosted Ubuntu mirror (per Network Isolation team guidance).
+RUN find /etc/apt -type f \( -name '*.sources' -o -name '*.list' \) -exec sed -i 's|//archive\.ubuntu\.com|//azure.archive.ubuntu.com|g' {} +
 
 ARG PIP_INDEX_URL
 ENV PIP_INDEX_URL=${PIP_INDEX_URL}
@@ -94,3 +99,6 @@ ENV VIRTUAL_ENV=/home/helixbot/.vsts-env
 RUN python3 -m venv $VIRTUAL_ENV
 ENV PATH="${VIRTUAL_ENV}/bin:${PATH}"
 COPY --from=venv --chown=helixbot /venv $VIRTUAL_ENV
+
+# Clear PIP_INDEX_URL since it contains a short-lived token that should not persist in the final image
+ENV PIP_INDEX_URL=

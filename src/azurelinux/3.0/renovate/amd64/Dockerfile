@@ -17,4 +17,13 @@ RUN tdnf update -y && \
         util-linux \
     && tdnf clean all
 
-RUN npm install -g renovate@${RENOVATE_VERSION}
+# Token used to authenticate to the dotnet-public-npm Azure Artifacts feed.
+ARG NPM_TOKEN
+
+# When NPM_TOKEN is provided (internal builds) use the dotnet-public-npm Azure Artifacts feed;
+# otherwise fall back to the default public registry (public builds have no token).
+RUN if [ -n "$NPM_TOKEN" ]; then \
+        npm config set registry https://pkgs.dev.azure.com/dnceng/public/_packaging/dotnet-public-npm/npm/registry/ && \
+        npm config set "//pkgs.dev.azure.com/dnceng/public/_packaging/dotnet-public-npm/npm/registry/:_authToken" "$NPM_TOKEN"; \
+    fi && \
+    npm install -g renovate@${RENOVATE_VERSION}

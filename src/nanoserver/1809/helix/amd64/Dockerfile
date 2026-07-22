@@ -1,7 +1,7 @@
 # escape=`
 FROM mcr.microsoft.com/windows/servercore:ltsc2019 AS installer
 
-ENV POWERSHELL_VERSION=7.6.1
+ENV POWERSHELL_VERSION=7.6.3
 
 SHELL ["powershell", "-Command", "$ErrorActionPreference = 'Stop'; $ProgressPreference = 'SilentlyContinue';"]
 
@@ -100,3 +100,6 @@ RUN pwsh -Command " `
         Set-ItemProperty -Path 'HKLM:\SOFTWARE\Microsoft\Windows\Windows Error Reporting\LocalDumps\corerun.exe' -Value 2 -Name DumpCount -Force"
 
 WORKDIR C:\\Work
+
+# Clear PIP_INDEX_URL since it contains a short-lived token that should not persist in the final image
+ENV PIP_INDEX_URL=

@@ -4,7 +4,7 @@ FROM mcr.microsoft.com/dotnet-buildtools/prereqs:azurelinux-3.0-net10.0-crossdep
 ARG ROOTFS_DIR
 
 # Obtain debian-ports package signing key (for use by install-debs.py)
-RUN wget https://ftp.debian.org/debian/pool/main/d/debian-ports-archive-keyring/debian-ports-archive-keyring_2026.02.04.tar.xz && \
+RUN wget https://netcorenativeassets.blob.core.windows.net/resource-packages/external/debian/debian-ports-archive-keyring_2026.02.04.tar.xz && \
     echo "519f049703e99817a7c6c2ed94cabb024f979abd8424be38d6100542fb8febe4 debian-ports-archive-keyring_2026.02.04.tar.xz" | sha256sum -c && \
     tar xf debian-ports-archive-keyring_2026.02.04.tar.xz && \
     rm debian-ports-archive-keyring_2026.02.04.tar.xz && \
@@ -15,7 +15,7 @@ RUN wget https://ftp.debian.org/debian/pool/main/d/debian-ports-archive-keyring/
         > /usr/share/keyrings/debian-ports-archive-keyring.gpg && \
     rm -r debian-ports-archive-keyring
 
-RUN PYTHON_EXECUTABLE="$ROOTFS_PIP_HOME/bin/python" /scripts/eng/common/cross/build-rootfs.sh loongarch64 sid --skipunmount --skipemulation
+RUN PYTHON_EXECUTABLE="$ROOTFS_PIP_HOME/bin/python" /scripts/eng/common/cross/build-rootfs.sh loongarch64 sid --skipunmount --skipemulation --debian-repo http://ftp.ports.debian.org/debian-ports/
 
 RUN TARGET_TRIPLE="loongarch64-linux-gnu" && \
     GCC_VER=$(basename "$(find "$ROOTFS_DIR/usr/include/c++/" -mindepth 1 -maxdepth 1 -type d | sort -V | head -n1)") && \
@@ -47,6 +47,11 @@ RUN TARGET_TRIPLE="loongarch64-linux-gnu" && \
         -DCOMPILER_RT_STATIC_CXX_LIBRARY=ON \
         -DCOMPILER_RT_BUILD_SANITIZERS=OFF \ 
         -DCOMPILER_RT_BUILD_MEMPROF=OFF \
+        # LLVM 20's sanitizer_common includes <linux/scc.h>, which the debian sid loong64
+        # sysroot no longer ships. We only need builtins, so also disable XRAY and CTX_PROFILE
+        # (the remaining things that would pull sanitizer_common into the build).
+        -DCOMPILER_RT_BUILD_XRAY=OFF \
+        -DCOMPILER_RT_BUILD_CTX_PROFILE=OFF \
         # The libfuzzer build in LLVM doesn't correctly forward the required CMake properties to the "fuzzed libc++" build
         # so skip it here.
         -DCOMPILER_RT_BUILD_LIBFUZZER=OFF \

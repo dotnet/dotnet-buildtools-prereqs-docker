@@ -40,3 +40,6 @@ RUN tdnf update -y \
 # Setup a script which executes scancode in the virtual environment
 COPY ./run-scancode.sh /usr/local/bin/scancode
 RUN chmod +x /usr/local/bin/scancode
+
+# Clear PIP_INDEX_URL since it contains a short-lived token that should not persist in the final image
+ENV PIP_INDEX_URL=

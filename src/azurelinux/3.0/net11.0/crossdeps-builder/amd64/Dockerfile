@@ -82,11 +82,11 @@ RUN wget https://releases.llvm.org/release-keys.asc && \
 
 RUN \
     # Download llvm sources and signature, and verify signature
-    LLVM_VERSION=22.1.7 && \
+    LLVM_VERSION=22.1.8 && \
     wget -O llvm-project.src.tar.xz.sig https://github.com/llvm/llvm-project/releases/download/llvmorg-${LLVM_VERSION}/llvm-project-${LLVM_VERSION}.src.tar.xz.sig && \
-    echo "99b4ed667f490ce4bf1006b8fc4e5e2992e7b5e35ce5a4cb52ec47d246bb86d0 llvm-project.src.tar.xz.sig" | sha256sum -c && \
+    echo "052eeebd58a2df67db066c6defb3ae67572bdf098d3064b8ed111b5385d45910 llvm-project.src.tar.xz.sig" | sha256sum -c && \
     wget -O llvm-project.src.tar.xz https://github.com/llvm/llvm-project/releases/download/llvmorg-${LLVM_VERSION}/llvm-project-${LLVM_VERSION}.src.tar.xz && \
-    echo "5cc4a3f12bba50b6bdfb4b61bdc852117a0ff2517807c3902fc13267fb93562e llvm-project.src.tar.xz" | sha256sum -c && \
+    echo "922f1817a0df7b1489272d18134ee0087a8b068828f87ac63b9861b1a9965888 llvm-project.src.tar.xz" | sha256sum -c && \
     gpg --verify llvm-project.src.tar.xz.sig && \
     rm llvm-project.src.tar.xz.sig && \
     # Build LLVM cross-toolchain (with support for targeting x86/x64, arm64, arm, s390x and ppc64le architectures)
@@ -112,6 +112,11 @@ RUN \
 
 ENV PATH="/opt/llvm/bin:$PATH"
 
+# dummy change so it reclones..
+
 # Obtain arcade scripts used to build rootfs
 RUN git config --global user.email builder@dotnet-buildtools-prereqs-docker && \
     git clone --depth 1 --single-branch https://github.com/dotnet/arcade /scripts
+
+# Clear PIP_INDEX_URL since it contains a short-lived token that should not persist in the final image
+ENV PIP_INDEX_URL=

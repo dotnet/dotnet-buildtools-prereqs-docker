@@ -1,5 +1,9 @@
 FROM library/gcc:15-bookworm
 
+# Use Azure-hosted Debian mirror (required in network-restricted Azure build environments)
+RUN find /etc/apt -maxdepth 2 \( -name "*.list" -o -name "*.sources" \) \
+    -exec sed -i 's|http://deb.debian.org/debian|http://debian-archive.trafficmanager.net/debian|g' {} \;
+
 # Dependencies for dotnet/runtime native components.
 RUN apt-get update \
     && apt-get upgrade -y \

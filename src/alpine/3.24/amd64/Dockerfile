@@ -3,7 +3,7 @@ FROM amd64/alpine:3.24
 ARG PIP_INDEX_URL
 ENV PIP_INDEX_URL=${PIP_INDEX_URL}
 
-ENV POWERSHELL_VERSION=7.6.1
+ENV POWERSHELL_VERSION=7.6.3
 
 RUN apk add --upgrade --no-cache \
         # Install .NET and test dependencies
@@ -81,3 +81,6 @@ RUN azureEnv="/usr/local/share/azure-cli-env" \
 
 # Add label for bring your own node in azure devops
 LABEL "com.azure.dev.pipelines.agent.handler.node.path"="/usr/bin/node"
+
+# Clear PIP_INDEX_URL since it contains a short-lived token that should not persist in the final image
+ENV PIP_INDEX_URL=

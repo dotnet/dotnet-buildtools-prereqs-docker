@@ -3,6 +3,18 @@ FROM library/debian:trixie AS venv
 ARG PIP_INDEX_URL
 ENV PIP_INDEX_URL=${PIP_INDEX_URL}
 ARG HELIX_FEED
+ARG TARGETARCH
+
+# Use a network-allowed Debian mirror (deb.debian.org is blocked in network-restricted Azure build environments).
+# amd64/arm64 use the Azure-hosted mirror; arm (armhf) uses the Debian Fastly CDN because
+# debian-archive.trafficmanager.net does not serve armhf packages.
+RUN if [ "$TARGETARCH" = "arm" ]; then \
+        MIRROR="http://cdn-fastly.deb.debian.org/debian"; \
+    else \
+        MIRROR="http://debian-archive.trafficmanager.net/debian"; \
+    fi \
+    && find /etc/apt -maxdepth 2 \( -name "*.list" -o -name "*.sources" \) \
+        -exec sed -i "s|http://deb.debian.org/debian|$MIRROR|g" {} \;
 
 RUN apt-get update \
     && apt-get install -y \
@@ -18,7 +30,7 @@ RUN apt-get update \
 
 RUN python3 -m venv /venv \
     && . /venv/bin/activate \
-    && pip download --no-deps --index-url $HELIX_FEED --extra-index-url $PIP_INDEX_URL helix-scripts \
+    && pip download --no-deps --index-url $HELIX_FEED helix-scripts \
     && pip install --index-url $PIP_INDEX_URL ./helix_scripts-*-py3-none-any.whl \
     && rm ./helix_scripts-*-py3-none-any.whl
 
@@ -27,6 +39,17 @@ FROM library/debian:trixie
 ARG PIP_INDEX_URL
 ENV PIP_INDEX_URL=${PIP_INDEX_URL}
 ARG TARGETARCH
+
+# Use a network-allowed Debian mirror (deb.debian.org is blocked in network-restricted Azure build environments).
+# amd64/arm64 use the Azure-hosted mirror; arm (armhf) uses the Debian Fastly CDN because
+# debian-archive.trafficmanager.net does not serve armhf packages.
+RUN if [ "$TARGETARCH" = "arm" ]; then \
+        MIRROR="http://cdn-fastly.deb.debian.org/debian"; \
+    else \
+        MIRROR="http://debian-archive.trafficmanager.net/debian"; \
+    fi \
+    && find /etc/apt -maxdepth 2 \( -name "*.list" -o -name "*.sources" \) \
+        -exec sed -i "s|http://deb.debian.org/debian|$MIRROR|g" {} \;
 
 # Install Helix Dependencies
 RUN LIBCURL=libcurl4 \
@@ -86,3 +109,6 @@ ENV VIRTUAL_ENV=/home/helixbot/.vsts-env
 RUN python3 -m venv $VIRTUAL_ENV
 ENV PATH="${VIRTUAL_ENV}/bin:${PATH}"
 COPY --from=venv --chown=helixbot /venv $VIRTUAL_ENV
+
+# Clear PIP_INDEX_URL since it contains a short-lived token that should not persist in the final image
+ENV PIP_INDEX_URL=

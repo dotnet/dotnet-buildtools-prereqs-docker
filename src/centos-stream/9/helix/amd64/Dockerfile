@@ -56,7 +56,10 @@ ENV VIRTUAL_ENV=/home/helixbot/.vsts-env
 
 RUN python -m venv $VIRTUAL_ENV && \
     ${VIRTUAL_ENV}/bin/pip install --upgrade pip setuptools && \
-    ${VIRTUAL_ENV}/bin/pip download --no-deps --index-url $HELIX_FEED --extra-index-url $PIP_INDEX_URL helix-scripts && \
+    ${VIRTUAL_ENV}/bin/pip download --no-deps --index-url $HELIX_FEED helix-scripts && \
     ${VIRTUAL_ENV}/bin/pip install --index-url $PIP_INDEX_URL ./helix_scripts-*-py3-none-any.whl && \
     rm ./helix_scripts-*-py3-none-any.whl
 ENV PATH="${VIRTUAL_ENV}/bin:${PATH}"
+
+# Clear PIP_INDEX_URL since it contains a short-lived token that should not persist in the final image
+ENV PIP_INDEX_URL=
