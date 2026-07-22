@@ -15,7 +15,7 @@ RUN wget https://netcorenativeassets.blob.core.windows.net/resource-packages/ext
         > /usr/share/keyrings/debian-ports-archive-keyring.gpg && \
     rm -r debian-ports-archive-keyring
 
-RUN PYTHON_EXECUTABLE="$ROOTFS_PIP_HOME/bin/python" /scripts/eng/common/cross/build-rootfs.sh loongarch64 sid --skipunmount --skipemulation --debian-repo http://ftp.ports.debian.org/debian-ports/
+RUN PYTHON_EXECUTABLE="$ROOTFS_PIP_HOME/bin/python" /scripts/eng/common/cross/build-rootfs.sh loongarch64 sid --skipunmount --skipemulation
 
 RUN TARGET_TRIPLE="loongarch64-linux-gnu" && \
     GCC_VER=$(basename "$(find "$ROOTFS_DIR/usr/include/c++/" -mindepth 1 -maxdepth 1 -type d | sort -V | head -n1)") && \
