@@ -96,9 +96,28 @@
       "depNameTemplate": "Microsoft.AITools.BinlogMcp",
       "datasourceTemplate": "nuget",
       "registryUrlTemplate": "https://pkgs.dev.azure.com/dnceng/public/_packaging/dotnet-public/nuget/v3/index.json"
+    },
+    {
+      "description": "Updates the Arcade commit used by rootfs-building Dockerfiles",
+      "customType": "regex",
+      "managerFilePatterns": [
+        "/(^|/)Dockerfile$/"
+      ],
+      "matchStrings": [
+        "ARG ARCADE_COMMIT=(?<currentValue>[a-f0-9]{40})"
+      ],
+      "depNameTemplate": "dotnet/arcade",
+      "datasourceTemplate": "github-commits"
     }
   ],
   "packageRules": [
+    {
+      "description": "Group Arcade commit updates across all Dockerfiles",
+      "matchDepNames": [
+        "dotnet/arcade"
+      ],
+      "groupName": "Arcade"
+    },
     {
       "description": "Only allow minor/patch updates for LLVM to stay on the respective major version",
       "matchDepNames": [
