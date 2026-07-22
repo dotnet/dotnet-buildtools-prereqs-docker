@@ -67,7 +67,7 @@ RUN gpg --import dimitri_john_ledkov.asc && \
     sha512sum -c SHA512SUMS.txt && \
 # 4. Install the needed keyrings and delete the rest
     mkdir -p /usr/share/keyrings && \
-    mv keyrings/ubuntu-archive-keyring.gpg /usr/share/keyrings/ubuntu-archive-keyring.gpg && \
+    cp keyrings/ubuntu-archive-keyring.gpg /usr/share/keyrings/ubuntu-archive-keyring.gpg && \
     cp keyrings/ubuntu-archive-removed-keys.gpg /usr/share/keyrings/ubuntu-archive-removed-keys.gpg && \
 # 5. Include removed archive keys for older Ubuntu release signatures (for example, xenial).
     cat /usr/share/keyrings/ubuntu-archive-removed-keys.gpg >> /usr/share/keyrings/ubuntu-archive-keyring.gpg && \
@@ -83,7 +83,7 @@ RUN wget https://netcorenativeassets.blob.core.windows.net/resource-packages/ext
 # 2. Install the needed keyrings and delete the rest
     pushd debian-keyring && \
     mkdir -p /usr/share/keyrings && \
-    mv keyrings/debian-archive-keyring.gpg /usr/share/keyrings/debian-archive-keyring.gpg && \
+    cp keyrings/debian-archive-keyring.gpg /usr/share/keyrings/debian-archive-keyring.gpg && \
     cp keyrings/debian-archive-removed-keys.gpg /usr/share/keyrings/debian-archive-removed-keys.gpg && \
 # 3. Include removed archive keys for older Debian release signatures
     cat /usr/share/keyrings/debian-archive-removed-keys.gpg >> /usr/share/keyrings/debian-archive-keyring.gpg && \
