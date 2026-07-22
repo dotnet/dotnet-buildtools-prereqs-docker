@@ -112,7 +112,7 @@ RUN \
 
 ENV PATH="/opt/llvm/bin:$PATH"
 
-# dummy change so it reclones..
+# dummy change to trigger rebuild
 
 # Obtain arcade scripts used to build rootfs
 RUN git config --global user.email builder@dotnet-buildtools-prereqs-docker && \
