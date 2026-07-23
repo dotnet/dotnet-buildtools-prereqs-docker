@@ -40,9 +40,10 @@ RUN powershell -Command " `
         Invoke-WebRequest -Uri $nodeUrl -OutFile $env:TEMP\nodejs.msi; `
         Start-Process msiexec.exe -ArgumentList '/i', $env:TEMP\nodejs.msi, '/quiet', '/passive', '/qn', '/norestart' -NoNewWindow -Wait"
 
-# Registry npm installs pull from; defaults to the Microsoft public npm proxy.
-# Internal builds override NPM_REGISTRY with the dotnet-public-npm Azure Artifacts feed and set NPM_TOKEN.
-ARG NPM_REGISTRY=https://packagefeedproxy.microsoft.io/npm/
+# npm registry. Defaults to the public dotnet-public-npm Azure Artifacts feed, which is
+# readable anonymously (works for local/dev and public builds). NPM_TOKEN is optional and
+# only needed by internal builds that ingest new package versions into the feed.
+ARG NPM_REGISTRY=https://pkgs.dev.azure.com/dnceng/public/_packaging/dotnet-public-npm/npm/registry/
 ARG NPM_TOKEN
 
 # hadolint ignore=SC1072

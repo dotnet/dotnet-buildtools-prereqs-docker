@@ -45,9 +45,10 @@ RUN chmod +x /tmp/setup-node-23.x.sh \
     && apt-get install -y nodejs \
     && rm -rf /var/lib/apt/lists/*
 
-# Registry npm installs pull from; defaults to the Microsoft public npm proxy.
-# Internal builds override NPM_REGISTRY with the dotnet-public-npm Azure Artifacts feed and set NPM_TOKEN.
-ARG NPM_REGISTRY=https://packagefeedproxy.microsoft.io/npm/
+# npm registry. Defaults to the public dotnet-public-npm Azure Artifacts feed, which is
+# readable anonymously (works for local/dev and public builds). NPM_TOKEN is optional and
+# only needed by internal builds that ingest new package versions into the feed.
+ARG NPM_REGISTRY=https://pkgs.dev.azure.com/dnceng/public/_packaging/dotnet-public-npm/npm/registry/
 ARG NPM_TOKEN
 
 RUN npm config set registry "$NPM_REGISTRY" && \
