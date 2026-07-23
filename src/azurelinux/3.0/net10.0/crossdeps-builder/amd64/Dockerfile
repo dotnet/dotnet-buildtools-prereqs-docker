@@ -70,12 +70,28 @@ RUN gpg --import dimitri_john_ledkov.asc && \
     sha512sum -c SHA512SUMS.txt && \
 # 4. Install the needed keyrings and delete the rest
     mkdir -p /usr/share/keyrings && \
-    mv keyrings/ubuntu-archive-keyring.gpg /usr/share/keyrings/ubuntu-archive-keyring.gpg && \
+    cp keyrings/ubuntu-archive-keyring.gpg /usr/share/keyrings/ubuntu-archive-keyring.gpg && \
     cp keyrings/ubuntu-archive-removed-keys.gpg /usr/share/keyrings/ubuntu-archive-removed-keys.gpg && \
 # 5. Include removed archive keys for older Ubuntu release signatures (for example, xenial).
     cat /usr/share/keyrings/ubuntu-archive-removed-keys.gpg >> /usr/share/keyrings/ubuntu-archive-keyring.gpg && \
     popd && \
     rm -r ubuntu-keyring
+
+# Obtain Debian keyrings
+# 1. Download the debian keyrings
+RUN wget https://netcorenativeassets.blob.core.windows.net/resource-packages/external/debian/debian-archive-keyring_2025.1.tar.xz && \
+    echo "7fe6a901070d2fb24f897cfe768060d4a51341f936c83e6bdb0fd0282774de4a debian-archive-keyring_2025.1.tar.xz" | sha256sum -c && \
+    tar xf debian-archive-keyring_2025.1.tar.xz && \
+    rm debian-archive-keyring_2025.1.tar.xz && \
+# 2. Install the needed keyrings and delete the rest
+    pushd debian-keyring && \
+    mkdir -p /usr/share/keyrings && \
+    cp keyrings/debian-archive-keyring.gpg /usr/share/keyrings/debian-archive-keyring.gpg && \
+    cp keyrings/debian-archive-removed-keys.gpg /usr/share/keyrings/debian-archive-removed-keys.gpg && \
+# 3. Include removed archive keys for older Debian release signatures
+    cat /usr/share/keyrings/debian-archive-removed-keys.gpg >> /usr/share/keyrings/debian-archive-keyring.gpg && \
+    popd && \
+    rm -r debian-keyring
 
 # Obtain signing keys used to sign llvm sources
 RUN wget https://releases.llvm.org/release-keys.asc && \
@@ -116,8 +132,11 @@ RUN \
 ENV PATH="/opt/llvm/bin:$PATH"
 
 # Obtain arcade scripts used to build rootfs
+ARG ARCADE_COMMIT=e5f974ba880c3da69932191c665e90ee64e8da26
 RUN git config --global user.email builder@dotnet-buildtools-prereqs-docker && \
-    git clone --depth 1 --single-branch https://github.com/dotnet/arcade /scripts
+    git init /scripts && \
+    git -C /scripts fetch --depth 1 https://github.com/dotnet/arcade ${ARCADE_COMMIT} && \
+    git -C /scripts checkout --detach FETCH_HEAD
 
 # Clear PIP_INDEX_URL since it contains a short-lived token that should not persist in the final image
 ENV PIP_INDEX_URL=
