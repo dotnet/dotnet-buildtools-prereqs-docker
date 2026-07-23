@@ -70,12 +70,28 @@ RUN gpg --import dimitri_john_ledkov.asc && \
     sha512sum -c SHA512SUMS.txt && \
 # 4. Install the needed keyrings and delete the rest
     mkdir -p /usr/share/keyrings && \
-    mv keyrings/ubuntu-archive-keyring.gpg /usr/share/keyrings/ubuntu-archive-keyring.gpg && \
+    cp keyrings/ubuntu-archive-keyring.gpg /usr/share/keyrings/ubuntu-archive-keyring.gpg && \
     cp keyrings/ubuntu-archive-removed-keys.gpg /usr/share/keyrings/ubuntu-archive-removed-keys.gpg && \
 # 5. Include removed archive keys for older Ubuntu release signatures (for example, xenial).
     cat /usr/share/keyrings/ubuntu-archive-removed-keys.gpg >> /usr/share/keyrings/ubuntu-archive-keyring.gpg && \
     popd && \
     rm -r ubuntu-keyring
+
+# Obtain Debian keyrings
+# 1. Download the debian keyrings
+RUN wget https://netcorenativeassets.blob.core.windows.net/resource-packages/external/debian/debian-archive-keyring_2025.1.tar.xz && \
+    echo "7fe6a901070d2fb24f897cfe768060d4a51341f936c83e6bdb0fd0282774de4a debian-archive-keyring_2025.1.tar.xz" | sha256sum -c && \
+    tar xf debian-archive-keyring_2025.1.tar.xz && \
+    rm debian-archive-keyring_2025.1.tar.xz && \
+# 2. Install the needed keyrings and delete the rest
+    pushd debian-keyring && \
+    mkdir -p /usr/share/keyrings && \
+    cp keyrings/debian-archive-keyring.gpg /usr/share/keyrings/debian-archive-keyring.gpg && \
+    cp keyrings/debian-archive-removed-keys.gpg /usr/share/keyrings/debian-archive-removed-keys.gpg && \
+# 3. Include removed archive keys for older Debian release signatures
+    cat /usr/share/keyrings/debian-archive-removed-keys.gpg >> /usr/share/keyrings/debian-archive-keyring.gpg && \
+    popd && \
+    rm -r debian-keyring
 
 # Obtain signing keys used to sign llvm sources
 RUN wget https://releases.llvm.org/release-keys.asc && \
