@@ -16,10 +16,11 @@ steps:
     # rather than appending a duplicate --build-arg.
     $options = "$(imageBuilderBuildArgs)"
     $options = $options -replace '--build-arg PIP_INDEX_URL=\S+', "--build-arg PIP_INDEX_URL=$env:PIP_INDEX_URL"
-    # The npm registry (public dotnet-public-npm feed) is baked into the Dockerfiles as the
-    # NPM_REGISTRY default and is read anonymously, so no override is needed here. Internal
-    # builds additionally pass a token so they can ingest new package versions; the token is
-    # optional and unused on anonymous reads.
+    # Dockerfiles default NPM_REGISTRY to the Microsoft public npm proxy (for public/local
+    # builds). On internal builds, point npm at the authenticated dotnet-public-npm feed and
+    # provide the token so the auth key derived from the URL resolves. Keeping the internal
+    # feed URL here means it lives in exactly one place instead of every Dockerfile.
+    $options += " --build-arg NPM_REGISTRY=https://pkgs.dev.azure.com/dnceng/public/_packaging/dotnet-public-npm/npm/registry/"
     $options += " --build-arg NPM_TOKEN=$(System.AccessToken)"
     echo "##vso[task.setvariable variable=imageBuilderBuildArgs]$options"
   displayName: Set PIP and NPM Build Args
