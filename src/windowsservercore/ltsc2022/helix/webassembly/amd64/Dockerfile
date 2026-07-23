@@ -40,13 +40,16 @@ RUN powershell -Command " `
         Invoke-WebRequest -Uri $nodeUrl -OutFile $env:TEMP\nodejs.msi; `
         Start-Process msiexec.exe -ArgumentList '/i', $env:TEMP\nodejs.msi, '/quiet', '/passive', '/qn', '/norestart' -NoNewWindow -Wait"
 
+# Registry npm installs pull from; defaults to the Microsoft public npm proxy.
+# Internal builds override NPM_REGISTRY with the dotnet-public-npm Azure Artifacts feed and set NPM_TOKEN.
+ARG NPM_REGISTRY=https://packagefeedproxy.microsoft.io/npm/
 ARG NPM_TOKEN
 
 # hadolint ignore=SC1072
-RUN if defined NPM_TOKEN ( `
-        npm config set registry https://pkgs.dev.azure.com/dnceng/public/_packaging/dotnet-public-npm/npm/registry/ `
-        && npm config set "//pkgs.dev.azure.com/dnceng/public/_packaging/dotnet-public-npm/npm/registry/:_authToken" %NPM_TOKEN% `
-    ) else (echo Skipping npm config - using default registry)
+RUN npm config set registry %NPM_REGISTRY% `
+    && if defined NPM_TOKEN ( `
+        npm config set "%NPM_REGISTRY:https:=%:_authToken" %NPM_TOKEN% `
+    )
 
 # install latest jsvu and v8 engine
 RUN npm install jsvu -g `

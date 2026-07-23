@@ -12,14 +12,14 @@ RUN tdnf update -y \
         libxml2 \
         unzip
 
-# Token used to authenticate to the dotnet-public-npm Azure Artifacts feed.
+# Registry npm installs pull from; defaults to the Microsoft public npm proxy.
+# Internal builds override NPM_REGISTRY with the dotnet-public-npm Azure Artifacts feed and set NPM_TOKEN.
+ARG NPM_REGISTRY=https://packagefeedproxy.microsoft.io/npm/
 ARG NPM_TOKEN
 
-# When NPM_TOKEN is provided (internal builds) use the dotnet-public-npm Azure Artifacts feed;
-# otherwise fall back to the default public registry (public builds have no token).
-RUN if [ -n "$NPM_TOKEN" ]; then \
-        npm config set registry https://pkgs.dev.azure.com/dnceng/public/_packaging/dotnet-public-npm/npm/registry/ && \
-        npm config set "//pkgs.dev.azure.com/dnceng/public/_packaging/dotnet-public-npm/npm/registry/:_authToken" "$NPM_TOKEN"; \
+RUN npm config set registry "$NPM_REGISTRY" && \
+    if [ -n "$NPM_TOKEN" ]; then \
+        npm config set "${NPM_REGISTRY#https:}:_authToken" "$NPM_TOKEN"; \
     fi
 
 # WebAssembly build needs typescript
