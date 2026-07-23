@@ -46,7 +46,7 @@ ARG NPM_TOKEN
 RUN if defined NPM_TOKEN ( `
         npm config set registry https://pkgs.dev.azure.com/dnceng/public/_packaging/dotnet-public-npm/npm/registry/ `
         && npm config set "//pkgs.dev.azure.com/dnceng/public/_packaging/dotnet-public-npm/npm/registry/:_authToken" %NPM_TOKEN% `
-    ) else (echo Skipping npm config - using default registry)
+    ) else (npm config set registry https://packagefeedproxy.microsoft.io/npm/)
 
 # install latest jsvu and v8 engine
 RUN npm install jsvu -g `

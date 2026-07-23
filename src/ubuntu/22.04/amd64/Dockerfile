@@ -101,7 +101,7 @@ ARG NPM_TOKEN
 
 # Install Node 20 from NodeSource and use the patched npm ip module.
 # When NPM_TOKEN is provided (internal builds) use the dotnet-public-npm Azure Artifacts feed;
-# otherwise fall back to the default public registry (public builds have no token).
+# otherwise fall back to the Microsoft public npm proxy (public builds have no token).
 RUN cd /etc/apt/sources.list.d && \
     rm -f nodesource.list && \
     cd ~ && \
@@ -113,6 +113,8 @@ RUN cd /etc/apt/sources.list.d && \
     if [ -n "$NPM_TOKEN" ]; then \
         npm config set registry https://pkgs.dev.azure.com/dnceng/public/_packaging/dotnet-public-npm/npm/registry/ && \
         npm config set "//pkgs.dev.azure.com/dnceng/public/_packaging/dotnet-public-npm/npm/registry/:_authToken" "$NPM_TOKEN"; \
+    else \
+        npm config set registry https://packagefeedproxy.microsoft.io/npm/; \
     fi && \
     npm install -g ip@latest
 
