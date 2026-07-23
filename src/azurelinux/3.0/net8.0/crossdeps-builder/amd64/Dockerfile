@@ -1,3 +1,7 @@
+# Arcade rootfs cross-build scripts, provided as a separate image so they can be copied
+# in without requiring the repo root as the Docker build context. See eng/cross-scripts.Dockerfile.
+FROM mcr.microsoft.com/dotnet-buildtools/prereqs:cross-scripts-amd64 AS cross-scripts
+
 FROM mcr.microsoft.com/azurelinux/base/core:3.0
 
 ARG PIP_INDEX_URL
@@ -116,7 +120,7 @@ RUN \
 ENV PATH="/opt/llvm/bin:$PATH"
 
 # Copy arcade scripts used to build rootfs
-COPY eng/common/cross/ /scripts/eng/common/cross/
+COPY --from=cross-scripts /eng/common/cross/ /scripts/eng/common/cross/
 
 # Clear PIP_INDEX_URL since it contains a short-lived token that should not persist in the final image
 ENV PIP_INDEX_URL=
