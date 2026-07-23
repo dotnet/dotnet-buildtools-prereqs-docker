@@ -1,1 +1,9 @@
 setup-Alpine.sh eol=lf
+
+# Arcade eng/common scripts must retain LF line endings for Linux/macOS
+eng/common/**/*.sh eol=lf
+eng/common/**/*.py eol=lf
+eng/common/cross/**/*.patch eol=lf
+eng/common/cross/**/toolchain.cmake eol=lf
+eng/common/native/*.sh eol=lf
+eng/common/native/CommonLibrary.psm1 eol=lf
