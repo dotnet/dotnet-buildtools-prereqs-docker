@@ -7,12 +7,12 @@ param(
 Set-StrictMode -Version Latest
 $ErrorActionPreference = 'Stop'
 
-Push-Location "$PSScriptRoot\tests\Microsoft.DotNet.BuildTools.Prereqs.Docker.Tests"
+Push-Location "$PSScriptRoot/tests/Microsoft.DotNet.BuildTools.Prereqs.Docker.Tests"
 try {
     & "$PSScriptRoot/eng/common/dotnet.ps1" run --project Microsoft.DotNet.BuildTools.Prereqs.Docker.Tests.csproj --report-xunit-trx --results-directory $PSScriptRoot/artifacts/TestResults $OptionalArgs
 
     if ($LASTEXITCODE -ne 0) {
-        throw "Failed: '$Cmd'"
+        throw "Failed: dotnet run Microsoft.DotNet.BuildTools.Prereqs.Docker.Tests"
     }
 }
 finally {
