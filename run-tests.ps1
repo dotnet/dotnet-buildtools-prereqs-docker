@@ -1,7 +1,7 @@
 [cmdletbinding()]
 param(
      # Additional args to pass to dotnet run
-    [string]$OptionalArgs
+    [string[]]$OptionalArgs
 )
 
 Set-StrictMode -Version Latest
