@@ -32,3 +32,13 @@ RUN ln -s /usr/share/dotnet/dotnet /usr/bin/dotnet && \
     ln -s /usr/share/powershell/pwsh /usr/bin/pwsh && \
     ln -sf /usr/bin/node-24 /usr/bin/node && \
     ln -sf /usr/bin/npm-24 /usr/bin/npm
+
+# Registry npm installs pull from; defaults to the Microsoft public npm proxy.
+# Internal builds override NPM_REGISTRY with the dotnet-public-npm Azure Artifacts feed and set NPM_TOKEN.
+ARG NPM_REGISTRY=https://packagefeedproxy.microsoft.io/npm/
+ARG NPM_TOKEN
+
+RUN npm config set registry "$NPM_REGISTRY" && \
+    if [ -n "$NPM_TOKEN" ]; then \
+        npm config set "${NPM_REGISTRY#https:}:_authToken" "$NPM_TOKEN"; \
+    fi
