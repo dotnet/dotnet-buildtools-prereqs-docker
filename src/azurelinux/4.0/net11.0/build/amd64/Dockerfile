@@ -1,5 +1,5 @@
 FROM mcr.microsoft.com/dotnet/sdk:10.0-azurelinux3.0 AS powershell
-ENV POWERSHELL_VERSION=7.6.1
+ENV POWERSHELL_VERSION=7.6.4
 RUN dotnet tool install --tool-path /powershell --version ${POWERSHELL_VERSION} PowerShell
 
 FROM mcr.microsoft.com/azurelinux-beta/base/core:4.0
