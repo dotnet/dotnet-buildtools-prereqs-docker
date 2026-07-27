@@ -1,5 +1,5 @@
 FROM mcr.microsoft.com/dotnet/sdk:10.0-azurelinux3.0 AS powershell
-ENV POWERSHELL_VERSION=7.6.1
+ENV POWERSHELL_VERSION=7.6.4
 ARG DOTNET_PUBLIC_FEED=https://pkgs.dev.azure.com/dnceng/public/_packaging/dotnet-public/nuget/v3/index.json
 RUN dotnet tool install --tool-path /powershell --version ${POWERSHELL_VERSION} PowerShell --source ${DOTNET_PUBLIC_FEED}
 
