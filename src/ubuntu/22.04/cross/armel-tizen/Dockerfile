@@ -1,14 +1,14 @@
 ARG ROOTFS_DIR=/crossrootfs/armel
 
+# Arcade rootfs cross-build scripts, provided as a separate image so they can be copied
+# in without requiring the repo root as the Docker build context. See eng/cross-scripts.Dockerfile.
+FROM mcr.microsoft.com/dotnet-buildtools/prereqs:cross-scripts-amd64 AS cross-scripts
+
 FROM mcr.microsoft.com/dotnet-buildtools/prereqs:ubuntu-22.04-crossdeps AS builder
 ARG ROOTFS_DIR
 
-# Obtain arcade scripts used to build rootfs
-ARG ARCADE_COMMIT=e5f974ba880c3da69932191c665e90ee64e8da26
-RUN git config --global user.email builder@dotnet-buildtools-prereqs-docker && \
-    git init /scripts && \
-    git -C /scripts fetch --depth 1 https://github.com/dotnet/arcade ${ARCADE_COMMIT} && \
-    git -C /scripts checkout --detach FETCH_HEAD
+# Copy arcade scripts used to build rootfs
+COPY --from=cross-scripts /eng/common/cross/ /scripts/eng/common/cross/
 
 RUN /scripts/eng/common/cross/tizen-build-rootfs.sh armel
 

@@ -19,6 +19,18 @@
           ]
         },
         {
+          "platforms": [
+            {
+              "dockerfile": "eng/cross-scripts.Dockerfile",
+              "os": "linux",
+              "osVersion": "azurelinux3.0",
+              "tags": {
+                "cross-scripts-amd64": {}
+              }
+            }
+          ]
+        },
+        {
           "sharedTags": {
             "azurelinux3.0-docker-testrunner": {}
           },

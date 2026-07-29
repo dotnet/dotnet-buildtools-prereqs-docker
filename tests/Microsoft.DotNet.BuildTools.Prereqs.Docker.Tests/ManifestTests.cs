@@ -24,10 +24,23 @@ public class ManifestTests
     public void ValidateFolderStructure()
     {
         var crossArchPrefixes = new HashSet<string> { "amd64", "arm", "loongarch64", "ppc64le", "riscv64", "s390x", "x86" };
+        // Dockerfiles that intentionally don't follow the src/<...>/<arch> folder convention.
+        var excludedDockerfilePaths = new HashSet<string>
+        {
+            // Packages eng/common/cross so other images can COPY --from it. It is built from the
+            // eng/ context (rather than a src/<...>/<arch> folder) so that eng/common/cross is
+            // available in its build context.
+            "eng/cross-scripts.Dockerfile",
+        };
         var invalidDockerfilePaths = new List<string>();
 
         EnumerateManifests((platforms, platform, dockerfilePath, arch) =>
             {
+                if (excludedDockerfilePaths.Contains(dockerfilePath))
+                {
+                    return;
+                }
+
                 if (IsCrossDockerfile(dockerfilePath))
                 {
                     var lastFolder = Path.GetFileName(dockerfilePath);
@@ -68,6 +81,9 @@ public class ManifestTests
         var excludedDockerfilePaths = new HashSet<string>
         {
             "src/ubuntu/common/coredeps", // This Dockerfile is built for multiple platforms via BuildArgs
+            // Packages eng/common/cross so other images can COPY --from it. Its tag intentionally
+            // isn't derived from a src/<...>/<arch> path because it is built from the eng/ context.
+            "eng/cross-scripts.Dockerfile",
         };
 
         var invalidTags = new List<string>();
