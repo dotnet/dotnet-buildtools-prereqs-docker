@@ -3,7 +3,10 @@ ARG ROOTFS_DIR=/crossrootfs/loongarch64
 FROM mcr.microsoft.com/dotnet-buildtools/prereqs:azurelinux-3.0-net10.0-crossdeps-builder-amd64 AS builder
 ARG ROOTFS_DIR
 
-RUN PYTHON_EXECUTABLE="$ROOTFS_PIP_HOME/bin/python" /scripts/eng/common/cross/build-rootfs.sh loongarch64 sid --skipunmount --skipemulation
+# Use a network-allowed Debian mirror (deb.debian.org is blocked in network-restricted Azure build environments).
+# amd64/arm64 use the Azure-hosted mirror; loongarch64 uses the Debian Fastly CDN because
+# debian-archive.trafficmanager.net does not serve loongarch64 packages.
+RUN PYTHON_EXECUTABLE="$ROOTFS_PIP_HOME/bin/python" /scripts/eng/common/cross/build-rootfs.sh loongarch64 sid --skipunmount --skipemulation --debian-repo http://cdn-fastly.deb.debian.org/debian
 
 RUN TARGET_TRIPLE="loongarch64-linux-gnu" && \
     GCC_VER=$(basename "$(find "$ROOTFS_DIR/usr/include/c++/" -mindepth 1 -maxdepth 1 -type d | sort -V | head -n1)") && \
