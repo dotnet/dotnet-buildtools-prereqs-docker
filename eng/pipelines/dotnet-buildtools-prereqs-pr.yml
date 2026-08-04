@@ -30,3 +30,7 @@ stages:
         name: NetCore-Public-XL
         demands: ImageOverride -equals build.ubuntu.2204.amd64.open
         os: linux
+      customBuildInitSteps:
+      - powershell: ./eng/Stage-EngCommon.ps1
+        displayName: Copy eng/common to build dirs
+        condition: eq(variables['Agent.OS'], 'Linux')

@@ -26,7 +26,7 @@ stages:
         os: linux
       customBuildInitSteps:
       - powershell: ./eng/Stage-EngCommon.ps1
-        displayName: Stage eng/common in Docker build contexts
+        displayName: Copy eng/common to build dirs
         condition: eq(variables['Agent.OS'], 'Linux')
       - ${{ if eq(variables['System.TeamProject'], 'internal') }}:
         - template: /eng/pipelines/steps/pip-authenticate.yml@self
