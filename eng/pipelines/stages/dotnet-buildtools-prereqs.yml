@@ -24,18 +24,22 @@ stages:
         name: NetCore1ESPool-Internal-XL
         image: build.ubuntu.2204.amd64
         os: linux
+      customBuildInitSteps:
+      - powershell: ./eng/Stage-EngCommon.ps1
+        displayName: Stage eng/common in Docker build contexts
+        condition: eq(variables['Agent.OS'], 'Linux')
+      - ${{ if eq(variables['System.TeamProject'], 'internal') }}:
+        - template: /eng/pipelines/steps/pip-authenticate.yml@self
+        - template: /eng/pipelines/steps/set-base-image-override-options.yml@self
+          parameters:
+            variableName: imageBuilderBuildArgs
+            dockerfileOs: (centos|debian)
+            baseOverrideRegistry: $(overrideRegistry) # Comes from DotNet-Docker-Common variable group
       ${{ if eq(variables['System.TeamProject'], 'internal') }}:
         customCopyBaseImagesInitSteps:
         - template: /eng/pipelines/steps/set-base-image-override-options.yml@self
           parameters:
             variableName: customCopyBaseImagesArgs
-            dockerfileOs: (centos|debian)
-            baseOverrideRegistry: $(overrideRegistry) # Comes from DotNet-Docker-Common variable group
-        customBuildInitSteps:
-        - template: /eng/pipelines/steps/pip-authenticate.yml@self
-        - template: /eng/pipelines/steps/set-base-image-override-options.yml@self
-          parameters:
-            variableName: imageBuilderBuildArgs
             dockerfileOs: (centos|debian)
             baseOverrideRegistry: $(overrideRegistry) # Comes from DotNet-Docker-Common variable group
       # Force all images to be rebuilt when triggered by the schedule
