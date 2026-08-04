@@ -37,6 +37,6 @@ stages:
       linuxAmdBuildJobTimeout: 360
       linuxArmBuildJobTimeout: 300
       customBuildInitSteps:
-      - powershell: $(Build.SourcesDirectory)/eng/Stage-EngCommon.ps1
+      - powershell: $(Build.SourcesDirectory)/dotnet-buildtools-prereqs-docker/eng/Stage-EngCommon.ps1
         displayName: Copy eng/common to build dirs
         condition: eq(variables['Agent.OS'], 'Linux')

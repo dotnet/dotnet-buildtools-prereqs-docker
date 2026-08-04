@@ -31,6 +31,6 @@ stages:
         demands: ImageOverride -equals build.ubuntu.2204.amd64.open
         os: linux
       customBuildInitSteps:
-      - powershell: $(Build.SourcesDirectory)/eng/Stage-EngCommon.ps1
+      - powershell: $(Build.SourcesDirectory)/dotnet-buildtools-prereqs-docker/eng/Stage-EngCommon.ps1
         displayName: Copy eng/common to build dirs
         condition: eq(variables['Agent.OS'], 'Linux')
