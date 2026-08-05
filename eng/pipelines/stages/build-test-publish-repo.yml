@@ -7,6 +7,7 @@ parameters:
   linuxAmdBuildJobTimeout: 60
   linuxArmBuildJobTimeout: 60
   customBuildInitSteps: []
+  customPreImageBuilderBuildSteps: []
   customCopyBaseImagesInitSteps: []
   linuxAmd64Pool: ''
   versionsRepoRef: null
@@ -32,5 +33,6 @@ stages:
     linuxArmBuildJobTimeout: ${{ parameters.linuxArmBuildJobTimeout }}
 
     customBuildInitSteps: ${{ parameters.customBuildInitSteps }}
+    customPreImageBuilderBuildSteps: ${{ parameters.customPreImageBuilderBuildSteps }}
     customCopyBaseImagesInitSteps: ${{ parameters.customCopyBaseImagesInitSteps }}
     additionalServiceConnections: ${{ parameters.additionalServiceConnections }}

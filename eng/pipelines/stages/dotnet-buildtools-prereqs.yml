@@ -24,10 +24,11 @@ stages:
         name: NetCore1ESPool-Internal-XL
         image: build.ubuntu.2204.amd64
         os: linux
-      customBuildInitSteps:
+      customPreImageBuilderBuildSteps:
       - powershell: $(Build.SourcesDirectory)/eng/Stage-EngCommon.ps1
         displayName: Copy eng/common to build dirs
         condition: eq(variables['Agent.OS'], 'Linux')
+      customBuildInitSteps:
       - ${{ if eq(variables['System.TeamProject'], 'internal') }}:
         - template: /eng/pipelines/steps/pip-authenticate.yml@self
         - template: /eng/pipelines/steps/set-base-image-override-options.yml@self
