@@ -27,3 +27,6 @@ artifacts/
 
 # ImageBuilder directory
 .Microsoft.DotNet.ImageBuilder
+
+# eng/common copies staged into Docker build contexts
+src/**/eng/common/

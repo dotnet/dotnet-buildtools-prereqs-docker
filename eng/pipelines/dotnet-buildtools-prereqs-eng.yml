@@ -36,3 +36,7 @@ stages:
       versionsRepoRef: VersionsRepo
       linuxAmdBuildJobTimeout: 360
       linuxArmBuildJobTimeout: 300
+      customPreImageBuilderBuildSteps:
+      - powershell: $(Build.SourcesDirectory)/dotnet-buildtools-prereqs-docker/eng/Stage-EngCommon.ps1
+        displayName: Copy eng/common to build dirs
+        condition: eq(variables['Agent.OS'], 'Linux')
