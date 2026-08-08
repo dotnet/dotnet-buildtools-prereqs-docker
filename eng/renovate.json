@@ -81,6 +81,7 @@
       ],
       "depNameTemplate": "renovate",
       "datasourceTemplate": "npm",
+      "registryUrlTemplate": "https://packagefeedproxy.microsoft.io/npm/",
       "extractVersionTemplate": "^(?<version>\\d+)",
       "versioningTemplate": "loose"
     },
