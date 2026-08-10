@@ -10,7 +10,6 @@ RUN dnf update -y && \
         # Provides 'su', required by Azure DevOps
         ca-certificates \
         git \
-        pigz \
         shadow-utils \
         util-linux \
         wget2-wget \
@@ -22,8 +21,10 @@ RUN dnf update -y && \
         make \
         cmake \
         diffutils \
+        gzip \
         icu \
         ninja-build \
+        pigz \
         tar \
         # Crosscomponents build dependencies
         glibc-devel \
