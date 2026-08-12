@@ -43,8 +43,8 @@ RUN dnf update -y && \
 # GNU toolchain is installed in 'x86_64-azurelinux-linux' directory which is not recognized by
 # clang (https://github.com/llvm/llvm-project/blob/main/clang/lib/Driver/ToolChains/Gnu.cpp),
 # so we create a symlink with -pc- triplet.
-RUN ln -s /usr/lib/gcc/x86_64-azurelinux-linux /usr/lib/gcc/x86_64-pc-linux-gnu && \
-    ln -s /usr/include/c++/15/x86_64-azurelinux-linux /usr/include/c++/15/x86_64-pc-linux-gnu;
+RUN ln -s /usr/lib/gcc/$(uname -m)-azurelinux-linux /usr/lib/gcc/$(uname -m)-pc-linux-gnu && \
+    ln -s /usr/include/c++/15/$(uname -m)-azurelinux-linux /usr/include/c++/15/$(uname -m)-pc-linux-gnu;
 
 COPY --from=powershell /usr/share/dotnet/LICENSE.txt /usr/share/dotnet/ThirdPartyNotices.txt /usr/share/dotnet/dotnet /usr/share/dotnet/
 COPY --from=powershell /usr/share/dotnet/host /usr/share/dotnet/host
