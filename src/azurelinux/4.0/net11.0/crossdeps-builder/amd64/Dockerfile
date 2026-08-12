@@ -119,7 +119,6 @@ RUN \
         -DCMAKE_BUILD_TYPE=Release \
         -DCMAKE_C_COMPILER=clang \
         -DCMAKE_CXX_COMPILER=clang++ \
-        -DLLVM_DEFAULT_TARGET_TRIPLE="$(uname -m)-azurelinux-linux-gnu" \
         -DLLVM_TARGETS_TO_BUILD="X86;AArch64;ARM;PowerPC;RISCV;SystemZ;LoongArch" \
         -Wno-dev \
         -DLLVM_ENABLE_PROJECTS="clang;lld;clang-tools-extra" && \
