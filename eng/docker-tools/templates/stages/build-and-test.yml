@@ -13,8 +13,6 @@ parameters:
   # Custom steps that run after ImageBuilder is set up but before the build starts.
   # Use for build-specific initialization (e.g., setting variables, additional setup).
   customBuildInitSteps: []
-  # Custom steps that modify repository content before it is copied into the ImageBuilder image.
-  customPreImageBuilderBuildSteps: []
   customTestInitSteps: []
   sourceBuildPipelineRunId: ""
   # When true, the Post-Build stage runs even if the Build stage failed (succeededOrFailed).
@@ -115,7 +113,6 @@ stages:
       versionsRepoRef: ${{ parameters.versionsRepoRef }}
       customInitSteps: ${{ parameters.customInitSteps }}
       customBuildInitSteps: ${{ parameters.customBuildInitSteps }}
-      customPreImageBuilderBuildSteps: ${{ parameters.customPreImageBuilderBuildSteps }}
       noCache: ${{ parameters.noCache }}
       publishConfig: ${{ parameters.publishConfig }}
       internalProjectName: ${{ parameters.internalProjectName }}
@@ -131,7 +128,6 @@ stages:
       versionsRepoRef: ${{ parameters.versionsRepoRef }}
       customInitSteps: ${{ parameters.customInitSteps }}
       customBuildInitSteps: ${{ parameters.customBuildInitSteps }}
-      customPreImageBuilderBuildSteps: ${{ parameters.customPreImageBuilderBuildSteps }}
       noCache: ${{ parameters.noCache }}
       publishConfig: ${{ parameters.publishConfig }}
       internalProjectName: ${{ parameters.internalProjectName }}
@@ -147,7 +143,6 @@ stages:
       versionsRepoRef: ${{ parameters.versionsRepoRef }}
       customInitSteps: ${{ parameters.customInitSteps }}
       customBuildInitSteps: ${{ parameters.customBuildInitSteps }}
-      customPreImageBuilderBuildSteps: ${{ parameters.customPreImageBuilderBuildSteps }}
       noCache: ${{ parameters.noCache }}
       publishConfig: ${{ parameters.publishConfig }}
       internalProjectName: ${{ parameters.internalProjectName }}
@@ -163,7 +158,6 @@ stages:
       versionsRepoRef: ${{ parameters.versionsRepoRef }}
       customInitSteps: ${{ parameters.customInitSteps }}
       customBuildInitSteps: ${{ parameters.customBuildInitSteps }}
-      customPreImageBuilderBuildSteps: ${{ parameters.customPreImageBuilderBuildSteps }}
       noCache: ${{ parameters.noCache }}
       publishConfig: ${{ parameters.publishConfig }}
       internalProjectName: ${{ parameters.internalProjectName }}
@@ -179,7 +173,6 @@ stages:
       versionsRepoRef: ${{ parameters.versionsRepoRef }}
       customInitSteps: ${{ parameters.customInitSteps }}
       customBuildInitSteps: ${{ parameters.customBuildInitSteps }}
-      customPreImageBuilderBuildSteps: ${{ parameters.customPreImageBuilderBuildSteps }}
       noCache: ${{ parameters.noCache }}
       publishConfig: ${{ parameters.publishConfig }}
       internalProjectName: ${{ parameters.internalProjectName }}
@@ -195,7 +188,6 @@ stages:
       versionsRepoRef: ${{ parameters.versionsRepoRef }}
       customInitSteps: ${{ parameters.customInitSteps }}
       customBuildInitSteps: ${{ parameters.customBuildInitSteps }}
-      customPreImageBuilderBuildSteps: ${{ parameters.customPreImageBuilderBuildSteps }}
       noCache: ${{ parameters.noCache }}
       publishConfig: ${{ parameters.publishConfig }}
       internalProjectName: ${{ parameters.internalProjectName }}
@@ -211,7 +203,6 @@ stages:
       versionsRepoRef: ${{ parameters.versionsRepoRef }}
       customInitSteps: ${{ parameters.customInitSteps }}
       customBuildInitSteps: ${{ parameters.customBuildInitSteps }}
-      customPreImageBuilderBuildSteps: ${{ parameters.customPreImageBuilderBuildSteps }}
       noCache: ${{ parameters.noCache }}
       publishConfig: ${{ parameters.publishConfig }}
       internalProjectName: ${{ parameters.internalProjectName }}
