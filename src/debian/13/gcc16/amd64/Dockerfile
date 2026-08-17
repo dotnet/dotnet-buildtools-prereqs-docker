@@ -1,6 +1,6 @@
 FROM library/gcc:16-trixie
 
-ENV POWERSHELL_VERSION=7.6.4
+ENV POWERSHELL_VERSION=7.6.5
 
 # Use Azure-hosted Debian mirror (required in network-restricted Azure build environments)
 RUN find /etc/apt -maxdepth 2 \( -name "*.list" -o -name "*.sources" \) \
