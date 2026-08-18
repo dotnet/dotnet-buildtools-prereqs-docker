@@ -1,4 +1,4 @@
-FROM mcr.microsoft.com/dotnet/runtime-deps:10.0-azurelinux3.0
+FROM mcr.microsoft.com/dotnet/runtime-deps:11.0-preview-azurelinux3.0
 
 RUN tdnf update -y && \
     tdnf install -y \
