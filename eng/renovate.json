@@ -97,9 +97,58 @@
       "depNameTemplate": "Microsoft.AITools.BinlogMcp",
       "datasourceTemplate": "nuget",
       "registryUrlTemplate": "https://pkgs.dev.azure.com/dnceng/public/_packaging/dotnet-public/nuget/v3/index.json"
+    },
+    {
+      "description": "Updates .NET SDK preview image tags in manifest build arguments",
+      "customType": "regex",
+      "managerFilePatterns": [
+        "src/**/manifest.json"
+      ],
+      "matchStrings": [
+        "\"(?:DOTNET_VERSION|DOTNET_SDK_TAG)\":\\s*\"(?<currentValue>\\d+\\.0-preview)\""
+      ],
+      "depNameTemplate": "mcr.microsoft.com/dotnet/sdk",
+      "datasourceTemplate": "docker"
+    },
+    {
+      "description": "Updates .NET preview image tags in Dockerfiles",
+      "customType": "regex",
+      "managerFilePatterns": [
+        "/(^|/)Dockerfile$/"
+      ],
+      "matchStrings": [
+        "FROM (?<depName>mcr\\.microsoft\\.com/dotnet/[^:\\s]+):(?<currentValue>\\d+\\.0-preview(?:-[A-Za-z0-9._-]+)?)"
+      ],
+      "datasourceTemplate": "docker"
     }
   ],
   "packageRules": [
+    {
+      "description": "Promote .NET preview image tags to stable tags",
+      "matchDatasources": [
+        "docker"
+      ],
+      "matchPackageNames": [
+        "mcr.microsoft.com/dotnet/**"
+      ],
+      "matchCurrentVersion": "/^\\d+\\.0-preview(?:-.+)?$/",
+      "versioning": "regex:^(?<major>\\d+)\\.(?<minor>\\d+)(?:\\.(?<patch>\\d+))?(?:-(?<prerelease>preview))?(?:-(?<compatibility>.+))?$",
+      "allowedVersions": "/^\\d+\\.0(?:-.+)?$/"
+    },
+    {
+      "description": "Keep .NET preview image promotion on the current major version",
+      "matchDatasources": [
+        "docker"
+      ],
+      "matchPackageNames": [
+        "mcr.microsoft.com/dotnet/**"
+      ],
+      "matchCurrentVersion": "/^\\d+\\.0-preview(?:-.+)?$/",
+      "matchUpdateTypes": [
+        "major"
+      ],
+      "enabled": false
+    },
     {
       "description": "Only allow minor/patch updates for LLVM to stay on the respective major version",
       "matchDepNames": [
