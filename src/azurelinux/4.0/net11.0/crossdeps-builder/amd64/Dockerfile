@@ -1,4 +1,4 @@
-FROM mcr.microsoft.com/dotnet-buildtools/prereqs:azurelinux-common-crossdeps-assets AS crossdeps-assets
+FROM --platform=linux/amd64 mcr.microsoft.com/dotnet-buildtools/prereqs:azurelinux-common-crossdeps-assets-amd64 AS crossdeps-assets
 
 FROM mcr.microsoft.com/azurelinux-beta/base/core:4.0
 

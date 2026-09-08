@@ -7,25 +7,13 @@
       "name": "dotnet-buildtools/prereqs",
       "images": [
         {
-          "sharedTags": {
-            "azurelinux-common-crossdeps-assets": {}
-          },
           "platforms": [
             {
-              "dockerfile": "src/azurelinux/common/crossdeps-assets",
+              "dockerfile": "src/azurelinux/common/crossdeps-assets/amd64",
               "os": "linux",
               "osVersion": "azurelinux3.0",
               "tags": {
                 "azurelinux-common-crossdeps-assets-amd64": {}
-              }
-            },
-            {
-              "architecture": "arm64",
-              "dockerfile": "src/azurelinux/common/crossdeps-assets",
-              "os": "linux",
-              "osVersion": "azurelinux3.0",
-              "tags": {
-                "azurelinux-common-crossdeps-assets-arm64": {}
               }
             }
           ]

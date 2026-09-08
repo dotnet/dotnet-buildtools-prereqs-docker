@@ -1,5 +1,5 @@
 setup-Alpine.sh eol=lf
-src/azurelinux/common/crossdeps-assets/*.asc eol=lf
+src/azurelinux/common/crossdeps-assets/**/*.asc eol=lf
 
 # Arcade eng/common scripts must retain LF line endings for Linux/macOS
 eng/common/**/*.sh eol=lf
