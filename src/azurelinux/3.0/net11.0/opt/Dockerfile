@@ -1,3 +1,5 @@
+FROM mcr.microsoft.com/dotnet-buildtools/prereqs:azurelinux-common-crossdeps-assets AS crossdeps-assets
+
 FROM mcr.microsoft.com/azurelinux/base/core:3.0 AS builder
 
 RUN tdnf update -y && \
@@ -22,8 +24,8 @@ RUN tdnf update -y && \
 
 # Steps copied (mostly, changed target archs) from crossdeps Dockerfile: https://github.com/dotnet/dotnet-buildtools-prereqs-docker/blob/main/src/azurelinux/3.0/net11.0/crossdeps-builder/amd64/Dockerfile
 # 1. Obtain signing keys used to sign llvm sources
-RUN wget https://releases.llvm.org/release-keys.asc && \
-    echo "f38bd19b7f2d22cafa755841e6ce9375b9a2e6d41f7b974e4953d6b084839001 release-keys.asc" | sha256sum -c && \
+COPY --from=crossdeps-assets /release-keys.asc .
+RUN echo "f38bd19b7f2d22cafa755841e6ce9375b9a2e6d41f7b974e4953d6b084839001 release-keys.asc" | sha256sum -c && \
     gpg --import release-keys.asc && \
     rm release-keys.asc && \
 # 2. Download llvm sources and signature, and verify signature

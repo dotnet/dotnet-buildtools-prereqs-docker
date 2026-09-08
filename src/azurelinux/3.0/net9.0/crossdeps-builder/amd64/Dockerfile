@@ -1,3 +1,5 @@
+FROM mcr.microsoft.com/dotnet-buildtools/prereqs:azurelinux-common-crossdeps-assets AS crossdeps-assets
+
 FROM mcr.microsoft.com/azurelinux/base/core:3.0
 
 ARG PIP_INDEX_URL
@@ -78,8 +80,8 @@ RUN gpg --import dimitri_john_ledkov.asc && \
     rm -r ubuntu-keyring
 
 # Obtain signing keys used to sign llvm sources
-RUN wget https://releases.llvm.org/release-keys.asc && \
-    echo "f38bd19b7f2d22cafa755841e6ce9375b9a2e6d41f7b974e4953d6b084839001 release-keys.asc" | sha256sum -c && \
+COPY --from=crossdeps-assets /release-keys.asc .
+RUN echo "f38bd19b7f2d22cafa755841e6ce9375b9a2e6d41f7b974e4953d6b084839001 release-keys.asc" | sha256sum -c && \
     gpg --import release-keys.asc && \
     rm release-keys.asc
 
@@ -117,6 +119,33 @@ ENV PATH="/opt/llvm/bin:$PATH"
 
 # Copy arcade scripts used to build rootfs
 COPY eng/common/cross/ /scripts/eng/common/cross/
+
+# Acquire apk.static from the Alpine package repository instead of GitLab.
+RUN python3 - <<'PY'
+from pathlib import Path
+
+path = Path("/scripts/eng/common/cross/build-rootfs.sh")
+text = path.read_text()
+replacements = {
+    "__ApkToolsVersion=2.12.11": "__ApkToolsVersion=2.14.4-r1",
+    'wget -P "$__ApkToolsDir" "https://gitlab.alpinelinux.org/api/v4/projects/5/packages/generic/v$__ApkToolsVersion/$arch/apk.static"':
+        'wget -O "$__ApkToolsDir/apk-tools-static.apk" "https://dl-cdn.alpinelinux.org/alpine/v3.20/main/$arch/apk-tools-static-$__ApkToolsVersion.apk"',
+    'curl -SLO --create-dirs --output-dir "$__ApkToolsDir" "https://gitlab.alpinelinux.org/api/v4/projects/5/packages/generic/v$__ApkToolsVersion/$arch/apk.static"':
+        'curl -SL -o "$__ApkToolsDir/apk-tools-static.apk" "https://dl-cdn.alpinelinux.org/alpine/v3.20/main/$arch/apk-tools-static-$__ApkToolsVersion.apk"',
+    '__ApkToolsSHA512SUM="53e57b49230da07ef44ee0765b9592580308c407a8d4da7125550957bb72cb59638e04f8892a18b584451c8d841d1c7cb0f0ab680cc323a3015776affaa3be33"':
+        '__ApkToolsSHA512SUM="b1b3cc382aa0ec26a2c24b742701a1f9885d0678365f9aea15d3d005926b06ecc802659cec8a7deba2717af99c19c708a17c23e1f0f07742268ee5be5400eb9e"',
+    '__ApkToolsSHA512SUM="9e2b37ecb2b56c05dad23d379be84fd494c14bd730b620d0d576bda760588e1f2f59a7fcb2f2080577e0085f23a0ca8eadd993b4e61c2ab29549fdb71969afd0"':
+        '__ApkToolsSHA512SUM="61f9a636c5ac4e96e7a3f69fd65e60fc57b3ec8b23619c4df86f59b89e71d1309b3e406388945bdf0dd9168dac22df376943a70ff3efa179e5687e586f825fb0"',
+    'echo "$__ApkToolsSHA512SUM $__ApkToolsDir/apk.static" | sha512sum -c':
+        'echo "$__ApkToolsSHA512SUM $__ApkToolsDir/apk-tools-static.apk" | sha512sum -c\n'
+        '    tar -xzf "$__ApkToolsDir/apk-tools-static.apk" -C "$__ApkToolsDir" --strip-components=1 sbin/apk.static',
+}
+for old, new in replacements.items():
+    if old not in text:
+        raise RuntimeError(f"Expected Arcade rootfs fragment not found: {old}")
+    text = text.replace(old, new)
+path.write_text(text)
+PY
 
 # Clear PIP_INDEX_URL since it contains a short-lived token that should not persist in the final image
 ENV PIP_INDEX_URL=
