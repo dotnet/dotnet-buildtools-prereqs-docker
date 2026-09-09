@@ -1,6 +1,6 @@
 ---
 name: fix-prereqs-build
-description: Diagnose and fix failures in the dotnet-buildtools-prereqs-docker Azure DevOps image build, push the fix to an Azure DevOps branch, and validate it with the unofficial test pipeline. Use when asked to investigate or repair pipeline 1183, a failed prereqs Docker image build, or a network-isolation failure in this repository.
+description: Diagnose and fix failures in the dotnet-buildtools-prereqs-docker Azure DevOps image build, validate the fix with the unofficial test pipeline, and open the appropriate GitHub pull request after the Build stage succeeds. Use when asked to investigate or repair pipeline 1183, a failed prereqs Docker image build, or a network-isolation failure in this repository.
 ---
 
 # Fix the prereqs Docker image build
@@ -16,7 +16,7 @@ Before doing anything else, verify that a WorkIQ MCP tool is available. The exac
 - If WorkIQ is available, continue.
 - If WorkIQ is unavailable, stop and tell the user to rerun the skill from Agency Copilot. Do not substitute a public web search or a cached endpoint list.
 
-Invocation of this skill authorizes creating a branch, committing the focused fix, pushing it to Azure DevOps, and queueing the test pipeline. Do not ask for an additional confirmation for those actions. Never force-push.
+Invocation of this skill authorizes creating a branch, committing the focused fix, pushing it to Azure DevOps and GitHub, queueing the test pipeline, and opening the appropriate GitHub pull request after the Build stage succeeds. If the root cause is in Arcade-owned content, it also authorizes opening a focused `dotnet/arcade` pull request. Do not ask for an additional confirmation for those actions. Never force-push.
 
 ## Fixed pipeline and repository information
 
@@ -33,6 +33,8 @@ Invocation of this skill authorizes creating a branch, committing the focused fi
   - Explicitly applies `Permissive,CFSClean,CFSClean2,CFSClean3`.
   - When `noCache` is enabled, `imageBuilder.pathArgs` must select the affected images so the pipeline does not rebuild the entire repository.
 - **Azure DevOps repository URL:** `https://dnceng@dev.azure.com/dnceng/internal/_git/dotnet-dotnet-buildtools-prereqs-docker`
+- **GitHub repository:** `dotnet/dotnet-buildtools-prereqs-docker`
+- **Arcade repository:** `dotnet/arcade`
 - **Local image build:** `.\build.ps1 -Paths "<image-path-pattern>"`
 - **Azure DevOps REST helpers:** `eng\docker-tools\skill-helpers\`
 
@@ -42,10 +44,21 @@ The centrally applied network policy can be stricter than the policy visible in 
 
 1. Work from the repository root.
 2. Run `git status --short` before changing branches or files. Do not discard, overwrite, commit, or push unrelated user changes. If the worktree is not clean and the changes would interfere with this workflow, stop and ask the user how to proceed.
-3. Do not edit files under `eng\common`; they are synchronized from Arcade and local edits will be overwritten.
+3. Do not make the final fix in files under `eng\common`; they are synchronized from `dotnet/arcade` and local edits will be overwritten. Follow the Arcade-owned changes workflow below.
 4. Keep the fix limited to the failed image's Dockerfile, directly invoked scripts, and related manifest/configuration files.
 5. Do not change code merely to trigger a rebuild. Establish an actionable repository cause first.
 6. Never add credentials, access tokens, authenticated feed URLs containing secrets, or pipeline log secrets to the repository.
+
+## Arcade-owned changes
+
+Everything under `eng\common` is sourced from [`dotnet/arcade`](https://github.com/dotnet/arcade). When the root cause is in an `eng\common` file:
+
+1. Locate the authoritative source file and relevant tests in `dotnet/arcade`.
+2. Make the root-cause fix in an Arcade branch and open a focused pull request against `dotnet/arcade`.
+3. Reference the failing prereqs build and explain which downstream image paths are affected.
+4. A temporary downstream workaround may be committed to a validation-only branch in this repository when needed to prove the behavior under the prereqs pipeline's Network Isolation policies. Keep it clearly temporary and do not submit it as the final product fix.
+5. After the Arcade pull request merges, let the normal Arcade dependency flow bring the change into this repository. Validate the flowed change with pipeline `1529`.
+6. Do not replace an Arcade-owned fix with a permanent Dockerfile transformation, duplicated script, or direct `eng\common` edit in the final prereqs pull request. If the Arcade change cannot be merged or flowed, report the Arcade pull request and flow as the remaining blocker.
 
 ## Authenticate and configure the Azure DevOps remote
 
@@ -313,6 +326,23 @@ Monitor the queued run until its **Build** stage completes. The overall pipeline
 - Continue fixing, pushing, queueing a new targeted no-cache run, and waiting for its Build stage while the failure is actionable and related to the change.
 - Stop only when the Build stage succeeds or when a clear external blocker requires user or service-owner action.
 
+## Open the GitHub pull request
+
+After the targeted **Build** stage succeeds:
+
+1. Determine which repository owns the final fix:
+   - For normal prereqs-owned changes, push the validated branch to the GitHub `origin` remote and open a pull request targeting `main` in `dotnet/dotnet-buildtools-prereqs-docker`.
+   - For an Arcade-owned change, open or update the pull request in `dotnet/arcade`. Do not open a prereqs pull request containing a permanent workaround for the Arcade-owned file. After the Arcade change flows into this repository, use the generated flow pull request or open a prereqs pull request containing only the flowed change if automation did not create one.
+2. Use `gh pr list` to check whether a pull request already exists for the branch. Update the existing pull request rather than creating a duplicate.
+3. Include:
+   - the production build ID and URL
+   - the causal failure and affected image paths
+   - the source repository for the fix
+   - the test pipeline ID and URL
+   - the successful **Build** stage result
+   - a note that later stages were intentionally ignored
+4. Verify the pull request targets the correct default branch and report its URL. Do not stop after a green Azure DevOps build with only an unreviewed branch.
+
 ## Final report
 
 Report:
@@ -323,5 +353,7 @@ Report:
 - files changed
 - Azure DevOps branch and commit
 - test pipeline build ID and URL, plus the **Build stage** result
+- GitHub pull request URL
+- Arcade pull request and dependency-flow status when `eng\common` owns the fix
 - note that later stage results were intentionally ignored
 - any remaining blocker or follow-up required
