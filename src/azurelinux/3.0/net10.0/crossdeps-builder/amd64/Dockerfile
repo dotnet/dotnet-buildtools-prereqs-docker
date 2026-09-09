@@ -1,5 +1,3 @@
-FROM mcr.microsoft.com/dotnet-buildtools/prereqs:azurelinux-common-crossdeps-assets-amd64 AS crossdeps-assets
-
 FROM mcr.microsoft.com/azurelinux/base/core:3.0
 
 ARG PIP_INDEX_URL
@@ -96,8 +94,8 @@ RUN wget https://netcorenativeassets.blob.core.windows.net/resource-packages/ext
     rm -r debian-keyring
 
 # Obtain signing keys used to sign llvm sources
-COPY --from=crossdeps-assets /release-keys.asc .
-RUN echo "f38bd19b7f2d22cafa755841e6ce9375b9a2e6d41f7b974e4953d6b084839001 release-keys.asc" | sha256sum -c && \
+COPY release-keys.asc .
+RUN echo "29e76f29dc1894b8f7d494ed74b3aef1509bc757888a39b50bf069240979dba9 release-keys.asc" | sha256sum -c && \
     gpg --import release-keys.asc && \
     rm release-keys.asc
 
