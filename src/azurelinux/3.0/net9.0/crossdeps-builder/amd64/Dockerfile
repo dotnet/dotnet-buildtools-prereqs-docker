@@ -78,9 +78,9 @@ RUN gpg --import dimitri_john_ledkov.asc && \
     rm -r ubuntu-keyring
 
 # Obtain signing keys used to sign llvm sources
-RUN wget https://releases.llvm.org/release-keys.asc && \
-    echo "f38bd19b7f2d22cafa755841e6ce9375b9a2e6d41f7b974e4953d6b084839001 release-keys.asc" | sha256sum -c && \
-    gpg --import release-keys.asc && \
+COPY release-keys.asc .
+RUN echo "29e76f29dc1894b8f7d494ed74b3aef1509bc757888a39b50bf069240979dba9 release-keys.asc" | sha256sum -c && \
+    gpg --batch --dearmor --output llvm-release-keyring.gpg release-keys.asc && \
     rm release-keys.asc
 
 RUN \
@@ -90,8 +90,8 @@ RUN \
     echo "f8875c5b5e01ce4a672ce48fd1559764cc91e037fa35203dbceaadeb5ad51978 llvm-project.src.tar.xz.sig" | sha256sum -c && \
     wget -O llvm-project.src.tar.xz https://github.com/llvm/llvm-project/releases/download/llvmorg-${LLVM_VERSION}/llvm-project-${LLVM_VERSION}.src.tar.xz && \
     echo "0b58557a6d32ceee97c8d533a59b9212d87e0fc4d2833924eb6c611247db2f2a llvm-project.src.tar.xz" | sha256sum -c && \
-    gpg --verify llvm-project.src.tar.xz.sig && \
-    rm llvm-project.src.tar.xz.sig && \
+    gpgv --keyring ./llvm-release-keyring.gpg llvm-project.src.tar.xz.sig llvm-project.src.tar.xz && \
+    rm llvm-project.src.tar.xz.sig llvm-release-keyring.gpg && \
     # Build LLVM cross-toolchain (with support for targeting x86/x64, arm64, arm, s390x and ppc64le architectures)
     mkdir llvm-project.src && \
     tar -xf llvm-project.src.tar.xz --directory llvm-project.src --strip-components=1 && \
