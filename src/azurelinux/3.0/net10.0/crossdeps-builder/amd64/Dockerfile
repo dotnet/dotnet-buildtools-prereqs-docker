@@ -134,12 +134,5 @@ ENV PATH="/opt/llvm/bin:$PATH"
 # Copy arcade scripts used to build rootfs
 COPY eng/common/cross/ /scripts/eng/common/cross/
 
-# Acquire apk.static from the Alpine package repository instead of GitLab.
-RUN wget -O /tmp/apk-tools-static.apk https://dl-cdn.alpinelinux.org/alpine/v3.20/main/x86_64/apk-tools-static-2.14.4-r1.apk && \
-    echo "b1b3cc382aa0ec26a2c24b742701a1f9885d0678365f9aea15d3d005926b06ecc802659cec8a7deba2717af99c19c708a17c23e1f0f07742268ee5be5400eb9e /tmp/apk-tools-static.apk" | sha512sum -c && \
-    tar -xzf /tmp/apk-tools-static.apk -C /scripts --strip-components=1 sbin/apk.static && \
-    rm /tmp/apk-tools-static.apk && \
-    chmod +x /scripts/apk.static
-
 # Clear PIP_INDEX_URL since it contains a short-lived token that should not persist in the final image
 ENV PIP_INDEX_URL=
