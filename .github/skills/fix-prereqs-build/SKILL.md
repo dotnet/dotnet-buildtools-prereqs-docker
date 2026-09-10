@@ -44,7 +44,7 @@ The centrally applied network policy can be stricter than the policy visible in 
 
 1. Work from the repository root.
 2. Run `git status --short` before changing branches or files. Do not discard, overwrite, commit, or push unrelated user changes. If the worktree is not clean and the changes would interfere with this workflow, stop and ask the user how to proceed.
-3. Do not make the final fix in files under `eng\common`; they are synchronized from `dotnet/arcade` and local edits will be overwritten. Follow the Arcade-owned changes workflow below.
+3. Do not make the final product fix in files under `eng\common`; they are synchronized from `dotnet/arcade` and local edits will be overwritten. A direct temporary edit is allowed for downstream validation as described in the Arcade-owned changes workflow below.
 4. Keep the fix limited to the failed image's Dockerfile, directly invoked scripts, and related manifest/configuration files.
 5. Do not change code merely to trigger a rebuild. Establish an actionable repository cause first.
 6. Never add credentials, access tokens, authenticated feed URLs containing secrets, or pipeline log secrets to the repository.
@@ -53,12 +53,14 @@ The centrally applied network policy can be stricter than the policy visible in 
 
 Everything under `eng\common` is sourced from [`dotnet/arcade`](https://github.com/dotnet/arcade). When the root cause is in an `eng\common` file:
 
-1. Locate the authoritative source file and relevant tests in `dotnet/arcade`.
-2. Make the root-cause fix in an Arcade branch and open a focused pull request against `dotnet/arcade`.
-3. Reference the failing prereqs build and explain which downstream image paths are affected.
-4. A temporary downstream workaround may be committed to a validation-only branch in this repository when needed to prove the behavior under the prereqs pipeline's Network Isolation policies. Keep it clearly temporary and do not submit it as the final product fix.
-5. After the Arcade pull request merges, let the normal Arcade dependency flow bring the change into this repository. Validate the flowed change with pipeline `1529`.
-6. Do not replace an Arcade-owned fix with a permanent Dockerfile transformation, duplicated script, or direct `eng\common` edit in the final prereqs pull request. If the Arcade change cannot be merged or flowed, report the Arcade pull request and flow as the remaining blocker.
+1. Locate the synchronized file in this repository, then locate its authoritative source and relevant tests in `dotnet/arcade`.
+2. For the initial prereqs-specific validation, make the root-cause change directly in the synchronized `eng\common` file on a clearly temporary validation branch. This produces a reviewable source diff and exercises the same script that will eventually flow from Arcade.
+3. Prefer that direct temporary edit over rewriting the staged script from a Dockerfile, embedding a textual replacement, or duplicating the Arcade script. Runtime transformations are brittle, obscure the real source change, and make the validated code differ from the eventual Arcade fix.
+4. Build locally, push the temporary branch to Azure DevOps, and validate the affected images with pipeline `1529` under Network Isolation.
+5. After the downstream behavior is proven, apply or backport the validated change to the authoritative Arcade file, add or update Arcade tests, and open a focused pull request against `dotnet/arcade`. Reference the failing prereqs build and explain which downstream image paths are affected.
+6. Keep the direct downstream `eng\common` edit validation-only. Do not submit it as the final product fix or rely on it surviving dependency flow.
+7. After the Arcade pull request merges, let the normal Arcade dependency flow bring the change into this repository. Remove any temporary downstream workaround, validate the flowed change with pipeline `1529`, and only then open or update the final prereqs pull request.
+8. If the Arcade change cannot be merged or flowed, report the Arcade pull request and dependency flow as the remaining blocker. Do not replace it with a permanent Dockerfile transformation, duplicated script, or direct `eng\common` edit.
 
 ## Authenticate and configure the Azure DevOps remote
 
