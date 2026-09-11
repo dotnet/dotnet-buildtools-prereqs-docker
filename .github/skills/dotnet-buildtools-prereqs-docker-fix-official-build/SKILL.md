@@ -1,5 +1,5 @@
 ---
-name: fix-prereqs-build
+name: dotnet-buildtools-prereqs-docker-fix-official-build
 description: Diagnose and fix failures in the dotnet-buildtools-prereqs-docker Azure DevOps image build, validate the fix with the unofficial test pipeline, and open the appropriate GitHub pull request after the Build stage succeeds. Use when asked to investigate or repair pipeline 1183, a failed prereqs Docker image build, or a network-isolation failure in this repository.
 ---
 
