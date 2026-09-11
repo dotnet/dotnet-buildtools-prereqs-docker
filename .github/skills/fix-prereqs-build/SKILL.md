@@ -148,6 +148,8 @@ The relevant policy families are `CFSClean`, `CFSClean2`, and `CFSClean3`. Commo
 
 Keep policy classification separate from endpoint availability. A hostname can be absent from the flagged list and explicitly covered by an effective allow rule, yet still time out because the origin service or a CDN edge is unavailable. Conversely, an empty violation report alone does not establish that Network Isolation was uninvolved. Use the flagged list, effective allow/deny rules, connection telemetry, retry history, nearby selected-image runs, and local reproduction together.
 
+Treat package CDN and mirror redirectors as multi-host dependencies. Inspect HTTP redirects and verbose package-manager output for downstream mirror hostnames rather than assuming that allowing the repository URL covers package downloads. For openSUSE, `cdn.opensuse.org` can redirect RPM requests to dynamically selected public mirrors, and disabling libzypp GeoIP mirror selection does not prevent the CDN's HTTP redirects. Do not replace it with a non-redirecting backend such as `downloadcontent.opensuse.org` unless current internal guidance explicitly approves that hostname; local reachability and upstream ownership are not sufficient under Default Deny.
+
 When a flagged endpoint is causal:
 
 - Prefer an existing trusted source already used in this repository.
