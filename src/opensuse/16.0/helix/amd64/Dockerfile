@@ -5,7 +5,8 @@ ENV PIP_INDEX_URL=${PIP_INDEX_URL}
 ARG HELIX_FEED
 
 # Install Helix Dependencies
-RUN zypper ref \
+RUN sed -i 's|http://cdn.opensuse.org|https://cdn.opensuse.org|g' /etc/zypp/repos.d/*.repo \
+    && zypper ref \
     && zypper update -y \
     && zypper install -y \
         wget \
