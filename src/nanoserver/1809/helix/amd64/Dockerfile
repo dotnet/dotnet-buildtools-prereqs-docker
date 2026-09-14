@@ -1,7 +1,7 @@
 # escape=`
 FROM mcr.microsoft.com/windows/servercore:ltsc2019 AS installer
 
-ENV POWERSHELL_VERSION=7.6.5
+ENV POWERSHELL_VERSION=7.6.6
 
 SHELL ["powershell", "-Command", "$ErrorActionPreference = 'Stop'; $ProgressPreference = 'SilentlyContinue';"]
 
