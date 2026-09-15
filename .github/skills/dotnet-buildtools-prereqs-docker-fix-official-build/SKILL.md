@@ -16,7 +16,8 @@ Before doing anything else, verify that a WorkIQ MCP tool is available. The exac
 - If WorkIQ is available, continue.
 - If WorkIQ is unavailable, stop and tell the user to rerun the skill from Agency Copilot. Do not substitute a public web search or a cached endpoint list.
 
-Invocation of this skill authorizes creating a branch, committing the focused fix, pushing it to Azure DevOps and GitHub, queueing the test pipeline, and opening the appropriate GitHub pull request after the Build stage succeeds. If the root cause is in Arcade-owned content, it also authorizes opening a focused `dotnet/arcade` pull request. Do not ask for an additional confirmation for those actions. Never force-push.
+Invocation of this skill authorizes creating a branch, committing the focused fix, pushing it to Azure DevOps and GitHub, queueing the test pipeline, and opening the appropriate GitHub pull request after the Build stage succeeds. If the root cause is in Arcade-owned content, it also authorizes opening a focused `dotnet/arcade` pull request.
+Do not ask for an additional confirmation for those actions. Never force-push.
 
 ## Fixed pipeline and repository information
 
@@ -125,18 +126,21 @@ Extract and record:
 - the earliest causal error, not only Image Builder's final exception
 - any hostname involved in a timeout, DNS failure, refused connection, HTTP failure, or package restore failure
 
-Do not assume every timeout or Docker build error is network isolation. Compare nearby runs, especially runs of the same `sourceVersion`. When using older runs as evidence, inspect their generated matrix or timeline and count only runs where the affected image was actually selected. A successful run that trimmed or skipped the unchanged image says nothing about that image's health. If the same commit alternates between selected-image success and failure, investigate transient infrastructure, base-image, registry, CDN, or architecture issues before editing. Errors such as `exec: "/bin/sh": stat /bin/sh: no such file or directory` across otherwise unrelated Dockerfiles usually point to a bad/transient base-image or registry response rather than a blocked package endpoint.
+Do not assume every timeout or Docker build error is network isolation. Compare nearby runs, especially runs of the same `sourceVersion`. When using older runs as evidence, inspect their generated matrix or timeline and count only runs where the affected image was actually selected. A successful run that trimmed or skipped the unchanged image says nothing about that image's health.
+If the same commit alternates between selected-image success and failure, investigate transient infrastructure, base-image, registry, CDN, or architecture issues before editing. Errors such as `exec: "/bin/sh": stat /bin/sh: no such file or directory` across otherwise unrelated Dockerfiles usually point to a bad/transient base-image or registry response rather than a blocked package endpoint.
 
 Do not classify a failure as transient merely because an older run of the same commit succeeded. If two or more recent runs fail with the same causal error, treat the failure as persistent until current evidence proves otherwise. Investigate and reproduce it locally before queueing another pipeline run.
 
-Inspect whether Image Builder retried the Docker build. Count distinct `docker build` invocations and their timestamps rather than repeated BuildKit error summaries, which may duplicate an attempt's output near the end of the log. A job that exhausted several retries over many minutes is stronger evidence of an endpoint outage during that run than a single failed request, but it still does not by itself prove a repository defect.
+Inspect whether Image Builder retried the Docker build. Count distinct `docker build` invocations and their timestamps rather than repeated BuildKit error summaries, which may duplicate an attempt's output near the end of the log.
+A job that exhausted several retries over many minutes is stronger evidence of an endpoint outage during that run than a single failed request, but it still does not by itself prove a repository defect.
 
 ## Diagnose network-isolation failures
 
 For any timeout or failed connection:
 
 1. Extract the exact hostname from the causal log line.
-2. Inspect the run's **Start Network Isolation** and **Stop Network Isolation** tasks. Check **Policy Violations** when present, but treat this output only as supporting evidence. The feature is not reliable enough to prove that no violation occurred: an empty or missing violation report must never rule out network isolation when the causal build log shows a timeout, DNS failure, blocked connection, or other endpoint-access failure.
+2. Inspect the run's **Start Network Isolation** and **Stop Network Isolation** tasks. Check **Policy Violations** when present, but treat this output only as supporting evidence.
+   The feature is not reliable enough to prove that no violation occurred: an empty or missing violation report must never rule out network isolation when the causal build log shows a timeout, DNS failure, blocked connection, or other endpoint-access failure.
 3. Use WorkIQ to open the current authoritative page:
 
    `https://eng.ms/docs/cloud-ai-platform/devdiv/one-engineering-system-1es/1es-build/networkisolation/flagged-endpoints`
@@ -146,9 +150,12 @@ For any timeout or failed connection:
 
 The relevant policy families are `CFSClean`, `CFSClean2`, and `CFSClean3`. Common blocked categories include public NuGet, npm, Yarn, PyPI, Cargo, Maven/Gradle, PowerShell Gallery, Docker Hub/GHCR, SourceForge, Linux package mirrors, general mirrors, and tool download sites.
 
-Keep policy classification separate from endpoint availability. A hostname can be absent from the flagged list and explicitly covered by an effective allow rule, yet still time out because the origin service or a CDN edge is unavailable. Conversely, an empty violation report alone does not establish that Network Isolation was uninvolved. Use the flagged list, effective allow/deny rules, connection telemetry, retry history, nearby selected-image runs, and local reproduction together.
+Keep policy classification separate from endpoint availability. A hostname can be absent from the flagged list and explicitly covered by an effective allow rule, yet still time out because the origin service or a CDN edge is unavailable. Conversely, an empty violation report alone does not establish that Network Isolation was uninvolved.
+Use the flagged list, effective allow/deny rules, connection telemetry, retry history, nearby selected-image runs, and local reproduction together.
 
-Treat package CDN and mirror redirectors as multi-host dependencies. Inspect HTTP redirects and verbose package-manager output for downstream mirror hostnames rather than assuming that allowing the repository URL covers package downloads. For openSUSE, `cdn.opensuse.org` can redirect RPM requests to dynamically selected public mirrors, and disabling libzypp GeoIP mirror selection does not prevent the CDN's HTTP redirects. Do not replace it with a non-redirecting backend such as `downloadcontent.opensuse.org` unless current internal guidance explicitly approves that hostname; local reachability and upstream ownership are not sufficient under Default Deny.
+Treat package CDN and mirror redirectors as multi-host dependencies. Inspect HTTP redirects and verbose package-manager output for downstream mirror hostnames rather than assuming that allowing the repository URL covers package downloads.
+For openSUSE, `cdn.opensuse.org` can redirect RPM requests to dynamically selected public mirrors, and disabling libzypp GeoIP mirror selection does not prevent the CDN's HTTP redirects.
+Do not replace it with a non-redirecting backend such as `downloadcontent.opensuse.org` unless current internal guidance explicitly approves that hostname; local reachability and upstream ownership are not sufficient under Default Deny.
 
 When a flagged endpoint is causal:
 
@@ -196,7 +203,8 @@ Make the smallest root-cause fix. Then:
 
    Inspect the output, not only the PowerShell exit code. Some Image Builder failures can be masked by wrapper scripts. Treat `Unhandled exception`, `ERROR: failed to solve`, or missing expected image selections as a failed dry run.
 
-   The pinned Image Builder may fail a local dry run while determining the architecture of a base image because dry-run mode does not execute the required `docker inspect`. If the output shows that specific architecture-detection failure, do not misclassify it as an image-selection failure or a successful dry run. Confirm the path from the generated command and manifest, inspect the base image architecture directly, and continue to the real repository build.
+   The pinned Image Builder may fail a local dry run while determining the architecture of a base image because dry-run mode does not execute the required `docker inspect`. If the output shows that specific architecture-detection failure, do not misclassify it as an image-selection failure or a successful dry run.
+   Confirm the path from the generated command and manifest, inspect the base image architecture directly, and continue to the real repository build.
 
 3. Build the affected image locally:
 
@@ -214,7 +222,8 @@ Make the smallest root-cause fix. Then:
 
    Never copy an authenticated pipeline URL or token into the command, logs, or repository.
 
-   On some Docker versions, Image Builder may reject an explicitly pulled Docker Hub base because the published reference includes `docker.io/` while the local `RepoDigests` entry omits it. If the failure is specifically this digest-name normalization mismatch, rerun the repository build with `--skip-pulling` after confirming the local tag and digest match the current published digest. Use this only as a local-validation workaround; do not add it to pipeline configuration or use it to bypass a stale base image.
+   On some Docker versions, Image Builder may reject an explicitly pulled Docker Hub base because the published reference includes `docker.io/` while the local `RepoDigests` entry omits it. If the failure is specifically this digest-name normalization mismatch, rerun the repository build with `--skip-pulling` after confirming the local tag and digest match the current published digest.
+   Use this only as a local-validation workaround; do not add it to pipeline configuration or use it to bypass a stale base image.
 
 4. Include dependent image paths when the manifest defines a dependency graph.
 5. Confirm the output lists every expected locally buildable image under `IMAGES BUILT`.
