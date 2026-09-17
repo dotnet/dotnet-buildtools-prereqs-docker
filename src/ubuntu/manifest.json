@@ -253,7 +253,11 @@
               "os": "linux",
               "osVersion": "noble",
               "tags": {
+                "ubuntu-24.04-helix-android-29-amd64": {},
                 "ubuntu-24.04-helix-android-amd64": {}
+              },
+              "buildArgs": {
+                "ANDROID_API_LEVEL": "29"
               }
             }
           ]
