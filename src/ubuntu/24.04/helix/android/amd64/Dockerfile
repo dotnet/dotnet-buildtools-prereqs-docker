@@ -106,19 +106,20 @@ RUN curl "https://netcorenativeassets.blob.core.windows.net/resource-packages/ex
        "platform-tools" \
        "emulator"
 
-# The AVD lives in helixbot home and is created as helixbot, so that the emulator (which runs as
-# helixbot) can write to it and to the snapshot directory underneath it.
-RUN mkdir -p $ANDROID_AVD_HOME && chown -R helixbot:adm /home/helixbot && \
-    sudo -u helixbot sh -c "echo no | $ANDROID_SDK_ROOT/cmdline-tools/cmdline-tools/bin/avdmanager \
+RUN mkdir -p $ANDROID_AVD_HOME && chown -R helixbot:adm /home/helixbot
+
+USER helixbot
+
+# The AVD is created as helixbot, after the switch above, so that the emulator (which runs as that
+# user) can write to it and to the snapshot directory underneath it.
+RUN echo no | $ANDROID_SDK_ROOT/cmdline-tools/cmdline-tools/bin/avdmanager \
        --verbose \
        create avd \
        --force \
        --name ${ANDROID_AVD_NAME} \
-       --package \"system-images;android-${ANDROID_API_LEVEL};${ANDROID_IMAGE_TARGET};${ANDROID_ABI}\"" && \
-    sudo -u helixbot $ANDROID_SDK_ROOT/emulator/mksdcard -l "sdcard64" "3072M" \
-       $ANDROID_AVD_HOME/${ANDROID_AVD_NAME}.avd/sdcard.img
-
-USER helixbot
+       --package "system-images;android-${ANDROID_API_LEVEL};${ANDROID_IMAGE_TARGET};${ANDROID_ABI}" && \
+    $ANDROID_SDK_ROOT/emulator/mksdcard -l "sdcard64" "3072M" \
+       "$ANDROID_AVD_HOME/${ANDROID_AVD_NAME}.avd/sdcard.img"
 
 # Install Helix Dependencies
 ENV VIRTUAL_ENV=/home/helixbot/.vsts-env
