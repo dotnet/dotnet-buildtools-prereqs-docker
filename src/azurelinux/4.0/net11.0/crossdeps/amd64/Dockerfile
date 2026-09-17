@@ -13,6 +13,7 @@ RUN dnf update -y && \
         shadow-utils \
         util-linux \
         pam \
+        sudo \
         wget2-wget \
         # Common runtime build dependencies
         gawk \

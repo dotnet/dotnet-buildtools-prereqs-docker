@@ -64,6 +64,7 @@ RUN dnf update -y && \
         tar \
         util-linux \
         pam \
+        sudo \
         wget2-wget \
         xz \
         shadow-utils \

@@ -14,6 +14,7 @@ RUN dnf update -y && \
         tar \
         # Provides su
         util-linux \
+        pam \
         # Provides sudo
         sudo \
     && dnf clean all \
