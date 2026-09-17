@@ -22,6 +22,8 @@ RUN dnf update -y && \
         tar \
         # Provides 'su', required by Azure DevOps
         util-linux \
+        pam \
+        sudo \
     && dnf clean all
 
 COPY --from=powershell /usr/share/dotnet/LICENSE.txt /usr/share/dotnet/ThirdPartyNotices.txt /usr/share/dotnet/dotnet /usr/share/dotnet/
