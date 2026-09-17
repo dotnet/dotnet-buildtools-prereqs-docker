@@ -33,13 +33,12 @@ ARG PIP_INDEX_URL
 ENV PIP_INDEX_URL=${PIP_INDEX_URL}
 
 # The API level this image tests. Each API level gets its own image tag, so a single Helix queue
-# (Ubuntu.2204.Amd64.Android.Multi.*) can cover every level by selecting the matching image, and
-# each work item gets an isolated emulator instead of a machine-wide shared one.
-# "default;x86_64" system images are published for every level from 21 to 36.
+# can cover every level by selecting the matching image, and each work item gets an isolated
+# emulator instead of a machine-wide shared one.
 ARG ANDROID_API_LEVEL=29
 ARG ANDROID_IMAGE_TARGET=default
 ARG ANDROID_ABI=x86_64
-ARG ANDROID_AVD_NAME=android_emu_86_64
+ARG ANDROID_AVD_NAME=android_emu
 
 RUN apt-get update && \
     apt-get install -qq -y \
@@ -56,7 +55,7 @@ RUN apt-get update && \
         iputils-ping \
         libnuma1 \
         libtool \
-        libicu74 \
+        libicu-dev \
         libunwind8 \
         lldb \
         llvm \
