@@ -160,7 +160,7 @@
       "enabled": false
     },
     {
-      "description": "Allow major LLVM updates in net11.0 directories",
+      "description": "Allow major LLVM updates in net12.0 directories",
       "matchDepNames": [
         "llvm/llvm-project"
       ],
@@ -168,7 +168,7 @@
         "major"
       ],
       "matchFileNames": [
-        "**/net11.0/**"
+        "**/net12.0/**"
       ],
       "enabled": true
     }
