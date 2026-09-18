@@ -45,6 +45,8 @@ RUN dnf update -y \
     && dnf install -y \
         # Common dependencies
         binutils \
+        # provides the en_US.UTF-8 locale; the base image ships glibc-minimal-langpack
+        glibc-langpack-en \
         # Android dependencies
         zip \
         unzip \
