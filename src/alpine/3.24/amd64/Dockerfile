@@ -54,6 +54,7 @@ RUN apk add --upgrade --no-cache \
         python3-dev \
         shadow \
         sudo \
+        tar \
         tzdata \
         userspace-rcu \
         util-linux-dev \
