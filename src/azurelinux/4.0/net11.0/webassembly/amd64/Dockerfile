@@ -9,6 +9,7 @@ RUN dnf update -y \
         nodejs24 \
         nodejs24-npm \
         pigz \
+        libatomic \
         python3 \
         libxml2 \
         unzip \
