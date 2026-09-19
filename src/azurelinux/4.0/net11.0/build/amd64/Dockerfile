@@ -1,9 +1,12 @@
-FROM mcr.microsoft.com/dotnet/sdk:10.0-azurelinux3.0 AS powershell
-ENV POWERSHELL_VERSION=7.6.6
-ARG DOTNET_PUBLIC_FEED=https://pkgs.dev.azure.com/dnceng/public/_packaging/dotnet-public/nuget/v3/index.json
-RUN dotnet tool install --tool-path /powershell --version ${POWERSHELL_VERSION} PowerShell --source ${DOTNET_PUBLIC_FEED}
-
 FROM mcr.microsoft.com/azurelinux-beta/base/core:4.0
+
+# Azure Linux 4.0 has no 'powershell' package (#1646), so PowerShell is installed from the
+# upstream self-contained tarball, the same way the ubuntu, alpine and debian images do it.
+# It has to stay self-contained: a framework-dependent pwsh resolves its runtime from the
+# ambient 'dotnet', and arcade prepends the repo-local SDK to PATH for every step after the
+# build, so pwsh would then fail to start with a major-version mismatch
+# ("You must install or update .NET to run this application").
+ENV POWERSHELL_VERSION=7.6.6
 
 # Install .NET runtime dependencies (inlined from runtime-deps) and build tools
 RUN dnf update -y && \
@@ -14,6 +17,7 @@ RUN dnf update -y && \
         # added to ensure latest patches over the base image
         curl \
         git \
+        gzip \
         icu \
         nodejs24 \
         nodejs24-npm \
@@ -26,13 +30,15 @@ RUN dnf update -y && \
         sudo \
     && dnf clean all
 
-COPY --from=powershell /usr/share/dotnet/LICENSE.txt /usr/share/dotnet/ThirdPartyNotices.txt /usr/share/dotnet/dotnet /usr/share/dotnet/
-COPY --from=powershell /usr/share/dotnet/host /usr/share/dotnet/host
-COPY --from=powershell /usr/share/dotnet/shared /usr/share/dotnet/shared
-COPY --from=powershell /powershell /usr/share/powershell
-RUN ln -s /usr/share/dotnet/dotnet /usr/bin/dotnet && \
-    ln -s /usr/share/powershell/pwsh /usr/bin/pwsh && \
-    ln -sf /usr/bin/node-24 /usr/bin/node && \
+# Install PowerShell
+RUN curl -L https://github.com/PowerShell/PowerShell/releases/download/v${POWERSHELL_VERSION}/powershell-${POWERSHELL_VERSION}-linux-x64.tar.gz -o /tmp/powershell.tar.gz \
+    && mkdir -p /opt/microsoft/powershell \
+    && tar zxf /tmp/powershell.tar.gz -C /opt/microsoft/powershell \
+    && chmod +x /opt/microsoft/powershell/pwsh \
+    && ln -s /opt/microsoft/powershell/pwsh /usr/bin/pwsh \
+    && rm -f /tmp/powershell.tar.gz
+
+RUN ln -sf /usr/bin/node-24 /usr/bin/node && \
     ln -sf /usr/bin/npm-24 /usr/bin/npm
 
 # Registry npm installs pull from; defaults to the Microsoft public npm proxy.
