@@ -52,7 +52,8 @@ RUN ln -s /usr/lib/gcc/$(uname -m)-azurelinux-linux /usr/lib/gcc/$(uname -m)-pc-
     ln -s /usr/include/c++/15/$(uname -m)-azurelinux-linux /usr/include/c++/15/$(uname -m)-pc-linux-gnu;
 
 # Install PowerShell
-RUN wget -O /tmp/powershell.tar.gz https://github.com/PowerShell/PowerShell/releases/download/v${POWERSHELL_VERSION}/powershell-${POWERSHELL_VERSION}-linux-x64.tar.gz \
+RUN wget -O /tmp/powershell.tar.gz "https://github.com/PowerShell/PowerShell/releases/download/v${POWERSHELL_VERSION}/powershell-${POWERSHELL_VERSION}-linux-x64.tar.gz" \
+    && echo "ddbc4a2d113bbd46d283cfedcbcd117a70caefd7673f41f2b4e0000badf103bc  /tmp/powershell.tar.gz" | sha256sum -c - \
     && mkdir -p /opt/microsoft/powershell \
     && tar zxf /tmp/powershell.tar.gz -C /opt/microsoft/powershell \
     && chmod +x /opt/microsoft/powershell/pwsh \
