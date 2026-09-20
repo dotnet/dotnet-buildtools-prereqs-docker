@@ -4,6 +4,10 @@ FROM ubuntu.azurecr.io/ubuntu:24.04
 RUN find /etc/apt -type f \( -name '*.sources' -o -name '*.list' \) -exec sed -i 's|//archive\.ubuntu\.com|//azure.archive.ubuntu.com|g' {} +
 
 ENV POWERSHELL_VERSION=7.6.6
+# SHA256 of powershell-${POWERSHELL_VERSION}-linux-x64.tar.gz
+ENV POWERSHELL_SHA256_X64=ddbc4a2d113bbd46d283cfedcbcd117a70caefd7673f41f2b4e0000badf103bc
+# SHA256 of powershell-${POWERSHELL_VERSION}-linux-arm64.tar.gz
+ENV POWERSHELL_SHA256_ARM64=924829e54c983648f6f1419a2dc7f9433c861b2fb5bd57736ff096c24f133729
 
 # Install the base toolchain we need to build anything (clang, cmake, make and the like)
 # this does not include libraries that we need to compile different projects, we'd like
@@ -84,11 +88,12 @@ RUN apt-get update \
 # Install PowerShell
 RUN ARCH=$(dpkg --print-architecture) \
     && case "$ARCH" in \
-        amd64) ARCH="x64" ;; \
-        arm64) ARCH="arm64" ;; \
+        amd64) ARCH="x64"; SHA256="$POWERSHELL_SHA256_X64" ;; \
+        arm64) ARCH="arm64"; SHA256="$POWERSHELL_SHA256_ARM64" ;; \
         *) echo "Unsupported architecture: $ARCH" && exit 1 ;; \
     esac \
     && curl -L "https://github.com/PowerShell/PowerShell/releases/download/v${POWERSHELL_VERSION}/powershell-${POWERSHELL_VERSION}-linux-${ARCH}.tar.gz" -o /tmp/powershell.tar.gz \
+    && echo "${SHA256}  /tmp/powershell.tar.gz" | sha256sum -c - \
     && mkdir -p /opt/microsoft/powershell \
     && tar zxf /tmp/powershell.tar.gz -C /opt/microsoft/powershell \
     && chmod +x /opt/microsoft/powershell/pwsh \

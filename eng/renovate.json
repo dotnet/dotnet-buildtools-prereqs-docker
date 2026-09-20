@@ -8,7 +8,7 @@
   },
   "customManagers": [
     {
-      "description": "Updates PowerShell version in Dockerfiles",
+      "description": "Updates PowerShell version and checksums (via postUpgradeTasks) in Dockerfiles",
       "customType": "regex",
       "managerFilePatterns": [
         "/(^|/)Dockerfile$/"
@@ -174,7 +174,10 @@
     }
   ],
   "postUpgradeTasks": {
-    "commands": ["bash eng/update-llvm-checksums.sh"],
+    "commands": [
+      "bash eng/update-llvm-checksums.sh",
+      "bash eng/update-powershell-checksums.sh"
+    ],
     "dataFileTemplate": "{{{depName}}}\n{{{packageFile}}}\n{{{newVersion}}}",
     "fileFilters": ["src/**/Dockerfile"]
   }

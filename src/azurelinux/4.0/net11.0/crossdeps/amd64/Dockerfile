@@ -7,11 +7,14 @@ FROM mcr.microsoft.com/azurelinux-beta/base/core:4.0
 # build, so pwsh would then fail to start with a major-version mismatch
 # ("You must install or update .NET to run this application").
 ENV POWERSHELL_VERSION=7.6.6
+# SHA256 of powershell-${POWERSHELL_VERSION}-linux-x64.tar.gz
+ENV POWERSHELL_SHA256=ddbc4a2d113bbd46d283cfedcbcd117a70caefd7673f41f2b4e0000badf103bc
 
 RUN dnf update -y && \
     dnf install -y \
         # Provides 'su', required by Azure DevOps
         ca-certificates \
+        curl \
         git \
         shadow-utils \
         util-linux \
@@ -52,8 +55,8 @@ RUN ln -s /usr/lib/gcc/$(uname -m)-azurelinux-linux /usr/lib/gcc/$(uname -m)-pc-
     ln -s /usr/include/c++/15/$(uname -m)-azurelinux-linux /usr/include/c++/15/$(uname -m)-pc-linux-gnu;
 
 # Install PowerShell
-RUN wget -O /tmp/powershell.tar.gz "https://github.com/PowerShell/PowerShell/releases/download/v${POWERSHELL_VERSION}/powershell-${POWERSHELL_VERSION}-linux-x64.tar.gz" \
-    && echo "ddbc4a2d113bbd46d283cfedcbcd117a70caefd7673f41f2b4e0000badf103bc  /tmp/powershell.tar.gz" | sha256sum -c - \
+RUN curl -L "https://github.com/PowerShell/PowerShell/releases/download/v${POWERSHELL_VERSION}/powershell-${POWERSHELL_VERSION}-linux-x64.tar.gz" -o /tmp/powershell.tar.gz \
+    && echo "${POWERSHELL_SHA256}  /tmp/powershell.tar.gz" | sha256sum -c - \
     && mkdir -p /opt/microsoft/powershell \
     && tar zxf /tmp/powershell.tar.gz -C /opt/microsoft/powershell \
     && chmod +x /opt/microsoft/powershell/pwsh \
