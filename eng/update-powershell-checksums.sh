@@ -54,7 +54,6 @@ fi
 while IFS= read -r match; do
     lineno=${match%%:*}
     asset=${match#*:# SHA256 of }
-    asset=${asset%$''}
     resolved=${asset//'${POWERSHELL_VERSION}'/$version}
 
     checksum=$(printf '%s\n' "$hashes" | awk -v asset="*$resolved" '$2 == asset { print $1 }')
