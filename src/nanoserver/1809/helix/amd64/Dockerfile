@@ -2,10 +2,13 @@
 FROM mcr.microsoft.com/windows/servercore:ltsc2019 AS installer
 
 ENV POWERSHELL_VERSION=7.6.6
+# SHA256 of PowerShell-${POWERSHELL_VERSION}-win-x64.zip
+ENV POWERSHELL_SHA256=02fe458be20493fbdf43f61ea20610b811ee6c738ab1676c61b9cfcd1a33c860
 
 SHELL ["powershell", "-Command", "$ErrorActionPreference = 'Stop'; $ProgressPreference = 'SilentlyContinue';"]
 
 RUN Invoke-WebRequest -Uri "https://github.com/PowerShell/PowerShell/releases/download/v${env:POWERSHELL_VERSION}/PowerShell-${env:POWERSHELL_VERSION}-win-x64.zip" -OutFile C:\powershell.zip; `
+    if ((Get-FileHash -Algorithm SHA256 -Path C:\powershell.zip).Hash -ne $env:POWERSHELL_SHA256) { throw 'PowerShell checksum validation failed' }; `
     Expand-Archive -Path C:\powershell.zip -DestinationPath C:\powershell; `
     Remove-Item -Path C:\powershell.zip
 

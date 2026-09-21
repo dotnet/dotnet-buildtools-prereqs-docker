@@ -1,6 +1,8 @@
 FROM library/gcc:16-trixie
 
 ENV POWERSHELL_VERSION=7.6.6
+# SHA256 of powershell-${POWERSHELL_VERSION}-linux-x64.tar.gz
+ENV POWERSHELL_SHA256=ddbc4a2d113bbd46d283cfedcbcd117a70caefd7673f41f2b4e0000badf103bc
 
 # Use Azure-hosted Debian mirror (required in network-restricted Azure build environments)
 RUN find /etc/apt -maxdepth 2 \( -name "*.list" -o -name "*.sources" \) \
@@ -40,11 +42,13 @@ RUN apt-get update \
     && localedef -i en_US -c -f UTF-8 -A /usr/share/locale/locale.alias en_US.UTF-8
 
 # Install PowerShell
-RUN curl -L https://github.com/PowerShell/PowerShell/releases/download/v${POWERSHELL_VERSION}/powershell_${POWERSHELL_VERSION}-1.deb_amd64.deb -o /tmp/powershell.deb \
-    && dpkg -i /tmp/powershell.deb || true \
-    && apt-get update \
-    && apt-get install -f -y \
-    && rm -rf /tmp/powershell.deb /var/lib/apt/lists/*
+RUN curl -L "https://github.com/PowerShell/PowerShell/releases/download/v${POWERSHELL_VERSION}/powershell-${POWERSHELL_VERSION}-linux-x64.tar.gz" -o /tmp/powershell.tar.gz \
+    && echo "${POWERSHELL_SHA256}  /tmp/powershell.tar.gz" | sha256sum -c - \
+    && mkdir -p /opt/microsoft/powershell \
+    && tar zxf /tmp/powershell.tar.gz -C /opt/microsoft/powershell \
+    && chmod +x /opt/microsoft/powershell/pwsh \
+    && ln -s /opt/microsoft/powershell/pwsh /usr/bin/pwsh \
+    && rm -f /tmp/powershell.tar.gz
 
 ENV LANG=en_US.UTF-8
 

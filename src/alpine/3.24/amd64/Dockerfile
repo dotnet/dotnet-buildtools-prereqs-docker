@@ -4,6 +4,8 @@ ARG PIP_INDEX_URL
 ENV PIP_INDEX_URL=${PIP_INDEX_URL}
 
 ENV POWERSHELL_VERSION=7.6.6
+# SHA256 of powershell-${POWERSHELL_VERSION}-linux-musl-x64.tar.gz
+ENV POWERSHELL_SHA256=9537c256a60c34f6bc2dd60c1c10b31a0c2ef26e96799d066be78325ab4947cc
 
 RUN apk add --upgrade --no-cache \
         # Install .NET and test dependencies
@@ -66,7 +68,8 @@ RUN apk add --upgrade --no-cache \
 
 # Install PowerShell
 RUN apk -X https://dl-cdn.alpinelinux.org/alpine/edge/main add --no-cache lttng-ust \
-    && curl -L https://github.com/PowerShell/PowerShell/releases/download/v${POWERSHELL_VERSION}/powershell-${POWERSHELL_VERSION}-linux-musl-x64.tar.gz -o /tmp/powershell.tar.gz \
+    && curl -L "https://github.com/PowerShell/PowerShell/releases/download/v${POWERSHELL_VERSION}/powershell-${POWERSHELL_VERSION}-linux-musl-x64.tar.gz" -o /tmp/powershell.tar.gz \
+    && echo "${POWERSHELL_SHA256}  /tmp/powershell.tar.gz" | sha256sum -c - \
     && mkdir -p /opt/microsoft/powershell \
     && tar zxf /tmp/powershell.tar.gz -C /opt/microsoft/powershell \
     && chmod +x /opt/microsoft/powershell/pwsh \
