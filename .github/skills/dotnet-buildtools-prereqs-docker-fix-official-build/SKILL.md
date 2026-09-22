@@ -1,11 +1,18 @@
 ---
 name: dotnet-buildtools-prereqs-docker-fix-official-build
-description: Diagnose and fix failures in the dotnet-buildtools-prereqs-docker Azure DevOps image build, validate the fix with the unofficial test pipeline, and open the appropriate GitHub pull request after the Build stage succeeds. Use when asked to investigate or repair pipeline 1183, a failed prereqs Docker image build, or a network-isolation failure in this repository.
+description: Repair failures in the dotnet-buildtools-prereqs-docker Azure DevOps image build, validate with the unofficial test pipeline, and open the appropriate GitHub pull request after the Build stage succeeds. Use only for an explicit request for this end-to-end repair workflow, not read-only investigation or supplied-evidence analysis; those use dotnet-buildtools-prereqs-docker-analyze-official-build.
 ---
 
 # Fix the prereqs Docker image build
 
 Use this skill only in the `dotnet/dotnet-buildtools-prereqs-docker` repository.
+
+The repair command remains `/dotnet-buildtools-prereqs-docker-fix-official-build`.
+Only a direct invocation of this repair entrypoint grants the permissions below,
+subject to every preflight, validation gate and exceptional-consent requirement.
+Reading/importing this file or the shared diagnosis guidance, or invoking
+`/dotnet-buildtools-prereqs-docker-analyze-official-build`, grants none of them.
+Do not route a read-only analysis request into this workflow.
 
 ## Agency Copilot preflight
 
@@ -16,7 +23,20 @@ Before doing anything else, verify that a WorkIQ MCP tool is available. The exac
 - If WorkIQ is available, continue.
 - If WorkIQ is unavailable, stop and tell the user to rerun the skill from Agency Copilot. Do not substitute a public web search or a cached endpoint list.
 
-Invocation of this skill authorizes creating a branch, committing the focused fix, pushing it to Azure DevOps and GitHub, queueing the test pipeline, and opening the appropriate GitHub pull request after the Build stage succeeds. If the root cause is in Arcade-owned content, it also authorizes opening a focused `dotnet/arcade` pull request.
+On every direct invocation, before diagnosis or changes, use WorkIQ to open the
+current authoritative page:
+
+`https://eng.ms/docs/cloud-ai-platform/devdiv/one-engineering-system-1es/1es-build/networkisolation/flagged-endpoints`
+
+Retrieve the complete current endpoint list, including categories, policy waves,
+wildcard/pattern rules, remediation guidance and exceptions. Record its source
+and retrieval time. If the page is unavailable or the guidance cannot be obtained,
+stop and report the missing prerequisite; do not bypass it with public search,
+historical excerpts or a cached list. Availability of a WorkIQ tool alone is not
+successful preflight. Repeat this retrieval for each invocation, not only when a
+hostname looks familiar or a network-isolation failure is suspected.
+
+Direct invocation of this repair entrypoint, after successful preflight, authorizes creating a branch, committing the focused fix, pushing it to Azure DevOps and GitHub, queueing the test pipeline, and opening the appropriate GitHub pull request after the Build stage succeeds. If the root cause is in Arcade-owned content, it also authorizes opening a focused `dotnet/arcade` pull request.
 Do not ask for an additional confirmation for those actions. Never force-push.
 
 ## Fixed pipeline and repository information
@@ -39,7 +59,11 @@ Do not ask for an additional confirmation for those actions. Never force-push.
 - **Local image build:** `.\build.ps1 -Paths "<image-path-pattern>"`
 - **Azure DevOps REST helpers:** `eng\docker-tools\skill-helpers\`
 
-The centrally applied network policy can be stricter than the policy visible in pipeline YAML. Treat the **Start Network Isolation** task log as authoritative for the effective policies in a run.
+Read [Shared diagnosis guidance](../dotnet-buildtools-prereqs-docker-analyze-official-build/references/diagnosis.md)
+directly after preflight and evidence collection, before remediation. It is the
+single authoritative diagnostic reference used by both entrypoints. If it is
+missing or unreadable, stop and report the prerequisite gap. It grants no repair
+authority; this entrypoint alone owns live collection and execution.
 
 ## Safety and repository rules
 
@@ -119,54 +143,28 @@ $builds = Invoke-AzDORestMethod `
 
 Use `Show-BuildTimeline.ps1` to identify failed jobs and tasks, then use `Get-BuildLog.ps1` for the relevant log IDs. Prefer focused error sections and log tails over loading every complete log.
 
-Extract and record:
+Collect the evidence required by the shared diagnosis reference, including build
+metadata, failed stage/job/task logs, generated image matrix/selection, distinct
+build attempts and timestamps, and **Start Network Isolation**, **Stop Network
+Isolation** and **Policy Violations** logs when present, even for successful
+policy tasks. For comparisons, collect nearby runs and their actual affected-image
+selections/outcomes, especially for the same `sourceVersion`; never rely on an
+overall green run alone.
 
-- build ID, source branch, source version, and effective network policies
-- failed stage, job, task, image tag, Dockerfile path, and architecture
-- the earliest causal error, not only Image Builder's final exception
-- any hostname involved in a timeout, DNS failure, refused connection, HTTP failure, or package restore failure
+For timeout/connection failures, obtain HTTP redirect/verbose package-manager
+evidence for downstream hostnames as needed. Combine this with the freshly
+retrieved WorkIQ guidance and local reproduction under this repair workflow.
+Investigate and reproduce persistent failures locally before another pipeline
+run. Do not weaken policy or choose an unapproved mirror to unblock reproduction.
 
-Do not assume every timeout or Docker build error is network isolation. Compare nearby runs, especially runs of the same `sourceVersion`. When using older runs as evidence, inspect their generated matrix or timeline and count only runs where the affected image was actually selected. A successful run that trimmed or skipped the unchanged image says nothing about that image's health.
-If the same commit alternates between selected-image success and failure, investigate transient infrastructure, base-image, registry, CDN, or architecture issues before editing. Errors such as `exec: "/bin/sh": stat /bin/sh: no such file or directory` across otherwise unrelated Dockerfiles usually point to a bad/transient base-image or registry response rather than a blocked package endpoint.
-
-Do not classify a failure as transient merely because an older run of the same commit succeeded. If two or more recent runs fail with the same causal error, treat the failure as persistent until current evidence proves otherwise. Investigate and reproduce it locally before queueing another pipeline run.
-
-Inspect whether Image Builder retried the Docker build. Count distinct `docker build` invocations and their timestamps rather than repeated BuildKit error summaries, which may duplicate an attempt's output near the end of the log.
-A job that exhausted several retries over many minutes is stronger evidence of an endpoint outage during that run than a single failed request, but it still does not by itself prove a repository defect.
-
-## Diagnose network-isolation failures
-
-For any timeout or failed connection:
-
-1. Extract the exact hostname from the causal log line.
-2. Inspect the run's **Start Network Isolation** and **Stop Network Isolation** tasks. Check **Policy Violations** when present, but treat this output only as supporting evidence.
-   The feature is not reliable enough to prove that no violation occurred: an empty or missing violation report must never rule out network isolation when the causal build log shows a timeout, DNS failure, blocked connection, or other endpoint-access failure.
-3. Use WorkIQ to open the current authoritative page:
-
-   `https://eng.ms/docs/cloud-ai-platform/devdiv/one-engineering-system-1es/1es-build/networkisolation/flagged-endpoints`
-
-4. Ask WorkIQ for the complete current endpoint list, including categories, policy waves, wildcard/pattern rules, remediation guidance, and exceptions. Do this for every invocation; do not rely solely on endpoints copied into this skill.
-5. Match hostnames exactly and against documented wildcard rules.
-
-The relevant policy families are `CFSClean`, `CFSClean2`, and `CFSClean3`. Common blocked categories include public NuGet, npm, Yarn, PyPI, Cargo, Maven/Gradle, PowerShell Gallery, Docker Hub/GHCR, SourceForge, Linux package mirrors, general mirrors, and tool download sites.
-
-Keep policy classification separate from endpoint availability. A hostname can be absent from the flagged list and explicitly covered by an effective allow rule, yet still time out because the origin service or a CDN edge is unavailable. Conversely, an empty violation report alone does not establish that Network Isolation was uninvolved.
-Use the flagged list, effective allow/deny rules, connection telemetry, retry history, nearby selected-image runs, and local reproduction together.
-
-Treat package CDN and mirror redirectors as multi-host dependencies. Inspect HTTP redirects and verbose package-manager output for downstream mirror hostnames rather than assuming that allowing the repository URL covers package downloads.
-For openSUSE, `cdn.opensuse.org` can redirect RPM requests to dynamically selected public mirrors, and disabling libzypp GeoIP mirror selection does not prevent the CDN's HTTP redirects.
-Do not replace it with a non-redirecting backend such as `downloadcontent.opensuse.org` unless current internal guidance explicitly approves that hostname; local reachability and upstream ownership are not sufficient under Default Deny.
-
-When a flagged endpoint is causal:
-
-- Prefer an existing trusted source already used in this repository.
-- Prefer Azure Artifacts/CFS feeds for ecosystem packages.
-- Prefer `packagefeedproxy.microsoft.io` or the pipeline-provided `NPM_REGISTRY` for npm.
-- Preserve the pipeline-provided authenticated `PIP_INDEX_URL`; do not hardcode a credentialed URL.
-- Prefer `packages.microsoft.com` where it supplies the required Linux package or repository.
-- Search sibling Dockerfiles and git history for an established mirror or internal-feed pattern before introducing a new one.
-- Verify that a proposed alternative is not on the current flagged list and is an authoritative or Microsoft-approved source. Do not replace one arbitrary public mirror with another merely because it is currently reachable.
-- If no supported alternative exists, stop and report the blocker and documented exception path. Do not silently weaken or remove network-isolation policy.
+Apply the shared diagnosis reference to the collected evidence and local files
+before making changes. Record the finding, evidence references, confidence,
+ownership, alternatives and gaps using the
+[analysis report contract](../dotnet-buildtools-prereqs-docker-analyze-official-build/SKILL.md#runner-neutral-report).
+Using that contract does not invoke analysis as a repair authorization shortcut.
+Continue only with an actionable related fix, or the explicitly approved
+rerun-only/exception paths below. Missing evidence is a gap, not permission to
+invent a cause or code change.
 
 ## Make and validate the fix
 
