@@ -10,6 +10,9 @@ ENV POWERSHELL_VERSION=7.6.6
 # SHA256 of powershell-${POWERSHELL_VERSION}-linux-x64.tar.gz
 ENV POWERSHELL_SHA256=ddbc4a2d113bbd46d283cfedcbcd117a70caefd7673f41f2b4e0000badf103bc
 
+# SHA-1 signatures are disabled by default in Azure Linux 4.0, but strong-name signing needs them.
+ENV OPENSSL_ENABLE_SHA1_SIGNATURES=1
+
 RUN dnf update -y && \
     dnf install -y \
         # Provides 'su', required by Azure DevOps
