@@ -59,6 +59,7 @@ set -euo pipefail
 source /venv/bin/activate
 scancode "\$@"
 SCANCODE
+
 RUN chmod +x /usr/local/bin/scancode
 
 # Clear PIP_INDEX_URL since it contains a short-lived token that should not persist in the final image
