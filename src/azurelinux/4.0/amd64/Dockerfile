@@ -1,5 +1,4 @@
-ARG DOTNET_VERSION
-FROM mcr.microsoft.com/dotnet/sdk:$DOTNET_VERSION-azurelinux3.0-amd64 AS installer
+FROM mcr.microsoft.com/dotnet/sdk:11.0-azurelinux4.0-amd64 AS installer
 
 ARG PIP_INDEX_URL
 ENV PIP_INDEX_URL=${PIP_INDEX_URL}
@@ -25,7 +24,7 @@ RUN python3 -m venv /venv \
     && pip install scancode-toolkit==$SCANCODE_VERSION
 
 
-FROM mcr.microsoft.com/dotnet/sdk:$DOTNET_VERSION-azurelinux3.0-amd64
+FROM mcr.microsoft.com/dotnet/sdk:11.0-azurelinux4.0-amd64
 
 COPY --from=installer /venv /venv
 
