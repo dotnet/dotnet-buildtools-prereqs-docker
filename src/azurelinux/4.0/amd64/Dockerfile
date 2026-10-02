@@ -11,7 +11,7 @@ RUN tdnf update -y \
         binutils \
         gcc-c++ \
         glibc-devel \
-        icu-devel \
+        libicu-devel \
         kernel-headers \
         python3-devel \
     && tdnf clean all
