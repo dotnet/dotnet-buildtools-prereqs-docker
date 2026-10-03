@@ -1817,6 +1817,7 @@
         {
           "platforms": [
             {
+              "architecture": "amd64",
               "dockerfile": "src/azurelinux/3.0/net10.0/source-build/amd64",
               "os": "linux",
               "osVersion": "azurelinux3.0",
