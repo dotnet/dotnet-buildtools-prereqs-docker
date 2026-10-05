@@ -47,6 +47,8 @@ RUN dnf update -y && \
         # aspnetcore build dependencies
         nodejs24 \
         nodejs24-npm \
+        # WebAssembly build dependencies
+        libatomic \
         # Provides functionality for AzureCLI AzDO task
         azure-cli \
     && dnf clean all
