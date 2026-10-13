@@ -21,6 +21,10 @@ RUN TARGET_TRIPLE="arm-linux-gnueabihf" && \
         -DCMAKE_ASM_COMPILER_TARGET="$TARGET_TRIPLE" \
         -DCMAKE_C_COMPILER_TARGET="$TARGET_TRIPLE" \
         -DCMAKE_CXX_COMPILER_TARGET="$TARGET_TRIPLE" \
+        # clang defaults arm-linux-gnueabihf to ARMv6 (arm1176jzf-s), but the compiler-rt arm builtins need ARMv6T2+.
+        -DCMAKE_ASM_FLAGS="-march=armv7-a" \
+        -DCMAKE_C_FLAGS="-march=armv7-a" \
+        -DCMAKE_CXX_FLAGS="-march=armv7-a" \
         # We're going to link the static libraries we build here into PIC images, so build the static libraries as PIC.
         -DCMAKE_POSITION_INDEPENDENT_CODE=ON \
         -DCMAKE_SYSROOT="$ROOTFS_DIR" \
