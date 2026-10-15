@@ -61,7 +61,7 @@ Repos that are susceptible to breaking changes in the distro should use these ta
 
 ### Floating Tags
 
-Floating tags have no distro version indicated in the name and are scoped to a .NET version (e.g. `alpine-net9.0-helix-amd64`).
+Floating tags have no distro version indicated in the name and are scoped to a .NET version (e.g. `alpine-net10.0-helix-amd64`).
 It is routinely updated to reference a new version as the distro's and .NET's lifecycles progress.
 
 Floating tags are beneficial for repos that are not susceptible to breaking changes that occur from new distro versions because the source that references the tag doesn't need to be updated in order to make use of the new version.
@@ -82,7 +82,7 @@ Floating tags are scoped to a specific .NET version.
 This ensures they are stable as the release moves to maintenance phase, not getting bumped to a newer distro version during that phase.
 This time period starts 6 months before the EOL date of the .NET version.
 In other words, for the last 6 months of servicing for that .NET version, the floating tag is guaranteed to not be moved to a new distro version.
-Repos consuming these tags should reference the .NET version associated with the release branch (e.g. sources in the `release/9.0` branch should reference the `net9.0` tag).
+Repos consuming these tags should reference the .NET version associated with the release branch (e.g. sources in the `release/10.0` branch should reference the `net10.0` tag).
 Once the .NET version is EOL, the floating tag associated with that .NET version is no longer maintained.
 
 ### Image Pinning
