@@ -25,6 +25,7 @@ RUN dnf update -y && \
         sudo \
         wget2-wget \
         # Common runtime build dependencies
+        bzip2 \
         gawk \
         cpio \
         file \
@@ -36,8 +37,10 @@ RUN dnf update -y && \
         gzip \
         icu \
         ninja-build \
+        openssl \
         pigz \
         tar \
+        xz \
         # Crosscomponents build dependencies
         glibc-devel \
         kernel-headers \

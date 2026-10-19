@@ -18,6 +18,7 @@ RUN dnf update -y && \
     dnf install -y \
         gawk \
         azure-cli \
+        bzip2 \
         ca-certificates \
         # added to ensure latest patches over the base image
         curl \
@@ -26,6 +27,7 @@ RUN dnf update -y && \
         icu \
         nodejs24 \
         nodejs24-npm \
+        openssl \
         # provides 'useradd', required by Azure DevOps
         shadow-utils \
         tar \
@@ -33,6 +35,7 @@ RUN dnf update -y && \
         util-linux \
         pam \
         sudo \
+        xz \
     && dnf clean all
 
 # Install PowerShell
