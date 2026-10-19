@@ -1,6 +1,6 @@
 FROM library/fedora:rawhide
 
-ENV POWERSHELL_VERSION=7.6.6
+ENV POWERSHELL_VERSION=7.6.7
 # SHA256 of powershell-${POWERSHELL_VERSION}-linux-x64.tar.gz
 ENV POWERSHELL_SHA256=ddbc4a2d113bbd46d283cfedcbcd117a70caefd7673f41f2b4e0000badf103bc
 
