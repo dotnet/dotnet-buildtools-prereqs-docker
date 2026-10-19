@@ -26,6 +26,8 @@ if [ "$dep_name" != "PowerShell/PowerShell" ]; then
     exit 0
 fi
 
+version=${version#v}
+
 if [ -z "$dockerfile" ] || [ -z "$version" ]; then
     echo "Error: Data file must contain package file path and version" >&2
     exit 1
@@ -39,10 +41,12 @@ fi
 
 echo "Updating checksums in $dockerfile for PowerShell $version"
 
-# The release's hashes.sha256 is UTF-16LE with CRLF line endings and lists
-# entries as "<sha256> *<asset name>".
+# The release's hashes.sha256 is UTF-16LE (with BOM) and CRLF line endings, and
+# lists entries as "<sha256> *<asset name>". Its content is ASCII, so it is
+# decoded by dropping the NUL, BOM and CR bytes; the Renovate image has neither
+# iconv's UTF-16 modules nor awk.
 hashes=$(curl -sL --fail "https://github.com/PowerShell/PowerShell/releases/download/v${version}/hashes.sha256" \
-    | iconv -f UTF-16LE -t UTF-8 | tr -d '\r')
+    | LC_ALL=C tr -d '\000\r\376\377')
 
 if [ -z "$hashes" ]; then
     echo "Error: could not read hashes.sha256 for PowerShell $version" >&2
@@ -56,7 +60,13 @@ while IFS= read -r match; do
     asset=${match#*:# SHA256 of }
     resolved=${asset//'${POWERSHELL_VERSION}'/$version}
 
-    checksum=$(printf '%s\n' "$hashes" | awk -v asset="*$resolved" '$2 == asset { print $1 }')
+    checksum=
+    while read -r sum name; do
+        if [ "$name" = "*$resolved" ]; then
+            checksum=$sum
+            break
+        fi
+    done <<< "$hashes"
     if [ -z "$checksum" ]; then
         echo "Error: $resolved is not listed in hashes.sha256 for $version" >&2
         exit 1
