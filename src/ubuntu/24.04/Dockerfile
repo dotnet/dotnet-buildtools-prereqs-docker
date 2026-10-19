@@ -3,7 +3,7 @@ FROM ubuntu.azurecr.io/ubuntu:24.04
 # Use the approved Azure-hosted Ubuntu mirror (per Network Isolation team guidance).
 RUN find /etc/apt -type f \( -name '*.sources' -o -name '*.list' \) -exec sed -i 's|//archive\.ubuntu\.com|//azure.archive.ubuntu.com|g' {} +
 
-ENV POWERSHELL_VERSION=7.6.6
+ENV POWERSHELL_VERSION=7.6.7
 # SHA256 of powershell-${POWERSHELL_VERSION}-linux-x64.tar.gz
 ENV POWERSHELL_SHA256_X64=ddbc4a2d113bbd46d283cfedcbcd117a70caefd7673f41f2b4e0000badf103bc
 # SHA256 of powershell-${POWERSHELL_VERSION}-linux-arm64.tar.gz
