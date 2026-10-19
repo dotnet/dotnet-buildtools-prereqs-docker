@@ -1,8 +1,8 @@
 FROM library/gcc:16-trixie
 
-ENV POWERSHELL_VERSION=7.6.6
+ENV POWERSHELL_VERSION=7.6.7
 # SHA256 of powershell-${POWERSHELL_VERSION}-linux-x64.tar.gz
-ENV POWERSHELL_SHA256=ddbc4a2d113bbd46d283cfedcbcd117a70caefd7673f41f2b4e0000badf103bc
+ENV POWERSHELL_SHA256=6896f9e3a6b0a354bf470835a96da76d2f801cd50dcf047ad7c4563bf93bf431
 
 # Use Azure-hosted Debian mirror (required in network-restricted Azure build environments)
 RUN find /etc/apt -maxdepth 2 \( -name "*.list" -o -name "*.sources" \) \

@@ -1,9 +1,9 @@
 # escape=`
 FROM mcr.microsoft.com/windows/servercore:ltsc2019 AS installer
 
-ENV POWERSHELL_VERSION=7.6.6
+ENV POWERSHELL_VERSION=7.6.7
 # SHA256 of PowerShell-${POWERSHELL_VERSION}-win-x64.zip
-ENV POWERSHELL_SHA256=02fe458be20493fbdf43f61ea20610b811ee6c738ab1676c61b9cfcd1a33c860
+ENV POWERSHELL_SHA256=d2f952ebdbf24386cb8923553aa58e41a846db35a6155ea04c58142a4b16dbb7
 
 SHELL ["powershell", "-Command", "$ErrorActionPreference = 'Stop'; $ProgressPreference = 'SilentlyContinue';"]
 
