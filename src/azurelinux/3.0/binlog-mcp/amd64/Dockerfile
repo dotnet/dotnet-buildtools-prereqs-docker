@@ -6,7 +6,7 @@
 # Usage:  docker run --rm -i -v /path/to/binlogs:/binlogs \
 #             mcr.microsoft.com/dotnet-buildtools/prereqs:azurelinux-3.0-binlog-mcp-amd64
 
-ARG BINLOG_MCP_VERSION=1.0.0
+ARG BINLOG_MCP_VERSION=3.0.4
 ARG DOTNET_PUBLIC_FEED=https://pkgs.dev.azure.com/dnceng/public/_packaging/dotnet-public/nuget/v3/index.json
 
 # Stage 1: Use the .NET SDK to install the tool. The SDK is required because
