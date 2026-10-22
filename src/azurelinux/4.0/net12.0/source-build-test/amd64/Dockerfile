@@ -1,4 +1,4 @@
-FROM mcr.microsoft.com/azurelinux-beta/base/core:4.0 AS installer
+FROM mcr.microsoft.com/azurelinux/core:4 AS installer
 
 ARG PIP_INDEX_URL
 ENV PIP_INDEX_URL=${PIP_INDEX_URL}
@@ -24,7 +24,7 @@ RUN python3 -m venv /venv \
     && pip install scancode-toolkit==$SCANCODE_VERSION
 
 
-FROM mcr.microsoft.com/azurelinux-beta/base/core:4.0
+FROM mcr.microsoft.com/azurelinux/core:4
 
 COPY --from=installer /venv /venv
 

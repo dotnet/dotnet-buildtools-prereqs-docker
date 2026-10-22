@@ -1,4 +1,4 @@
-FROM mcr.microsoft.com/azurelinux-beta/base/core:4.0
+FROM mcr.microsoft.com/azurelinux/core:4
 
 ARG PIP_INDEX_URL
 ENV PIP_INDEX_URL=${PIP_INDEX_URL}

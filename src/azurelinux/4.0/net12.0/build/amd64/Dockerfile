@@ -1,4 +1,4 @@
-FROM mcr.microsoft.com/azurelinux-beta/base/core:4.0
+FROM mcr.microsoft.com/azurelinux/core:4
 
 # Azure Linux 4.0 has no 'powershell' package (#1646), so PowerShell is installed from the
 # upstream self-contained tarball, the same way the ubuntu, alpine and debian images do it.

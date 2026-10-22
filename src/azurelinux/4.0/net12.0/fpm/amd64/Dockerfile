@@ -1,4 +1,4 @@
-FROM mcr.microsoft.com/azurelinux-beta/base/core:4.0
+FROM mcr.microsoft.com/azurelinux/core:4
 RUN dnf update -y && \
     dnf install -y \
         gawk \

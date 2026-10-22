@@ -1,4 +1,4 @@
-FROM mcr.microsoft.com/azurelinux-beta/base/core:4.0 AS venv
+FROM mcr.microsoft.com/azurelinux/core:4 AS venv
 
 ARG PIP_INDEX_URL
 ENV PIP_INDEX_URL=${PIP_INDEX_URL}
@@ -17,7 +17,7 @@ RUN python3 -m venv /venv && \
         pip install --index-url $PIP_INDEX_URL ./helix_scripts-*-py3-none-any.whl && \
         rm ./helix_scripts-*-py3-none-any.whl
 
-FROM mcr.microsoft.com/azurelinux-beta/base/core:4.0
+FROM mcr.microsoft.com/azurelinux/core:4
 
 ARG PIP_INDEX_URL
 ENV PIP_INDEX_URL=${PIP_INDEX_URL}
