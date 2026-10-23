@@ -1,4 +1,4 @@
-FROM mcr.microsoft.com/azurelinux-beta/base/core:4.0 AS builder
+FROM mcr.microsoft.com/azurelinux/core:4 AS builder
 
 RUN dnf update -y && \
     dnf install -y \
@@ -54,7 +54,7 @@ RUN mkdir llvm-project.src && \
     make install
 
 
-FROM mcr.microsoft.com/azurelinux-beta/base/core:4.0
+FROM mcr.microsoft.com/azurelinux/core:4
 
 RUN dnf update -y && \
     dnf install -y \
