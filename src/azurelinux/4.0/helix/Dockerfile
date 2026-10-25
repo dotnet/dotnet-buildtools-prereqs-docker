@@ -25,10 +25,12 @@ ENV PIP_INDEX_URL=${PIP_INDEX_URL}
 # Install .NET and test dependencies
 RUN dnf install --setopt tsflags=nodocs --refresh -y \
         ca-certificates \
+        gawk \
         icu \
         iputils \
         libatomic \
         llvm \
+        procps-ng \
         python3 \
         python3-pip \
         shadow-utils \
