@@ -1,8 +1,8 @@
 FROM library/fedora:43
 
-ENV POWERSHELL_VERSION=7.6.7
+ENV POWERSHELL_VERSION=7.6.9
 # SHA256 of powershell-${POWERSHELL_VERSION}-linux-x64.tar.gz
-ENV POWERSHELL_SHA256=6896f9e3a6b0a354bf470835a96da76d2f801cd50dcf047ad7c4563bf93bf431
+ENV POWERSHELL_SHA256=1da6d6d6035d651f20e70ddee7c4c15ac6ab8b9fb40ee92240d91263f28a884b
 
 RUN dnf upgrade --refresh -y \
     && dnf config-manager addrepo --from-repofile=https://packages.microsoft.com/fedora/43/prod/config.repo \

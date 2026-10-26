@@ -6,9 +6,9 @@ FROM mcr.microsoft.com/azurelinux/core:4
 # ambient 'dotnet', and arcade prepends the repo-local SDK to PATH for every step after the
 # build, so pwsh would then fail to start with a major-version mismatch
 # ("You must install or update .NET to run this application").
-ENV POWERSHELL_VERSION=7.6.7
+ENV POWERSHELL_VERSION=7.6.9
 # SHA256 of powershell-${POWERSHELL_VERSION}-linux-x64.tar.gz
-ENV POWERSHELL_SHA256=6896f9e3a6b0a354bf470835a96da76d2f801cd50dcf047ad7c4563bf93bf431
+ENV POWERSHELL_SHA256=1da6d6d6035d651f20e70ddee7c4c15ac6ab8b9fb40ee92240d91263f28a884b
 
 # SHA-1 signatures are disabled by default in Azure Linux 4.0, but strong-name signing needs them.
 ENV OPENSSL_ENABLE_SHA1_SIGNATURES=1
