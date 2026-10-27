@@ -1,0 +1,25 @@
+OpenHarmony cross-compilation image
+====================================
+
+This image contains the OpenHarmony Public SDK 6.0.0.47 (API 20), licensed
+under the Apache License, Version 2.0.
+
+SDK source:
+  https://repo.huaweicloud.com/openharmony/os/6.0-Release/ohos-sdk-windows_linux-public.tar.gz
+  SHA256: a315834ac133625efc912bd078f3e2b2550868d04aef1b5aa4f9679c8b3c9d8e
+
+The image also contains static OpenSSL 3.3.1 and ICU 75.1 builds and the
+aarch64-linux-ohos toolchain wrappers. See THIRD-PARTY-NOTICES for details.
+
+The OpenHarmony SDK component notices are preserved under:
+
+  /opt/ohos-sdk/linux/ets/NOTICE.txt
+  /opt/ohos-sdk/linux/js/NOTICE.txt
+  /opt/ohos-sdk/linux/native/NOTICE.txt
+  /opt/ohos-sdk/linux/previewer/NOTICE.txt
+  /opt/ohos-sdk/linux/toolchains/NOTICE.txt
+
+A copy of the Apache License, Version 2.0 is at /opt/ohos-sdk/LICENSE.
+
+This image does not contain the Huawei HarmonyOS SDK, Apple SDK, or Android
+SDK. Those SDKs have separate licenses and are not redistributed here.

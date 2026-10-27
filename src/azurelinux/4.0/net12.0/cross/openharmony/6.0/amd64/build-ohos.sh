@@ -18,6 +18,7 @@ ICU_TAG="${ICU_VERSION/./-}"
 ICU_FILE="${ICU_VERSION/./_}"
 
 SDK_ROOT="$(dirname "$OHOS_NDK_HOME")"
+TOOLCHAIN="$OHOS_TOOLCHAIN/bin"
 WORK="$(mktemp -d)"
 trap 'rm -rf "$WORK"' EXIT
 
@@ -64,7 +65,6 @@ test -f "$OHOS_NDK_HOME/native/build/cmake/ohos.toolchain.cmake"
 NDK_BIN="$OHOS_NDK_HOME/native/llvm/bin"
 export PATH="$NDK_BIN:$PATH"
 SYSROOT="$OHOS_NDK_HOME/native/sysroot"
-TOOLCHAIN="$OHOS_TOOLCHAIN/bin"
 mkdir -p "$TOOLCHAIN"
 mk() {
     printf '#!/bin/sh\nexec %s "$@"\n' "$2" > "$TOOLCHAIN/aarch64-linux-ohos-$1"
@@ -93,6 +93,7 @@ cd "$WORK/openssl-$OPENSSL_VERSION"
     no-shared no-tests no-async no-apps -fPIC
 make -j"$(nproc)"
 make install_sw
+install -m 0644 "$WORK/openssl-$OPENSSL_VERSION/LICENSE.txt" "$OHOS_ASSETS/openssl/LICENSE.txt"
 
 echo "== ICU $ICU_VERSION =="
 curl -fsSL "https://github.com/unicode-org/icu/releases/download/release-$ICU_TAG/icu4c-$ICU_FILE-src.tgz" \
@@ -115,6 +116,7 @@ AR="$TOOLCHAIN/aarch64-linux-ohos-ar" RANLIB="$TOOLCHAIN/aarch64-linux-ohos-ranl
     --prefix="$OHOS_ASSETS/icu"
 make -j"$(nproc)"
 make install
+install -m 0644 "$WORK/icu/LICENSE" "$OHOS_ASSETS/icu/LICENSE"
 
 echo "== Verify =="
 test -f "$OHOS_ASSETS/icu/include/unicode/ucurr.h"
@@ -124,4 +126,6 @@ test -f "$OHOS_ASSETS/icu/lib/libicudata.a"
 test -f "$OHOS_ASSETS/openssl/include/openssl/ssl.h"
 test -f "$OHOS_ASSETS/openssl/lib/libcrypto.a"
 test -f "$OHOS_ASSETS/openssl/lib/libssl.a"
+test -f "$OHOS_ASSETS/openssl/LICENSE.txt"
+test -f "$OHOS_ASSETS/icu/LICENSE"
 echo "OpenHarmony assets are ready under $OHOS_ASSETS"
