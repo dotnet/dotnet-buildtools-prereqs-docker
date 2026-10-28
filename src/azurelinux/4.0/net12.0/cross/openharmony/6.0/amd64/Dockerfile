@@ -6,7 +6,7 @@
 FROM mcr.microsoft.com/dotnet-buildtools/prereqs:azurelinux-4.0-net12.0-crossdeps-builder-amd64 AS builder
 
 # The SDK is extracted with a Python helper that recreates the zip symlinks.
-RUN tdnf install -y python3 tar gzip curl make perl-core && tdnf clean all
+RUN tdnf install -y python3 tar gzip curl make perl-core gawk && tdnf clean all
 
 COPY build-ohos.sh /scripts/build-ohos.sh
 RUN chmod +x /scripts/build-ohos.sh && /scripts/build-ohos.sh

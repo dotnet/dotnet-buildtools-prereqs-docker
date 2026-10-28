@@ -22,7 +22,7 @@ TOOLCHAIN="$OHOS_TOOLCHAIN/bin"
 WORK="$(mktemp -d)"
 trap 'rm -rf "$WORK"' EXIT
 
-for tool in curl python3 make perl; do
+for tool in curl python3 make perl awk; do
     command -v "$tool" >/dev/null || { echo "missing required tool: $tool" >&2; exit 1; }
 done
 
