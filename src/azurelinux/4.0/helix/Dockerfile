@@ -26,6 +26,7 @@ ENV PIP_INDEX_URL=${PIP_INDEX_URL}
 RUN dnf install --setopt tsflags=nodocs --refresh -y \
         ca-certificates \
         gawk \
+        gcc \
         icu \
         iputils \
         libatomic \
