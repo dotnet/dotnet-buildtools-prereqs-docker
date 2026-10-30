@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# Extracted from https://deb.nodesource.com/setup_23.x
+# Extracted from https://deb.nodesource.com/setup_24.x
 
 # Logger Function
 log() {
@@ -105,7 +105,7 @@ configure_repo() {
 }
 
 # Define Node.js version
-NODE_VERSION="23.x"
+NODE_VERSION="24.x"
 
 # Check OS
 check_os
