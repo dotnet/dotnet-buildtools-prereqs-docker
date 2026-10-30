@@ -37,10 +37,10 @@ RUN curl -O https://cmake.org/files/v${CMAKE_SHORTVERSION}/cmake-${CMAKE_VERSION
 RUN locale-gen en_US.UTF-8
 
 # install node, which is required for newer npm, jsvu and v8
-COPY ./setup-node-23.x.sh /tmp
-RUN chmod +x /tmp/setup-node-23.x.sh \
-    && /tmp/setup-node-23.x.sh \
-    && rm /tmp/setup-node-23.x.sh \
+COPY ./setup-node-24.x.sh /tmp
+RUN chmod +x /tmp/setup-node-24.x.sh \
+    && /tmp/setup-node-24.x.sh \
+    && rm /tmp/setup-node-24.x.sh \
     && apt-get update \
     && apt-get install -y nodejs \
     && rm -rf /var/lib/apt/lists/*

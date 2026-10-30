@@ -37,8 +37,8 @@ RUN wget https://cmake.org/files/v${CMAKE_VERSION}/cmake-${CMAKE_VERSION}.0-Linu
 RUN locale-gen en_US.UTF-8
 
 # install node, which is required for newer npm, jsvu and v8
-COPY ./setup-node-23.x.sh /tmp
-RUN /tmp/setup-node-23.x.sh && apt-get -y install nodejs
+COPY ./setup-node-24.x.sh /tmp
+RUN /tmp/setup-node-24.x.sh && apt-get -y install nodejs
 
 # Registry npm installs pull from; defaults to the Microsoft public npm proxy.
 # Internal builds override NPM_REGISTRY with the dotnet-public-npm Azure Artifacts feed and set NPM_TOKEN.
