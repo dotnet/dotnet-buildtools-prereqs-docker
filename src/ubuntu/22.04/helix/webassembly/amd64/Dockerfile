@@ -53,7 +53,8 @@ RUN npm config set registry "$NPM_REGISTRY" && \
 
 # Install latest V8 engine
 ENV PATH="/home/helixbot/.jsvu/bin:${PATH}"
-RUN npm install jsvu -g \
+# npm 12 defaults allow-remote to none, which rejects tarballs the registry proxy serves from another host.
+RUN npm install jsvu -g --allow-remote=all \
     && su helixbot -c "jsvu --os=linux64 --engines=v8" \
     && v8 -e "console.log(version());quit();" \
     && npm uninstall jsvu -g
