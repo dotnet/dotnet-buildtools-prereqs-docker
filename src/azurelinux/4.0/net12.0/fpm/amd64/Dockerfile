@@ -1,6 +1,8 @@
 FROM mcr.microsoft.com/azurelinux/core:4
 RUN dnf update -y && \
     dnf install -y \
+        autoconf \
+        automake \
         gawk \
         gcc \
         gcc-c++ \
@@ -8,6 +10,7 @@ RUN dnf update -y && \
         ca-certificates \
         git \
         icu \
+        libtool \
         openssl \
         rpm-build \
         ruby \
