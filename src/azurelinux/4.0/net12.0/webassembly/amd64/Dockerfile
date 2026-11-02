@@ -16,7 +16,8 @@ RUN dnf update -y \
         xz \
     && dnf clean all \
     && ln -sf /usr/bin/node-24 /usr/bin/node \
-    && ln -sf /usr/bin/npm-24 /usr/bin/npm
+    && ln -sf /usr/bin/npm-24 /usr/bin/npm \
+    && ln -sf /usr/bin/npx-24 /usr/bin/npx
 
 # Registry npm installs pull from; defaults to the Microsoft public npm proxy.
 # Internal builds override NPM_REGISTRY with the dotnet-public-npm Azure Artifacts feed and set NPM_TOKEN.

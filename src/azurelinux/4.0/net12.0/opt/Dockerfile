@@ -3,9 +3,11 @@ FROM mcr.microsoft.com/azurelinux/core:4 AS builder
 RUN dnf update -y && \
     dnf install -y \
         # Common dependencies
+        bzip2 \
         ca-certificates \
         git \
         gnupg2 \
+        openssl \
         tar \
         util-linux \
         wget2-wget \
@@ -59,8 +61,10 @@ FROM mcr.microsoft.com/azurelinux/core:4
 RUN dnf update -y && \
     dnf install -y \
         # Common dependencies
+        bzip2 \
         ca-certificates \
         git \
+        openssl \
         tar \
         util-linux \
         pam \

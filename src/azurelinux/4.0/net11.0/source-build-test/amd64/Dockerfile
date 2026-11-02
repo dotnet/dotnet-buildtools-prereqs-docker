@@ -32,16 +32,20 @@ COPY --from=installer /venv /venv
 # The .NET SDK itself is installed by the VMR (eng/common/dotnet.sh) at the version pinned in global.json.
 RUN dnf update -y \
     && dnf install -y \
+        bzip2 \
         curl \
         git \
+        gnupg2 \
         gzip \
         libgomp \
+        openssl \
         python3 \
         # provides 'useradd', required by Azure DevOps
         shadow-utils \
         tar \
         # provides 'su', required by Azure DevOps
         util-linux \
+        xz \
     && dnf clean all
 
 # Setup a script which executes scancode in the virtual environment

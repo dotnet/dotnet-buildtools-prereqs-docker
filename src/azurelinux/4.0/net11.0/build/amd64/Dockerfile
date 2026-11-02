@@ -23,6 +23,7 @@ RUN dnf update -y && \
         # added to ensure latest patches over the base image
         curl \
         git \
+        gnupg2 \
         gzip \
         icu \
         nodejs24 \
@@ -48,7 +49,8 @@ RUN curl -L "https://github.com/PowerShell/PowerShell/releases/download/v${POWER
     && rm -f /tmp/powershell.tar.gz
 
 RUN ln -sf /usr/bin/node-24 /usr/bin/node && \
-    ln -sf /usr/bin/npm-24 /usr/bin/npm
+    ln -sf /usr/bin/npm-24 /usr/bin/npm && \
+    ln -sf /usr/bin/npx-24 /usr/bin/npx
 
 # Registry npm installs pull from; defaults to the Microsoft public npm proxy.
 # Internal builds override NPM_REGISTRY with the dotnet-public-npm Azure Artifacts feed and set NPM_TOKEN.
