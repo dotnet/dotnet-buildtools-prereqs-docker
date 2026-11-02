@@ -6,11 +6,13 @@ ENV PIP_INDEX_URL=${PIP_INDEX_URL}
 RUN dnf update -y && \
     dnf install -y \
         # Common utilities
+        bzip2 \
         ca-certificates \
         git \
         gnupg2 \
         jq \
         gzip \
+        openssl \
         shadow-utils \
         tar \
         unzip \

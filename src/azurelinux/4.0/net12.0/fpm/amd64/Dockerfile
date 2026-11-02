@@ -3,10 +3,12 @@ RUN dnf update -y && \
     dnf install -y \
         gawk \
         gcc \
+        gcc-c++ \
         make \
         ca-certificates \
         git \
         icu \
+        openssl \
         rpm-build \
         ruby \
         # Provides useradd

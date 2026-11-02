@@ -30,3 +30,5 @@ artifacts/
 
 # eng/common copies staged into Docker build contexts
 src/**/eng/common/
+
+.DS_Store

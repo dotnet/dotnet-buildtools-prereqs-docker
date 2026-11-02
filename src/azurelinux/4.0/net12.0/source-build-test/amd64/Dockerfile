@@ -32,15 +32,18 @@ COPY --from=installer /venv /venv
 # The .NET SDK itself is installed by the VMR (eng/common/dotnet.sh) at the version pinned in global.json.
 RUN dnf update -y \
     && dnf install -y \
+        bzip2 \
         ca-certificates \
         curl \
         git \
+        gnupg2 \
         gzip \
         icu \
         krb5-libs \
         libgcc \
         libgomp \
         libstdc++ \
+        openssl \
         openssl-libs \
         python3 \
         # provides 'useradd', required by Azure DevOps
@@ -49,6 +52,7 @@ RUN dnf update -y \
         tzdata \
         # provides 'su', required by Azure DevOps
         util-linux \
+        xz \
         zlib-ng-compat \
     && dnf clean all
 

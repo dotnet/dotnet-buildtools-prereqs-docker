@@ -24,13 +24,16 @@ ENV PIP_INDEX_URL=${PIP_INDEX_URL}
 
 # Install .NET and test dependencies
 RUN dnf install --setopt tsflags=nodocs --refresh -y \
+        bzip2 \
         ca-certificates \
         gawk \
         gcc \
+        gnupg2 \
         icu \
         iputils \
         libatomic \
         llvm \
+        openssl \
         procps-ng \
         python3 \
         python3-pip \
@@ -39,6 +42,7 @@ RUN dnf install --setopt tsflags=nodocs --refresh -y \
         tar \
         tzdata \
         which \
+        xz \
     && dnf clean all
 
 # Install msquic from previous AZL realese until azurelinux-official-ms-oss is available

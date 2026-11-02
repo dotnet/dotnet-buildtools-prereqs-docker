@@ -23,6 +23,7 @@ RUN dnf update -y && \
         # added to ensure latest patches over the base image
         curl \
         git \
+        gnupg2 \
         gzip \
         icu \
         nodejs24 \
