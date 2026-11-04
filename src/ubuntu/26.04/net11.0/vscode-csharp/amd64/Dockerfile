@@ -8,6 +8,7 @@ RUN find /etc/apt -type f \( -name '*.sources' -o -name '*.list' \) -exec sed -i
 RUN apt-get update \
     && apt-get install -y \
         libasound2t64 \
+        libbrotli1 \
         libgtk-3-0 \
         libnss3 \
         xvfb \
