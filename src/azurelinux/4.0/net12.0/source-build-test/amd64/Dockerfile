@@ -19,9 +19,10 @@ RUN dnf update -y \
 # Include scancode
 # Install instructions: https://scancode-toolkit.readthedocs.io/en/latest/getting-started/install.html#installation-as-a-library-via-pip
 # See latest release at https://github.com/nexB/scancode-toolkit/releases
+# Pluggy 1.7 rejects the class-based hook specs used by Plugincode 32.0.0.
 RUN python3 -m venv /venv \
     && source /venv/bin/activate \
-    && pip install scancode-toolkit==$SCANCODE_VERSION
+    && pip install scancode-toolkit==$SCANCODE_VERSION pluggy==1.6.0
 
 
 FROM mcr.microsoft.com/azurelinux/core:4
@@ -64,7 +65,8 @@ source /venv/bin/activate
 scancode "\$@"
 SCANCODE
 
-RUN chmod +x /usr/local/bin/scancode
+RUN chmod +x /usr/local/bin/scancode \
+    && scancode --help > /dev/null
 
 # Clear PIP_INDEX_URL since it contains a short-lived token that should not persist in the final image
 ENV PIP_INDEX_URL=
