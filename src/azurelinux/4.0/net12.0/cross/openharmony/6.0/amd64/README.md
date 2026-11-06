@@ -33,6 +33,31 @@ Third-party notices for OpenSSL, ICU, and the base images are in
 This image does **not** contain the Huawei HarmonyOS SDK, Apple SDK, or
 Android SDK. Those SDKs have separate licenses and are not redistributed here.
 
+## Pinned versions
+
+| Component | Version |
+|-----------|---------|
+| OpenHarmony Public SDK | 6.0.0.47 (API 20) |
+| OpenSSL | 3.3.1 (static, `no-shared`) |
+| ICU | 75.1 (static) |
+
+## Internal mirror / network isolation
+
+Network isolation applies to all three downloads, so the SDK, OpenSSL, and ICU
+must all be mirrored; mirroring only the SDK is insufficient. They can be
+redirected without editing the script:
+
+```bash
+docker build \
+  --build-arg OHOS_SDK_URL=https://<storage>/.../ohos-sdk-windows_linux-public.tar.gz \
+  --build-arg OPENSSL_URL=https://<storage>/.../openssl-3.3.1.tar.gz \
+  --build-arg ICU_URL=https://<storage>/.../icu4c-75_1-src.tgz \
+  -t azurelinux-4.0-net12.0-cross-openharmony-6.0-amd64 .
+```
+
+Every download is verified against the SHA256 pinned in `build-ohos.sh`, so a
+changed mirror fails loudly instead of silently changing the image contents.
+
 ## Image tag
 
 The directory path produces the tag:

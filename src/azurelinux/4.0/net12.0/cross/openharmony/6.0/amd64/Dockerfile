@@ -5,11 +5,23 @@
 # copied into /opt/ohos-sdk.
 FROM mcr.microsoft.com/dotnet-buildtools/prereqs:azurelinux-4.0-net12.0-crossdeps-builder-amd64 AS builder
 
+# Allow the three source downloads to come from an internal mirror.
+ARG OHOS_SDK_URL=https://repo.huaweicloud.com/openharmony/os/6.0-Release/ohos-sdk-windows_linux-public.tar.gz
+ARG OHOS_SDK_SHA=a315834ac133625efc912bd078f3e2b2550868d04aef1b5aa4f9679c8b3c9d8e
+ARG OPENSSL_URL=https://github.com/openssl/openssl/releases/download/openssl-3.3.1/openssl-3.3.1.tar.gz
+ARG OPENSSL_SHA256=777cd596284c883375a2a7a11bf5d2786fc5413255efab20c50d6ffe6d020b7e
+ARG ICU_URL=https://github.com/unicode-org/icu/releases/download/release-75-1/icu4c-75_1-src.tgz
+ARG ICU_SHA256=cb968df3e4d2e87e8b11c49a5d01c787bd13b9545280fc6642f826527618caef
+
 # The SDK is extracted with a Python helper that recreates the zip symlinks.
 RUN tdnf install -y python3 tar gzip curl make perl-core gawk && tdnf clean all
 
 COPY build-ohos.sh /scripts/build-ohos.sh
-RUN chmod +x /scripts/build-ohos.sh && /scripts/build-ohos.sh
+RUN chmod +x /scripts/build-ohos.sh && \
+    OHOS_SDK_URL="$OHOS_SDK_URL" OHOS_SDK_SHA="$OHOS_SDK_SHA" \
+    OPENSSL_URL="$OPENSSL_URL" OPENSSL_SHA256="$OPENSSL_SHA256" \
+    ICU_URL="$ICU_URL" ICU_SHA256="$ICU_SHA256" \
+    /scripts/build-ohos.sh
 
 FROM mcr.microsoft.com/dotnet-buildtools/prereqs:azurelinux-4.0-net12.0-crossdeps-llvm-amd64
 

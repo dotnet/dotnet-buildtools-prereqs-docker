@@ -17,10 +17,16 @@ ICU_SHA256="${ICU_SHA256:-cb968df3e4d2e87e8b11c49a5d01c787bd13b9545280fc6642f826
 ICU_TAG="${ICU_VERSION/./-}"
 ICU_FILE="${ICU_VERSION/./_}"
 
+OPENSSL_URL="${OPENSSL_URL:-https://github.com/openssl/openssl/releases/download/openssl-$OPENSSL_VERSION/openssl-$OPENSSL_VERSION.tar.gz}"
+ICU_URL="${ICU_URL:-https://github.com/unicode-org/icu/releases/download/release-$ICU_TAG/icu4c-$ICU_FILE-src.tgz}"
+
 SDK_ROOT="$(dirname "$OHOS_NDK_HOME")"
 TOOLCHAIN="$OHOS_TOOLCHAIN/bin"
 WORK="$(mktemp -d)"
 trap 'rm -rf "$WORK"' EXIT
+
+CURL_OPTS=(-fSL --proto '=https' --connect-timeout 30 --retry 5 --retry-delay 5 \
+           --retry-all-errors --speed-limit 1024 --speed-time 60)
 
 for tool in curl python3 make perl awk; do
     command -v "$tool" >/dev/null || { echo "missing required tool: $tool" >&2; exit 1; }
@@ -29,9 +35,9 @@ done
 mkdir -p "$SDK_ROOT" "$OHOS_ASSETS" "$TOOLCHAIN"
 
 echo "== SDK =="
-curl -fsSL "$OHOS_SDK_URL" -o "$WORK/sdk.tar.gz"
+curl "${CURL_OPTS[@]}" "$OHOS_SDK_URL" -o "$WORK/sdk.tar.gz"
 echo "$OHOS_SDK_SHA  $WORK/sdk.tar.gz" | sha256sum -c -
-tar -xzf "$WORK/sdk.tar.gz" -C "$SDK_ROOT"
+tar -xzf "$WORK/sdk.tar.gz" -C "$SDK_ROOT" --no-same-owner
 rm -rf "$SDK_ROOT/windows"
 cd "$OHOS_NDK_HOME"
 for archive in native-linux-x64-*.zip; do
@@ -57,8 +63,8 @@ with zipfile.ZipFile(sys.argv[1]) as zf:
             zf.extract(info)
 PY
 done
-chmod -R +x native/llvm/bin
-chmod -R +x native/build-tools 2>/dev/null || true
+find native/llvm/bin -type f -exec chmod +x {} +
+find native/build-tools -type f -exec chmod +x {} + 2>/dev/null || true
 rm -f native-linux-x64-*.zip
 test -f "$OHOS_NDK_HOME/native/build/cmake/ohos.toolchain.cmake"
 
@@ -82,10 +88,9 @@ mk objcopy "$NDK_BIN/llvm-objcopy"
 mk objdump "$NDK_BIN/llvm-objdump"
 
 echo "== OpenSSL $OPENSSL_VERSION =="
-curl -fsSL "https://github.com/openssl/openssl/releases/download/openssl-$OPENSSL_VERSION/openssl-$OPENSSL_VERSION.tar.gz" \
-    -o "$WORK/openssl.tar.gz"
+curl "${CURL_OPTS[@]}" "$OPENSSL_URL" -o "$WORK/openssl.tar.gz"
 echo "$OPENSSL_SHA256  $WORK/openssl.tar.gz" | sha256sum -c -
-tar -xzf "$WORK/openssl.tar.gz" -C "$WORK"
+tar -xzf "$WORK/openssl.tar.gz" -C "$WORK" --no-same-owner
 cd "$WORK/openssl-$OPENSSL_VERSION"
 ./Configure linux-aarch64 \
     --cross-compile-prefix="$TOOLCHAIN/aarch64-linux-ohos-" \
@@ -96,10 +101,9 @@ make install_sw
 install -m 0644 "$WORK/openssl-$OPENSSL_VERSION/LICENSE.txt" "$OHOS_ASSETS/openssl/LICENSE.txt"
 
 echo "== ICU $ICU_VERSION =="
-curl -fsSL "https://github.com/unicode-org/icu/releases/download/release-$ICU_TAG/icu4c-$ICU_FILE-src.tgz" \
-    -o "$WORK/icu.tar.gz"
+curl "${CURL_OPTS[@]}" "$ICU_URL" -o "$WORK/icu.tar.gz"
 echo "$ICU_SHA256  $WORK/icu.tar.gz" | sha256sum -c -
-tar -xzf "$WORK/icu.tar.gz" -C "$WORK"
+tar -xzf "$WORK/icu.tar.gz" -C "$WORK" --no-same-owner
 mkdir -p "$WORK/icu-host" "$WORK/icu-target"
 
 cd "$WORK/icu-host"
