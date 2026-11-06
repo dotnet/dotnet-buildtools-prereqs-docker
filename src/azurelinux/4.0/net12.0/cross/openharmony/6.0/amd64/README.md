@@ -9,10 +9,32 @@ wrappers. It is the image used by the OpenHarmony runtime-community leg
 
 | Path | Contents |
 |------|----------|
-| `/opt/ohos-sdk/linux` | OpenHarmony SDK/NDK 6.0.0.47 (API 20) |
+| `/opt/ohos-sdk/linux/native` | OpenHarmony SDK/NDK 6.0.0.47 (API 20), Linux x86_64 host + aarch64-linux-ohos target |
 | `/opt/ohos-assets/openssl` | static OpenSSL 3.3.1 |
 | `/opt/ohos-assets/icu` | static ICU 75.1 |
 | `/opt/ohos-toolchain/bin` | `aarch64-linux-ohos-*` toolchain wrappers |
+
+## Image trimming and size
+
+The SDK tarball contains host-specific payloads. `linux/` is the Linux x86_64
+host SDK and `ohos/` is an OpenHarmony host SDK; the target is
+`aarch64-linux-ohos`, whose compiler and sysroot live under `linux/native`.
+The image therefore copies and retains only the Linux-host native component.
+The `ohos/` payload and the non-native Linux SDK zips are not used by this
+cross-compilation image.
+
+Unused SDK documentation, bundled CMake, non-aarch64 target runtimes, LLVM
+analysis/debug tools, and OpenSSL/ICU command-line/docs payloads are removed.
+`native/llvm/include` is retained because the SDK compiler uses its C++
+standard-library headers during host ICU builds.
+
+Measured with both `docker image inspect` and `docker save` on the final image:
+
+```text
+docker image inspect:       2,294,497,341 bytes
+docker save (uncompressed): 2,294,521,856 bytes
+final image:                ~2.29 GB (2.14 GiB)
+```
 
 ## Source and license
 
@@ -77,4 +99,4 @@ docker build -t azurelinux-4.0-net12.0-cross-openharmony-6.0-amd64 .
 
 The builder downloads and verifies the SDK, OpenSSL, and ICU sources by
 SHA256, builds OpenSSL and ICU with the OpenHarmony toolchain, and copies the
-SDK, assets, and toolchain into the final image.
+native SDK component, assets, and toolchain into the final image.

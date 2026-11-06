@@ -38,7 +38,9 @@ echo "== SDK =="
 curl "${CURL_OPTS[@]}" "$OHOS_SDK_URL" -o "$WORK/sdk.tar.gz"
 echo "$OHOS_SDK_SHA  $WORK/sdk.tar.gz" | sha256sum -c -
 tar -xzf "$WORK/sdk.tar.gz" -C "$SDK_ROOT" --no-same-owner
-rm -rf "$SDK_ROOT/windows"
+# The image is an aarch64 Linux cross toolchain only. Keep the native SDK
+# component and discard the host/other-language SDK payloads.
+rm -rf "$SDK_ROOT/windows" "$SDK_ROOT/ohos"
 cd "$OHOS_NDK_HOME"
 for archive in native-linux-x64-*.zip; do
     # python3 -m zipfile drops the symlinks stored in the SDK; recreate them.
@@ -65,7 +67,65 @@ PY
 done
 find native/llvm/bin -type f -exec chmod +x {} +
 find native/build-tools -type f -exec chmod +x {} + 2>/dev/null || true
-rm -f native-linux-x64-*.zip
+# None of the remaining SDK payloads are needed by the aarch64 native build.
+rm -f "$SDK_ROOT/linux"/*.zip
+rm -rf native/docs
+rm -rf native/llvm/python3
+rm -rf native/llvm/bin/python
+rm -rf native/llvm/bin/lldb*
+rm -rf native/llvm/lib/liblldb*
+
+# Keep the compiler, linker, archiver, binutils and symbolizer used by the
+# cross build; drop the analysis, debug, LTO-IR and non-ELF driver payloads.
+rm -f native/llvm/bin/clang-check \
+      native/llvm/bin/clang-tidy \
+      native/llvm/bin/clangd \
+      native/llvm/bin/clang-format \
+      native/llvm/bin/clang-apply-replacements \
+      native/llvm/bin/clang-change-namespace \
+      native/llvm/bin/clang-include-fixer \
+      native/llvm/bin/clang-query \
+      native/llvm/bin/clang-rename \
+      native/llvm/bin/opt \
+      native/llvm/bin/llc \
+      native/llvm/bin/dsymutil \
+      native/llvm/bin/llvm-dwp \
+      native/llvm/bin/llvm-cfi-verify \
+      native/llvm/bin/llvm-cov \
+      native/llvm/bin/llvm-dwarfdump \
+      native/llvm/bin/llvm-rc \
+      native/llvm/bin/llvm-lib \
+      native/llvm/bin/llvm-as \
+      native/llvm/bin/llvm-dis \
+      native/llvm/bin/llvm-link \
+      native/llvm/bin/llvm-modextract \
+      native/llvm/bin/llvm-profdata \
+      native/llvm/bin/llvm-size \
+      native/llvm/bin/llvm-strings \
+      native/llvm/bin/llvm-readobj \
+      native/llvm/bin/yaml2obj \
+      native/llvm/bin/sancov \
+      native/llvm/bin/sanstats \
+      native/llvm/bin/scan-build \
+      native/llvm/bin/scan-view \
+      native/llvm/bin/FileCheck \
+      native/llvm/bin/count \
+      native/llvm/bin/not \
+      native/llvm/bin/lld-link \
+      native/llvm/bin/ld64.lld
+# The image targets aarch64 only; other target runtimes and libclang's stable
+# C API are not used by the compiler driver.
+rm -rf native/llvm/lib/arm-linux-ohos native/llvm/lib/x86_64-linux-ohos
+rm -f native/llvm/lib/libclang.so
+
+# The final image provides CMake and the compiler from the base/build stages.
+# The SDK's bundled CMake/LLVM module files are not used by the runtime or SDK
+# builds; native/llvm/include is NOT removable because the SDK compiler needs
+# its C++ standard-library headers even for host ICU builds.
+rm -rf native/build-tools/cmake
+rm -rf native/llvm/share
+rm -rf native/llvm/lib/cmake
+rm -rf native/llvm/libexec
 test -f "$OHOS_NDK_HOME/native/build/cmake/ohos.toolchain.cmake"
 
 NDK_BIN="$OHOS_NDK_HOME/native/llvm/bin"
@@ -121,6 +181,11 @@ AR="$TOOLCHAIN/aarch64-linux-ohos-ar" RANLIB="$TOOLCHAIN/aarch64-linux-ohos-ranl
 make -j"$(nproc)"
 make install
 install -m 0644 "$WORK/icu/LICENSE" "$OHOS_ASSETS/icu/LICENSE"
+
+# The cross build only consumes the headers and static archives. Remove
+# command-line tools, docs, and package metadata installed by default.
+rm -rf "$OHOS_ASSETS/openssl/share" "$OHOS_ASSETS/openssl/lib/pkgconfig"
+rm -rf "$OHOS_ASSETS/icu/bin" "$OHOS_ASSETS/icu/share" "$OHOS_ASSETS/icu/lib/icu"
 
 echo "== Verify =="
 test -f "$OHOS_ASSETS/icu/include/unicode/ucurr.h"
