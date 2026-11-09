@@ -32,11 +32,11 @@ RUN wget https://releases.llvm.org/release-keys.asc && \
     gpg --import release-keys.asc && \
     rm release-keys.asc && \
 # 2. Download llvm sources and signature, and verify signature
-    LLVM_VERSION=23.1.4 && \
+    LLVM_VERSION=23.1.5 && \
     wget -O llvm-project.src.tar.xz.sig https://github.com/llvm/llvm-project/releases/download/llvmorg-${LLVM_VERSION}/llvm-project-${LLVM_VERSION}.src.tar.xz.sig && \
-    echo "a9f42dbc5c6675365ea83983465b6f7316bbf95621d52e2623f51f60a8173622 llvm-project.src.tar.xz.sig" | sha256sum -c && \
+    echo "c8ddd0ad6c8c5eb0f902e54f19580340e3c701a53fc7e5890f69851724305382 llvm-project.src.tar.xz.sig" | sha256sum -c && \
     wget -O llvm-project.src.tar.xz https://github.com/llvm/llvm-project/releases/download/llvmorg-${LLVM_VERSION}/llvm-project-${LLVM_VERSION}.src.tar.xz && \
-    echo "819ecf7351f1a66f76b2d701d8942faaf5faeb324cb90c9d5b090de142434bb2 llvm-project.src.tar.xz" | sha256sum -c && \
+    echo "bef140a1a96994029153dca8c00b1750b9a5a764fb9db2dc68d7bb40e8a29e8a llvm-project.src.tar.xz" | sha256sum -c && \
     gpg --verify llvm-project.src.tar.xz.sig && \
     rm llvm-project.src.tar.xz.sig
 
