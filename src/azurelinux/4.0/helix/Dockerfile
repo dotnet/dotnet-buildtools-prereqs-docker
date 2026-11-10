@@ -45,14 +45,9 @@ RUN dnf install --setopt tsflags=nodocs --refresh -y \
         xz \
     && dnf clean all
 
-# Install msquic from previous AZL realese until azurelinux-official-ms-oss is available
-COPY azl3-repomd.xml.key /tmp/azl3-repomd.xml.key
-
-RUN tdnf update -y && \
-    tdnf install numactl-libs libxdp libnl3 --setopt tsflags=nodocs --refresh -y \
-    && tdnf --repoid azl3 '--repofrompath=azl3,https://packages.microsoft.com/azurelinux/3.0/prod/ms-oss/$basearch' --setopt='azl3.gpgkey=file:///tmp/azl3-repomd.xml.key' --setopt=azl3.gpgcheck=1 --setopt=azl3.repo_gpgcheck=1 install -y libmsquic \
-    && tdnf clean all \
-    && rm -f /tmp/azl3-repomd.xml.key
+# libmsquic is currently only available in the Azure Linux 4 preview Microsoft repo
+RUN dnf install --setopt tsflags=nodocs --enablerepo=azurelinux-preview-microsoft -y libmsquic \
+    && dnf clean all
 
 # create helixbot user and give rights to sudo without password
 RUN /usr/sbin/useradd -c '' --uid 1000 --shell /bin/bash --groups adm helixbot && \
