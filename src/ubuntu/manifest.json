@@ -267,7 +267,7 @@
           "platforms": [
             {
               "architecture": "amd64",
-              "dockerfile": "src/ubuntu/24.04/vscode-csharp/amd64",
+              "dockerfile": "src/ubuntu/24.04/net10.0/vscode-csharp/amd64",
               "os": "linux",
               "osVersion": "noble",
               "tags": {
