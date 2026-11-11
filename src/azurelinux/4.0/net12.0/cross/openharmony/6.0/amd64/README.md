@@ -38,11 +38,17 @@ final image:                ~2.29 GB (2.14 GiB)
 
 ## Source and license
 
-The SDK is downloaded from the OpenHarmony 6.0-Release mirror:
+The SDK defaults to the internal mirror used by the prereqs build:
+
+```text
+https://netcorenativeassets.blob.core.windows.net/resource-packages/external/OpenHarmony/ohos-sdk-windows_linux-public-6.0.tar.gz
+SHA256 a315834ac133625efc912bd078f3e2b2550868d04aef1b5aa4f9679c8b3c9d8e
+```
+
+The public OpenHarmony 6.0-Release URL is kept as a fallback:
 
 ```text
 https://repo.huaweicloud.com/openharmony/os/6.0-Release/ohos-sdk-windows_linux-public.tar.gz
-SHA256 a315834ac133625efc912bd078f3e2b2550868d04aef1b5aa4f9679c8b3c9d8e
 ```
 
 The OpenHarmony Public SDK is licensed under the Apache License, Version 2.0.
@@ -65,13 +71,14 @@ Android SDK. Those SDKs have separate licenses and are not redistributed here.
 
 ## Internal mirror / network isolation
 
-Network isolation applies to all three downloads, so the SDK, OpenSSL, and ICU
-must all be mirrored; mirroring only the SDK is insufficient. They can be
-redirected without editing the script:
+Network isolation applies to all three downloads. The SDK is already mirrored
+and is the default; OpenSSL and ICU still use their public release URLs until
+they are uploaded to the same storage account. All three can be redirected
+without editing the script:
 
 ```bash
 docker build \
-  --build-arg OHOS_SDK_URL=https://<storage>/.../ohos-sdk-windows_linux-public.tar.gz \
+  --build-arg OHOS_SDK_URL=https://netcorenativeassets.blob.core.windows.net/resource-packages/external/OpenHarmony/ohos-sdk-windows_linux-public-6.0.tar.gz \
   --build-arg OPENSSL_URL=https://<storage>/.../openssl-3.3.1.tar.gz \
   --build-arg ICU_URL=https://<storage>/.../icu4c-75_1-src.tgz \
   -t azurelinux-4.0-net12.0-cross-openharmony-6.0-amd64 .

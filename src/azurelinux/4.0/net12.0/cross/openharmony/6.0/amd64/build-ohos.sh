@@ -7,7 +7,7 @@ set -euo pipefail
 : "${OHOS_ASSETS:=/opt/ohos-assets}"
 : "${OHOS_TOOLCHAIN:=/opt/ohos-toolchain}"
 
-OHOS_SDK_URL="${OHOS_SDK_URL:-https://repo.huaweicloud.com/openharmony/os/6.0-Release/ohos-sdk-windows_linux-public.tar.gz}"
+OHOS_SDK_URL="${OHOS_SDK_URL:-https://netcorenativeassets.blob.core.windows.net/resource-packages/external/OpenHarmony/ohos-sdk-windows_linux-public-6.0.tar.gz}"
 OHOS_SDK_SHA="${OHOS_SDK_SHA:-a315834ac133625efc912bd078f3e2b2550868d04aef1b5aa4f9679c8b3c9d8e}"
 OPENSSL_VERSION="${OPENSSL_VERSION:-3.3.1}"
 OPENSSL_SHA256="${OPENSSL_SHA256:-777cd596284c883375a2a7a11bf5d2786fc5413255efab20c50d6ffe6d020b7e}"
