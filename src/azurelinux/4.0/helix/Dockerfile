@@ -32,7 +32,11 @@ RUN dnf install --setopt tsflags=nodocs --refresh -y \
         icu \
         iputils \
         libatomic \
+        libmsquic \
+        libnl3 \
+        libxdp \
         llvm \
+        numactl-libs \
         openssl \
         procps-ng \
         python3 \
@@ -43,10 +47,7 @@ RUN dnf install --setopt tsflags=nodocs --refresh -y \
         tzdata \
         which \
         xz \
-    && dnf clean all
-
-# libmsquic is currently only available in the Azure Linux 4 preview Microsoft repo
-RUN dnf install --setopt tsflags=nodocs --enablerepo=azurelinux-preview-microsoft -y libmsquic \
+    && dnf update -y \
     && dnf clean all
 
 # create helixbot user and give rights to sudo without password
