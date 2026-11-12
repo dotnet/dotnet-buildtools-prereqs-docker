@@ -38,7 +38,7 @@ The cross-compilation images follow the format `mcr.microsoft.com/dotnet-buildto
 Examples:
 
 - mcr.microsoft.com/dotnet-buildtools/prereqs:azurelinux-3.0-net8.0-cross-arm64
-- mcr.microsoft.com/dotnet-buildtools/prereqs:azurelinux-3.0-net9.0-cross-amd64-musl
+- mcr.microsoft.com/dotnet-buildtools/prereqs:azurelinux-3.0-net10.0-cross-amd64-musl
 
 ## How to modify or create a new image
 
