@@ -35,37 +35,25 @@ ARG TARGETARCH
 ARG LIBMSQUIC_VERSION=2.5.6
 ENV DEBIAN_FRONTEND=noninteractive
 
-RUN LIBCURL=libcurl4 \
-    && if [ "$TARGETARCH" = "arm" ]; then \
-         LIBCURL="libcurl4t64"; fi \
-    && apt-get update \
-    && apt-get install -qq -y \
-        autoconf \
-        automake \
-        build-essential \
-        cmake \
-        clang \
+# Keep this image limited to what Helix test runs need. Compilers, LLVM development
+# files, and other build tools belong in the helix/llvm variant.
+# gdb and llvm-symbolizer provide crash diagnostics.
+RUN apt-get update \
+    && apt-get install -qq -y --no-install-recommends \
+        adduser \
+        ca-certificates \
         curl \
-        gcc \
         gdb \
-        git \
         gss-ntlmssp \
         iputils-ping \
-        $LIBCURL \
-        libffi-dev \
-        libicu-dev \
-        libssl-dev \
-        libtool \
+        libcurl4t64 \
+        libicu78 \
+        libssl3t64 \
         libunwind8 \
-        libunwind-dev \
-        lldb \
         llvm \
         locales \
-        locales-all \
-        python3-dev \
-        python3-pip \
+        python3 \
         python3-venv \
-        software-properties-common \
         sudo \
         tzdata \
         unzip \
