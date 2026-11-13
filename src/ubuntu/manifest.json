@@ -384,6 +384,56 @@
           "platforms": [
             {
               "architecture": "amd64",
+              "dockerfile": "src/ubuntu/26.04/helix/llvm",
+              "os": "linux",
+              "osVersion": "resolute",
+              "tags": {
+                "ubuntu-26.04-helix-llvm-amd64": {}
+              },
+              "buildArgs": {
+                "BASE_TAG": "ubuntu-26.04-helix-amd64"
+              }
+            }
+          ]
+        },
+        {
+          "platforms": [
+            {
+              "architecture": "arm64",
+              "dockerfile": "src/ubuntu/26.04/helix/llvm",
+              "os": "linux",
+              "osVersion": "resolute",
+              "tags": {
+                "ubuntu-26.04-helix-llvm-arm64v8": {}
+              },
+              "buildArgs": {
+                "BASE_TAG": "ubuntu-26.04-helix-arm64v8"
+              },
+              "variant": "v8"
+            }
+          ]
+        },
+        {
+          "platforms": [
+            {
+              "architecture": "arm",
+              "dockerfile": "src/ubuntu/26.04/helix/llvm",
+              "os": "linux",
+              "osVersion": "resolute",
+              "tags": {
+                "ubuntu-26.04-helix-llvm-arm32v7": {}
+              },
+              "buildArgs": {
+                "BASE_TAG": "ubuntu-26.04-helix-arm32v7"
+              },
+              "variant": "v7"
+            }
+          ]
+        },
+        {
+          "platforms": [
+            {
+              "architecture": "amd64",
               "dockerfile": "src/ubuntu/26.04/helix/webassembly/amd64",
               "os": "linux",
               "osVersion": "resolute",
