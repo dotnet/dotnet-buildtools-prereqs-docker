@@ -34,6 +34,8 @@ RUN dnf upgrade --refresh -y \
         file \
         libicu \
         libmsquic \
+        # Crash diagnostics: llvm-symbolizer symbolizes native stack traces in test logs
+        llvm \
         python3.12 \
         sudo \
     && dnf clean all
