@@ -1,0 +1,46 @@
+Third-party notices
+===================
+
+OpenHarmony Public SDK 6.0.0.47 (API 20)
+----------------------------------------
+Source:
+  https://repo.huaweicloud.com/openharmony/os/6.0-Release/ohos-sdk-windows_linux-public.tar.gz
+SHA256:
+  a315834ac133625efc912bd078f3e2b2550868d04aef1b5aa4f9679c8b3c9d8e
+License:
+  Apache License, Version 2.0
+Component notices:
+  /opt/ohos-sdk/linux/*/NOTICE.txt
+
+OpenSSL 3.3.1
+-------------
+Source:
+  https://github.com/openssl/openssl/releases/download/openssl-3.3.1/openssl-3.3.1.tar.gz
+SHA256:
+  777cd596284c883375a2a7a11bf5d2786fc5413255efab20c50d6ffe6d020b7e
+License:
+  Apache License, Version 2.0
+License copy:
+  /opt/ohos-assets/openssl/LICENSE.txt
+
+ICU 75.1
+--------
+Source:
+  https://github.com/unicode-org/icu/releases/download/release-75-1/icu4c-75_1-src.tgz
+SHA256:
+  cb968df3e4d2e87e8b11c49a5d01c787bd13b9545280fc6642f826527618caef
+License:
+  Unicode License
+License copy:
+  /opt/ohos-assets/icu/LICENSE
+
+Base images
+-----------
+The Azure Linux and .NET BuildTools base images include their own licenses
+and notices. Refer to the base image metadata and /usr/share/licenses in the
+final image.
+
+Excluded SDKs
+-------------
+This image does not contain the Huawei HarmonyOS SDK, Apple SDK, or Android
+SDK. Those SDKs have separate license terms and are not redistributed here.
