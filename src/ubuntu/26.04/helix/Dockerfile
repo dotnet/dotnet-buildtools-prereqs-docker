@@ -37,7 +37,7 @@ ENV DEBIAN_FRONTEND=noninteractive
 
 # Keep this image limited to what Helix test runs need. Compilers, LLVM development
 # files, and other build tools belong in the helix/llvm variant.
-# gdb and lldb are debuggers used by test runs; llvm provides llvm-symbolizer.
+# gdb and llvm-symbolizer provide crash diagnostics.
 RUN apt-get update \
     && apt-get install -qq -y --no-install-recommends \
         adduser \
@@ -50,7 +50,6 @@ RUN apt-get update \
         libicu78 \
         libssl3t64 \
         libunwind8 \
-        lldb \
         llvm \
         locales \
         python3 \
