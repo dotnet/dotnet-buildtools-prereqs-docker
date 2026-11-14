@@ -35,18 +35,17 @@ RUN apk add --upgrade --no-cache \
         bash \
         coreutils \
         curl \
+        gdb \
         icu-data-full \
         icu-libs \
         iputils \
         krb5-libs \
         libmsquic \
-        lldb \
         llvm \
         lttng-ust \
         musl-locales \
         openssl \
         python3 \
-        python3-dev \
         py3-cryptography \
         py3-pip \
         sudo \
