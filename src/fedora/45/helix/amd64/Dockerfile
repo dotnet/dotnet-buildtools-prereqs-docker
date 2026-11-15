@@ -63,6 +63,8 @@ RUN dnf upgrade --refresh -y \
         lttng-ust \
         openssl \
         sudo \
+        # Crash diagnostics: llvm-symbolizer symbolizes native stack traces in test logs
+        llvm \
     && dnf clean all
 
 ENV \
