@@ -263,31 +263,15 @@
           ]
         },
         {
-          "productVersion": "8.0",
-          "platforms": [
-            {
-              "architecture": "amd64",
-              "dockerfile": "src/ubuntu/24.04/vscode-csharp/amd64",
-              "os": "linux",
-              "osVersion": "noble",
-              "tags": {
-                "ubuntu-24.04-net8.0-vscode-csharp-amd64": {}
-              },
-              "buildArgs": {
-                "DOTNET_SDK_TAG": "8.0-noble"
-              }
-            }
-          ]
-        },
-        {
           "productVersion": "10.0",
           "platforms": [
             {
               "architecture": "amd64",
-              "dockerfile": "src/ubuntu/24.04/vscode-csharp/amd64",
+              "dockerfile": "src/ubuntu/24.04/net10.0/sdk-electron/amd64",
               "os": "linux",
               "osVersion": "noble",
               "tags": {
+                "ubuntu-24.04-net10.0-sdk-electron-amd64": {},
                 "ubuntu-24.04-net10.0-vscode-csharp-amd64": {}
               },
               "buildArgs": {
@@ -304,6 +288,23 @@
               "osVersion": "resolute",
               "tags": {
                 "ubuntu-26.04-amd64": {}
+              }
+            }
+          ]
+        },
+        {
+          "productVersion": "10.0",
+          "platforms": [
+            {
+              "architecture": "amd64",
+              "dockerfile": "src/ubuntu/26.04/net10.0/sdk-electron/amd64",
+              "os": "linux",
+              "osVersion": "resolute",
+              "tags": {
+                "ubuntu-26.04-net10.0-sdk-electron-amd64": {}
+              },
+              "buildArgs": {
+                "DOTNET_SDK_TAG": "10.0-resolute"
               }
             }
           ]
