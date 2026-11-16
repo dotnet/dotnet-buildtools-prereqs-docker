@@ -71,10 +71,9 @@ Android SDK. Those SDKs have separate licenses and are not redistributed here.
 
 ## Internal mirror / network isolation
 
-Network isolation applies to all three downloads. The SDK is already mirrored
-and is the default; OpenSSL and ICU still use their public release URLs until
-they are uploaded to the same storage account. All three can be redirected
-without editing the script:
+The SDK is mirrored and is the default; OpenSSL and ICU use their public release
+URLs. All three downloads are SHA256-pinned and can be redirected to an internal
+mirror without editing the script:
 
 ```bash
 docker build \

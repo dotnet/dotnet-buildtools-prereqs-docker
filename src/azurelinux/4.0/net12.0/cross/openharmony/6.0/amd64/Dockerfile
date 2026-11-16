@@ -6,8 +6,7 @@
 FROM mcr.microsoft.com/dotnet-buildtools/prereqs:azurelinux-4.0-net12.0-crossdeps-builder-amd64 AS builder
 
 # Allow the three source downloads to come from an internal mirror. The SDK is
-# mirrored by default; OpenSSL and ICU still use their public release URLs until
-# they are uploaded to the same storage account.
+# mirrored by default; OpenSSL and ICU use their public release URLs.
 ARG OHOS_SDK_URL=https://netcorenativeassets.blob.core.windows.net/resource-packages/external/OpenHarmony/ohos-sdk-windows_linux-public-6.0.tar.gz
 ARG OHOS_SDK_SHA=a315834ac133625efc912bd078f3e2b2550868d04aef1b5aa4f9679c8b3c9d8e
 ARG OPENSSL_URL=https://github.com/openssl/openssl/releases/download/openssl-3.3.1/openssl-3.3.1.tar.gz
