@@ -35,9 +35,9 @@ echo "Updating checksums in $dockerfile for LLVM $version"
 base_url="https://github.com/llvm/llvm-project/releases/download/llvmorg-${version}"
 
 # Download and compute checksum for the .sig file
-sig_checksum=$(curl -sL "${base_url}/llvm-project-${version}.src.tar.xz.sig" | sha256sum | cut -d ' ' -f 1)
+sig_checksum=$(curl -fsSL "${base_url}/llvm-project-${version}.src.tar.xz.sig" | sha256sum | cut -d ' ' -f 1)
 # Download and compute checksum for the .tar.xz file
-tar_checksum=$(curl -sL "${base_url}/llvm-project-${version}.src.tar.xz" | sha256sum | cut -d ' ' -f 1)
+tar_checksum=$(curl -fsSL "${base_url}/llvm-project-${version}.src.tar.xz" | sha256sum | cut -d ' ' -f 1)
 
 echo "  sig checksum: $sig_checksum"
 echo "  tar checksum: $tar_checksum"
