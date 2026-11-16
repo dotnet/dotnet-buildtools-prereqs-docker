@@ -3,11 +3,11 @@ FROM ubuntu.azurecr.io/ubuntu:22.04
 # Use the approved Azure-hosted Ubuntu mirror (per Network Isolation team guidance).
 RUN find /etc/apt -type f \( -name '*.sources' -o -name '*.list' \) -exec sed -i 's|//archive\.ubuntu\.com|//azure.archive.ubuntu.com|g' {} +
 
-ENV POWERSHELL_VERSION=7.6.9
+ENV POWERSHELL_VERSION=7.7.0
 # SHA256 of powershell-${POWERSHELL_VERSION}-linux-x64.tar.gz
-ENV POWERSHELL_SHA256_X64=1da6d6d6035d651f20e70ddee7c4c15ac6ab8b9fb40ee92240d91263f28a884b
+ENV POWERSHELL_SHA256_X64=c89d9c682d2c403dfe726f3df948e359675235a5bd6fab535776de69729ca0cb
 # SHA256 of powershell-${POWERSHELL_VERSION}-linux-arm64.tar.gz
-ENV POWERSHELL_SHA256_ARM64=02eb9991af447c7e7fe881acde195961afd397c40b8eb1c2b3856b84ec2d85f2
+ENV POWERSHELL_SHA256_ARM64=e59c89776eaa59790d44b3edd14277435225ab08b6e7603763101b89de83d935
 
 # Install the base toolchain we need to build anything (clang, cmake, make and the like)
 # this does not include libraries that we need to compile different projects, we'd like
