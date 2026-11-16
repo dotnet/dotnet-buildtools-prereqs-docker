@@ -271,6 +271,7 @@
               "os": "linux",
               "osVersion": "noble",
               "tags": {
+                "ubuntu-24.04-net10.0-sdk-electron-amd64": {},
                 "ubuntu-24.04-net10.0-vscode-csharp-amd64": {}
               },
               "buildArgs": {
