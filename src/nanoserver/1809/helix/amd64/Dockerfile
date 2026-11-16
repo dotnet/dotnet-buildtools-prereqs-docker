@@ -60,7 +60,7 @@ RUN pwsh -Command " `
             echo \"Failed to create Python virtual environment\"; `
             exit 1; `
         } `
-        & pip download --no-deps --index-url $helixFeed --extra-index-url $env:PIP_INDEX_URL helix-scripts; `
+        & pip download --no-deps --no-cache-dir --index-url $helixFeed --extra-index-url $env:PIP_INDEX_URL helix-scripts; `
         if ($LASTEXITCODE -ne 0) { `
             echo \"Failed to download Helix scripts\"; `
             exit 1; `
@@ -74,7 +74,8 @@ RUN pwsh -Command " `
                 } `
             }; `
         popd; `
-        Remove-Item -Recurse -Force $helixTemp;"
+        & cmd.exe /c rmdir /s /q C:\helixtmp; `
+        if ($LASTEXITCODE -ne 0) { throw 'Failed to remove Helix temporary directory' }"
 
 FROM mcr.microsoft.com/windows/nanoserver:1809
 
