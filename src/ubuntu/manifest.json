@@ -449,6 +449,71 @@
           "platforms": [
             {
               "architecture": "amd64",
+              "dockerfile": "src/ubuntu/26.04/helix/android/amd64",
+              "os": "linux",
+              "osVersion": "resolute",
+              "tags": {
+                "ubuntu-26.04-helix-android-24-amd64": {}
+              },
+              "buildArgs": {
+                "ANDROID_API_LEVEL": "24"
+              }
+            }
+          ]
+        },
+        {
+          "platforms": [
+            {
+              "architecture": "amd64",
+              "dockerfile": "src/ubuntu/26.04/helix/android/amd64",
+              "os": "linux",
+              "osVersion": "resolute",
+              "tags": {
+                "ubuntu-26.04-helix-android-29-amd64": {},
+                "ubuntu-26.04-helix-android-amd64": {}
+              },
+              "buildArgs": {
+                "ANDROID_API_LEVEL": "29"
+              }
+            }
+          ]
+        },
+        {
+          "platforms": [
+            {
+              "architecture": "amd64",
+              "dockerfile": "src/ubuntu/26.04/helix/android/amd64",
+              "os": "linux",
+              "osVersion": "resolute",
+              "tags": {
+                "ubuntu-26.04-helix-android-31-amd64": {}
+              },
+              "buildArgs": {
+                "ANDROID_API_LEVEL": "31"
+              }
+            }
+          ]
+        },
+        {
+          "platforms": [
+            {
+              "architecture": "amd64",
+              "dockerfile": "src/ubuntu/26.04/helix/android/amd64",
+              "os": "linux",
+              "osVersion": "resolute",
+              "tags": {
+                "ubuntu-26.04-helix-android-35-amd64": {}
+              },
+              "buildArgs": {
+                "ANDROID_API_LEVEL": "35"
+              }
+            }
+          ]
+        },
+        {
+          "platforms": [
+            {
+              "architecture": "amd64",
               "dockerfile": "src/ubuntu/26.10/helix",
               "os": "linux",
               "osVersion": "stonking",
