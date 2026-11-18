@@ -18,6 +18,7 @@ src/azurelinux/**/android/ @dotnet/runtime-infrastructure @dotnet/dotnet-docker-
 src/azurelinux/**/binlog-mcp/ @dotnet/dnceng @dotnet/dotnet-docker-reviewers
 src/azurelinux/**/build-aot-test/ @dotnet/aspnet-build @dotnet/dotnet-docker-reviewers
 src/azurelinux/**/build-aot-test-nginx/ @dotnet/aspnet-build @dotnet/dotnet-docker-reviewers
+src/azurelinux/**/build-aot-test-chrome/ @dotnet/aspnet-build @dotnet/dotnet-docker-reviewers
 src/azurelinux/**/build/ @dotnet/aspnet-build @dotnet/dotnet-docker-reviewers
 src/azurelinux/**/docker-testrunner/ @dotnet/dotnet-docker-reviewers
 src/azurelinux/**/fpm/ @dotnet/runtime-infrastructure @dotnet/dotnet-docker-reviewers
