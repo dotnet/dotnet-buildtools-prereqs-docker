@@ -1,4 +1,8 @@
-# Mirrored assets
+# Mirrored Assets Runbook
+
+This Runbook is the first step toward a team-wide **Runbook culture**: asset
+production, review, upload and verification should be repeatable and documented,
+not depend on tribal knowledge or one-off manual steps.
 
 Some images download third-party files from the `resource-packages` container
 in the `netcorenativeassets` storage account instead of from their original
