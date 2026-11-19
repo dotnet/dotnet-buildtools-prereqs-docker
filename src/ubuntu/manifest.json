@@ -6,6 +6,32 @@
         {
           "platforms": [
             {
+              "architecture": "amd64",
+              "dockerfile": "src/ubuntu/18.04/net10.0/abi-test/amd64",
+              "os": "linux",
+              "osVersion": "bionic",
+              "tags": {
+                "ubuntu-18.04-net10.0-abi-test-amd64": {}
+              }
+            }
+          ]
+        },
+        {
+          "platforms": [
+            {
+              "architecture": "amd64",
+              "dockerfile": "src/ubuntu/18.04/net11.0/abi-test/amd64",
+              "os": "linux",
+              "osVersion": "bionic",
+              "tags": {
+                "ubuntu-18.04-net11.0-abi-test-amd64": {}
+              }
+            }
+          ]
+        },
+        {
+          "platforms": [
+            {
               "dockerfile": "src/ubuntu/22.04/amd64",
               "os": "linux",
               "osVersion": "jammy",
