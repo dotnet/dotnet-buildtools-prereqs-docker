@@ -35,6 +35,7 @@ src/debian/*/gcc*/amd64/ @dotnet/runtime-infrastructure @dotnet/dotnet-docker-re
 src/fedora/**/amd64/ @dotnet/source-build @dotnet/dotnet-docker-reviewers
 
 # ubuntu
+src/ubuntu/**/abi-test/ @dotnet/aspnet-build @dotnet/dotnet-docker-reviewers
 src/ubuntu/**/debpkg/ @dotnet/runtime-infrastructure @dotnet/dotnet-docker-reviewers
 src/ubuntu/22.04/mlnet/ @dotnet/runtime-infrastructure @dotnet/dotnet-docker-reviewers
 src/ubuntu/22.04/opt/arm64v8/ @dotnet/runtime-infrastructure @dotnet/dotnet-docker-reviewers

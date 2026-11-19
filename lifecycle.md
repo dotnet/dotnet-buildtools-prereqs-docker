@@ -34,6 +34,27 @@ Examples:
 - [dotnet-buildtools-prereqs-docker #1227](https://github.com/dotnet/dotnet-buildtools-prereqs-docker/pull/1227)
 - [dotnet-buildtools-prereqs-docker #1260](https://github.com/dotnet/dotnet-buildtools-prereqs-docker/issues/1260)
 
+### ABI baseline test images
+
+ABI baseline images run already-built native artifacts against an intentionally old user-space ABI.
+They are distinct from supported-distro test images and do not imply product support for the base OS.
+Containers use the host kernel, so these images do not validate old-kernel compatibility.
+
+Tags include the base OS, .NET version, purpose, and architecture, for example `ubuntu-18.04-net10.0-abi-test-amd64`.
+The base OS fixes the ABI baseline; the .NET version scopes the runtime prerequisites and image lifecycle.
+Images contain runtime dependencies only, with no .NET runtime, SDK, compiler, or compatibility sysroot.
+Consumers copy or mount the actual native artifact payload, including its shared libraries, and execute startup and functional checks without rebuilding it.
+Build-host runtime libraries must not replace the baseline libraries in the test environment.
+
+These images may retain an older OS after its normal test-image retirement while its ABI remains a target for a supported .NET version.
+Changing the ABI baseline requires a new OS-version-specific tag rather than updating an existing tag to a newer OS.
+Retire an image when all .NET versions represented by its tags and remaining consumers no longer require that ABI baseline.
+
+The initial images target Ubuntu 18.04/glibc 2.27 for .NET 10 and .NET 11 on x64 and Arm64.
+One architecture-independent .NET 10 Dockerfile builds both architectures, with `amd64` and `arm64v8` tags following the Helix image pattern.
+The .NET 11 tags alias the corresponding .NET 10 images because their runtime prerequisites are identical.
+The .NET 12 baseline is undecided; no .NET 12 ABI-test image is defined here.
+
 ### Test image construction
 
 Test images should be be built according to established patterns:
