@@ -7,13 +7,28 @@
           "platforms": [
             {
               "architecture": "amd64",
-              "dockerfile": "src/ubuntu/18.04/net10.0/abi-test/amd64",
+              "dockerfile": "src/ubuntu/18.04/net10.0/abi-test",
               "os": "linux",
               "osVersion": "bionic",
               "tags": {
                 "ubuntu-18.04-net10.0-abi-test-amd64": {},
                 "ubuntu-18.04-net11.0-abi-test-amd64": {}
               }
+            }
+          ]
+        },
+        {
+          "platforms": [
+            {
+              "architecture": "arm64",
+              "dockerfile": "src/ubuntu/18.04/net10.0/abi-test",
+              "os": "linux",
+              "osVersion": "bionic",
+              "tags": {
+                "ubuntu-18.04-net10.0-abi-test-arm64v8": {},
+                "ubuntu-18.04-net11.0-abi-test-arm64v8": {}
+              },
+              "variant": "v8"
             }
           ]
         },

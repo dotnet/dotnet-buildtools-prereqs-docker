@@ -50,8 +50,9 @@ These images may retain an older OS after its normal test-image retirement while
 Changing the ABI baseline requires a new OS-version-specific tag rather than updating an existing tag to a newer OS.
 Retire an image when all .NET versions represented by its tags and remaining consumers no longer require that ABI baseline.
 
-The initial image targets Ubuntu 18.04/glibc 2.27 for .NET 10 and .NET 11 on x64.
-Both tags share the .NET 10 Dockerfile and image because their runtime prerequisites are identical; the .NET 11 tag is an alias.
+The initial images target Ubuntu 18.04/glibc 2.27 for .NET 10 and .NET 11 on x64 and Arm64.
+One architecture-independent .NET 10 Dockerfile builds both architectures, with `amd64` and `arm64v8` tags following the Helix image pattern.
+The .NET 11 tags alias the corresponding .NET 10 images because their runtime prerequisites are identical.
 The .NET 12 baseline is undecided; no .NET 12 ABI-test image is defined here.
 
 ### Test image construction
