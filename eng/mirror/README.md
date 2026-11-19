@@ -36,6 +36,23 @@ s390x binutils) were uploaded by hand and are tracked in
 - Layout scripts need no credentials. Anyone can run them, and each run must
   produce the committed manifest unchanged.
 
+## Execution cadence
+
+Review the mirror requirements annually when adding cross-build images for a
+new .NET release. **Review does not imply execution:** after the initial
+upload, run the production and upload steps only when the images need new
+mirrored inputs. A new .NET release can reuse the existing mirror unchanged.
+
+For FreeBSD, the baseline is the minimum targeted FreeBSD version, not
+`min-glibc` (FreeBSD does not use glibc). Raising that baseline normally
+triggers a refresh. Adding a target architecture, changing the required
+packages or updating the pinned `pkg` source can also require new assets;
+handle those when the corresponding image change is made.
+
+There is no monthly, quarterly or automatic annual refresh. If the pinned
+inputs are unchanged, no upload is needed. The verification-only command
+below can be run independently without producing or uploading assets.
+
 ## Updating an asset
 
 Run on Linux with Python 3, GNU `tar` with zstd support, `curl` and
@@ -104,8 +121,9 @@ pkg-src/<pkg-version>.tar.gz                              github.com/freebsd/pkg
 The pinned versions in `build-layout.py` (`RELEASES`, `ARCHES`, `PACKAGES`,
 `PKG_VERSION`) must match `eng/common/cross/build-rootfs.sh`
 (`__FreeBSDBase`, `__FreeBSDPkgRepo`, `__FreeBSDPackages`, `__FreeBSDPkg`).
-Refresh the mirror when those change, typically when the minimum supported
-FreeBSD version moves, about once or twice a year.
+Apply the execution cadence above when these inputs change; do not refresh
+solely because FreeBSD publishes a new point release or a new .NET image is
+added.
 
 To validate a local layout without network access, serve it from inside the
 build container:
