@@ -24,7 +24,7 @@ storage account uploads the reviewed layout with [`upload.sh`](upload.sh).
 
 Assets mirrored before this process (keyrings, V8, the OpenHarmony SDK and
 s390x binutils) were uploaded by hand and are tracked in
-https://github.com/dotnet/dotnet-buildtools-prereqs-docker/issues/1831.
+<https://github.com/dotnet/dotnet-buildtools-prereqs-docker/issues/1831>.
 
 ## Rules
 
