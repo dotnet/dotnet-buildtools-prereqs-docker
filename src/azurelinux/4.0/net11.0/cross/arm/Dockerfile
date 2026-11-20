@@ -7,6 +7,10 @@ ARG ROOTFS_DIR
 # glibc that supports 64-bit time_t. See https://github.com/dotnet/core/discussions/9285.
 RUN PYTHON_EXECUTABLE="$ROOTFS_PIP_HOME/bin/python" /scripts/eng/common/cross/build-rootfs.sh arm jammy lldb14 --skipunmount --skipemulation
 
+# Expose the target OpenMP headers and library on the compiler's sysroot search paths.
+RUN ln -s ../lib/llvm-14/lib/clang/14.0.0/include/omp.h "$ROOTFS_DIR/usr/include/omp.h" && \
+    ln -s libomp.so.5 "$ROOTFS_DIR/usr/lib/arm-linux-gnueabihf/libomp.so"
+
 RUN TARGET_TRIPLE="arm-linux-gnueabihf" && \
     GCC_VER=$(basename "$(find "$ROOTFS_DIR/usr/include/c++/" -mindepth 1 -maxdepth 1 -type d | sort -V | head -n1)") && \
     CPP_INCLUDES="$ROOTFS_DIR/usr/include/c++/$GCC_VER" && \
