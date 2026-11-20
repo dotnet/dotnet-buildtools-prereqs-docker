@@ -292,18 +292,6 @@
         {
           "platforms": [
             {
-              "dockerfile": "src/azurelinux/3.0/net8.0/cross/freebsd/14/amd64",
-              "os": "linux",
-              "osVersion": "azurelinux3.0",
-              "tags": {
-                "azurelinux-3.0-net8.0-cross-freebsd-14-amd64": {}
-              }
-            }
-          ]
-        },
-        {
-          "platforms": [
-            {
               "dockerfile": "src/azurelinux/3.0/net8.0/cross/s390x",
               "os": "linux",
               "osVersion": "azurelinux3.0",
@@ -549,30 +537,6 @@
               "osVersion": "azurelinux3.0",
               "tags": {
                 "azurelinux-3.0-net10.0-cross-android-openssl-amd64": {}
-              }
-            }
-          ]
-        },
-        {
-          "platforms": [
-            {
-              "dockerfile": "src/azurelinux/3.0/net10.0/cross/freebsd/14/amd64",
-              "os": "linux",
-              "osVersion": "azurelinux3.0",
-              "tags": {
-                "azurelinux-3.0-net10.0-cross-freebsd-14-amd64": {}
-              }
-            }
-          ]
-        },
-        {
-          "platforms": [
-            {
-              "dockerfile": "src/azurelinux/3.0/net10.0/cross/freebsd/14/arm64",
-              "os": "linux",
-              "osVersion": "azurelinux3.0",
-              "tags": {
-                "azurelinux-3.0-net10.0-cross-freebsd-14-arm64": {}
               }
             }
           ]
@@ -1313,150 +1277,6 @@
         {
           "platforms": [
             {
-              "dockerfile": "src/azurelinux/3.0/net11.0/cross/freebsd/14/amd64",
-              "os": "linux",
-              "osVersion": "azurelinux3.0",
-              "tags": {
-                "azurelinux-3.0-net11.0-cross-freebsd-14-amd64": {}
-              }
-            }
-          ]
-        },
-        {
-          "platforms": [
-            {
-              "dockerfile": "src/azurelinux/4.0/net11.0/cross/freebsd/14/amd64",
-              "os": "linux",
-              "osVersion": "azurelinux4.0",
-              "tags": {
-                "azurelinux-4.0-net11.0-cross-freebsd-14-amd64": {}
-              }
-            }
-          ]
-        },
-        {
-          "platforms": [
-            {
-              "dockerfile": "src/azurelinux/4.0/net12.0/cross/freebsd/14/amd64",
-              "os": "linux",
-              "osVersion": "azurelinux4.0",
-              "tags": {
-                "azurelinux-4.0-net12.0-cross-freebsd-14-amd64": {}
-              }
-            }
-          ]
-        },
-        {
-          "platforms": [
-            {
-              "dockerfile": "src/azurelinux/3.0/net11.0/cross/freebsd/14/arm64",
-              "os": "linux",
-              "osVersion": "azurelinux3.0",
-              "tags": {
-                "azurelinux-3.0-net11.0-cross-freebsd-14-arm64": {}
-              }
-            }
-          ]
-        },
-        {
-          "platforms": [
-            {
-              "dockerfile": "src/azurelinux/4.0/net11.0/cross/freebsd/14/arm64",
-              "os": "linux",
-              "osVersion": "azurelinux4.0",
-              "tags": {
-                "azurelinux-4.0-net11.0-cross-freebsd-14-arm64": {}
-              }
-            }
-          ]
-        },
-        {
-          "platforms": [
-            {
-              "dockerfile": "src/azurelinux/4.0/net12.0/cross/freebsd/14/arm64",
-              "os": "linux",
-              "osVersion": "azurelinux4.0",
-              "tags": {
-                "azurelinux-4.0-net12.0-cross-freebsd-14-arm64": {}
-              }
-            }
-          ]
-        },
-        {
-          "platforms": [
-            {
-              "dockerfile": "src/azurelinux/3.0/net11.0/cross/freebsd/15/amd64",
-              "os": "linux",
-              "osVersion": "azurelinux3.0",
-              "tags": {
-                "azurelinux-3.0-net11.0-cross-freebsd-15-amd64": {}
-              }
-            }
-          ]
-        },
-        {
-          "platforms": [
-            {
-              "dockerfile": "src/azurelinux/4.0/net11.0/cross/freebsd/15/amd64",
-              "os": "linux",
-              "osVersion": "azurelinux4.0",
-              "tags": {
-                "azurelinux-4.0-net11.0-cross-freebsd-15-amd64": {}
-              }
-            }
-          ]
-        },
-        {
-          "platforms": [
-            {
-              "dockerfile": "src/azurelinux/4.0/net12.0/cross/freebsd/15/amd64",
-              "os": "linux",
-              "osVersion": "azurelinux4.0",
-              "tags": {
-                "azurelinux-4.0-net12.0-cross-freebsd-15-amd64": {}
-              }
-            }
-          ]
-        },
-        {
-          "platforms": [
-            {
-              "dockerfile": "src/azurelinux/3.0/net11.0/cross/freebsd/15/arm64",
-              "os": "linux",
-              "osVersion": "azurelinux3.0",
-              "tags": {
-                "azurelinux-3.0-net11.0-cross-freebsd-15-arm64": {}
-              }
-            }
-          ]
-        },
-        {
-          "platforms": [
-            {
-              "dockerfile": "src/azurelinux/4.0/net11.0/cross/freebsd/15/arm64",
-              "os": "linux",
-              "osVersion": "azurelinux4.0",
-              "tags": {
-                "azurelinux-4.0-net11.0-cross-freebsd-15-arm64": {}
-              }
-            }
-          ]
-        },
-        {
-          "platforms": [
-            {
-              "dockerfile": "src/azurelinux/4.0/net12.0/cross/freebsd/15/arm64",
-              "os": "linux",
-              "osVersion": "azurelinux4.0",
-              "tags": {
-                "azurelinux-4.0-net12.0-cross-freebsd-15-arm64": {}
-              }
-            }
-          ]
-        },
-        {
-          "platforms": [
-            {
               "dockerfile": "src/azurelinux/3.0/net11.0/cross/haiku/amd64",
               "os": "linux",
               "osVersion": "azurelinux3.0",
@@ -1970,6 +1790,19 @@
               "osVersion": "azurelinux4.0",
               "tags": {
                 "azurelinux-4.0-net12.0-build-aot-test-nginx-amd64": {}
+              }
+            }
+          ]
+        },
+        {
+          "platforms": [
+            {
+              "architecture": "amd64",
+              "dockerfile": "src/azurelinux/4.0/net12.0/build-aot-test-chrome/amd64",
+              "os": "linux",
+              "osVersion": "azurelinux4.0",
+              "tags": {
+                "azurelinux-4.0-net12.0-build-aot-test-chrome-amd64": {}
               }
             }
           ]
