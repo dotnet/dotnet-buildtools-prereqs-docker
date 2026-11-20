@@ -21,6 +21,7 @@ usage()
     echo "--ubuntu-repo <url> - optional, override the Ubuntu apt repository base URL."
     echo "--debian-repo <url> - optional, override the Debian apt repository base URL."
     echo "--alpine-repo <url> - optional, override the Alpine Linux repository base URL."
+    echo "--freebsd-repo <url> - optional, fetch FreeBSD base, pkg source and packages from a mirror with the layout produced by eng/mirror/freebsd."
     echo "--jobs N (or --use-jobs N) - optional, restrict to N jobs."
     exit 1
 }
@@ -81,6 +82,8 @@ __AlpinePackages+=" zlib-dev"
 __FreeBSDBase="14.4-RELEASE"
 __FreeBSDPkg="2.8.0"
 __FreeBSDABI="14"
+# Frozen package set published with the base release (release_N for X.N-RELEASE).
+__FreeBSDPkgRepo="release_4"
 __FreeBSDPackages="libunwind"
 __FreeBSDPackages+=" icu"
 __FreeBSDPackages+=" libinotify"
@@ -150,6 +153,7 @@ __UseMirror=0
 __UbuntuRepoOverride=
 __DebianRepoOverride=
 __AlpineRepoOverride=
+__FreeBSDRepoOverride=
 
 __UnprocessedBuildArgs=
 while :; do
@@ -368,6 +372,7 @@ while :; do
             __CodeName=freebsd
             __FreeBSDBase="15.1-RELEASE"
             __FreeBSDABI="15"
+            __FreeBSDPkgRepo="release_1"
             __SkipUnmount=1
             ;;
         openbsd)
@@ -430,6 +435,14 @@ while :; do
                 usage
             fi
             __AlpineRepoOverride="$1"
+            ;;
+        --freebsd-repo|-freebsd-repo)
+            shift
+            if [[ "$#" -le 0 ]]; then
+                echo "ERROR: --freebsd-repo requires a URL argument."
+                usage
+            fi
+            __FreeBSDRepoOverride="${1%/}"
             ;;
         # Removed duplicate/invalid option handling block (was breaking case statement parsing).
         --use-jobs)
@@ -611,19 +624,31 @@ elif [[ "$__CodeName" == "freebsd" ]]; then
 
     ensureDownloadTool
 
-    if [[ "$__hasWget" == 1 ]]; then
-        wget -O- "https://download.freebsd.org/ftp/releases/${__FreeBSDArch}/${__FreeBSDMachineArch}/${__FreeBSDBase}/base.txz" | tar -C "$__RootfsDir" -Jxf - ./lib ./usr/lib ./usr/libdata ./usr/include ./usr/share/keys ./etc ./bin/freebsd-version
+    if [[ -n "$__FreeBSDRepoOverride" ]]; then
+        __FreeBSDBaseUrl="${__FreeBSDRepoOverride}/releases"
+        __FreeBSDPkgSrcUrl="${__FreeBSDRepoOverride}/pkg-src/${__FreeBSDPkg}.tar.gz"
+        __FreeBSDPkgUrl="${__FreeBSDRepoOverride}/pkg/\${ABI}/${__FreeBSDPkgRepo}"
+        __FreeBSDPkgMirrorType="none"
     else
-        curl -SL "https://download.freebsd.org/ftp/releases/${__FreeBSDArch}/${__FreeBSDMachineArch}/${__FreeBSDBase}/base.txz" | tar -C "$__RootfsDir" -Jxf - ./lib ./usr/lib ./usr/libdata ./usr/include ./usr/share/keys ./etc ./bin/freebsd-version
+        __FreeBSDBaseUrl="https://download.freebsd.org/ftp/releases"
+        __FreeBSDPkgSrcUrl="https://github.com/freebsd/pkg/archive/${__FreeBSDPkg}.tar.gz"
+        __FreeBSDPkgUrl="pkg+https://pkg.FreeBSD.org/\${ABI}/${__FreeBSDPkgRepo}"
+        __FreeBSDPkgMirrorType="srv"
     fi
-    echo "ABI = \"FreeBSD:${__FreeBSDABI}:${__FreeBSDMachineArch}\"; FINGERPRINTS = \"${__RootfsDir}/usr/share/keys\"; REPOS_DIR = [\"${__RootfsDir}/etc/pkg\"]; REPO_AUTOUPDATE = NO; RUN_SCRIPTS = NO;" > "${__RootfsDir}"/usr/local/etc/pkg.conf
-    echo "FreeBSD: { url: \"pkg+https://pkg.FreeBSD.org/\${ABI}/quarterly\", mirror_type: \"srv\", signature_type: \"fingerprints\", fingerprints: \"/usr/share/keys/pkg\", enabled: yes }" > "${__RootfsDir}"/etc/pkg/FreeBSD.conf
+
+    if [[ "$__hasWget" == 1 ]]; then
+        wget -O- "${__FreeBSDBaseUrl}/${__FreeBSDArch}/${__FreeBSDMachineArch}/${__FreeBSDBase}/base.txz" | tar -C "$__RootfsDir" -Jxf - ./lib ./usr/lib ./usr/libdata ./usr/include ./usr/share/keys ./etc ./bin/freebsd-version
+    else
+        curl -SL "${__FreeBSDBaseUrl}/${__FreeBSDArch}/${__FreeBSDMachineArch}/${__FreeBSDBase}/base.txz" | tar -C "$__RootfsDir" -Jxf - ./lib ./usr/lib ./usr/libdata ./usr/include ./usr/share/keys ./etc ./bin/freebsd-version
+    fi
+    echo "ABI = \"FreeBSD:${__FreeBSDABI}:${__FreeBSDMachineArch}\"; FINGERPRINTS = \"${__RootfsDir}/usr/share/keys\"; REPOS_DIR = [\"${__RootfsDir}/etc/pkg\"]; REPO_AUTOUPDATE = NO; RUN_SCRIPTS = NO; FETCH_RETRY = 5; FETCH_TIMEOUT = 60;" > "${__RootfsDir}"/usr/local/etc/pkg.conf
+    echo "FreeBSD: { url: \"${__FreeBSDPkgUrl}\", mirror_type: \"${__FreeBSDPkgMirrorType}\", signature_type: \"fingerprints\", fingerprints: \"/usr/share/keys/pkg\", enabled: yes }" > "${__RootfsDir}"/etc/pkg/FreeBSD.conf
     mkdir -p "$__RootfsDir"/tmp
     # get and build package manager
     if [[ "$__hasWget" == 1 ]]; then
-        wget -O- "https://github.com/freebsd/pkg/archive/${__FreeBSDPkg}.tar.gz" | tar -C "$__RootfsDir"/tmp -zxf -
+        wget -O- "$__FreeBSDPkgSrcUrl" | tar -C "$__RootfsDir"/tmp -zxf -
     else
-        curl -SL "https://github.com/freebsd/pkg/archive/${__FreeBSDPkg}.tar.gz" | tar -C "$__RootfsDir"/tmp -zxf -
+        curl -SL "$__FreeBSDPkgSrcUrl" | tar -C "$__RootfsDir"/tmp -zxf -
     fi
     cd "$__RootfsDir/tmp/pkg-${__FreeBSDPkg}"
     # needed for install to succeed
