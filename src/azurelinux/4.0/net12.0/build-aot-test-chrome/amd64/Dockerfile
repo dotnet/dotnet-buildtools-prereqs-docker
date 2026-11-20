@@ -21,6 +21,7 @@ RUN dnf update -y && \
         libXi \
         libXrandr \
         libXtst \
+        libatomic \
         libdrm \
         libxcb \
         libxkbcommon \
