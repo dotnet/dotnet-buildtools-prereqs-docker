@@ -31,6 +31,13 @@ Examples:
 - mcr.microsoft.com/dotnet-buildtools/prereqs:alpine-3.20-amd64
 - mcr.microsoft.com/dotnet-buildtools/prereqs:azurelinux-3.0-helix-arm64v8
 
+The `alpine-3.24-helix-scriptless-amd64` variant is an opt-in Helix image without
+the embedded `helix-scripts` Python environment. It retains Python and the other
+Alpine Helix OS dependencies. Existing `alpine-3.24-helix-*` and
+`alpine-3.24-helix-llvm-*` images retain their embedded Helix environment.
+Consumers must use a compatible result-reporting path, such as the standalone
+Helix job monitor, before switching to the scriptless variant.
+
 The cross-compilation images follow the format `mcr.microsoft.com/dotnet-buildtools/prereqs:<os-name>-<os-version>-<variant>-cross-<target>`. These are all implicitly amd64 images.
 
 - `<target>` - Specifies the target for cross-compilation, including the targeted architecture and libc variant (glibc if not specified, or musl).
