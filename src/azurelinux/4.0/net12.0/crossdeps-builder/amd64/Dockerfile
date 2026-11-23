@@ -103,11 +103,11 @@ RUN echo "70fbbd52ac7fd5d728a7885c73e64238ebac17864c90702e35f15c1b16939722 relea
 
 RUN \
     # Download llvm sources and signature, and verify signature
-    LLVM_VERSION=23.1.4 && \
+    LLVM_VERSION=23.1.6 && \
     wget -O llvm-project.src.tar.xz.sig https://github.com/llvm/llvm-project/releases/download/llvmorg-${LLVM_VERSION}/llvm-project-${LLVM_VERSION}.src.tar.xz.sig && \
-    echo "a9f42dbc5c6675365ea83983465b6f7316bbf95621d52e2623f51f60a8173622 llvm-project.src.tar.xz.sig" | sha256sum -c && \
+    echo "08b4a9ccba92e82e50b9efaf4f1c832d071b708e073308d6d72472e879366d80 llvm-project.src.tar.xz.sig" | sha256sum -c && \
     wget -O llvm-project.src.tar.xz https://github.com/llvm/llvm-project/releases/download/llvmorg-${LLVM_VERSION}/llvm-project-${LLVM_VERSION}.src.tar.xz && \
-    echo "819ecf7351f1a66f76b2d701d8942faaf5faeb324cb90c9d5b090de142434bb2 llvm-project.src.tar.xz" | sha256sum -c && \
+    echo "d3b86ab29cfb4445a6652e5c2642ccc75e04e38084dde3701d323320f35a31da llvm-project.src.tar.xz" | sha256sum -c && \
     gpgv --keyring ./llvm-release-keyring.gpg llvm-project.src.tar.xz.sig llvm-project.src.tar.xz && \
     rm llvm-project.src.tar.xz.sig llvm-release-keyring.gpg && \
     # Build LLVM cross-toolchain (with support for targeting x86/x64, arm64, arm, s390x and ppc64le architectures)
