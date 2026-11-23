@@ -1,6 +1,6 @@
 {
   "variables": {
-    "renovateVersion": "44"
+    "renovateVersion": "45"
   },
   "repos": [
     {
