@@ -35,7 +35,6 @@ RUN dnf update -y && \
         # Provides 'su', required by Azure DevOps
         util-linux \
         pam \
-        sudo \
         xz \
     && dnf clean all
 
