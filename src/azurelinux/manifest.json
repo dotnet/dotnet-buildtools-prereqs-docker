@@ -1746,11 +1746,76 @@
           "platforms": [
             {
               "architecture": "amd64",
+              "dockerfile": "src/azurelinux/4.0/net10.0/build/amd64",
+              "os": "linux",
+              "osVersion": "azurelinux4.0",
+              "tags": {
+                "azurelinux-4.0-net10.0-build-amd64": {}
+              }
+            }
+          ]
+        },
+        {
+          "platforms": [
+            {
+              "architecture": "amd64",
+              "dockerfile": "src/azurelinux/4.0/net10.0/build-aot-test/amd64",
+              "os": "linux",
+              "osVersion": "azurelinux4.0",
+              "tags": {
+                "azurelinux-4.0-net10.0-build-aot-test-amd64": {}
+              }
+            }
+          ]
+        },
+        {
+          "platforms": [
+            {
+              "architecture": "amd64",
+              "dockerfile": "src/azurelinux/4.0/net10.0/build-aot-test-chrome/amd64",
+              "os": "linux",
+              "osVersion": "azurelinux4.0",
+              "tags": {
+                "azurelinux-4.0-net10.0-build-aot-test-chrome-amd64": {}
+              }
+            }
+          ]
+        },
+        {
+          "platforms": [
+            {
+              "architecture": "amd64",
               "dockerfile": "src/azurelinux/4.0/net11.0/build/amd64",
               "os": "linux",
               "osVersion": "azurelinux4.0",
               "tags": {
                 "azurelinux-4.0-net11.0-build-amd64": {}
+              }
+            }
+          ]
+        },
+        {
+          "platforms": [
+            {
+              "architecture": "amd64",
+              "dockerfile": "src/azurelinux/4.0/net11.0/build-aot-test/amd64",
+              "os": "linux",
+              "osVersion": "azurelinux4.0",
+              "tags": {
+                "azurelinux-4.0-net11.0-build-aot-test-amd64": {}
+              }
+            }
+          ]
+        },
+        {
+          "platforms": [
+            {
+              "architecture": "amd64",
+              "dockerfile": "src/azurelinux/4.0/net11.0/build-aot-test-chrome/amd64",
+              "os": "linux",
+              "osVersion": "azurelinux4.0",
+              "tags": {
+                "azurelinux-4.0-net11.0-build-aot-test-chrome-amd64": {}
               }
             }
           ]
