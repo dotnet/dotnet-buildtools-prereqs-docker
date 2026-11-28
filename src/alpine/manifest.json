@@ -113,6 +113,19 @@
           "platforms": [
             {
               "architecture": "amd64",
+              "dockerfile": "src/alpine/3.24/helix-scriptless/amd64",
+              "os": "linux",
+              "osVersion": "alpine3.24",
+              "tags": {
+                "alpine-3.24-helix-scriptless-amd64": {}
+              }
+            }
+          ]
+        },
+        {
+          "platforms": [
+            {
+              "architecture": "amd64",
               "dockerfile": "src/alpine/3.24/helix/llvm",
               "os": "linux",
               "osVersion": "alpine3.24",
