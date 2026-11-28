@@ -133,6 +133,27 @@ RUN \
 
 ENV PATH="/opt/llvm/bin:$PATH"
 
+# crosstool-ng-build-rootfs.sh dependencies
+RUN dnf install -y \
+        autoconf \
+        automake \
+        bison \
+        file \
+        flex \
+        gawk \
+        glibc-gconv-extra \
+        gperf \
+        help2man \
+        libtool \
+        ncurses-devel \
+        patch \
+        perl-FindBin \
+        perl-IPC-Cmd \
+        perl-Time-Piece \
+        rsync \
+        which \
+    && dnf clean all
+
 # Copy arcade scripts used to build rootfs
 COPY eng/common/cross/ /scripts/eng/common/cross/
 

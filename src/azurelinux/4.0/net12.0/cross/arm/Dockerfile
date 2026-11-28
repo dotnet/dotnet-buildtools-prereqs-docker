@@ -3,9 +3,7 @@ ARG ROOTFS_DIR=/crossrootfs/arm
 FROM mcr.microsoft.com/dotnet-buildtools/prereqs:azurelinux-4.0-net12.0-crossdeps-builder-amd64 AS builder
 ARG ROOTFS_DIR
 
-# The arm rootfs targets Ubuntu 22.04, which is the first version with a
-# glibc that supports 64-bit time_t. See https://github.com/dotnet/core/discussions/9285.
-RUN PYTHON_EXECUTABLE="$ROOTFS_PIP_HOME/bin/python" /scripts/eng/common/cross/build-rootfs.sh arm jammy lldb14 --skipunmount --skipemulation
+RUN /scripts/eng/common/cross/crosstool-ng-build-rootfs.sh arm
 
 RUN TARGET_TRIPLE="arm-linux-gnueabihf" && \
     GCC_VER=$(basename "$(find "$ROOTFS_DIR/usr/include/c++/" -mindepth 1 -maxdepth 1 -type d | sort -V | head -n1)") && \

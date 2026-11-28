@@ -3,9 +3,7 @@ ARG ROOTFS_DIR=/crossrootfs/x64
 FROM mcr.microsoft.com/dotnet-buildtools/prereqs:azurelinux-4.0-net12.0-crossdeps-builder-amd64 AS builder
 ARG ROOTFS_DIR
 
-# Use Ubuntu Bionic as the base image for the rootfs
-# to get a new enough libstdc++ for the sanitizer runtimes and instrumentation.
-RUN PYTHON_EXECUTABLE="$ROOTFS_PIP_HOME/bin/python" /scripts/eng/common/cross/build-rootfs.sh x64 bionic --skipunmount --skipemulation --ubuntu-repo http://azure.archive.ubuntu.com/ubuntu/
+RUN /scripts/eng/common/cross/crosstool-ng-build-rootfs.sh x64
 
 RUN TARGET_TRIPLE="x86_64-linux-gnu" && \
     GCC_VER=$(basename "$(find "$ROOTFS_DIR/usr/include/c++/" -mindepth 1 -maxdepth 1 -type d | sort -V | head -n1)") && \
